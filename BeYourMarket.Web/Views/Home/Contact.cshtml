@@ -1,0 +1,44 @@
+﻿@model BeYourMarket.Web.Models.ContactModel
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+@section Styles {
+    
+}
+
+<div class="main-section">
+    <div class="container-fluid">
+        <div class="center-block col-md-8">
+            <div class="panel panel-default mrg-t">
+                <div class="panel-body bdr-b panel-header">
+                    <h4>Contact us</h4>                    
+                </div>
+                <div class="panel-body bdr-b ">
+                    <form action="@Url.Action("Contact", "Home" )" id="form0" method="post" role="form" enctype="multipart/form-data" onkeypress="return event.keyCode != 13;">
+
+                        @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
+                        <fieldset>                            
+                            <div class="form-group">
+                                <label>Your Email</label>
+                                <input type="text" class="form-control input-lg" placeholder="Enter Email" id="Email" name="Email" value="@Model.Email">
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea class="form-control input-lg" rows="4" placeholder="Message..." id="Message" name="Message">@Model.Message</textarea>
+                            </div>                            
+                        </fieldset>
+                        
+                        <fieldset>
+                            <button class="btn btn-primary" type="submit">Send</button>                            
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {    
+}

@@ -1,0 +1,94 @@
+﻿@model BeYourMarket.Web.Models.ListingModel
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="body-content container-fluid">
+    <div class="main-section">
+        <div class="container-fluid mrg-tb">
+
+            @Html.Partial("_DashBoardSide", "dashboard")
+
+            <div class=" col-md-9">
+                <div id="myTabContent" class="tab-content ">
+                    <div role="tabpanel" class="tab-pane card-content fade active in" id="listings" aria-labelledby="listings-tab">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                My Listings
+                            </div>
+                            <div class="panel-body">
+                                <div class="pull-left">
+                                    <form class="form-inline" action="@Url.Action("Dashboard", "Manage")" method="get" role="form">
+                                        <input type="text" id="searchText" name="searchText" class="input-sm form-control" placeholder="Search your listings..." value="@Request.QueryString["searchText"]">
+                                        <button class="btn btn-primary btn-sm" type="submit">Search</button>
+                                    </form>
+                                </div>
+                                <div class="pull-right">
+                                    <a class="btn btn-info btn-sm hidden-lg hidden-md" href=""><i class="mdi-content-add-circle-outline"></i></a><a class="btn btn-default btn-sm hidden-sm hidden-xs" href="@Url.Action("ListingUpdate", "Listing")">Publish new listing</a>
+                                </div>
+                            </div>
+
+                            <ul class="media-list list-group">
+                                @foreach (var item in Model.Items)
+                                {
+                                    <li id="item_@item.ItemCurrent.ID" class="media list-group-item">
+                                        <a class="pull-left" href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })">
+                                            <img class="item-thumbnail img-responsive img-rounded" alt="Thumbnail" src="@item.UrlPicture">
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })"> @item.ItemCurrent.Title</a></h4>
+                                            <p>
+                                                @item.ItemCurrent.Description.PrefixString(250)
+                                            </p>
+                                        </div>
+                                        <div>
+                                        </div>
+                                        <a class="btn btn-default btn-sm" href="@Url.Action("ListingUpdate", "Listing", new { id = item.ItemCurrent.ID })">Edit</a><a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete(@item.ItemCurrent.ID);">Delete</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function confirmDelete(id) {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel plx!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    $.post('@Url.Action("ListingDelete","Listing")', { id: id })
+                    .done(function (result) {
+                        console.log(result);
+                        if (result.Success) {
+                            $("#item_" + id).remove();
+                            swal("Deleted!", result.Message, "success");
+                        } else {
+                            swal("Failed!", result.Message, "error");
+                        }
+                    })
+                    .fail(function (xhr, textStatus, errorThrown) {
+                        swal("Failed", xhr.responseText, "error");
+                    })
+                } else {
+                    swal("Cancelled", "", "error");
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,52 @@
+﻿@model BeYourMarket.Web.Models.TextFileModel
+
+@section Styles {
+    <link href="~/js/codemirror/codemirror.css" rel="stylesheet" />
+    <link href="~/js/codemirror/ambiance.css" rel="stylesheet" />
+}
+
+@{
+    ViewBag.Title = "CSS Style";
+}
+
+<div class="wraper container-fluid">
+    <form action="@Url.Action("CodeStyleUpdate", "Design")" id="settingsForm" method="post" role="form">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="panel panel-primary panel-color">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">CSS Code Editor</h3>
+                        <small>Enter your custom css styles below</small>
+                    </div>
+                    <div class="panel-body code-edit-wrap">
+                        <textarea id="Text" name="Text" class="codeEditor" placeholder="Enter your custom css code here...">@Model.Text</textarea>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <button id="submitBtn" class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
+                        <button class="btn btn-default" type="button"><i class="fa fa-remove"></i> Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/codemirror/codemirror.js"></script>
+    <script src="~/js/codemirror/formatting.js"></script>
+    <script src="~/js/codemirror/xml.js"></script>
+    <script src="~/js/codemirror/javascript.js"></script>
+
+    <script src="~/js/codemirror/custom.codemirror.js"></script>
+
+}
+

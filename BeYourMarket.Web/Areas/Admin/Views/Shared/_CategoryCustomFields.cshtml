@@ -1,0 +1,89 @@
+﻿@model BeYourMarket.Web.Models.CustomFieldItemModel
+
+@if (Model.MetaCategories.Count > 0)
+{
+    <fieldset>
+        <legend>Custom Fields</legend>
+
+        @foreach (var metaCategory in Model.MetaCategories)
+        {
+            var field = metaCategory.MetaField;
+            var controlType = (BeYourMarket.Model.Enum.Enum_MetaFieldControlType)field.ControlTypeID;
+            var options = new string[] { };
+            if (!string.IsNullOrEmpty(field.Options))
+            {
+                options = field.Options.Split(new char[] { ',' });
+            }
+
+            var itemMeta = field.ItemMetas.Where(x => x.ItemID == Model.ItemID).FirstOrDefault();
+            var itemValue = string.Empty;
+            if (itemMeta != null)
+            {
+                itemValue = itemMeta.Value;
+            }
+
+            string controlId = string.Format("customfield_{0}_{1}_{2}", metaCategory.ID, metaCategory.CategoryID, metaCategory.FieldID);
+
+            switch (controlType)
+            {
+                case BeYourMarket.Model.Enum.Enum_MetaFieldControlType.None:
+                    break;
+                case BeYourMarket.Model.Enum.Enum_MetaFieldControlType.DropdownList:
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">@field.Name</label>
+                        <div class="col-md-10">
+                            <select class="form-control" name="@controlId" id="@controlId" data-placeholder="@field.Placeholder" @(field.Required ? "required" : "")>
+                                @foreach (var option in options)
+                                {
+                                    <option value="@option" @(itemValue == option ? "selected" : "")>@option</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                                break;
+                case BeYourMarket.Model.Enum.Enum_MetaFieldControlType.RadioList:
+                <div class="form-group">
+                    <label class="col-md-2 control-label">@field.Name</label>
+                    <div class="col-md-10">
+                        @foreach (var option in options)
+                        {
+                            <input type="radio" id="@controlId" name="@controlId" value="@option" @(itemValue == option ? "checked" : "") @(field.Required ? "required" : "") /><label for="@controlId">@option</label>
+                        }
+                    </div>
+                </div>
+                        break;
+                case BeYourMarket.Model.Enum.Enum_MetaFieldControlType.Checkboxes:
+                <div class="form-group">
+                    <label class="col-md-2 control-label">@field.Name</label>
+                    <div class="col-md-10">
+                        @foreach (var option in options)
+                        {
+                            <input type="checkbox" id="@controlId" name="@controlId" value="@option" @(itemValue == option ? "checked" : "") @(field.Required ? "required" : "") /><label for="@controlId">@option</label>
+                        }
+                    </div>
+                </div>
+                        break;
+                case BeYourMarket.Model.Enum.Enum_MetaFieldControlType.TextBox:
+                <div class="form-group">
+                    <label class="col-md-2 control-label">@field.Name</label>
+                    <div class="col-md-10">
+                        <input type="text" id="@controlId" name="@controlId" class="form-control input-lg" placeholder="@field.Placeholder" value="@itemValue" @(field.Required ? "required" : "")>
+                    </div>
+                </div>
+                        break;
+                case BeYourMarket.Model.Enum.Enum_MetaFieldControlType.MultilineTextbox:
+                <div class="form-group">
+                    <label class="col-md-2 control-label">@field.Name</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control input-lg" rows="4" placeholder="@field.Placeholder" id="@controlId" name="@controlId" @(field.Required ? "required" : "")>@itemValue</textarea>
+                    </div>
+                </div>
+                        break;
+                case BeYourMarket.Model.Enum.Enum_MetaFieldControlType.Datepicker:
+                        break;
+                default:
+                        break;
+            }
+        }
+    </fieldset>
+}

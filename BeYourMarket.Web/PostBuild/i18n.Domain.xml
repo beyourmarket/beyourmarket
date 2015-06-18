@@ -1,0 +1,451 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>i18n.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:i18n.Domain.Abstract.INuggetFinder">
+            <summary>
+            For finding nuggets that needs translating. Likely implementations is FileFinder and DatabaseFinder but anything is possible.
+            The interface does not help you supplying whitelist for what to check (for instance which database tables/columns) so the existance of this interface is more for testing/mocking.
+            </summary>
+        </member>
+        <member name="T:i18n.Domain.Abstract.AbstractSettingService">
+            <summary>
+            Abstract class for settings, we require being able to fetch all settings, finding one and also saving.
+            </summary>
+        </member>
+        <member name="M:i18n.Domain.Abstract.AbstractSettingService.#ctor(System.String)">
+            <summary>
+            ctor allowing custom config file
+            </summary>
+            <param name="configFileLocation">Link to the config files location. If set to null, settings will try to work out path on it's own</param>
+        </member>
+        <member name="T:i18n.Domain.Abstract.ITranslationRepository">
+            <summary>
+            For managing a translation repository for reading, writing and searching. As long as you implement this you can store your translation wherever you want. Db/ po files/xml
+            </summary>
+        </member>
+        <member name="M:i18n.Domain.Abstract.ITranslationRepository.GetTranslation(System.String)">
+            <summary>
+            Retrieves a translation with all items (both with translation set and not)
+            </summary>
+            <param name="langtag">The language tag to get the translation for. For instance "sv-SE"</param>
+            <returns>A Translation object with the Language->LanguageShortTag set and all the translation items returned in a Dictionary</returns>
+        </member>
+        <member name="M:i18n.Domain.Abstract.ITranslationRepository.GetAvailableLanguages">
+            <summary>
+            Gets all available languages. There is a setting for available languages that can be used by the implementation. But the implementation can if prefered use other method.
+            </summary>
+            <returns>List of <see cref="T:i18n.Domain.Entities.Language"/> with a minimum of LanguageShortTag set</returns>
+        </member>
+        <member name="M:i18n.Domain.Abstract.ITranslationRepository.TranslationExists(System.String)">
+            <summary>
+            Checks if a translation exists. This can either use settings as <see cref="M:i18n.Domain.Abstract.ITranslationRepository.GetAvailableLanguages"/> or a custom implementation 
+            </summary>
+            <param name="langtag">The language tag to check for, like "sv-SE"</param>
+            <returns>True of the language exists, otherwise false</returns>
+        </member>
+        <member name="M:i18n.Domain.Abstract.ITranslationRepository.SaveTranslation(i18n.Domain.Entities.Translation)">
+            <summary>
+            Saves a translation (persisting it). How this is done is completely up to the implementation. As long as the same language can be loaded with <see cref="M:i18n.Domain.Abstract.ITranslationRepository.GetTranslation(System.String)"/>
+            </summary>
+            <param name="translation">The translation to save. At minimum the Items and Language-&gt;LanguageShortTag must be set</param>
+        </member>
+        <member name="M:i18n.Domain.Abstract.ITranslationRepository.SaveTemplate(System.Collections.Generic.IDictionary{System.String,i18n.Domain.Entities.TemplateItem})">
+            <summary>
+            Save a template. A template differs from a translation in that a translation holds all messages but no translation data. It is used for updating translations to make sure all translations have all strings.
+            </summary>
+            <param name="items">All template items to save, in a dictionary indexed by their id</param>
+        </member>
+        <member name="M:i18n.Domain.Abstract.ITranslationRepository.GetCacheDependencyForSingleLanguage(System.String)">
+            <summary>
+            Returns a CacheDependency for a language. This can be a subclass such as <see cref="T:System.Web.Caching.SqlCacheDependency"/>
+            This is used to remove caches when a languages has been updated
+            </summary>
+            <param name="langtag">The language tag to get a dependency for</param>
+            <returns>The dependency for the language sent in.</returns>
+        </member>
+        <member name="M:i18n.Domain.Abstract.ITranslationRepository.GetCacheDependencyForAllLanguages">
+            <summary>
+            Returns a CacheDependecy for all languages, that is to say if there has been an additon or removal of one or more languages.
+            Just like <see cref="M:i18n.Domain.Abstract.ITranslationRepository.GetCacheDependencyForSingleLanguage(System.String)"/> we can return a subclass of CacheDependency as required.
+            </summary>
+            <returns>The cache dependency for the list of languages.</returns>
+        </member>
+        <member name="T:i18n.FsCacheDependency">
+            <summary>
+            Custom cache dependency implementation for monitoring file system changes (over and above
+            what is provided by the standard CacheDependency class).
+            </summary>
+            <remarks>
+            While the standard CacheDependency class supports monitoring of individual files (and possibly folders, not sure),
+            it doesn't seem to support deep folder (tree) monitoring or provide any other configurability
+            such as types of FS events to monitor etc.. This class is intended to provide all that.
+            </remarks>
+        </member>
+        <member name="M:i18n.FsCacheDependency.#ctor(System.String,System.Boolean,System.String,System.IO.NotifyFilters,System.Boolean)">
+            <summary>
+            Initializes a new instance of the i18n.FsCacheDependency class, given
+            the specified directory and type of files to monitor.
+            </summary>
+            <param name="path">
+            The directory to monitor, in standard or Universal Naming Convention (UNC) notation.
+            </param>
+            <param name="includeSubdirectories">
+            Value indicating whether subdirectories within the specified path should be monitored.
+            Defaults to true.
+            </param>
+            <param name="filespec">
+            The type of files to watch. For example, "*.txt" watches for changes to all text files. Defaults to "*.*".
+            </param>
+            <param name="changeTypes">
+            The type of changes to watch for.
+            Defaults to a combination of LastWrite, FileName, and DirectoryName.
+            </param>
+            <param name="autoStart">
+            Indicates whether the monitoring it to begin immediately.
+            If false, the caller must manipulate the EnableRaisingEvents property.
+            Defaults to true.
+            </param>
+        </member>
+        <member name="P:i18n.FsCacheDependency.EnableRaisingEvents">
+            <summary>
+            Gets or sets a value indicating whether the component is enabled.
+            </summary>
+        </member>
+        <member name="P:i18n.Domain.Concrete.i18nSettings.WhiteList">
+            <summary>
+            Describes zero or more file specifications which in turn specify
+            the source files to be targeted by FileNuggetParser.
+            </summary>
+            <remarks>
+            Each element in the list may be a full file name e.g. "myfile.js",
+            or a file extension e.g. "*.js".<br/>
+            When the list is stored in the config file as a string, each element is delimited by
+            a semi colon character.<br/>
+            Defaults to "*.cs;*.cshtml".
+            </remarks>
+        </member>
+        <member name="P:i18n.Domain.Concrete.i18nSettings.BlackList">
+            <summary>
+            Describes zero or more source directory/folder paths to be ignored during nugget parsing
+            e.g. by FileNuggetParser.
+            </summary>
+            <remarks>
+            Each element in the list may be either an absolute (rooted) path, or a path
+            relative to the folder containing the current config file
+            (<see cref="M:i18n.Domain.Abstract.AbstractSettingService.GetConfigFileLocation"/>).<br/>
+            When the list is stored in the config file as a string, each element is delimited by
+            a semi colon character.<br/>
+            Default value is empty list.<br/>
+            </remarks>
+        </member>
+        <member name="P:i18n.Domain.Concrete.i18nSettings.DirectoriesToScan">
+            <summary>
+            A semi-colon-delimited string that specifies one or more paths to the 
+            root directory/folder of the branches which FileNuggetParser is to scan for source files.
+            </summary>
+            <remarks>
+            Each string may be an absolute (rooted) path, or a path
+            relative to the folder containing the current config file
+            (<see cref="M:i18n.Domain.Abstract.AbstractSettingService.GetConfigFileLocation"/>).<br/>
+            Default value is "." which equates to the the single folder containing the 
+            current config file (<see cref="M:i18n.Domain.Abstract.AbstractSettingService.GetConfigFileLocation"/>).<br/>
+            Typically, you may set to ".." equating to the solution folder for the
+            project containing the current config file.<br/>
+            An example of a multi-path string is "c:\mywebsite;c:\mylibs\asp.net".
+            </remarks>
+        </member>
+        <member name="M:i18n.Domain.Concrete.FileNuggetFinder.ParseAll">
+            <summary>
+            Goes through the Directories to scan recursively and starts a scan of each while that matches the whitelist. (both from settings)
+            </summary>
+            <returns>All found nuggets.</returns>
+        </member>
+        <member name="T:i18n.Domain.Entities.Language">
+            <summary>
+            Keeps all information about a language that can be handy when listing languages.
+            </summary>
+        </member>
+        <member name="M:i18n.Domain.Concrete.POTranslationRepository.GetAvailableLanguages">
+            <summary>
+            Checks in first hand settings file, if not found there it checks file structure
+            </summary>
+            <returns>List of available languages</returns>
+        </member>
+        <member name="M:i18n.Domain.Concrete.POTranslationRepository.TranslationExists(System.String)">
+            <summary>
+            Checks if the language is set as supported in config file
+            If not it checks if the PO file is available
+            </summary>
+            <param name="langtag">The tag for which you want to check if support exists. For instance "sv-SE"</param>
+            <returns>True if language exists, otherwise false</returns>
+        </member>
+        <member name="M:i18n.Domain.Concrete.POTranslationRepository.SaveTranslation(i18n.Domain.Entities.Translation)">
+            <summary>
+            Saves a translation into file with standard pattern locale/langtag/message.po
+            Also saves a backup of previous version
+            </summary>
+            <param name="translation">The translation you wish to save. Must have Language shortag filled out.</param>
+        </member>
+        <member name="M:i18n.Domain.Concrete.POTranslationRepository.SaveTemplate(System.Collections.Generic.IDictionary{System.String,i18n.Domain.Entities.TemplateItem})">
+            <summary>
+            Saves a template file which is a all strings (needing translation) used in the entire project. Not language dependent
+            </summary>
+            <param name="items">A list of template items to save. The list should be all template items for the entire project.</param>
+        </member>
+        <member name="M:i18n.Domain.Concrete.POTranslationRepository.GetAbsoluteLocaleDir">
+            <summary>
+            Gets the locale directory from settings and makes sure it is translated into absolut path
+            </summary>
+            <returns>the locale directory in absolute path</returns>
+        </member>
+        <member name="M:i18n.Domain.Concrete.POTranslationRepository.ParseTranslationFile(System.String)">
+            <summary>
+            Parses a PO file into a Language object
+            </summary>
+            <param name="langtag">The language (tag) you wish to load into Translation object</param>
+            <returns>A complete translation object with all all translations and language values set.</returns>
+        </member>
+        <member name="M:i18n.Domain.Concrete.POTranslationRepository.RemoveCommentIfHistorical(System.String)">
+            <summary>
+            Removes the preceding characters in a file showing that an item is historical/log. That is to say it has been removed from the project. We don't need care about the character as the fact that it lacks references is what tells us it's a log item
+            </summary>
+            <param name="line"></param>
+            <returns></returns>
+        </member>
+        <member name="M:i18n.Domain.Concrete.POTranslationRepository.ParseBody(System.IO.TextReader,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Parses the body of a PO file item. That is to say the message id and the message itself.
+            Reason for why it must be on second line (textreader) is so that you can read until you have read to far without peek previously for meta data.
+            </summary>
+            <param name="fs">A textreader that must be on the second line of a message body</param>
+            <param name="line">The first line of the message body.</param>
+            <returns>Returns a TranslationItem with only key, id and message set</returns>
+        </member>
+        <member name="M:i18n.Domain.Concrete.POTranslationRepository.WriteString(System.IO.StreamWriter,System.Boolean,System.String,System.String)">
+            <summary>
+            Helper for writing either a msgid or msgstr to the po file.
+            </summary>
+            <param name="stream"></param>
+            <param name="hasReferences"></param>
+            <param name="type">"msgid" or "msgstr"</param>
+            <param name="value"></param>
+        </member>
+        <member name="M:i18n.Domain.Concrete.POTranslationRepository.Unescape(System.String)">
+            <summary>
+            Looks up in the subject string standard C escape sequences and converts them
+            to their actual character counterparts.
+            </summary>
+            <seealso href="http://stackoverflow.com/questions/6629020/evaluate-escaped-string/8854626#8854626"/>
+        </member>
+        <member name="T:i18n.Domain.Entities.TemplateItem">
+            <summary>
+            Template items are only used to keep track of the strings needing translation in any given project and for then updating the translations and translationItems with this data.
+            You should never need to work with TemplateItem unless you work with finding nuggets and updating the template file.
+            </summary>
+        </member>
+        <member name="T:i18n.Domain.Entities.TranslationItem">
+            <summary>
+            All the data that one translation one item can contain. Apart from Id (which is the string to translate) and Message (which is the translation) it contains some meta data. This is linked from Translation that ties many of these items together for a complete language
+            </summary>
+        </member>
+        <member name="T:i18n.Domain.Entities.Translation">
+            <summary>
+            Holds a complete translation in any one language. The template (TemplateItems) will have told the language which id's/strings that needs translation.
+            </summary>
+        </member>
+        <member name="M:i18n.Helpers.MiscHelpers.IsTextWithBom_Utf8(System.Byte[])">
+            <summary>
+            Returns indication of whether the byte array passed contains UTF-8 text
+            with a UTF-8 BOM prefix.
+            </summary>
+        </member>
+        <member name="M:i18n.Helpers.CollectionExtensions.Append``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns a copy of a collection with the contents of another collection appended to it.
+            </summary>
+        </member>
+        <member name="M:i18n.Helpers.CollectionExtensions.Append``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            Returns a copy of a collection with a new single item added to it.
+            </summary>
+        </member>
+        <member name="T:i18n.Helpers.HashHelper">
+            <summary>
+            Helpers for implementing Object.GetHashCode().
+            http://stackoverflow.com/a/2575444/1173555
+            </summary>
+        </member>
+        <member name="M:i18n.Helpers.HashHelper.CombineHashCode``1(System.Int32,``0)">
+            <summary>
+            Facilitates hashcode generation using fluent interface, like this:
+            <br />
+                return 0.CombineHashCode(field1).CombineHashCode(field2).CombineHashCode(field3);
+            <br />
+            </summary>
+            <param name="arg">
+            Subject object, value, or collection (IEnumerable).
+            </param>
+        </member>
+        <member name="M:i18n.Helpers.HashHelper.GetHashCode``1(``0)">
+            <summary>
+            Returns the hash code for the passed argument, with appropriate handling of
+            null and collection types.
+            </summary>
+            <typeparam name="T">Type of subject object.</typeparam>
+            <param name="arg">Subject object.</param>
+            <returns>Hash code value.</returns>
+            <remarks>
+            For null object, the method simpy returns zero.
+            For collection objects (castable to IEnumerable&lt;object&gt;) the hash code of
+            the collection elements are combined to form the result hash code.
+            </remarks>
+        </member>
+        <member name="T:i18n.Domain.Helpers.LockFreeProperty`1">
+            <summary>
+            Helper class for implementing a reference property with a lock-free thread-safe accessor.
+            Null value may be set and remembered.
+            </summary>
+        </member>
+        <member name="F:i18n.Domain.Helpers.LockFreeProperty`1.m_prop">
+            <summary>
+            Wrapped property value. 
+            </summary>
+        </member>
+        <member name="F:i18n.Domain.Helpers.LockFreeProperty`1.m_set">
+            <summary>
+            Indicates whether or not m_prop has been set, irrespective of whether 
+            it is null or not.
+            </summary>
+        </member>
+        <member name="M:i18n.Domain.Helpers.LockFreeProperty`1.Get(System.Func{`0})">
+            <summary>
+            If a value has been previously set (by a call to Set or Get) returns that
+            value; otherwise calls the factory method to get a value and sets that value
+            before returning it.
+            </summary>
+            <param name="factory">Method called when the property value is not yet set to create a new value.</param>
+        </member>
+        <member name="M:i18n.Domain.Helpers.LockFreeProperty`1.Set(`0,System.Boolean)">
+            <summary>
+            Explicitly sets the property value, or clears it.
+            </summary>
+            <param name="value">Value to set. Null is considered a valid value.</param>
+            <param name="set">true to mark the property as set; false to mark as unset.</param>
+        </member>
+        <member name="M:i18n.Domain.Helpers.LockFreeProperty`1.Reset">
+            <summary>
+            Marks the property value as not set.
+            </summary>
+        </member>
+        <member name="T:i18n.Helpers.NuggetTokens">
+            <summary>
+            Describes a valid set of string tokens that define the format of a Nugget.
+            </summary>
+            <remarks>
+            The standard numgget format is as follows:
+              [[[Enter between %0 and %1 characters|||{1}|||{2}/// The %0 identifies refers to min number and the %1 refers to the max number. ]]]
+            where:
+              BeginToken = "[[["
+              EndToken = "]]]"
+              DelimiterToken = "|||"
+              CommentToken = "///"
+            </remarks>
+        </member>
+        <member name="T:i18n.Helpers.Nugget">
+             <summary>
+             Describes the components of a nugget.
+             </summary>
+             <remarks>
+             Formatted nuggets:
+            
+             The msgid for a formatted nugget:
+            
+                Enter between %0 and %1 characters|||100|||6
+            
+             while the original string in the code for this may have been:
+            
+                [[[Enter between %0 and %1 characters|||{1}|||{2}]]]
+            
+             The canonical msgid part is that between the opening [[[ and the first ||| or ///:
+            
+                Enter between %0 and %1 characters
+             </remarks>
+        </member>
+        <member name="T:i18n.Helpers.NuggetParser">
+            <summary>
+            Helper class for locating and processing nuggets in a string.
+            </summary>
+        </member>
+        <member name="F:i18n.Helpers.NuggetParser.m_nuggetTokens">
+            <summary>
+            Set during CON to nugget definition tokens.
+            </summary>
+        </member>
+        <member name="F:i18n.Helpers.NuggetParser.m_context">
+            <summary>
+            Specifies whether the nugget is being parsed as part of source processing
+            or response processing.
+            </summary>
+        </member>
+        <member name="F:i18n.Helpers.NuggetParser.m_regexNuggetBreakdown">
+            <summary>
+            Initialized during CON to a regex suitable for breaking down a nugget into its component parts,
+            as defined by the NuggetTokens definition passed to the CON.
+            </summary>
+        </member>
+        <member name="M:i18n.Helpers.NuggetParser.ParseString(System.String,System.Func{System.String,System.Int32,i18n.Helpers.Nugget,System.String,System.String})">
+            <summary>
+            Parses a string entity for nuggets, forwarding the nugget to a caller-provided
+            delegate, with support for replacement of nugget strings in the entity.
+            </summary>
+            <param name="entity">
+            String containing nuggets to be parsed. E.g. source code file, HTTP response entity.
+            </param>
+            <param name="ProcessNugget">
+            Delegate callback to be called for each nugget encountered in entity:
+                delegate(string nuggetString, int pos, Nugget nugget1, string entity1).
+            Returns a string with which to replace the nugget string in the source entity.
+            If no change, then may return null.
+            </param>
+            <returns>
+            Entity string reflecting any nugget strings replacements.
+            </returns>
+        </member>
+        <member name="M:i18n.Helpers.NuggetParser.BreakdownNugget(System.String)">
+            <summary>
+            Parses a nugget string to breakdown the nugget into individual components.
+            </summary>
+            <param name="nugget">Subject nugget string.</param>
+            <returns>If successful, returns Nugget instance; otherwise returns null indicating a badly formatted nugget string.</returns>
+        </member>
+        <member name="M:i18n.Helpers.NuggetParser.EscapeString(System.String,System.Char)">
+            <summary>
+            Modifies a string such that each character is prefixed by another character
+            (defaults to backslash).
+            </summary>
+        </member>
+        <member name="M:i18n.Helpers.NuggetParser.NuggetFromRegexMatch(System.Text.RegularExpressions.Match)">
+            <summary>
+            Returns a nugget instance loaded from a regex match, or null if error.
+            </summary>
+        </member>
+        <member name="T:i18n.Helpers.NuggetParser.Context">
+            <summary>
+            Nuggets may be parsed during the different stages as enumerated here.
+            </summary>
+        </member>
+        <member name="M:i18n.Helpers.StringExtensions.IsSet(System.String)">
+            <summary>
+            String extension method to simplify testing for non-null/non-empty values.
+            </summary>
+        </member>
+        <member name="M:i18n.Helpers.StringExtensions.LineFromPos(System.String,System.Int32)">
+            <summary>
+            Returns the line number (1-based) of the identified character in the string.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,132 @@
+﻿@model BeYourMarket.Web.Models.AppearanceModel
+
+@{
+    ViewBag.Title = "Appearance";
+}
+
+@section Styles {
+    <link href="~/Content/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+    <link href="~/js/colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
+}
+
+<div class="wraper container-fluid">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Appearance</h3></div>
+                <div class="panel-body">
+                    <form action="@Url.Action("AppearanceUpdate", "Design")" id="settingsForm" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                        <input type="hidden" name="ID" id="ID" value="@Model.ID" />
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="logo">Logo</label>
+                            <div class="col-md-10">
+                                <input id="Logo" name="Logo" type="file" class="form-control file-loading">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="logo">Cover photo</label>
+                            <div class="col-md-10">
+                                <input id="CoverPhoto" name="CoverPhoto" type="file" class="form-control file-loading">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="logo">Favicon</label>
+                            <div class="col-md-10">
+                                <input id="Favicon" name="Favicon" type="file" class="form-control file-loading" style="width: 15px">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
+                                <button class="btn btn-default" type="button"><i class="fa fa-remove"></i> Cancel</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/fileinput.min.js"></script>
+    <script src="~/js/colorpicker/js/bootstrap-colorpicker.min.js"></script>
+
+    <script>
+        var $fileLogo = $("#Logo");
+
+        $fileLogo.fileinput({
+            uploadAsync: false,
+            showCaption: false,
+            showRemove: false,
+            showUpload: false,
+            maxFileCount: 1,
+            overwriteInitial: true,
+            initialPreview: [
+                    '<img src="@Model.LogoUrl" class="file-preview-image">'
+            ],
+            initialPreviewConfig: [
+                    { url: "@Url.Action("PictureDelete", "Design", new { })", key: "logo" }
+            ],
+            maxFileSize: 10000,
+            browseClass: "btn btn-default",
+            allowedFileTypes: ["image"]
+        });
+
+        var $fileCover = $("#CoverPhoto");
+
+        $fileCover.fileinput({
+            uploadAsync: false,
+            showCaption: false,
+            showRemove: false,
+            showUpload: false,
+            maxFileCount: 1,
+            overwriteInitial: true,
+            initialPreview: [
+                    '<img src="@Model.CoverPhotoUrl" class="file-preview-image">'
+            ],
+            initialPreviewConfig: [
+                    { url: "@Url.Action("PictureDelete", "Design", new { })", key: "cover" }
+            ],
+            maxFileSize: 10000,
+            browseClass: "btn btn-default",
+            allowedFileTypes: ["image"]
+        });
+
+        var $favicon = $("#Favicon");
+
+        $favicon.fileinput({
+            uploadAsync: false,
+            showCaption: false,
+            showRemove: false,
+            showUpload: false,
+            maxFileCount: 1,
+            overwriteInitial: true,
+            initialPreview: [
+                    '<img src="@Model.FaviconUrl" class="file-preview-image">'
+            ],
+            initialPreviewConfig: [
+                    { url: "@Url.Action("PictureDelete", "Design", new { })", key: "favicon" }
+            ],
+            maxFileSize: 10000,
+            browseClass: "btn btn-default",
+            allowedFileTypes: ["image"]
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.colorpicker-default').colorpicker();
+        });
+
+    </script>
+}

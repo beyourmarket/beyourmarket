@@ -1,0 +1,63 @@
+﻿@model BeYourMarket.Model.Enum.Enum_StripeConnectStatus
+@{
+    ViewBag.Title = "Payment Settings";
+}
+
+<div class="body-content container-fluid">
+    <div class="main-section">
+        <div class="container-fluid mrg-tb">
+
+            @Html.Partial("_DashBoardSide", "payment")
+
+            <div class=" col-md-9">
+                <div id="myTabContent" class="tab-content ">
+                    <div role="tabpanel" class="tab-pane card-content fade active in" id="listings" aria-labelledby="listings-tab">
+                        <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">
+                                Payment Settings
+                            </div>
+                            <div class="panel-body">
+                                <h4>
+                                    <i class="fa fa-gears"></i> Payment Settings
+                                </h4>
+                                <hr />
+                                <h5>
+                                    Payout information
+                                </h5>
+
+                                @Html.Partial("_UserMessage")
+
+                                <p>
+                                    To accept payments you need to connect your <a href="https://stripe.com" target="_blank">Stripe</a> account with products.
+                                </p>
+
+                                @if (Model == BeYourMarket.Model.Enum.Enum_StripeConnectStatus.None)
+                                {
+                                    <p>
+                                        <a href="@CacheHelper.StripeConnectUrl" class="stripe-connect">
+                                            <span>Connect with Stripe</span>
+                                        </a>
+                                    </p>
+                                }
+                                else
+                                {
+                                    <form action="@Url.Action("PaymentSettingDeauthorize", "Payment")" method="post">
+                                        <button class="stripe-connect">
+                                            <span>Disconnect with Stripe</span>
+                                        </button>
+                                    </form>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

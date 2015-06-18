@@ -1,0 +1,64 @@
+﻿@model BeYourMarket.Web.Models.SearchListingModel
+
+@{
+    ViewBag.Title = CacheHelper.Settings.Name;
+    var imagePath = ImageHelper.GetCommunityImagePath("cover");
+    var bgCss = string.Empty;
+
+    if (!string.IsNullOrEmpty(imagePath))
+    {
+        bgCss = string.Format(@"background: linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.15)),url(""{0}"");background-attachment: fixed; background-size: cover;", imagePath);
+    }
+}
+
+@section Styles {
+
+}
+
+<div class="landing-bg jumbotron text-center" style="@bgCss">
+    <div class=" container" style="margin: 0 auto; max-width: 60em;">
+        <h1>@CacheHelper.Settings.Slogan</h1>
+        <p class="lead">@CacheHelper.Settings.Description</p>
+        <form method="get" action="@Url.Action("Search", "Home")">
+            <p><input type="text" class="form-control input-lg" placeholder="@CacheHelper.Settings.SearchPlaceHolder" id="SearchText" name="SearchText"></p>
+            <p><button type="submit" class="btn btn-primary btn-lg"><i class="mdi-action-search"></i> Search</button></p>
+        </form>
+    </div>
+</div>
+
+<div class="container-fluid body-content">
+    <div class="row">
+        <div class="col-md-12 section-title">
+            <h4>Latest Listings <a class="btn btn-default btn-sm pull-right" href="@Url.Action("Search","Home")">See All Listings &raquo;</a></h4>
+        </div>
+    </div>
+
+    <div class="row m-b-10">
+        @foreach (var item in Model.ItemsPageList.Take(8))
+        {
+            <div class="col-sm-6 col-md-3 col-lg-3">
+                <div class="card">
+                    <div class="card-image">
+                        <a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })">
+                            <img alt="Listing Thumbnail" src="@item.UrlPicture">
+                            <span class="card-img-label">@Html.DisplayFor(x => item.ItemCurrent.PriceFormatted)</span>
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <h5><a class="card-title ">@item.ItemCurrent.Title</a></h5>
+                        <p>
+                            @item.ItemCurrent.Description.PrefixString(30)
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })"><i class="fa fa-map-marker"></i> @item.ItemCurrent.Location.PrefixString(20)</a>                        
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+
+}

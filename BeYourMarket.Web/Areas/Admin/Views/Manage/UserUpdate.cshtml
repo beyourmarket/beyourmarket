@@ -1,0 +1,161 @@
+﻿@model BeYourMarket.Web.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Listing";
+}
+
+@section Styles {
+    <link href="~/js/timepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
+}
+
+<div class="wraper container-fluid">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">User - @Model.FullName</h3></div>
+                <div class="panel-body">
+                    <form action="@Url.Action("UserUpdate", "Manage")" id="settingsForm" method="post" class="form-horizontal" role="form">
+                        @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">ID</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.Id</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">First Name</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="FirstName" name="FirstName" value="@Model.FirstName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Last Name</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="LastName" name="LastName" value="@Model.LastName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                <label class="cr-styled">
+                                    <input type="radio" name="Gender" id="Gender" value="M" @(Model.Gender == "M" ? "checked" : "") /> <i class="fa"></i> Male
+                                </label> <i class="fa fa-male"></i>
+                                <label class="cr-styled">
+                                    <input type="radio" name="Gender" id="Gender" value="F" @(Model.Gender == "F" ? "checked" : "") /> <i class="fa"></i> Female
+                                </label> <i class="fa fa-female"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Email</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="Email" name="Email" value="@Model.Email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <label class="cr-styled">
+                                    <input id="EmailConfirmed" name="EmailConfirmed" type="checkbox" value="true" checked="@Model.EmailConfirmed">
+                                    <i class="fa"></i>
+                                    Email Confirmed
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">PhoneNumber</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" value="@Model.PhoneNumber">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <label class="cr-styled">
+                                    <input id="PhoneNumberConfirmed" name="PhoneNumberConfirmed" type="checkbox" value="true" checked="@Model.PhoneNumberConfirmed">
+                                    <i class="fa"></i>
+                                    Phone Number Confirmed
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <label class="cr-styled">
+                                    <input id="AcceptEmail" name="AcceptEmail" type="checkbox" value="true" checked="@Model.AcceptEmail">
+                                    <i class="fa"></i>
+                                    Accept Email
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <label class="cr-styled">
+                                    <input id="RoleAdministrator" name="RoleAdministrator" type="checkbox" value="true" checked="@Model.RoleAdministrator">
+                                    <i class="fa"></i>
+                                    Administrator
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Register Date</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.RegisterDate</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Register IP</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.RegisterIP</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Last Access Date</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.LastAccessDate</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Last Access IP</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.LastAccessIP</p>
+                            </div>
+                        </div>                        
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
+                                <a href="@Url.Action("Users", "Manage")" class="btn btn-default"><i class="fa fa-remove"></i> Cancel</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div> <!-- panel-body -->
+            </div> <!-- panel -->
+        </div> <!-- col -->
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/js/timepicker/bootstrap-datepicker.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.datepicker').datepicker();
+        });
+    </script>
+}
+

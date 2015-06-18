@@ -1,0 +1,83 @@
+﻿@model BeYourMarket.Model.Models.Setting
+
+@{
+    ViewBag.Title = "Settings";
+}
+
+<div class="wraper container-fluid">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Email Settings</h3></div>
+                <div class="panel-body">
+                    <input type="hidden" name="ID" id="ID" value="@Model.ID" />
+
+                    <form autocomplete="off" action="@Url.Action("SettingsEmailUpdate", "Manage")" id="settingsForm" method="post" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Email address</label>
+                            <div class="col-md-10">
+                                <input type="email" class="form-control" id="EmailAddress" name="EmailAddress" value="@Model.EmailAddress">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Email display name</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="EmailDisplayName" name="EmailDisplayName" value="@Model.EmailDisplayName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="SmtpHost">Host</label>
+                            <div class="col-md-10">
+                                <input type="text" id="SmtpHost" name="SmtpHost" class="form-control" value="@Model.SmtpHost">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="SmtpPort">Port</label>
+                            <div class="col-md-10">
+                                <input type="tel" id="SmtpPort" name="SmtpPort" class="form-control" value="@Model.SmtpPort">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="SmtpUserName">SMTP User</label>
+                            <div class="col-md-10">
+                                <input type="text" id="SmtpUserName" name="SmtpUserName" class="form-control" value="@Model.SmtpUserName">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="SmtpPassword">SMTP Password</label>
+                            <div class="col-md-10">
+                                <input type="password" id="SmtpPassword" name="SmtpPassword" class="form-control" value="@Model.SmtpPassword">
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="SmtpSSL" class="control-label col-lg-2 col-sm-3">SSL enabled</label>
+                            <div class="col-lg-10 col-sm-9">
+                                <input checked="@Model.SmtpSSL" id="SmtpSSL" name="SmtpSSL" type="checkbox" value="true" style="width: 16px" class="checkbox form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
+                                <button class="btn btn-default" type="button"><i class="fa fa-remove"></i> Cancel</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

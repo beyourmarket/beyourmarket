@@ -1,0 +1,56 @@
+﻿@using GridMvc.Html
+@model BeYourMarket.Web.Models.SearchListingModel
+
+@{
+    Layout = null;
+}
+
+@helper GetCategoryName(int id)
+{
+    @Model.Categories.Single(x => x.ID == id).Name
+}
+
+@helper GetImage(string url, int itemID)
+{
+    <a href="@Url.Action("Listing", "Listing", new { id = itemID })">
+        <img src="@url">
+    </a>
+}
+
+@helper GetItemLink(string title, int itemID)
+{
+    <a href="@Url.Action("Listing", "Listing", new { id = itemID })">
+        @title
+    </a>
+}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    @Html.Grid(Model.Grid).Columns(columns =>
+                       {
+                           columns.Add(x => x.UrlPicture).Encoded(false).Sanitized(false)
+                               .SetWidth(150)
+                               .RenderValueAs(x => GetImage(x.UrlPicture, x.ItemCurrent.ID)).Titled("Picture");
+
+                           if (Model.CategoryID == 0)
+                               columns.Add(x => x.ItemCurrent).RenderValueAs(x => GetCategoryName(x.ItemCurrent.CategoryID)).Titled("Category");
+
+                           columns.Add(x => x.ItemCurrent.Title).Encoded(false).Sanitized(false)
+                               .RenderValueAs(x => GetItemLink(x.ItemCurrent.Title, x.ItemCurrent.ID)).Titled("Title");
+
+                           columns.Add(x => x.ItemCurrent.Description).Titled("Description").RenderValueAs(x=>x.ItemCurrent.Description.PrefixString());
+                           columns.Add(x => x.ItemCurrent.PriceFormatted).Titled("Price").Format("{0:N2}");
+                           
+                           columns.Add(x => x.ItemCurrent.Location).Titled("Location");
+                           columns.Add(x => x.ItemCurrent.Created).RenderValueAs(x => x.ItemCurrent.Created.ToShortDateString()).Titled("Created");
+                       }).Sortable().Filterable().Selectable(false)
+</div>
+
+@section Styles {
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <link href="~/Content/gridmvc.datepicker.min.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/Scripts/gridmvc.min.js"></script>
+}
+

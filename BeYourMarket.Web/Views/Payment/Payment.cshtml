@@ -1,0 +1,77 @@
+﻿@using Microsoft.Practices.Unity;
+@using Microsoft.Practices.Unity.Configuration;
+
+@model BeYourMarket.Web.Models.PaymentModel
+
+@{
+    ViewBag.Title = "Payment";
+}
+
+@section Styles {
+}
+
+<div class="body-content">
+
+    <!-- Start Page Heading -->
+    <div class="section panel-header ">
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <h3>@Model.ItemOrder.Item.Title - @Model.ItemOrder.Item.Description</h3>
+
+                <h3>@Model.ItemOrder.PriceFormatted</h3>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        @if (Model.ItemOrder.Item.ItemPictures.Count > 0)
+                        {
+                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetItemImagePath(Model.ItemOrder.Item.ItemPictures.FirstOrDefault().ID)" />
+                        }
+                        else
+                        {
+                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetItemImagePath(0)" />
+                        }
+                    </div>
+
+                    <div class="col-md-6">
+                        <form class="form" action="@Url.Action("Payment", "Payment")" method="post" role="form">
+                            <input type="hidden" id="id" name="id" value="@Model.ItemOrder.ID" />
+                            <div class="form-group">
+                                <label for="FromDate">From Date</label>
+                                <div class="input-group date datepicker">
+                                    <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="From" readonly value="@Model.ItemOrder.FromDate.Value.ToShortDateString()" /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ToDate">To Date</label>
+                                <div class="input-group date datepicker">
+                                    <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="To" readonly value="@Model.ItemOrder.FromDate.Value.ToShortDateString()" /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </div>
+                            </div>
+
+                            <h5>Price: @Model.ItemOrder.PriceFormatted</h5>
+
+                            <div class="form-group">
+                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                        data-key="@CacheHelper.GetSettingDictionary(Enum_SettingKey.StripePublishableKey).Value"
+                                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                        data-name="BeYourMarketplace"
+                                        data-description="@Model.ItemOrder.Description"
+                                        data-currency="@CacheHelper.Settings.Currency"
+                                        data-amount="@Model.ItemOrder.PriceInCents">
+
+                                </script>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,87 @@
+﻿@using GridMvc.Html
+@model BeYourMarket.Web.Models.Grids.CustomFieldsGrid
+
+@section Styles {
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <link href="~/Content/gridmvc.datepicker.min.css" rel="stylesheet" />
+}
+
+@{
+    ViewBag.Title = "Listings";
+}
+
+@helper DisplayUpdateLink(int id)
+{
+    <a class="btn btn-primary m-b-5" href="@Url.Action("CustomFieldUpdate", "Listing", new { id = id })"><i class="fa fa-edit"></i> Edit</a>
+}
+
+@helper DisplayControlType(int typeId)
+{
+    var enumValue = (BeYourMarket.Model.Enum.Enum_MetaFieldControlType)typeId;
+    <span>@enumValue.ToString()</span>
+}
+
+@helper DisplayCategories(List<BeYourMarket.Model.Models.MetaCategory> categories)
+{
+    var categoriesName = string.Join(",", (categories.Select(x=>x.Category.Name).ToArray()));
+    <span>@categoriesName</span>
+}
+
+<div class="wraper container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Custom Fields</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <a class="btn btn-primary" href="@Url.Action("CustomFieldUpdate", "Listing")"><i class="fa fa-plus"></i> Add New</a>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @Html.Grid(Model).Columns(columns =>
+                       {
+                           columns.Add()
+                             .Encoded(false)
+                             .Sanitized(false)
+                             .RenderValueAs(x => DisplayUpdateLink(x.ID));
+
+                           columns.Add(x => x.ID);
+                           columns.Add(x => x.Name);
+                           columns.Add(x => x.ControlTypeID).Titled("Type")
+                               .Encoded(false)
+                             .Sanitized(false)
+                           .RenderValueAs(x => DisplayControlType(x.ControlTypeID));
+
+                           columns.Add(x => x.MetaCategories).Titled("Category").Encoded(false)
+                             .Sanitized(false)
+                           .RenderValueAs(x => DisplayCategories(x.MetaCategories.ToList()));
+
+                           columns.Add(x => x.Options);
+                           columns.Add(x => x.Required);
+                           columns.Add(x => x.Searchable);
+
+                       }).Sortable().Filterable().WithPaging(10).Selectable(false)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- End Row -->
+
+
+
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/gridmvc.min.js"></script>
+}
+

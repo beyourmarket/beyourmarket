@@ -1,0 +1,140 @@
+﻿<!-- Navbar Start -->
+@helper DisplayAttribute(string menu)
+{
+    var attribute = ViewContext.RouteData.Values["action"].ToString().ToLowerInvariant() == menu ? "active" : null;
+
+    @attribute
+}
+
+@helper DisplayGroupAttribute(string menu)
+{
+    var groupDashboard = new string[] {
+            "dashboard",
+            "index"
+        };
+
+    var groupSettings = new string[] {
+            "settings",
+            "settingsemail",
+            "emailtemplates"
+        };
+
+    var groupUsers = new string[] {
+            "users"
+        };
+
+    var groupListings = new string[] {
+            "listings",
+            "listingupdate",
+            "categories",
+            "categoryupdate",
+            "customfields",
+            "customfieldupdate"
+        };
+
+    var groupDesign = new string[] {
+            "appearance",
+            "codestyle",
+            "codescript"            
+        };
+
+    var groupPages = new string[] {
+            "contentpages",
+            "contentpageupdate"
+        };
+
+    var groupPayments = new string[] {
+            "paymentsetting",
+            "order",
+            "transaction"
+        };
+
+    var groupDictionary = new Dictionary<string, string[]>();
+    groupDictionary.Add("dashboard", groupDashboard);
+    groupDictionary.Add("settings", groupSettings);
+    groupDictionary.Add("users", groupUsers);
+    groupDictionary.Add("listings", groupListings);
+    groupDictionary.Add("design", groupDesign);
+    groupDictionary.Add("contentpages", groupPages);
+    groupDictionary.Add("payments", groupPayments);
+
+    var attribute = groupDictionary[menu].Contains(ViewContext.RouteData.Values["action"].ToString().ToLowerInvariant()) ? "active" : null;
+
+    @attribute
+}
+
+<nav class="navigation">
+    <ul class="list-unstyled">
+        <li class="has-submenu @DisplayGroupAttribute("dashboard")">
+            <a href="@Url.Action("Index", "Manage")"><i class="fa fa-home"></i> <span class="nav-label">Dashboard</span></a>
+        </li>
+
+        <li class="has-submenu @DisplayGroupAttribute("listings")">
+            <a href="#"><i class="fa fa-th-list"></i> <span class="nav-label">Listing</span></a>
+            <ul class="list-unstyled">
+                <li class="@DisplayAttribute("categories")"><a href="@Url.Action("Categories", "Listing")">Manage Categories</a></li>
+                <li class="@DisplayAttribute("listings")"><a href="@Url.Action("Listings", "Listing")">Manage Listings</a></li>
+                <li class="@DisplayAttribute("customfields")"><a href="@Url.Action("CustomFields", "Listing")">Custom Fields</a></li>
+            </ul>
+        </li>
+
+        <li class="has-submenu @DisplayGroupAttribute("design")">
+            <a href="#"><i class="fa fa-paint-brush"></i> <span class="nav-label">Design</span></a>
+            <ul class="list-unstyled">
+                <li class="@DisplayAttribute("appearance")"><a href="@Url.Action("Appearance", "Design")">Appearance</a></li>
+                <li class="@DisplayAttribute("codestyle")"><a href="@Url.Action("CodeStyle", "Design")">Custom CSS</a></li>
+                <li class="@DisplayAttribute("codescript")"><a href="@Url.Action("CodeScript", "Design")">Custom Javascript</a></li>
+            </ul>
+        </li>
+
+        <li class="has-submenu @DisplayGroupAttribute("settings")">
+            <a href="#"><i class="fa fa-gears"></i> <span class="nav-label">Settings</span></a>
+            <ul class="list-unstyled">
+                <li class="@DisplayAttribute("settings")">
+                    <a href="@Url.Action("Settings", "Manage")">General Settings</a>
+                </li>
+                <li class="@DisplayAttribute("settingsemail")">
+                    <a href="@Url.Action("SettingsEmail", "Manage")">Email Settings</a>
+                </li>
+                <li class="@DisplayAttribute("emailtemplates")">
+                    <a href="@Url.Action("EmailTemplates", "Manage")">Email Templates</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="has-submenu @DisplayGroupAttribute("payments")">
+            <a href="#"><i class="fa fa-dollar"></i> <span class="nav-label">Payments</span></a>
+            <ul class="list-unstyled">
+                <li class="@DisplayAttribute("order")">
+                    <a href="@Url.Action("Order", "Payment")">Orders</a>
+                </li>
+                <li class="@DisplayAttribute("transaction")">
+                    <a href="@Url.Action("Transaction", "Payment")">Transactions</a>
+                </li>
+                <li class="@DisplayAttribute("paymentsetting")">
+                    <a href="@Url.Action("PaymentSetting", "Payment")">Payment Settings</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="has-submenu @DisplayGroupAttribute("users")">
+            <a href="@Url.Action("Users", "Manage", new { area = "Admin" })"><i class="fa fa-user"></i> <span class="nav-label">Manage Users</span></a>            
+        </li>
+
+        <li class="has-submenu @DisplayGroupAttribute("contentpages")">
+            <a href="#"><i class="fa fa-file"></i> <span class="nav-label">Pages</span></a>
+            <ul class="list-unstyled">
+                <li class="@DisplayAttribute("contentpageupdate")">
+                    <a href="@Url.Action("ContentPageUpdate", "ContentPage", new { area = "Admin", id = "" })">Add new Page</a>
+                </li>
+                <li class="@DisplayAttribute("contentpages")">
+                    <a href="@Url.Action("ContentPages", "ContentPage", new { area = "Admin" })">Manage Pages</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="has-submenu">
+            <a href="https://github.com/beyourmarket/beyourmarket" target="_blank"><i class="fa fa-question"></i> <span class="nav-label">Guide</span></a>
+        </li>
+    </ul>
+</nav>

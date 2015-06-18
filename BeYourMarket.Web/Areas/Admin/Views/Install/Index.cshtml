@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "Installation - BeYourMarket - Peer to Peer MarketPlace";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutNoSide.cshtml";
+}
+
+<div class="wrapper-page animated fadeInDown">
+    <div class="panel panel-color panel-primary">
+        <div class="panel-heading">
+            <h3 class="text-center m-t-10"> Installation <strong>BeYourMarket</strong> </h3>
+        </div>
+
+        <div class="alert alert-info m-t-30">
+            <p class="">
+                To complete this wizard, you must know some information regarding your database server ("connection string"). If you're installing on a local machine or server, you might need information from your System Admin.
+            </p>
+        </div>
+
+        <div class="panel-body">
+            <form id="formInstall" action="@Url.Action("CheckAndInstall", "Install")" method="post">
+                <section>
+                    <h4 class="">User information</h4>
+                    <hr />
+                    <div class="form-group">
+                        <label for="Email">Admin user email</label>
+                        <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter email" required data-rule-email="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Password</label>
+                        <input type="text" class="form-control" id="Password" name="Password" placeholder="Password" required data-rule-minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label class="cr-styled">
+                            <input type="checkbox" id="InstallSampleData" name="InstallSampleData" value="true" checked>
+                            <i class="fa"></i>
+                            Create Sample Data
+                        </label>
+                    </div>
+                </section>
+                <section>
+                    <h4 class="">Database information</h4>
+                    <hr />
+                    <div class="form-group">
+                        <label>Database type</label>
+                        <div>
+                            <select class="form-control" id="DatabaseType" name="DatabaseType">
+                                <option value="0" selected="selected">Microsoft SQL Server Compact (SQL CE)</option>
+                                <option value="1">Microsoft SQL Server</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="databaseInfo" style="display: none;">
+                        <div class="form-group">
+                            <label for="Server">Server domain/IP</label>
+                            <input type="text" class="form-control" id="Server" name="Server" placeholder=".\">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Database">Database</label>
+                            <input type="text" class="form-control" id="Database" name="Database" placeholder="BeYourMarket">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="cr-styled">
+                                <input type="checkbox" id="UseWindowsAuthentication" name="UseWindowsAuthentication" value="true">
+                                <i class="fa"></i>
+                                Use integrated authentication
+                            </label>
+                        </div>
+
+                        <div id="loginInfo">
+                            <div class="form-group">
+                                <label for="DatabaseLogin">Login</label>
+                                <input type="text" class="form-control" id="DatabaseLogin" name="DatabaseLogin" placeholder="database-username">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="DatabasePassword">Password</label>
+                                <input type="password" class="form-control" id="DatabasePassword" name="DatabasePassword" placeholder="database-password">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button id="btnInstall" class="btn btn-primary" type="submit">Install</button>
+                    </div>
+
+                </section>
+            </form>
+
+            <div class="form-group m-t-20">
+                <a href="http://beyourmarket.com"><i class="fa fa-lock m-r-5"></i> Powered by BeYourMarket.com</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*https://github.com/shb/bootstrap-loading-screen*@
+<aside class="loading-screen animated fadeInDown" style="position:fixed; top:0; right:0; bottom:0; left:0; z-index:9999;display:none">
+    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4" style="position:absolute; top:50%; margin-top:-7em">
+        <div class="page-header">
+            <i class="text-primary fa fa-spin fa-fw pull-left fa-spinner fa-3x" style="text-shadow: 0px 0px 0ex;"></i>
+            <hgroup class="" style="text-shadow: 0px 0px 0ex;">
+
+
+                <h3 class="">
+                    BeYourMarket<br>
+                    <small>Installing...</small>
+                </h3>
+
+            </hgroup>
+        </div>
+    </div>
+</aside>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('#DatabaseType').on('change', function () {
+                if (this.value == '1') {
+                    $("#databaseInfo").show();
+                }
+                else {
+                    $("#databaseInfo").hide();
+                }
+            });
+
+            $('#UseWindowsAuthentication').on('change', function () {
+                if (this.checked) {
+                    $("#loginInfo").hide();
+                } else {
+                    $("#loginInfo").show();
+                }
+            });
+
+            $.validator.addMethod("valueNotEquals", function (value, element, arg) {
+                return arg != value;
+            }, "Message to User");
+
+            // validate signup form on keyup and submit                        
+            $("#DatabaseLogin").rules("add", {
+                required: "#UseWindowsAuthentication:unchecked",
+                valueNotEquals: "0"
+            });
+
+            $("#DatabasePassword").rules("add", {
+                required: "#UseWindowsAuthentication:unchecked",
+                valueNotEquals: "0"
+            });
+
+            $("#Database").rules("add", {
+                required: true,
+                valueNotEquals: "0"
+            });
+
+            $("#Server").rules("add", {
+                required: true,
+                valueNotEquals: "0"
+            });
+
+            $("#formInstall").submit(function (event) {
+                if ($(this).valid()) {
+                    $(".wrapper-page").hide();
+                    $(".loading-screen").show();
+                }
+            });
+
+        });
+    </script>
+}

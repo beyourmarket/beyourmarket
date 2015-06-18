@@ -1,0 +1,121 @@
+﻿@model BeYourMarket.Web.Models.ApplicationUser
+@{
+    ViewBag.Title = "Profile";
+}
+
+@section Styles {
+    <link href="~/Content/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+}
+
+<div class="body-content container-fluid">
+    <div class="main-section">
+        <div class="container-fluid mrg-tb">
+
+            @Html.Partial("_DashBoardSide", "profile")
+
+            <div class=" col-md-9">
+                <div id="myTabContent" class="tab-content ">
+                    <div role="tabpanel" class="tab-pane card-content fade active in" id="listings" aria-labelledby="listings-tab">
+                        <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">
+                                Profile
+                            </div>
+                            <div class="panel-body">
+                                @using (Html.BeginForm("ProfileUpdate", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <h4>
+                                        <i class="fa fa-user"></i> Profile
+                                        <a class="btn btn-default btn-sm pull-right" href="@Url.Action("Profile", "Listing", new { id = Model.Id })">View Your Profile</a>
+                                    </h4>
+                                    <hr />
+                                    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                                        <div class="col-md-10">
+                                            @Html.DisplayFor(m => m.UserName, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
+                                        <div class="col-md-10">
+                                            <label class="cr-styled">
+                                                <input type="radio" name="Gender" id="Gender" value="M" @(Model.Gender == "M" ? "checked" : "") /> <i class="fa"></i> Male
+                                            </label> <i class="fa fa-male"></i>
+                                            <label class="cr-styled">
+                                                <input type="radio" name="Gender" id="Gender" value="F" @(Model.Gender == "F" ? "checked" : "") /> <i class="fa"></i> Female
+                                            </label> <i class="fa fa-female"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Profile Picture</label>
+                                        <div class="col-md-10">
+                                            <input id="file" name="file" type="file" class="file-loading">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Save" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/fileinput.min.js"></script>
+
+    <script>
+        var $input = $("#file");
+
+        $input.fileinput({
+            uploadAsync: false,
+            showCaption: false,
+            showRemove: false,
+            showUpload: false,
+            maxFileCount: 1,
+            overwriteInitial: true,
+            initialPreview: [
+                    '<img src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.Id)" class="file-preview-image">'
+            ],
+            maxFileSize: 10000,
+            browseClass: "btn btn-default",
+            allowedFileTypes: ["image"]
+        });
+
+        //'<img src="http://www.gravatar.com/avatar/?d=mm" class="file-preview-image">'
+
+    </script>
+}

@@ -1,0 +1,334 @@
+﻿@using Microsoft.Practices.Unity;
+@using Microsoft.Practices.Unity.Configuration;
+
+@model BeYourMarket.Web.Models.ItemModel
+
+@{
+    ViewBag.Title = "Item";
+}
+
+@section Styles {
+    <link href="~/css/formstone/lightbox.css" rel="stylesheet" />
+    <link href="~/js/timepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
+}
+
+<div class="body-content">
+    <div class="section panel-header ">
+        <div class="container-fluid">
+            @Html.Partial("_UserMessage")
+
+            <div class="col-md-12">
+                <div class="pull-right">
+                    <a href="@Url.Action("Profile", "Listing", new { id = Model.User.Id })">
+                        <img class="img-circle profile-picture" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.User.Id)" />
+                    </a>
+                    <h5>@Model.User.FullName</h5>
+                    <p class="text-lighten">
+                        Joined since @Model.User.RegisterDate.ToShortDateString()
+                    </p>
+                </div>
+
+                <div class="col-md-6">
+                    <h3>@Model.ItemCurrent.Title</h3>
+                    @if (Model.ItemCurrent.Price.HasValue)
+                    {
+                        <h4>
+                            @Html.DisplayFor(x => x.ItemCurrent.PriceFormatted)
+                        </h4>
+                    }
+                    <p class="lead text-lighten">
+                        @Model.ItemCurrent.Location
+                    </p>
+                </div>
+
+                @if (Model.BookingAllowed)
+                {
+                    <form class="form-inline" action="@Url.Action("Order", "Payment")" method="get" role="form">
+                        <input id="ItemID" name="ItemID" type="hidden" value="@Model.ItemCurrent.ID" />
+                        <div class="input-daterange input-group datepicker form-group" id="datepicker">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="From" data-rule-required="true" data-rule-date="true" />
+
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="To" data-rule-required="true" data-rule-date="true" />
+                        </div>
+                        <button class="btn btn-primary">Booking</button>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-header bdr-b container-fluid">
+        <ul class="nav nav-tabs" role="tablist" id="myTab">
+            <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description</a></li>
+            <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a></li>
+            <li class="pull-right" role="presentation"><a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=#@Request.Url.AbsoluteUri.ToLowerInvariant()"><i class="mdi-social-share"></i> Share</a></li>
+        </ul>
+    </div>
+
+    <div class="main-section">
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="description">
+                            <div class="panel panel-default bdr-t-none">
+                                <div class="panel-body">
+                                    <p>
+                                        @Model.ItemCurrent.Description
+                                    </p>
+                                </div>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                Date Posted:
+                                            </td>
+                                            <td>
+                                                @Model.ItemCurrent.Created.ToShortDateString()
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Price:
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(x => Model.ItemCurrent.PriceFormatted)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Location:
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(x => Model.ItemCurrent.Location)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Listing ID:
+                                            </td>
+                                            <td>
+                                                @Model.ItemCurrent.ID
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Views:
+                                            </td>
+                                            <td>
+                                                @Model.ItemCurrent.ItemStats.FirstOrDefault().CountView
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Category:
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("Search", "Home", new { categoryId = Model.ItemCurrent.CategoryID })">@Model.ItemCurrent.Category.Name</a>
+                                            </td>
+                                        </tr>
+
+                                        @foreach (var item in Model.ItemCurrent.ItemMetas)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @item.MetaField.Name
+                                                </td>
+                                                <td>
+                                                    @item.Value
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                                @if (Model.ItemCurrent.Latitude.HasValue && Model.ItemCurrent.Longitude.HasValue)
+                                {
+                                    <div class="panel-heading bdr-t">
+                                        <i class="fa fa-map-marker"></i> Map
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="map-canvas"></div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="contact">
+                            <div class="panel panel-default bdr-t-none">
+                                @if (Model.ItemCurrent.ShowPhone && !string.IsNullOrEmpty(Model.ItemCurrent.ContactPhone))
+                                {
+                                    <div class="list-group">
+                                        <a data-text-swap="Contact number (Click to show)" data-text-original="@Model.ItemCurrent.ContactPhone" class="text-swap list-group-item "><i class="mdi-hardware-phone-iphone"></i> Contact number (Click to show)</a>
+                                        <a href="@Url.Action("Profile", "Listing", new { id = Model.ItemCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>View User's other listings</a>
+                                    </div>
+                                }
+
+                                <div class="panel-heading">
+                                    Email
+                                </div>
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+
+                                    <div class="panel-body">
+                                        <form role="form" method="post" action="@Url.Action("ContactUser", "Listing")">
+                                            <input type="hidden" id="ItemID" name="ItemID" value="@Model.ItemCurrent.ID" />
+
+                                            <div class="form-group">
+                                                <textarea rows="4" class="form-control" id="Message" name="Message" placeholder="Message" required minlength="20"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary pushme">Send</button>
+                                        </form>
+                                    </div>
+                                }
+                                else
+                                {
+
+                                    <div class="panel-body">
+                                        <div class="alert alert-info" role="alert">
+                                            Sign in to contact the owner
+                                        </div>
+                                        <div class="col-md-12">
+                                            <a class="btn btn-primary" href="@Url.Action("Login", "Account", new { returnUrl = ViewContext.HttpContext.Request.Url.PathAndQuery  })">Sign in</a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="panel panel-default mrg-t">
+                        @if (Model.Pictures.Count > 0)
+                        {
+                            <div id="carousel-gallery" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    @for (int i = 0; i < Model.Pictures.Count; i++)
+                                    {
+                                        <li data-target="#carousel-gallery" data-slide-to="@i"></li>
+                                    }
+                                </ol>
+
+                                <div class="carousel-inner" role="listbox">
+                                    @for (int i = 0; i < Model.Pictures.Count; i++)
+                                    {
+                                        <div class="item @(i == 0 ? "active" : "")">
+                                            <img style=" margin-left: auto; margin-right: auto;" alt="" src="@Model.Pictures[i].Url" data-holder-rendered="true">
+                                        </div>
+                                    }
+                                </div>
+
+                                <a class="left carousel-control" href="#carousel-gallery" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-gallery" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="row">
+                                    @foreach (var thumbnail in Model.Pictures)
+                                    {
+                                        <div class="col-xs-6 col-md-2">
+                                            <a href="@thumbnail.Url" class="boxer" title="" data-gallery="gallery" data-lightbox-gallery="photo_gallery">
+                                                <img alt="Thumbnail" src="@thumbnail.Url" style=" width: 100%; display: block;">
+                                            </a>
+                                        </div>
+                                    }
+                                </div>
+
+                            </div>
+                        }
+                        else
+                        {
+                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetItemImagePath(0)" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/js/timepicker/bootstrap-datepicker.js"></script>
+
+    @{
+        var datesDisabled = new System.Text.StringBuilder();
+        foreach (var fromDate in Model.DatesBooked)
+        {
+            datesDisabled.AppendFormat("'{0}',", fromDate.ToString("MM/dd/yyyy"));
+        }
+    }
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                startDate: new Date(),
+                daysOfWeekDisabled: "0",
+                datesDisabled: [@Html.Raw(datesDisabled.ToString())]
+            });
+        });
+    </script>
+
+
+    <!-- Include Roller JS -->
+    <script src="~/js/formstone/core.js"></script>
+    <script src="~/js/formstone/touch.js"></script>
+    <script src="~/js/formstone/transition.js"></script>
+    <script src="~/js/formstone/lightbox.js"></script>
+
+    <script>
+        $(".text-swap").on("click", function () {
+            var el = $(this);
+            el.text() == el.data("text-swap")
+              ? el.text(el.data("text-original"))
+              : el.text(el.data("text-swap"));
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(".boxer").lightbox({
+            mobile: true
+        });
+    </script>
+
+    @if (Model.ItemCurrent.Latitude.HasValue && Model.ItemCurrent.Longitude.HasValue)
+    {
+        <text>
+            <script type="text/javascript">
+                function initialize() {
+                    var myLatlng = new google.maps.LatLng(@Model.ItemCurrent.Latitude.Value.ToString().ToLowerInvariant(), @Model.ItemCurrent.Longitude.Value.ToString().ToLowerInvariant());
+                    var mapOptions = {
+                        zoom: 14,
+                        center: myLatlng
+                    }
+                    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+                    var marker = new google.maps.Marker({
+                        position: myLatlng,
+                        map: map,
+                        content: '@Model.ItemCurrent.Location'
+                    });
+                }
+
+                google.maps.event.addDomListener(window, 'load', initialize);
+            </script>
+        </text>
+    }
+}

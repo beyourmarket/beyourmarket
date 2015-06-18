@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNet.Identity
+@model string
+
+@{
+    Layout = null;
+}
+
+<div class=" col-md-3">
+    <ul class="nav nav-pills nav-stacked">
+        <li class="@( Model == "dashboard" ? "active" : null )"><a href="@Url.Action("Index", "Manage")"><i class="fa fa-th-list"></i> Listings</a></li>
+        <li class="@( Model == "orders" ? "active" : null )"><a href="@Url.Action("Orders", "Payment")"><i class="fa fa-shopping-cart"></i> Orders</a></li>
+        <li class="@( Model == "transaction" ? "active" : null )"><a href="@Url.Action("Transaction", "Payment")"><i class="fa fa-dollar"></i> Transaction</a></li>
+        <li class="@( Model == "payment" ? "active" : null )"><a href="@Url.Action("PaymentSetting", "Payment")"><i class="fa fa-gears"></i> Payments</a></li>
+        <li class="@( Model == "profile" ? "active" : null )"><a href="@Url.Action("UserProfile", "Manage")"><i class="fa fa-user"></i> Profile</a></li>
+        <li class="@( Model == "changepassword" ? "active" : null )"><a href="@Url.Action("ChangePassword", "Manage")"><i class="fa fa-key"></i> Change Password</a></li>
+
+
+        @if (User.IsInRole("Administrator"))
+        {
+            <li><a target="_blank" href="@Url.Action("Manage", "Admin")"><i class="fa fa-dashboard"></i> Admin</a></li>
+        }
+
+    </ul>
+</div>

@@ -1,0 +1,15 @@
+﻿@if (TempData[BeYourMarket.Web.Models.TempDataKeys.UserMessage] != null)
+{
+    var alertState = "bg-success";
+    var icon = "fa-check";
+
+    if (TempData[BeYourMarket.Web.Models.TempDataKeys.UserMessageAlertState] != null)
+    {
+        alertState = "bg-danger";
+        icon = "fa-exclamation-circle";
+    }
+
+    <div class="alert @alertState">
+        <p><i class="fa @icon"></i> @TempData[BeYourMarket.Web.Models.TempDataKeys.UserMessage]</p>
+    </div>
+}

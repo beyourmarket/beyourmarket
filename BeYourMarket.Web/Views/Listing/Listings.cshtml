@@ -1,0 +1,144 @@
+﻿@using Microsoft.Practices.Unity;
+@using Microsoft.Practices.Unity.Configuration;
+@using PagedList.Mvc;
+@using BeYourMarket.Web.Extensions;
+
+@model BeYourMarket.Web.Models.SearchListingModel
+
+@{
+    ViewBag.Title = "Listings";
+}
+
+@section Styles {
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+}
+
+@helper DisplayBreadCrumb()
+{
+    if (Model.CategoryID != 0)
+    {
+        var settings = CacheHelper.Settings;
+
+        <ol class="breadcrumb mrg-t">
+            <li><a href="@Url.Action("Index", "Home")">@settings.Name</a></li>
+
+            @for (int i = 0; i < Model.BreadCrumb.Count - 1; i++)
+            {
+                <li><a href="@Url.Action("Search", "Home", new { CategoryID = Model.Categories[i].ID })">@Model.BreadCrumb[i].Name</a></li>
+            }
+
+            <li class="active">@Model.BreadCrumb.Last().Name</li>
+        </ol>
+    }
+}
+<div class="container-fluid body-content">
+
+    @DisplayBreadCrumb()
+
+    <div class="mrg-tb">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="search-widget panel panel-default">
+                    <form method="get" action="@Url.Action("Search", "Home", new { })">
+                        <div class="panel-heading">
+                            Refine Search
+                        </div>
+                        <div class="panel-body">
+                            <fieldset>
+
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.CategoryID), "All Categories", new { @class = "form-control", onchange = "this.form.submit()" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Location</label>
+                                    <input type="text" class="form-control" placeholder="Location" id="Location" name="Location" value="@Model.Location">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <div class="row">
+                                        <div class="col-xs-6 range-from"><input type="number" class="form-control" placeholder="From" id="PriceFrom" name="PriceFrom" value="@Model.PriceFrom"></div>
+                                        <div class="col-xs-6 range-to"><input type="number" class="form-control" placeholder="To" id="PriceTo" name="PriceTo" value="@Model.PriceTo"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Search Text</label>
+                                    <input type="search" class="form-control" placeholder="Search text" id="SearchText" name="SearchText" value="@Model.SearchText">
+                                </div>
+
+                                <input type="checkbox" id="PhotoOnly" name="PhotoOnly" value="true" @( Model.PhotoOnly ? "checked" : "") />
+                                <label for="PhotoOnly">Only show listings with photos</label>
+                                @Html.HiddenFor(x => x.SortView)
+                            </fieldset>
+                        </div>
+                        <div class="panel-footer">
+                            <button type="submit" class="btn btn-sm btn-primary" href="">Apply</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-9 section-title">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="">
+                            <div class="form-inline pull-right">
+                                <div class="form-group">
+                                    <div class="btn-group" role="group" aria-label="Sort View">
+                                        <a class="btn btn-primary" href="@Request.UrlReplace("SortView", BeYourMarket.Model.Enum.Enum_SortView.Grid.ToString())"><i class="fa fa-th"></i> Grid</a>
+                                        <a class="btn btn-primary" href="@Request.UrlReplace("SortView", BeYourMarket.Model.Enum.Enum_SortView.List.ToString())"><i class="fa fa-th-list"></i> List</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4>
+                            Listings
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="row m-b-10">
+                    @switch (Model.SortView)
+                    {
+                        case BeYourMarket.Model.Enum.Enum_SortView.Grid:
+                        default:
+                            @Html.Partial("~/Views/Listing/_ListingGrid.cshtml", Model)
+                            break;
+                        case BeYourMarket.Model.Enum.Enum_SortView.List:
+                        @Html.Partial("~/Views/Listing/_ListingGridList.cshtml", Model)
+                            break;
+                        case BeYourMarket.Model.Enum.Enum_SortView.Map:
+                            break;
+
+                    }
+                </div>
+
+                <div class="panel-header bdr-b">
+                    <div class="container-fluid">
+                        <div class=" col-md-12">
+                            <h5 class="pull-left mrg-t">
+                                Page @(Model.ItemsPageList.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.ItemsPageList.PageCount
+                            </h5>
+                            @Html.PagedListPager(Model.ItemsPageList, (page) => { return Request.UrlReplace("PageNumber", page.ToString()); },
+                            new PagedListRenderOptions
+                                 {
+                                     ContainerDivClasses = new List<string>(new string[] { "pull-right" }),
+                                     DisplayPageCountAndCurrentLocation = false,
+                                     MaximumPageNumbersToDisplay = 5,
+                                     DisplayEllipsesWhenNotShowingAllPageNumbers = false
+                                 })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+}

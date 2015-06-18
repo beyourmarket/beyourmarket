@@ -1,0 +1,72 @@
+﻿@using GridMvc.Html
+@using Microsoft.AspNet.Identity
+
+@model BeYourMarket.Web.Models.OrderTransactionModel
+
+@{
+    ViewBag.Title = "Transaction";
+}
+
+@section Styles {
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <link href="~/Content/gridmvc.datepicker.min.css" rel="stylesheet" />
+}
+
+
+@helper DisplayStatus(bool paid)
+{
+    if (paid)
+    {
+        <span class="label label-success">Paid</span>
+    }
+    else
+    {
+        <span class="label label-info">Pending</span>
+    }
+}
+
+@helper DisplayListing(string title, int itemID)
+{
+    <a href="@Url.Action("Listing", "Listing", new { id = itemID })">@title <i class="fa fa-external-link"></i></a>
+}
+
+<div class="wraper container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Transaction
+                </div>
+                <div class="panel-body">
+                    <h4><i class="fa fa-dollar"></i> Transaction</h4>
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @Html.Grid(Model.TransactionPayment).Columns(columns =>
+                                       {
+                                           columns.Add()
+                                             .Encoded(false)
+                                             .Sanitized(false)
+                                             .RenderValueAs(x => DisplayStatus(x.IsCaptured));
+                                           
+                                           columns.Add(x => x.Created).Titled("Date").RenderValueAs(x => x.Created.ToShortDateString());
+                                           columns.Add(x => x.OrderID).Titled("OrderID");
+                                           columns.Add(x => x.Order.Description).Titled("Description");
+                                           columns.Add(x => x.Order.PriceFormatted).Titled("Price");
+
+                                       }).WithPaging(10).Selectable(false)
+                        </div>
+                    </div>
+
+                </div>                
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/gridmvc.min.js"></script>
+}

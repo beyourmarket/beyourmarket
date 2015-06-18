@@ -1,0 +1,55 @@
+﻿@using GridMvc.Html
+@model BeYourMarket.Web.Areas.Admin.Models.EmailTemplatesGrid
+
+@section Styles {
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <link href="~/Content/gridmvc.datepicker.min.css" rel="stylesheet" />
+}
+
+@{
+    ViewBag.Title = "Email Templates";
+}
+
+@helper DisplayUpdateLink(int id)
+{
+    <a class="btn btn-primary m-b-5" href="@Url.Action("EmailTemplateUpdate", "Manage", new { id = id })"><i class="fa fa-edit"></i> Edit</a>
+}
+
+<div class="wraper container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Email Templates</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @Html.Grid(Model).Columns(columns =>
+                       {
+                           columns.Add()
+                             .Encoded(false)
+                             .Sanitized(false)
+                             .RenderValueAs(x => DisplayUpdateLink(x.ID));
+
+                           columns.Add(x => x.ID);
+                           columns.Add(x => x.Subject);                           
+                           columns.Add(x => x.Slug);
+                           columns.Add(x => x.Created).RenderValueAs(x => x.Created.ToShortDateString());
+                           columns.Add(x => x.LastUpdated).RenderValueAs(x => x.LastUpdated.ToShortDateString());
+
+
+                       }).Sortable().Filterable().WithPaging(10).Selectable(false)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/gridmvc.min.js"></script>
+}
+

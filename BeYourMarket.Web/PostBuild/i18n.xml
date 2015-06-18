@@ -1,0 +1,1493 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>i18n</name>
+    </assembly>
+    <members>
+        <member name="T:i18n.ITranslateSvc">
+            <summary>
+            Abstracts a translation service.
+            </summary>
+        </member>
+        <member name="M:i18n.ITranslateSvc.ParseAndTranslate(System.String)">
+            <summary>
+            Returns the translation of the passed string entity which may contain zero or more fully-formed nugget.
+            </summary>
+            <param name="entity">
+            String containing zero or more fully-formed nuggets which are to be translated.
+            </param>
+            <returns>
+            Localized (translated) entity.
+            </returns>
+        </member>
+        <member name="T:i18n.IRootServices">
+            <summary>
+            Describes the set of i18n localizing services registered for the current AppDomain.
+            Typically these are used by objects at the root of the dependency-injection graph,
+            such as an HttpModule.
+            </summary>
+        </member>
+        <member name="M:i18n.IEarlyUrlLocalizer.ProcessIncoming(System.Web.HttpContextBase)">
+            <summary>
+            Method for performing Early Url Localization of the passed request.
+            </summary>
+            <param name="context">
+            Current http context.
+            </param>
+        </member>
+        <member name="M:i18n.IEarlyUrlLocalizer.ProcessOutgoing(System.String,System.String,System.Web.HttpContextBase)">
+            <summary>
+            Method for performing Late Url Localization of the passed response entity
+            where the URLs in the entity may be amended with the passed langtag as appropriate.
+            </summary>
+            <param name="entity">
+            Subject HTTP response entity to be processed.
+            </param>
+            <param name="langtag">
+            Langtag to be patched into URLs.
+            </param>
+            <param name="context">
+            Current http context.
+            May be null if/when testing.
+            </param>
+            <returns>
+            Processed (and possibly modified) entity.
+            </returns>
+        </member>
+        <member name="M:i18n.EarlyUrlLocalizer.ProcessIncoming(System.Web.HttpContextBase)">
+            <summary>
+            Implements the Early Url Localization logic.
+            <see href="https://docs.google.com/drawings/d/1cH3_PRAFHDz7N41l8Uz7hOIRGpmgaIlJe0fYSIOSZ_Y/edit?usp=sharing"/>
+            </summary>
+        </member>
+        <member name="F:i18n.EarlyUrlLocalizer.m_regexHtmlUrls">
+            <summary>
+            Regex for finding and replacing urls in html.
+            </summary>
+        </member>
+        <member name="M:i18n.EarlyUrlLocalizer.LocalizeUrl(System.Web.HttpContextBase,System.String,System.String,System.Uri,System.Boolean)">
+            <summary>
+            Helper for localizing an individual URL string for a particular langtag value
+            and URL of the current request.
+            </summary>
+            <param name="url">Subject URL to be localized.</param>
+            <param name="langtag">Language with which to localize the URL.</param>
+            <param name="requestUrl">URL of the current HTTP request being handled.</param>
+            <returns>
+            String describing the new localized URL, or null if the URL was not localized,
+            either because it was already localized, or because it is from another host, or is explicitly
+            excluded from localization by the filter.
+            </returns>
+        </member>
+        <member name="T:i18n.INuggetLocalizer">
+            <summary>
+            Describes a service for localizing target messages (aka 'nuggets') that are
+            embedded in a string.
+            </summary>
+        </member>
+        <member name="M:i18n.INuggetLocalizer.ProcessNuggets(System.String,i18n.LanguageItem[])">
+            <summary>
+            Method for post-processing the response entity in order to replace any
+            msgid nuggets such as [[[Translate me!]]] with the GetText string.
+            </summary>
+            <param name="entity">
+            Subject entity to be processed. E.g HTTP response entity or Javascript file.
+            </param>
+            <param name="languages">
+            A list of language preferences, sorted in order or preference (most preferred first).
+            May be null when testing this interface. See remarks.
+            </param>
+            <returns>
+            Processed (and possibly modified) entity.
+            </returns>
+            <remarks>
+            An example replacement is as follows:
+            <para>
+            [[[Translate me!]]] -> Übersetzen mich!
+            </para>
+            This method supports a testing mode which is enabled by passing httpContext as null.
+            In this mode, we output "test.message" for every msgid nugget.
+            </remarks>
+        </member>
+        <member name="T:i18n.UrlOrigin">
+            <summary>
+            Enumeration of potential origins of URLs passed through this interface.
+            </summary>
+        </member>
+        <member name="F:i18n.UrlOrigin.Incoming">
+            <summary>
+            The URL is the URL of a request, specifically one being processed by the 
+            Early URL Localization logic.
+            </summary>
+        </member>
+        <member name="F:i18n.UrlOrigin.Outgoing">
+            <summary>
+            The URL is extracted from the response entity and is being offered up for 
+            localization (patching the response entity).
+            </summary>
+        </member>
+        <member name="T:i18n.IUrlLocalizer">
+            <summary>
+            Describes a service for localizing and un-localizing a URL.
+            </summary>
+        </member>
+        <member name="M:i18n.IUrlLocalizer.FilterIncoming(System.Uri)">
+            <summary>
+            Specifies and controls whether the passed incoming (request) URL should be localized.
+            </summary>
+            <param name="url">Subject URL.</param>
+            <returns>true to localize the URL, false to not localize it.</returns>
+            <remarks>
+            This method is called before other methods of this interface during Early URL Localization.
+            It allows precise control of which URLs to localize over and above any filtering
+            inherent in the processing (e.g. during outgoing processing, only same-host
+            URLs are considered for localization and so remote ones will not get this far).
+            This method is called once per HTTP request.
+            </remarks>
+        </member>
+        <member name="M:i18n.IUrlLocalizer.FilterOutgoing(System.String,System.Uri)">
+            <summary>
+            Specifies and controls whether a localized form of the passed URL should patched into
+            the outgoing entity body.
+            </summary>
+            <param name="url">Subject URL.</param>
+            <param name="currentRequestUrl">Url of the current request context. May be null if/when testing.</param>
+            <returns>true to localize the subject URL, false to not localize it.</returns>
+            <remarks>
+            This method is called before other methods of this interface during Late Url Localization.
+            It allows precise control of which URLs to localize over and above any filtering
+            inherent in the processing (e.g. during Late processing, only same-host
+            URLs are considered for localization and so remote ones will not get this far).
+            This method is typically called many multiple times per HTTP request.
+            </remarks>
+        </member>
+        <member name="M:i18n.IUrlLocalizer.ExtractLangTagFromUrl(System.Web.HttpContextBase,System.String,System.UriKind,System.Boolean,System.String@)">
+            <summary>
+            Method for detecting a URL containing a language tag part, and if found outputs
+            both the language tag and the URL with the that part removed.
+            </summary>
+            <param name="url">Either an absolute or relative URL string, as specified by the uriKind parameter.</param>
+            <param name="uriKind">
+            Indicates the type of URI in the url parameter. If the URL is known to be relative, this method is more efficient if this 
+            parameter is set to UriKind.Relative.
+            </param>
+            <param name="urlPatched">
+            On success, set to the URL with the langtag part removed.
+            On failure, set to value of url param.
+            </param>
+            <returns>On success a language tag string instance, otherwise null.</returns>
+            <remarks>
+            <para>
+            The ExtractLangTagFromUrl and InsertLangTagIntoVirtualPath methods
+            should work symmetrically.
+            </para>
+            <para>
+            In an example implementation, for URL "/zh-Hans/account/signup" we might 
+            return "zh-Hans" and output "/account/signup".
+            </para>
+            </remarks>
+        </member>
+        <member name="M:i18n.IUrlLocalizer.SetLangTagInUrlPath(System.Web.HttpContextBase,System.String,System.UriKind,System.String)">
+            <summary>
+            Patches in the langtag into the passed url path part, replacing any extant langtag 
+            in the part if necessary.
+            </summary>
+            <param name="url">Either an absolute or relative URL string, as specified by the uriKind parameter.</param>
+            <param name="uriKind">
+            Indicates the type of URI in the url parameter. If the URL is known to be relative, this method is more efficient if this 
+            parameter is set to UriKind.Relative.
+            </param>
+            <param name="langtag">
+            Optional langtag to be patched into the part, or null/empty if any langtag 
+            to be removed from the part.
+            </param>
+            <returns>Modified path part string.</returns>
+            <remarks>
+            <para>"/account/signup"         , "en" -> "/en/account/signup"</para>
+            <para>"/zh-Hans/account/signup" , "en" -> "/en/account/signup"</para>
+            <para>"/zh-Hans/account/signup" , null -> "/account/signup"</para>
+            </remarks>
+        </member>
+        <member name="M:i18n.IUrlLocalizer.InsertLangTagIntoVirtualPath(System.String,System.String)">
+            <summary>
+            Method for injecting a language tag into a route's virtual path.
+            </summary>
+            <param name="langtag">Subject language tag.</param>
+            <param name="virtualPath">
+            Virtual path to be patched. E.g. "account/signup".
+            Note that virtual paths do not begin with a forward-slash, and root path
+            is an empty string.
+            </param>
+            <returns>
+            Patched virtual path string.
+            </returns>
+            <remarks>
+            <para>
+            The ExtractLangTagFromUrl and InsertLangTagIntoVirtualPath methods
+            should work symmetrically.
+            </para>
+            <para>
+            In an example implementation, for langtag "zh-Hans" and virtual path string "account/signup"
+            we might return "zh-Hans/account/signup".
+            </para>
+            </remarks>
+        </member>
+        <member name="T:i18n.TranslateSvc_HttpContextBase">
+            <summary>
+            ITranslateSvc implementation based on an given HttpContextBase instance.
+            </summary>
+        </member>
+        <member name="T:i18n.TranslateSvc_HttpContext">
+            <summary>
+            ITranslateSvc implementation based on an given HttpContext instance.
+            </summary>
+        </member>
+        <member name="T:i18n.TranslateSvc_HttpContextCurrent">
+            <summary>
+            ITranslateSvc implementation based on the static HttpContext.Current instance.
+            </summary>
+        </member>
+        <member name="T:i18n.TranslateSvc_Invariant">
+            <summary>
+            ITranslateSvc implementation that simply passes through the entity (useful for testing).
+            </summary>
+        </member>
+        <member name="M:i18n.HttpContextExtensions.GetHttpContextBase(System.Web.HttpContext)">
+            <summary>
+            Returns an HttpContextBase for the current HttpContext.
+            Facilitates efficient consolidation of methods that require support for both 
+            HttpContext/HttpContextBase typed params.
+            This method is optimised such that the HttpContextBase instance returned is only created
+            once per request.
+            NB: this may involve a per-appdomain lock when reading from the items dictionary.
+            </summary>
+        </member>
+        <member name="M:i18n.HttpContextExtensions.GetText(System.Web.HttpContext,System.String,System.String)">
+            <summary>
+            Returns any translation for the passed individual message.
+            </summary>
+            <remarks>
+            This this the main entry point into i18n library for translating strings.
+            Selection of acceptable user languages is determined per-request and that
+            is used to resolve the msgid against any existing localized versions of that string.
+            Should no translation exist, the msgid string is returned.
+            </remarks>
+            <param name="context">Describes the current request.</param>
+            <param name="msgid">Specifies the individual message to be translated (the first part inside of a nugget). E.g. if the nugget is [[[Sign in]] then this param is "Sign in".</param>
+            <param name="msgcomment">Specifies the optional message comment value of the subject resource, or null/empty.</param>
+            <returns>Localized string, or msgid if no translation exists.</returns>
+        </member>
+        <member name="M:i18n.HttpContextExtensions.ParseAndTranslate(System.Web.HttpContext,System.String)">
+            <summary>
+            Returns the translation of the passed string entity which may contain zero or more fully-formed nugget.
+            </summary>
+            <param name="context">Describes the current request.</param>
+            <param name="entity">String containing zero or more fully-formed nuggets which are to be translated according to the language selection of the current request.</param>
+            <returns>Localized (translated) entity.</returns>
+        </member>
+        <member name="M:i18n.HttpContextExtensions.SetPrincipalAppLanguageForRequest(System.Web.HttpContext,i18n.ILanguageTag,System.Boolean)">
+            <summary>
+            Helper for caching a per-request value that identifies the principal language
+            under which the current request is to be handled.
+            </summary>
+            <param name="context">Context of the request.</param>
+            <param name="pal">Selected AppLanguage aka Principle Application Language (PAL).</param>
+            <param name="updateThreadCulture">
+            Indicates whether to also update the thread CurrentCulture/CurrentUICulture settings.
+            </param>
+        </member>
+        <member name="M:i18n.HttpContextExtensions.GetPrincipalAppLanguageForRequest(System.Web.HttpContext)">
+            <summary>
+            Returns any cached per-request value that identifies the Principle Application Language (PAL)
+            with which the current request is to be processed. That is, the value of any
+            most-recent call to SetPrincipalAppLanguageForRequest.
+            If SetPrincipalAppLanguageForRequest has not yet been called for the request,
+            returns the default app language.
+            </summary>
+            <param name="context">Context of the request.</param>
+            <returns>
+            The Principal AppLanguage Language for the request, or the default app language
+            if none previously set.
+            </returns>
+        </member>
+        <member name="M:i18n.HttpContextExtensions.GetRequestUserLanguages(System.Web.HttpContext)">
+            <summary>
+            Returns a collection of languages supported by the user-agent, in descending order
+            of preference. The first item in the collection refers to any Principle Application Language (PAL)
+            for the request determined by EarlyUrlLocalization (which calls SetPrincipalAppLanguageForRequest),
+            or is null if EarlyUrlLocalization is disabled.
+            </summary>
+            <param name="context">Context of the current request.</param>
+            <returns>
+            Array of languages items sorted in order or language preference.
+            </returns>
+            <remarks>
+            This method is optimised such that the collection is built only once per request.
+            </remarks>
+            <see>
+            See LanguageItem.ParseHttpLanguageHeader for more details.
+            </see>
+        </member>
+        <member name="M:i18n.HttpContextExtensions.SetContentLanguageHeader(System.Web.HttpContext)">
+            <summary>
+            Add a Content-Language HTTP header to the response, based on any languages
+            that have provided resources during the request.
+            </summary>
+            <param name="context">Context of the current request.</param>
+            <returns>
+            true if header added; false if no languages provided content during the request and
+            so no header was added.
+            </returns>
+        </member>
+        <member name="M:i18n.HttpContextExtensions.GetInferredLanguage(System.Web.HttpContext)">
+            <summary>
+            Returns the language for the current request inferred from the request context:
+            that is, attributes of the request other that the URL.
+            </summary>
+            <remarks>
+            The language is infered from the following attributes of the request,
+            in order of preference:<br/>
+                i18n.langtag cookie<br/>
+                Accept-Language header<br/>
+                fall back to i18n.LocalizedApplication.Current.DefaultLanguage<br/>
+            Additionally, each language is matched by the language matching algorithm
+            against the set of application languages available.
+            </remarks>
+            <param name="context">Context of the current request.</param>
+            <returns>
+            Returns language tag describing the inferred language.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            Expected GetRequestUserLanguages to fall back to default language.
+            </exception>
+        </member>
+        <member name="M:i18n.HttpContextExtensions.ChooseAppLanguage(System.Web.HttpContext,System.Collections.Generic.IEnumerable{i18n.LanguageTag})">
+            <summary>
+            Runs the Language Matching Algorithm for the UserLanguages of the current request against
+            the specified array of AppLanguages, returning the AppLanguage determined to be the best match.
+            </summary>
+            <param name="context">Context of the current request.</param>
+            <param name="AppLanguages">
+            The list of languages in which an arbitrary resource is available.
+            </param>
+            <returns>
+            LanguageTag instance selected from AppLanguages with the best match, or null if there is no match
+            at all (or UserLanguages and/or AppLanguages is empty).
+            It is possible for there to be no match at all if no language subtag in the UserLanguages tags
+            matches the same of any of the tags in AppLanguages list.
+            </returns>
+        </member>
+        <member name="T:i18n.ITextLocalizer">
+            <summary>
+            Defines a service for retrieving localized text from a data source.
+            </summary>
+        </member>
+        <member name="M:i18n.ITextLocalizer.GetAppLanguages">
+            <summary>
+            Obtains dictionary of language tags (key = langtag string, value = LanguageTag instance)
+            describing the set of Po-valid languages (that is, the languages for which one or more 
+            resource are defined).
+            </summary>
+        </member>
+        <member name="M:i18n.ITextLocalizer.GetText(System.String,System.String,i18n.LanguageItem[],i18n.LanguageTag@,System.Int32)">
+            <summary>
+            Looks up and returns localized text for a resource.
+            </summary>
+            <param name="msgid">
+            Specifies the msgid of the subject resource.
+            Null if we are not interested in a particular resource but wish to know
+            the best matching language for which ANY resources are available (one or more).
+            </param>
+            <param name="msgcomment">
+            Specifies the optional message comment value of the subject resource, or null/empty.
+            </param>
+            <param name="languages">
+            A list of language preferences, sorted in order of preference (most preferred first).
+            </param>
+            <param name="o_langtag">
+            On success, outputs a description of the language from which the resource was selected.
+            </param>
+            <param name="maxPasses">
+            0 - allow exact match only
+            1 - allow exact match or default-region match only
+            2 - allow exact match or default-region match or script match only
+            3 - allow exact match or default-region match or script match or language match only
+            4 - allow exact match or default-region match or script match or language match only, or failing return the default language.
+            -1 to set to most tolerant (i.e. 4).
+            </param>
+            <returns>
+            When <paramref name="msgid"/> is set to non-null, returns either the sucessully-looked up localized string, or 
+            null if the lookup failed. See also LocalizedApplication.MessageKeyIsValueInDefaultLanguage which when
+            true can cause msgid to be returned instead of null.
+            When <paramref name="msgid"/> is set to null, returns "" to indicate a match to a PO-valid language was made
+            (PO-valid meaning that one or more messages/resources are defined for that language),
+            or null if no match was made.
+            </returns>
+        </member>
+        <member name="M:i18n.Extensions.IsSet(System.String)">
+            <summary>
+            String extension method to simplify testing for non-null/non-empty values.
+            </summary>
+        </member>
+        <member name="M:i18n.Extensions.CountOfChar(System.String,System.Char)">
+            <summary>
+            Efficiently returns the number of time the specified char appears in the string.
+            </summary>
+        </member>
+        <member name="M:i18n.Extensions.Unquote(System.String,System.String)">
+            <summary>
+            Isolates and returns the character sequence between any first and last quote chars.
+            </summary>
+            <param name="lhs">Subject string possibly containing a quoted sequence.</param>
+            <param name="quotechar">Quote char, defaults to double quotes. May be a string of more than one character.</param>
+            <returns>
+            Any character sequence contained within the first and last occurence of quotechar.
+            Empty string if the first and last occurrence of quotechar are adjacent chars.
+            Null if no welformed quoted sequence found.
+            </returns>
+        </member>
+        <member name="M:i18n.Extensions.Unescape(System.String)">
+            <summary>
+            Looks up in the subject string standard C escape sequences and converts them
+            to their actual character counterparts.
+            </summary>
+            <seealso href="http://stackoverflow.com/questions/6629020/evaluate-escaped-string/8854626#8854626"/>
+        </member>
+        <member name="M:i18n.Extensions.UrlPrependPath(System.String,System.String)">
+            <summary>
+            Prepends a folder to the path part of the passed URL string.
+            </summary>
+            <param name="url">Either an absolute or relative URL string.</param>
+            <param name="folder">Folder part to be prepended. E.g. "account".</param>
+            <returns>Amended URL string.</returns>
+            <remarks>
+            Examples:
+            <para>
+            http://example.com , en -> http://example.com/en
+            http://example.com/ , en -> http://example.com/en
+            http://example.com/accounts , en -> http://example.com/en/accounts
+            / , en -> /en
+            </para>
+            </remarks>
+        </member>
+        <member name="M:i18n.Extensions.IsLocal(System.Uri,System.String)">
+            <summary>
+            Indicates whether a URI is local to this URI.
+            </summary>
+            <param name="lhs">An absolute URI.</param>
+            <param name="rhs">A relative or absolute URI. A relative 'root' URI should be '/'.</param>
+            <returns>
+            true if rhs is relative, or it is absolute and addresses the same host as lhs;
+            otherwise, false.
+            </returns>
+            <remarks>
+            We consider one uri to be local relative to another if they have an equivalent Authority
+            component (host name and any port number).
+            </remarks>
+        </member>
+        <member name="T:i18n.ILanguageTag">
+            <summary>
+            Describes a language tag value, as defined in RFC 5646 (BCP 47).
+            </summary>
+            <seealso href="http://tools.ietf.org/html/rfc5646#section-2.1"/>
+        </member>
+        <member name="M:i18n.ILanguageTag.ToString">
+            <summary>
+            Returns the full language tag.
+            </summary>
+            <returns>A string describing the full language tag or "" if null or error instance.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetLanguage">
+            <summary>
+            Returns the mandatory 2 character language subtag.
+            </summary>
+            <returns>A string describing a language subtag, or null if no such subtag present (indicating a null or error instance).</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetExtlang">
+            <summary>
+            Returns the optional 3 character extlang subtag.
+            </summary>
+            <returns>A string describing a extlang subtag, or null if no such subtag present.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetScript">
+            <summary>
+            Returns the optional 4 character script subtag.
+            </summary>
+            <returns>A string describing a script subtag, or null if no such subtag present.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetRegion">
+            <summary>
+            Returns the optional 2 or 3 character region subtag.
+            </summary>
+            <returns>A string describing a region subtag, or null if no such subtag present.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetVariant">
+            <summary>
+            Returns zero or more optional variant subtags.
+            </summary>
+            <returns>An array of strings describing the variant subtags, or null if no such subtag present.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetExtension">
+            <summary>
+            Returns the optional extension subtag.
+            </summary>
+            <returns>A string describing an extension subtag, or null if no such subtag present.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetPrivateuse">
+            <summary>
+            Returns the optional privateuse subtag.
+            </summary>
+            <returns>A string describing a privateuse subtag, or null if no such subtag present.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetParent">
+            <summary>
+            Returns an object representing any logical parent of the tag.
+            </summary>
+            <returns>Parent object or null if no parent.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetMaxParents">
+            <summary>
+            Returns the maximum number of parents possible.
+            This is really a static value provided by the underlying impl.
+            </summary>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetCultureInfo">
+            <summary>
+            Corresponding CultureInfo instance, or null if the langtag is unsupported on this system.
+            </summary>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetNativeNameTitleCase">
+            <summary>
+            If the system supports a cultureinfo object for the language, this is the native name of 
+            the language suitable for user display, otherwise it is the language tag string.
+            </summary>
+        </member>
+        <member name="M:i18n.LanguageHelpers.GetAppLanguages">
+            <summary>
+            Obtains collection of language tags describing the set of Po-valid languages, that
+            is the languages for which one or more resource are defined.
+            Note that the AppLanguages collection is unordered; this is because there is no innate 
+            precedence at the resource level: precedence is only relevant to UserLanguages.
+            </summary>
+        </member>
+        <member name="M:i18n.LanguageHelpers.GetMatchingAppLanguage(System.String,System.Int32)">
+            <summary>
+            Attempts to match the passed language with an AppLanguage.
+            </summary>
+            <param name="langtag">The subject language to match, typically a UserLanguage.</param>
+            <param name="maxPasses">
+            0 - allow exact match only
+            1 - allow exact match or default-region match only
+            2 - allow exact match or default-region match or script match only
+            3 - allow exact match or default-region match or script match or language match only
+            4 - allow exact match or default-region match or script or language match only, or failing return the default language.
+            -1 to set to most tolerant (i.e. 4).
+            </param>
+            <returns>
+            A language tag identifying an AppLanguage that will be the same as, or related langtag.
+            </returns>
+        </member>
+        <member name="T:i18n.LanguageItem">
+            <summary>
+            Describes an item in a list of languages, such as in the HTTP Accept-Language header.
+            This includes the language tag, quality, and position of the item in the list.
+            </summary>
+            <remarks>
+            This is a value type to improve efficiency of building arrays of this type.
+            Effort taken to reduce likelihood of boxing when addressing instances of this type.
+            LanguageTag instances are typically re-used from a global cache, hence no allocations.
+            </remarks>
+        </member>
+        <member name="F:i18n.LanguageItem.LanguageTag">
+            <summary>
+            Describes a language. May be null if this represents a null (unset) value.
+            </summary>
+        </member>
+        <member name="F:i18n.LanguageItem.Quality">
+            <returns>
+            A real number ranging from 0 to 2 describing the quality of the language tag relative
+            to another for which an equivalent quality value is availble (0 = lowest quality; 2 = highest quality).
+            The range 0 to 1 is as used in HTTP Accept-Language and Content-Language headers.
+            The special value of 2 (PalQualitySetting) is reserved for the Principal Application Language which
+            when set is stored at the head of an array LanguageItem instances.
+            </returns>
+        </member>
+        <member name="F:i18n.LanguageItem.Ordinal">
+            <summary>
+            Zero-based index of the item in the source language list.
+            Used in comparison when Quality is equal.
+            </summary>
+        </member>
+        <member name="F:i18n.LanguageItem.UseCount">
+            <summary>
+            May be used to count the number of messages in the language that have been translated.
+            Initialized to zero. Excluded from comparisons.
+            </summary>
+        </member>
+        <member name="M:i18n.LanguageItem.CompareTo(i18n.LanguageItem)">
+            <summary>
+            Facilitates ordering of language items to match their order in a source language list.
+            Quality value is given precendence (higher sorts before lower value), but where that is equal, 
+            we fallback on Ordinal (lower sorts before higher value).
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:i18n.LanguageItem.ParseHttpLanguageHeader(System.String,i18n.ILanguageTag)">
+            <summary>
+            Parses an HTTP Accept-Language or Content-Language header value, returning
+            a representative ordered array of LanguageItem instances, sorted in order of
+            language preference.
+            E.g. "de;q=0.5, en;q=1, fr-FR;q=0,ga;q=0.5".
+            Notably, is able to re-order elements based on quality.
+            </summary>
+            <remarks>
+            The first element position in the returned array is reserved for an item that
+            describes the Principal Application Language (PAL) for the request. If/when the PAL
+            is not set, that element will be a null item (LanguageItem.LanguageTag == null).
+            
+            This method is designed to be as efficient as possible, typically requiring
+            only a single heap alloc, for the returned array object itself.
+            </remarks>
+            <param name="headerval">
+            HTTP Accept-Language header value.
+            http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html.
+            May be null or empty string for zero languages.
+            </param>
+            <param name="pal">
+            Optional language to store at the first element position in the array, which is reserved
+            for the Principal Application Language (PAL). Any such LanguageItem stored that has a quality 
+            value of 2 (LanguageItem.PalQualitySetting). Null if no such language to be stored there and the
+            item to be set as null (LanguageItem.LanguageTag == null).
+            </param>
+            <returns>
+            Array of languages items (with possibly null LanguageTag members) sorted in order or language preference.
+            </returns>
+        </member>
+        <member name="T:i18n.LocalizingModule">
+            <summary>
+            HTTP module responsible for:
+            1. Implementing early URL localization
+            2. Installing our ResponseFilter into the ASP.NET pipeline.
+            </summary>
+            <remarks>
+                LocalizingModule can be installed like this:
+            
+                    IIS7+ Integrated mode:
+            
+                      &lt;system.webServer&gt;
+                        &lt;modules&gt;
+                          &lt;add name="i18n.LocalizingModule" type="i18n.LocalizingModule, i18n" /&gt;
+                        &lt;/modules&gt;
+                      &lt;/system.webServer&gt;
+            
+                    IIS7 Classic mode and IIS6:
+            
+                      &lt;system.web&gt;
+                        &lt;httpModules&gt;
+                          &lt;add name="i18n.LocalizingModule" type="i18n.LocalizingModule, i18n" /&gt; &lt;!-- #37 --&gt;
+                        &lt;/httpModules&gt;
+                      &lt;/system.web&gt;
+            </remarks>
+        </member>
+        <member name="M:i18n.LocalizingModule.OnBeginRequest(System.Object,System.EventArgs)">
+            <summary>
+            Handler for the BeginRequest ASP.NET request pipeline event, where we inject our
+            Early URL Localization logic.
+            </summary>
+        </member>
+        <member name="M:i18n.LocalizingModule.OnReleaseRequestState(System.Object,System.EventArgs)">
+            <summary>
+            Handler for the ReleaseRequestState ASP.NET request pipeline event.
+            This event occurs late on in the pipeline but prior to the response being filtered.
+            We take the opportunity to inject our i8n post-processing of the response.
+            </summary>
+        </member>
+        <member name="T:i18n.NuggetLocalizer">
+            <summary>
+            The i18n default implementaion of the INuggetLocalizer service.
+            </summary>
+        </member>
+        <member name="M:i18n.NuggetLocalizer.IsNuggetFormatted(System.String)">
+            <summary>
+            Returns indication of whether the passed nugget is formatted or not.
+            </summary>
+            <param name="nugget">Subject nugget string.</param>
+            <returns>true if formatted nugget, otherwise false.</returns>
+        </member>
+        <member name="M:i18n.NuggetLocalizer.ConvertIdentifiersInMsgId(System.String)">
+            <summary>
+            Helper for converting the C printf-style %0, %1 ... style identifiers in a formatted nugget msgid string
+            to the .NET-style format items: {0}, {1} ...
+            </summary>
+            <remarks>
+            A formatted msgid may be in the form:
+            <para>
+            Enter between %1 and %0 characters
+            </para>
+            <para>
+            For which we return:
+            </para>
+            <para>
+            Enter between {1} and {0} characters
+            </para>
+            </remarks>
+        </member>
+        <member name="F:i18n.NuggetLocalizer.m_regexPrintfIdentifiers">
+            <summary>
+            Regex for helping replace %0 style identifiers with {0} style ones.
+            </summary>
+        </member>
+        <member name="F:i18n.NuggetLocalizer.s_internalDelimiter">
+            <summary>
+            Sequence of chars used to delimit internal components of a Formatted nugget.
+            </summary>
+        </member>
+        <member name="T:i18n.ResponseFilter">
+            <summary>
+            A filter class used to intercept the ASP.NET response stream and
+            post-process the response for localization. This includes:
+              1. Localization of marked messages (nuggets) in the response entity;
+              2. Late URL Localization.
+            </summary>
+        </member>
+        <member name="F:i18n.ResponseFilter.m_stagingBuffer">
+            <remarks>
+            We need to accumulate all written blocks into a staging buffer so that
+            any nuggets which straddle the break between two blocks are picked up
+            correctly. This approach is not perfect in that we need to allocate a block
+            of memory for the entire response, which could be large, but the only way
+            around would involve parsing for nuggest where we track start and end
+            tokens (that is, don't use regex).
+            </remarks>
+        </member>
+        <member name="F:i18n.ResponseFilter.m_outputStream">
+            <summary>
+            The stream onto which we pass data once processed. This will typically be set 
+            to the stream which was the original value of Response.Filter before we got there.
+            </summary>
+        </member>
+        <member name="F:i18n.ResponseFilter.m_httpContext">
+            <summary>
+            HTTP context with which the filter is associated.
+            </summary>
+        </member>
+        <member name="M:i18n.ParseHelpers.TryParseDecimal(System.String,System.Int32,System.Int32,System.Double@,System.Char)">
+            <summary>
+            Efficient (allocation-free) parsing of numerical strings with support for substrings
+            and number extraction. Non-numerical characters are skipped until and parsing started
+            from the first numeral encountered and ends either at the end of the substring or the next
+            non-numeral char, whichever comes first.
+            </summary>
+            <param name="s"></param>
+            <param name="begin">Zero-based index of the first char in the string from which to start parsing.</param>
+            <param name="end">Zero-based index +1 of the last char in the string to parse, or -1 parse to the end of string.</param>
+            <param name="result">On success outputs the parsed value.</param>
+            <returns>Indication of success.</returns>
+        </member>
+        <member name="M:i18n.ParseHelpers._TryParseDecimal(System.String,System.Int32,System.Int32,System.Double@,System.Char)">
+            <summary>
+            Helper for parsing decimals.
+            </summary>
+            <returns>Number of fractional digits if successfule; owise -1.</returns>
+        </member>
+        <member name="T:i18n.LocalizedApplication">
+            <summary>
+            Manages the configuration of the i18n features of your localized application.
+            </summary>
+        </member>
+        <member name="F:i18n.LocalizedApplication.ContentTypesToLocalize">
+            <summary>
+            Regular expression that controls the ContextTypes elligible for response localization.
+            </summary>
+            <remarks>
+            Set to null to disable Late URL Localization.<br/>
+            Defaults to @"^(?:(?:(?:text|application)/(?:plain|html|xml|javascript|x-javascript|json|x-json))(?:\s*;.*)?)$.<br/>
+            Client may customise this member, for instance in Application_Start.<br/>
+            This feature requires the LocalizedModule HTTP module to be intalled in web.config.<br/>
+            Explanation of the default regex:<br/>
+             Content-type string must begin with "text" or "application"<br/>
+             This must be followed by "/"<br/>
+             This must be followed by "plain" or "html" ...<br/>
+             And finally this may be followed by the following sequence:<br/>
+                 zero or more whitespace then ";" then any number of any chars up to end of string.
+            </remarks>
+        </member>
+        <member name="F:i18n.LocalizedApplication.UrlsToExcludeFromProcessing">
+            <summary>
+            Regular expression that excludes certain URL paths from being localized.
+            </summary>
+            <remarks>
+            Defaults to excluding all less and css files and any URLs containing the phrases i18nSkip, glimpse, trace or elmah (case-insensitive)<br/>
+            Clients may customise this member in Application_Start<br/>
+            This feature requires the LocalizedModule HTTP module to be intalled in web.config.<br/>
+            </remarks>
+        </member>
+        <member name="F:i18n.LocalizedApplication.AsyncPostbackTypesToTranslate">
+            <summary>
+            Comma separated value string that lists the async postback types that should be localized.
+            </summary>
+            <remarks>
+            Defaults to "updatePanel,scriptStartupBlock,pageTitle"<br/>
+            Clients may customise this member in Application_Start.<br/>
+            </remarks>
+        </member>
+        <member name="P:i18n.LocalizedApplication.DefaultLanguage">
+            <summary>
+            The language to be used as the default for the application where no
+            explicit language is specified or determined for a request. Defaults to "en".
+            </summary>
+            <remarks>
+            When MessageKeyIsValueInDefaultLanguage is true, GetText may interpret
+            the message keys to be message values in the DefaultLanguage (where
+            no explicit message value is defined in the DefaultLanguage) and so
+            output the message key.<br/>
+            The DefaultLanguage is used in Url Localization Scheme2 for the default URL.<br/>
+            Supports a subset of BCP 47 language tag spec corresponding to the Windows
+            support for language names, namely the following subtags:
+                language (mandatory, 2 alphachars)
+                script   (optional, 4 alphachars)
+                region   (optional, 2 alphachars | 3 decdigits)
+            Example tags supported:
+                "en"            [language]
+                "en-US"         [language + region]
+                "zh"            [language]
+                "zh-HK"         [language + region]
+                "zh-123"        [language + region]
+                "zh-Hant"       [language + script]
+                "zh-Hant-HK"    [language + script + region]
+                "zh-Hant-HK-x-ABCD"    [language + script + region + private use]
+            </remarks>
+        </member>
+        <member name="P:i18n.LocalizedApplication.MessageKeyIsValueInDefaultLanguage">
+            <summary>
+            Specifies whether the key for a message may be assumed to be the value for
+            the message in the default language. Defaults to true.
+            </summary>
+            <remarks>
+            When true, the i18n GetText method will take it that a translation exists
+            for all messages in the default language, even though in reality a translation
+            is not present for the message in the default language's PO file.<br/>
+            When false, an explicit translation is required in the default language. Typically
+            this can be useful where key are not strings to be output but rather codes or mnemonics
+            of some kind.
+            </remarks>
+        </member>
+        <member name="P:i18n.LocalizedApplication.ApplicationPath">
+            <summary>
+            The ASP.NET application's virtual application root path on the server,
+            used by Url Localization.
+            </summary>
+            <remarks>
+            This is set by the ctor automatically to the ApplicationPath of
+            HttpContext.Current, when available. Should that not be available
+            then the value defaults to "/".<br/>
+            In situations where the application is configured to run under a virtual folder
+            and you init this class in such a way that HttpContext.Current is not
+            available, it will be necessary to set this correctly manually to the application
+            root path.<br/>
+            E.g. if the application root url is "example.com/MySite",
+            set this to "/MySite". It is important that the string starts with a forward slash path separator
+            and does NOT end with a forward slash.
+            </remarks>
+        </member>
+        <member name="P:i18n.LocalizedApplication.SetPrincipalAppLanguageForRequestHandlers">
+            <summary>
+            Describes one or more procedures to be called when the principal application
+            language (PAL) is set for an HTTP request.
+            </summary>
+            <remarks>
+            A default handlers is installed which applies the PAL setting to both the 
+            CurrentCulture and CurrentUICulture settings of the current thread.
+            This behaviour can be altered by removing (nulling) the value of this property
+            or replacing with a new delegate.
+            </remarks>
+        </member>
+        <member name="P:i18n.LocalizedApplication.PermanentRedirects">
+            <summary>
+            Specifies the type of HTTP redirect to be issued by automatic language routing:
+            true for 301 (permanent) redirects; false for 302 (temporary) ones.
+            Defaults to false.
+            </summary>
+        </member>
+        <member name="P:i18n.LocalizedApplication.Current">
+            <summary>
+            Instance of the this LocalizedApplication class for the current AppDomain.
+            </summary>
+        </member>
+        <member name="P:i18n.LocalizedApplication.RootServices">
+            <summary>
+            This object relays its implementaion of IRootServices onto the object set here.
+            Host app may override with its own implementation.
+            By default, this property is set to an instance of DefaultRootServices.
+            </summary>
+        </member>
+        <member name="T:i18n.LocalizedApplication.SetLanguageHandler">
+            <summary>
+            Declares a method type for handling the setting of the language.
+            </summary>
+            <param name="context">Current http context.</param>
+            <param name="langtag">Language being set.</param>
+        </member>
+        <member name="M:i18n.LanguageMatching.MatchLists(i18n.LanguageItem[],System.Collections.Generic.IEnumerable{i18n.LanguageTag},System.String,System.Func{System.String,System.String,System.String},System.String@,System.Int32,i18n.LanguageTag,System.Boolean)">
+            <summary>
+            Given a list of user-preferred languages (in order of precedence) and the list of languages
+            in which an arbitrary resource is available (AppLanguages), returns the AppLanguage which
+            the user is most likely able to understand.
+            </summary>
+            <param name="UserLanguages">
+            A list of user-preferred languages (in order of precedence).
+            </param>
+            <param name="AppLanguages">
+            The list of languages in which an arbitrary resource is available.
+            </param>
+            <param name="key">
+            Optionally specifies the key or a message to be looked up in order to validate
+            a language selection. Only if the language passes the validation will it be selected.
+            Set in conjunction with TryGetTextFor.
+            May be null (while TryGetTextFor is non-null) which specifies that one or more messages 
+            must exists for a language for it to be considered valid (PO-valid).
+            </param>
+            <param name="TryGetTextFor">
+            Optional delegate to be called in order to validate a language for selection.
+            See TextLocalizer.TryGetTextFor for more details.
+            </param>
+            <param name="o_text">
+            When language validation is enabled (TryGetTextFor is non-null) outputs the translated
+            text that was returned by TryGetTextFor when the language was validated.
+            If key == null then this will be set to "".
+            </param>
+            <param name="maxPasses">
+            0 - allow exact match only
+            1 - allow exact match or default-region match only
+            2 - allow exact match or default-region match or script match only
+            3 - allow exact match or default-region match or script match or language match only
+            -1 to set to most tolerant (i.e. 4).
+            </param>
+            <param name="relatedTo">
+            Optionally applies a filter to the user languages considered for a match.
+            When set, then only user languages that have a matching language to that of relatedTo
+            are considered.
+            </param>
+            <param name="palPrioritization">
+            Indicates whether PAL Prioritization is enabled.
+            </param>
+            <returns>
+            LanguageTag instance selected from AppLanguages with the best match, or null if there is no match
+            at all (or UserLanguages and/or AppLanguages is empty).
+            It is possible for there to be no match at all if no language subtag in the UserLanguages tags
+            matches the same of any of the tags in AppLanguages list.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if UserLanguages or AppLanguages is null.</exception>
+            <remarks>
+            This method called many times per request. Every effort taken to avoid it making any heap allocations.<br/>
+            <br/>
+            Principle Application Language (PAL) Prioritization:<br/>
+              User has selected an explicit language in the webapp e.g. fr-CH (i.e. PAL is set to fr-CH).
+              Their browser is set to languages en-US, zh-Hans.
+              Therefore, UserLanguages[] equals fr-CH, en-US, zh-Hans.
+              We don't have a particular message in fr-CH, but have it in fr and fr-CA.
+              We also have message in en-US and zh-Hans.
+              We presume the message from fr or fr-CA is better match than en-US or zh-Hans.
+              However, without PAL prioritization, en-US is returned and failing that, zh-Hans.
+              Therefore, for the 1st entry in UserLanguages (i.e. explicit user selection in app)
+              we try all match grades first. Only if there is no match whatsoever for the PAL
+              do we move no to the other (browser) languages, where return to prioritizing match grade
+              i.e. loop through all the languages first at the strictest match grade before loosening 
+              to the next match grade, and so on.
+            Refinement to PAL Prioritization:<br/>
+              UserLanguages (UL) = de-ch,de-at (PAL = de-ch)<br/>
+              AppLanguages  (AL) = de,de-at,en<br/>
+              There is no exact match for PAL in AppLanguages.<br/>
+              However:<br/>
+               1. the second UL (de-at) has an exact match with an AL<br/>
+               2. the parent of the PAL (de) has an exact match with an AL.<br/>
+              Normally, PAL Prioritization means that 2. takes precedence.
+              However, that means choosing de over de-at, when the user
+              has said they understand de-at (it being preferable to be
+              more specific, esp. in the case of different scripts under 
+              the same language).<br/>
+              Therefore, as a refinement to PAL Prioritization, before selecting
+              'de' we run the full algorithm again (without PAL Prioritization) 
+              but only considering langtags related to the PAL.
+            </remarks>
+        </member>
+        <member name="T:i18n.LanguageTag">
+            <summary>
+            Helper class for parsing and manipulating language tags.
+            </summary>
+            <remarks>
+            Supports a subset of BCP 47 language tag spec corresponding to the Windows
+            support for language names, namely the following subtags:
+                language    (mandatory, 2 or 3 alphachars)
+                script      (optional, 4 alphachars, or 5 alphachars in the special case of Microsoft Pseudo-Locales)
+                region      (optional, 2 alphachars | 3 decdigits)
+                private use (optional, -x- followed by 4 or more alphanumeric chars)
+            Example tags supported:
+                "en"                [language]
+                "en-US"             [language + region]
+                "zh"                [language]
+                "zh-HK"             [language + region]
+                "zh-123"            [language + region]
+                "zh-Hant"           [language + script]
+                "zh-Hant-HK"        [language + script + region]
+                "zh-Hant-HK-x-AAAA" [language + script + region + private use]
+                "qps-ploc"          [language + script] [Microsoft pseudo-locale]
+                "qps-plocm"         [language + script] [Microsoft pseudo-locale]
+                "qps-ploca"         [language + script] [Microsoft pseudo-locale]
+            </remarks>
+            <seealso href="http://www.microsoft.com/resources/msdn/goglobal/default.mspx"/>
+        </member>
+        <member name="F:i18n.LanguageTag.m_langtag">
+            <summary>
+            Original full language tag string passed to constructor.
+            </summary>
+        </member>
+        <member name="F:i18n.LanguageTag.m_langtagLC">
+            <summary>
+            Original full language tag string passed to constructor, converted to all lowercase.
+            </summary>
+        </member>
+        <member name="F:i18n.LanguageTag.m_parent">
+            <summary>
+            Reference to any parent language tag, or null if no parent determined.
+            The parent is the the language tag with one less subtag.
+            E.g. if all three supported subtags are set (language, script and region), the parent 
+            will be the language tag composed of the language and script subtags.
+            </summary>
+        </member>
+        <member name="M:i18n.LanguageTag.#ctor(System.String)">
+            <summary>
+            Constructs a new instance based on a language tag string.
+            If successful, then the Language property is set to a valid language subtag.
+            </summary>
+            <param name="langtag">
+            Supports a subset of BCP 47 language tag spec corresponding to the Windows
+            support for language names, namely the following subtags:
+                language (mandatory, 2 alphachars)
+                script   (optional, 4 alphachars)
+                region   (optional, 2 alphachars | 3 decdigits)
+                privateuse (optional, 4+ alphanumericchars)
+            Example tags supported:
+                "en"               [language]
+                "en-US"            [language + region]
+                "zh"               [language]
+                "zh-HK"            [language + region]
+                "zh-123"           [language + region]
+                "zh-Hant"          [language + script]
+                "zh-Hant-HK"       [language + script + region]
+                "en-GB-x-ACMECorp" [language + region + privateuse]
+            </param>
+            <seealso href="http://www.microsoft.com/resources/msdn/goglobal/default.mspx"/>
+        </member>
+        <member name="M:i18n.LanguageTag.GetCachedInstance(System.String)">
+            <summary>
+            Instance factory that supports re-use of instances which by definition are read-only.
+            </summary>
+            <param name="langtag">
+            Supports a subset of BCP 47 language tag spec corresponding to the Windows
+            support for language names, namely the following subtags:
+                language (mandatory, 2 alphachars)
+                script   (optional, 4 alphachars)
+                region   (optional, 2 alphachars | 3 decdigits)
+            Example tags supported:
+                "en"            [language]
+                "en-US"         [language + region]
+                "zh"            [language]
+                "zh-HK"         [language + region]
+                "zh-123"        [language + region]
+                "zh-Hant"       [language + script]
+                "zh-Hant-HK"    [language + script + region]
+                "en-GB+ACMECorp" [language + region + privateuse]
+            </param>
+            <returns>Either new or pre-exisiting instance, or null if langtag is invalid.</returns>
+            <seealso href="http://www.microsoft.com/resources/msdn/goglobal/default.mspx"/>
+        </member>
+        <member name="M:i18n.LanguageTag.ToString">
+            <returns>
+            Language tag string.
+            Supports a subset of BCP 47 language tag spec corresponding to the Windows
+            support for language names, namely the following subtags:
+                language (mandatory, 2 alphachars)
+                script   (optional, 4 alphachars)
+                region   (optional, 2 alphachars | 3 decdigits)
+            Example tags supported:
+                "en"            [language]
+                "en-US"         [language + region]
+                "zh"            [language]
+                "zh-HK"         [language + region]
+                "zh-123"        [language + region]
+                "zh-Hant"       [language + script]
+                "zh-Hant-HK"    [language + script + region]
+                "en-GB-x-ABCD" [language + region + privateuse]
+            </returns>
+        </member>
+        <member name="M:i18n.LanguageTag.Match(i18n.LanguageTag,i18n.LanguageTag.MatchGrade)">
+            <summary>
+            Performs 'language matching' between lang described by this (A)
+            and language decibed by i_rhs (B). Essentially, returns an assessment of
+            how well a speaker of A will understand B.
+            The key points are as follows:
+              · The Script is almost as relevant as the language itself; that is, if
+                you speak a language but do not understand the script, you cannot
+                read that language. Thus a mismatch in Script should score low.
+              · The Region is less relevant than Script to understanding of language.
+                The one exception to this is where the Region has traditionally been
+                used to also indicate the Script. E.g.
+                    zh-CH -> Chinese (Simplified)  i.e. zh-Hans
+                    zh-TW -> Chinese (Traditional) i.e. zh-Hant
+                In these cases we normalize all legacy langtags to their new values
+                before matching. E.g. zh-CH is normalized to zh-Hans.
+            «LX113»
+            </summary>
+            <param name="i_rhs"></param>
+            <returns>
+            Returns a score on to what extent the two languages match. The value ranges from
+            100 (exact match) down to 0 (fundamental language tag mismatch), with values 
+            in between which may be used to compare quality of a match, larger the value
+            meaning better quality.
+            </returns>
+            <remarks>
+            Matching values:
+                                                         RHS
+            this                    lang    lang+script     lang+region     lang+script+region
+            ----------------------------------------------------------------------------------
+            lang                |   A       D               C               D
+            lang+script         |   D       A               D               B
+            lang+region         |   C       D               A               D
+            lang+script+region  |   D       B               D               A
+            
+            NB: For the purposes of the logic above, lang incorporates Language + PrivateUse subtags.
+            
+            A. Exact match (100)
+                All three subtags match.
+            B. Unbalanced Region Mismatch (99) [zh, zh-HK] [zh-Hans, zh-Hans-HK]
+                Language and Script match;
+                one side has Region set while the other doesn't.
+                Here there is the possibility that due to defaults Region matches.
+            C. Balanced Region Mismatch (98) [zh-IK, zh-HK] [zh-Hans-IK, zh-Hans-HK]
+                Language and Script match;
+                both sides have Region set but to different values.
+                Here there is NO possibility that Region matches.
+            D. Unbalanced Script Mismatch (97) [zh-HK, zh-Hant-HK]
+                Language matches, Region may match;
+                one side has Script set while the other doesn't.
+                Here there is the possibility that due to defaults Script matches.
+            E. Balanced Script Mismatch (96)
+                Language matches, Region may match;
+                both sides have Script set but to different values.
+                Here there is NO possibility that Script matches.
+            F. Language Mismatch (0)
+                Language doesn't match.
+            </remarks>
+            <seealso href="http://msdn.microsoft.com/en-us/library/windows/apps/jj673578.aspx"/>
+        </member>
+        <member name="M:i18n.LanguageTag.Match(i18n.LanguageTag[],i18n.LanguageTag.MatchGrade)">
+            <summary>
+            Looks up in the passed collection of supported AppLanguages the language that is best matched
+            to this langtag. I.e. the written AppLanguage that a user understanding this langtag
+            will most-likely understand.
+            </summary>
+            <returns>Selected CultureInfoEx instance from the AppLanguages collection or null if there was no match.</returns>
+        </member>
+        <member name="M:i18n.LanguageTag.ExtractLangTagFromUrl(System.String,System.UriKind,System.String@)">
+            <summary>
+            Helper for detecting a URL prefixed with a langtag part, and if found outputs
+            both the langtag and the URL with the prefix removed.
+            </summary>
+            <remarks>
+            This method does not check for the validity of the returned langtag other than
+            it matching the pattern of a langtag as supported by this LanguageTag class.
+            </remarks>
+            <param name="url">Either an absolute or relative URL string, as specified by the uriKind parameter.</param>
+            <param name="uriKind">
+            Indicates the type of URI in the url parameter. If the URL is known to be relative, this method is more efficient if this 
+            parameter is set to UriKind.Relative.
+            </param>
+            <param name="urlPatched">
+            On success, set to the URL with the prefix path part removed.
+            On failure, set to value of url param.
+            </param>
+            <returns>On success a langtag string, otherwise null.</returns>
+            <remarks>
+            <para>
+            For URL /zh-Hans/account/signup we return "zh-Hans" and output /account/signup.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:i18n.LanguageTag.SetLangTagInUrlPath(System.String,System.UriKind,System.String)">
+            <summary>
+            Patches in the langtag into the passed url, replacing any extant langtag in the url if necessary.
+            </summary>
+            <param name="url">Either an absolute or relative URL string, as specified by the uriKind parameter.</param>
+            <param name="uriKind">
+            Indicates the type of URI in the url parameter. If the URL is known to be relative, this method is more efficient if this 
+            parameter is set to UriKind.Relative.
+            </param>
+            <param name="langtag">
+            Optional langtag to be patched into the URL, or null if any langtag 
+            to be removed from the URL.
+            </param>
+            <returns>UriBuilder containing the modified version of url.</returns>
+            <remarks>
+            <para>"http://example.com/account/signup"         , "en" -> "http://example.com/en/account/signup"</para>
+            <para>"http://example.com/zh-Hans/account/signup" , "en" -> "http://example.com/en/account/signup"</para>
+            </remarks>
+        </member>
+        <member name="P:i18n.LanguageTag.Language">
+            <summary>
+            Mandatory Language subtag, or if CON fails then null.
+            </summary>
+        </member>
+        <member name="P:i18n.LanguageTag.Script">
+            <summary>
+            Optional Script subtag.
+            </summary>
+        </member>
+        <member name="P:i18n.LanguageTag.Region">
+            <summary>
+            Optional Region subtag.
+            </summary>
+        </member>
+        <member name="P:i18n.LanguageTag.PrivateUse">
+            <summary>
+            Optional PrivateUse subtag, excluding the "x-" part. 
+            E.g. for a langtag of "en-GB-x-ACMECorp" this property is "ACMECorp".
+            </summary>
+        </member>
+        <member name="P:i18n.LanguageTag.GlobalKey">
+            <summary>
+            Unique string per language which is suitable for using as a key in global
+            caches such as HttpRuntime.Cache. Inited during construction.
+            </summary>
+        </member>
+        <member name="P:i18n.LanguageTag.CultureInfo">
+            <summary>
+            Corresponding CultureInfo instance, or null if the langtag is unsupported on this system.
+            </summary>
+        </member>
+        <member name="P:i18n.LanguageTag.NativeNameTitleCase">
+            <summary>
+            If the system supports a cultureinfo object for the language, this is the native name of 
+            the language suitable for user display, otherwise it is the language tag string.
+            </summary>
+        </member>
+        <member name="F:i18n.LanguageTag.MatchGrade.ExactMatch">
+            <summary>
+            Only consider a match where language and script and region and private use parts match.
+            E.g. fr matches fr
+            E.g. zh-Hans-HK matches zh-Hans-HK
+            E.g. fr-FR-x-AAAA matches fr-FR-x-AAAA
+            </summary>
+        </member>
+        <member name="F:i18n.LanguageTag.MatchGrade.DefaultRegion">
+            <summary>
+            Only consider a match where language and script parts match, one region is set and the other region 
+            is not set.
+            E.g. fr matches fr-BE
+            E.g. zh-Hans-HK matches zh-Hans
+            </summary>
+        </member>
+        <member name="F:i18n.LanguageTag.MatchGrade.ScriptMatch">
+            <summary>
+            Only consider a match where language and script parts match. Region part need not match.
+            E.g. fr-CA matches fr-BE
+            E.g. zh-Hant-HK matches zh-Hant-TW
+            </summary>
+        </member>
+        <member name="F:i18n.LanguageTag.MatchGrade.LanguageMatch">
+            <summary>
+            Only consider a match where language matches. Script and region parts need not match.
+            E.g. zh-Hans-HK matches zh
+            </summary>
+        </member>
+        <member name="T:i18n.TextLocalizer">
+            <summary>
+            A service for retrieving localized text from PO resource files
+            </summary>
+        </member>
+        <member name="M:i18n.TextLocalizer.IsLanguageValid(System.String)">
+            <summary>
+            Assesses whether a language is PO-valid, that is whether or not one or more
+            localized messages exists for the language.
+            </summary>
+            <returns>true if one or more localized messages exist for the language; otherwise false.</returns>
+        </member>
+        <member name="M:i18n.TextLocalizer.TryGetTextFor(System.String,System.String)">
+            <summary>
+            Lookup whether any messages exist for the passed langtag, and if so attempts
+            to lookup the message for the passed msgid, or if the msgid is null returns indication
+            of whether any messages exist for the langtag.
+            </summary>
+            <param name="langtag">
+            Language tag of the subject langtag.
+            </param>
+            <param name="msgkey">
+            Key of the message to lookup, or null to test for any message loaded for the langtag.
+            When on-null, the format of the key is as generated by the TemplateItem.KeyFromMsgidAndComment
+            helper.
+            </param>
+            <returns>
+            On success, returns the translated message, or if msgkey is null returns an empty string ("")
+            to indciate that one or more messages exist for the langtag.
+            On failure, returns null.
+            </returns>
+        </member>
+        <member name="M:i18n.TextLocalizer.LookupText(System.String,System.String)">
+            <returns>null if not found.</returns>
+        </member>
+        <member name="M:i18n.TextLocalizer.GetCultureInfoFromLanguage(System.String)">
+            <returns>null if not found.</returns>
+        </member>
+        <member name="T:i18n.UrlLocalizationScheme">
+            <summary>
+            Enumerate various approaches to handling and redirection of localized URLs.
+            </summary>
+        </member>
+        <member name="F:i18n.UrlLocalizationScheme.Void">
+            <summary>
+            Url localization is disabled.
+            </summary>
+        </member>
+        <member name="F:i18n.UrlLocalizationScheme.Scheme1">
+            <summary>
+            Everything is explicit, so any URLs/routes not containing a language tag are patched 
+            and redirected, whether or not the language is the app-default.
+            </summary>
+            <remarks>
+            E.g. if selected language for the request is 'fr' then
+            <para>
+            example.com    -> example.com/fr<br/>
+            example.com/fr -> example.com/fr<br/>
+            </para>
+            <para>
+            where -> means 'is redirected to'.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:i18n.UrlLocalizationScheme.Scheme2">
+            <summary>
+            Everything to be explicit except the default language which MAY be implicit.
+            </summary>
+            <remarks>
+            E.g. if selected language for the request is 'fr' then
+            <para>
+            example.com    -> example.com<br/>
+            example.com/fr -> example.com/fr<br/>
+            </para>
+            <para>
+            where -> means 'is redirected to'.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:i18n.UrlLocalizationScheme.Scheme3">
+            <summary>
+            Everything to be explicit except the default language which MUST be implicit.
+            </summary>
+            <remarks>
+            E.g. if selected language for the request is 'fr' then
+            <para>
+            example.com    -> example.com<br/>
+            example.com/fr -> example.com<br/>
+            </para>
+            <para>
+            where -> means 'is redirected to'.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:i18n.UrlLocalizer">
+            <summary>
+            The i18n default implementaion of the IUrlLocalizer service.
+            </summary>
+        </member>
+        <member name="F:i18n.UrlLocalizer.UrlLocalizationScheme">
+            <summary>
+            Specifies the URL localization used by ALL instances of UrlLocalizer.
+            May be changed in application start.
+            </summary>
+            <remarks>
+            Presently, only Scheme1 and Scheme2 are supported by this class.
+            </remarks>
+        </member>
+        <member name="F:i18n.UrlLocalizer.QuickUrlExclusionFilter">
+            <summary>
+            May be set to a pattern that matches the path component of any url to be 
+            explicitly EXCLUDED from localization, both incoming and outgoing.
+            </summary>
+            <remarks>
+            This filtering in performed in addition to any custom IncomingUrlFilters/OutgoingUrlFilters filters.
+            </remarks>
+        </member>
+        <member name="M:i18n.UrlLocalizer.ExtractAnySiteRootPathFromUrl(System.String@,System.UriKind)">
+            <summary>
+            Helper for detecting and extracting any site root path string from a URL.
+            </summary>
+            <param name="url">Subject relative url, trimmed on output if found to be prefixed with site root path.</param>
+            <returns>
+            If the site root path was found and trimmed from the url, returns the site root path string.
+            Otherwise, returns null.
+            </returns>
+        </member>
+        <member name="P:i18n.UrlLocalizer.IncomingUrlFilters">
+            <summary>
+            Filters that examines the request URL during Early URL Localization
+            and returns an indication as to whether the URL should be localized.
+            </summary>
+            <remarks>
+            In the case of multiple filters added to this member, they all need
+            to return true for the URL to be localized.
+            </remarks>
+        </member>
+        <member name="P:i18n.UrlLocalizer.OutgoingUrlFilters">
+            <summary>
+            Filters that examines the request URL during Late URL Localization
+            and returns an indication as to whether the URL should be localized.
+            </summary>
+            <remarks>
+            In the case of multiple filters added to this member, they all need
+            to return true for the URL to be localized.
+            </remarks>
+        </member>
+        <member name="P:i18n.UrlLocalizer.DetermineDefaultLanguageFromRequest">
+            <summary>
+            Registers the procedure used by instances of this class for determining the 
+            default language tag for the current request.
+            </summary>
+            <remarks>
+            This deleagate is part of facilitating a level of indirection over simply reading 
+            LocalizedApplication.Current.DefaultLanguage when wanting the default language,
+            thereby allowing for the default language to be varied per URL e.g. per domain extension.
+            <br/>
+            The default implementation is set in the static constructor and simply returns
+            LocalizedApplication.Current.DefaultLanguageTag.
+            </remarks>
+        </member>
+        <member name="T:i18n.UrlLocalizer.IncomingUrlFilter">
+            <summary>
+            Describes one or more procedures for filtering a URL during Early URL Localization.
+            </summary>
+            <param name="url">Subject URL.</param>
+            <returns>true if URL is to be localized, false if not.</returns>
+        </member>
+        <member name="T:i18n.UrlLocalizer.OutgoingUrlFilter">
+            <summary>
+            Describes one or more procedures for filtering a URL during Late URL Localization.
+            </summary>
+            <param name="url">Subject URL.</param>
+            <param name="currentRequestUrl">Url of the current request context. May be null if/when testing.</param>
+            <returns>true if URL is to be localized, false if not.</returns>
+        </member>
+        <member name="T:i18n.UrlLocalizer.DetermineDefaultLanguageFromRequestProc">
+            <summary>
+            Describes a procedure for determining the default language tag for the current request.
+            </summary>
+            <param name="context">
+            Describes the current request. May be null if called outside of any request.
+            </param>
+            <returns>The language tag to be considered as the default for the current request.</returns>
+            <remarks>
+            <see cref="P:i18n.UrlLocalizer.DetermineDefaultLanguageFromRequest"/>
+            </remarks>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,13 @@
+﻿@model BeYourMarket.Model.Models.ContentPage
+
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.Description = Model.Description;
+}
+
+<div class="container body-content">
+    <h1>@Model.Title</h1>
+    <h6>@Model.LastUpdated.ToShortDateString()</h6>
+
+    @Html.Raw(Model.Html)
+</div>

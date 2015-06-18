@@ -1,0 +1,187 @@
+﻿@model BeYourMarket.Service.Models.Statistics
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="wraper container-fluid">
+    <div class="page-title">
+        <h3 class="title">Welcome to <strong>@CacheHelper.Settings.Name</strong> Admin Panel!</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <a href="@Url.Action("Listings", "Listing")">
+                <div class="widget-panel widget-style-2 bg-info">
+                    <i class="fa fa-th-list"></i>
+                    <h2 class="m-0 counter">@Model.ListingCount</h2>
+                    <div>Listings</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <a href="@Url.Action("Order", "Payment")">
+                <div class="widget-panel widget-style-2 bg-pink">
+                    <i class="fa fa-shopping-cart"></i>
+                    <h2 class="m-0 counter">@Model.OrderCount</h2>
+                    <div>Orders</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <a href="@Url.Action("Transaction", "Payment")">
+                <div class="widget-panel widget-style-2 bg-purple">
+                    <i class="fa fa-dollar"></i>
+                    <h2 class="m-0 counter">@Model.TransactionCount</h2>
+                    <div>Transaction</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <a href="@Url.Action("Users", "Manage")">
+                <div class="widget-panel widget-style-2 bg-success">
+                    <i class="fa fa-users"></i>
+                    <h2 class="m-0 counter">@Model.UserCount</h2>
+                    <div>Users</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row row-eq-height">
+
+        <div class="col-lg-6 col-xs-12">
+            <div class="portlet">
+                <div class="portlet-heading">
+                    <h3 class="portlet-title text-dark">
+                        Listings by category
+                    </h3>
+                </div>
+                <div id="portlet2" class="panel-collapse collapse in">
+                    <div class="portlet-body table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Count</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.CategoryStats)
+                                {
+                                    <tr>
+                                        <th scope="row">@item.Category.Name</th>
+                                        <td><a href="@Url.Action("Listings", "Listing")?grid-filter=@string.Format("CategoryID__1__{0}", item.CategoryID)"> @item.Count Listings</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xs-12">
+            <div class="portlet">
+                <div class="portlet-heading">
+                    <h3 class="portlet-title text-dark">
+                        New listings
+                    </h3>
+                </div>
+                <div id="portlet1" class="panel-collapse collapse in">
+                    <div class="portlet-body chartJS">
+                        <canvas id="lineChart" data-type="Line" width="520" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/chartjs/Chart.min.js"></script>
+    @*<script src="~/js/chartjs/chartjs.init.js"></script>*@
+
+    @{
+        var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+        var dateList = serializer.Serialize(Model.ItemsCountDictionary.Select(x => x.Key.ToShortDateString()).ToList());
+        var countList = serializer.Serialize(Model.ItemsCountDictionary.Select(x => x.Value).ToList());
+    }
+
+    <script>
+        !function ($) {
+            "use strict";
+
+            var ChartJs = function () { };
+
+            ChartJs.prototype.respChart = function respChart(selector, type, data, options) {
+                // get selector by context
+                var ctx = selector.get(0).getContext("2d");
+                // pointing parent container to make chart js inherit its width
+                var container = $(selector).parent();
+
+                // enable resizing matter
+                $(window).resize(generateChart);
+
+                // this function produce the responsive Chart JS
+                function generateChart() {
+                    // make chart width fit with its container
+                    var ww = selector.attr('width', $(container).width());
+                    switch (type) {
+                        case 'Line':
+                            new Chart(ctx).Line(data, options);
+                            break;
+                        case 'Doughnut':
+                            new Chart(ctx).Doughnut(data, options);
+                            break;
+                        case 'Pie':
+                            new Chart(ctx).Pie(data, options);
+                            break;
+                        case 'Bar':
+                            new Chart(ctx).Bar(data, options);
+                            break;
+                        case 'Radar':
+                            new Chart(ctx).Radar(data, options);
+                            break;
+                        case 'PolarArea':
+                            new Chart(ctx).PolarArea(data, options);
+                            break;
+                    }
+                    // Initiate new chart or Redraw
+
+                };
+                // run function - render chart at first load
+                generateChart();
+            },
+            //init
+            ChartJs.prototype.init = function () {
+                //creating lineChart
+                var data = {
+                    labels: @Html.Raw(dateList),
+                    datasets: [
+                        {
+                            fillColor: "rgba(220,220,220,0.4)",
+                            strokeColor: "rgba(220,220,220,0.4)",
+                            pointColor: "rgba(220,220,220,1)",
+                            pointStrokeColor: "#fff",
+                            data: @Html.Raw(countList)
+                            }
+                    ]
+                };
+
+                this.respChart($("#lineChart"), 'Line', data);
+            },
+                $.ChartJs = new ChartJs, $.ChartJs.Constructor = ChartJs
+
+        }(window.jQuery),
+
+    //initializing
+    function ($) {
+        "use strict";
+        $.ChartJs.init()
+    }(window.jQuery);
+    </script>
+}

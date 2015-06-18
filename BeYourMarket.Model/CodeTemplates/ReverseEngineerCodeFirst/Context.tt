@@ -1,0 +1,48 @@
+<#@ template hostspecific="true" language="C#" #>
+<#@ include file="EF.Utility.CS.ttinclude" #><#@
+ output extension=".cs" #><#
+
+    var efHost = (EfTextTemplateHost)Host;
+    var code = new CodeGenerationTools(this);
+#>
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using <#= code.EscapeNamespace(efHost.MappingNamespace) #>;
+
+namespace <#= code.EscapeNamespace(efHost.Namespace) #>
+{
+    public partial class <#= efHost.EntityContainer.Name #> : Repository.Pattern.Ef6.DataContext
+    {
+        static <#= efHost.EntityContainer.Name #>()
+        {
+            Database.SetInitializer<<#= efHost.EntityContainer.Name #>>(null);
+        }
+
+        public <#= efHost.EntityContainer.Name #>()
+            : base("Name=DefaultConnection")
+        {
+        }
+
+<#
+    foreach (var set in efHost.EntityContainer.BaseEntitySets.OfType<EntitySet>())
+    {
+#>
+        public DbSet<<#= set.ElementType.Name #>> <#= set.Name #> { get; set; }
+<#
+    }
+#>
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+			modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.OneToManyCascadeDeleteConvention>();
+<#
+    foreach (var set in efHost.EntityContainer.BaseEntitySets.OfType<EntitySet>())
+    {
+#>
+            modelBuilder.Configurations.Add(new <#= set.ElementType.Name #>Map());
+<#
+    }
+#>
+        }
+    }
+}

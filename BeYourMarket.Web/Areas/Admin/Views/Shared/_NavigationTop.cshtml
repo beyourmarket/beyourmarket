@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNet.Identity
+<header class="top-head container-fluid">
+    <button type="button" class="navbar-toggle pull-left">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+
+    <nav class=" navbar-default hidden-xs" role="navigation">
+        <ul class="nav navbar-nav">
+
+            <li><a href="@Url.Action("Index", "Home", new { area = string.Empty })" target="_blank">Frontend</a></li>
+        </ul>
+    </nav>
+
+    @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <ul class="list-inline navbar-right top-menu top-right-menu">
+            <li class="dropdown text-center">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <img alt="" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(User.Identity.GetUserId())" class="img-circle profile-img thumb-sm">
+                    <span class="username">@User.Identity.User().FullName </span> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
+                    <li><a href="@Url.Action("Index", "Home", new { area = "" })"><i class="fa fa-globe"></i>Frontend</a></li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i> Log off</a></li>
+                </ul>
+            </li>
+        </ul>
+    }
+</header>

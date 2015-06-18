@@ -1,0 +1,42 @@
+﻿@model GridMvc.Site.Models.Grids.AjaxGridPager
+@if (!Model.HasPages)
+{
+    return;
+}
+<div class="grid-ajax-pager">
+    <a href="javascript:void(0);">Show more</a>
+</div>
+
+<script>
+    (function ($) {
+        var self = this;
+        this.currentPage = 1;
+
+        var pageLink = $(".grid-ajax-pager a");
+        var gridTableBody = pageLink.closest(".grid-wrap").find("tbody");
+
+        pageLink.on("click", function () {
+            self.loadNextPage();
+        });
+
+        this.loadNextPage = function () {
+            self.currentPage++;
+
+            $.get("/Home/GetOrdersGridRows" + self.pad(location.search) + self.currentPage)
+                .done(function (response) {
+
+                    gridTableBody.append(response.Html);
+                    if (!response.HasItems)
+                        pageLink.hide();
+                })
+                .fail(function () {
+                    alert("cannot load items");
+                });
+        };
+
+        this.pad = function (query) {
+            if (query.length == 0) return "?page=";
+            return query + "&page=";
+        };
+    })(jQuery);
+</script>

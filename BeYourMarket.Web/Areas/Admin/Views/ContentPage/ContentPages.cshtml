@@ -1,0 +1,70 @@
+﻿@using GridMvc.Html
+@model BeYourMarket.Web.Models.ContentPageModel
+
+@section Styles {
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <link href="~/Content/gridmvc.datepicker.min.css" rel="stylesheet" />
+}
+
+@{
+    ViewBag.Title = "Content Pages";
+}
+
+@helper DisplayUpdateLink(int id)
+{
+    <a class="btn btn-primary m-b-5" href="@Url.Action("ContentPageUpdate", "ContentPage", new { id = id })"><i class="fa fa-edit"></i> Edit</a>
+}
+
+<div class="wraper container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Content Pages</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <a class="btn btn-primary" href="@Url.Action("ContentPageUpdate", "ContentPage")"><i class="fa fa-plus"></i> Add New</a>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @Html.Grid(Model.Grid).Columns(columns =>
+                       {
+                           columns.Add()
+                             .Encoded(false)
+                             .Sanitized(false)
+                             .RenderValueAs(x => DisplayUpdateLink(x.ID));
+
+                           columns.Add(x => x.ID);
+                           columns.Add(x => x.Slug);
+                           columns.Add(x => x.Title);
+                           columns.Add(x => x.Description);
+                           columns.Add(x => x.Author);
+                           columns.Add(x => x.Published);
+                           columns.Add(x => x.Created).RenderValueAs(x => x.Created.ToShortDateString());
+                           columns.Add(x => x.LastUpdated).RenderValueAs(x => x.LastUpdated.ToShortDateString());
+
+
+                       }).Sortable().Filterable().WithPaging(10).Selectable(false)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- End Row -->
+
+
+
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/gridmvc.min.js"></script>
+}
+

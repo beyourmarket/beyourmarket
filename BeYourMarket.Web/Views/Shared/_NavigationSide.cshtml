@@ -1,0 +1,117 @@
+﻿@model BeYourMarket.Web.Models.NavigationSideModel
+@{
+    Layout = null;
+}
+
+@helper DisplayTree(IEnumerable<BeYourMarket.Web.Extensions.TreeItem<BeYourMarket.Model.Models.Category>> categories, bool child = false)
+{
+    if (child)
+    {
+        <ul class="treeview-menu">
+            @foreach (var item in categories)
+            {
+                <li class="treeview">
+                    <a href="@Url.Action("Search", "Home", new { CategoryID = item.Item.ID })">
+                        <span>@item.Item.Name</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <li class="treeview">
+            <a href="@Url.Action("Search", "Home")">
+                <span>All Categories</span>
+            </a>
+        </li>
+
+        foreach (var item in categories)
+        {
+            <li class="treeview">
+                <a href="@Url.Action("Search", "Home", new { CategoryID = item.Item.ID })">
+                    <span>@item.Item.Name</span>
+                    @if (item.Children.Count() > 0)
+                    {
+                        <i class="mdi-navigation-expand-more pull-right"></i>
+                    }
+                </a>
+
+                @DisplayTree(item.Children, true)
+            </li>
+        }
+    }
+}
+
+<aside class="left-section sidebar-offcanvas">
+    <section class="sidebar">
+        <form action="#" method="get" class="user-panel form-rounded hidden-lg hidden-md">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control input-sm" placeholder="Search for..." />
+                <span class="input-group-btn">
+                    <button type='submit' name='search' class="btn btn-sm btn-flat"><i class="mdi-action-search "></i></button>
+                </span>
+            </div>
+        </form>
+        <ul class="sidebar-menu">
+            @if (!Request.IsAuthenticated)
+            {
+                <li class="hidden-lg hidden-md">
+                    <a href="@Url.Action("Login", "Account")">
+                        <span>[[[Log in]]]</span>
+                    </a>
+                </li>
+                <li class="hidden-lg hidden-md">
+                    <a href="@Url.Action("Register", "Account")">
+                        <span>[[[Create an account]]]</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="divider"><i class="fa fa-dashboard"></i> Administration</li>
+                
+                <li class="">
+                    <a href="@Url.Action("Dashboard", "Manage", new { Area = "" })">
+                        <span>[[[Dashboard]]]</span>
+                    </a>
+                </li>
+                <li class="hidden-lg hidden-md">
+                    <a href="@Url.Action("ListingUpdate", "Listing")">
+                        <span>[[[Publish new listing]]]</span>
+                    </a>
+                </li>
+
+                if (User.IsInRole("Administrator"))
+                {
+                    <li>
+                        <a target="_blank" href="@Url.Action("Index", "Manage", new {Area ="Admin" })">
+                            <span>[[[Admin Panel]]]</span>
+                        </a>
+                    </li>
+                }
+            }
+
+            <li class="divider"><i class="fa fa-th-list"></i> Categories</li>
+
+            @DisplayTree(Model.CategoryTree)
+
+            <li class="divider"></li>
+            @foreach (var contentPage in Model.ContentPages)
+            {
+                <li class="@(Html.IsActiveMenuItem("ContentPage", "Home", contentPage.Slug) ? "active" : "")">
+                    <a href="@Url.Action("ContentPage", "Home", new { id = contentPage.Slug })"><i class="fa fa-file"></i> @contentPage.Title</a>
+                </li>
+            }
+
+            <li class="@(Html.IsActiveMenuItem("Contact","Home") ? "active" : "")">
+                <a href="@Url.Action("Contact", "Home")"><i class="fa fa-envelope"></i> Contact us</a>
+            </li>
+            <li>
+                <footer class="copyright">
+                    &copy; @DateTime.Now.Year - BeYourMarket.com
+                </footer>
+            </li>
+        </ul>
+    </section>
+</aside>

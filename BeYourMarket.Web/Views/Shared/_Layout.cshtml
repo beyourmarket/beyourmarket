@@ -1,0 +1,83 @@
+﻿@using Microsoft.Practices.Unity;
+@using Microsoft.Practices.Unity.Configuration;
+@using i18n
+
+@{
+    var settings = CacheHelper.Settings;
+    var themeCss = string.Format("/Themes/{0}/Content/theme.css", CacheHelper.Settings.Theme);
+    var themeJs = string.Format("/Themes/{0}/Scripts/theme.js", CacheHelper.Settings.Theme);
+}
+
+<!DOCTYPE html>
+<html lang="@Context.GetPrincipalAppLanguageForRequest()">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="@ImageHelper.GetCommunityImagePath("favicon")" />
+
+    <title>@ViewBag.Title - @settings.Description</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Html.Partial("_GoogleAnalytics")
+
+    <link href="@themeCss" rel="stylesheet" />
+
+    @RenderSection("styles", required: false)
+
+    <link href="~/Content/custom.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header class="header">
+        <a href="@Url.Action("Index", "Home")" class="logo">
+            <img src="@ImageHelper.GetCommunityImagePath("logo", "png")" alt="@settings.Name">
+        </a>
+        <nav class="navbar navbar-static-top user-nav" role="navigation">
+            <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <form method="get" action="@Url.Action("Search", "Home")" class="navbar-form navbar-left hidden-xs hidden-sm">
+                <input type="text" class="form-control trans input-lg" name="SearchText" id="SearchText" placeholder="[[[Search for...]]]">
+                <button type="submit" class="btn trans btn-lg ">
+                    <i class="mdi-action-search"></i>
+                </button>
+            </form>
+
+            @Html.Action("LanguageSelector", "Home")
+
+            <div class="navbar-right">
+                @Html.Partial("_LoginPartial")
+            </div>
+
+            <a class="btn navbar-btn btn-default hidden-sm hidden-xs navbar-right" href="@Url.Action("ListingUpdate", "Listing", new { id = string.Empty })"><i class="mdi-content-add-circle-outline"></i> Publish new listing</a>
+        </nav>
+    </header>
+
+
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        @Html.Action("NavigationSide", "Home")
+
+        <aside class="right-section">
+
+            <section class="content">
+                @RenderBody()
+            </section>
+        </aside>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)
+
+    @Scripts.Render("~/bundles/js")
+
+    <!-- Include Theme JS -->
+    <script src="@themeJs" type="text/javascript"></script>
+    <script src="~/Scripts/custom.js" type="text/javascript"></script>
+</body>
+</html>

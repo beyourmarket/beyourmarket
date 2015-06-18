@@ -1,0 +1,69 @@
+﻿@using Microsoft.Practices.Unity;
+@using Microsoft.Practices.Unity.Configuration;
+
+@{
+    var settings = CacheHelper.Settings;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="@ImageHelper.GetCommunityImagePath("favicon")" />
+
+    <title>@ViewBag.Title - @CacheHelper.Settings.Name</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/admin/bootstrap-reset.css" rel="stylesheet">
+
+    <!--Animation css-->
+    <link href="~/css/animate.css" rel="stylesheet" />
+    <link href="~/js/ripples/css/ripples.min.css" rel="stylesheet" />
+
+    <!--Icon-fonts css-->
+    <link href="~/css/font-awesome/css/font-awesome.css" rel="stylesheet" />        
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/admin/style.css" rel="stylesheet" />    
+    <link href="~/css/admin/style-responsive.css" rel="stylesheet" />    
+
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <aside class="left-panel">
+
+        <div class="logo">
+            <a href="@Url.Action("Index", "Manage")" class="logo-expanded">
+                @*<img src="@ImageHelper.GetCommunityImagePath("logo", "png")" alt="logo">*@
+                <span class="nav-label">@settings.Name</span>
+            </a>
+        </div>
+
+        @Html.Partial("_NavigationSide")
+
+        <footer class="footer">
+            &copy; @DateTime.Now.Year - BeYourMarket.com
+        </footer>
+
+    </aside>
+    <section class="content">
+        @Html.Partial("_NavigationTop")
+
+        @RenderBody()
+    </section>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/js/sweet-alert/sweet-alert.min.js"></script>
+    <script src="~/js/ripples/js/ripples.min.js"></script>
+    <script src="~/js/ripples/js/ripples.init.js"></script>    
+    <script src="~/js/nicescroll/jquery.nicescroll.min.js"></script>
+
+    <script src="~/js/admin/app.js"></script>
+</body>
+</html>

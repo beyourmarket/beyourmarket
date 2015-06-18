@@ -1,0 +1,85 @@
+﻿@model IEnumerable<BeYourMarket.Web.Extensions.TreeItem<BeYourMarket.Model.Models.Category>>
+
+@section Styles {
+    <link href="~/js/nestable/jquery.nestable.css" rel="stylesheet" />
+}
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+@helper DisplayTree(IEnumerable<BeYourMarket.Web.Extensions.TreeItem<BeYourMarket.Model.Models.Category>> categories)
+{
+    <ol class="dd-list">
+        @foreach (var item in categories)
+        {
+            <li class="dd-item dd3-item" data-id="@item.Item.ID">
+                <div class="dd-handle dd3-handle"></div>
+                <div class="dd3-content">@item.Item.Name<a href="@Url.Action("CategoryUpdate", "Listing", new { id = @item.Item.ID })" class="pull-right"><i class="fa fa-edit"></i> Edit</a></div>
+                @DisplayTree(item.Children)
+            </li>
+        }
+    </ol>
+}
+
+<div class="wraper container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Categories</h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <a class="btn btn-primary" href="@Url.Action("CategoryUpdate", "Listing")"><i class="fa fa-plus"></i> Add New</a>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <form action="@Url.Action("CategoriesUpdate", "Listing")" id="settingsForm" method="post" class="form-horizontal" role="form">
+                        <input id="JsonCategories" name="JsonCategories" type="hidden" />
+
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <div class="dd nestable">
+                                    @DisplayTree(Model)
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <button id="submitBtn" class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
+                                <button class="btn btn-default" type="button"><i class="fa fa-remove"></i> Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/nestable/jquery.nestable.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.nestable')
+                .nestable({
+                    maxDepth: 2
+                })
+                .on('change', function (e) {
+                    $('#JsonCategories').val(JSON.stringify($('.nestable').nestable('serialize')));
+                });
+
+            $('#JsonCategories').val(JSON.stringify($('.nestable').nestable('serialize')));
+        });
+    </script>
+}
+

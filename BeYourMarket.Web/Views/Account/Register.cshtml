@@ -1,0 +1,80 @@
+﻿@model BeYourMarket.Web.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<!-- Start Main Content -->
+<div class=" main-section">
+    <div class="container-fluid">
+        <div class=" center-block col-md-6">
+            <div class="panel panel-default mrg-t">
+                <div class="panel-body panel-header bdr-b ">
+                    <h4>Create an account</h4>
+                    <p>
+                        @CacheHelper.Settings.SignupText
+                    </p>
+                </div>
+                <div class="panel-body">
+
+                    @if (CacheHelper.Settings.AgreementRequired)
+                    {
+                        <div id="agreementModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="agreementModalLabel" aria-hidden="true" style="display: none;">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="agreementModalLabel">Agreement</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4>@CacheHelper.Settings.AgreementLabel</h4>
+                                        <p>@CacheHelper.Settings.AgreementText</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form", id = "form0" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            <label for="Email">Email <span class="text-red">*</span></label>
+                            <input type="text" name="Email" id="Email" class="form-control input-lg" placeholder="Enter email" data-rule-required="true" data-rule-email="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="Password">Password <span class="text-red">*</span></label>
+                            <input type="password" name="Password" id="Password" class="form-control input-lg" placeholder="Password" data-rule-required="true" data-rule-minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label for="ConfirmPassword">Confirm Password <span class="text-red">*</span></label>
+                            <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control input-lg" placeholder="Confirm Password" data-rule-required="true" data-rule-minlength="6" data-rule-equalto="#Password">
+                        </div>
+                        if (CacheHelper.Settings.AgreementRequired)
+                        {
+                            <div class="form-group">
+                                <input type="checkbox" id="Accept" name="Accept" value="true" data-rule-required="true" />
+                                <label for="Accept">I accept the <a id="agreementModal" data-toggle="modal" data-target="#agreementModal">Terms & Conditions</a></label>
+                            </div>
+                        }
+                        <input type="submit" class="btn btn-primary btn-lg" value="Join">
+                    }
+                </div>
+
+                <div class="panel-footer ">
+                    <span>Already a member? <a href="@Url.Action("Login", "Account")">Login</a></span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- ./ Main Content -->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

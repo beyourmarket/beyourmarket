@@ -1,0 +1,69 @@
+﻿@using Microsoft.Practices.Unity;
+@using Microsoft.Practices.Unity.Configuration;
+
+@model BeYourMarket.Web.Models.ProfileModel
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+@section Styles {
+
+}
+
+<div class="body-content">
+
+    <!-- Start Page Heading -->
+    <div class="section panel-header ">
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <img class="pull-left img-circle profile-picture" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.User.Id)" />
+
+                <h3>@Model.User.FullName</h3>
+                <p class="lead text-lighten">
+                    Joined since @Model.User.RegisterDate.ToShortDateString()
+                </p>                               
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+
+        <div class="container-fluid mrg-tb">
+            <div class="row">
+                <div class="col-md-12 section-title ">
+                    <h4>Listings</h4>
+                </div>
+                @foreach (var item in Model.Items)
+                {
+                    <div class="col-sm-6 col-md-3">
+                        <div class="card">
+                            <div class="card-image">
+                                <a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })">
+                                    <img alt="Listing Thumbnail" src="@item.UrlPicture">
+                                    <span class="card-img-label">@item.ItemCurrent.PriceFormatted</span>
+                                </a>
+                            </div>
+                            <div class="card-content">
+                                <h5><a class="card-title ">@item.ItemCurrent.Title</a></h5>
+                                <p>
+                                    @item.ItemCurrent.Description
+                                </p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Location</a>
+                                <span class="pull-right grey-text"> @item.ItemCurrent.Created.ToShortDateString()</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+
+}
