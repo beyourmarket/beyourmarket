@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-06-19 01:35+02:00\n"
+"POT-Creation-Date: 2015-06-19 02:25+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -9,46 +9,34 @@ msgstr ""
 
 #: Views\Shared\_LoginPartial.cshtml:20
 #: Views\Shared\_NavigationSide.cshtml:89
-#: obj\Debug\Package\PackageTmp\Views\Shared\_LoginPartial.cshtml:20
-#: obj\Debug\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:89
 msgid "Admin Panel"
 msgstr ""
 
 #: Views\Shared\_LoginPartial.cshtml:34
 #: Views\Shared\_NavigationSide.cshtml:66
-#: obj\Debug\Package\PackageTmp\Views\Shared\_LoginPartial.cshtml:34
-#: obj\Debug\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:66
 msgid "Create an account"
 msgstr ""
 
 #: Views\Shared\_LoginPartial.cshtml:14
 #: Views\Shared\_NavigationSide.cshtml:76
-#: obj\Debug\Package\PackageTmp\Views\Shared\_LoginPartial.cshtml:14
-#: obj\Debug\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:76
 msgid "Dashboard"
 msgstr ""
 
 #: Views\Shared\_LoginPartial.cshtml:37
 #: Views\Shared\_NavigationSide.cshtml:61
-#: obj\Debug\Package\PackageTmp\Views\Shared\_LoginPartial.cshtml:37
-#: obj\Debug\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:61
 msgid "Log in"
 msgstr ""
 
 #: Views\Shared\_LoginPartial.cshtml:23
-#: obj\Debug\Package\PackageTmp\Views\Shared\_LoginPartial.cshtml:23
 msgid "Log off"
 msgstr ""
 
 #: Views\Shared\_LoginPartial.cshtml:15
 #: Views\Shared\_NavigationSide.cshtml:81
-#: obj\Debug\Package\PackageTmp\Views\Shared\_LoginPartial.cshtml:15
-#: obj\Debug\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:81
 msgid "Publish new listing"
 msgstr ""
 
 #: Views\Shared\_Layout.cshtml:44
-#: obj\Debug\Package\PackageTmp\Views\Shared\_Layout.cshtml:44
 msgid "Search for..."
 msgstr ""
 
