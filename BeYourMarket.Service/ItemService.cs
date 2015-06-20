@@ -32,7 +32,7 @@ namespace BeYourMarket.Service
                 itemsCountDictionary.Add(i, 0);
             }
             
-            var itemsCountQuery = Queryable().Where(x => x.Created >= fromDate).GroupBy(x => EntityFunctions.TruncateTime(x.Created)).Select(x => new { i = x.Key.Value, j = x.Count() }).ToDictionary(x => x.i, x => x.j);
+            var itemsCountQuery = Queryable().Where(x => x.Created >= fromDate).GroupBy(x => System.Data.Entity.DbFunctions.TruncateTime(x.Created)).Select(x => new { i = x.Key.Value, j = x.Count() }).ToDictionary(x => x.i, x => x.j);
             foreach (var item in itemsCountQuery)
             {
                 itemsCountDictionary[item.Key] = item.Value;
