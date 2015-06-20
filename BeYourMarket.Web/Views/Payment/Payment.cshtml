@@ -55,7 +55,7 @@
                                 <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                         data-key="@CacheHelper.GetSettingDictionary(Enum_SettingKey.StripePublishableKey).Value"
                                         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                        data-name="BeYourMarketplace"
+                                        data-name="@CacheHelper.Settings.Name"
                                         data-description="@Model.ItemOrder.Description"
                                         data-currency="@CacheHelper.Settings.Currency"
                                         data-amount="@Model.ItemOrder.PriceInCents">

@@ -394,7 +394,11 @@ namespace BeYourMarket.Web.Controllers
                 TokenId = stripeToken
             };
 
-            charge.ApplicationFee = 1000;
+            var bookingFee = (int)Math.Round(CacheHelper.Settings.TransactionFeePercent * order.PriceInCents);
+            if (bookingFee < CacheHelper.Settings.TransactionMinimumFee * 100)
+                bookingFee = (int)(CacheHelper.Settings.TransactionMinimumFee * 100);
+
+            charge.ApplicationFee = bookingFee;
             charge.Capture = false;
             charge.Description = order.Description;
             charge.Destination = stripeConnect.stripe_user_id;
@@ -429,7 +433,7 @@ namespace BeYourMarket.Web.Controllers
             if (string.IsNullOrEmpty(stripeCharge.FailureCode))
             {
                 TempData[TempDataKeys.UserMessage] = "Thanks for your order! You payment will not be charged until the provider accepted your request.";
-                return RedirectToAction("Orders", "Payment");                
+                return RedirectToAction("Orders", "Payment");
             }
             else
             {
