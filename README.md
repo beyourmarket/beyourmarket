@@ -16,6 +16,10 @@ i18n
 
 We will build features based on community needs
 
+## Docs ##
+
+See Documentation (https://beyourmarket.atlassian.net)
+
 ## Contribute to BeYourMarket ##
 
 If you want to contribute back to BeYourMarket, please contact us.
