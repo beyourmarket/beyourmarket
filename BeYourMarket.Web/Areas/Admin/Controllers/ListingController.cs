@@ -420,6 +420,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             int nextPictureOrderId = 0;
 
+            // Add new listing
             if (item.ID == 0)
             {
                 item.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
@@ -432,6 +433,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             }
             else
             {
+                // Update listing
                 var itemExisting = await _itemService.FindAsync(item.ID);
 
                 itemExisting.Title = item.Title;
@@ -475,6 +477,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             var customFieldCategoryQuery = await _customFieldCategoryService.Query(x => x.CategoryID == item.CategoryID).Include(x => x.MetaField.ItemMetas).SelectAsync();
             var customFieldCategories = customFieldCategoryQuery.ToList();
 
+            // Update custom fields
             foreach (var metaCategory in customFieldCategories)
             {
                 var field = metaCategory.MetaField;
@@ -502,6 +505,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
+            // Update photos
             if (Request.Files.Count > 0)
             {
                 var itemPictureQuery = _itemPictureService.Queryable().Where(x => x.ItemID == item.ID);

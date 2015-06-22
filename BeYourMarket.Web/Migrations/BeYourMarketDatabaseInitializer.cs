@@ -56,13 +56,13 @@ namespace BeYourMarket.Web.Migrations
         protected override void Seed(BeYourMarket.Model.Models.BeYourMarketContext context)
         {
             InstallSettings(context);
-            InstallEmailTemplates(context);
-            InstallCategories(context);
+            InstallEmailTemplates(context);            
 
             var user = CreateUser();
 
             if (_installModel.InstallSampleData)
             {
+                InstallCategories(context);
                 InstallSampleData(context, user);
                 InstallPictures(context);
                 InstallStripe(context);

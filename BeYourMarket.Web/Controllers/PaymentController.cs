@@ -372,8 +372,8 @@ namespace BeYourMarket.Web.Controllers
         {
             var selectQuery = await _orderService.Query(x => x.ID == id).Include(x => x.Item).SelectAsync();
 
+            // Check if order exists
             var order = selectQuery.FirstOrDefault();
-
             if (order == null)
                 return new HttpNotFoundResult();
 
@@ -394,6 +394,7 @@ namespace BeYourMarket.Web.Controllers
                 TokenId = stripeToken
             };
 
+            // set booking fee
             var bookingFee = (int)Math.Round(CacheHelper.Settings.TransactionFeePercent * order.PriceInCents);
             if (bookingFee < CacheHelper.Settings.TransactionMinimumFee * 100)
                 bookingFee = (int)(CacheHelper.Settings.TransactionMinimumFee * 100);
