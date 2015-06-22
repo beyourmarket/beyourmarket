@@ -18,7 +18,7 @@ We will build features based on community needs
 
 ## Docs ##
 
-See Documentation (https://beyourmarket.atlassian.net)
+See [Documentation](https://beyourmarket.atlassian.net)
 
 ## Contribute to BeYourMarket ##
 
