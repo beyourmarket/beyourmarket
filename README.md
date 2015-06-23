@@ -7,7 +7,7 @@ http://beyourmarket.com
 
 ## Installation ##
 
-[Documentation](https://beyourmarket.atlassian.net/wiki/display/BYM/Installation)
+[Running BeYourMarket with Visual Studio 2013](https://beyourmarket.atlassian.net/wiki/display/BYM/Installation)
 
 ## Quick Start
 
