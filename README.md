@@ -25,9 +25,9 @@ Here's an example of localizing text "Create an account" and "Log in" in a Razor
         @Html.ActionLink("[[[Log in]]]", "Login", "Account", new { area = string.Empty }, htmlAttributes: new { id = "loginLink" })
     </li>
 </ul>
+```
 
 The template file is located at folder locale/messages.pot after the solution is built. The file can be translated with any POEditor.
-```
 
 ## RoadMap ##
 
