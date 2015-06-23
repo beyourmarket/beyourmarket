@@ -10,7 +10,24 @@ http://beyourmarket.com
 The easiest way to get started is to get the source from github. Build and run the solution in Visual Studio. It will launch a setup wizard first time for installation.
 
 ## Translation ##
-i18n
+The platform is by designed with support of multiple language with i18n easily. Smart internationalization for ASP.NET based on GetText / PO ecosystem is used. The only thing you would need is to translate into your own language.
+
+To localize text in your application, surround your strings with [[[ and ]]] markup characters to mark them as translatable.
+
+Here's an example of localizing text "Create an account" and "Log in" in a Razor view:
+
+```html
+<ul class="nav navbar-nav">
+    <li class="dropdown messages-menu hidden-xs">
+        @Html.ActionLink("[[[Create an account]]]", "Register", "Account", new { area = string.Empty }, htmlAttributes: new { id = "registerLink" })
+    </li>
+    <li class="dropdown messages-menu hidden-xs">
+        @Html.ActionLink("[[[Log in]]]", "Login", "Account", new { area = string.Empty }, htmlAttributes: new { id = "loginLink" })
+    </li>
+</ul>
+
+The template file is located at folder locale/messages.pot after the solution is built. The file can be translated with any POEditor.
+```
 
 ## RoadMap ##
 
