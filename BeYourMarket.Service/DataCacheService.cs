@@ -120,11 +120,11 @@ namespace BeYourMarket.Service
                             UpdateCache(CacheKeys.SettingDictionary, settingDictionary);
                             break;
                         case CacheKeys.Categories:
-                            var categories = CategoryService.Queryable().OrderBy(x => x.Ordering).ToList();
+                            var categories = CategoryService.Queryable().Where(x => x.Enabled).OrderBy(x => x.Ordering).ToList();
                             UpdateCache(CacheKeys.Categories, categories);
                             break;
                         case CacheKeys.ContentPages:
-                            var contentPages = ContentPageService.Queryable().OrderBy(x => x.Ordering).ToList();
+                            var contentPages = ContentPageService.Queryable().Where(x => x.Published).OrderBy(x => x.Ordering).ToList();
                             UpdateCache(CacheKeys.ContentPages, contentPages);
                             break;
                         case CacheKeys.EmailTemplates:

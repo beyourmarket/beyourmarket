@@ -134,8 +134,9 @@ namespace BeYourMarket.Web.Controllers
             if (model.PriceTo.HasValue)
                 items = items.Where(x => x.Price <= model.PriceTo.Value);
 
+            // Show active and enabled only
             var itemsModelList = new List<ItemModel>();
-            foreach (var item in items.OrderByDescending(x => x.Created))
+            foreach (var item in items.Where(x => x.Active && x.Enabled).OrderByDescending(x => x.Created))
             {
                 itemsModelList.Add(new ItemModel()
                 {

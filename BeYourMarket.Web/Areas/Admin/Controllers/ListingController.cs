@@ -563,6 +563,35 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             return RedirectToAction("Listings");
         }
 
+        [HttpPost]
+        public async Task<ActionResult> ListingDelete(int id)
+        {
+            var item = await _itemService.FindAsync(id);
+            var orderQuery = await _orderService.Query(x => x.ItemID == id).SelectAsync();
+
+            // Delete item if no orders associated with it
+            if (item.Orders.Count > 0)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "You cannot delete item with orders! You can deactivate it instead.";                
+            }
+
+            // Delete pictures
+            var pictureIds = _itemPictureService.Query(x => x.ItemID == id).Select(x => x.ItemID).ToList();
+            foreach (var pictureId in pictureIds)
+            {
+                await _itemPictureService.DeleteAsync(pictureId);
+            }
+
+            await _itemService.DeleteAsync(id);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            TempData[TempDataKeys.UserMessage] = "Your listing has been deleted.";
+
+            return RedirectToAction("Listings");
+        }
+
         public async Task<ActionResult> ListingPhotoDelete(int id)
         {
             try

@@ -210,7 +210,7 @@ namespace BeYourMarket.Web.Controllers
 
         [AllowAnonymous]
         public async Task<ActionResult> Listing(int id)
-        {            
+        {
             var itemQuery = await _itemService.Query(x => x.ID == id)
                 .Include(x => x.Category).Include(x => x.ItemMetas).Include(x => x.ItemMetas.Select(y => y.MetaField)).Include(x => x.ItemStats).SelectAsync();
 
@@ -255,7 +255,7 @@ namespace BeYourMarket.Web.Controllers
                 DatesBooked = datesBooked,
                 User = user,
                 // allow only booking if there is a price and payment methods
-                BookingAllowed = CacheHelper.Settings.BookingEnabled && item.Price.HasValue
+                BookingAllowed = CacheHelper.Settings.BookingEnabled && item.Price.HasValue && item.Active && item.Enabled
             };
 
             // Update stat count
@@ -428,13 +428,22 @@ namespace BeYourMarket.Web.Controllers
             var item = await _itemService.FindAsync(id);
             var orderQuery = await _orderService.Query(x => x.ItemID == id).SelectAsync();
 
+            // Delete item if no orders associated with it
             if (item.Orders.Count > 0)
             {
                 var resultFailed = new { Success = false, Message = "You cannot delete item with orders! You can deactivate it instead." };
                 return Json(resultFailed, JsonRequestBehavior.AllowGet);
-            }
+            }            
+
+            // Delete pictures
+            var pictureIds = _itemPictureService.Query(x => x.ItemID == id).Select(x => x.ItemID).ToList();
+            foreach (var pictureId in pictureIds)
+            {
+                await _itemPictureService.DeleteAsync(pictureId);
+            }                        
 
             await _itemService.DeleteAsync(id);
+
             await _unitOfWorkAsync.SaveChangesAsync();
 
             var result = new { Success = true, Message = "Your listing has been deleted." };

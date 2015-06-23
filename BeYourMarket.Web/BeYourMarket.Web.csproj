@@ -350,6 +350,7 @@
     <Content Include="Images\Sample\Item\00000007.jpg" />
     <Content Include="Images\Sample\Item\00000008.jpg" />
     <Content Include="Images\Sample\Item\00000009.jpg" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Themes\Default\Content\color.css.map">
       <DependentUpon>color.css</DependentUpon>
     </Content>

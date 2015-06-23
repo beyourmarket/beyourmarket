@@ -44,7 +44,7 @@
                                         </div>
                                         <div>
                                         </div>
-                                        <a class="btn btn-default btn-sm" href="@Url.Action("ListingUpdate", "Listing", new { id = item.ItemCurrent.ID })">Edit</a><a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete(@item.ItemCurrent.ID);">Delete</a>
+                                        <a class="btn btn-default btn-sm" href="@Url.Action("ListingUpdate", "Listing", new { id = item.ItemCurrent.ID })">Edit</a><a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete(@item.ItemCurrent.ID, '@item.ItemCurrent.Title');">Delete</a>
                                     </li>
                                 }
                             </ul>
@@ -59,22 +59,21 @@
 
 @section Scripts {
     <script type="text/javascript">
-        function confirmDelete(id) {
+        function confirmDelete(id, title) {
             swal({
                 title: "Are you sure?",
-                text: "You will not be able to recover this imaginary file!",
+                text: "You will delete " + title,
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Yes, delete it!",
-                cancelButtonText: "No, cancel plx!",
+                cancelButtonText: "No, cancel please!",
                 closeOnConfirm: false,
                 closeOnCancel: false
             }, function (isConfirm) {
                 if (isConfirm) {
                     $.post('@Url.Action("ListingDelete","Listing")', { id: id })
-                    .done(function (result) {
-                        console.log(result);
+                    .done(function (result) {                        
                         if (result.Success) {
                             $("#item_" + id).remove();
                             swal("Deleted!", result.Message, "success");
