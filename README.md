@@ -38,7 +38,9 @@ When language specific po file is translate, it can be placed in your locale fol
 The locale-specific file must be named messages.po. For example, your locale folder structure will be similar to (three languages, fr, es, and es-MX are defined):
 
 locale/fr/messages.po
+
 locale/es/messages.po
+
 locale/es-MX/messages.po
 
 ## RoadMap ##
