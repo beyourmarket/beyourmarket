@@ -365,6 +365,7 @@
     <Content Include="Plugins\installed.json" />
     <Content Include="Areas\Admin\Views\Plugin\Plugins.cshtml" />
     <Content Include="Areas\Admin\Views\Widget\ConfigureWidget.cshtml" />
+    <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Themes\Default\Content\helper.less" />
     <Content Include="css\admin\style-responsive.css" />
     <Content Include="css\admin\style.css" />
