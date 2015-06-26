@@ -51,7 +51,7 @@ namespace BeYourMarket.Web.Controllers
 
         #region Constructor
         public AccountController(IEmailTemplateService emailTemplateService)
-        {
+        {            
             _emailTemplateService = emailTemplateService;
         }
         #endregion

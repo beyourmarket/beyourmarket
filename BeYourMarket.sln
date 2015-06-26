@@ -18,45 +18,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Pattern.Ef6", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Pattern", "Frameworks\Service.Pattern\Service.Pattern.csproj", "{86F86650-EE3C-4372-8FEC-40C2FE015022}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeYourMarket.Common", "BeYourMarket.Common\BeYourMarket.Common.csproj", "{9ED91C73-655A-4331-A51F-598BB44EDE20}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeYourMarket.Model", "BeYourMarket.Model\BeYourMarket.Model.csproj", "{3598ECA8-CA9D-4B09-B52D-30A35598ED69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeYourMarket.Service", "BeYourMarket.Service\BeYourMarket.Service.csproj", "{C57A8D11-7B60-420B-AC8D-A2B5704D287B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeYourMarket.Web", "BeYourMarket.Web\BeYourMarket.Web.csproj", "{F1DBBBB6-167D-45A9-8747-091EC635BF2E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{EF48A340-8ECD-4131-BF1C-2B0489780183}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeYourMarket.Core", "BeYourMarket.Core\BeYourMarket.Core.csproj", "{B5899D9B-49ED-4034-A52D-FC9D188C4873}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Widgets.GoogleAnalytics", "Plugins\Plugin.Widgets.GoogleAnalytics\Plugin.Widgets.GoogleAnalytics.csproj", "{D2217E0A-BF4A-403B-B02B-126AA8589606}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://webestate.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Frameworks\\Repository.Pattern\\Repository.Pattern.csproj
-		SccProjectTopLevelParentUniqueName1 = BeYourMarket.sln
-		SccProjectName1 = Frameworks/Repository.Pattern
-		SccLocalPath1 = Frameworks\\Repository.Pattern
-		SccProjectUniqueName2 = Frameworks\\Repository.Pattern.Ef6\\Repository.Pattern.Ef6.csproj
-		SccProjectTopLevelParentUniqueName2 = BeYourMarket.sln
-		SccProjectName2 = Frameworks/Repository.Pattern.Ef6
-		SccLocalPath2 = Frameworks\\Repository.Pattern.Ef6
-		SccProjectUniqueName3 = Frameworks\\Service.Pattern\\Service.Pattern.csproj
-		SccProjectTopLevelParentUniqueName3 = BeYourMarket.sln
-		SccProjectName3 = Frameworks/Service.Pattern
-		SccLocalPath3 = Frameworks\\Service.Pattern
-		SccProjectUniqueName4 = BeYourMarket.Common\\BeYourMarket.Common.csproj
-		SccProjectName4 = BeYourMarket.Common
-		SccLocalPath4 = BeYourMarket.Common
-		SccProjectUniqueName5 = BeYourMarket.Model\\BeYourMarket.Model.csproj
-		SccProjectName5 = BeYourMarket.Model
-		SccLocalPath5 = BeYourMarket.Model
-		SccProjectUniqueName6 = BeYourMarket.Service\\BeYourMarket.Service.csproj
-		SccProjectName6 = BeYourMarket.Service
-		SccLocalPath6 = BeYourMarket.Service
-		SccProjectUniqueName7 = BeYourMarket.Web\\BeYourMarket.Web.csproj
-		SccProjectName7 = BeYourMarket.Web
-		SccLocalPath7 = BeYourMarket.Web
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
@@ -84,12 +58,6 @@ Global
 		{86F86650-EE3C-4372-8FEC-40C2FE015022}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86F86650-EE3C-4372-8FEC-40C2FE015022}.Release|Any CPU.Build.0 = Release|Any CPU
 		{86F86650-EE3C-4372-8FEC-40C2FE015022}.Release|x86.ActiveCfg = Release|Any CPU
-		{9ED91C73-655A-4331-A51F-598BB44EDE20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9ED91C73-655A-4331-A51F-598BB44EDE20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9ED91C73-655A-4331-A51F-598BB44EDE20}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9ED91C73-655A-4331-A51F-598BB44EDE20}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9ED91C73-655A-4331-A51F-598BB44EDE20}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9ED91C73-655A-4331-A51F-598BB44EDE20}.Release|x86.ActiveCfg = Release|Any CPU
 		{3598ECA8-CA9D-4B09-B52D-30A35598ED69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3598ECA8-CA9D-4B09-B52D-30A35598ED69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3598ECA8-CA9D-4B09-B52D-30A35598ED69}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -108,6 +76,18 @@ Global
 		{F1DBBBB6-167D-45A9-8747-091EC635BF2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1DBBBB6-167D-45A9-8747-091EC635BF2E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F1DBBBB6-167D-45A9-8747-091EC635BF2E}.Release|x86.ActiveCfg = Release|Any CPU
+		{B5899D9B-49ED-4034-A52D-FC9D188C4873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5899D9B-49ED-4034-A52D-FC9D188C4873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5899D9B-49ED-4034-A52D-FC9D188C4873}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B5899D9B-49ED-4034-A52D-FC9D188C4873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5899D9B-49ED-4034-A52D-FC9D188C4873}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5899D9B-49ED-4034-A52D-FC9D188C4873}.Release|x86.ActiveCfg = Release|Any CPU
+		{D2217E0A-BF4A-403B-B02B-126AA8589606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2217E0A-BF4A-403B-B02B-126AA8589606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2217E0A-BF4A-403B-B02B-126AA8589606}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D2217E0A-BF4A-403B-B02B-126AA8589606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2217E0A-BF4A-403B-B02B-126AA8589606}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2217E0A-BF4A-403B-B02B-126AA8589606}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,5 +96,6 @@ Global
 		{6E682A14-C872-4813-B620-76E108DEA683} = {89A7FAC0-027A-40FD-AB27-67F853BEDD31}
 		{F68A1D19-93FB-47C1-A22B-42BEA3E4FD8C} = {89A7FAC0-027A-40FD-AB27-67F853BEDD31}
 		{86F86650-EE3C-4372-8FEC-40C2FE015022} = {89A7FAC0-027A-40FD-AB27-67F853BEDD31}
+		{D2217E0A-BF4A-403B-B02B-126AA8589606} = {EF48A340-8ECD-4131-BF1C-2B0489780183}
 	EndGlobalSection
 EndGlobal

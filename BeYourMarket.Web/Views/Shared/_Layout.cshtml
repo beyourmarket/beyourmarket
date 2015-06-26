@@ -26,9 +26,11 @@
     @RenderSection("styles", required: false)
 
     <link href="~/Content/custom.css" rel="stylesheet" />
+
+    @Html.Widget(WidgetZone.html_head_tag)
 </head>
 
-<body>
+<body>    
     <header class="header">
         <a href="@Url.Action("Index", "Home")" class="logo">
             <img src="@ImageHelper.GetCommunityImagePath("logo", "png")" alt="@settings.Name">

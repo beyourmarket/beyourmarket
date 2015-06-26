@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeYourMarket.Common
+namespace BeYourMarket.Core
 {
     public class BeYourMarketConfigurationManager
     {

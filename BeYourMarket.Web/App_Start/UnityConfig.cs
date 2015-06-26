@@ -8,6 +8,8 @@ using Repository.Pattern.Ef6;
 using Repository.Pattern.Repositories;
 using BeYourMarket.Service;
 using BeYourMarket.Model.StoredProcedures;
+using BeYourMarket.Core.Services;
+using BeYourMarket.Core.Plugins;
 
 namespace BeYourMarket.Web.App_Start
 {
@@ -16,23 +18,6 @@ namespace BeYourMarket.Web.App_Start
     /// </summary>
     public class UnityConfig
     {
-        #region Unity Container
-        private static Lazy<IUnityContainer> container = new Lazy<IUnityContainer>(() =>
-        {
-            var container = new UnityContainer();
-            RegisterTypes(container);
-            return container;
-        });
-
-        /// <summary>
-        /// Gets the configured Unity container.
-        /// </summary>
-        public static IUnityContainer GetConfiguredContainer()
-        {
-            return container.Value;
-        }
-        #endregion
-
         /// <summary>Registers the type mappings with the Unity container.</summary>
         /// <param name="container">The unity container to configure.</param>
         /// <remarks>There is no need to register concrete types such as controllers or API controllers (unless you want to 
@@ -83,6 +68,10 @@ namespace BeYourMarket.Web.App_Start
                 .RegisterType<IStoredProcedures, BeYourMarketContext>(new PerRequestLifetimeManager())
                 .RegisterType<SqlDbService, SqlDbService>() 
                 .RegisterType<DataCacheService, DataCacheService>(new ContainerControlledLifetimeManager());
+
+            container
+                .RegisterType<IWidgetService, WidgetService>()
+                .RegisterType<IPluginFinder, PluginFinder>();
         }
     }
 }

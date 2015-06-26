@@ -10,6 +10,7 @@ using Microsoft.Practices.Unity.Configuration;
 using BeYourMarket.Service;
 using BeYourMarket.Model.Enum;
 using BeYourMarket.Service.Models;
+using BeYourMarket.Core;
 
 namespace BeYourMarket.Web.Utilities
 {
@@ -19,7 +20,7 @@ namespace BeYourMarket.Web.Utilities
         {
             get
             {
-                return UnityConfig.GetConfiguredContainer().Resolve<BeYourMarket.Service.DataCacheService>().GetCachedItem(CacheKeys.Settings) as Setting;
+                return ContainerManager.GetConfiguredContainer().Resolve<BeYourMarket.Service.DataCacheService>().GetCachedItem(CacheKeys.Settings) as Setting;
             }
         }
 
@@ -27,7 +28,7 @@ namespace BeYourMarket.Web.Utilities
         {
             get
             {
-                return UnityConfig.GetConfiguredContainer().Resolve<BeYourMarket.Service.DataCacheService>().GetCachedItem(CacheKeys.SettingDictionary) as List<SettingDictionary>;
+                return ContainerManager.GetConfiguredContainer().Resolve<BeYourMarket.Service.DataCacheService>().GetCachedItem(CacheKeys.SettingDictionary) as List<SettingDictionary>;
             }
         }
 
@@ -35,7 +36,7 @@ namespace BeYourMarket.Web.Utilities
         {
             get
             {
-                return UnityConfig.GetConfiguredContainer().Resolve<BeYourMarket.Service.DataCacheService>().GetCachedItem(CacheKeys.Categories) as List<Category>;
+                return ContainerManager.GetConfiguredContainer().Resolve<BeYourMarket.Service.DataCacheService>().GetCachedItem(CacheKeys.Categories) as List<Category>;
             }
         }
 
@@ -43,7 +44,7 @@ namespace BeYourMarket.Web.Utilities
         {
             get
             {
-                return UnityConfig.GetConfiguredContainer().Resolve<BeYourMarket.Service.DataCacheService>().GetCachedItem(CacheKeys.ContentPages) as List<ContentPage>;
+                return ContainerManager.GetConfiguredContainer().Resolve<BeYourMarket.Service.DataCacheService>().GetCachedItem(CacheKeys.ContentPages) as List<ContentPage>;
             }
         }
 
@@ -65,7 +66,7 @@ namespace BeYourMarket.Web.Utilities
         {
             get
             {
-                return UnityConfig.GetConfiguredContainer().Resolve<BeYourMarket.Service.DataCacheService>().GetCachedItem(CacheKeys.Statistics) as Statistics;
+                return ContainerManager.GetConfiguredContainer().Resolve<BeYourMarket.Service.DataCacheService>().GetCachedItem(CacheKeys.Statistics) as Statistics;
             }
         }
 
