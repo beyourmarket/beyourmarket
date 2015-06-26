@@ -30,7 +30,6 @@ namespace BeYourMarket.Model.Models
         public bool SmtpSSL { get; set; }
         public string EmailAddress { get; set; }
         public string EmailDisplayName { get; set; }
-        public string GoogleAnalyticsID { get; set; }
         public bool AgreementRequired { get; set; }
         public string AgreementLabel { get; set; }
         public string AgreementText { get; set; }

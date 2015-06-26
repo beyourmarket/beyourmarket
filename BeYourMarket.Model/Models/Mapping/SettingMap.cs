@@ -60,9 +60,6 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.EmailDisplayName)
                 .HasMaxLength(100);
 
-            this.Property(t => t.GoogleAnalyticsID)
-                .HasMaxLength(100);
-
             this.Property(t => t.AgreementLabel)
                 .HasMaxLength(100);
 
@@ -92,7 +89,6 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.SmtpSSL).HasColumnName("SmtpSSL");
             this.Property(t => t.EmailAddress).HasColumnName("EmailAddress");
             this.Property(t => t.EmailDisplayName).HasColumnName("EmailDisplayName");
-            this.Property(t => t.GoogleAnalyticsID).HasColumnName("GoogleAnalyticsID");
             this.Property(t => t.AgreementRequired).HasColumnName("AgreementRequired");
             this.Property(t => t.AgreementLabel).HasColumnName("AgreementLabel");
             this.Property(t => t.AgreementText).HasColumnName("AgreementText");
