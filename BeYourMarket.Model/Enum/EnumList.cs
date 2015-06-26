@@ -101,4 +101,10 @@ namespace BeYourMarket.Model.Enum
         Normal = 0,
         Administrator = 1
     }
+
+    public enum Enum_PluginAction
+    {
+        Install = 0,
+        Uninstall = 1
+    }
 }

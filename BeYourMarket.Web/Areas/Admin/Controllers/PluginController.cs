@@ -99,6 +99,29 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             return Redirect(actionUrl);
         }
+
+        public ActionResult Installer(string systemName, int pluginAction)
+        {
+            var pluginDescriptor = _pluginFinder.GetPluginDescriptorBySystemName(systemName, LoadPluginsMode.All);
+
+            switch ((BeYourMarket.Model.Enum.Enum_PluginAction)pluginAction)
+            {
+                case Enum_PluginAction.Install:
+                    pluginDescriptor.Instance().Install();
+                    TempData[TempDataKeys.UserMessage] = string.Format("{0} is installed", systemName);
+                    break;
+                case Enum_PluginAction.Uninstall:                    
+                    pluginDescriptor.Instance().Uninstall();
+                    TempData[TempDataKeys.UserMessage] = string.Format("{0} is uninstalled", systemName);
+                    break;
+                default:
+                    break;
+            }                                    
+            
+            return RedirectToAction("Plugins");
+        }
+
+
         #endregion
     }
 }

@@ -263,7 +263,6 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             settingExisting.AgreementLabel = setting.AgreementLabel;
             settingExisting.AgreementText = setting.AgreementText;
             settingExisting.SignupText = setting.SignupText;
-            settingExisting.GoogleAnalyticsID = setting.GoogleAnalyticsID;
 
             settingExisting.LastUpdated = setting.LastUpdated;
             settingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;

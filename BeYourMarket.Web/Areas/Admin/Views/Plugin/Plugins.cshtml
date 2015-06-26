@@ -10,21 +10,24 @@
     ViewBag.Title = "Plugins";
 }
 
-@helper DisplayActionLink(string systemName, bool installed)
+@helper DisplayInstallerLink(string systemName, bool installed)
 {
     if (installed)
     {
-        <a class="btn btn-sm btn-danger" href="@Url.Action("Action", "Plugin", new { systemName = systemName })" title="Uninstalled"><i class="fa fa-times-circle"></i> Uninstall</a>
+        <a class="btn btn-sm btn-danger" href="@Url.Action("Installer", "Plugin", new { systemName = systemName, pluginAction = (int)BeYourMarket.Model.Enum.Enum_PluginAction.Uninstall })"><i class="fa fa-times-circle"></i> Uninstall</a>
     }
     else
     {
-        <a class="btn btn-sm btn-primary" href="@Url.Action("Action", "Plugin", new { systemName = systemName })"><i class="fa fa-plus-circle"></i> Install</a>
+        <a class="btn btn-sm btn-primary" href="@Url.Action("Installer", "Plugin", new { systemName = systemName, pluginAction = (int)BeYourMarket.Model.Enum.Enum_PluginAction.Install })"><i class="fa fa-plus-circle"></i> Install</a>
     }
 }
 
-@helper DisplayConfigureLink(string systemName)
+@helper DisplayConfigureLink(string systemName, bool installed)
 {
-    <a class="btn btn-sm btn-primary m-b-5" href="@Url.Action("Configure", "Plugin", new { systemName = systemName })"><i class="fa fa-gear"></i> Configure</a>
+    if (installed)
+    {
+        <a class="btn btn-sm btn-primary m-b-5" href="@Url.Action("Configure", "Plugin", new { systemName = systemName })"><i class="fa fa-gear"></i> Configure</a>
+    }
 }
 
 @helper DisplayDescription(BeYourMarket.Core.Plugins.PluginDescriptor descriptor)
@@ -56,22 +59,22 @@
                            columns.Add()
                             .Encoded(false)
                             .Sanitized(false)
-                            .RenderValueAs(x => DisplayConfigureLink(x.SystemName));
+                            .RenderValueAs(x => DisplayConfigureLink(x.SystemName, x.Installed));
 
                            columns.Add()
                              .Encoded(false)
                              .Sanitized(false)
-                             .RenderValueAs(x => DisplayActionLink(x.SystemName, x.Installed));                           
+                             .RenderValueAs(x => DisplayInstallerLink(x.SystemName, x.Installed));
 
                            columns.Add(x => x.Group);
 
                            columns.Add(x => x.SystemName);
-                           
+
                            columns.Add(x => x.Description)
                              .Encoded(false)
                              .Sanitized(false)
                              .RenderValueAs(x => DisplayDescription(x));
-                           
+
                            columns.Add(x => x.DisplayOrder).Titled("Ordering");
 
                            columns.Add(x => x.Installed)

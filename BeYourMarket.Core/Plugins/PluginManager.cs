@@ -212,6 +212,11 @@ namespace BeYourMarket.Core.Plugins
 
             if (!alreadyMarkedAsInstalled)
                 pluginInstalled.Plugins.Add(systemName);
+
+            // add
+            var plugin = ReferencedPlugins.Where(x => x.SystemName.Equals(systemName, StringComparison.InvariantCulture)).FirstOrDefault();
+            plugin.Installed = true;
+
             PluginFileParser.SaveInstalledPluginsFile(pluginInstalled, filePath);
         }
 
@@ -231,12 +236,17 @@ namespace BeYourMarket.Core.Plugins
                     //we use 'using' to close the file after it's created
                 }
 
-
             var pluginInstalled = PluginFileParser.ParseInstalledPluginsFile(GetInstalledPluginsFilePath());
             bool alreadyMarkedAsInstalled = pluginInstalled.Plugins
                                 .FirstOrDefault(x => x.Equals(systemName, StringComparison.InvariantCultureIgnoreCase)) != null;
+
             if (alreadyMarkedAsInstalled)
                 pluginInstalled.Plugins.Remove(systemName);
+
+            // remove
+            var plugin = ReferencedPlugins.Where(x => x.SystemName.Equals(systemName, StringComparison.InvariantCulture)).FirstOrDefault();
+            plugin.Installed = false;
+
             PluginFileParser.SaveInstalledPluginsFile(pluginInstalled, filePath);
         }
 
@@ -248,6 +258,8 @@ namespace BeYourMarket.Core.Plugins
             var filePath = HostingEnvironment.MapPath(InstalledPluginsFilePath);
             if (File.Exists(filePath))
                 File.Delete(filePath);
+
+            ReferencedPlugins = new List<PluginDescriptor>();
         }
 
         #endregion
