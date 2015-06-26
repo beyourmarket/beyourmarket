@@ -12,11 +12,11 @@
 
 @helper DisplayUpdateLink(int id)
 {
-    <a class="btn btn-primary m-b-5" href="@Url.Action("ListingUpdate", "Listing", new { id = id })"><i class="fa fa-edit"></i> Edit</a>
+    <a class="btn btn-primary btn-sm" href="@Url.Action("ListingUpdate", "Listing", new { id = id })"><i class="fa fa-edit"></i> Edit</a>
 }
 
 @helper DisplayDeleteLink(int id, string title) {
-    <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete(@id, '@title');">Delete</a>
+    <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete(@id, '@title');"><i class="fa fa-remove"></i> Delete</a>
 }
 
 @helper GetCategoryName(int id)

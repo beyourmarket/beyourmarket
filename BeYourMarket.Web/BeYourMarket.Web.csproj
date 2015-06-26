@@ -257,11 +257,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentPageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PluginController.cs" />
     <Compile Include="Areas\Admin\Controllers\InstallController.cs" />
     <Compile Include="Areas\Admin\Controllers\ListingController.cs" />
     <Compile Include="Areas\Admin\Controllers\DesignController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaymentController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageController.cs" />
+    <Compile Include="Areas\Admin\Models\Grids\PluginsGrid.cs" />
     <Compile Include="Areas\Admin\Models\Grids\EmailTemplatesGrid.cs" />
     <Compile Include="Areas\Admin\Models\InstallModel.cs" />
     <Compile Include="Areas\Admin\Models\PaymentSettingModel.cs" />
@@ -360,6 +362,7 @@
       <DependentUpon>helper.css</DependentUpon>
     </Content>
     <Content Include="Plugins\installed.json" />
+    <Content Include="Areas\Admin\Views\Plugin\Plugins.cshtml" />
     <None Include="Themes\Default\Content\helper.less" />
     <Content Include="css\admin\style-responsive.css" />
     <Content Include="css\admin\style.css" />
@@ -1226,7 +1229,6 @@
     <Content Include="Views\Payment\Payment.cshtml" />
     <Content Include="Views\Payment\Transaction.cshtml" />
     <Content Include="Views\Shared\_CategoryCustomFields.cshtml" />
-    <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
     <Content Include="Views\Home\ContentPage.cshtml" />
     <Content Include="Views\Listing\_ListingGridList.cshtml" />
     <Content Include="Views\Listing\_ListingGrid.cshtml" />

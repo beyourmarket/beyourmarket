@@ -11,13 +11,17 @@ namespace Plugin.Widget.GoogleAnalytics.Controllers
     {
         public GoogleAnalyticsController()
         {
-            
+
         }
 
         public async Task<ActionResult> Index()
         {
-            var model = BeYourMarket.Service.CacheHelper.Settings.GoogleAnalyticsID;
-            return View("~/Plugins/Plugin.Widgets.GoogleAnalytics/Views/Index.cshtml", model);
+            var setting = BeYourMarket.Service.CacheHelper.GetSettingDictionary("GoogleAnalyticsID");
+
+            if (setting == null)
+                return new EmptyResult();
+
+            return View("~/Plugins/Plugin.Widget.GoogleAnalytics/Views/Index.cshtml", setting.Value);
         }
     }
 }

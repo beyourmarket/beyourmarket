@@ -47,7 +47,12 @@ namespace BeYourMarket.Service
 
         public static SettingDictionary GetSettingDictionary(Enum_SettingKey settingKey)
         {
-            var setting = SettingDictionary.Where(x => x.Name == settingKey.ToString()).FirstOrDefault();
+            return GetSettingDictionary(settingKey.ToString());
+        }
+
+        public static SettingDictionary GetSettingDictionary(string settingKey)
+        {
+            var setting = SettingDictionary.Where(x => x.Name == settingKey).FirstOrDefault();
 
             if (setting == null)
                 return new SettingDictionary()

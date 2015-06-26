@@ -49,6 +49,10 @@
             "transaction"
         };
 
+    var groupPlugins = new string[] {
+            "plugins"
+        };
+
     var groupDictionary = new Dictionary<string, string[]>();
     groupDictionary.Add("dashboard", groupDashboard);
     groupDictionary.Add("settings", groupSettings);
@@ -57,6 +61,7 @@
     groupDictionary.Add("design", groupDesign);
     groupDictionary.Add("contentpages", groupPages);
     groupDictionary.Add("payments", groupPayments);
+    groupDictionary.Add("plugins", groupPlugins);
 
     var attribute = groupDictionary[menu].Contains(ViewContext.RouteData.Values["action"].ToString().ToLowerInvariant()) ? "active" : null;
 
@@ -133,8 +138,17 @@
             </ul>
         </li>
 
+        <li class="has-submenu @DisplayGroupAttribute("plugins")">
+            <a href="#"><i class="fa fa-plug"></i> <span class="nav-label">Plugins</span></a>
+            <ul class="list-unstyled">
+                <li class="@DisplayAttribute("plugins")">
+                    <a href="@Url.Action("Plugins", "Plugin", new { area = "Admin", id = "" })">Manage Plugins</a>
+                </li>                
+            </ul>
+        </li>
+
         <li class="has-submenu">
-            <a href="https://github.com/beyourmarket/beyourmarket" target="_blank"><i class="fa fa-question"></i> <span class="nav-label">Guide</span></a>
+            <a href="https://beyourmarket.atlassian.net" target="_blank"><i class="fa fa-question"></i> <span class="nav-label">Guide</span></a>
         </li>
     </ul>
 </nav>

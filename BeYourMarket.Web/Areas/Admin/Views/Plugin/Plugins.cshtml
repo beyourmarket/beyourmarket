@@ -1,0 +1,118 @@
+﻿@using GridMvc.Html
+@model BeYourMarket.Web.Areas.Admin.Models.PluginsGrid
+
+@section Styles {
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <link href="~/Content/gridmvc.datepicker.min.css" rel="stylesheet" />
+}
+
+@{
+    ViewBag.Title = "Plugins";
+}
+
+@helper DisplayActionLink(string systemName, bool installed)
+{
+    if (installed)
+    {
+        <a class="btn btn-sm btn-danger" href="@Url.Action("Action", "Plugin", new { systemName = systemName })" title="Uninstalled"><i class="fa fa-times-circle"></i> Uninstall</a>
+    }
+    else
+    {
+        <a class="btn btn-sm btn-primary" href="@Url.Action("Action", "Plugin", new { systemName = systemName })"><i class="fa fa-plus-circle"></i> Install</a>
+    }
+}
+
+@helper DisplayConfigureLink(string systemName)
+{
+    <a class="btn btn-sm btn-primary m-b-5" href="@Url.Action("Configure", "Plugin", new { systemName = systemName })"><i class="fa fa-gear"></i> Configure</a>
+}
+
+@helper DisplayDescription(BeYourMarket.Core.Plugins.PluginDescriptor descriptor)
+{
+    @descriptor.Description
+    <br />
+    <small>
+        Version: @descriptor.Version | Author: @descriptor.Author
+        <br />
+        PluginFileName: @descriptor.PluginFileName
+    </small>
+}
+
+
+<div class="wraper container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-plug"></i> Plugins</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.Partial("_UserMessage")
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @Html.Grid(Model).Columns(columns =>
+                       {
+                           columns.Add()
+                            .Encoded(false)
+                            .Sanitized(false)
+                            .RenderValueAs(x => DisplayConfigureLink(x.SystemName));
+
+                           columns.Add()
+                             .Encoded(false)
+                             .Sanitized(false)
+                             .RenderValueAs(x => DisplayActionLink(x.SystemName, x.Installed));                           
+
+                           columns.Add(x => x.Group);
+
+                           columns.Add(x => x.SystemName);
+                           
+                           columns.Add(x => x.Description)
+                             .Encoded(false)
+                             .Sanitized(false)
+                             .RenderValueAs(x => DisplayDescription(x));
+                           
+                           columns.Add(x => x.DisplayOrder).Titled("Ordering");
+
+                           columns.Add(x => x.Installed)
+                             .Encoded(false)
+                             .Sanitized(false)
+                             .RenderValueAs(x => RazorHelper.DisplayYesNo(x.Installed));
+
+
+                       }).Sortable().Filterable().WithPaging(10).Selectable(false)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/gridmvc.min.js"></script>
+
+    <script type="text/javascript">
+        function confirmDelete(id, title) {
+            swal({
+                title: "Are you sure?",
+                text: "You will delete " + title,
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel please!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    post('@Url.Action("ListingDelete","Listing")', { id: id });
+                } else {
+                    swal("Cancelled", "", "error");
+                }
+            });
+        }
+    </script>
+}

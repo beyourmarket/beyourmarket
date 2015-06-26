@@ -31,6 +31,11 @@ namespace BeYourMarket.Core.Plugins
         public virtual string PluginFileName { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public virtual string Description { get; set; }
+
+        /// <summary>
         /// Plugin type
         /// </summary>
         public virtual Type PluginType { get; set; }
