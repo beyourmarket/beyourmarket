@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Plugin.Widgets.GoogleAnalytics")]
+[assembly: AssemblyTitle("Plugin.Widget.GoogleAnalytics")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Plugin.Widgets.GoogleAnalytics")]
+[assembly: AssemblyProduct("Plugin.Widget.GoogleAnalytics")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a2e2f72c-f15c-4197-8f0a-6956fc3a50f4")]
+[assembly: Guid("1618499d-3859-4138-9509-d99c05aa7193")]
 
 // Version information for an assembly consists of the following four values:
 //

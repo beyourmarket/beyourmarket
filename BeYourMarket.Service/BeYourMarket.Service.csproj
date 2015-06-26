@@ -71,6 +71,7 @@
     <Compile Include="CustomFieldCategoryService.cs" />
     <Compile Include="CustomFieldItemService.cs" />
     <Compile Include="DataCacheService.cs" />
+    <Compile Include="Helpers\CacheHelper.cs" />
     <Compile Include="ItemPictureService.cs" />
     <Compile Include="CustomFieldService.cs" />
     <Compile Include="ContentPageService.cs" />
@@ -89,6 +90,10 @@
     <Compile Include="SettingService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BeYourMarket.Core\BeYourMarket.Core.csproj">
+      <Project>{b5899d9b-49ed-4034-a52d-fc9d188c4873}</Project>
+      <Name>BeYourMarket.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BeYourMarket.Model\BeYourMarket.Model.csproj">
       <Project>{3598eca8-ca9d-4b09-b52d-30a35598ed69}</Project>
       <Name>BeYourMarket.Model</Name>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Plugin.Widgets.GoogleAnalytics
+namespace Plugin.Widget.GoogleAnalytics
 {
     public class GoogleAnalyticsSettings
     {

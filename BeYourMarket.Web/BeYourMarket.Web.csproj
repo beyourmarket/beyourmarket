@@ -315,7 +315,6 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Themes\ThemeableRazorViewEngine.cs" />
     <Compile Include="Utilities\EmailHelper.cs" />
-    <Compile Include="Utilities\CacheHelper.cs" />
     <Compile Include="Utilities\ImageHelper.cs" />
     <Compile Include="Utilities\RequestHelper.cs" />
   </ItemGroup>
@@ -352,6 +351,7 @@
     <Content Include="Images\Sample\Item\00000007.jpg" />
     <Content Include="Images\Sample\Item\00000008.jpg" />
     <Content Include="Images\Sample\Item\00000009.jpg" />
+    <Content Include="Plugins\.gitignore" />
     <Content Include="Scripts\app.js" />
     <Content Include="Themes\Default\Content\color.css.map">
       <DependentUpon>color.css</DependentUpon>
@@ -1251,6 +1251,7 @@
     <Folder Include="fileman\Uploads\FLV\" />
     <Folder Include="Images\Item\" />
     <Folder Include="Images\Profile\" />
+    <Folder Include="Plugins\bin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

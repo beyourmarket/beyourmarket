@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace Plugin.Widgets.GoogleAnalytics.Controllers
+namespace Plugin.Widget.GoogleAnalytics.Controllers
 {
     public class GoogleAnalyticsController : Controller
     {
@@ -16,7 +16,8 @@ namespace Plugin.Widgets.GoogleAnalytics.Controllers
 
         public async Task<ActionResult> Index()
         {
-            return View();
+            var model = BeYourMarket.Service.CacheHelper.Settings.GoogleAnalyticsID;
+            return View("~/Plugins/Plugin.Widgets.GoogleAnalytics/Views/Index.cshtml", model);
         }
     }
 }

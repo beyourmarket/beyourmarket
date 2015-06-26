@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Routing;
 
-namespace Plugin.Widgets.GoogleAnalytics
+namespace Plugin.Widget.GoogleAnalytics
 {
     public class GoogleAnalyticPlugin : BasePlugin, IWidgetPlugin
     {
@@ -29,7 +29,7 @@ namespace Plugin.Widgets.GoogleAnalytics
             var routeValues = new RouteValueDictionary {                 
                 { "action", "Configure" }, 
                 { "controller", "GoogleAnalytics" }, 
-                { "namespaces", "Plugin.Widgets.GoogleAnalytics.Controllers" }, 
+                { "namespaces", "Plugin.Widget.GoogleAnalytics.Controllers" }, 
                 { "area", null } 
             };
 
@@ -42,7 +42,7 @@ namespace Plugin.Widgets.GoogleAnalytics
             {
                 { "action", "Index" }, 
                 { "controller", "GoogleAnalytics" }, 
-                { "namespaces", "Plugin.Widgets.GoogleAnalytics.Controllers"},
+                { "namespaces", "Plugin.Widget.GoogleAnalytics.Controllers"},
                 { "area", null},
                 { "widgetZone", widgetZone}
             };

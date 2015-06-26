@@ -1,18 +1,15 @@
-﻿using BeYourMarket.Model.Models;
-using BeYourMarket.Web.App_Start;
+﻿using BeYourMarket.Core;
+using BeYourMarket.Model.Enum;
+using BeYourMarket.Model.Models;
+using BeYourMarket.Service.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Configuration;
-using BeYourMarket.Service;
-using BeYourMarket.Model.Enum;
-using BeYourMarket.Service.Models;
-using BeYourMarket.Core;
 
-namespace BeYourMarket.Web.Utilities
+namespace BeYourMarket.Service
 {
     public static class CacheHelper
     {
