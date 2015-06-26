@@ -42,7 +42,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         private readonly ICategoryService _categoryService;
         private readonly IItemService _itemService;
 
-        private readonly DataCacheService _dataCacheService;        
+        private readonly DataCacheService _dataCacheService;
 
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
 
@@ -55,7 +55,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             ISettingService settingService,
             ISettingDictionaryService settingDictionaryService,
             ICategoryService categoryService,
-            IItemService itemService,            
+            IItemService itemService,
             DataCacheService dataCacheService,
             IPluginFinder pluginFinder)
         {
@@ -64,7 +64,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             _categoryService = categoryService;
             _itemService = itemService;
-            
+
             _unitOfWorkAsync = unitOfWorkAsync;
             _dataCacheService = dataCacheService;
 
@@ -75,22 +75,29 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         #region Methods
         public ActionResult Plugins()
         {
-            var plugins = _pluginFinder.GetPluginDescriptors(LoadPluginsMode.All).AsQueryable();
+            var plugins = _pluginFinder.GetPluginDescriptors(LoadPluginsMode.All).OrderBy(x => x.DisplayOrder).AsQueryable();
 
             var grid = new PluginsGrid(plugins);
 
             return View(grid);
         }
-
-        [HttpPost]
-        public ActionResult CodeStyleUpdate(TextFileModel model)
+        
+        public ActionResult Configure(string systemName)
         {
-            var path = Server.MapPath("~/content/custom.css");
+            var pluginDescriptor = _pluginFinder.GetPluginDescriptorBySystemName(systemName);
 
-            var text = string.IsNullOrEmpty(model.Text) ? string.Empty : model.Text.Trim();
-            System.IO.File.WriteAllText(path, text);
+            string actionUrl = string.Empty;
 
-            return RedirectToAction("CodeStyle");
+            if (typeof(IWidgetPlugin).IsAssignableFrom(pluginDescriptor.PluginType))
+            {
+                actionUrl = Url.Action("ConfigureWidget", "Widget", new { systemName = pluginDescriptor.SystemName });
+            }
+
+            // check if there is actionUrl
+            if (string.IsNullOrEmpty(actionUrl))
+                return HttpNotFound();
+
+            return Redirect(actionUrl);
         }
         #endregion
     }

@@ -199,15 +199,15 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             _settingService.Update(setting);
 
-            var stripeApiKey = await _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, Enum_SettingKey.StripeApiKey);
+            var stripeApiKey = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, Enum_SettingKey.StripeApiKey);
             stripeApiKey.Value = model.StripeApiKey;
             _settingDictionaryService.SaveSettingDictionary(stripeApiKey);
 
-            var stripeClientID = await _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, Enum_SettingKey.StripeClientID);
+            var stripeClientID = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, Enum_SettingKey.StripeClientID);
             stripeClientID.Value = model.StripeClientID;
             _settingDictionaryService.SaveSettingDictionary(stripeClientID);
 
-            var stripePublishableKey = await _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, Enum_SettingKey.StripePublishableKey);
+            var stripePublishableKey = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, Enum_SettingKey.StripePublishableKey);
             stripePublishableKey.Value = model.StripePublishableKey;
             _settingDictionaryService.SaveSettingDictionary(stripePublishableKey);
 

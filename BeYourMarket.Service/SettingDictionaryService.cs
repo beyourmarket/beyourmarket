@@ -13,7 +13,8 @@ namespace BeYourMarket.Service
     public interface ISettingDictionaryService : IService<SettingDictionary>
     {
         void SaveSettingDictionary(SettingDictionary setting);
-        Task<SettingDictionary> GetSettingDictionary(int settingID, Enum_SettingKey settingKey);
+        SettingDictionary GetSettingDictionary(int settingID, Enum_SettingKey settingKey);
+        SettingDictionary GetSettingDictionary(int settingID, string settingKey);
     }
 
     public class SettingDictionaryService : Service<SettingDictionary>, ISettingDictionaryService
@@ -37,9 +38,14 @@ namespace BeYourMarket.Service
             }
         }
 
-        public async Task<SettingDictionary> GetSettingDictionary(int settingID, Enum_SettingKey settingKey)
+        public SettingDictionary GetSettingDictionary(int settingID, Enum_SettingKey settingKey)
         {
-            var settingQuery = await Query(x => x.Name == settingKey.ToString() && x.ID == settingID).SelectAsync();
+            return GetSettingDictionary(settingID, settingKey.ToString());
+        }
+
+        public SettingDictionary GetSettingDictionary(int settingID, string settingKey)
+        {
+            var settingQuery = Query(x => x.Name == settingKey && x.SettingID == settingID).Select();
             var setting = settingQuery.FirstOrDefault();
 
             if (setting == null)

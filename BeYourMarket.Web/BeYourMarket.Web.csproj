@@ -263,6 +263,7 @@
     <Compile Include="Areas\Admin\Controllers\DesignController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaymentController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\WidgetController.cs" />
     <Compile Include="Areas\Admin\Models\Grids\PluginsGrid.cs" />
     <Compile Include="Areas\Admin\Models\Grids\EmailTemplatesGrid.cs" />
     <Compile Include="Areas\Admin\Models\InstallModel.cs" />
@@ -363,6 +364,7 @@
     </Content>
     <Content Include="Plugins\installed.json" />
     <Content Include="Areas\Admin\Views\Plugin\Plugins.cshtml" />
+    <Content Include="Areas\Admin\Views\Widget\ConfigureWidget.cshtml" />
     <None Include="Themes\Default\Content\helper.less" />
     <Content Include="css\admin\style-responsive.css" />
     <Content Include="css\admin\style.css" />

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BeYourMarket.Service;
+using Repository.Pattern.UnitOfWork;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,19 +11,57 @@ namespace Plugin.Widget.GoogleAnalytics.Controllers
 {
     public class GoogleAnalyticsController : Controller
     {
-        public GoogleAnalyticsController()
-        {
+        private readonly ISettingDictionaryService _settingDictionaryService;
+        private readonly DataCacheService _dataCacheService;
+        private readonly IUnitOfWorkAsync _unitOfWorkAsync;
 
+        public GoogleAnalyticsController(
+            ISettingDictionaryService settingDictionaryService,
+            IUnitOfWorkAsync unitOfWorkAsync,
+            DataCacheService dataCacheService)
+        {
+            _settingDictionaryService = settingDictionaryService;
+            _unitOfWorkAsync = unitOfWorkAsync;
+            _dataCacheService = dataCacheService;
         }
 
-        public async Task<ActionResult> Index()
+        #region FrontEnd Method
+        /// <summary>
+        /// Frontend
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Index()
         {
-            var setting = BeYourMarket.Service.CacheHelper.GetSettingDictionary("GoogleAnalyticsID");
+            var setting = BeYourMarket.Service.CacheHelper.GetSettingDictionary(GoogleAnalyticPlugin.SettingTrackingID);
 
             if (setting == null)
                 return new EmptyResult();
 
-            return View("~/Plugins/Plugin.Widget.GoogleAnalytics/Views/Index.cshtml", setting.Value);
+            return View("~/Plugins/Plugin.Widget.GoogleAnalytics/Views/Index.cshtml", setting);
         }
+        #endregion
+
+        #region Admin Method
+        public ActionResult Configure()
+        {
+            var model = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, GoogleAnalyticPlugin.SettingTrackingID);
+            return View("~/Plugins/Plugin.Widget.GoogleAnalytics/Views/Configure.cshtml", model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Configure(string trackingID)
+        {
+            var settingExisting = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, GoogleAnalyticPlugin.SettingTrackingID);
+            settingExisting.Value = trackingID;
+
+            _settingDictionaryService.SaveSettingDictionary(settingExisting);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            _dataCacheService.RemoveCachedItem(CacheKeys.SettingDictionary);
+
+            return RedirectToAction("Plugins", "Plugin", new { area = "Admin" });
+        }
+        #endregion
     }
 }

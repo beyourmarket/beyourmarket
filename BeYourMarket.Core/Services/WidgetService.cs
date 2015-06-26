@@ -56,6 +56,21 @@ namespace BeYourMarket.Core.Services
             return _pluginFinder.GetPlugins<IWidgetPlugin>().ToList();
         }
 
+        /// <summary>
+        /// Load widget by system name
+        /// </summary>
+        /// <param name="systemName">System name</param>
+        /// <returns>Found widget</returns>
+        public virtual IWidgetPlugin LoadWidgetBySystemName(string systemName)
+        {
+            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IWidgetPlugin>(systemName);
+            if (descriptor != null)
+                return descriptor.Instance<IWidgetPlugin>();
+
+            return null;
+        }
+
         #endregion
+        
     }
 }

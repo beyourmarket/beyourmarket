@@ -11,6 +11,8 @@ namespace Plugin.Widget.GoogleAnalytics
 {
     public class GoogleAnalyticPlugin : BasePlugin, IWidgetPlugin
     {
+        public const string SettingTrackingID = "GoogleAnalytics_TrackingID";
+
         public GoogleAnalyticPlugin()
         {
 
