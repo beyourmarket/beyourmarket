@@ -5,6 +5,16 @@ http://beyourmarket.com
 
 [![ScreenShot](http://beyourmarket.com/images/github/beyourmarket.jpg)](http://beyourmarket.com/)
 
+## Build status ##
+
+Master Branch (`master`)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/ojc6mh88o61cvlgw/branch/master?svg=true)](https://ci.appveyor.com/project/beyourmarket/beyourmarket/branch/master)
+
+Development Branch (`dev`)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/ojc6mh88o61cvlgw/branch/dev?svg=true)](https://ci.appveyor.com/project/beyourmarket/beyourmarket/branch/dev)
+
 ## Installation ##
 
 [Running BeYourMarket with Visual Studio 2013](https://beyourmarket.atlassian.net/wiki/display/BYM/Installation)
