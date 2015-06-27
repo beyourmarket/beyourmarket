@@ -3,7 +3,7 @@
 BeYourMarket is a free open source marketplace framework built on the ASP.NET platform.
 http://beyourmarket.com
 
-[![ScreenShot](http://beyourmarket.com/images/github/beyourmarket.jpg)](http://beyourmarket.com/)
+[![ScreenShot](http://beyourmarket.com/images/github/beyourmarket2.jpg)](http://beyourmarket.com/)
 
 ## Build status ##
 
