@@ -51,8 +51,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         private readonly IContentPageService _contentPageService;
 
         private readonly IOrderService _orderService;
-        private readonly IOrderTransactionService _orderTransactionService;
-        private readonly IStripeConnectService _stripConnectService;
+        private readonly IOrderTransactionService _orderTransactionService;        
 
         private readonly IEmailTemplateService _emailTemplateService;
 
@@ -110,8 +109,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             ICustomFieldCategoryService customFieldCategoryService,
             IContentPageService contentPageService,
             IOrderService orderService,
-            IOrderTransactionService orderTransationService,
-            IStripeConnectService stripConnectService,
+            IOrderTransactionService orderTransationService,            
             ISettingDictionaryService settingDictionaryService,
             IEmailTemplateService emailTemplateService,
             DataCacheService dataCacheService,
@@ -125,8 +123,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
 
-            _orderService = orderService;
-            _stripConnectService = stripConnectService;
+            _orderService = orderService;            
             _orderTransactionService = orderTransationService;
 
             _emailTemplateService = emailTemplateService;

@@ -38,8 +38,7 @@ namespace BeYourMarket.Web.Controllers
         private readonly IItemPictureService _itemPictureService;
         private readonly IPictureService _pictureService;
         private readonly IOrderService _orderService;
-        private readonly IOrderTransactionService _orderTransactionService;
-        private readonly IStripeConnectService _stripConnectService;
+        private readonly IOrderTransactionService _orderTransactionService;        
         private readonly ICustomFieldService _customFieldService;
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
         private readonly ICustomFieldItemService _customFieldItemService;
@@ -84,7 +83,6 @@ namespace BeYourMarket.Web.Controllers
             IItemPictureService itemPictureService,
             IOrderService orderService,
             IOrderTransactionService orderTransationService,
-            IStripeConnectService stripConnectService,
             ICustomFieldService customFieldService,
             ICustomFieldCategoryService customFieldCategoryService,
             ICustomFieldItemService customFieldItemService,
@@ -100,8 +98,7 @@ namespace BeYourMarket.Web.Controllers
             _itemService = itemService;
             _pictureService = pictureService;
             _itemPictureService = itemPictureService;
-            _orderService = orderService;
-            _stripConnectService = stripConnectService;
+            _orderService = orderService;            
             _orderTransactionService = orderTransationService;
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;

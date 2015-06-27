@@ -1,0 +1,57 @@
+﻿@model Plugin.Payment.Models.PaymentSettingModel
+@{
+    ViewBag.Title = "Payment Settings";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form action="@Url.Action("Configure", "PaymentStripe")" id="settingsForm" method="post" class="form-horizontal" role="form">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    Payment Settings
+                </div>
+                <div class="panel-body">
+                    <h4>
+                        <i class="fa fa-cc-stripe"></i> Stripe Settings
+                    </h4>
+                    <hr />
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Stripe Client ID</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="StripeClientID" name="StripeClientID" value="@Model.StripeClientID">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Stripe Client Secret (Api Key)</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="StripeApiKey" name="StripeApiKey" value="@Model.StripeApiKey">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Stripe Publishable Key</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="StripePublishableKey" name="StripePublishableKey" value="@Model.StripePublishableKey">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
+                            <a href="@Url.Action("Plugins", "Plugin", new { area = "Admin" })" class="btn btn-default"><i class="fa fa-remove"></i> Cancel</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+@section Scripts {    
+    @Scripts.Render("~/bundles/jqueryval")
+}

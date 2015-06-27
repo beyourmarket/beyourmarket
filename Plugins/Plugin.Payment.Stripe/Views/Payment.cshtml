@@ -1,0 +1,15 @@
+﻿@model BeYourMarket.Model.Models.Order
+
+<div class="form-group">
+    <form class="form" action="@Url.Action("Payment")" method="post" role="form">
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="@CacheHelper.GetSettingDictionary(Plugin.Payment.Stripe.StripePlugin.SettingStripePublishableKey).Value"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-name="@CacheHelper.Settings.Name"
+                data-description="@Model.Description"
+                data-currency="@CacheHelper.Settings.Currency"
+                data-amount="@Model.PriceInCents">
+
+        </script>
+    </form>
+</div>

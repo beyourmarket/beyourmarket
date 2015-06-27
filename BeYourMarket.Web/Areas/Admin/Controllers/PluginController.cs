@@ -29,6 +29,7 @@ using System.Net.Mail;
 using System.Net;
 using BeYourMarket.Service.Models;
 using BeYourMarket.Core.Plugins;
+using BeYourMarket.Core.Web;
 
 namespace BeYourMarket.Web.Areas.Admin.Controllers
 {

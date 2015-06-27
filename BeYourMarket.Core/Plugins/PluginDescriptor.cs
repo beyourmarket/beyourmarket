@@ -90,6 +90,11 @@ namespace BeYourMarket.Core.Plugins
         /// </summary>
         public virtual bool Installed { get; set; }
 
+        /// <summary>
+        /// Resolve only after application start up
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public virtual T Instance<T>() where T : class, IPlugin
         {
             object instance = ContainerManager.GetConfiguredContainer().Resolve(PluginType);

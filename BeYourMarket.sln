@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeYourMarket.Core", "BeYour
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Widget.GoogleAnalytics", "Plugins\Plugin.Widget.GoogleAnalytics\Plugin.Widget.GoogleAnalytics.csproj", "{3473A0DE-0653-49C0-BEC2-18231EFC77CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Payment.Stripe", "Plugins\Plugin.Payment.Stripe\Plugin.Payment.Stripe.csproj", "{F7B87CE6-B494-47AD-BB0C-BE11A290BDC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +90,12 @@ Global
 		{3473A0DE-0653-49C0-BEC2-18231EFC77CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3473A0DE-0653-49C0-BEC2-18231EFC77CF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3473A0DE-0653-49C0-BEC2-18231EFC77CF}.Release|x86.ActiveCfg = Release|Any CPU
+		{F7B87CE6-B494-47AD-BB0C-BE11A290BDC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7B87CE6-B494-47AD-BB0C-BE11A290BDC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7B87CE6-B494-47AD-BB0C-BE11A290BDC3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F7B87CE6-B494-47AD-BB0C-BE11A290BDC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7B87CE6-B494-47AD-BB0C-BE11A290BDC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7B87CE6-B494-47AD-BB0C-BE11A290BDC3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,5 +105,6 @@ Global
 		{F68A1D19-93FB-47C1-A22B-42BEA3E4FD8C} = {89A7FAC0-027A-40FD-AB27-67F853BEDD31}
 		{86F86650-EE3C-4372-8FEC-40C2FE015022} = {89A7FAC0-027A-40FD-AB27-67F853BEDD31}
 		{3473A0DE-0653-49C0-BEC2-18231EFC77CF} = {EF48A340-8ECD-4131-BF1C-2B0489780183}
+		{F7B87CE6-B494-47AD-BB0C-BE11A290BDC3} = {EF48A340-8ECD-4131-BF1C-2B0489780183}
 	EndGlobalSection
 EndGlobal

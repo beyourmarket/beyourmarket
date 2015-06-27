@@ -8,6 +8,10 @@ namespace BeYourMarket.Core
 {
     public static class WidgetZone
     {
-        public const string html_head_tag = "html_head_tag";
+        public const string Head = "html_tag_head";
+
+        public const string Payment = "html_tag_payment";
+
+        public const string PaymentSetting = "html_tag_payment";
     }
 }

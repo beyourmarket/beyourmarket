@@ -1,15 +1,15 @@
-﻿@if (TempData[BeYourMarket.Web.Models.TempDataKeys.UserMessage] != null)
+﻿@if (TempData[BeYourMarket.Core.Web.TempDataKeys.UserMessage] != null)
 {
     var alertState = "bg-success";
     var icon = "fa-check";
 
-    if (TempData[BeYourMarket.Web.Models.TempDataKeys.UserMessageAlertState] != null)
+    if (TempData[BeYourMarket.Core.Web.TempDataKeys.UserMessageAlertState] != null)
     {
         alertState = "bg-danger";
         icon = "fa-exclamation-circle";
     }
 
     <div class="alert @alertState">
-        <p><i class="fa @icon"></i> @TempData[BeYourMarket.Web.Models.TempDataKeys.UserMessage]</p>
+        <p><i class="fa @icon"></i> @TempData[BeYourMarket.Core.Web.TempDataKeys.UserMessage]</p>
     </div>
 }

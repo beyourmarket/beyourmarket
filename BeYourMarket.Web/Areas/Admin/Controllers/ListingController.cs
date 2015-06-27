@@ -28,6 +28,7 @@ using Postal;
 using System.Net.Mail;
 using System.Net;
 using BeYourMarket.Service.Models;
+using BeYourMarket.Core.Web;
 
 namespace BeYourMarket.Web.Areas.Admin.Controllers
 {
@@ -52,8 +53,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         private readonly IContentPageService _contentPageService;
 
         private readonly IOrderService _orderService;
-        private readonly IOrderTransactionService _orderTransactionService;
-        private readonly IStripeConnectService _stripConnectService;
+        private readonly IOrderTransactionService _orderTransactionService;        
 
         private readonly IItemPictureService _itemPictureService;
         private readonly IPictureService _pictureService;        
@@ -115,8 +115,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             ICustomFieldItemService customFieldItemService,
             IContentPageService contentPageService,
             IOrderService orderService,
-            IOrderTransactionService orderTransationService,
-            IStripeConnectService stripConnectService,
+            IOrderTransactionService orderTransationService,            
             ISettingDictionaryService settingDictionaryService,
             IEmailTemplateService emailTemplateService,
             IPictureService pictureService,
@@ -136,8 +135,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _customFieldCategoryService = customFieldCategoryService;
             _customFieldItemService = customFieldItemService;
 
-            _orderService = orderService;
-            _stripConnectService = stripConnectService;
+            _orderService = orderService;            
             _orderTransactionService = orderTransationService;
 
             _emailTemplateService = emailTemplateService;

@@ -78,6 +78,7 @@
     <Compile Include="PlatformVersion.cs" />
     <Compile Include="Services\IWidgetService.cs" />
     <Compile Include="Services\WidgetService.cs" />
+    <Compile Include="Web\TempDataKeys.cs" />
     <Compile Include="WidgetZone.cs" />
     <Compile Include="WriteLockDisposable.cs" />
   </ItemGroup>

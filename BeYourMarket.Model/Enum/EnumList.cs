@@ -21,12 +21,6 @@ namespace BeYourMarket.Model.Enum
         Cancelled
     }
 
-    public enum Enum_StripeConnectStatus
-    {
-        None = 0,
-        Authorized
-    }
-
     public enum Enum_MetaFieldControlType
     {
         None = 0,

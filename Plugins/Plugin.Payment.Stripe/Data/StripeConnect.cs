@@ -1,7 +1,11 @@
+﻿using BeYourMarket.Model.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BeYourMarket.Model.Models
+namespace Plugin.Payment.Stripe.Data
 {
     public partial class StripeConnect : Repository.Pattern.Ef6.Entity
     {
@@ -18,5 +22,6 @@ namespace BeYourMarket.Model.Models
         public string access_token { get; set; }
         public string error { get; set; }
         public string error_description { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

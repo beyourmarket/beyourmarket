@@ -16,7 +16,8 @@
     <div class="section panel-header ">
         <div class="container-fluid">
             <div class="col-md-12">
-                <h3>@Model.ItemOrder.Item.Title - @Model.ItemOrder.Item.Description</h3>
+                <h3>@Model.ItemOrder.Item.Title</h3>
+                <h5>@Model.ItemOrder.Item.Description</h5>
 
                 <h3>@Model.ItemOrder.PriceFormatted</h3>
 
@@ -32,8 +33,7 @@
                         }
                     </div>
 
-                    <div class="col-md-6">
-                        <form class="form" action="@Url.Action("Payment", "Payment")" method="post" role="form">
+                    <div class="col-md-6">                        
                             <input type="hidden" id="id" name="id" value="@Model.ItemOrder.ID" />
                             <div class="form-group">
                                 <label for="FromDate">From Date</label>
@@ -51,18 +51,8 @@
 
                             <h5>Price: @Model.ItemOrder.PriceFormatted</h5>
 
-                            <div class="form-group">
-                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                        data-key="@CacheHelper.GetSettingDictionary(Enum_SettingKey.StripePublishableKey).Value"
-                                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                        data-name="@CacheHelper.Settings.Name"
-                                        data-description="@Model.ItemOrder.Description"
-                                        data-currency="@CacheHelper.Settings.Currency"
-                                        data-amount="@Model.ItemOrder.PriceInCents">
-
-                                </script>
-                            </div>
-                        </form>
+                            <!-- Payment Widget -->
+                            @Html.Widget(WidgetZone.Payment, Model.ItemOrder)                        
                     </div>
 
                 </div>

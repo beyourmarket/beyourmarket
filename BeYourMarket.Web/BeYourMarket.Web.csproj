@@ -312,7 +312,6 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SearchListingModel.cs" />
     <Compile Include="Models\SortViewModel.cs" />
-    <Compile Include="Models\TempDataKeys.cs" />
     <Compile Include="Models\TextFileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

@@ -1,0 +1,11 @@
+﻿{
+    "Group": "Payment",
+    "SystemName": "Plugin.Payment.Stripe",
+    "FriendlyName": "Stripe Connect",    
+    "Version": "1.0",
+    "SupportedVersions": ["1.0"],
+    "Author": "BeYourMarket",
+    "DisplayOrder": "1",
+    "PluginFileName": "Plugin.Payment.Stripe.dll",
+    "Description":  "Support Stripe to pay/accept payment in your marketplace!"
+}

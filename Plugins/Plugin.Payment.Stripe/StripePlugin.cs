@@ -9,16 +9,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Routing;
 
-namespace Plugin.Widget.GoogleAnalytics
+namespace Plugin.Payment.Stripe
 {
-    public class GoogleAnalyticPlugin : BasePlugin, IWidgetPlugin
+    public class StripePlugin : BasePlugin, IWidgetPlugin
     {
-        public const string SettingTrackingID = "GoogleAnalytics_TrackingID";
+        public const string SettingStripeApiKey = "StripeApiKey";
+        public const string SettingStripePublishableKey = "StripePublishableKey";
+        public const string SettingStripeClientID = "StripeClientID";
 
         private readonly ISettingDictionaryService _settingDictionaryService;
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
 
-        public GoogleAnalyticPlugin(
+        public enum Enum_StripeConnectStatus
+        {
+            None = 0,
+            Authorized
+        }
+
+        public StripePlugin(
             ISettingDictionaryService settingDictionaryService,
             IUnitOfWorkAsync unitOfWorkAsync)
         {
@@ -30,7 +38,7 @@ namespace Plugin.Widget.GoogleAnalytics
         {
             return new List<string>
             { 
-                WidgetZone.Head
+                WidgetZone.Payment
             };
         }
 
@@ -38,8 +46,8 @@ namespace Plugin.Widget.GoogleAnalytics
         {
             var routeValues = new RouteValueDictionary {                 
                 { "action", "Configure" }, 
-                { "controller", "GoogleAnalytics" }, 
-                { "namespaces", "Plugin.Widget.GoogleAnalytics.Controllers" }, 
+                { "controller", "PaymentStripe" }, 
+                { "namespaces", "Plugin.Payment.Stripe.Controllers" }, 
                 { "area", null } 
             };
 
@@ -50,9 +58,9 @@ namespace Plugin.Widget.GoogleAnalytics
         {
             var routeValues = new RouteValueDictionary
             {
-                { "action", "Index" }, 
-                { "controller", "GoogleAnalytics" }, 
-                { "namespaces", "Plugin.Widget.GoogleAnalytics.Controllers"},
+                { "action", "Payment" }, 
+                { "controller", "PaymentStripe" }, 
+                { "namespaces", "Plugin.Payment.Stripe.Controllers"},
                 { "area", null},
                 { "widgetZone", widgetZone}
             };
@@ -68,8 +76,28 @@ namespace Plugin.Widget.GoogleAnalytics
             // Add settings
             _settingDictionaryService.Insert(new BeYourMarket.Model.Models.SettingDictionary()
             {
-                Name = SettingTrackingID,
-                Value = string.Empty,
+                Name = SettingStripeApiKey,
+                Value = "sk_test_kUNQFEh3YLbEFEa38tbeMJLV",
+                Created = DateTime.Now,
+                LastUpdated = DateTime.Now,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added,
+                SettingID = CacheHelper.Settings.ID
+            });
+
+            _settingDictionaryService.Insert(new BeYourMarket.Model.Models.SettingDictionary()
+            {
+                Name = SettingStripePublishableKey,
+                Value = "pk_test_EfbP8SfcALEJ8Jk2JxtSxmqe",
+                Created = DateTime.Now,
+                LastUpdated = DateTime.Now,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added,
+                SettingID = CacheHelper.Settings.ID
+            });
+
+            _settingDictionaryService.Insert(new BeYourMarket.Model.Models.SettingDictionary()
+            {
+                Name = SettingStripeClientID,
+                Value = "ca_6Rh18px61rjCEZIav5ItunZ1mKD8YjvU",
                 Created = DateTime.Now,
                 LastUpdated = DateTime.Now,
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added,
@@ -87,7 +115,11 @@ namespace Plugin.Widget.GoogleAnalytics
         public override void Uninstall()
         {
             // Remove settings
-            var settings = _settingDictionaryService.Query(x => x.Name == SettingTrackingID).Select();
+            var settings = _settingDictionaryService.Query(
+                x => x.Name == SettingStripeApiKey ||
+                     x.Name == SettingStripePublishableKey ||
+                     x.Name == SettingStripeClientID).Select();
+
             foreach (var setting in settings)
             {
                 _settingDictionaryService.Delete(setting);

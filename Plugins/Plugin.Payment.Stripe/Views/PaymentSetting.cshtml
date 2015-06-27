@@ -1,0 +1,29 @@
+﻿@model Plugin.Payment.Models.PaymentSettingModel
+@{
+    ViewBag.Title = "Payment Settings";
+}
+
+<p>
+    To accept payments you need to connect your <a href="https://stripe.com" target="_blank">Stripe</a> account with products.
+</p>
+
+@if (Model == BeYourMarket.Model.Enum.Enum_StripeConnectStatus.None)
+{
+    <p>
+        <a href="@CacheHelper.StripeConnectUrl" class="stripe-connect">
+            <span>Connect with Stripe</span>
+        </a>
+    </p>
+}
+else
+{
+    <form action="@Url.Action("PaymentSettingDeauthorize", "Payment")" method="post">
+        <button class="stripe-connect">
+            <span>Disconnect with Stripe</span>
+        </button>
+    </form>
+}
+
+@section Scripts {    
+    @Scripts.Render("~/bundles/jqueryval")
+}

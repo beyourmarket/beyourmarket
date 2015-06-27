@@ -1,1 +1,1 @@
-{"Plugins":["Widget.GoogleAnalytics"]}
+{"Plugins":["Plugin.Widget.GoogleAnalytics","Plugin.Payment.Stripe"]}
