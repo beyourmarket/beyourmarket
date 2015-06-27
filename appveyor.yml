@@ -1,0 +1,6 @@
+version: 1.0.{build}
+build:
+  project: BeYourMarket.sln
+  publish_wap: true
+  publish_nuget: true
+  verbosity: minimal
