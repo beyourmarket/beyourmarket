@@ -97,5 +97,11 @@ namespace Plugin.Widget.GoogleAnalytics
 
             base.Uninstall();
         }
+
+
+        public Type GetControllerType()
+        {
+            return typeof(Plugin.Widget.GoogleAnalytics.Controllers.GoogleAnalyticsController);
+        }
     }
 }

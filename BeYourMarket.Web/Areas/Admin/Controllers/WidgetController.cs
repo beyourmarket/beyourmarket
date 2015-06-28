@@ -37,7 +37,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             var widget = _widgetService.LoadWidgetBySystemName(systemName);
             if (widget == null)
                 //No widget found with the specified id
-                return RedirectToAction("List");
+                return RedirectToAction("Index");
             
             var model = widget.GetConfigurationRoute();
             return View(model);

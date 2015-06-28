@@ -86,7 +86,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         public ActionResult Configure(string systemName)
         {
             var pluginDescriptor = _pluginFinder.GetPluginDescriptorBySystemName(systemName);
-
+            
             string actionUrl = string.Empty;
 
             if (typeof(IWidgetPlugin).IsAssignableFrom(pluginDescriptor.PluginType))

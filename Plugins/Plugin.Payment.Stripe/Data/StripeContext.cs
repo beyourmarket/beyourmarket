@@ -20,11 +20,13 @@ namespace Plugin.Payment.Stripe.Data
         }
 
         public DbSet<StripeConnect> StripeConnects { get; set; }
+        public DbSet<StripeTransaction> StripeTransactions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.OneToManyCascadeDeleteConvention>();            
             modelBuilder.Configurations.Add(new StripeConnectMap());
+            modelBuilder.Configurations.Add(new StripeTransactionMap());
         }
     }
 }

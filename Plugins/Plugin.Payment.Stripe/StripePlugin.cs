@@ -1,5 +1,6 @@
 ﻿using BeYourMarket.Core;
 using BeYourMarket.Core.Plugins;
+using BeYourMarket.Model.Enum;
 using BeYourMarket.Service;
 using Repository.Pattern.UnitOfWork;
 using System;
@@ -85,6 +86,11 @@ namespace Plugin.Payment.Stripe
             }
 
             return null;
+        }
+
+        public Type GetControllerType()
+        {
+            return typeof(Plugin.Payment.Stripe.Controllers.PaymentStripeController);
         }
 
         /// <summary>

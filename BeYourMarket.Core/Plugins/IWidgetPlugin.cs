@@ -29,5 +29,11 @@ namespace BeYourMarket.Core.Plugins
         /// </summary>
         /// <param name="widgetZone">Widget zone where it's displayed</param>
         RouteValueDictionary GetDisplayWidgetRoute(string widgetZone);
+
+        /// <summary>
+        /// Get controller type
+        /// </summary>
+        /// <returns></returns>
+        Type GetControllerType();
     }
 }

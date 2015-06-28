@@ -37,6 +37,7 @@ namespace BeYourMarket.Model.Models
         public DbSet<SettingDictionary> SettingDictionaries { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<StripeConnect> StripeConnects { get; set; }
+        public DbSet<StripeTransaction> StripeTransactions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -62,6 +63,7 @@ namespace BeYourMarket.Model.Models
             modelBuilder.Configurations.Add(new SettingDictionaryMap());
             modelBuilder.Configurations.Add(new SettingMap());
             modelBuilder.Configurations.Add(new StripeConnectMap());
+            modelBuilder.Configurations.Add(new StripeTransactionMap());
         }
     }
 }

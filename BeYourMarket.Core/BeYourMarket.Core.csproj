@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="BeYourMarketConfigurationManager.cs" />
     <Compile Include="ContainerManager.cs" />
+    <Compile Include="Controllers\IPaymentController.cs" />
     <Compile Include="Helpers\CommonHelper.cs" />
     <Compile Include="Plugins\BasePlugin.cs" />
     <Compile Include="Plugins\IPlugin.cs" />

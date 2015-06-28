@@ -14,10 +14,11 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using RestSharp;
+using BeYourMarket.Core.Controllers;
 
 namespace Plugin.Payment.Stripe.Controllers
 {
-    public class PaymentStripeController : Controller
+    public class PaymentStripeController : Controller, IPaymentController
     {
         private readonly ISettingDictionaryService _settingDictionaryService;
         private readonly DataCacheService _dataCacheService;
@@ -216,6 +217,54 @@ namespace Plugin.Payment.Stripe.Controllers
             }
 
             return View("~/Plugins/Plugin.Payment.Stripe/Views/PaymentSetting.cshtml", Plugin.Payment.Stripe.StripePlugin.Enum_StripeConnectStatus.None);
+        }
+
+        public bool OrderAction(int id, int status, out string message)
+        {
+            message = string.Empty;
+
+            var order = _orderService.Find(id);
+
+            // Get the latest successful transaction
+            var transactionQuery = _orderTransactionService.Query(x => x.OrderID == id && string.IsNullOrEmpty(x.FailureCode)).Select();
+            var transaction = transactionQuery.OrderByDescending(x => x.Created).FirstOrDefault();
+
+            if (transaction == null)
+            {
+                message = "Transaction not found";
+                return false;
+            }
+
+            if (status == (int)Enum_OrderStatus.Cancelled)
+            {
+                // Update order
+                order.Modified = DateTime.Now;
+                order.Status = status;
+                order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
+                _orderService.Update(order);
+
+            }
+            else if (status == (int)Enum_OrderStatus.Confirmed)
+            {
+                // Update order
+                order.Modified = DateTime.Now;
+                order.Status = status;
+                order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
+                _orderService.Update(order);
+
+                // Update Transaction
+                transaction.IsCaptured = true;
+                transaction.LastUpdated = DateTime.Now;
+                _orderTransactionService.Update(transaction);
+
+                // Capture payment
+                var chargeService = new StripeChargeService(CacheHelper.GetSettingDictionary(StripePlugin.SettingStripeApiKey).Value);
+                StripeCharge stripeCharge = chargeService.Capture(transaction.ChargeID);
+            }
+
+            _unitOfWorkAsync.SaveChanges();
+
+            return true;
         }
         #endregion
 

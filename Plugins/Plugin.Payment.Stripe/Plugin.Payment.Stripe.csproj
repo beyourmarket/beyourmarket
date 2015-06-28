@@ -107,10 +107,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\PaymentStripeController.cs" />
+    <Compile Include="Data\StripeTransactionMap.cs" />
+    <Compile Include="Data\StripeTransaction.cs" />
     <Compile Include="Data\StripeConnect.cs" />
     <Compile Include="Data\StripeConnectMap.cs" />
     <Compile Include="Data\StripeContext.cs" />
     <Compile Include="Models\PaymentSettingModel.cs" />
+    <Compile Include="Services\StripeTransactionService.cs" />
     <Compile Include="Services\StripeConnectService.cs" />
     <Compile Include="StripePlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

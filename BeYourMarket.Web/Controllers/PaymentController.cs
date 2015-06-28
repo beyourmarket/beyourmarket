@@ -21,6 +21,10 @@ using BeYourMarket.Web.Models.Grids;
 using RestSharp;
 using Stripe;
 using BeYourMarket.Core.Web;
+using BeYourMarket.Core.Plugins;
+using BeYourMarket.Core;
+using Microsoft.Practices.Unity;
+using BeYourMarket.Core.Controllers;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -48,6 +52,8 @@ namespace BeYourMarket.Web.Controllers
         private readonly SqlDbService _sqlDbService;
 
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
+
+        private readonly IPluginFinder _pluginFinder;
 
         public ApplicationSignInManager SignInManager
         {
@@ -83,14 +89,15 @@ namespace BeYourMarket.Web.Controllers
             IPictureService pictureService,
             IItemPictureService itemPictureService,
             IOrderService orderService,
-            IOrderTransactionService orderTransationService,            
+            IOrderTransactionService orderTransationService,
             ICustomFieldService customFieldService,
             ICustomFieldCategoryService customFieldCategoryService,
             ICustomFieldItemService customFieldItemService,
             ISettingDictionaryService settingDictionaryService,
             IItemStatService itemStatService,
             DataCacheService dataCacheService,
-            SqlDbService sqlDbService)
+            SqlDbService sqlDbService,
+            IPluginFinder pluginFinder)
         {
             _settingService = settingService;
             _settingDictionaryService = settingDictionaryService;
@@ -109,6 +116,8 @@ namespace BeYourMarket.Web.Controllers
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
 
+            _pluginFinder = pluginFinder;
+
             _unitOfWorkAsync = unitOfWorkAsync;
         }
         #endregion
@@ -122,46 +131,22 @@ namespace BeYourMarket.Web.Controllers
             if (order == null)
                 return new HttpNotFoundResult();
 
-            // Get the latest successful transaction
-            var transactionQuery = await _orderTransactionService.Query(x => x.OrderID == id && string.IsNullOrEmpty(x.FailureCode)).SelectAsync();
-            var transaction = transactionQuery.OrderByDescending(x => x.Created).FirstOrDefault();
+            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IWidgetPlugin>("Plugin.Payment.Stripe");
+            if (descriptor == null)
+                return new HttpNotFoundResult("Not found");
 
-            if (transaction == null)
+            var controllerType = descriptor.Instance<IWidgetPlugin>().GetControllerType();
+            var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
+
+            string message = string.Empty;
+            var orderResult = controller.OrderAction(id, status, out message);
+
+            var result = new
             {
-                var resultFailure = new { Success = "false", Message = "Transaction not found" };
-                return Json(resultFailure, JsonRequestBehavior.AllowGet);
-            }
+                Success = orderResult,
+                Message = message
+            };
 
-            if (status == (int)Enum_OrderStatus.Cancelled)
-            {
-                // Update order
-                order.Modified = DateTime.Now;
-                order.Status = status;
-                order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
-                _orderService.Update(order);
-
-            }
-            else if (status == (int)Enum_OrderStatus.Confirmed)
-            {
-                // Update order
-                order.Modified = DateTime.Now;
-                order.Status = status;
-                order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
-                _orderService.Update(order);
-
-                // Update Transaction
-                transaction.IsCaptured = true;
-                transaction.LastUpdated = DateTime.Now;
-                _orderTransactionService.Update(transaction);
-
-                // Capture payment
-                var chargeService = new StripeChargeService(CacheHelper.GetSettingDictionary(Enum_SettingKey.StripeApiKey).Value);
-                StripeCharge stripeCharge = chargeService.Capture(transaction.ChargeID);
-            }
-
-            await _unitOfWorkAsync.SaveChangesAsync();
-
-            var result = new { Success = "true", Message = "" };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
