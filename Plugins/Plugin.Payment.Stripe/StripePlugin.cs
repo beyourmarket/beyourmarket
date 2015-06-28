@@ -38,7 +38,8 @@ namespace Plugin.Payment.Stripe
         {
             return new List<string>
             { 
-                WidgetZone.Payment
+                WidgetZone.Payment,
+                WidgetZone.PaymentSetting
             };
         }
 
@@ -56,16 +57,34 @@ namespace Plugin.Payment.Stripe
 
         public RouteValueDictionary GetDisplayWidgetRoute(string widgetZone)
         {
-            var routeValues = new RouteValueDictionary
+            if (widgetZone.Equals(WidgetZone.Payment, StringComparison.InvariantCultureIgnoreCase))
             {
-                { "action", "Payment" }, 
-                { "controller", "PaymentStripe" }, 
-                { "namespaces", "Plugin.Payment.Stripe.Controllers"},
-                { "area", null},
-                { "widgetZone", widgetZone}
-            };
+                var routeValues = new RouteValueDictionary
+                {
+                    { "action", "Payment" }, 
+                    { "controller", "PaymentStripe" }, 
+                    { "namespaces", "Plugin.Payment.Stripe.Controllers"},
+                    { "area", null},
+                    { "widgetZone", widgetZone}
+                };
 
-            return routeValues;
+                return routeValues;
+            }
+            else if (widgetZone.Equals(WidgetZone.PaymentSetting, StringComparison.InvariantCultureIgnoreCase))
+            {
+                var routeValues = new RouteValueDictionary
+                {
+                    { "action", "PaymentSetting" }, 
+                    { "controller", "PaymentStripe" }, 
+                    { "namespaces", "Plugin.Payment.Stripe.Controllers"},
+                    { "area", null},
+                    { "widgetZone", widgetZone}
+                };
+
+                return routeValues;
+            }
+
+            return null;
         }
 
         /// <summary>

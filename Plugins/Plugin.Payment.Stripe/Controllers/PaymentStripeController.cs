@@ -139,10 +139,10 @@ namespace Plugin.Payment.Stripe.Controllers
             Response.Cache.SetNoStore();
         }
 
-        public async Task<ActionResult> PaymentSettingDeauthorize()
+        public ActionResult PaymentSettingDeauthorize()
         {
             var userId = User.Identity.GetUserId();
-            var stripeConnectQuery = await _stripConnectService.Query(x => x.UserID == userId).SelectAsync();
+            var stripeConnectQuery = _stripConnectService.Query(x => x.UserID == userId).Select();
             var stripeConnect = stripeConnectQuery.FirstOrDefault();
 
             // Delete old one and insert new one
@@ -158,14 +158,14 @@ namespace Plugin.Payment.Stripe.Controllers
 
             var response = client.Execute(request);
 
-            await _unitOfWorkAsync.SaveChangesAsync();
+            _unitOfWorkAsync.SaveChanges();
 
             TempData[TempDataKeys.UserMessage] = "Disconnnect to stripe successfully!";
 
-            return RedirectToAction("PaymentSetting");
+            return RedirectToAction("PaymentSetting", "Payment", new { area = "" });
         }
 
-        public async Task<ActionResult> PaymentSetting(string scope, string code)
+        public ActionResult PaymentSetting(string scope, string code)
         {
             if (!string.IsNullOrEmpty(scope) && !string.IsNullOrEmpty(code))
             {
@@ -180,7 +180,7 @@ namespace Plugin.Payment.Stripe.Controllers
                 if (string.IsNullOrEmpty(response.Data.error))
                 {
                     var userId = User.Identity.GetUserId();
-                    var stripeConnectQuery = await _stripConnectService.Query(x => x.UserID == userId).SelectAsync();
+                    var stripeConnectQuery = _stripConnectService.Query(x => x.UserID == userId).Select();
                     var stripeConnect = stripeConnectQuery.FirstOrDefault();
 
                     // Delete old one and insert new one
@@ -193,11 +193,11 @@ namespace Plugin.Payment.Stripe.Controllers
                     response.Data.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
 
                     _stripConnectService.Insert(response.Data);
-                    await _unitOfWorkAsync.SaveChangesAsync();
+                    _unitOfWorkAsync.SaveChanges();
 
                     TempData[TempDataKeys.UserMessage] = "Connnect to stripe successfully!";
 
-                    return RedirectToAction("PaymentSetting");
+                    return View("~/Plugins/Plugin.Payment.Stripe/Views/PaymentSetting.cshtml", Plugin.Payment.Stripe.StripePlugin.Enum_StripeConnectStatus.Authorized);
                 }
                 else
                 {
@@ -208,20 +208,20 @@ namespace Plugin.Payment.Stripe.Controllers
             else
             {
                 var userId = User.Identity.GetUserId();
-                var stripeConnectQuery = await _stripConnectService.Query(x => x.UserID == userId).SelectAsync();
+                var stripeConnectQuery = _stripConnectService.Query(x => x.UserID == userId).Select();
                 var stripeConnect = stripeConnectQuery.FirstOrDefault();
 
                 if (stripeConnect != null)
-                    return View(Plugin.Payment.Stripe.StripePlugin.Enum_StripeConnectStatus.Authorized);
+                    return View("~/Plugins/Plugin.Payment.Stripe/Views/PaymentSetting.cshtml", Plugin.Payment.Stripe.StripePlugin.Enum_StripeConnectStatus.Authorized);
             }
 
-            return View(Plugin.Payment.Stripe.StripePlugin.Enum_StripeConnectStatus.None);
+            return View("~/Plugins/Plugin.Payment.Stripe/Views/PaymentSetting.cshtml", Plugin.Payment.Stripe.StripePlugin.Enum_StripeConnectStatus.None);
         }
         #endregion
 
         #region Admin Method
         public ActionResult Configure()
-        {            
+        {
             // Get payment info
             var model = new PaymentSettingModel()
             {
@@ -235,7 +235,7 @@ namespace Plugin.Payment.Stripe.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Configure(PaymentSettingModel model)
+        public ActionResult Configure(PaymentSettingModel model)
         {
             var stripeApiKey = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, StripePlugin.SettingStripeApiKey);
             stripeApiKey.Value = model.StripeApiKey;
@@ -249,7 +249,7 @@ namespace Plugin.Payment.Stripe.Controllers
             stripePublishableKey.Value = model.StripePublishableKey;
             _settingDictionaryService.SaveSettingDictionary(stripePublishableKey);
 
-            await _unitOfWorkAsync.SaveChangesAsync();
+            _unitOfWorkAsync.SaveChanges();
 
             _dataCacheService.RemoveCachedItem(CacheKeys.SettingDictionary);
             _dataCacheService.RemoveCachedItem(CacheKeys.Settings);

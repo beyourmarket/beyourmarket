@@ -1,5 +1,4 @@
-﻿@model Enum_StripeConnectStatus
-@{
+﻿@{
     ViewBag.Title = "Payment Settings";
 }
 
@@ -24,11 +23,9 @@
                                 <hr />
                                 <h5>
                                     Payout information
-                                </h5>
+                                </h5>                                
 
-                                @Html.Partial("_UserMessage")
-
-                                @Html.Widget(WidgetZone.Payment)
+                                @Html.Widget(WidgetZone.PaymentSetting)
                             </div>
 
                         </div>

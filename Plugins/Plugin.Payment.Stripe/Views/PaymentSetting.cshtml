@@ -1,13 +1,15 @@
-﻿@model Plugin.Payment.Models.PaymentSettingModel
+﻿@model Plugin.Payment.Stripe.StripePlugin.Enum_StripeConnectStatus
 @{
     ViewBag.Title = "Payment Settings";
 }
+
+@Html.Partial("_UserMessage")
 
 <p>
     To accept payments you need to connect your <a href="https://stripe.com" target="_blank">Stripe</a> account with products.
 </p>
 
-@if (Model == BeYourMarket.Model.Enum.Enum_StripeConnectStatus.None)
+@if (Model == Plugin.Payment.Stripe.StripePlugin.Enum_StripeConnectStatus.None)
 {
     <p>
         <a href="@CacheHelper.StripeConnectUrl" class="stripe-connect">
@@ -17,7 +19,7 @@
 }
 else
 {
-    <form action="@Url.Action("PaymentSettingDeauthorize", "Payment")" method="post">
+    <form action="@Url.Action("PaymentSettingDeauthorize")" method="post">
         <button class="stripe-connect">
             <span>Disconnect with Stripe</span>
         </button>
