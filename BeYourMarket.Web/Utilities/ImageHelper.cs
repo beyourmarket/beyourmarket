@@ -16,19 +16,19 @@ namespace BeYourMarket.Web.Utilities
             DateTime lastWriteTime = File.GetLastWriteTime(HostingEnvironment.MapPath(filePath));
 
             // display version in dex format
-            return string.Format("{0}?v={1:x}", filePath, lastWriteTime.Ticks);
+            return string.Format("{0}?v={1:x}", VirtualPathUtility.ToAbsolute(filePath), lastWriteTime.Ticks);
         }
 
         public static bool HasImage(int id)
         {
-            var filePath = string.Format("/images/item/{0}.jpg", id.ToString(fileFormat));
+            var filePath = string.Format("~/images/item/{0}.jpg", id.ToString(fileFormat));
 
             return File.Exists(HostingEnvironment.MapPath(filePath));
         }
 
         public static string GetItemImagePath(int id)
         {
-            var filePath = string.Format("/images/item/{0}.jpg", id.ToString(fileFormat));
+            var filePath = string.Format("~/images/item/{0}.jpg", id.ToString(fileFormat));
             if (File.Exists(HostingEnvironment.MapPath(filePath)))
             {
                 return ImageVersion(filePath);
@@ -41,7 +41,7 @@ namespace BeYourMarket.Web.Utilities
 
         public static string GetUserProfileImagePath(string name)
         {
-            var filePath = string.Format("/images/profile/{0}.jpg", name);
+            var filePath = string.Format("~/images/profile/{0}.jpg", name);
             if (File.Exists(HostingEnvironment.MapPath(filePath)))
             {
                 return ImageVersion(filePath);
@@ -54,7 +54,7 @@ namespace BeYourMarket.Web.Utilities
 
         public static string GetCommunityImagePath(string name, string format = "jpg", bool returnEmptyIfNotFound = false)
         {
-            var filePath = string.Format("/images/community/{0}.{1}", name, format);
+            var filePath = string.Format("~/images/community/{0}.{1}", name, format);
             if (File.Exists(HostingEnvironment.MapPath(filePath)))
             {
                 return ImageVersion(filePath);
