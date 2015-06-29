@@ -4,8 +4,8 @@
 
 @{
     var settings = CacheHelper.Settings;
-    var themeCss = string.Format("/Themes/{0}/Content/theme.css", CacheHelper.Settings.Theme);
-    var themeJs = string.Format("/Themes/{0}/Scripts/theme.js", CacheHelper.Settings.Theme);
+    var themeCss = string.Format("~/Themes/{0}/Content/theme.css", CacheHelper.Settings.Theme);
+    var themeJs = string.Format("~/Themes/{0}/Scripts/theme.js", CacheHelper.Settings.Theme);
 }
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
 
     @Html.Partial("_GoogleAnalytics")
 
-    <link href="@themeCss" rel="stylesheet" />
+    <link href="@Url.Content(themeCss)" rel="stylesheet" />
 
     @RenderSection("styles", required: false)
 
@@ -77,7 +77,7 @@
     @Scripts.Render("~/bundles/js")
 
     <!-- Include Theme JS -->
-    <script src="@themeJs" type="text/javascript"></script>
+    <script src="@Url.Content(themeJs)" type="text/javascript"></script>
     <script src="~/Scripts/custom.js" type="text/javascript"></script>
 </body>
 </html>

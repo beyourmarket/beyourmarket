@@ -52,12 +52,15 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         public ActionResult CheckAndInstall(InstallModel model)
         {
             // Create folder if not exists
-            string subPath = "~/App_Data";
+            var subPaths = new string[] { "~/App_Data", "~/images/item", "~/images/profile" };
 
-            bool exists = System.IO.Directory.Exists(Server.MapPath(subPath));
+            foreach (var subPath in subPaths)
+            {
+                bool exists = System.IO.Directory.Exists(Server.MapPath(subPath));
 
-            if (!exists)
-                System.IO.Directory.CreateDirectory(Server.MapPath(subPath));
+                if (!exists)
+                    System.IO.Directory.CreateDirectory(Server.MapPath(subPath));   
+            }            
 
             ConnectionStringSettings connectionStringSettings = null;
             string connectionString = null;

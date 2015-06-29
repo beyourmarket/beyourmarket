@@ -51,10 +51,14 @@ namespace BeYourMarket.Web
                     string controllerName = rd.Values.ContainsKey("controller") ? rd.GetRequiredString("controller") : string.Empty;
                     string actionName = rd.Values.ContainsKey("action") ? rd.GetRequiredString("action") : string.Empty;
 
-                    if (!controllerName.Equals("install", StringComparison.InvariantCultureIgnoreCase))
+                    // check if it's bundles or content
+                    if (!(controllerName.Equals("bundles") || controllerName.Equals("content")))
                     {
-                        Response.RedirectToRoute("Install");
-                    }
+                        if (!controllerName.Equals("install", StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            Response.RedirectToRoute("Install");
+                        }
+                    }                                            
                 }
             }
 
