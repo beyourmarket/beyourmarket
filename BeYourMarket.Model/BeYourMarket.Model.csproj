@@ -95,7 +95,6 @@
     <Compile Include="Models\Mapping\MetaCategoryMap.cs" />
     <Compile Include="Models\Mapping\MetaFieldMap.cs" />
     <Compile Include="Models\Mapping\OrderMap.cs" />
-    <Compile Include="Models\Mapping\OrderTransactionMap.cs" />
     <Compile Include="Models\Mapping\PictureMap.cs" />
     <Compile Include="Models\Mapping\SettingDictionaryMap.cs" />
     <Compile Include="Models\Mapping\SettingMap.cs" />
@@ -104,7 +103,6 @@
     <Compile Include="Models\MetaCategory.cs" />
     <Compile Include="Models\MetaField.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\OrderTransaction.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Models\SettingDictionary.cs" />

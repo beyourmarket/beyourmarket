@@ -66,6 +66,7 @@
     <Compile Include="Controllers\IPaymentController.cs" />
     <Compile Include="Helpers\CommonHelper.cs" />
     <Compile Include="Plugins\BasePlugin.cs" />
+    <Compile Include="Plugins\IDependencyRegister.cs" />
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\IPluginFinder.cs" />
     <Compile Include="Plugins\IWidgetPlugin.cs" />

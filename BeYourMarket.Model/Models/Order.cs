@@ -5,11 +5,6 @@ namespace BeYourMarket.Model.Models
 {
     public partial class Order : Repository.Pattern.Ef6.Entity
     {
-        public Order()
-        {
-            this.OrderTransactions = new List<OrderTransaction>();
-        }
-
         public int ID { get; set; }
         public Nullable<System.DateTime> FromDate { get; set; }
         public Nullable<System.DateTime> ToDate { get; set; }
@@ -28,6 +23,5 @@ namespace BeYourMarket.Model.Models
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual AspNetUser AspNetUser1 { get; set; }
         public virtual Item Item { get; set; }
-        public virtual ICollection<OrderTransaction> OrderTransactions { get; set; }
     }
 }

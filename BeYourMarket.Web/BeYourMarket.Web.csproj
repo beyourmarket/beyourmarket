@@ -297,8 +297,6 @@
     <Compile Include="Models\LanguageSelectorModel.cs" />
     <Compile Include="Models\MetaFieldModel.cs" />
     <Compile Include="Models\NavigationSideModel.cs" />
-    <Compile Include="Models\OrderTransactionModel.cs" />
-    <Compile Include="Models\Grids\TransactionGrid.cs" />
     <Compile Include="Models\Grids\OrdersGrid.cs" />
     <Compile Include="Models\Grids\ListingsGrid.cs" />
     <Compile Include="Models\IdentityModels.cs" />

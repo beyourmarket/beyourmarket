@@ -1,0 +1,52 @@
+﻿using BeYourMarket.Core.Plugins;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
+using Repository.Pattern.Repositories;
+using Plugin.Payment.Stripe.Data;
+using Repository.Pattern.Ef6;
+using Plugin.Payment.Services;
+
+namespace Plugin.Payment.Stripe
+{
+    public class DependencyRegister : IDependencyRegister
+    {
+        public void Register(Microsoft.Practices.Unity.IUnityContainer container)
+        {
+        //http://stackoverflow.com/questions/4059991/microsoft-unity-how-to-specify-a-certain-parameter-in-constructor
+
+            container.RegisterType<Repository.Pattern.DataContext.IDataContextAsync, StripeContext>("dataContextStripe",
+                new PerRequestLifetimeManager());
+
+            container.RegisterType<Repository.Pattern.UnitOfWork.IUnitOfWorkAsync, UnitOfWork>("unitOfWorkStripe",
+                new PerRequestLifetimeManager(),
+                new InjectionConstructor(
+                    new ResolvedParameter<Repository.Pattern.DataContext.IDataContextAsync>("dataContextStripe")
+                ));
+
+            container.RegisterType<IRepositoryAsync<StripeConnect>, Repository<StripeConnect>>(
+                new InjectionConstructor(
+                    new ResolvedParameter<Repository.Pattern.DataContext.IDataContextAsync>("dataContextStripe"),
+                    new ResolvedParameter<Repository.Pattern.UnitOfWork.IUnitOfWorkAsync>("unitOfWorkStripe")
+                ));
+
+            container.RegisterType<IRepositoryAsync<StripeTransaction>, Repository<StripeTransaction>>(
+                new InjectionConstructor(
+                    new ResolvedParameter<Repository.Pattern.DataContext.IDataContextAsync>("dataContextStripe"),
+                    new ResolvedParameter<Repository.Pattern.UnitOfWork.IUnitOfWorkAsync>("unitOfWorkStripe")
+                ));
+
+            container.RegisterType<IStripeConnectService, StripeConnectService>();
+            container.RegisterType<IStripeTransactionService, StripeTransactionService>();
+        }
+
+        public int Order
+        {
+            get { return 1; }
+        }
+    }
+}

@@ -40,7 +40,8 @@ namespace Plugin.Payment.Stripe
             return new List<string>
             { 
                 WidgetZone.Payment,
-                WidgetZone.PaymentSetting
+                WidgetZone.PaymentSetting,
+                WidgetZone.Transaction
             };
         }
 
@@ -76,6 +77,19 @@ namespace Plugin.Payment.Stripe
                 var routeValues = new RouteValueDictionary
                 {
                     { "action", "PaymentSetting" }, 
+                    { "controller", "PaymentStripe" }, 
+                    { "namespaces", "Plugin.Payment.Stripe.Controllers"},
+                    { "area", null},
+                    { "widgetZone", widgetZone}
+                };
+
+                return routeValues;
+            }
+            else if (widgetZone.Equals(WidgetZone.Transaction, StringComparison.InvariantCultureIgnoreCase))
+            {
+                var routeValues = new RouteValueDictionary
+                {
+                    { "action", "Transaction" }, 
                     { "controller", "PaymentStripe" }, 
                     { "namespaces", "Plugin.Payment.Stripe.Controllers"},
                     { "area", null},

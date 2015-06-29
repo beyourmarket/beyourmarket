@@ -21,7 +21,6 @@ namespace Plugin.Payment.Stripe.Data
         public string refresh_token { get; set; }
         public string access_token { get; set; }
         public string error { get; set; }
-        public string error_description { get; set; }
-        public virtual AspNetUser AspNetUser { get; set; }
+        public string error_description { get; set; }        
     }
 }

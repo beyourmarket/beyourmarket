@@ -28,6 +28,10 @@ using Postal;
 using System.Net.Mail;
 using System.Net;
 using BeYourMarket.Service.Models;
+using BeYourMarket.Core.Plugins;
+using BeYourMarket.Core.Controllers;
+using BeYourMarket.Core;
+using Microsoft.Practices.Unity;
 
 namespace BeYourMarket.Web.Areas.Admin.Controllers
 {
@@ -51,12 +55,13 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         private readonly IContentPageService _contentPageService;
 
         private readonly IOrderService _orderService;
-        private readonly IOrderTransactionService _orderTransactionService;        
 
         private readonly IEmailTemplateService _emailTemplateService;
 
         private readonly DataCacheService _dataCacheService;
         private readonly SqlDbService _sqlDbService;
+
+        private readonly IPluginFinder _pluginFinder;
 
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
         #endregion
@@ -108,13 +113,12 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             ICustomFieldService customFieldService,
             ICustomFieldCategoryService customFieldCategoryService,
             IContentPageService contentPageService,
-            IOrderService orderService,
-            IOrderTransactionService orderTransationService,
-            IStripeConnectService stripConnectService,
+            IOrderService orderService,            
             ISettingDictionaryService settingDictionaryService,
             IEmailTemplateService emailTemplateService,
             DataCacheService dataCacheService,
-            SqlDbService sqlDbService)
+            SqlDbService sqlDbService,
+            IPluginFinder pluginFinder)
         {
             _settingService = settingService;
             _settingDictionaryService = settingDictionaryService;
@@ -125,13 +129,14 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _customFieldCategoryService = customFieldCategoryService;
 
             _orderService = orderService;            
-            _orderTransactionService = orderTransationService;
 
             _emailTemplateService = emailTemplateService;
             _contentPageService = contentPageService;
             _unitOfWorkAsync = unitOfWorkAsync;
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
+
+            _pluginFinder = pluginFinder;
         }
         #endregion
 
@@ -155,18 +160,18 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
         public async Task<ActionResult> Transaction()
         {
-            var orders = await _orderService.Query(x => x.Status == (int)Enum_OrderStatus.Confirmed).SelectAsync();
+            //var orders = await _orderService.Query(x => x.Status == (int)Enum_OrderStatus.Confirmed).SelectAsync();
 
-            var transactionPayment = await _orderTransactionService.Query().SelectAsync();
+            //var transactionPayment = await _orderTransactionService.Query().SelectAsync();
 
-            var transactionGridPayment = new TransactionGrid(transactionPayment.AsQueryable().OrderByDescending(x => x.Created));
+            //var transactionGridPayment = new TransactionGrid(transactionPayment.AsQueryable().OrderByDescending(x => x.Created));
 
-            var model = new OrderTransactionModel()
-            {
-                TransactionPayment = transactionGridPayment
-            };
+            //var model = new OrderTransactionModel()
+            //{
+            //    TransactionPayment = transactionGridPayment
+            //};
 
-            return View(model);
+            return View();
         }
 
         public async Task<ActionResult> PaymentSetting()
@@ -225,46 +230,22 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             if (order == null)
                 return new HttpNotFoundResult();
 
-            // Get the latest successful transaction
-            var transactionQuery = await _orderTransactionService.Query(x => x.OrderID == id && string.IsNullOrEmpty(x.FailureCode)).SelectAsync();
-            var transaction = transactionQuery.OrderByDescending(x => x.Created).FirstOrDefault();
+            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IWidgetPlugin>("Plugin.Payment.Stripe");
+            if (descriptor == null)
+                return new HttpNotFoundResult("Not found");
 
-            if (transaction == null)
+            var controllerType = descriptor.Instance<IWidgetPlugin>().GetControllerType();
+            var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
+
+            string message = string.Empty;
+            var orderResult = controller.OrderAction(id, status, out message);
+
+            var result = new
             {
-                var resultFailure = new { Success = "false", Message = "Transaction not found" };
-                return Json(resultFailure, JsonRequestBehavior.AllowGet);
-            }
-
-            if (status == (int)Enum_OrderStatus.Cancelled)
-            {
-                // Update order
-                order.Modified = DateTime.Now;
-                order.Status = status;
-                order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
-                _orderService.Update(order);
-
-            }
-            else if (status == (int)Enum_OrderStatus.Confirmed)
-            {
-                // Update order
-                order.Modified = DateTime.Now;
-                order.Status = status;
-                order.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
-                _orderService.Update(order);
-
-                // Update Transaction
-                transaction.IsCaptured = true;
-                transaction.LastUpdated = DateTime.Now;
-                _orderTransactionService.Update(transaction);
-
-                // Capture payment
-                var chargeService = new StripeChargeService(CacheHelper.GetSettingDictionary(Enum_SettingKey.StripeApiKey).Value);
-                StripeCharge stripeCharge = chargeService.Capture(transaction.ChargeID);
-            }
-
-            await _unitOfWorkAsync.SaveChangesAsync();
-
-            var result = new { Success = "true", Message = "" };
+                Success = orderResult,
+                Message = message
+            };
+           
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         #endregion

@@ -85,8 +85,6 @@
     <Compile Include="ItemStatService.cs" />
     <Compile Include="AspNetUserService.cs" />
     <Compile Include="SqlDbService.cs" />
-    <Compile Include="TransactionService.cs" />
-    <Compile Include="StripeConnectService.cs" />
     <Compile Include="SettingService.cs" />
   </ItemGroup>
   <ItemGroup>

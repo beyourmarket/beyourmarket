@@ -1,6 +1,5 @@
 ﻿using BeYourMarket.Core.Web;
 using BeYourMarket.Model.Enum;
-using BeYourMarket.Model.Models;
 using BeYourMarket.Service;
 using Plugin.Payment.Models;
 using Repository.Pattern.UnitOfWork;
@@ -15,6 +14,11 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using RestSharp;
 using BeYourMarket.Core.Controllers;
+using Plugin.Payment.Stripe.Models;
+using Plugin.Payment.Stripe.Models.Grids;
+using Plugin.Payment.Services;
+using Plugin.Payment.Stripe.Data;
+using Microsoft.Practices.Unity;
 
 namespace Plugin.Payment.Stripe.Controllers
 {
@@ -24,7 +28,8 @@ namespace Plugin.Payment.Stripe.Controllers
         private readonly DataCacheService _dataCacheService;
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
         private readonly IOrderService _orderService;
-        private readonly IOrderTransactionService _orderTransactionService;
+
+        private readonly IStripeTransactionService _transactionService;
         private readonly IStripeConnectService _stripConnectService;
 
         public PaymentStripeController(
@@ -32,7 +37,7 @@ namespace Plugin.Payment.Stripe.Controllers
             IUnitOfWorkAsync unitOfWorkAsync,
             DataCacheService dataCacheService,
             IOrderService orderService,
-            IOrderTransactionService orderTransationService,
+            IStripeTransactionService transationService,
             IStripeConnectService stripConnectService)
         {
             _settingDictionaryService = settingDictionaryService;
@@ -40,8 +45,8 @@ namespace Plugin.Payment.Stripe.Controllers
             _dataCacheService = dataCacheService;
 
             _orderService = orderService;
-            _orderTransactionService = orderTransationService;
 
+            _transactionService = transationService;
             _stripConnectService = stripConnectService;
         }
 
@@ -50,7 +55,7 @@ namespace Plugin.Payment.Stripe.Controllers
         /// Frontend
         /// </summary>
         /// <returns></returns>
-        public ActionResult Payment(Order additionalData)
+        public ActionResult Payment(BeYourMarket.Model.Models.Order additionalData)
         {
             return View("~/Plugins/Plugin.Payment.Stripe/Views/Payment.cshtml", additionalData);
         }
@@ -99,7 +104,7 @@ namespace Plugin.Payment.Stripe.Controllers
             _orderService.Update(order);
 
             // Save transaction
-            var transaction = new OrderTransaction()
+            var transaction = new StripeTransaction()
             {
                 OrderID = id,
                 ChargeID = stripeCharge.Id,
@@ -112,9 +117,10 @@ namespace Plugin.Payment.Stripe.Controllers
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             };
 
-            _orderTransactionService.Insert(transaction);
+            _transactionService.Insert(transaction);
 
             await _unitOfWorkAsync.SaveChangesAsync();
+            BeYourMarket.Core.ContainerManager.GetConfiguredContainer().Resolve<IUnitOfWorkAsync>("unitOfWorkStripe").SaveChanges();            
 
             ClearCache();
 
@@ -226,7 +232,7 @@ namespace Plugin.Payment.Stripe.Controllers
             var order = _orderService.Find(id);
 
             // Get the latest successful transaction
-            var transactionQuery = _orderTransactionService.Query(x => x.OrderID == id && string.IsNullOrEmpty(x.FailureCode)).Select();
+            var transactionQuery = _transactionService.Query(x => x.OrderID == id && string.IsNullOrEmpty(x.FailureCode)).Select();
             var transaction = transactionQuery.OrderByDescending(x => x.Created).FirstOrDefault();
 
             if (transaction == null)
@@ -255,7 +261,7 @@ namespace Plugin.Payment.Stripe.Controllers
                 // Update Transaction
                 transaction.IsCaptured = true;
                 transaction.LastUpdated = DateTime.Now;
-                _orderTransactionService.Update(transaction);
+                _transactionService.Update(transaction);
 
                 // Capture payment
                 var chargeService = new StripeChargeService(CacheHelper.GetSettingDictionary(StripePlugin.SettingStripeApiKey).Value);
@@ -263,8 +269,44 @@ namespace Plugin.Payment.Stripe.Controllers
             }
 
             _unitOfWorkAsync.SaveChanges();
+            BeYourMarket.Core.ContainerManager.GetConfiguredContainer().Resolve<IUnitOfWorkAsync>("unitOfWorkStripe").SaveChanges();            
 
             return true;
+        }
+
+        public ActionResult Transaction()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var orders = _orderService.Query(x => x.Status == (int)Enum_OrderStatus.Confirmed && (x.UserProvider == userId || x.UserReceiver == userId)).Select();
+
+            var orderIdPayment = orders.Where(x => x.UserProvider == userId).Select(x => x.ID);
+            var orderIdPayout = orders.Where(x => x.UserReceiver == userId).Select(x => x.ID);
+
+            var transactionPayment = _transactionService.Query(x => orderIdPayment.Contains(x.OrderID)).Select();
+            var transactionPayout = _transactionService.Query(x => orderIdPayout.Contains(x.OrderID)).Select();
+
+            // Set orders
+            foreach (var item in transactionPayment)
+            {
+                item.Order = orders.Where(x => x.ID == item.OrderID).FirstOrDefault();
+            }
+
+            foreach (var item in transactionPayout)
+            {
+                item.Order = orders.Where(x => x.ID == item.OrderID).FirstOrDefault();
+            }
+
+            var transactionGridPayment = new TransactionGrid(transactionPayment.AsQueryable().OrderByDescending(x => x.Created));
+            var transactionGridPayout = new TransactionGrid(transactionPayout.AsQueryable().OrderByDescending(x => x.Created));
+
+            var model = new OrderTransactionModel()
+            {
+                TransactionPayment = transactionGridPayment,
+                TransactionPayout = transactionGridPayout
+            };
+
+            return View("~/Plugins/Plugin.Payment.Stripe/Views/Transaction.cshtml", model);
         }
         #endregion
 

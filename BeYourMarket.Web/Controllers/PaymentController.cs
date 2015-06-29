@@ -43,7 +43,6 @@ namespace BeYourMarket.Web.Controllers
         private readonly IItemPictureService _itemPictureService;
         private readonly IPictureService _pictureService;
         private readonly IOrderService _orderService;
-        private readonly IOrderTransactionService _orderTransactionService;
         private readonly ICustomFieldService _customFieldService;
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
         private readonly ICustomFieldItemService _customFieldItemService;
@@ -89,7 +88,6 @@ namespace BeYourMarket.Web.Controllers
             IPictureService pictureService,
             IItemPictureService itemPictureService,
             IOrderService orderService,
-            IOrderTransactionService orderTransationService,
             ICustomFieldService customFieldService,
             ICustomFieldCategoryService customFieldCategoryService,
             ICustomFieldItemService customFieldItemService,
@@ -107,7 +105,6 @@ namespace BeYourMarket.Web.Controllers
             _pictureService = pictureService;
             _itemPictureService = itemPictureService;
             _orderService = orderService;
-            _orderTransactionService = orderTransationService;
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
             _customFieldItemService = customFieldItemService;
@@ -193,26 +190,7 @@ namespace BeYourMarket.Web.Controllers
 
         public async Task<ActionResult> Transaction()
         {
-            var userId = User.Identity.GetUserId();
-
-            var orders = await _orderService.Query(x => x.Status == (int)Enum_OrderStatus.Confirmed && (x.UserProvider == userId || x.UserReceiver == userId)).SelectAsync();
-
-            var orderIdPayment = orders.Where(x => x.UserProvider == userId).Select(x => x.ID);
-            var orderIdPayout = orders.Where(x => x.UserReceiver == userId).Select(x => x.ID);
-
-            var transactionPayment = await _orderTransactionService.Query(x => orderIdPayment.Contains(x.OrderID)).SelectAsync();
-            var transactionPayout = await _orderTransactionService.Query(x => orderIdPayout.Contains(x.OrderID)).SelectAsync();
-
-            var transactionGridPayment = new TransactionGrid(transactionPayment.AsQueryable().OrderByDescending(x => x.Created));
-            var transactionGridPayout = new TransactionGrid(transactionPayout.AsQueryable().OrderByDescending(x => x.Created));
-
-            var model = new OrderTransactionModel()
-            {
-                TransactionPayment = transactionGridPayment,
-                TransactionPayout = transactionGridPayout
-            };
-
-            return View(model);
+            return View();
         }
 
         public async Task<ActionResult> Order(Order order)

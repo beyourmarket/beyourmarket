@@ -32,7 +32,6 @@ namespace BeYourMarket.Model.Models
         public DbSet<MetaCategory> MetaCategories { get; set; }
         public DbSet<MetaField> MetaFields { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderTransaction> OrderTransactions { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<SettingDictionary> SettingDictionaries { get; set; }
         public DbSet<Setting> Settings { get; set; }
@@ -58,7 +57,6 @@ namespace BeYourMarket.Model.Models
             modelBuilder.Configurations.Add(new MetaCategoryMap());
             modelBuilder.Configurations.Add(new MetaFieldMap());
             modelBuilder.Configurations.Add(new OrderMap());
-            modelBuilder.Configurations.Add(new OrderTransactionMap());
             modelBuilder.Configurations.Add(new PictureMap());
             modelBuilder.Configurations.Add(new SettingDictionaryMap());
             modelBuilder.Configurations.Add(new SettingMap());

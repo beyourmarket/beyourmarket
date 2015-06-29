@@ -1,4 +1,4 @@
-﻿using BeYourMarket.Model.Models;
+﻿using Plugin.Payment.Stripe.Data;
 using Repository.Pattern.Repositories;
 using Service.Pattern;
 using System;

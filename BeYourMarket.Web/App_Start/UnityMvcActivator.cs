@@ -2,6 +2,9 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.Practices.Unity.Mvc;
 using BeYourMarket.Core;
+using System.Reflection;
+using System;
+using BeYourMarket.Core.Plugins;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(BeYourMarket.Web.App_Start.UnityWebActivator), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(BeYourMarket.Web.App_Start.UnityWebActivator), "Shutdown")]
@@ -22,16 +25,21 @@ namespace BeYourMarket.Web.App_Start
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
-            //http://stackoverflow.com/questions/699852/how-to-find-all-the-classes-which-implement-a-given-interface
-            //    var instances = from t in Assembly.GetExecutingAssembly().GetTypes()
-            //                    where t.GetInterfaces().Contains(typeof(ISomething))
-            //                             && t.GetConstructor(Type.EmptyTypes) != null
-            //                    select Activator.CreateInstance(t) as ISomething;
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-            //    foreach (var instance in instances)
-            //    {
-            //        instance.Foo(); // where Foo is a method of ISomething
-            //    }
+            //http://stackoverflow.com/questions/699852/how-to-find-all-the-classes-which-implement-a-given-interface
+            foreach (var assembly in assemblies)
+            {
+                var instances = from t in assembly.GetTypes()
+                                where t.GetInterfaces().Contains(typeof(IDependencyRegister))
+                                         && t.GetConstructor(Type.EmptyTypes) != null
+                                select Activator.CreateInstance(t) as IDependencyRegister;
+
+                foreach (var instance in instances.OrderBy(x => x.Order))
+                {
+                    instance.Register(container);
+                }   
+            }            
 
             // TODO: Uncomment if you want to use PerRequestLifetimeManager
             // Microsoft.Web.Infrastructure.DynamicModuleHelper.DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));

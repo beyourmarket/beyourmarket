@@ -53,7 +53,6 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         private readonly IContentPageService _contentPageService;
 
         private readonly IOrderService _orderService;
-        private readonly IOrderTransactionService _orderTransactionService;        
 
         private readonly IItemPictureService _itemPictureService;
         private readonly IPictureService _pictureService;        
@@ -115,7 +114,6 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             ICustomFieldItemService customFieldItemService,
             IContentPageService contentPageService,
             IOrderService orderService,
-            IOrderTransactionService orderTransationService,            
             ISettingDictionaryService settingDictionaryService,
             IEmailTemplateService emailTemplateService,
             IPictureService pictureService,
@@ -136,7 +134,6 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _customFieldItemService = customFieldItemService;
 
             _orderService = orderService;            
-            _orderTransactionService = orderTransationService;
 
             _emailTemplateService = emailTemplateService;
             _contentPageService = contentPageService;

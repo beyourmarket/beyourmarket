@@ -56,12 +56,6 @@ namespace BeYourMarket.Service
             get { return _container.Resolve<IItemStatService>(); }
         }
 
-
-        private IOrderTransactionService OrderTransactionService
-        {
-            get { return _container.Resolve<IOrderTransactionService>(); }
-        }
-
         private IOrderService OrderService
         {
             get { return _container.Resolve<IOrderService>(); }
@@ -139,7 +133,7 @@ namespace BeYourMarket.Service
 
                             statistics.ListingCount = ItemService.Queryable().Count();
                             statistics.UserCount = AspNetUserService.Queryable().Count();
-                            statistics.TransactionCount = OrderTransactionService.Queryable().Count();
+                            //statistics.TransactionCount = OrderTransactionService.Queryable().Count();
                             statistics.OrderCount = OrderService.Queryable().Count();
 
                             statistics.ItemsCountDictionary = ItemService.GetItemsCount(DateTime.Now.AddDays(-10));

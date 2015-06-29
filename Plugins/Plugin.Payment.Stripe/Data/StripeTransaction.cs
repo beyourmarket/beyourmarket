@@ -1,6 +1,7 @@
 ﻿using BeYourMarket.Model.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace Plugin.Payment.Stripe.Data
         public string FailureMessage { get; set; }
         public System.DateTime Created { get; set; }
         public System.DateTime LastUpdated { get; set; }
+
+        [NotMapped]
         public virtual Order Order { get; set; }
     }
 }

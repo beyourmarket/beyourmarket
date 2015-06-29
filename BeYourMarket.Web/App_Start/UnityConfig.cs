@@ -35,7 +35,6 @@ namespace BeYourMarket.Web.App_Start
                 .RegisterType<IRepositoryAsync<Picture>, Repository<Picture>>()
                 .RegisterType<IRepositoryAsync<Order>, Repository<Order>>()
                 .RegisterType<IRepositoryAsync<StripeConnect>, Repository<StripeConnect>>()
-                .RegisterType<IRepositoryAsync<OrderTransaction>, Repository<OrderTransaction>>()
                 .RegisterType<IRepositoryAsync<MetaField>, Repository<MetaField>>()
                 .RegisterType<IRepositoryAsync<MetaCategory>, Repository<MetaCategory>>()
                 .RegisterType<IRepositoryAsync<ItemMeta>, Repository<ItemMeta>>()
@@ -54,8 +53,6 @@ namespace BeYourMarket.Web.App_Start
                 .RegisterType<IItemPictureService, ItemPictureService>()
                 .RegisterType<IPictureService, PictureService>()
                 .RegisterType<IOrderService, OrderService>()
-                .RegisterType<IStripeConnectService, StripeConnectService>()
-                .RegisterType<IOrderTransactionService, OrderTransactionService>()
                 .RegisterType<ICustomFieldService, CustomFieldService>()
                 .RegisterType<ICustomFieldCategoryService, CustomFieldCategoryService>()
                 .RegisterType<ICustomFieldItemService, CustomFieldItemService>()
@@ -72,6 +69,8 @@ namespace BeYourMarket.Web.App_Start
             container
                 .RegisterType<IWidgetService, WidgetService>()
                 .RegisterType<IPluginFinder, PluginFinder>();
+
+
         }
     }
 }
