@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Routing;
+using BeYourMarket.Core.Extensions;
 
 namespace Plugin.Payment.Stripe
 {
@@ -177,6 +178,9 @@ namespace Plugin.Payment.Stripe
 
             _unitOfWorkAsync.SaveChanges();
 
+            var context = new Plugin.Payment.Stripe.Data.StripeContext();
+            context.DeletePluginData<Plugin.Payment.Stripe.Data.StripeContext>();
+            
             base.Uninstall();
         }
     }
