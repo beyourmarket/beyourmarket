@@ -203,7 +203,7 @@ namespace Plugin.Payment.Stripe.Controllers
                     response.Data.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
 
                     _stripConnectService.Insert(response.Data);
-                    _unitOfWorkAsync.SaveChanges();
+                    _unitOfWorkAsyncStripe.SaveChanges();
 
                     TempData[TempDataKeys.UserMessage] = "Connnect to stripe successfully!";
 
@@ -277,6 +277,11 @@ namespace Plugin.Payment.Stripe.Controllers
             return true;
         }
 
+        public bool HasPaymentMethod(string userId)
+        {
+            return _stripConnectService.Query(x => x.UserID == userId).Select().Any();
+        }
+
         public ActionResult Transaction()
         {
             var userId = User.Identity.GetUserId();
@@ -310,10 +315,11 @@ namespace Plugin.Payment.Stripe.Controllers
             };
 
             return View("~/Plugins/Plugin.Payment.Stripe/Views/Transaction.cshtml", model);
-        }
+        }        
         #endregion
 
         #region Admin Method
+        [Authorize(Roles = "Administrator")]
         public ActionResult Configure()
         {
             // Get payment info
@@ -328,6 +334,7 @@ namespace Plugin.Payment.Stripe.Controllers
             return View("~/Plugins/Plugin.Payment.Stripe/Views/Configure.cshtml", model);
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult Configure(PaymentSettingModel model)
         {
@@ -351,6 +358,23 @@ namespace Plugin.Payment.Stripe.Controllers
             TempData[TempDataKeys.UserMessage] = "Plugin updated!";
 
             return RedirectToAction("Plugins", "Plugin", new { area = "Admin" });
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public ActionResult TransactionOverview()
+        {
+            var orders = _orderService.Query(x => x.Status == (int)Enum_OrderStatus.Confirmed).SelectAsync();
+
+            var transactionPayment = _transactionService.Query().Select();
+
+            var transactionGridPayment = new TransactionGrid(transactionPayment.AsQueryable().OrderByDescending(x => x.Created));
+
+            var model = new OrderTransactionModel()
+            {
+                TransactionPayment = transactionGridPayment
+            };
+
+            return View("~/Plugins/Plugin.Payment.Stripe/Views/TransactionOverview.cshtml", model);
         }
         #endregion
     }

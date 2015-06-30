@@ -11,7 +11,7 @@ namespace BeYourMarket.Web.Extensions
     {
         public static MvcHtmlString Widget(this HtmlHelper helper, string widgetZone, object additionalData = null)
         {
-            return helper.Action("WidgetsByZone", "Widget", new { widgetZone = widgetZone, additionalData = additionalData });
+            return helper.Action("WidgetsByZone", "Widget", new { widgetZone = widgetZone, additionalData = additionalData, area = "" });
         }
     }
 }

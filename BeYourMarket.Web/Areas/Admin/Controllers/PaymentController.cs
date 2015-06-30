@@ -160,17 +160,6 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
         public async Task<ActionResult> Transaction()
         {
-            //var orders = await _orderService.Query(x => x.Status == (int)Enum_OrderStatus.Confirmed).SelectAsync();
-
-            //var transactionPayment = await _orderTransactionService.Query().SelectAsync();
-
-            //var transactionGridPayment = new TransactionGrid(transactionPayment.AsQueryable().OrderByDescending(x => x.Created));
-
-            //var model = new OrderTransactionModel()
-            //{
-            //    TransactionPayment = transactionGridPayment
-            //};
-
             return View();
         }
 

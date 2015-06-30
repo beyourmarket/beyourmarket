@@ -50,6 +50,7 @@ namespace Plugin.Widget.GoogleAnalytics.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult> Configure(string trackingID)
         {
             var settingExisting = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, GoogleAnalyticPlugin.SettingTrackingID);

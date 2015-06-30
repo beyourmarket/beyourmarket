@@ -200,16 +200,25 @@ namespace BeYourMarket.Web.Controllers
             if (item == null)
                 return new HttpNotFoundResult();
 
-            // Get payment method
-            //var stripeConnectQuery = await _stripConnectService.Query(x => x.UserID == item.UserID).SelectAsync();
+            // Check if payment method is setup on user or the platform
+            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IWidgetPlugin>(CacheHelper.Settings.Payment);
+            if (descriptor == null)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "The provider has not setup the payment option yet, please contact the provider.";
 
-            //if (!stripeConnectQuery.Any())
-            //{
-            //    TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-            //    TempData[TempDataKeys.UserMessage] = "The provider has not setup the payment option yet, please contact the provider.";
+                return RedirectToAction("Listing", "Listing", new { id = order.ItemID });
+            }
 
-            //    return RedirectToAction("Listing", "Listing", new { id = order.ItemID });
-            //}
+            var controllerType = descriptor.Instance<IWidgetPlugin>().GetControllerType();
+            var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
+            
+            if (controller.HasPaymentMethod(item.UserID)){
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "The provider has not setup the payment option yet, please contact the provider.";
+
+                return RedirectToAction("Listing", "Listing", new { id = order.ItemID });
+            }
 
             if (order.ID == 0)
             {
