@@ -154,7 +154,7 @@ namespace BeYourMarket.Core.Plugins
         {
             return GetPluginDescriptors<T>(loadMode)
                 .SingleOrDefault(p => p.SystemName.Equals(systemName, StringComparison.InvariantCultureIgnoreCase));
-        }
+        }        
 
         /// <summary>
         /// Reload plugins

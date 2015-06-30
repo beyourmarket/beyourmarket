@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using BeYourMarket.Web.Models;
 using BeYourMarket.Web.Utilities;
 using BeYourMarket.Model.Enum;
+using BeYourMarket.Core.Migrations;
 
 namespace BeYourMarket.Web.Areas.Admin.Controllers
 {

@@ -45,11 +45,6 @@ namespace BeYourMarket.Service
             }
         }
 
-        public static SettingDictionary GetSettingDictionary(Enum_SettingKey settingKey)
-        {
-            return GetSettingDictionary(settingKey.ToString());
-        }
-
         public static SettingDictionary GetSettingDictionary(string settingKey)
         {
             var setting = SettingDictionary.Where(x => x.Name == settingKey).FirstOrDefault();
@@ -76,7 +71,7 @@ namespace BeYourMarket.Service
         {
             get
             {
-                return string.Format("https://connect.stripe.com/oauth/authorize?response_type=code&amp;client_id={0}&amp;scope=read_write", GetSettingDictionary(Enum_SettingKey.StripeClientID).Value);
+                return string.Format("https://connect.stripe.com/oauth/authorize?response_type=code&amp;client_id={0}&amp;scope=read_write", GetSettingDictionary("StripeClientID").Value);
             }
         }
     }

@@ -1,21 +1,18 @@
-namespace BeYourMarket.Web.Migrations
+namespace BeYourMarket.Core.Migrations
 {
     using System;
-    using System.Configuration;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class ConfigurationInstall : DbMigrationsConfiguration<BeYourMarket.Model.Models.BeYourMarketContext>
+    internal sealed class Configuration<T> : DbMigrationsConfiguration<T> where T: DbContext
     {
-        public ConfigurationInstall()
+        public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-
-            TargetDatabase = new System.Data.Entity.Infrastructure.DbConnectionInfo("DefaultConnection");            
         }
 
-        protected override void Seed(BeYourMarket.Model.Models.BeYourMarketContext context)
+        protected override void Seed(T context)
         {
             //  This method will be called after migrating to the latest version.
 

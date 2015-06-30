@@ -10,6 +10,8 @@ using Repository.Pattern.Repositories;
 using Plugin.Payment.Stripe.Data;
 using Repository.Pattern.Ef6;
 using Plugin.Payment.Services;
+using Repository.Pattern.DataContext;
+using Repository.Pattern.UnitOfWork;
 
 namespace Plugin.Payment.Stripe
 {
@@ -19,10 +21,10 @@ namespace Plugin.Payment.Stripe
         {
         //http://stackoverflow.com/questions/4059991/microsoft-unity-how-to-specify-a-certain-parameter-in-constructor
 
-            container.RegisterType<Repository.Pattern.DataContext.IDataContextAsync, StripeContext>("dataContextStripe",
+            container.RegisterType<IDataContextAsync, StripeContext>("dataContextStripe",
                 new PerRequestLifetimeManager());
 
-            container.RegisterType<Repository.Pattern.UnitOfWork.IUnitOfWorkAsync, UnitOfWork>("unitOfWorkStripe",
+            container.RegisterType<IUnitOfWorkAsync, UnitOfWork>("unitOfWorkStripe",
                 new PerRequestLifetimeManager(),
                 new InjectionConstructor(
                     new ResolvedParameter<Repository.Pattern.DataContext.IDataContextAsync>("dataContextStripe")
@@ -30,14 +32,14 @@ namespace Plugin.Payment.Stripe
 
             container.RegisterType<IRepositoryAsync<StripeConnect>, Repository<StripeConnect>>(
                 new InjectionConstructor(
-                    new ResolvedParameter<Repository.Pattern.DataContext.IDataContextAsync>("dataContextStripe"),
-                    new ResolvedParameter<Repository.Pattern.UnitOfWork.IUnitOfWorkAsync>("unitOfWorkStripe")
+                    new ResolvedParameter<IDataContextAsync>("dataContextStripe"),
+                    new ResolvedParameter<IUnitOfWorkAsync>("unitOfWorkStripe")
                 ));
 
             container.RegisterType<IRepositoryAsync<StripeTransaction>, Repository<StripeTransaction>>(
                 new InjectionConstructor(
-                    new ResolvedParameter<Repository.Pattern.DataContext.IDataContextAsync>("dataContextStripe"),
-                    new ResolvedParameter<Repository.Pattern.UnitOfWork.IUnitOfWorkAsync>("unitOfWorkStripe")
+                    new ResolvedParameter<IDataContextAsync>("dataContextStripe"),
+                    new ResolvedParameter<IUnitOfWorkAsync>("unitOfWorkStripe")
                 ));
 
             container.RegisterType<IStripeConnectService, StripeConnectService>();

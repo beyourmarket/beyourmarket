@@ -1,4 +1,5 @@
-﻿using BeYourMarket.Service;
+﻿using BeYourMarket.Core.Web;
+using BeYourMarket.Service;
 using Repository.Pattern.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -59,6 +60,8 @@ namespace Plugin.Widget.GoogleAnalytics.Controllers
             await _unitOfWorkAsync.SaveChangesAsync();
 
             _dataCacheService.RemoveCachedItem(CacheKeys.SettingDictionary);
+
+            TempData[TempDataKeys.UserMessage] = "Plugin updated!";
 
             return RedirectToAction("Plugins", "Plugin", new { area = "Admin" });
         }

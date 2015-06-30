@@ -9,10 +9,11 @@ using BeYourMarket.Web.Areas.Admin.Models;
 using BeYourMarket.Web.Models;
 using BeYourMarket.Model.Enum;
 using System.IO;
+using BeYourMarket.Core.Migrations;
 
 namespace BeYourMarket.Web.Migrations
 {
-    class BeYourMarketDatabaseInitializer : CreateAndMigrateDatabaseInitializer<BeYourMarket.Model.Models.BeYourMarketContext, ConfigurationInstall>
+    public class BeYourMarketDatabaseInitializer : CreateAndMigrateDatabaseInitializer<BeYourMarket.Model.Models.BeYourMarketContext, ConfigurationInstall<BeYourMarket.Model.Models.BeYourMarketContext>>
     {
         #region Fields and properties
         public ApplicationUserManager UserManager
@@ -491,7 +492,7 @@ namespace BeYourMarket.Web.Migrations
             context.SettingDictionaries.Add(new Model.Models.SettingDictionary()
             {
                 SettingID = 1,
-                Name = Enum_SettingKey.StripeApiKey.ToString(),
+                Name = "StripeApiKey",
                 Value = "sk_test_kUNQFEh3YLbEFEa38tbeMJLV",
                 Created = DateTime.Now,
                 LastUpdated = DateTime.Now,
@@ -501,7 +502,7 @@ namespace BeYourMarket.Web.Migrations
             context.SettingDictionaries.Add(new Model.Models.SettingDictionary()
             {
                 SettingID = 1,
-                Name = Enum_SettingKey.StripePublishableKey.ToString(),
+                Name = "StripePublishableKey",
                 Value = "pk_test_EfbP8SfcALEJ8Jk2JxtSxmqe",
                 Created = DateTime.Now,
                 LastUpdated = DateTime.Now,
@@ -511,7 +512,7 @@ namespace BeYourMarket.Web.Migrations
             context.SettingDictionaries.Add(new Model.Models.SettingDictionary()
             {
                 SettingID = 1,
-                Name = Enum_SettingKey.StripeClientID.ToString(),
+                Name = "StripeClientID",
                 Value = "ca_6Rh18px61rjCEZIav5ItunZ1mKD8YjvU",
                 Created = DateTime.Now,
                 LastUpdated = DateTime.Now,

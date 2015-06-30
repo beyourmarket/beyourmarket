@@ -13,7 +13,6 @@ namespace BeYourMarket.Service
     public interface ISettingDictionaryService : IService<SettingDictionary>
     {
         void SaveSettingDictionary(SettingDictionary setting);
-        SettingDictionary GetSettingDictionary(int settingID, Enum_SettingKey settingKey);
         SettingDictionary GetSettingDictionary(int settingID, string settingKey);
     }
 
@@ -36,11 +35,6 @@ namespace BeYourMarket.Service
                 setting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
                 Update(setting);
             }
-        }
-
-        public SettingDictionary GetSettingDictionary(int settingID, Enum_SettingKey settingKey)
-        {
-            return GetSettingDictionary(settingID, settingKey.ToString());
         }
 
         public SettingDictionary GetSettingDictionary(int settingID, string settingKey)

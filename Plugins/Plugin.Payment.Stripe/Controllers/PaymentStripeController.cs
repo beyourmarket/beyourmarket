@@ -31,6 +31,7 @@ namespace Plugin.Payment.Stripe.Controllers
 
         private readonly IStripeTransactionService _transactionService;
         private readonly IStripeConnectService _stripConnectService;
+        private readonly IUnitOfWorkAsync _unitOfWorkAsyncStripe;
 
         public PaymentStripeController(
             ISettingDictionaryService settingDictionaryService,
@@ -38,7 +39,8 @@ namespace Plugin.Payment.Stripe.Controllers
             DataCacheService dataCacheService,
             IOrderService orderService,
             IStripeTransactionService transationService,
-            IStripeConnectService stripConnectService)
+            IStripeConnectService stripConnectService,
+            [Dependency("unitOfWorkStripe")] IUnitOfWorkAsync unitOfWorkAsyncStripe)
         {
             _settingDictionaryService = settingDictionaryService;
             _unitOfWorkAsync = unitOfWorkAsync;
@@ -48,6 +50,7 @@ namespace Plugin.Payment.Stripe.Controllers
 
             _transactionService = transationService;
             _stripConnectService = stripConnectService;
+            _unitOfWorkAsyncStripe = unitOfWorkAsyncStripe;
         }
 
         #region FrontEnd Method
@@ -96,7 +99,7 @@ namespace Plugin.Payment.Stripe.Controllers
             charge.Capture = false;
             charge.Description = order.Description;
             charge.Destination = stripeConnect.stripe_user_id;
-            var chargeService = new StripeChargeService(CacheHelper.GetSettingDictionary(Enum_SettingKey.StripeApiKey).Value);
+            var chargeService = new StripeChargeService(CacheHelper.GetSettingDictionary("StripeApiKey").Value);
             StripeCharge stripeCharge = chargeService.Create(charge);
 
             // Update order status
@@ -120,7 +123,7 @@ namespace Plugin.Payment.Stripe.Controllers
             _transactionService.Insert(transaction);
 
             await _unitOfWorkAsync.SaveChangesAsync();
-            BeYourMarket.Core.ContainerManager.GetConfiguredContainer().Resolve<IUnitOfWorkAsync>("unitOfWorkStripe").SaveChanges();            
+            await _unitOfWorkAsyncStripe.SaveChangesAsync();            
 
             ClearCache();
 
@@ -159,8 +162,8 @@ namespace Plugin.Payment.Stripe.Controllers
             var client = new RestClient("https://connect.stripe.com/oauth/deauthorize");
 
             var request = new RestRequest(Method.POST);
-            request.AddParameter("client_secret", CacheHelper.GetSettingDictionary(Enum_SettingKey.StripeApiKey).Value);
-            request.AddParameter("client_id", CacheHelper.GetSettingDictionary(Enum_SettingKey.StripeClientID).Value);
+            request.AddParameter("client_secret", CacheHelper.GetSettingDictionary("StripeApiKey").Value);
+            request.AddParameter("client_id", CacheHelper.GetSettingDictionary("StripeClientID").Value);
             request.AddParameter("stripe_user_id", stripeConnect.stripe_user_id);
 
             var response = client.Execute(request);
@@ -178,7 +181,7 @@ namespace Plugin.Payment.Stripe.Controllers
             {
                 var client = new RestClient("https://connect.stripe.com/oauth/token");
                 var request = new RestRequest(Method.POST);
-                request.AddParameter("client_secret", CacheHelper.GetSettingDictionary(Enum_SettingKey.StripeApiKey).Value);
+                request.AddParameter("client_secret", CacheHelper.GetSettingDictionary("StripeApiKey").Value);
                 request.AddParameter("code", code);
                 request.AddParameter("grant_type", "authorization_code");
 
@@ -269,7 +272,7 @@ namespace Plugin.Payment.Stripe.Controllers
             }
 
             _unitOfWorkAsync.SaveChanges();
-            BeYourMarket.Core.ContainerManager.GetConfiguredContainer().Resolve<IUnitOfWorkAsync>("unitOfWorkStripe").SaveChanges();            
+            _unitOfWorkAsyncStripe.SaveChanges();
 
             return true;
         }
@@ -345,6 +348,7 @@ namespace Plugin.Payment.Stripe.Controllers
             _dataCacheService.RemoveCachedItem(CacheKeys.SettingDictionary);
             _dataCacheService.RemoveCachedItem(CacheKeys.Settings);
 
+            TempData[TempDataKeys.UserMessage] = "Plugin updated!";
 
             return RedirectToAction("Plugins", "Plugin", new { area = "Admin" });
         }

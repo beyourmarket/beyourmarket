@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace BeYourMarket.Web.Migrations
+namespace BeYourMarket.Core.Migrations
 {
     //http://www.codeproject.com/Articles/118532/Saving-Connection-Strings-to-app-config
     public class ConnectionStringHelper

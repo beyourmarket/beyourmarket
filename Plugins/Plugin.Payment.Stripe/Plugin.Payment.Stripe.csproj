@@ -138,6 +138,7 @@
     <Compile Include="Data\StripeConnectMap.cs" />
     <Compile Include="Data\StripeContext.cs" />
     <Compile Include="DependencyRegister.cs" />
+    <Compile Include="Migrations\StripeDatabaseInitializer.cs" />
     <Compile Include="Models\Grids\TransactionGrid.cs" />
     <Compile Include="Models\OrderTransactionModel.cs" />
     <Compile Include="Models\PaymentSettingModel.cs" />

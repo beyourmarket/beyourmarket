@@ -2,6 +2,7 @@
 using BeYourMarket.Core.Plugins;
 using BeYourMarket.Model.Enum;
 using BeYourMarket.Service;
+using Plugin.Payment.Stripe.Migrations;
 using Repository.Pattern.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -112,6 +113,16 @@ namespace Plugin.Payment.Stripe
         /// </summary>
         public override void Install()
         {
+            // Initialize database
+            System.Data.Entity.Database.SetInitializer(new StripeDatabaseInitializer());
+
+            // initialize and create database
+            using (var context = new Plugin.Payment.Stripe.Data.StripeContext())
+            {
+                context.Database.Initialize(true);
+                context.SaveChanges();
+            }
+
             // Add settings
             _settingDictionaryService.Insert(new BeYourMarket.Model.Models.SettingDictionary()
             {

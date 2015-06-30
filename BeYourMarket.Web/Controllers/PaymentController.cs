@@ -128,7 +128,7 @@ namespace BeYourMarket.Web.Controllers
             if (order == null)
                 return new HttpNotFoundResult();
 
-            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IWidgetPlugin>("Plugin.Payment.Stripe");
+            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IWidgetPlugin>(CacheHelper.Settings.Payment);
             if (descriptor == null)
                 return new HttpNotFoundResult("Not found");
 

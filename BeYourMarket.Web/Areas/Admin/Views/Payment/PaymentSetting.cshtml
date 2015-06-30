@@ -14,30 +14,16 @@
                     </div>
                     <div class="panel-body">
                         <h4>
-                            <i class="fa fa-cc-stripe"></i> Stripe Settings
+                            <i class="fa fa-dollar"></i> Payment Methods
                         </h4>
                         <hr />
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Stripe Client ID</label>
+                            <label class="col-md-2 control-label">Plugin</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="StripeClientID" name="StripeClientID" value="@Model.StripeClientID">
+                                @Html.DropDownListFor(m => m.Setting.Payment, new SelectList(Model.PaymentPlugins, "SystemName", "SystemName", Model.Setting.Payment), String.Empty, new { @class = "form-control" })                                
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-2 control-label">Stripe Client Secret (Api Key)</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="StripeApiKey" name="StripeApiKey" value="@Model.StripeApiKey">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-2 control-label">Stripe Publishable Key</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="StripePublishableKey" name="StripePublishableKey" value="@Model.StripePublishableKey">
-                            </div>
-                        </div>
+                        </div>                        
 
                     </div>
 

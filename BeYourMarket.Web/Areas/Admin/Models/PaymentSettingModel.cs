@@ -1,4 +1,5 @@
-﻿using BeYourMarket.Model.Enum;
+﻿using BeYourMarket.Core.Plugins;
+using BeYourMarket.Model.Enum;
 using BeYourMarket.Model.Models;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,8 @@ namespace BeYourMarket.Web.Areas.Admin.Models
 {
     public class PaymentSettingModel
     {
-        public string StripeClientID { get; set; }
-
-        public string StripeApiKey { get; set; }
-
-        public string StripePublishableKey { get; set; }        
-
         public Setting Setting { get; set; }
+
+        public List<PluginDescriptor> PaymentPlugins { get; set; }
     }
 }

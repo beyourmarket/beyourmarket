@@ -1,4 +1,5 @@
-﻿using BeYourMarket.Web.Binders;
+﻿using BeYourMarket.Core.Migrations;
+using BeYourMarket.Web.Binders;
 using BeYourMarket.Web.Migrations;
 using BeYourMarket.Web.Themes;
 using System;

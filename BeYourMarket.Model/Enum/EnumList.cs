@@ -81,14 +81,7 @@ namespace BeYourMarket.Model.Enum
         Page60 = 60,
         [Description("100")]
         Page100 = 100
-    }
-
-    public enum Enum_SettingKey
-    {
-        StripeClientID,
-        StripeApiKey,
-        StripePublishableKey
-    }
+    }    
 
     public enum Enum_UserType
     {

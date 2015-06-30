@@ -281,10 +281,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\BeYourMarketDatabaseInitializer.cs" />
-    <Compile Include="Migrations\ConfigurationInstall.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Migrations\CreateAndMigrateDatabaseInitializer.cs" />
-    <Compile Include="Migrations\ConnectionStringHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppearanceModel.cs" />
     <Compile Include="Models\ContactModel.cs" />

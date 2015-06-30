@@ -7,7 +7,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Web;
 
-namespace BeYourMarket.Web.Migrations
+namespace BeYourMarket.Core.Migrations
 {
     //http://stackoverflow.com/questions/15796115/how-to-create-initializer-to-create-and-migrate-mysql-database
     //http://stackoverflow.com/questions/5559043/entity-framework-code-first-two-foreign-keys-from-same-table

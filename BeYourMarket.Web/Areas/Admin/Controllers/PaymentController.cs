@@ -113,7 +113,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             ICustomFieldService customFieldService,
             ICustomFieldCategoryService customFieldCategoryService,
             IContentPageService contentPageService,
-            IOrderService orderService,            
+            IOrderService orderService,
             ISettingDictionaryService settingDictionaryService,
             IEmailTemplateService emailTemplateService,
             DataCacheService dataCacheService,
@@ -128,7 +128,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
 
-            _orderService = orderService;            
+            _orderService = orderService;
 
             _emailTemplateService = emailTemplateService;
             _contentPageService = contentPageService;
@@ -180,9 +180,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             var model = new PaymentSettingModel()
             {
                 Setting = CacheHelper.Settings,
-                StripeClientID = CacheHelper.GetSettingDictionary(Enum_SettingKey.StripeClientID).Value,
-                StripeApiKey = CacheHelper.GetSettingDictionary(Enum_SettingKey.StripeApiKey).Value,
-                StripePublishableKey = CacheHelper.GetSettingDictionary(Enum_SettingKey.StripePublishableKey).Value
+                PaymentPlugins = _pluginFinder.GetPluginDescriptors(LoadPluginsMode.InstalledOnly, "Payment").ToList()
             };
 
             return View(model);
@@ -193,6 +191,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         {
             var setting = _settingService.Queryable().FirstOrDefault();
 
+            setting.Payment = model.Setting.Payment;
             setting.TransactionFeePercent = model.Setting.TransactionFeePercent;
             setting.TransactionMinimumFee = model.Setting.TransactionMinimumFee;
             setting.TransactionMinimumSize = model.Setting.TransactionMinimumSize;
@@ -201,18 +200,6 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             setting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 
             _settingService.Update(setting);
-
-            var stripeApiKey = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, Enum_SettingKey.StripeApiKey);
-            stripeApiKey.Value = model.StripeApiKey;
-            _settingDictionaryService.SaveSettingDictionary(stripeApiKey);
-
-            var stripeClientID = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, Enum_SettingKey.StripeClientID);
-            stripeClientID.Value = model.StripeClientID;
-            _settingDictionaryService.SaveSettingDictionary(stripeClientID);
-
-            var stripePublishableKey = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, Enum_SettingKey.StripePublishableKey);
-            stripePublishableKey.Value = model.StripePublishableKey;
-            _settingDictionaryService.SaveSettingDictionary(stripePublishableKey);
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
@@ -230,7 +217,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             if (order == null)
                 return new HttpNotFoundResult();
 
-            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IWidgetPlugin>("Plugin.Payment.Stripe");
+            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IWidgetPlugin>(CacheHelper.Settings.Payment);
             if (descriptor == null)
                 return new HttpNotFoundResult("Not found");
 
@@ -245,7 +232,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 Success = orderResult,
                 Message = message
             };
-           
+
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         #endregion

@@ -67,6 +67,9 @@ namespace BeYourMarket.Model.Models.Mapping
                 .IsRequired()
                 .HasMaxLength(250);
 
+            this.Property(t => t.Payment)
+                .HasMaxLength(250);
+
             // Table & Column Mappings
             this.ToTable("Settings");
             this.Property(t => t.ID).HasColumnName("ID");
@@ -95,6 +98,7 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.SignupText).HasColumnName("SignupText");
             this.Property(t => t.EmailConfirmedRequired).HasColumnName("EmailConfirmedRequired");
             this.Property(t => t.Theme).HasColumnName("Theme");
+            this.Property(t => t.Payment).HasColumnName("Payment");
             this.Property(t => t.Created).HasColumnName("Created");
             this.Property(t => t.LastUpdated).HasColumnName("LastUpdated");
         }
