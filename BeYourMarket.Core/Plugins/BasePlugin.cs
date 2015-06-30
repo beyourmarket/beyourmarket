@@ -29,5 +29,13 @@ namespace BeYourMarket.Core.Plugins
             PluginManager.MarkPluginAsUninstalled(this.PluginDescriptor.SystemName);
         }
 
+        /// <summary>
+        /// Enable/Disable plugin
+        /// </summary>
+        /// <param name="enable"></param>
+        public virtual void Enable(bool enable)
+        {
+            PluginManager.MarkPluginAsEnabled(this.PluginDescriptor.SystemName, enable);
+        }
     }
 }

@@ -115,6 +115,14 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                     pluginDescriptor.Instance().Uninstall();
                     TempData[TempDataKeys.UserMessage] = string.Format("{0} is uninstalled", systemName);
                     break;
+                case Enum_PluginAction.Enabled:
+                    pluginDescriptor.Instance().Enable(true);
+                    TempData[TempDataKeys.UserMessage] = string.Format("{0} is enabled", systemName);
+                    break;
+                case Enum_PluginAction.Disabled:
+                    pluginDescriptor.Instance().Enable(false);
+                    TempData[TempDataKeys.UserMessage] = string.Format("{0} is disabled", systemName);
+                    break;
                 default:
                     break;
             }                                    

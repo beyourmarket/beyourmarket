@@ -89,6 +89,7 @@
     <Compile Include="Plugins\PluginFinder.cs" />
     <Compile Include="Plugins\PluginInstalled.cs" />
     <Compile Include="Plugins\PluginManager.cs" />
+    <Compile Include="Plugins\WidgetBasePlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlatformVersion.cs" />
     <Compile Include="Services\IWidgetService.cs" />

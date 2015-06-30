@@ -118,8 +118,11 @@ namespace BeYourMarket.Core.Plugins
                             throw new Exception(string.Format("A plugin with '{0}' system name is already defined", pluginDescriptor.SystemName));
 
                         //set 'Installed' property
-                        pluginDescriptor.Installed = installedPluginSystemNames.Plugins
-                            .FirstOrDefault(x => x.Equals(pluginDescriptor.SystemName, StringComparison.InvariantCultureIgnoreCase)) != null;
+                        var pluginFound = installedPluginSystemNames.Plugins
+                            .FirstOrDefault(x => x.SystemName.Equals(pluginDescriptor.SystemName, StringComparison.InvariantCultureIgnoreCase));
+
+                        pluginDescriptor.Installed = pluginFound != null;
+                        pluginDescriptor.Enabled = pluginFound != null ? pluginFound.Enabled : false;
 
                         try
                         {
@@ -207,15 +210,24 @@ namespace BeYourMarket.Core.Plugins
                 }
 
             var pluginInstalled = PluginFileParser.ParseInstalledPluginsFile(GetInstalledPluginsFilePath());
-            bool alreadyMarkedAsInstalled = pluginInstalled.Plugins
-                                .FirstOrDefault(x => x.Equals(systemName, StringComparison.InvariantCultureIgnoreCase)) != null;
+            var pluginFound = pluginInstalled.Plugins
+                                .FirstOrDefault(x => x.SystemName.Equals(systemName, StringComparison.InvariantCultureIgnoreCase));
+
+            bool alreadyMarkedAsInstalled = pluginFound != null;
 
             if (!alreadyMarkedAsInstalled)
-                pluginInstalled.Plugins.Add(systemName);
+            {
+                pluginInstalled.Plugins.Add(new PluginState()
+                {
+                    SystemName = systemName,
+                    Enabled = false
+                });
+            }
 
             // add
             var plugin = ReferencedPlugins.Where(x => x.SystemName.Equals(systemName, StringComparison.InvariantCulture)).FirstOrDefault();
             plugin.Installed = true;
+            plugin.Enabled = false;
 
             PluginFileParser.SaveInstalledPluginsFile(pluginInstalled, filePath);
         }
@@ -237,15 +249,44 @@ namespace BeYourMarket.Core.Plugins
                 }
 
             var pluginInstalled = PluginFileParser.ParseInstalledPluginsFile(GetInstalledPluginsFilePath());
-            bool alreadyMarkedAsInstalled = pluginInstalled.Plugins
-                                .FirstOrDefault(x => x.Equals(systemName, StringComparison.InvariantCultureIgnoreCase)) != null;
+            var pluginFound = pluginInstalled.Plugins
+                                .FirstOrDefault(x => x.SystemName.Equals(systemName, StringComparison.InvariantCultureIgnoreCase));
+
+            bool alreadyMarkedAsInstalled = pluginFound != null;
 
             if (alreadyMarkedAsInstalled)
-                pluginInstalled.Plugins.Remove(systemName);
+                pluginInstalled.Plugins.Remove(pluginFound);
 
             // remove
             var plugin = ReferencedPlugins.Where(x => x.SystemName.Equals(systemName, StringComparison.InvariantCulture)).FirstOrDefault();
             plugin.Installed = false;
+            plugin.Enabled = false;
+
+            PluginFileParser.SaveInstalledPluginsFile(pluginInstalled, filePath);
+        }
+
+        public static void MarkPluginAsEnabled(string systemName, bool enable)
+        {
+            if (String.IsNullOrEmpty(systemName))
+                throw new ArgumentNullException("systemName");
+
+            var filePath = HostingEnvironment.MapPath(InstalledPluginsFilePath);
+            if (!File.Exists(filePath))
+                using (File.Create(filePath))
+                {
+                    //we use 'using' to close the file after it's created
+                }
+
+            var pluginInstalled = PluginFileParser.ParseInstalledPluginsFile(GetInstalledPluginsFilePath());
+            var pluginFound = pluginInstalled.Plugins
+                                .FirstOrDefault(x => x.SystemName.Equals(systemName, StringComparison.InvariantCultureIgnoreCase));
+
+            if (pluginFound != null)
+                pluginFound.Enabled = enable;
+
+            // remove
+            var plugin = ReferencedPlugins.Where(x => x.SystemName.Equals(systemName, StringComparison.InvariantCulture)).FirstOrDefault();            
+            plugin.Enabled = enable;
 
             PluginFileParser.SaveInstalledPluginsFile(pluginInstalled, filePath);
         }
@@ -290,7 +331,7 @@ namespace BeYourMarket.Core.Plugins
                 //populate list
                 result.Add(new KeyValuePair<FileInfo, PluginDescriptor>(descriptionFile, pluginDescriptor));
             }
-            
+
             result.Sort((firstPair, nextPair) => firstPair.Value.DisplayOrder.CompareTo(nextPair.Value.DisplayOrder));
             return result;
         }

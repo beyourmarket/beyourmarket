@@ -43,7 +43,7 @@ namespace BeYourMarket.Core.Services
                 return new List<IWidgetPlugin>();
 
             return LoadAllWidgets()
-                   .Where(x => x.GetWidgetZones().Contains(widgetZone, StringComparer.InvariantCultureIgnoreCase))
+                   .Where(x => x.PluginDescriptor.Enabled && x.GetWidgetZones().Contains(widgetZone, StringComparer.InvariantCultureIgnoreCase))
                    .ToList();
         }
 

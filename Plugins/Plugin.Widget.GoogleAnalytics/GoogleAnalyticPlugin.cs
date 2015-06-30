@@ -11,7 +11,7 @@ using System.Web.Routing;
 
 namespace Plugin.Widget.GoogleAnalytics
 {
-    public class GoogleAnalyticPlugin : BasePlugin, IWidgetPlugin
+    public class GoogleAnalyticPlugin : WidgetBasePlugin
     {
         public const string SettingTrackingID = "GoogleAnalytics_TrackingID";
 
@@ -24,40 +24,22 @@ namespace Plugin.Widget.GoogleAnalytics
         {
             _settingDictionaryService = settingDictionaryService;
             _unitOfWorkAsync = unitOfWorkAsync;
-        }
 
-        public IList<string> GetWidgetZones()
-        {
-            return new List<string>
-            { 
-                WidgetZone.Head
-            };
-        }
-
-        public RouteValueDictionary GetConfigurationRoute()
-        {
-            var routeValues = new RouteValueDictionary {                 
-                { "action", "Configure" }, 
-                { "controller", "GoogleAnalytics" }, 
-                { "namespaces", "Plugin.Widget.GoogleAnalytics.Controllers" }, 
-                { "area", null } 
-            };
-
-            return routeValues;
-        }
-
-        public RouteValueDictionary GetDisplayWidgetRoute(string widgetZone)
-        {
-            var routeValues = new RouteValueDictionary
+            AddRoute(WidgetZone.Head, new RouteValueDictionary
             {
                 { "action", "Index" }, 
                 { "controller", "GoogleAnalytics" }, 
                 { "namespaces", "Plugin.Widget.GoogleAnalytics.Controllers"},
                 { "area", null},
-                { "widgetZone", widgetZone}
-            };
+                { "widgetZone", WidgetZone.Head}
+            });
 
-            return routeValues;
+            AddRoute(WidgetZone.Configuration, new RouteValueDictionary {                 
+                { "action", "Configure" }, 
+                { "controller", "GoogleAnalytics" }, 
+                { "namespaces", "Plugin.Widget.GoogleAnalytics.Controllers" }, 
+                { "area", null } 
+            });
         }
 
         /// <summary>
@@ -99,7 +81,7 @@ namespace Plugin.Widget.GoogleAnalytics
         }
 
 
-        public Type GetControllerType()
+        public override Type GetControllerType()
         {
             return typeof(Plugin.Widget.GoogleAnalytics.Controllers.GoogleAnalyticsController);
         }

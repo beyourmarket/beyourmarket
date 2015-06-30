@@ -92,6 +92,8 @@ namespace BeYourMarket.Model.Enum
     public enum Enum_PluginAction
     {
         Install = 0,
-        Uninstall = 1
+        Uninstall = 1,
+        Enabled = 2,
+        Disabled = 3
     }
 }

@@ -14,14 +14,14 @@ using BeYourMarket.Core.Extensions;
 
 namespace Plugin.Payment.Stripe
 {
-    public class StripePlugin : BasePlugin, IWidgetPlugin
+    public class StripePlugin : WidgetBasePlugin
     {
         public const string SettingStripeApiKey = "StripeApiKey";
         public const string SettingStripePublishableKey = "StripePublishableKey";
         public const string SettingStripeClientID = "StripeClientID";
 
         private readonly ISettingDictionaryService _settingDictionaryService;
-        private readonly IUnitOfWorkAsync _unitOfWorkAsync;
+        private readonly IUnitOfWorkAsync _unitOfWorkAsync;        
 
         public enum Enum_StripeConnectStatus
         {
@@ -35,90 +35,52 @@ namespace Plugin.Payment.Stripe
         {
             _settingDictionaryService = settingDictionaryService;
             _unitOfWorkAsync = unitOfWorkAsync;
-        }
 
-        public IList<string> GetWidgetZones()
-        {
-            return new List<string>
-            { 
-                WidgetZone.Payment,
-                WidgetZone.PaymentSetting,
-                WidgetZone.Transaction,
-                WidgetZone.TransactionOverview
-            };
-        }
-
-        public RouteValueDictionary GetConfigurationRoute()
-        {
-            var routeValues = new RouteValueDictionary {                 
-                { "action", "Configure" }, 
-                { "controller", "PaymentStripe" }, 
-                { "namespaces", "Plugin.Payment.Stripe.Controllers" }, 
-                { "area", null } 
-            };
-
-            return routeValues;
-        }
-
-        public RouteValueDictionary GetDisplayWidgetRoute(string widgetZone)
-        {
-            if (widgetZone.Equals(WidgetZone.Payment, StringComparison.InvariantCultureIgnoreCase))
-            {
-                var routeValues = new RouteValueDictionary
+            AddRoute(WidgetZone.Payment, new RouteValueDictionary
                 {
                     { "action", "Payment" }, 
                     { "controller", "PaymentStripe" }, 
                     { "namespaces", "Plugin.Payment.Stripe.Controllers"},
                     { "area", null},
-                    { "widgetZone", widgetZone}
-                };
+                    { "widgetZone", WidgetZone.Payment}
+                });
 
-                return routeValues;
-            }
-            else if (widgetZone.Equals(WidgetZone.PaymentSetting, StringComparison.InvariantCultureIgnoreCase))
-            {
-                var routeValues = new RouteValueDictionary
+            AddRoute(WidgetZone.PaymentSetting, new RouteValueDictionary
                 {
                     { "action", "PaymentSetting" }, 
                     { "controller", "PaymentStripe" }, 
                     { "namespaces", "Plugin.Payment.Stripe.Controllers"},
                     { "area", null},
-                    { "widgetZone", widgetZone}
-                };
+                    { "widgetZone", WidgetZone.PaymentSetting}
+                });
 
-                return routeValues;
-            }
-            else if (widgetZone.Equals(WidgetZone.Transaction, StringComparison.InvariantCultureIgnoreCase))
-            {
-                var routeValues = new RouteValueDictionary
+            AddRoute(WidgetZone.Transaction, new RouteValueDictionary
                 {
                     { "action", "Transaction" }, 
                     { "controller", "PaymentStripe" }, 
                     { "namespaces", "Plugin.Payment.Stripe.Controllers"},
                     { "area", null},
-                    { "widgetZone", widgetZone}
-                };
+                    { "widgetZone", WidgetZone.Transaction}
+                });
 
-                return routeValues;
-            }
-            else if (widgetZone.Equals(WidgetZone.TransactionOverview, StringComparison.InvariantCultureIgnoreCase))
-            {
-                var routeValues = new RouteValueDictionary
+            AddRoute(WidgetZone.TransactionOverview, new RouteValueDictionary
                 {
                     { "action", "TransactionOverview" }, 
                     { "controller", "PaymentStripe" }, 
                     { "namespaces", "Plugin.Payment.Stripe.Controllers"},
                     { "area", null},
-                    { "widgetZone", widgetZone}
-                };
+                    { "widgetZone", WidgetZone.TransactionOverview}
+                });
 
-                return routeValues;
-            }
-
-            return null;
+            AddRoute(WidgetZone.Configuration, new RouteValueDictionary {                 
+                { "action", "Configure" }, 
+                { "controller", "PaymentStripe" }, 
+                { "namespaces", "Plugin.Payment.Stripe.Controllers" }, 
+                { "area", null } 
+            });
         }
 
-        public Type GetControllerType()
+        public override Type GetControllerType()
         {
             return typeof(Plugin.Payment.Stripe.Controllers.PaymentStripeController);
         }
@@ -194,7 +156,7 @@ namespace Plugin.Payment.Stripe
 
             var context = new Plugin.Payment.Stripe.Data.StripeContext();
             context.DeletePluginData<Plugin.Payment.Stripe.Data.StripeContext>();
-            
+
             base.Uninstall();
         }
     }

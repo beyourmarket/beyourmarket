@@ -25,5 +25,11 @@ namespace BeYourMarket.Core.Plugins
         /// Uninstall plugin
         /// </summary>
         void Uninstall();
+
+        /// <summary>
+        /// Enable or Disable plugin
+        /// </summary>
+        /// <param name="enable"></param>
+        void Enable(bool enable);
     }
 }

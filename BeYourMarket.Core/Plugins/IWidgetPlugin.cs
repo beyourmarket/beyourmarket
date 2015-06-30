@@ -35,5 +35,7 @@ namespace BeYourMarket.Core.Plugins
         /// </summary>
         /// <returns></returns>
         Type GetControllerType();
+
+        Dictionary<string, RouteValueDictionary> WidgetRoutes { get; set; }
     }
 }

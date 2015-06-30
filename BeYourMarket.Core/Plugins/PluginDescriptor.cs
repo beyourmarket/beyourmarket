@@ -91,6 +91,11 @@ namespace BeYourMarket.Core.Plugins
         public virtual bool Installed { get; set; }
 
         /// <summary>
+        /// Gets or sets the value indicating whether plugin is enabled
+        /// </summary>
+        public virtual bool Enabled { get; set; }
+
+        /// <summary>
         /// Resolve only after application start up
         /// </summary>
         /// <typeparam name="T"></typeparam>

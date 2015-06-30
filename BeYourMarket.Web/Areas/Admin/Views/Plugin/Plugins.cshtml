@@ -22,6 +22,18 @@
     }
 }
 
+@helper DisplayEnableLink(string systemName, bool enabled)
+{
+    if (enabled)
+    {
+        <a class="btn btn-sm btn-danger" href="@Url.Action("Installer", "Plugin", new { systemName = systemName, pluginAction = (int)BeYourMarket.Model.Enum.Enum_PluginAction.Disabled })"><i class="fa fa-times-circle"></i> Disable</a>
+    }
+    else
+    {
+        <a class="btn btn-sm btn-primary" href="@Url.Action("Installer", "Plugin", new { systemName = systemName, pluginAction = (int)BeYourMarket.Model.Enum.Enum_PluginAction.Enabled })"><i class="fa fa-plus-circle"></i> Enable</a>
+    }
+}
+
 @helper DisplayConfigureLink(string systemName, bool installed)
 {
     if (installed)
@@ -64,7 +76,12 @@
                            columns.Add()
                              .Encoded(false)
                              .Sanitized(false)
-                             .RenderValueAs(x => DisplayInstallerLink(x.SystemName, x.Installed));
+                             .RenderValueAs(x => DisplayEnableLink(x.SystemName, x.Enabled));
+                           
+                           columns.Add()
+                             .Encoded(false)
+                             .Sanitized(false)
+                             .RenderValueAs(x => DisplayInstallerLink(x.SystemName, x.Installed));                           
 
                            columns.Add(x => x.Group);
 

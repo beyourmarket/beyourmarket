@@ -17,5 +17,7 @@ namespace BeYourMarket.Core
         public const string Transaction = "html_tag_transaction";
 
         public const string TransactionOverview = "html_tag_transaction_overview";
+
+        public const string Configuration = "html_tag_configuration";
     }
 }
