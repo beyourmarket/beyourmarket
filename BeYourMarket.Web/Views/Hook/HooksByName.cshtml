@@ -1,0 +1,6 @@
+﻿@model List<RouteValueDictionary>
+
+@foreach (var hook in Model)
+{
+    @Html.Action(hook["action"].ToString(), hook["controller"].ToString(), hook)
+}

@@ -14,7 +14,7 @@ using BeYourMarket.Core.Extensions;
 
 namespace Plugin.Payment.Stripe
 {
-    public class StripePlugin : WidgetBasePlugin
+    public class StripePlugin : HookBasePlugin
     {
         public const string SettingStripeApiKey = "StripeApiKey";
         public const string SettingStripePublishableKey = "StripePublishableKey";
@@ -36,43 +36,43 @@ namespace Plugin.Payment.Stripe
             _settingDictionaryService = settingDictionaryService;
             _unitOfWorkAsync = unitOfWorkAsync;
 
-            AddRoute(WidgetZone.Payment, new RouteValueDictionary
+            AddRoute(HookName.Payment, new RouteValueDictionary
                 {
                     { "action", "Payment" }, 
                     { "controller", "PaymentStripe" }, 
                     { "namespaces", "Plugin.Payment.Stripe.Controllers"},
                     { "area", null},
-                    { "widgetZone", WidgetZone.Payment}
+                    { "widgetZone", HookName.Payment}
                 });
 
-            AddRoute(WidgetZone.PaymentSetting, new RouteValueDictionary
+            AddRoute(HookName.PaymentSetting, new RouteValueDictionary
                 {
                     { "action", "PaymentSetting" }, 
                     { "controller", "PaymentStripe" }, 
                     { "namespaces", "Plugin.Payment.Stripe.Controllers"},
                     { "area", null},
-                    { "widgetZone", WidgetZone.PaymentSetting}
+                    { "widgetZone", HookName.PaymentSetting}
                 });
 
-            AddRoute(WidgetZone.Transaction, new RouteValueDictionary
+            AddRoute(HookName.Transaction, new RouteValueDictionary
                 {
                     { "action", "Transaction" }, 
                     { "controller", "PaymentStripe" }, 
                     { "namespaces", "Plugin.Payment.Stripe.Controllers"},
                     { "area", null},
-                    { "widgetZone", WidgetZone.Transaction}
+                    { "widgetZone", HookName.Transaction}
                 });
 
-            AddRoute(WidgetZone.TransactionOverview, new RouteValueDictionary
+            AddRoute(HookName.TransactionOverview, new RouteValueDictionary
                 {
                     { "action", "TransactionOverview" }, 
                     { "controller", "PaymentStripe" }, 
                     { "namespaces", "Plugin.Payment.Stripe.Controllers"},
                     { "area", null},
-                    { "widgetZone", WidgetZone.TransactionOverview}
+                    { "widgetZone", HookName.TransactionOverview}
                 });
 
-            AddRoute(WidgetZone.Configuration, new RouteValueDictionary {                 
+            AddRoute(HookName.Configuration, new RouteValueDictionary {                 
                 { "action", "Configure" }, 
                 { "controller", "PaymentStripe" }, 
                 { "namespaces", "Plugin.Payment.Stripe.Controllers" }, 

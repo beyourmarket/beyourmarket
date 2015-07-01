@@ -11,7 +11,7 @@ using System.Web.Routing;
 
 namespace Plugin.Widget.GoogleAnalytics
 {
-    public class GoogleAnalyticPlugin : WidgetBasePlugin
+    public class GoogleAnalyticPlugin : HookBasePlugin
     {
         public const string SettingTrackingID = "GoogleAnalytics_TrackingID";
 
@@ -25,16 +25,16 @@ namespace Plugin.Widget.GoogleAnalytics
             _settingDictionaryService = settingDictionaryService;
             _unitOfWorkAsync = unitOfWorkAsync;
 
-            AddRoute(WidgetZone.Head, new RouteValueDictionary
+            AddRoute(HookName.Head, new RouteValueDictionary
             {
                 { "action", "Index" }, 
                 { "controller", "GoogleAnalytics" }, 
                 { "namespaces", "Plugin.Widget.GoogleAnalytics.Controllers"},
                 { "area", null},
-                { "widgetZone", WidgetZone.Head}
+                { "widgetZone", HookName.Head}
             });
 
-            AddRoute(WidgetZone.Configuration, new RouteValueDictionary {                 
+            AddRoute(HookName.Configuration, new RouteValueDictionary {                 
                 { "action", "Configure" }, 
                 { "controller", "GoogleAnalytics" }, 
                 { "namespaces", "Plugin.Widget.GoogleAnalytics.Controllers" }, 

@@ -8,19 +8,19 @@ using System.Web.Routing;
 
 namespace BeYourMarket.Web.Areas.Admin.Controllers
 {
-    public class WidgetController : Controller
+    public class HookController : Controller
     {
         #region Fields
 
-        private readonly IWidgetService _widgetService;
+        private readonly IHookService _hookService;
 
         #endregion
 
         #region Constructors
 
-        public WidgetController(IWidgetService widgetService)
+        public HookController(IHookService hookService)
         {
-            _widgetService = widgetService;
+            _hookService = hookService;
         }
 
         #endregion
@@ -32,9 +32,9 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult ConfigureWidget(string systemName)
+        public ActionResult ConfigureHook(string systemName)
         {
-            var widget = _widgetService.LoadWidgetBySystemName(systemName);
+            var widget = _hookService.LoadHookBySystemName(systemName);
             if (widget == null)
                 //No widget found with the specified id
                 return RedirectToAction("Index");

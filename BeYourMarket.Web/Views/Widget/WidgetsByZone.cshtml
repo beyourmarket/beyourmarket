@@ -1,6 +1,0 @@
-﻿@model List<RouteValueDictionary>
-
-@foreach (var widget in Model)
-{
-    @Html.Action(widget["action"].ToString(), widget["controller"].ToString(), widget)
-}

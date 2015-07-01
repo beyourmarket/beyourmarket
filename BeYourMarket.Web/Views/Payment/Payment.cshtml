@@ -51,8 +51,8 @@
 
                             <h5>Price: @Model.ItemOrder.PriceFormatted</h5>
 
-                            <!-- Payment Widget -->
-                            @Html.Widget(WidgetZone.Payment, Model.ItemOrder)                        
+                            <!-- Payment Hook -->
+                            @Html.Hook(HookName.Payment, Model.ItemOrder)                        
                     </div>
 
                 </div>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BeYourMarket.Core
 {
-    public static class WidgetZone
+    public static class HookName
     {
         public const string Head = "html_tag_head";
 

@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 namespace BeYourMarket.Core.Services
 {
     /// <summary>
-    /// Widget service interface
+    /// Hook service interface
     /// </summary>
-    public interface IWidgetService
+    public interface IHookService
     {
         /// <summary>
-        /// Load active widgets
+        /// Load active hooks
         /// </summary>
-        /// <param name="widgetZone">Widget zone</param>        
+        /// <param name="hookName">Widget zone</param>        
         /// <returns>Widgets</returns>
-        IList<IWidgetPlugin> LoadActiveWidgetsByWidgetZone(string widgetZone);
+        IList<IHookPlugin> LoadActiveHooksByName(string hookName);
 
         /// <summary>
-        /// Load widget by system name
+        /// Load hook by system name
         /// </summary>
         /// <param name="systemName">System name</param>
-        /// <returns>Found widget</returns>
-        IWidgetPlugin LoadWidgetBySystemName(string systemName);
+        /// <returns>Found Hook</returns>
+        IHookPlugin LoadHookBySystemName(string systemName);
     }
 }

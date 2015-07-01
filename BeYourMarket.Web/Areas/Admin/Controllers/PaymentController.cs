@@ -206,11 +206,11 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             if (order == null)
                 return new HttpNotFoundResult();
 
-            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IWidgetPlugin>(CacheHelper.Settings.Payment);
+            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IHookPlugin>(CacheHelper.Settings.Payment);
             if (descriptor == null)
                 return new HttpNotFoundResult("Not found");
 
-            var controllerType = descriptor.Instance<IWidgetPlugin>().GetControllerType();
+            var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
             var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
 
             string message = string.Empty;

@@ -9,9 +9,9 @@ namespace BeYourMarket.Web.Extensions
 {
     public static class HtmlExtensions
     {
-        public static MvcHtmlString Widget(this HtmlHelper helper, string widgetZone, object additionalData = null)
+        public static MvcHtmlString Hook(this HtmlHelper helper, string hookName, object additionalData = null)
         {
-            return helper.Action("WidgetsByZone", "Widget", new { widgetZone = widgetZone, additionalData = additionalData, area = "" });
+            return helper.Action("HooksByName", "Hook", new { hookName = hookName, additionalData = additionalData, area = "" });
         }
     }
 }

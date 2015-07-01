@@ -128,11 +128,11 @@ namespace BeYourMarket.Web.Controllers
             if (order == null)
                 return new HttpNotFoundResult();
 
-            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IWidgetPlugin>(CacheHelper.Settings.Payment);
+            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IHookPlugin>(CacheHelper.Settings.Payment);
             if (descriptor == null)
                 return new HttpNotFoundResult("Not found");
 
-            var controllerType = descriptor.Instance<IWidgetPlugin>().GetControllerType();
+            var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
             var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
 
             string message = string.Empty;
@@ -201,7 +201,7 @@ namespace BeYourMarket.Web.Controllers
                 return new HttpNotFoundResult();
 
             // Check if payment method is setup on user or the platform
-            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IWidgetPlugin>(CacheHelper.Settings.Payment);
+            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IHookPlugin>(CacheHelper.Settings.Payment);
             if (descriptor == null)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
@@ -210,7 +210,7 @@ namespace BeYourMarket.Web.Controllers
                 return RedirectToAction("Listing", "Listing", new { id = order.ItemID });
             }
 
-            var controllerType = descriptor.Instance<IWidgetPlugin>().GetControllerType();
+            var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
             var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
             
             if (controller.HasPaymentMethod(item.UserID)){

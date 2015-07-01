@@ -89,7 +89,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             
             string actionUrl = string.Empty;
 
-            if (typeof(IWidgetPlugin).IsAssignableFrom(pluginDescriptor.PluginType))
+            if (typeof(IHookPlugin).IsAssignableFrom(pluginDescriptor.PluginType))
             {
                 actionUrl = Url.Action("ConfigureWidget", "Widget", new { systemName = pluginDescriptor.SystemName });
             }

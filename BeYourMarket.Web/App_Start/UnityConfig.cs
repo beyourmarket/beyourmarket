@@ -67,7 +67,7 @@ namespace BeYourMarket.Web.App_Start
                 .RegisterType<DataCacheService, DataCacheService>(new ContainerControlledLifetimeManager());
 
             container
-                .RegisterType<IWidgetService, WidgetService>()
+                .RegisterType<IHookService, HookService>()
                 .RegisterType<IPluginFinder, PluginFinder>();
 
 

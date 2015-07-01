@@ -263,7 +263,7 @@
     <Compile Include="Areas\Admin\Controllers\DesignController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaymentController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageController.cs" />
-    <Compile Include="Areas\Admin\Controllers\WidgetController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HookController.cs" />
     <Compile Include="Areas\Admin\Models\Grids\PluginsGrid.cs" />
     <Compile Include="Areas\Admin\Models\Grids\EmailTemplatesGrid.cs" />
     <Compile Include="Areas\Admin\Models\InstallModel.cs" />
@@ -274,7 +274,7 @@
     <Compile Include="Controllers\ListingController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\WidgetController.cs" />
+    <Compile Include="Controllers\HookController.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -357,7 +357,7 @@
     </Content>
     <Content Include="Plugins\installed.json" />
     <Content Include="Areas\Admin\Views\Plugin\Plugins.cshtml" />
-    <Content Include="Areas\Admin\Views\Widget\ConfigureWidget.cshtml" />
+    <Content Include="Areas\Admin\Views\Hook\ConfigureHook.cshtml" />
     <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Themes\Default\Content\helper.less" />
     <Content Include="css\admin\style-responsive.css" />
@@ -1081,7 +1081,7 @@
     </Content>
     <Content Include="Views\Emails\Email.cshtml" />
     <None Include="Properties\PublishProfiles\BYM.pubxml" />
-    <Content Include="Views\Widget\WidgetsByZone.cshtml" />
+    <Content Include="Views\Hook\HooksByName.cshtml" />
     <None Include="_bin_deployableAssemblies\amd64\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\amd64\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\amd64\sqlceme40.dll" />

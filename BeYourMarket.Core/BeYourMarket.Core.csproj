@@ -82,20 +82,20 @@
     <Compile Include="Plugins\IDependencyRegister.cs" />
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\IPluginFinder.cs" />
-    <Compile Include="Plugins\IWidgetPlugin.cs" />
+    <Compile Include="Plugins\IHookPlugin.cs" />
     <Compile Include="Plugins\LoadPluginsMode.cs" />
     <Compile Include="Plugins\PluginDescriptor.cs" />
     <Compile Include="Plugins\PluginFileParser.cs" />
     <Compile Include="Plugins\PluginFinder.cs" />
     <Compile Include="Plugins\PluginInstalled.cs" />
     <Compile Include="Plugins\PluginManager.cs" />
-    <Compile Include="Plugins\WidgetBasePlugin.cs" />
+    <Compile Include="Plugins\HookBasePlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlatformVersion.cs" />
-    <Compile Include="Services\IWidgetService.cs" />
-    <Compile Include="Services\WidgetService.cs" />
+    <Compile Include="Services\IHookService.cs" />
+    <Compile Include="Services\HookService.cs" />
     <Compile Include="Web\TempDataKeys.cs" />
-    <Compile Include="WidgetZone.cs" />
+    <Compile Include="HookName.cs" />
     <Compile Include="WriteLockDisposable.cs" />
   </ItemGroup>
   <ItemGroup>
