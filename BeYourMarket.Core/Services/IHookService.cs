@@ -15,8 +15,8 @@ namespace BeYourMarket.Core.Services
         /// <summary>
         /// Load active hooks
         /// </summary>
-        /// <param name="hookName">Widget zone</param>        
-        /// <returns>Widgets</returns>
+        /// <param name="hookName">Hook name</param>        
+        /// <returns>HookPlugins</returns>
         IList<IHookPlugin> LoadActiveHooksByName(string hookName);
 
         /// <summary>

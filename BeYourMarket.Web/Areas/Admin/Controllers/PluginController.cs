@@ -91,7 +91,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             if (typeof(IHookPlugin).IsAssignableFrom(pluginDescriptor.PluginType))
             {
-                actionUrl = Url.Action("ConfigureWidget", "Widget", new { systemName = pluginDescriptor.SystemName });
+                actionUrl = Url.Action("ConfigureHook", "Hook", new { systemName = pluginDescriptor.SystemName });
             }
 
             // check if there is actionUrl

@@ -26,7 +26,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         #endregion
 
         #region Methods
-        // GET: Admin/Widget
+        // GET: Admin/Hook
         public ActionResult Index()
         {
             return View();
@@ -34,12 +34,12 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
         public ActionResult ConfigureHook(string systemName)
         {
-            var widget = _hookService.LoadHookBySystemName(systemName);
-            if (widget == null)
-                //No widget found with the specified id
+            var hook = _hookService.LoadHookBySystemName(systemName);
+            if (hook == null)
+                //No hook found with the specified id
                 return RedirectToAction("Index");
             
-            var model = widget.GetConfigurationRoute();
+            var model = hook.GetConfigurationRoute();
             return View(model);
         }
 

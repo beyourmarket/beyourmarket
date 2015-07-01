@@ -33,11 +33,11 @@ namespace BeYourMarket.Web.Controllers
             var routeDataList = new List<RouteValueDictionary>();
 
             var hooks = _hookService.LoadActiveHooksByName(hookName);
-            foreach (var widget in hooks)
+            foreach (var hook in hooks)
             {
                 var hookRouteData = new RouteValueDictionary();
 
-                RouteValueDictionary routeValues = widget.GetRoute(hookName);                
+                RouteValueDictionary routeValues = hook.GetRoute(hookName);                
                 hookRouteData = routeValues;
                 hookRouteData.Add("additionalData", additionalData);
 

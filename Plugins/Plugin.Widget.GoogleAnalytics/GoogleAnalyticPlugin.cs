@@ -31,7 +31,7 @@ namespace Plugin.Widget.GoogleAnalytics
                 { "controller", "GoogleAnalytics" }, 
                 { "namespaces", "Plugin.Widget.GoogleAnalytics.Controllers"},
                 { "area", null},
-                { "widgetZone", HookName.Head}
+                { "hookName", HookName.Head}
             });
 
             AddRoute(HookName.Configuration, new RouteValueDictionary {                 

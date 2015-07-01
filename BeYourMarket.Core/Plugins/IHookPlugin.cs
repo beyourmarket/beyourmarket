@@ -8,7 +8,7 @@ using System.Web.Routing;
 namespace BeYourMarket.Core.Plugins
 {
     /// <summary>
-    /// Provides an interface for creating widgets
+    /// Provides an interface for creating hooks
     /// </summary>
     public interface IHookPlugin : IPlugin
     {
@@ -33,7 +33,7 @@ namespace BeYourMarket.Core.Plugins
         /// <summary>
         /// Add hook route
         /// </summary>
-        /// <param name="widgetZone"></param>
+        /// <param name="hookName"></param>
         /// <param name="routeValueDictionary"></param>
         void AddRoute(string hookName, RouteValueDictionary routeValueDictionary);
         

@@ -42,7 +42,7 @@ namespace Plugin.Payment.Stripe
                     { "controller", "PaymentStripe" }, 
                     { "namespaces", "Plugin.Payment.Stripe.Controllers"},
                     { "area", null},
-                    { "widgetZone", HookName.Payment}
+                    { "hookName", HookName.Payment}
                 });
 
             AddRoute(HookName.PaymentSetting, new RouteValueDictionary
@@ -51,7 +51,7 @@ namespace Plugin.Payment.Stripe
                     { "controller", "PaymentStripe" }, 
                     { "namespaces", "Plugin.Payment.Stripe.Controllers"},
                     { "area", null},
-                    { "widgetZone", HookName.PaymentSetting}
+                    { "hookName", HookName.PaymentSetting}
                 });
 
             AddRoute(HookName.Transaction, new RouteValueDictionary
@@ -60,7 +60,7 @@ namespace Plugin.Payment.Stripe
                     { "controller", "PaymentStripe" }, 
                     { "namespaces", "Plugin.Payment.Stripe.Controllers"},
                     { "area", null},
-                    { "widgetZone", HookName.Transaction}
+                    { "hookName", HookName.Transaction}
                 });
 
             AddRoute(HookName.TransactionOverview, new RouteValueDictionary
@@ -69,7 +69,7 @@ namespace Plugin.Payment.Stripe
                     { "controller", "PaymentStripe" }, 
                     { "namespaces", "Plugin.Payment.Stripe.Controllers"},
                     { "area", null},
-                    { "widgetZone", HookName.TransactionOverview}
+                    { "hookName", HookName.TransactionOverview}
                 });
 
             AddRoute(HookName.Configuration, new RouteValueDictionary {                 
