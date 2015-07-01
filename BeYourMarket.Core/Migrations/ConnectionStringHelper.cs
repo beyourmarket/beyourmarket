@@ -37,7 +37,7 @@ namespace BeYourMarket.Core.Migrations
             connectionStringsSection.ConnectionStrings.Add(connectionStringSettings);
 
             // Save the configuration file.
-            configuration.Save(ConfigurationSaveMode.Modified, true);
+            configuration.Save(ConfigurationSaveMode.Minimal, true);
 
             // This is needed. Otherwise the updates do not show up in ConfigurationManager
             ConfigurationManager.RefreshSection("connectionStrings");

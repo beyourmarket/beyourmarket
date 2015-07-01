@@ -337,6 +337,12 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
         public async Task<ActionResult> ListingUpdate(int? id)
         {
+            if (CacheHelper.Categories.Count == 0)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "There are not categories available yet.";
+            }  
+
             Item item;
 
             var model = new ListingUpdateModel()
@@ -371,7 +377,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                     Created = DateTime.Now.Date,
                     LastUpdated = DateTime.Now.Date,
                     Expiration = DateTime.Now.AddDays(30),
-                    Enabled = true,                    
+                    Enabled = true
                 };
 
             // Item
@@ -411,6 +417,14 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> ListingUpdate(Item item, FormCollection form, IEnumerable<HttpPostedFileBase> files)
         {
+            if (CacheHelper.Categories.Count == 0)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "There are not categories available yet.";
+
+                return RedirectToAction("Listing", new { id = item.ID });
+            }
+
             bool updateCount = false;
 
             int nextPictureOrderId = 0;
