@@ -22,15 +22,17 @@
     }
 }
 
-@helper DisplayEnableLink(string systemName, bool enabled)
+@helper DisplayEnableLink(string systemName, bool installed, bool enabled)
 {
-    if (enabled)
-    {
-        <a class="btn btn-sm btn-danger" href="@Url.Action("Installer", "Plugin", new { systemName = systemName, pluginAction = (int)BeYourMarket.Model.Enum.Enum_PluginAction.Disabled })"><i class="fa fa-times-circle"></i> Disable</a>
-    }
-    else
-    {
-        <a class="btn btn-sm btn-primary" href="@Url.Action("Installer", "Plugin", new { systemName = systemName, pluginAction = (int)BeYourMarket.Model.Enum.Enum_PluginAction.Enabled })"><i class="fa fa-plus-circle"></i> Enable</a>
+    if (installed) { 
+        if (enabled)
+        {
+            <a class="btn btn-sm btn-danger" href="@Url.Action("Installer", "Plugin", new { systemName = systemName, pluginAction = (int)BeYourMarket.Model.Enum.Enum_PluginAction.Disabled })"><i class="fa fa-times-circle"></i> Disable</a>
+        }
+        else
+        {
+            <a class="btn btn-sm btn-primary" href="@Url.Action("Installer", "Plugin", new { systemName = systemName, pluginAction = (int)BeYourMarket.Model.Enum.Enum_PluginAction.Enabled })"><i class="fa fa-plus-circle"></i> Enable</a>
+        }
     }
 }
 
@@ -76,7 +78,7 @@
                            columns.Add()
                              .Encoded(false)
                              .Sanitized(false)
-                             .RenderValueAs(x => DisplayEnableLink(x.SystemName, x.Enabled));
+                             .RenderValueAs(x => DisplayEnableLink(x.SystemName, x.Installed, x.Enabled));
                            
                            columns.Add()
                              .Encoded(false)

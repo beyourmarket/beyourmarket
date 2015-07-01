@@ -36,7 +36,6 @@ namespace BeYourMarket.Model.Models
         public string SignupText { get; set; }
         public bool EmailConfirmedRequired { get; set; }
         public string Theme { get; set; }
-        public string Payment { get; set; }
         public System.DateTime Created { get; set; }
         public System.DateTime LastUpdated { get; set; }
         public virtual ICollection<SettingDictionary> SettingDictionaries { get; set; }

@@ -180,7 +180,6 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         {
             var setting = _settingService.Queryable().FirstOrDefault();
 
-            setting.Payment = model.Setting.Payment;
             setting.TransactionFeePercent = model.Setting.TransactionFeePercent;
             setting.TransactionMinimumFee = model.Setting.TransactionMinimumFee;
             setting.TransactionMinimumSize = model.Setting.TransactionMinimumSize;
@@ -206,7 +205,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             if (order == null)
                 return new HttpNotFoundResult();
 
-            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IHookPlugin>(CacheHelper.Settings.Payment);
+            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IHookPlugin>(order.PaymentPlugin);
             if (descriptor == null)
                 return new HttpNotFoundResult("Not found");
 

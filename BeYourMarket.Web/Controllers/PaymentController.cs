@@ -128,7 +128,7 @@ namespace BeYourMarket.Web.Controllers
             if (order == null)
                 return new HttpNotFoundResult();
 
-            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IHookPlugin>(CacheHelper.Settings.Payment);
+            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IHookPlugin>(order.PaymentPlugin);
             if (descriptor == null)
                 return new HttpNotFoundResult("Not found");
 
@@ -201,7 +201,7 @@ namespace BeYourMarket.Web.Controllers
                 return new HttpNotFoundResult();
 
             // Check if payment method is setup on user or the platform
-            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IHookPlugin>(CacheHelper.Settings.Payment);
+            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IHookPlugin>(order.PaymentPlugin);
             if (descriptor == null)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";

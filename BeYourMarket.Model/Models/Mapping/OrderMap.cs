@@ -23,6 +23,9 @@ namespace BeYourMarket.Model.Models.Mapping
                 .IsRequired()
                 .HasMaxLength(128);
 
+            this.Property(t => t.PaymentPlugin)
+                .HasMaxLength(250);
+
             // Table & Column Mappings
             this.ToTable("Orders");
             this.Property(t => t.ID).HasColumnName("ID");
@@ -38,6 +41,7 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.Message).HasColumnName("Message");
             this.Property(t => t.UserProvider).HasColumnName("UserProvider");
             this.Property(t => t.UserReceiver).HasColumnName("UserReceiver");
+            this.Property(t => t.PaymentPlugin).HasColumnName("PaymentPlugin");
             this.Property(t => t.Created).HasColumnName("Created");
             this.Property(t => t.Modified).HasColumnName("Modified");
 

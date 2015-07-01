@@ -18,6 +18,7 @@ namespace BeYourMarket.Model.Models
         public string Message { get; set; }
         public string UserProvider { get; set; }
         public string UserReceiver { get; set; }
+        public string PaymentPlugin { get; set; }
         public System.DateTime Created { get; set; }
         public System.DateTime Modified { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
