@@ -20,8 +20,9 @@
                 </div>
                 <div class="panel-body bdr-b ">
                     <form action="@Url.Action("ListingUpdate", "Listing" )" id="listingUpdateForm" method="post" role="form" enctype="multipart/form-data" onkeypress="return event.keyCode != 13;">
+                        @Html.Partial("_UserMessage")
+                        @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })                        
 
-                        @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
                         <fieldset>
                             <legend>Listing Details</legend>
                             <label>Category</label>
