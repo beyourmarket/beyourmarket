@@ -16,6 +16,7 @@
                 <div class="panel-heading"><h3 class="panel-title">Listing</h3></div>
                 <div class="panel-body">
                     <form action="@Url.Action("ListingUpdate", "Listing")" id="listngUpdateForm" method="post" class="form-horizontal" role="form" enctype="multipart/form-data" onkeypress="return event.keyCode != 13;">
+                        @Html.Partial("_UserMessage")
                         @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
 
                         <div class="form-group">
