@@ -205,6 +205,4 @@ FakesAssemblies/
 *.opt
 
 #BeYourMarket exclude
-*.pot
 *.pot.backup
-connectionstrings.config
