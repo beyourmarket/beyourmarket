@@ -351,9 +351,9 @@
     <Content Include="Themes\Default\Content\helper.css.map">
       <DependentUpon>helper.css</DependentUpon>
     </Content>
-    <Content Include="Plugins\installed.json" />
     <Content Include="Areas\Admin\Views\Plugin\Plugins.cshtml" />
     <Content Include="Areas\Admin\Views\Hook\ConfigureHook.cshtml" />
+    <Content Include="Plugins\installed.json" />
     <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Themes\Default\Content\helper.less" />
     <Content Include="css\admin\style-responsive.css" />
