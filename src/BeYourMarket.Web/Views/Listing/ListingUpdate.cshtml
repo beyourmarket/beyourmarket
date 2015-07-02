@@ -44,6 +44,10 @@
                                     <span class="input-group-addon">@CacheHelper.Settings.Currency</span>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="Active" name="Active" value="true" @(Model.ListingItem.Active ? "checked" : "") /> <label for="Active">Active</label>
+                                <input name="Active" type="hidden" value="false" />
+                            </div>
                         </fieldset>
 
                         <div id="partialPlaceHolder">
@@ -87,7 +91,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" id="ShowPhone" name="ShowPhone" value="true" @(Model.ListingItem.ShowPhone ? "checked" : "") /> <label for="ShowPhone">Show Phone</label>
-                                <input name="Enabled" type="hidden" value="false" />
+                                <input name="ShowPhone" type="hidden" value="false" />
                             </div>
                             <div class="form-group">
                                 <label>Email Address</label>

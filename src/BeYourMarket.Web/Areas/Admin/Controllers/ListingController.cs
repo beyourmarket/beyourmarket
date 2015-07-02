@@ -376,7 +376,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                     Created = DateTime.Now.Date,
                     LastUpdated = DateTime.Now.Date,
                     Expiration = DateTime.Now.AddDays(30),
-                    Enabled = true
+                    Enabled = true,
+                    Active = true,
                 };
 
             // Item

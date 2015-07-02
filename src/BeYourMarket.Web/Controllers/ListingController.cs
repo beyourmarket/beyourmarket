@@ -183,6 +183,7 @@ namespace BeYourMarket.Web.Controllers
                     LastUpdated = DateTime.Now.Date,
                     Expiration = DateTime.MaxValue,
                     Enabled = true,
+                    Active = true,
                     ContactEmail = user.Email,
                     ContactName = string.Format("{0} {1}", user.FirstName, user.LastName),
                     ContactPhone = user.PhoneNumber
@@ -316,7 +317,7 @@ namespace BeYourMarket.Web.Controllers
 
                 itemExisting.Title = item.Title;
                 itemExisting.Description = item.Description;
-                itemExisting.Enabled = item.Enabled;
+                itemExisting.Active = item.Active;
 
                 itemExisting.ContactEmail = item.ContactEmail;
                 itemExisting.ContactName = item.ContactName;
