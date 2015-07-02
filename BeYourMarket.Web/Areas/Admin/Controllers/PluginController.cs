@@ -22,7 +22,6 @@ using System.IO;
 using System.Text;
 using BeYourMarket.Model.Enum;
 using RestSharp;
-using Stripe;
 using BeYourMarket.Web.Areas.Admin.Models;
 using Postal;
 using System.Net.Mail;

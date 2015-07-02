@@ -16,6 +16,7 @@ using BeYourMarket.Web.Models;
 using BeYourMarket.Web.Utilities;
 using BeYourMarket.Model.Enum;
 using BeYourMarket.Core.Migrations;
+using BeYourMarket.Core.Plugins;
 
 namespace BeYourMarket.Web.Areas.Admin.Controllers
 {
@@ -41,6 +42,13 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             {
                 return HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
+        }
+
+        private readonly IPluginFinder _pluginFinder;
+
+        public InstallController(IPluginFinder pluginFinder)
+        {
+            _pluginFinder = pluginFinder;
         }
 
         // GET: Admin/Install
@@ -108,6 +116,14 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             // Sign in user
             var user = UserManager.FindByEmail(model.Email);
             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+            // Install plugin marked as installed
+            var plugins = _pluginFinder.GetPluginDescriptors(LoadPluginsMode.InstalledOnly);
+            foreach (var plugin in plugins)
+            {
+                plugin.Instance().Install();
+                plugin.Instance().Enable(true);
+            }
 
             return RedirectToAction("Index", "Home", new { area = "" });
         }

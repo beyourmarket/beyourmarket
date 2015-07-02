@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using BeYourMarket.Model.Enum;
 using BeYourMarket.Web.Models.Grids;
 using RestSharp;
-using Stripe;
 using BeYourMarket.Core.Web;
 using BeYourMarket.Core.Plugins;
 using BeYourMarket.Core;

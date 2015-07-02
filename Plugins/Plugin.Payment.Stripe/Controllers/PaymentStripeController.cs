@@ -85,7 +85,7 @@ namespace Plugin.Payment.Stripe.Controllers
             // always set these properties
             charge.Amount = order.PriceInCents;
             charge.Currency = CacheHelper.Settings.Currency;
-            charge.Card = new StripeCreditCardOptions()
+            charge.Source = new StripeSourceOptions()
             {
                 TokenId = stripeToken
             };
@@ -124,7 +124,7 @@ namespace Plugin.Payment.Stripe.Controllers
             _transactionService.Insert(transaction);
 
             await _unitOfWorkAsync.SaveChangesAsync();
-            await _unitOfWorkAsyncStripe.SaveChangesAsync();            
+            await _unitOfWorkAsyncStripe.SaveChangesAsync();
 
             ClearCache();
 
@@ -169,7 +169,7 @@ namespace Plugin.Payment.Stripe.Controllers
 
             var response = client.Execute(request);
 
-            _unitOfWorkAsyncStripe.SaveChanges();            
+            _unitOfWorkAsyncStripe.SaveChanges();
 
             TempData[TempDataKeys.UserMessage] = "Disconnnect to stripe successfully!";
 
@@ -321,7 +321,7 @@ namespace Plugin.Payment.Stripe.Controllers
             };
 
             return View("~/Plugins/Plugin.Payment.Stripe/Views/Transaction.cshtml", model);
-        }        
+        }
         #endregion
 
         #region Admin Method
@@ -383,6 +383,6 @@ namespace Plugin.Payment.Stripe.Controllers
             return View("~/Plugins/Plugin.Payment.Stripe/Views/TransactionOverview.cshtml", model);
         }
         #endregion
-        
+
     }
 }

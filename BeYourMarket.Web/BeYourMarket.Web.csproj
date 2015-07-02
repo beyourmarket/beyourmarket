@@ -126,10 +126,6 @@
     <Reference Include="StringFormat">
       <HintPath>..\packages\StringFormat.1.0.0\lib\StringFormat.dll</HintPath>
     </Reference>
-    <Reference Include="Stripe.net, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Stripe.net.3.0.0\lib\net40\Stripe.net.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
