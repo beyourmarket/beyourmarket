@@ -304,6 +304,7 @@ namespace BeYourMarket.Web.Controllers
                 item.IP = Request.GetVisitorIP();
                 item.Expiration = DateTime.MaxValue.AddDays(-1);
                 item.UserID = User.Identity.GetUserId();
+                item.Enabled = true;
 
                 updateCount = true;
                 _itemService.Insert(item);
