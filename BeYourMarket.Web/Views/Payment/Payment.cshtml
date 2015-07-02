@@ -52,7 +52,7 @@
                             <h5>Price: @Model.ItemOrder.PriceFormatted</h5>
 
                             <!-- Payment Hook -->
-                            @Html.Hook(HookName.Payment, Model.ItemOrder)                        
+                            @Html.DoAction(HookName.Payment, Model.ItemOrder)                        
                     </div>
 
                 </div>

@@ -1081,7 +1081,7 @@
     </Content>
     <Content Include="Views\Emails\Email.cshtml" />
     <None Include="Properties\PublishProfiles\BYM.pubxml" />
-    <Content Include="Views\Hook\HooksByName.cshtml" />
+    <Content Include="Views\Hook\DoAction.cshtml" />
     <None Include="_bin_deployableAssemblies\amd64\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\amd64\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\amd64\sqlceme40.dll" />

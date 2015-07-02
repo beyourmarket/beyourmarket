@@ -22,7 +22,7 @@ namespace BeYourMarket.Core.Plugins
         }
 
         public RouteValueDictionary GetRoute(string hookName)
-        {
+        {            
             if (!HookRoutes.ContainsKey(hookName))
                 return null;
 

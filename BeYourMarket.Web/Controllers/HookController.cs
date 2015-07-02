@@ -28,7 +28,7 @@ namespace BeYourMarket.Web.Controllers
         #region Methods
 
         [ChildActionOnly]
-        public ActionResult HooksByName(string hookName, object additionalData = null)
+        public ActionResult DoAction(string hookName, object additionalData = null)
         {                                  
             var routeDataList = new List<RouteValueDictionary>();
 
