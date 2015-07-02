@@ -104,6 +104,7 @@ namespace Plugin.Payment.Stripe.Controllers
 
             // Update order status
             order.Status = (int)Enum_OrderStatus.Pending;
+            order.PaymentPlugin = StripePlugin.PluginName;
             _orderService.Update(order);
 
             // Save transaction
@@ -168,7 +169,7 @@ namespace Plugin.Payment.Stripe.Controllers
 
             var response = client.Execute(request);
 
-            _unitOfWorkAsync.SaveChanges();
+            _unitOfWorkAsyncStripe.SaveChanges();            
 
             TempData[TempDataKeys.UserMessage] = "Disconnnect to stripe successfully!";
 
@@ -282,6 +283,11 @@ namespace Plugin.Payment.Stripe.Controllers
             return _stripConnectService.Query(x => x.UserID == userId).Select().Any();
         }
 
+        public int GetTransactionCount()
+        {
+            return _transactionService.Queryable().Count();
+        }
+
         public ActionResult Transaction()
         {
             var userId = User.Identity.GetUserId();
@@ -377,5 +383,6 @@ namespace Plugin.Payment.Stripe.Controllers
             return View("~/Plugins/Plugin.Payment.Stripe/Views/TransactionOverview.cshtml", model);
         }
         #endregion
+        
     }
 }

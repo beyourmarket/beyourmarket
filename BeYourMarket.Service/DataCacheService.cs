@@ -1,4 +1,5 @@
-﻿using BeYourMarket.Model.Models;
+﻿using BeYourMarket.Core.Controllers;
+using BeYourMarket.Model.Models;
 using BeYourMarket.Service.Models;
 using Microsoft.Practices.Unity;
 using Repository.Pattern.Repositories;
@@ -133,8 +134,8 @@ namespace BeYourMarket.Service
 
                             statistics.ListingCount = ItemService.Queryable().Count();
                             statistics.UserCount = AspNetUserService.Queryable().Count();
-                            //statistics.TransactionCount = OrderTransactionService.Queryable().Count();
                             statistics.OrderCount = OrderService.Queryable().Count();
+                            statistics.TransactionCount = 0;
 
                             statistics.ItemsCountDictionary = ItemService.GetItemsCount(DateTime.Now.AddDays(-10));
 

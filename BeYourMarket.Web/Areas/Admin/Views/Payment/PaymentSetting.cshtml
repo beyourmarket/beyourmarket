@@ -12,20 +12,6 @@
                     <div class="panel-heading">
                         Payment Settings
                     </div>
-                    <div class="panel-body">
-                        <h4>
-                            <i class="fa fa-dollar"></i> Payment Methods
-                        </h4>
-                        <hr />
-
-                        <div class="form-group">
-                            <label class="col-md-2 control-label">Plugin</label>
-                            <div class="col-md-10">
-                                @Html.DropDownListFor(m => m.Setting.Payment, new SelectList(Model.PaymentPlugins, "SystemName", "SystemName", Model.Setting.Payment), String.Empty, new { @class = "form-control" })                                
-                            </div>
-                        </div>                        
-
-                    </div>
 
                     <div class="panel-body">
                         <h4>

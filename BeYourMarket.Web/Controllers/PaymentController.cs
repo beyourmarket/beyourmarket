@@ -201,8 +201,8 @@ namespace BeYourMarket.Web.Controllers
                 return new HttpNotFoundResult();
 
             // Check if payment method is setup on user or the platform
-            var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IHookPlugin>(order.PaymentPlugin);
-            if (descriptor == null)
+            var descriptors = _pluginFinder.GetPluginDescriptors<IHookPlugin>(LoadPluginsMode.InstalledOnly, "Payment").Where(x => x.Enabled);
+            if (descriptors.Count() == 0)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
                 TempData[TempDataKeys.UserMessage] = "The provider has not setup the payment option yet, please contact the provider.";
@@ -210,15 +210,19 @@ namespace BeYourMarket.Web.Controllers
                 return RedirectToAction("Listing", "Listing", new { id = order.ItemID });
             }
 
-            var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
-            var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
-            
-            if (controller.HasPaymentMethod(item.UserID)){
-                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                TempData[TempDataKeys.UserMessage] = "The provider has not setup the payment option yet, please contact the provider.";
+            foreach (var descriptor in descriptors)
+            {
+                var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
+                var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
 
-                return RedirectToAction("Listing", "Listing", new { id = order.ItemID });
-            }
+                if (!controller.HasPaymentMethod(item.UserID))
+                {
+                    TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                    TempData[TempDataKeys.UserMessage] = string.Format("The provider has not setup the payment option for {0} yet, please contact the provider.", descriptor.FriendlyName);
+
+                    return RedirectToAction("Listing", "Listing", new { id = order.ItemID });
+                }   
+            }            
 
             if (order.ID == 0)
             {

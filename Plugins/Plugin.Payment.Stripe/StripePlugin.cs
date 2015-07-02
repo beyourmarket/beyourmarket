@@ -16,6 +16,8 @@ namespace Plugin.Payment.Stripe
 {
     public class StripePlugin : HookBasePlugin
     {
+        public const string PluginName = "Plugin.Payment.Stripe";
+
         public const string SettingStripeApiKey = "StripeApiKey";
         public const string SettingStripePublishableKey = "StripePublishableKey";
         public const string SettingStripeClientID = "StripeClientID";

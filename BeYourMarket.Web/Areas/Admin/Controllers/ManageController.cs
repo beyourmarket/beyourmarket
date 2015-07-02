@@ -31,6 +31,10 @@ using BeYourMarket.Service.Models;
 using i18n;
 using i18n.Helpers;
 using BeYourMarket.Core.Web;
+using BeYourMarket.Core.Plugins;
+using BeYourMarket.Core;
+using BeYourMarket.Core.Controllers;
+using Microsoft.Practices.Unity;
 
 namespace BeYourMarket.Web.Areas.Admin.Controllers
 {
@@ -59,6 +63,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
         private readonly DataCacheService _dataCacheService;
         private readonly SqlDbService _sqlDbService;
+
+        private readonly IPluginFinder _pluginFinder;
 
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
         #endregion
@@ -114,7 +120,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             ISettingDictionaryService settingDictionaryService,
             IEmailTemplateService emailTemplateService,
             DataCacheService dataCacheService,
-            SqlDbService sqlDbService)
+            SqlDbService sqlDbService,
+            IPluginFinder pluginFinder)
         {
             _settingService = settingService;
             _settingDictionaryService = settingDictionaryService;
@@ -131,6 +138,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _unitOfWorkAsync = unitOfWorkAsync;
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
+            _pluginFinder = pluginFinder;
         } 
         #endregion
 
@@ -138,6 +146,15 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var model = CacheHelper.Statistics;
+
+            // Get transaction count
+            var descriptors = _pluginFinder.GetPluginDescriptors(LoadPluginsMode.InstalledOnly, "Payment");
+            foreach (var descriptor in descriptors)
+            {
+                var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
+                var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
+                model.TransactionCount += controller.GetTransactionCount();
+            }
 
             return View("Dashboard", model);
         }

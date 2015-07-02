@@ -11,5 +11,7 @@ namespace BeYourMarket.Core.Controllers
         bool OrderAction(int id, int status, out string message);
 
         bool HasPaymentMethod(string userId);
+
+        int GetTransactionCount();
     }
 }
