@@ -146,6 +146,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var model = CacheHelper.Statistics;
+            model.TransactionCount = 0;
 
             // Get transaction count
             var descriptors = _pluginFinder.GetPluginDescriptors(LoadPluginsMode.InstalledOnly, "Payment");
