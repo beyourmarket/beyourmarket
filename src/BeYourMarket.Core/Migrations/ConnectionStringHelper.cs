@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace BeYourMarket.Core.Migrations
@@ -38,6 +39,9 @@ namespace BeYourMarket.Core.Migrations
 
             // Save the configuration file.
             configuration.Save(ConfigurationSaveMode.Modified);
+
+            // Delay wait to make sure file get saved and detect
+            Thread.Sleep(3000);
 
             // This is needed. Otherwise the updates do not show up in ConfigurationManager
             ConfigurationManager.RefreshSection("connectionStrings");
