@@ -23,6 +23,28 @@ Development Branch (`dev`)
 
 [Beauty and spa service Quick Start](http://www.codeproject.com/Articles/1001019/BeYourMarket-An-net-open-source-marketplace-framew)
 
+## RoadMap ##
+
+#### Support Plugin architecture development (July/August 2015) v. 1.1beta
+- Create plugin for your own widget (e.g. add google analytics tracking)
+- Create plugin for  other marketplace payment API like Braintree
+
+#### Support Custom Theme  (August/September 2015) v. 1.2beta
+- Develop your own theme
+
+We will build features based on community needs, please raise your [suggestion](https://github.com/beyourmarket/beyourmarket/issues/new)
+
+## Docs ##
+
+See [Documentation](https://beyourmarket.atlassian.net)
+
+## Community
+Keep track of development and community news.
+
+*   Follow [BeYourMarket](https://www.facebook.com/BeYourMarket) on Facebook.
+*   Read and subscribe to [the
+    Newsletter](http://beyourmarket.com/index.php/subscribe/).
+
 ## Translation ##
 The platform is by designed with support of multiple language with i18n easily. Smart internationalization for ASP.NET based on GetText / PO ecosystem is used. The only thing you would need is to translate into your own language.
 
@@ -53,27 +75,7 @@ locale/es/messages.po
 
 locale/es-MX/messages.po
 
-## RoadMap ##
-
-#### Support Plugin architecture development (July/August 2015) v. 1.1beta
-- Create plugin for your own widget (e.g. add google analytics tracking)
-- Create plugin for  other marketplace payment API like Braintree
-
-#### Support Custom Theme  (August/September 2015) v. 1.2beta
-- Develop your own theme
-
-We will build features based on community needs, please raise your [suggestion](https://github.com/beyourmarket/beyourmarket/issues/new)
-
-## Docs ##
-
-See [Documentation](https://beyourmarket.atlassian.net)
-
-## Community
-Keep track of development and community news.
-
-*   Follow [BeYourMarket](https://www.facebook.com/BeYourMarket) on Facebook.
-*   Read and subscribe to [the
-    Newsletter](http://beyourmarket.com/index.php/subscribe/).
+If you would like to contribute as a translator, pleasecontact us at [hello@beyourmarket.com](hello@beyourmarket.com)
 
 ## Contribute to BeYourMarket ##
 
