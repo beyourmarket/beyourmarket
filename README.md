@@ -75,7 +75,7 @@ locale/es/messages.po
 
 locale/es-MX/messages.po
 
-If you would like to contribute as a translator, pleasecontact us at [hello@beyourmarket.com](hello@beyourmarket.com)
+If you would like to contribute as a translator, please contact us at [hello@beyourmarket.com](hello@beyourmarket.com)
 
 ## Contribute to BeYourMarket ##
 
