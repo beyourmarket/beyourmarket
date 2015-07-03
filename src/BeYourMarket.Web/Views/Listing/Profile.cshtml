@@ -4,7 +4,7 @@
 @model BeYourMarket.Web.Models.ProfileModel
 
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = "[[[Profile]]]";
 }
 
 @section Styles {
@@ -21,7 +21,7 @@
 
                 <h3>@Model.User.FullName</h3>
                 <p class="lead text-lighten">
-                    Joined since @Model.User.RegisterDate.ToShortDateString()
+                    [[[Joined since]]] @Model.User.RegisterDate.ToShortDateString()
                 </p>                               
             </div>
         </div>
@@ -32,7 +32,7 @@
         <div class="container-fluid mrg-tb">
             <div class="row">
                 <div class="col-md-12 section-title ">
-                    <h4>Listings</h4>
+                    <h4>[[[Listings]]]</h4>
                 </div>
                 @foreach (var item in Model.Items)
                 {
@@ -51,7 +51,7 @@
                                 </p>
                             </div>
                             <div class="card-action">
-                                <a href="#">Location</a>
+                                <a href="#">[[[Location]]]</a>
                                 <span class="pull-right grey-text"> @item.ItemCurrent.Created.ToShortDateString()</span>
                             </div>
                         </div>

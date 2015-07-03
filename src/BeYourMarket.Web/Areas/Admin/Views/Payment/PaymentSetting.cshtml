@@ -1,6 +1,6 @@
 ﻿@model BeYourMarket.Web.Areas.Admin.Models.PaymentSettingModel
 @{
-    ViewBag.Title = "Payment Settings";
+    ViewBag.Title = "[[[Payment Settings]]]";
 }
 
 <div class="wraper container-fluid">
@@ -10,31 +10,31 @@
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
                     <div class="panel-heading">
-                        Payment Settings
+                        [[[Payment Settings]]]
                     </div>
 
                     <div class="panel-body">
                         <h4>
-                            <i class="fa fa-gears"></i> Transaction Settings
+                            <i class="fa fa-gears"></i> [[[Transaction Settings]]]
                         </h4>
                         <hr />
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Minimum transaction size</label>
+                            <label class="col-md-2 control-label">[[[Minimum transaction size]]]</label>
                             <div class="col-md-10">
                                 <input type="number" min="0" class="form-control" id="Setting.TransactionMinimumSize" name="Setting.TransactionMinimumSize" value="@Model.Setting.TransactionMinimumSize" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Transaction fee (%)</label>
+                            <label class="col-md-2 control-label">[[[Transaction fee (%)]]]</label>
                             <div class="col-md-10">
                                 <input type="number" min="0" max="100" class="form-control" id="Setting.TransactionFeePercent" name="Setting.TransactionFeePercent" value="@Model.Setting.TransactionFeePercent" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Minimum Transaction fee</label>
+                            <label class="col-md-2 control-label">[[[Minimum Transaction fee]]]</label>
                             <div class="col-md-10">
                                 <input type="number" min="0" class="form-control" id="Setting.TransactionMinimumFee" name="Setting.TransactionMinimumFee" value="@Model.Setting.TransactionMinimumFee" required>
                             </div>
@@ -42,8 +42,8 @@
 
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
-                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
-                                <button class="btn btn-default" type="button"><i class="fa fa-remove"></i> Cancel</button>
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Save]]]</button>
+                                <button class="btn btn-default" type="button"><i class="fa fa-remove"></i> [[[Cancel]]]</button>
                             </div>
                         </div>
 

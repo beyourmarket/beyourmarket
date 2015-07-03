@@ -1,7 +1,7 @@
 ﻿@model System.Web.Mvc.HandleErrorInfo
 
 @{
-    ViewBag.Title = "Error";
+    ViewBag.Title = "[[[Error]]]";
 }
 
 <div class="section panel-header bdr-b mrg-b text-center">
@@ -10,7 +10,7 @@
             <i class="mdi-alert-warning text-yellow large"></i>
             @if (String.IsNullOrEmpty(ViewBag.ErrorMessage))
             {
-                <h1>An error occurred</h1>
+                <h1>[[[An error occurred]]]</h1>
                 <p class="lead text-lighten">
                     @ViewBag.ErrorMessage
                 </p>
@@ -19,14 +19,14 @@
             {
                 <h1>404</h1>
                 <p class="lead text-lighten">
-                    The page you were looking for doesn't exist.
+                    [[[The page you were looking for doesn't exist.]]]
                 </p>
             }
             else
             {
                 <h1>500</h1>
                 <p class="lead text-lighten">
-                    Error processing the page
+                    [[[Error processing the page]]]
                 </p>
 
                 if (HttpContext.Current.IsDebuggingEnabled)
@@ -44,7 +44,7 @@
                 }
             }
 
-            <a href="@Url.Action("Index","Home")" class="btn btn-primary">Back to the Home</a>
+            <a href="@Url.Action("Index","Home")" class="btn btn-primary">[[[Back to the Home]]]</a>
         </div>
     </div>
 </div>

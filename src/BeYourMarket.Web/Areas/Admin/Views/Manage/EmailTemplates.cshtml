@@ -7,12 +7,12 @@
 }
 
 @{
-    ViewBag.Title = "Email Templates";
+    ViewBag.Title = "[[[Email Templates]]]";
 }
 
 @helper DisplayUpdateLink(int id)
 {
-    <a class="btn btn-primary m-b-5" href="@Url.Action("EmailTemplateUpdate", "Manage", new { id = id })"><i class="fa fa-edit"></i> Edit</a>
+    <a class="btn btn-primary m-b-5" href="@Url.Action("EmailTemplateUpdate", "Manage", new { id = id })"><i class="fa fa-edit"></i> [[[Edit]]]</a>
 }
 
 <div class="wraper container-fluid">
@@ -20,7 +20,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Email Templates</h3>
+                    <h3 class="panel-title">[[[Email Templates]]]</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">

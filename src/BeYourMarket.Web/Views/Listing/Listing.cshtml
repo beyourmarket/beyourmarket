@@ -24,7 +24,7 @@
                     </a>
                     <h5>@Model.User.FullName</h5>
                     <p class="text-lighten">
-                        Joined since @Model.User.RegisterDate.ToShortDateString()
+                        [[[Joined since]]] @Model.User.RegisterDate.ToShortDateString()
                     </p>
                 </div>
 
@@ -52,7 +52,7 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                             <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="To" data-rule-required="true" data-rule-date="true" />
                         </div>
-                        <button class="btn btn-primary">Booking</button>
+                        <button class="btn btn-primary">[[[Booking]]]</button>
                     </form>
                 }
             </div>
@@ -61,9 +61,9 @@
 
     <div class="panel-header bdr-b container-fluid">
         <ul class="nav nav-tabs" role="tablist" id="myTab">
-            <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description</a></li>
-            <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a></li>
-            <li class="pull-right" role="presentation"><a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=#@Request.Url.AbsoluteUri.ToLowerInvariant()"><i class="mdi-social-share"></i> Share</a></li>
+            <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">[[[Description]]]</a></li>
+            <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">[[[Contact]]]</a></li>
+            <li class="pull-right" role="presentation"><a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=#@Request.Url.AbsoluteUri.ToLowerInvariant()"><i class="mdi-social-share"></i> [[[Share]]]</a></li>
         </ul>
     </div>
 
@@ -86,7 +86,7 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                Date Posted:
+                                                [[[Date Posted]]]
                                             </td>
                                             <td>
                                                 @Model.ItemCurrent.Created.ToShortDateString()
@@ -94,7 +94,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Price:
+                                                [[[Price]]]
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(x => Model.ItemCurrent.PriceFormatted)
@@ -102,7 +102,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Location:
+                                                [[[Location]]]
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(x => Model.ItemCurrent.Location)
@@ -110,7 +110,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Listing ID:
+                                                [[[Listing ID]]]
                                             </td>
                                             <td>
                                                 @Model.ItemCurrent.ID
@@ -118,7 +118,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Views:
+                                                [[[Views]]]
                                             </td>
                                             <td>
                                                 @Model.ItemCurrent.ItemStats.FirstOrDefault().CountView
@@ -126,7 +126,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Category:
+                                                [[[Category]]]
                                             </td>
                                             <td>
                                                 <a href="@Url.Action("Search", "Home", new { categoryId = Model.ItemCurrent.CategoryID })">@Model.ItemCurrent.Category.Name</a>
@@ -150,7 +150,7 @@
                                 @if (Model.ItemCurrent.Latitude.HasValue && Model.ItemCurrent.Longitude.HasValue)
                                 {
                                     <div class="panel-heading bdr-t">
-                                        <i class="fa fa-map-marker"></i> Map
+                                        <i class="fa fa-map-marker"></i> [[[Map]]]
                                     </div>
                                     <div class="panel-body">
                                         <div id="map-canvas"></div>
@@ -164,13 +164,13 @@
                                 @if (Model.ItemCurrent.ShowPhone && !string.IsNullOrEmpty(Model.ItemCurrent.ContactPhone))
                                 {
                                     <div class="list-group">
-                                        <a data-text-swap="Contact number (Click to show)" data-text-original="@Model.ItemCurrent.ContactPhone" class="text-swap list-group-item "><i class="mdi-hardware-phone-iphone"></i> Contact number (Click to show)</a>
-                                        <a href="@Url.Action("Profile", "Listing", new { id = Model.ItemCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>View User's other listings</a>
+                                        <a data-text-swap="[[[Contact number (Click to show)]]]" data-text-original="@Model.ItemCurrent.ContactPhone" class="text-swap list-group-item "><i class="mdi-hardware-phone-iphone"></i> [[[Contact number (Click to show)]]]</a>
+                                        <a href="@Url.Action("Profile", "Listing", new { id = Model.ItemCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>[[[View User's other listings]]]</a>
                                     </div>
                                 }
 
                                 <div class="panel-heading">
-                                    Email
+                                    [[[Email]]]
                                 </div>
 
                                 @if (User.Identity.IsAuthenticated)
@@ -183,7 +183,7 @@
                                             <div class="form-group">
                                                 <textarea rows="4" class="form-control" id="Message" name="Message" placeholder="Message" required minlength="20"></textarea>
                                             </div>
-                                            <button type="submit" class="btn btn-primary pushme">Send</button>
+                                            <button type="submit" class="btn btn-primary pushme">[[[Send]]]</button>
                                         </form>
                                     </div>
                                 }
@@ -192,10 +192,10 @@
 
                                     <div class="panel-body">
                                         <div class="alert alert-info" role="alert">
-                                            Sign in to contact the owner
+                                            [[[Sign in to contact the owner]]]
                                         </div>
                                         <div class="col-md-12">
-                                            <a class="btn btn-primary" href="@Url.Action("Login", "Account", new { returnUrl = ViewContext.HttpContext.Request.Url.PathAndQuery  })">Sign in</a>
+                                            <a class="btn btn-primary" href="@Url.Action("Login", "Account", new { returnUrl = ViewContext.HttpContext.Request.Url.PathAndQuery  })">[[[Sign in]]]</a>
                                         </div>
                                     </div>
                                 }
@@ -228,11 +228,11 @@
 
                                 <a class="left carousel-control" href="#carousel-gallery" role="button" data-slide="prev">
                                     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
+                                    <span class="sr-only">[[[Previous]]]</span>
                                 </a>
                                 <a class="right carousel-control" href="#carousel-gallery" role="button" data-slide="next">
                                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
+                                    <span class="sr-only">[[[Next]]]</span>
                                 </a>
 
                             </div>

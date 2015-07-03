@@ -1,7 +1,7 @@
 ﻿@model BeYourMarket.Web.Models.MetaFieldModel
 
 @{
-    ViewBag.Title = "Custom Field";
+    ViewBag.Title = "[[[Custom Field]]]";
 }
 
 @section Styles {
@@ -14,9 +14,9 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3 class="panel-title">Custom Field</h3></div>
+                <div class="panel-heading"><h3 class="panel-title">[[[Custom Field]]]</h3></div>
                 <div class="panel-body">
-                    <form action="@Url.Action("CustomFieldUpdate", "Listing")" id="settingsForm" method="post" class="form-horizontal" role="form">                        
+                    <form action="@Url.Action("CustomFieldUpdate", "Listing")" id="settingsForm" method="post" class="form-horizontal" role="form">
 
                         @Html.HiddenFor(x => x.MetaField.ID)
 
@@ -30,21 +30,21 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Type</label>
+                            <label class="col-md-2 control-label">[[[Type]]]</label>
                             <div class="col-md-10">
                                 @Html.DropDownListFor(m => m.MetaField.ControlTypeID, EnumHelper.GetSelectList(typeof(BeYourMarket.Model.Enum.Enum_MetaFieldControlType)), new { @class = "form-control", required = "" })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Name</label>
+                            <label class="col-md-2 control-label">[[[Name]]]</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="MetaField_Name" name="MetaField.Name" value="@Model.MetaField.Name" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Options</label>
+                            <label class="col-md-2 control-label">[[[Options]]]</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control tags" id="MetaField_Options" name="MetaField.Options" value="@Model.MetaField.Options" required>
                             </div>
@@ -55,7 +55,7 @@
                                 <label class="cr-styled">
                                     <input checked="@Model.MetaField.Required" id="MetaField_Required" name="MetaField.Required" type="checkbox" value="true" />
                                     <i class="fa"></i>
-                                    Required
+                                    [[[Required]]]
                                 </label>
                                 <input name="Required" type="hidden" value="false" />
                             </div>
@@ -67,28 +67,28 @@
                                     <input checked="@Model.MetaField.Searchable" id="MetaField_Searchable" name="MetaField.Searchable" type="checkbox" value="true" />
                                     <i class="fa"></i>
                                     <input name="Searchable" type="hidden" value="false" />
-                                    Searchable
+                                    [[[Searchable]]]
                                 </label>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Category</label>
+                            <label class="col-md-2 control-label">[[[Category]]]</label>
                             <div class="col-md-10">
-                                <select name="Categories" id="Categories" class="select2" multiple data-placeholder="Choose Category..." required>
+                                <select name="Categories" id="Categories" class="select2" multiple data-placeholder="[[[Choose Category...]]]" required>
                                     @foreach (var category in Model.Categories)
                                     {
                                         <option value="@category.ID" selected="@Model.MetaField.MetaCategories.Any(x=>x.CategoryID == category.ID)">@category.Name</option>
                                     }
-                                </select>                                
+                                </select>
                             </div>
                         </div>
 
 
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
-                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
-                                <a href="@Url.Action("CustomFields", "Listing")" class="btn btn-default"><i class="fa fa-remove"></i> Cancel</a>
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Save]]]</button>
+                                <a href="@Url.Action("CustomFields", "Listing")" class="btn btn-default"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
                             </div>
                         </div>
 
@@ -110,7 +110,7 @@
             // Tags Input
             $('.tags').tagsInput({
                 width: 'auto',
-                defaultText: 'add an option',
+                defaultText: '[[[add an option]]]',
                 removeWithBackspace: true,
                 minInputWidth: '100px'
             });

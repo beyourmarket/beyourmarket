@@ -1,7 +1,7 @@
 ﻿@model BeYourMarket.Web.Models.ListingUpdateModel
 
 @{
-    ViewBag.Title = "Listing Update";
+    ViewBag.Title = "[[[Listing Update]]]";
 }
 
 @section Styles {
@@ -13,7 +13,7 @@
         <div class="center-block col-md-8">
             <div class="panel panel-default mrg-t">
                 <div class="panel-body bdr-b panel-header">
-                    <h4>Publish a listing (it's 100% free)</h4>
+                    <h4>[[[Publish a listing (it's 100% free)]]]</h4>
                     <p class="text-lighten">
                         @CacheHelper.Settings.SignupText
                     </p>
@@ -24,28 +24,28 @@
                         @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })                        
 
                         <fieldset>
-                            <legend>Listing Details</legend>
-                            <label>Category</label>
+                            <legend>[[[Listing Details]]]</legend>
+                            <label>[[[Category]]]</label>
 
                             @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.ListingItem.CategoryID), new { @class = "form-control input-lg" })
 
                             <div class="form-group">
                                 <label>Title</label>
-                                <input type="text" class="form-control input-lg" placeholder="Enter Title" id="Title" name="Title" value="@Model.ListingItem.Title" required>
+                                <input type="text" class="form-control input-lg" placeholder="[[[Enter Title]]]" id="Title" name="Title" value="@Model.ListingItem.Title" required>
                             </div>
 
                             <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" rows="4" placeholder="Description..." id="Description" name="Description" required>@Model.ListingItem.Description</textarea>
+                                <label>[[[Description]]]</label>
+                                <textarea class="form-control" rows="4" placeholder="[[[Description...]]]" id="Description" name="Description" required>@Model.ListingItem.Description</textarea>
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="Price" name="Price" placeholder="Price" value="@Model.ListingItem.Price">
+                                    <input type="text" class="form-control" id="Price" name="Price" placeholder="[[[Price]]]" value="@Model.ListingItem.Price">
                                     <span class="input-group-addon">@CacheHelper.Settings.Currency</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="checkbox" id="Active" name="Active" value="true" @(Model.ListingItem.Active ? "checked" : "") /> <label for="Active">Active</label>
+                                <input type="checkbox" id="Active" name="Active" value="true" @(Model.ListingItem.Active ? "checked" : "") /> <label for="Active">[[[Active]]]</label>
                                 <input name="Active" type="hidden" value="false" />
                             </div>
                         </fieldset>
@@ -55,7 +55,7 @@
                         </div>
 
                         <fieldset>
-                            <legend>Upload Pictures</legend>
+                            <legend>[[[Upload Pictures]]]</legend>
                             <div class="form-group">
                                 <div class="target">
                                     <input id="files" name="files" type="file" class="file-loading" multiple="true">
@@ -64,9 +64,9 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend>Location</legend>
+                            <legend>[[[Location]]]</legend>
                             <div class="form-group">
-                                <label>Location</label>
+                                <label>[[[Location]]]</label>
                                 <input type="text" class="form-control input-lg" placeholder="Enter Location" id="Location" name="Location" value="@Model.ListingItem.Location">
                             </div>
 
@@ -80,27 +80,27 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend>Publisher's Info</legend>
+                            <legend>[[[Publisher's Info]]]</legend>
                             <div class="form-group">
-                                <label>Full Name</label>
-                                <input type="text" id="ContactName" name="ContactName" class="form-control input-lg" placeholder="Enter Your Full Name" value="@Model.ListingItem.ContactName" required>
+                                <label>[[[Full Name]]]</label>
+                                <input type="text" id="ContactName" name="ContactName" class="form-control input-lg" placeholder="[[[Enter Your Full Name]]]" value="@Model.ListingItem.ContactName" required>
                             </div>
                             <div class="form-group">
-                                <label>Phone Number (Optional)</label>
-                                <input type="tel" id="ContactPhone" name="ContactPhone" class="form-control input-lg" placeholder="Enter Phone Number" value="@Model.ListingItem.ContactPhone">
+                                <label>[[[Phone Number (Optional)]]]</label>
+                                <input type="tel" id="ContactPhone" name="ContactPhone" class="form-control input-lg" placeholder="[[[Enter Phone Number]]]" value="@Model.ListingItem.ContactPhone">
                             </div>
                             <div class="form-group">
-                                <input type="checkbox" id="ShowPhone" name="ShowPhone" value="true" @(Model.ListingItem.ShowPhone ? "checked" : "") /> <label for="ShowPhone">Show Phone</label>
+                                <input type="checkbox" id="ShowPhone" name="ShowPhone" value="true" @(Model.ListingItem.ShowPhone ? "checked" : "") /> <label for="ShowPhone">[[[Show Phone]]]</label>
                                 <input name="ShowPhone" type="hidden" value="false" />
                             </div>
                             <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="email" id="ContactEmail" name="ContactEmail" class="form-control input-lg" placeholder="Enter Email Address" value="@Model.ListingItem.ContactEmail" required data-rule-email="true">
+                                <label>[[[Email Address]]]</label>
+                                <input type="email" id="ContactEmail" name="ContactEmail" class="form-control input-lg" placeholder="[[[Enter Email Address]]]" value="@Model.ListingItem.ContactEmail" required data-rule-email="true">
                             </div>
                         </fieldset>
                         <fieldset>
-                            <button class="btn btn-primary" type="submit">Publish Listing</button>
-                            <a class="btn btn-default" href="@Url.Action("Dashboard", "Manage")">Cancel</a>
+                            <button class="btn btn-primary" type="submit">[[[Publish Listing]]]</button>
+                            <a class="btn btn-default" href="@Url.Action("Dashboard", "Manage")">[[[Cancel]]]</a>
                         </fieldset>
                     </form>
                 </div>

@@ -1,6 +1,6 @@
 ﻿@model BeYourMarket.Web.Models.ApplicationUser
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = "[[[Profile]]]";
 }
 
 @section Styles {
@@ -19,15 +19,15 @@
                         <div class="panel panel-default">
                             <!-- Default panel contents -->
                             <div class="panel-heading">
-                                Profile
+                                [[[Profile]]]
                             </div>
                             <div class="panel-body">
                                 @using (Html.BeginForm("ProfileUpdate", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
                                 {
                                     @Html.AntiForgeryToken()
                                     <h4>
-                                        <i class="fa fa-user"></i> Profile
-                                        <a class="btn btn-default btn-sm pull-right" href="@Url.Action("Profile", "Listing", new { id = Model.Id })">View Your Profile</a>
+                                        <i class="fa fa-user"></i> [[[Profile]]]
+                                        <a class="btn btn-default btn-sm pull-right" href="@Url.Action("Profile", "Listing", new { id = Model.Id })">[[[View Your Profile]]]]</a>
                                     </h4>
                                     <hr />
                                     @Html.ValidationSummary("", new { @class = "text-danger" })
@@ -63,22 +63,22 @@
                                         @Html.LabelFor(m => m.Gender, new { @class = "col-md-2 control-label" })
                                         <div class="col-md-10">
                                             <label class="cr-styled">
-                                                <input type="radio" name="Gender" id="Gender" value="M" @(Model.Gender == "M" ? "checked" : "") /> <i class="fa"></i> Male
+                                                <input type="radio" name="Gender" id="Gender" value="M" @(Model.Gender == "M" ? "checked" : "") /> <i class="fa"></i> [[[Male]]]
                                             </label> <i class="fa fa-male"></i>
                                             <label class="cr-styled">
-                                                <input type="radio" name="Gender" id="Gender" value="F" @(Model.Gender == "F" ? "checked" : "") /> <i class="fa"></i> Female
+                                                <input type="radio" name="Gender" id="Gender" value="F" @(Model.Gender == "F" ? "checked" : "") /> <i class="fa"></i> [[[Female]]]
                                             </label> <i class="fa fa-female"></i>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">Profile Picture</label>
+                                        <label class="col-md-2 control-label">[[[Profile Picture]]]</label>
                                         <div class="col-md-10">
                                             <input id="file" name="file" type="file" class="file-loading">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-offset-2 col-md-10">
-                                            <input type="submit" value="Save" class="btn btn-primary" />
+                                            <input type="submit" value="[[[Save]]]" class="btn btn-primary" />
                                         </div>
                                     </div>
                                 }

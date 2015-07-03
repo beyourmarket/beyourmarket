@@ -1,7 +1,7 @@
 ﻿@model BeYourMarket.Model.Models.Setting
 
 @{
-    ViewBag.Title = "Settings";
+    ViewBag.Title = "[[[Settings]]]";
 }
 
 <div class="wraper container-fluid">
@@ -9,61 +9,61 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3 class="panel-title">Settings</h3></div>
+                <div class="panel-heading"><h3 class="panel-title">[[[Settings]]]</h3></div>
                 <div class="panel-body">
                     <form action="@Url.Action("SettingsUpdate", "Manage")" id="settingsForm" method="post" class="form-horizontal" role="form">
                         <input type="hidden" name="ID" id="ID" value="@Model.ID" />
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Name</label>
+                            <label class="col-md-2 control-label">[[[Name]]]</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Description</label>
+                            <label class="col-md-2 control-label">[[[Description]]]</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="Description" name="Description" value="@Model.Description" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Slogan</label>
+                            <label class="col-md-2 control-label">[[[Slogan]]]</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="Slogan" name="Slogan" value="@Model.Slogan" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Search PlaceHolder</label>
+                            <label class="col-md-2 control-label">[[[Search PlaceHolder]]]</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="SearchPlaceHolder" name="SearchPlaceHolder" value="@Model.SearchPlaceHolder" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="EmailContact">Email</label>
+                            <label class="col-md-2 control-label" for="EmailContact">[[[Email]]]</label>
                             <div class="col-md-10">
                                 <input type="email" id="EmailContact" name="EmailContact" class="form-control" placeholder="Email" value="@Model.EmailContact" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Version</label>
+                            <label class="col-sm-2 control-label">[[[Version]]]</label>
                             <div class="col-sm-10">
                                 <p class="form-control-static">@Model.Version</p>
                             </div>
                         </div>  
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="Currency">Currency</label>
+                            <label class="col-md-2 control-label" for="Currency">[[[Currency]]]</label>
                             <div class="col-md-10">
-                                <input type="text" id="Currency" name="Currency" class="form-control" placeholder="Currency" value="@Model.Currency" maxlength="3" required>
+                                <input type="text" id="Currency" name="Currency" class="form-control" placeholder="[[[Currency]]]" value="@Model.Currency" maxlength="3" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="EmailConfirmedRequired">Email Confirmation Required</label>
+                            <label class="col-md-2 control-label" for="EmailConfirmedRequired">[[[Email Confirmation Required]]]</label>
                             <div class="col-md-10">
                                 <label class="cr-styled control-label">
                                     <input checked="@Model.EmailConfirmedRequired" id="EmailConfirmedRequired" name="EmailConfirmedRequired" type="checkbox" value="true" />
@@ -75,7 +75,7 @@
                         </div>  
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="BookingText">Booking</label>
+                            <label class="col-md-2 control-label" for="BookingText">[[[Booking]]]</label>
                             <div class="col-md-10">
                                 <label class="cr-styled control-label">
                                     <input checked="@Model.BookingEnabled" id="BookingEnabled" name="BookingEnabled" type="checkbox" value="true" />
@@ -87,49 +87,49 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="BookingText">Booking Text</label>
+                            <label class="col-md-2 control-label" for="BookingText">[[[Booking Text]]]</label>
                             <div class="col-md-10">
                                 <input type="text" id="BookingText" name="BookingText" class="form-control" placeholder="BookingText" value="@Model.BookingText" required>
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="AgreementRequired">Agreement Required</label>
+                            <label class="col-md-2 control-label" for="AgreementRequired">[[[Agreement Required]]]</label>
                             <div class="col-md-10">
                                 <label class="cr-styled control-label">
                                     <input checked="@Model.AgreementRequired" id="AgreementRequired" name="AgreementRequired" type="checkbox" value="true" />
                                     <i class="fa"></i>
-                                    Enabled
+                                    [[[Enabled]]]
                                 </label>
                                 <input name="AgreementRequired" type="hidden" value="false" />
                             </div>
                         </div>                        
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="AgreementLabel">Agreement Label</label>
+                            <label class="col-md-2 control-label" for="AgreementLabel">[[[Agreement Label]]]</label>
                             <div class="col-md-10">
-                                <input type="text" id="AgreementLabel" name="AgreementLabel" class="form-control" placeholder="This text will be shown next to a checkbox in the checkout form" value="@Model.AgreementLabel">                                
+                                <input type="text" id="AgreementLabel" name="AgreementLabel" class="form-control" placeholder="[[[This text will be shown next to a checkbox in the checkout form]]]" value="@Model.AgreementLabel">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="SignupText">Agreement Text</label>
+                            <label class="col-md-2 control-label" for="SignupText">[[[Agreement Text]]]</label>
                             <div class="col-md-10">
-                                <textarea class="form-control" rows="4" placeholder="This is the content of the actual agreement that the user needs to accept." id="AgreementText" name="AgreementText">@Model.AgreementText</textarea>
+                                <textarea class="form-control" rows="4" placeholder="[[[This is the content of the actual agreement that the user needs to accept.]]]" id="AgreementText" name="AgreementText">@Model.AgreementText</textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="AgreementText">Signup Text</label>
+                            <label class="col-md-2 control-label" for="AgreementText">[[[Signup Text]]]</label>
                             <div class="col-md-10">
-                                <textarea class="form-control" rows="4" placeholder="This is an info text that can be shown to users in the signup page. There you can give the users instructions for signing up, information like where to get an invite, etc. By default there are no instructions." id="SignupText" name="SignupText">@Model.SignupText</textarea>
+                                <textarea class="form-control" rows="4" placeholder="[[[This is an info text that can be shown to users in the signup page. There you can give the users instructions for signing up, information like where to get an invite, etc. By default there are no instructions.]]]" id="SignupText" name="SignupText">@Model.SignupText</textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
-                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
-                                <a href="@Url.Action("Settings", "Manage")" class="btn btn-default"><i class="fa fa-remove"></i> Cancel</a>
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Save]]]</button>
+                                <a href="@Url.Action("Settings", "Manage")" class="btn btn-default"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
                             </div>
                         </div>
 

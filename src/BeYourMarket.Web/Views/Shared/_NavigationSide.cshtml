@@ -22,7 +22,7 @@
     {
         <li class="treeview">
             <a href="@Url.Action("Search", "Home")">
-                <span>All Categories</span>
+                <span>[[[All Categories]]]</span>
             </a>
         </li>
 
@@ -47,7 +47,7 @@
     <section class="sidebar">
         <form action="#" method="get" class="user-panel form-rounded hidden-lg hidden-md">
             <div class="input-group">
-                <input type="text" name="q" class="form-control input-sm" placeholder="Search for..." />
+                <input type="text" name="q" class="form-control input-sm" placeholder="[[[Search for...]]]" />
                 <span class="input-group-btn">
                     <button type='submit' name='search' class="btn btn-sm btn-flat"><i class="mdi-action-search "></i></button>
                 </span>
@@ -69,7 +69,7 @@
             }
             else
             {
-                <li class="divider"><i class="fa fa-dashboard"></i> Administration</li>
+                <li class="divider"><i class="fa fa-dashboard"></i> [[[Administration]]]</li>
                 
                 <li class="">
                     <a href="@Url.Action("Dashboard", "Manage", new { Area = "" })">
@@ -92,7 +92,7 @@
                 }
             }
 
-            <li class="divider"><i class="fa fa-th-list"></i> Categories</li>
+            <li class="divider"><i class="fa fa-th-list"></i> [[[Categories]]]</li>
 
             @DisplayTree(Model.CategoryTree)
 
@@ -105,7 +105,7 @@
             }
 
             <li class="@(Html.IsActiveMenuItem("Contact","Home") ? "active" : "")">
-                <a href="@Url.Action("Contact", "Home")"><i class="fa fa-envelope"></i> Contact us</a>
+                <a href="@Url.Action("Contact", "Home")"><i class="fa fa-envelope"></i> [[[Contact us]]]</a>
             </li>
             <li>
                 <footer class="copyright">

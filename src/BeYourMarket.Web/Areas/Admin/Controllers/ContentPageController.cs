@@ -179,7 +179,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 if (query.Any())
                 {
                     TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                    TempData[TempDataKeys.UserMessage] = string.Format("Slug {0} already exists", contentPage.Slug);
+                    TempData[TempDataKeys.UserMessage] = string.Format("[[[Slug {0} already exists]]]", contentPage.Slug);
 
                     return View(contentPage);
                 }

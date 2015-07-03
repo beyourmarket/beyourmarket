@@ -167,6 +167,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
+            _dataCacheService.RemoveCachedItem(CacheKeys.Categories);
+
             return RedirectToAction("Categories");
         }
 
@@ -339,7 +341,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             if (CacheHelper.Categories.Count == 0)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                TempData[TempDataKeys.UserMessage] = "There are not categories available yet.";
+                TempData[TempDataKeys.UserMessage] = "[[[There are not categories available yet.]]]";
             }  
 
             Item item;
@@ -420,7 +422,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             if (CacheHelper.Categories.Count == 0)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                TempData[TempDataKeys.UserMessage] = "There are not categories available yet.";
+                TempData[TempDataKeys.UserMessage] = "[[[There are not categories available yet.]]]";
 
                 return RedirectToAction("Listing", new { id = item.ID });
             }
@@ -582,7 +584,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             if (item.Orders.Count > 0)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                TempData[TempDataKeys.UserMessage] = "You cannot delete item with orders! You can deactivate it instead.";                
+                TempData[TempDataKeys.UserMessage] = "[[[You cannot delete item with orders! You can deactivate it instead.]]]";                
             }
 
             // Delete pictures
@@ -596,7 +598,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
-            TempData[TempDataKeys.UserMessage] = "Your listing has been deleted.";
+            TempData[TempDataKeys.UserMessage] = "[[[Your listing has been deleted.]]]";
 
             return RedirectToAction("Listings");
         }

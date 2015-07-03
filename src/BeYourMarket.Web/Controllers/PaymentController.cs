@@ -204,7 +204,7 @@ namespace BeYourMarket.Web.Controllers
             if (descriptors.Count() == 0)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                TempData[TempDataKeys.UserMessage] = "The provider has not setup the payment option yet, please contact the provider.";
+                TempData[TempDataKeys.UserMessage] = "[[[The provider has not setup the payment option yet, please contact the provider.]]]";
 
                 return RedirectToAction("Listing", "Listing", new { id = order.ItemID });
             }
@@ -217,7 +217,7 @@ namespace BeYourMarket.Web.Controllers
                 if (!controller.HasPaymentMethod(item.UserID))
                 {
                     TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                    TempData[TempDataKeys.UserMessage] = string.Format("The provider has not setup the payment option for {0} yet, please contact the provider.", descriptor.FriendlyName);
+                    TempData[TempDataKeys.UserMessage] = string.Format("[[[The provider has not setup the payment option for {0} yet, please contact the provider.]]]", descriptor.FriendlyName);
 
                     return RedirectToAction("Listing", "Listing", new { id = order.ItemID });
                 }   
@@ -235,14 +235,14 @@ namespace BeYourMarket.Web.Controllers
                 if (order.UserProvider == order.UserReceiver)
                 {
                     TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                    TempData[TempDataKeys.UserMessage] = "You cannot book the item from yourself!";
+                    TempData[TempDataKeys.UserMessage] = "[[[You cannot book the item from yourself!]]]";
 
                     return RedirectToAction("Listing", "Listing", new { id = order.ItemID });
                 }
 
                 if (order.ToDate.HasValue && order.FromDate.HasValue)
                 {
-                    order.Description = string.Format("{0} #{1} (From {2} To {3})",
+                    order.Description = string.Format("{0} #{1} ([[[From]]] {2} [[[To]]] {3})",
                         item.Title, item.ID,
                         order.FromDate.Value.ToShortDateString(), order.ToDate.Value.ToShortDateString());
 

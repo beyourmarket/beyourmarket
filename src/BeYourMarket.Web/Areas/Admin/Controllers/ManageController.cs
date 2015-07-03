@@ -348,12 +348,12 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             dynamic email = new Postal.Email("Email");
             email.To = CacheHelper.Settings.EmailContact;
             email.From = CacheHelper.Settings.EmailContact;
-            email.Subject = "[Testing] " + emailTemplate.Subject;
+            email.Subject = "[[[Testing]]] - " + emailTemplate.Subject;
             email.Body = emailTemplate.Body;
 
             EmailHelper.SendEmail(email);
 
-            TempData[TempDataKeys.UserMessage] = "Message sent succesfully!";
+            TempData[TempDataKeys.UserMessage] = "[[[Message sent succesfully!]]]";
 
             return RedirectToAction("EmailTemplateUpdate", new { id = id });
         }

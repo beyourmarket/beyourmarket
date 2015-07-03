@@ -7,12 +7,12 @@
 }
 
 @{
-    ViewBag.Title = "Content Pages";
+    ViewBag.Title = "[[[Content Pages]]]";
 }
 
 @helper DisplayUpdateLink(int id)
 {
-    <a class="btn btn-primary m-b-5" href="@Url.Action("ContentPageUpdate", "ContentPage", new { id = id })"><i class="fa fa-edit"></i> Edit</a>
+    <a class="btn btn-primary m-b-5" href="@Url.Action("ContentPageUpdate", "ContentPage", new { id = id })"><i class="fa fa-edit"></i> [[[Edit]]]</a>
 }
 
 <div class="wraper container-fluid">
@@ -20,12 +20,12 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Content Pages</h3>
+                    <h3 class="panel-title">[[[Content Pages]]]</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-10">
-                            <a class="btn btn-primary" href="@Url.Action("ContentPageUpdate", "ContentPage")"><i class="fa fa-plus"></i> Add New</a>
+                            <a class="btn btn-primary" href="@Url.Action("ContentPageUpdate", "ContentPage")"><i class="fa fa-plus"></i> [[[Add New]]]</a>
                         </div>
                     </div>
 

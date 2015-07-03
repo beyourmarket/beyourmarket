@@ -133,7 +133,7 @@ namespace BeYourMarket.Web.Controllers
             if (CacheHelper.Categories.Count == 0)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                TempData[TempDataKeys.UserMessage] = "There are not categories available yet.";
+                TempData[TempDataKeys.UserMessage] = "[[[There are not categories available yet.]]]";
             }   
 
             Item item;
@@ -289,7 +289,7 @@ namespace BeYourMarket.Web.Controllers
             if (CacheHelper.Categories.Count == 0)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                TempData[TempDataKeys.UserMessage] = "There are not categories available yet.";
+                TempData[TempDataKeys.UserMessage] = "[[[There are not categories available yet.]]]";
 
                 return RedirectToAction("Listing", new { id = item.ID });
             }
@@ -528,7 +528,7 @@ namespace BeYourMarket.Web.Controllers
             email.Message = model.Message;
             EmailHelper.SendEmail(email);
 
-            TempData[TempDataKeys.UserMessage] = "Message sent succesfully!";
+            TempData[TempDataKeys.UserMessage] = "[[[Message sent succesfully!]]]";
 
             return RedirectToAction("Listing", "Listing", new { id = model.ItemID });
         }

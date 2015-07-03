@@ -1,11 +1,11 @@
 ﻿@model BeYourMarket.Service.Models.Statistics
 @{
-    ViewBag.Title = "Dashboard";
+    ViewBag.Title = "[[[Dashboard]]]";
 }
 
 <div class="wraper container-fluid">
     <div class="page-title">
-        <h3 class="title">Welcome to <strong>@CacheHelper.Settings.Name</strong> Admin Panel!</h3>
+        <h3 class="title">@Html.Raw(string.Format("[[[Welcome to <strong>{0}</strong> Admin Panel!]]]", CacheHelper.Settings.Name))</h3>
     </div>
 
     <div class="row">
@@ -14,7 +14,7 @@
                 <div class="widget-panel widget-style-2 bg-info">
                     <i class="fa fa-th-list"></i>
                     <h2 class="m-0 counter">@Model.ListingCount</h2>
-                    <div>Listings</div>
+                    <div>[[[Listings]]]</div>
                 </div>
             </a>
         </div>
@@ -24,7 +24,7 @@
                 <div class="widget-panel widget-style-2 bg-pink">
                     <i class="fa fa-shopping-cart"></i>
                     <h2 class="m-0 counter">@Model.OrderCount</h2>
-                    <div>Orders</div>
+                    <div>[[[Orders]]]</div>
                 </div>
             </a>
         </div>
@@ -34,7 +34,7 @@
                 <div class="widget-panel widget-style-2 bg-purple">
                     <i class="fa fa-dollar"></i>
                     <h2 class="m-0 counter">@Model.TransactionCount</h2>
-                    <div>Transaction</div>
+                    <div>[[[Transactions]]]</div>
                 </div>
             </a>
         </div>
@@ -44,7 +44,7 @@
                 <div class="widget-panel widget-style-2 bg-success">
                     <i class="fa fa-users"></i>
                     <h2 class="m-0 counter">@Model.UserCount</h2>
-                    <div>Users</div>
+                    <div>[[[Users]]]</div>
                 </div>
             </a>
         </div>
@@ -56,7 +56,7 @@
             <div class="portlet">
                 <div class="portlet-heading">
                     <h3 class="portlet-title text-dark">
-                        Listings by category
+                        [[[Listings by category]]]
                     </h3>
                 </div>
                 <div id="portlet2" class="panel-collapse collapse in">
@@ -64,8 +64,8 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Category</th>
-                                    <th>Count</th>
+                                    <th>[[[Category]]]</th>
+                                    <th>[[[Count]]]</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,7 +87,7 @@
             <div class="portlet">
                 <div class="portlet-heading">
                     <h3 class="portlet-title text-dark">
-                        New listings
+                        [[[New listings]]]
                     </h3>
                 </div>
                 <div id="portlet1" class="panel-collapse collapse in">

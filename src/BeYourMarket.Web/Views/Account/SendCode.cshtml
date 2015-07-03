@@ -1,6 +1,6 @@
 ﻿@model BeYourMarket.Web.Models.SendCodeViewModel
 @{
-    ViewBag.Title = "Send";
+    ViewBag.Title = "[[[Send]]]";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -12,7 +12,7 @@
     <hr />
     <div class="row">
         <div class="col-md-8">
-            Select Two-Factor Authentication Provider:
+            [[[Select Two-Factor Authentication Provider:]]]
             @Html.DropDownListFor(model => model.SelectedProvider, Model.Providers)
             <input type="submit" value="Submit" class="btn btn-default" />
         </div>

@@ -131,7 +131,7 @@ namespace Plugin.Payment.Stripe.Controllers
             // Payment succeeded
             if (string.IsNullOrEmpty(stripeCharge.FailureCode))
             {
-                TempData[TempDataKeys.UserMessage] = "Thanks for your order! You payment will not be charged until the provider accepted your request.";
+                TempData[TempDataKeys.UserMessage] = "[[[Thanks for your order! You payment will not be charged until the provider accepted your request.]]]";
                 return RedirectToAction("Orders", "Payment");
             }
             else
@@ -171,7 +171,7 @@ namespace Plugin.Payment.Stripe.Controllers
 
             _unitOfWorkAsyncStripe.SaveChanges();
 
-            TempData[TempDataKeys.UserMessage] = "Disconnnect to stripe successfully!";
+            TempData[TempDataKeys.UserMessage] = "[[[Disconnnect to stripe successfully!]]]";
 
             return RedirectToAction("PaymentSetting", "Payment", new { area = "" });
         }
@@ -206,7 +206,7 @@ namespace Plugin.Payment.Stripe.Controllers
                     _stripConnectService.Insert(response.Data);
                     _unitOfWorkAsyncStripe.SaveChanges();
 
-                    TempData[TempDataKeys.UserMessage] = "Connnect to stripe successfully!";
+                    TempData[TempDataKeys.UserMessage] = "[[[Connnect to stripe successfully!]]]";
 
                     return View("~/Plugins/Plugin.Payment.Stripe/Views/PaymentSetting.cshtml", Plugin.Payment.Stripe.StripePlugin.Enum_StripeConnectStatus.Authorized);
                 }
@@ -361,7 +361,7 @@ namespace Plugin.Payment.Stripe.Controllers
             _dataCacheService.RemoveCachedItem(CacheKeys.SettingDictionary);
             _dataCacheService.RemoveCachedItem(CacheKeys.Settings);
 
-            TempData[TempDataKeys.UserMessage] = "Plugin updated!";
+            TempData[TempDataKeys.UserMessage] = "[[[Plugin updated!]]]";
 
             return RedirectToAction("Plugins", "Plugin", new { area = "Admin" });
         }

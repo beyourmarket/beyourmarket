@@ -1,7 +1,7 @@
 ﻿@model BeYourMarket.Web.Models.ListingUpdateModel
 
 @{
-    ViewBag.Title = "Listing";
+    ViewBag.Title = "[[[Listing Update]]]";
 }
 
 @section Styles {
@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><h3 class="panel-title">Listing</h3></div>
+                <div class="panel-heading"><h3 class="panel-title">[[[Listing Update]]]</h3></div>
                 <div class="panel-body">
                     <form action="@Url.Action("ListingUpdate", "Listing")" id="listngUpdateForm" method="post" class="form-horizontal" role="form" enctype="multipart/form-data" onkeypress="return event.keyCode != 13;">
                         @Html.Partial("_UserMessage")
@@ -27,35 +27,35 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Category</label>
+                            <label class="col-md-2 control-label">[[[Category]]]</label>
                             <div class="col-md-10">
                                 @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.ListingItem.CategoryID), new { @class = "form-control" })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Title</label>
+                            <label class="col-md-2 control-label">[[[Title]]]</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="Title" name="Title" value="@Model.ListingItem.Title" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Description</label>
+                            <label class="col-md-2 control-label">[[[Description]]]</label>
                             <div class="col-md-10">
                                 <textarea class="form-control input-lg" rows="4" placeholder="Description..." id="Description" name="Description" required>@Model.ListingItem.Description</textarea>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Contact Name</label>
+                            <label class="col-md-2 control-label">[[[Contact Name]]]</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="ContactName" name="ContactName" value="@Model.ListingItem.ContactName" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Contact Email</label>
+                            <label class="col-md-2 control-label">[[[Contact Email]]]</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="ContactEmail" name="ContactEmail" value="@Model.ListingItem.ContactEmail" required data-rule-email="true">
                             </div>
@@ -66,55 +66,55 @@
                                 <label class="cr-styled">
                                     <input id="ShowEmail" name="ShowEmail" type="checkbox" value="true" checked="@Model.ListingItem.ShowEmail">
                                     <i class="fa"></i>
-                                    Show Email
+                                    [[[Show Email]]]
                                 </label>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">User</label>
+                            <label class="col-md-2 control-label">[[[User]]]</label>
                             <div class="col-md-10">
                                 @Html.DropDownListFor(m => m.UserID, new SelectList(Model.Users, "Id", "Email", Model.ListingItem.UserID), new { @class = "form-control" })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Currency</label>
+                            <label class="col-md-2 control-label">[[[Currency]]]</label>
                             <div class="col-md-10">
                                 <input type="text" maxlength="3" class="form-control" id="Currency" name="Currency" value="@Model.ListingItem.Currency">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Price</label>
+                            <label class="col-md-2 control-label">[[[Price]]]</label>
                             <div class="col-md-10">
                                 <input type="number" min="0" class="form-control" id="Price" name="Price" value="@Model.ListingItem.Price">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Expiration</label>
+                            <label class="col-md-2 control-label">[[[Expiration]]]</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control datepicker" id="Expiration" name="Expiration" value="@Model.ListingItem.Expiration.ToShortDateString()">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">IP</label>
+                            <label class="col-sm-2 control-label">[[[IP]]]</label>
                             <div class="col-sm-10">
                                 <p class="form-control-static">@Model.ListingItem.IP</p>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Created</label>
+                            <label class="col-md-2 control-label">[[[Created]]]</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control datepicker" id="Created" name="Created" value="@Model.ListingItem.Created.ToShortDateString()">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">LastUpdated</label>
+                            <label class="col-md-2 control-label">[[[Last Updated]]]</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control datepicker" id="LastUpdated" name="LastUpdated" value="@Model.ListingItem.LastUpdated.ToShortDateString()">
                             </div>
@@ -125,7 +125,7 @@
                                 <label class="cr-styled">
                                     <input id="Active" name="Active" type="checkbox" value="true" checked="@Model.ListingItem.Active">
                                     <i class="fa"></i>
-                                    Active
+                                    [[[Active]]]
                                 </label>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                                 <label class="cr-styled">
                                     <input id="Enabled" name="Enabled" type="checkbox" value="true" checked="@Model.ListingItem.Enabled">
                                     <i class="fa"></i>
-                                    Enabled
+                                    [[[Enabled]]]
                                 </label>
                             </div>
                         </div>
@@ -145,13 +145,13 @@
                                 <label class="cr-styled">
                                     <input id="Premium" name="Premium" type="checkbox" value="true" checked="@Model.ListingItem.Premium">
                                     <i class="fa"></i>
-                                    Premium
+                                    [[[Premium]]]
                                 </label>
                             </div>
                         </div>
 
                         <fieldset>
-                            <legend>Upload Pictures</legend>
+                            <legend>[[[Upload Pictures]]]</legend>
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <div class="target">
@@ -162,9 +162,9 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend>Location</legend>
+                            <legend>[[[Location]]]</legend>
                             <div class="form-group">
-                                <label class="col-md-2">Location</label>
+                                <label class="col-md-2">[[[Location]]]</label>
                                 <div class="col-md-10">
                                     <input type="text" class="form-control input-lg" placeholder="Enter Location" id="Location" name="Location" value="@Model.ListingItem.Location">
                                 </div>
@@ -187,8 +187,8 @@
 
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
-                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
-                                <a href="@Url.Action("Categories", "Listing")" class="btn btn-default"><i class="fa fa-remove"></i> Cancel</a>
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Save]]]</button>
+                                <a href="@Url.Action("Categories", "Listing")" class="btn btn-default"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
                             </div>
                         </div>
 

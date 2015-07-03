@@ -5,7 +5,7 @@
 }
 
 @{
-    ViewBag.Title = "Categories";
+    ViewBag.Title = "[[[Categories]]]";
 }
 
 @helper DisplayTree(IEnumerable<BeYourMarket.Web.Extensions.TreeItem<BeYourMarket.Model.Models.Category>> categories)
@@ -15,7 +15,7 @@
         {
             <li class="dd-item dd3-item" data-id="@item.Item.ID">
                 <div class="dd-handle dd3-handle"></div>
-                <div class="dd3-content">@item.Item.Name<a href="@Url.Action("CategoryUpdate", "Listing", new { id = @item.Item.ID })" class="pull-right"><i class="fa fa-edit"></i> Edit</a></div>
+                <div class="dd3-content">@item.Item.Name<a href="@Url.Action("CategoryUpdate", "Listing", new { id = @item.Item.ID })" class="pull-right"><i class="fa fa-edit"></i> [[[Edit]]]</a></div>
                 @DisplayTree(item.Children)
             </li>
         }
@@ -27,13 +27,13 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Categories</h3>
+                    <h3 class="panel-title">[[[Categories]]]</h3>
                 </div>
 
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-10">
-                            <a class="btn btn-primary" href="@Url.Action("CategoryUpdate", "Listing")"><i class="fa fa-plus"></i> Add New</a>
+                            <a class="btn btn-primary" href="@Url.Action("CategoryUpdate", "Listing")"><i class="fa fa-plus"></i> [[[Add New]]]</a>
                         </div>
                     </div>
 
@@ -54,8 +54,8 @@
 
                         <div class="form-group">
                             <div class="col-lg-12">
-                                <button id="submitBtn" class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
-                                <button class="btn btn-default" type="button"><i class="fa fa-remove"></i> Cancel</button>
+                                <button id="submitBtn" class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Save]]]</button>
+                                <button class="btn btn-default" type="button"><i class="fa fa-remove"></i> [[[Cancel]]]</button>
                             </div>
                         </div>
                     </form>

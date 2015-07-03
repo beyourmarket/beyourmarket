@@ -41,23 +41,23 @@
                 <div class="search-widget panel panel-default">
                     <form method="get" action="@Url.Action("Search", "Home", new { })">
                         <div class="panel-heading">
-                            Refine Search
+                            [[[Refine Search]]]
                         </div>
                         <div class="panel-body">
                             <fieldset>
 
                                 <div class="form-group">
-                                    <label>Category</label>
-                                    @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.CategoryID), "All Categories", new { @class = "form-control", onchange = "this.form.submit()" })
+                                    <label>[[[Category]]]</label>
+                                    @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.CategoryID), "[[[All Categories]]]", new { @class = "form-control", onchange = "this.form.submit()" })
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Location</label>
+                                    <label>[[[Location]]]</label>
                                     <input type="text" class="form-control" placeholder="Location" id="Location" name="Location" value="@Model.Location">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Price</label>
+                                    <label>[[[Price]]]</label>
                                     <div class="row">
                                         <div class="col-xs-6 range-from"><input type="number" class="form-control" placeholder="From" id="PriceFrom" name="PriceFrom" value="@Model.PriceFrom"></div>
                                         <div class="col-xs-6 range-to"><input type="number" class="form-control" placeholder="To" id="PriceTo" name="PriceTo" value="@Model.PriceTo"></div>
@@ -65,17 +65,17 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Search Text</label>
+                                    <label>[[[Search Text]]]</label>
                                     <input type="search" class="form-control" placeholder="Search text" id="SearchText" name="SearchText" value="@Model.SearchText">
                                 </div>
 
                                 <input type="checkbox" id="PhotoOnly" name="PhotoOnly" value="true" @( Model.PhotoOnly ? "checked" : "") />
-                                <label for="PhotoOnly">Only show listings with photos</label>
+                                <label for="PhotoOnly">[[[Only show listings with photos]]]</label>
                                 @Html.HiddenFor(x => x.SortView)
                             </fieldset>
                         </div>
                         <div class="panel-footer">
-                            <button type="submit" class="btn btn-sm btn-primary" href="">Apply</button>
+                            <button type="submit" class="btn btn-sm btn-primary" href="">[[[Apply]]]</button>
                         </div>
                     </form>
                 </div>
@@ -88,8 +88,8 @@
                             <div class="form-inline pull-right">
                                 <div class="form-group">
                                     <div class="btn-group" role="group" aria-label="Sort View">
-                                        <a class="btn btn-primary" href="@Request.UrlReplace("SortView", BeYourMarket.Model.Enum.Enum_SortView.Grid.ToString())"><i class="fa fa-th"></i> Grid</a>
-                                        <a class="btn btn-primary" href="@Request.UrlReplace("SortView", BeYourMarket.Model.Enum.Enum_SortView.List.ToString())"><i class="fa fa-th-list"></i> List</a>
+                                        <a class="btn btn-primary" href="@Request.UrlReplace("SortView", BeYourMarket.Model.Enum.Enum_SortView.Grid.ToString())"><i class="fa fa-th"></i> [[[Grid]]]</a>
+                                        <a class="btn btn-primary" href="@Request.UrlReplace("SortView", BeYourMarket.Model.Enum.Enum_SortView.List.ToString())"><i class="fa fa-th-list"></i> [[[List]]]</a>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
                     <div class="container-fluid">
                         <div class=" col-md-12">
                             <h5 class="pull-left mrg-t">
-                                Page @(Model.ItemsPageList.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.ItemsPageList.PageCount
+                                @string.Format("[[[Page {0} of {1}]]]]", Model.ItemsPageList.PageCount < Model.PageNumber ? 0 : Model.PageNumber, Model.ItemsPageList.PageCount)                                
                             </h5>
                             @Html.PagedListPager(Model.ItemsPageList, (page) => { return Request.UrlReplace("PageNumber", page.ToString()); },
                             new PagedListRenderOptions

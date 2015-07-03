@@ -4,7 +4,7 @@
 @model BeYourMarket.Web.Models.OrderModel
 
 @{
-    ViewBag.Title = "Order";
+    ViewBag.Title = "[[[Orders]]]";
 }
 
 @section Styles {
@@ -21,12 +21,12 @@
 
         if (user == userProvider)
         {
-            <a class="btn btn-success btn-sm m-b-5" href="javascript:void(0);" onclick="confirmOrderAction(@id, 2);"><i class="fa fa-thumbs-up"></i> Accept</a>
-            <a class="btn btn-danger btn-sm m-b-5" href="javascript:void(0);" onclick="confirmOrderAction(@id, 3);"><i class="fa fa-remove"></i> Cancel</a>
+            <a class="btn btn-success btn-sm m-b-5" href="javascript:void(0);" onclick="confirmOrderAction(@id, 2);"><i class="fa fa-thumbs-up"></i> [[[Accept]]]</a>
+            <a class="btn btn-danger btn-sm m-b-5" href="javascript:void(0);" onclick="confirmOrderAction(@id, 3);"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
         }
         else
         {
-            <a class="btn btn-danger btn-sm m-b-5" href="javascript:void(0);" onclick="confirmOrderAction(@id, 3);"><i class="fa fa-remove"></i> Cancel</a>
+            <a class="btn btn-danger btn-sm m-b-5" href="javascript:void(0);" onclick="confirmOrderAction(@id, 3);"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
         }
     }
 }
@@ -37,13 +37,13 @@
     {
         case 0:
         case 1:
-            <span class="label label-info">Pending</span>
+            <span class="label label-info">[[[Pending]]]</span>
             break;
         case 2:
-        <span class="label label-success">Success</span>
+        <span class="label label-success">[[[Success]]]</span>
             break;
         case 3:
-        <span class="label label-danger">Cancelled</span>
+        <span class="label label-danger">[[[Cancelled]]]</span>
             break;
 
         default:
@@ -62,13 +62,13 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Order
+                    [[[Order]]]
                 </div>
                 <div class="panel-body">
                     @using (Html.BeginForm("ProfileUpdate", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-                        <h4><i class="fa fa-shopping-cart"></i> Order</h4>
+                        <h4><i class="fa fa-shopping-cart"></i> [[[Orders]]]</h4>
                         <hr />
 
                     }
@@ -85,22 +85,22 @@
                                            columns.Add(x => x.Status)
                                                .Encoded(false)
                                                .Sanitized(false)
-                                               .Titled("Status").RenderValueAs(x => DisplayStatus(x.Status));
+                                               .Titled("[[[Status]]]").RenderValueAs(x => DisplayStatus(x.Status));
 
                                            columns.Add(x => x.Item.Title)
                                                .Encoded(false)
                                                .Sanitized(false)
-                                               .Titled("Title").RenderValueAs(x => DisplayListing(x.Item.Title, x.ItemID));
+                                               .Titled("[[[Title]]]").RenderValueAs(x => DisplayListing(x.Item.Title, x.ItemID));
 
-                                           columns.Add(x => x.AspNetUser.FullName).Titled("Provider");
-                                           columns.Add(x => x.AspNetUser1.FullName).Titled("Receiver");
+                                           columns.Add(x => x.AspNetUser.FullName).Titled("[[[Provider]]]");
+                                           columns.Add(x => x.AspNetUser1.FullName).Titled("[[[Receiver]]]");
 
-                                           columns.Add(x => x.PriceFormatted).Titled("Price");
+                                           columns.Add(x => x.PriceFormatted).Titled("[[[Price]]]");
 
-                                           columns.Add(x => x.FromDate).Titled("From").RenderValueAs(x => x.FromDate.Value.ToShortDateString());
-                                           columns.Add(x => x.ToDate).Titled("To").RenderValueAs(x => x.ToDate.Value.ToShortDateString());
-                                           columns.Add(x => x.ID).Titled("Order ID");
-                                           columns.Add(x => x.Created).Titled("Created").RenderValueAs(x => x.Created.ToShortDateString());
+                                           columns.Add(x => x.FromDate).Titled("[[[From]]]").RenderValueAs(x => x.FromDate.Value.ToShortDateString());
+                                           columns.Add(x => x.ToDate).Titled("[[[To]]]").RenderValueAs(x => x.ToDate.Value.ToShortDateString());
+                                           columns.Add(x => x.ID).Titled("[[[Order ID]]]");
+                                           columns.Add(x => x.Created).Titled("[[[Created]]]").RenderValueAs(x => x.Created.ToShortDateString());
 
 
                                        }).WithPaging(10).Sortable().Filterable().Selectable(false)
@@ -122,20 +122,20 @@
         function confirmOrderAction(id, status) {
             var message;
             if (status == 2) {
-                message = "Confirm to accept the order"
+                message = "[[[Confirm to accept the order]]]"
             } else if (status == 3) {
-                message = "Confirm to cancel the order"
+                message = "[[[Confirm to cancel the order]]]"
             } else {
                 return;
             }
             swal({
-                title: "Are you sure?",
+                title: "[[[Are you sure?]]]",
                 text: message,
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes!",
-                cancelButtonText: "No!",
+                confirmButtonText: "[[[Yes!]]]",
+                cancelButtonText: "[[[No!]]]",
                 closeOnConfirm: false,
                 closeOnCancel: false
             }, function (isConfirm) {
@@ -145,14 +145,14 @@
                         if (data.Success) {
                             location.reload();
                         } else {
-                            swal("Failed", data.Message, "error");
+                            swal("[[[Failed]]]", data.Message, "error");
                         }
                     })
                     .fail(function (xhr, textStatus, errorThrown) {
-                        swal("Failed", xhr.responseText, "error");
+                        swal("[[[Failed]]]", xhr.responseText, "error");
                     })
                 } else {
-                    swal("Cancelled", "", "error");
+                    swal("[[[Cancelled]]]", "", "error");
                 }
             });
         }

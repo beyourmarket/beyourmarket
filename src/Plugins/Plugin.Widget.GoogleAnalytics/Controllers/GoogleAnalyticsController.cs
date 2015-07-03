@@ -62,7 +62,7 @@ namespace Plugin.Widget.GoogleAnalytics.Controllers
 
             _dataCacheService.RemoveCachedItem(CacheKeys.SettingDictionary);
 
-            TempData[TempDataKeys.UserMessage] = "Plugin updated!";
+            TempData[TempDataKeys.UserMessage] = "[[[Plugin updated!]]]";
 
             return RedirectToAction("Plugins", "Plugin", new { area = "Admin" });
         }

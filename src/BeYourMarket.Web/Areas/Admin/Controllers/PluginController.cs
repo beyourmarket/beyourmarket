@@ -108,19 +108,19 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             {
                 case Enum_PluginAction.Install:
                     pluginDescriptor.Instance().Install();
-                    TempData[TempDataKeys.UserMessage] = string.Format("{0} is installed", systemName);
+                    TempData[TempDataKeys.UserMessage] = string.Format("[[[{0} is installed]]]", systemName);
                     break;
                 case Enum_PluginAction.Uninstall:                    
                     pluginDescriptor.Instance().Uninstall();
-                    TempData[TempDataKeys.UserMessage] = string.Format("{0} is uninstalled", systemName);
+                    TempData[TempDataKeys.UserMessage] = string.Format("[[[{0} is uninstalled]]]", systemName);
                     break;
                 case Enum_PluginAction.Enabled:
                     pluginDescriptor.Instance().Enable(true);
-                    TempData[TempDataKeys.UserMessage] = string.Format("{0} is enabled", systemName);
+                    TempData[TempDataKeys.UserMessage] = string.Format("[[[{0} is enabled]]]", systemName);
                     break;
                 case Enum_PluginAction.Disabled:
                     pluginDescriptor.Instance().Enable(false);
-                    TempData[TempDataKeys.UserMessage] = string.Format("{0} is disabled", systemName);
+                    TempData[TempDataKeys.UserMessage] = string.Format("[[[{0} is disabled]]]", systemName);
                     break;
                 default:
                     break;
