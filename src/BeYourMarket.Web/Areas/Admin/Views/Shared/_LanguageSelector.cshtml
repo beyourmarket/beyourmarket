@@ -9,7 +9,7 @@
             @foreach (var item in Model.LanguageList)
             {
                 <li>
-                    <a href="@Url.Action("SetLanguage", "Home", new { langtag = item.Culture, returnUrl = Request.Url.PathAndQuery })">@item.DisplayName</a>
+                    <a href="@Url.Action("SetLanguage", "Manage", new { langtag = item.Culture, returnUrl = Request.Url.PathAndQuery })">@item.DisplayName</a>
                 </li>
             }
         </ul>

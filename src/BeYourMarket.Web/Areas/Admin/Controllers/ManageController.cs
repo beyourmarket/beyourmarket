@@ -10,7 +10,6 @@ using BeYourMarket.Service;
 using System.Threading.Tasks;
 using BeYourMarket.Model.Models;
 using Repository.Pattern.UnitOfWork;
-using Newtonsoft.Json;
 using BeYourMarket.Web.Extensions;
 using BeYourMarket.Web.Models.Grids;
 using BeYourMarket.Web.Models;
@@ -103,7 +102,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             {
                 _roleManager = value;
             }
-        }  
+        }
         #endregion
 
         #region Constructor
@@ -130,7 +129,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
 
-            _orderService = orderService;            
+            _orderService = orderService;
 
             _emailTemplateService = emailTemplateService;
             _contentPageService = contentPageService;
@@ -138,7 +137,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
             _pluginFinder = pluginFinder;
-        } 
+        }
         #endregion
 
         #region Methods
@@ -361,21 +360,21 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         [ChildActionOnly]
         public ActionResult LanguageSelector()
         {
-            var languages = i18n.LanguageHelpers.GetAppLanguages();
+            var languages = LanguageHelper.AvailableLanguges.Languages;
             var languageCurrent = ControllerContext.RequestContext.HttpContext.GetPrincipalAppLanguageForRequest();
 
             var model = new LanguageSelectorModel();
             model.Culture = languageCurrent.GetLanguage();
-            model.DisplayName = languageCurrent.GetCultureInfo().DisplayName;
+            model.DisplayName = languageCurrent.GetCultureInfo().NativeName;
 
             foreach (var language in languages)
             {
-                if (language.Key != languageCurrent.GetLanguage())
+                if (language.Culture != languageCurrent.GetLanguage() && language.Enabled)
                 {
                     model.LanguageList.Add(new LanguageSelectorModel()
                     {
-                        Culture = language.Key,
-                        DisplayName = language.Value.CultureInfo.DisplayName
+                        Culture = language.Culture,
+                        DisplayName = language.LanguageTag.CultureInfo.NativeName
                     });
                 }
             }
@@ -419,6 +418,67 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             //Redirect user agent as approp.
             return this.Redirect(returnUrl);
         }
+
+        public ActionResult SettingsLanguage()
+        {
+            var availableLangauges = i18n.LanguageHelpers.GetAppLanguages();
+
+            var modelFile = LanguageHelper.GetLanguages();
+            var model = new LanguageSettingModel()
+            {
+                DefaultCulture = modelFile.DefaultCulture
+            };
+
+            foreach (var lang in availableLangauges)
+            {
+                var languageSetting = new LanguageSetting();
+                languageSetting.Culture = lang.Key;
+                languageSetting.LanguageTag = lang.Value;
+
+                var existingLang = modelFile.Languages.Find(x => x.Culture == lang.Key);
+                if (existingLang != null)
+                {
+                    languageSetting.Enabled = existingLang.Enabled;
+                }
+
+                model.Languages.Add(languageSetting);
+            }
+
+            return View(model);
+        }
+
+        public ActionResult SettingsLanguageUpdate(LanguageSettingModel model)
+        {
+            // set languageTag as it's not posted back
+            foreach (var item in model.Languages)
+            {
+                item.LanguageTag = new LanguageTag(item.Culture);
+            }
+
+            var languagesEnabled = model.Languages.Where(x => x.Enabled);
+            
+
+            if (languagesEnabled.Count() == 0)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[At least one language should be enabled!]]]";
+                return View("SettingsLanguage", model);
+            }
+
+            if (!languagesEnabled.Any(x => x.Culture == model.DefaultCulture))
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[Default language must be enabled first!]]]";
+                return View("SettingsLanguage", model);
+            }
+
+            LanguageHelper.SaveLanguages(model);
+
+            // Update cache
+            LanguageHelper.Refresh();
+            return SetLanguage(model.DefaultCulture, Url.Action("SettingsLanguage", "Manage"));
+        }
+
         #endregion
     }
 }

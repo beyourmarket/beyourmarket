@@ -264,6 +264,7 @@
     <Compile Include="Areas\Admin\Models\Grids\PluginsGrid.cs" />
     <Compile Include="Areas\Admin\Models\Grids\EmailTemplatesGrid.cs" />
     <Compile Include="Areas\Admin\Models\InstallModel.cs" />
+    <Compile Include="Areas\Admin\Models\LanguageSettingModel.cs" />
     <Compile Include="Areas\Admin\Models\PaymentSettingModel.cs" />
     <Compile Include="Binders\TrimModelBinder.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -309,6 +310,7 @@
     <Compile Include="Themes\ThemeableRazorViewEngine.cs" />
     <Compile Include="Utilities\EmailHelper.cs" />
     <Compile Include="Utilities\ImageHelper.cs" />
+    <Compile Include="Utilities\LanguageHelper.cs" />
     <Compile Include="Utilities\RequestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -355,6 +357,10 @@
     <Content Include="Areas\Admin\Views\Plugin\Plugins.cshtml" />
     <Content Include="Areas\Admin\Views\Hook\ConfigureHook.cshtml" />
     <Content Include="Plugins\installed.json" />
+    <Content Include="Areas\Admin\Views\Manage\SettingsLanguage.cshtml" />
+    <Content Include="locale\da\messages.po" />
+    <Content Include="languages.json" />
+    <Content Include="locale\en\messages.po" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

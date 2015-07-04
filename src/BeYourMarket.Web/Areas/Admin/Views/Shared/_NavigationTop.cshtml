@@ -11,6 +11,8 @@
         <ul class="nav navbar-nav">
 
             <li><a href="@Url.Action("Index", "Home", new { area = string.Empty })" target="_blank">[[[Frontend]]]</a></li>
+
+            @Html.Action("LanguageSelector")
         </ul>
     </nav>
 

@@ -185,21 +185,22 @@ namespace BeYourMarket.Web.Controllers
         [ChildActionOnly]
         public ActionResult LanguageSelector()
         {
-            var languages = i18n.LanguageHelpers.GetAppLanguages();
+            //var languages = i18n.LanguageHelpers.GetAppLanguages();
+            var languages = LanguageHelper.AvailableLanguges.Languages;
             var languageCurrent = ControllerContext.RequestContext.HttpContext.GetPrincipalAppLanguageForRequest();
 
             var model = new LanguageSelectorModel();
             model.Culture = languageCurrent.GetLanguage();
             model.DisplayName = languageCurrent.GetCultureInfo().NativeName;
-
+            
             foreach (var language in languages)
             {
-                if (language.Key != languageCurrent.GetLanguage())
-                {
+                if (language.Culture != languageCurrent.GetLanguage() && language.Enabled)
+                {                    
                     model.LanguageList.Add(new LanguageSelectorModel()
                     {
-                        Culture = language.Key,
-                        DisplayName = language.Value.CultureInfo.NativeName
+                        Culture = language.Culture,
+                        DisplayName = language.LanguageTag.CultureInfo.NativeName
                     });
                 }
             }

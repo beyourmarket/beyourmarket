@@ -17,6 +17,8 @@ using BeYourMarket.Web.Utilities;
 using BeYourMarket.Model.Enum;
 using BeYourMarket.Core.Migrations;
 using BeYourMarket.Core.Plugins;
+using i18n;
+using i18n.Helpers;
 
 namespace BeYourMarket.Web.Areas.Admin.Controllers
 {
@@ -126,6 +128,31 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             }
 
             return RedirectToAction("Index", "Home", new { area = "" });
+        }
+
+        [ChildActionOnly]
+        public ActionResult LanguageSelector()
+        {
+            var languages = i18n.LanguageHelpers.GetAppLanguages();
+            var languageCurrent = ControllerContext.RequestContext.HttpContext.GetPrincipalAppLanguageForRequest();
+
+            var model = new LanguageSelectorModel();
+            model.Culture = languageCurrent.GetLanguage();
+            model.DisplayName = languageCurrent.GetCultureInfo().NativeName;
+
+            foreach (var language in languages)
+            {
+                if (language.Key != languageCurrent.GetLanguage())
+                {
+                    model.LanguageList.Add(new LanguageSelectorModel()
+                    {
+                        Culture = language.Key,
+                        DisplayName = language.Value.CultureInfo.NativeName
+                    });
+                }
+            }
+
+            return PartialView("_LanguageSelector", model);
         }
     }
 }

@@ -35,6 +35,8 @@ namespace BeYourMarket.Web
 
             // Change the URL localization scheme from Scheme1.
             i18n.UrlLocalizer.UrlLocalizationScheme = i18n.UrlLocalizationScheme.Scheme1;
+
+            i18n.LocalizedApplication.Current.DefaultLanguage = BeYourMarket.Web.Utilities.LanguageHelper.DefaultCulture;
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

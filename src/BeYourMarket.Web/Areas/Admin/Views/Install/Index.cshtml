@@ -9,7 +9,11 @@
             <h3 class="text-center m-t-10"> [[[Installation]]] <strong>BeYourMarket</strong> </h3>
         </div>
 
-        <div class="alert alert-info m-t-30">
+        <div class="m-t-10">
+            <strong>Install language</strong> @Html.Action("LanguageSelector")
+        </div>
+
+        <div class="alert alert-info m-t-20">
             <p class="">
                 [[[To complete this wizard, you must know some information regarding your database server. If you're installing on a local machine or server, you might need information from your System Admin.]]]
             </p>
@@ -139,7 +143,7 @@
                 return arg != value;
             }, "Message to User");
 
-            // validate signup form on keyup and submit                        
+            // validate signup form on keyup and submit
             $("#DatabaseLogin").rules("add", {
                 required: "#UseWindowsAuthentication:unchecked",
                 valueNotEquals: "0"

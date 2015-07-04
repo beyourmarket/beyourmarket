@@ -1,0 +1,57 @@
+﻿@model BeYourMarket.Web.Areas.Admin.Models.LanguageSettingModel
+
+@{
+    ViewBag.Title = "[[[Language Settings]]]";
+}
+
+<div class="wraper container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">[[[Language Settings]]]</h3></div>
+                <div class="panel-body">
+                    <form action="@Url.Action("SettingsLanguageUpdate", "Manage")" id="settingsForm" method="post" class="form-horizontal" role="form">
+                        @Html.Partial("_UserMessage")
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">[[[Default Language]]]</label>
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(m => m.DefaultCulture, new SelectList(Model.Languages, "Culture", "LanguageTag.NativeNameTitleCase", Model.DefaultCulture), new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        @for (int i = 0; i < Model.Languages.Count; i++)
+                        {
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">@Model.Languages[i].LanguageTag.NativeNameTitleCase (@Model.Languages[i].Culture)</label>
+                                <div class="col-md-10">
+                                    <label class="cr-styled control-label">                                        
+                                        @Html.HiddenFor(x => Model.Languages[i].Culture)
+                                        <input checked="@Model.Languages[i].Enabled" name="@string.Format("Languages[{0}].Enabled", i)" type="checkbox" value="true" />
+                                        <i class="fa"></i>
+                                        [[[Enabled]]]
+                                    </label>
+                                    <input name="@string.Format("Languages[{0}].Enabled", i)" type="hidden" value="false" />
+                                </div>
+                            </div>
+
+                        }
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Save]]]</button>
+                                <a href="@Url.Action("Settings", "Manage")" class="btn btn-default"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

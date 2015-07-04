@@ -28,7 +28,7 @@ namespace BeYourMarket.Core.Plugins
 
         private const string InstalledPluginsFilePath = "~/Plugins/installed.json";
         private const string PluginsPath = "~/Plugins";
-        private const string ShadowCopyPath = "~/Plugins/bin";
+        private const string ShadowCopyPath = "~/Plugins/bin";        
 
         public const string ManifestJson = "manifest.json";
 
