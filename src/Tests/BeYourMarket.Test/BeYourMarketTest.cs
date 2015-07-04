@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeYourMarket.Test
+namespace BeYourMarket
 {
     [TestFixture]
     public class BeYourMarketTest
