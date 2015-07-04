@@ -5,5 +5,5 @@ build:
   publish_nuget: true
   verbosity: minimal
 after_test: 
-    - .\packages\OpenCover.4.5.3723\OpenCover.Console.exe -register:user -target:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\MSTest.exe" -targetargs:"/noresults /noisolation /testcontainer:"".\Tests\BeYourMarket.Test\bin\Debug\BeYourMarket.Test.dll" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\BeYourMarket_coverage.xml
+    - C:\projects\beyourmarket\src\packages\OpenCover.4.5.3723\OpenCover.Console.exe -register:user -target:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\MSTest.exe" -targetargs:"/noresults /noisolation /testcontainer:"".\Tests\BeYourMarket.Test\bin\Debug\BeYourMarket.Test.dll" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\BeYourMarket_coverage.xml
     - bash <(curl https://codecov.io/bash) 
