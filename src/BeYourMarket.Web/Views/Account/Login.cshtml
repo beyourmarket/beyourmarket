@@ -16,12 +16,12 @@
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">@Html.LabelFor(m => m.Email) <span class="text-red">*</span></label>
-                            <input class="form-control input-lg" id="Email" name="Email" placeholder="Enter email or username" type="text" value="" data-rule-email="email" data-rule-required="true">
+                            <label for="Email">@Html.LabelFor(m => m.Email) <span class="text-red">*</span></label>
+                            <input class="form-control input-lg" id="Email" name="Email" placeholder="[[[Enter Email]]]" type="text" value="" data-rule-email="email" data-rule-required="true">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">@Html.LabelFor(m => m.Password) <span class="text-red">*</span></label>
-                            <input class="form-control input-lg" id="Password" name="Password" placeholder="Password" type="password" data-rule-required="true">
+                            <label for="Password">@Html.LabelFor(m => m.Password) <span class="text-red">*</span></label>
+                            <input class="form-control input-lg" id="Password" name="Password" placeholder="[[[Password]]]" type="password" data-rule-required="true">
                         </div>
                         <div class="form-group">
                             <input type="checkbox" id="RememberMe" name="RememberMe" value="true" />
