@@ -11,7 +11,11 @@ build:
   publish_wap: true
   publish_nuget: true
   verbosity: minimal
-  
+
+environment:
+    COVERALLS_REPO_TOKEN:  
+       secure: NdkuJqVjkZpPgi36NtKtRYyvP3ey+jpOe9ABsf99Sqk1/93T7RgobgZln/K66T2G
+       
 after_test: 
   - .\src\packages\OpenCover.4.5.3723\OpenCover.Console.exe -register:user -target:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\MSTest.exe" -targetargs:"/noresults /noisolation /testcontainer:"".\src\Tests\BeYourMarket.Test\bin\Debug\BeYourMarket.Test.dll" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\coverage.xml
   
