@@ -63,9 +63,9 @@
                              .Sanitized(false)
                            .RenderValueAs(x => DisplayCategories(x.MetaCategories.ToList()));
 
-                           columns.Add(x => x.Options);
-                           columns.Add(x => x.Required);
-                           columns.Add(x => x.Searchable);
+                           columns.Add(x => x.Options).Titled("[[[Options]]]");
+                           columns.Add(x => x.Required).Titled("[[[Required]]]");
+                           columns.Add(x => x.Searchable).Titled("[[[Searchable]]]");
 
                        }).Sortable().Filterable().WithPaging(10).Selectable(false)
                         </div>

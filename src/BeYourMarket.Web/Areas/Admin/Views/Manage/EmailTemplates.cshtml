@@ -33,10 +33,10 @@
                              .RenderValueAs(x => DisplayUpdateLink(x.ID));
 
                            columns.Add(x => x.ID);
-                           columns.Add(x => x.Subject);                           
-                           columns.Add(x => x.Slug);
-                           columns.Add(x => x.Created).RenderValueAs(x => x.Created.ToShortDateString());
-                           columns.Add(x => x.LastUpdated).RenderValueAs(x => x.LastUpdated.ToShortDateString());
+                           columns.Add(x => x.Subject).Titled("[[[Subject]]]");
+                           columns.Add(x => x.Slug).Titled("[[[Slug]]]");
+                           columns.Add(x => x.Created).Titled("[[[Created]]]").RenderValueAs(x => x.Created.ToShortDateString());
+                           columns.Add(x => x.LastUpdated).Titled("[[[Last Updated]]]").RenderValueAs(x => x.LastUpdated.ToShortDateString());
 
 
                        }).Sortable().Filterable().WithPaging(10).Selectable(false)

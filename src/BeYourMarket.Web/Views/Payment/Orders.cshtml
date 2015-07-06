@@ -69,7 +69,7 @@
                         <div class="panel panel-default">
                             <!-- Default panel contents -->
                             <div class="panel-heading">
-                                Order
+                                [[[Orders]]]
                             </div>
                             <div class="panel-body">
                                 @Html.Partial("_UserMessage")
@@ -155,14 +155,14 @@
                         if (data.Success) {                            
                             location.reload();
                         } else {
-                            swal("[[[Failed]]]", data.Message, "error");
+                            swal("[[[Failed!]]]", data.Message, "error");
                         }
                     })
                     .fail(function (xhr, textStatus, errorThrown) {
-                        swal("[[[Failed]]]", xhr.responseText, "error");
+                        swal("[[[Failed!]]]", xhr.responseText, "error");
                     })
                 } else {
-                    swal("[[[Cancelled]]]", "", "error");
+                    swal("[[[Cancelled!]]]", "", "error");
                 }
             });
         }

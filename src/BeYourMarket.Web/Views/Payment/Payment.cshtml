@@ -49,7 +49,7 @@
                                 </div>
                             </div>
 
-                            <h5>Price: @Model.ItemOrder.PriceFormatted</h5>
+                            <h5>[[[Price]]]: @Model.ItemOrder.PriceFormatted</h5>
 
                             <!-- Payment Hook -->
                             @Html.DoAction(HookName.Payment, Model.ItemOrder)                        

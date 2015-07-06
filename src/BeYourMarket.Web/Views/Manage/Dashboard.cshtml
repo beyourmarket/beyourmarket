@@ -76,16 +76,16 @@
                     .done(function (result) {                        
                         if (result.Success) {
                             $("#item_" + id).remove();
-                            swal("Deleted!", result.Message, "success");
+                            swal("[[[Deleted!]]]", result.Message, "success");
                         } else {
-                            swal("Failed!", result.Message, "error");
+                            swal("[[[Failed!]]]", result.Message, "error");
                         }
                     })
                     .fail(function (xhr, textStatus, errorThrown) {
-                        swal("Failed", xhr.responseText, "error");
+                        swal("[[[Failed!]]]", xhr.responseText, "error");
                     })
                 } else {
-                    swal("Cancelled", "", "error");
+                    swal("[[[Cancelled!]]]", "", "error");
                 }
             });
         }

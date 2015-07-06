@@ -85,21 +85,21 @@
                              .Sanitized(false)
                              .RenderValueAs(x => DisplayInstallerLink(x.SystemName, x.Installed));                           
 
-                           columns.Add(x => x.Group);
+                           columns.Add(x => x.Group).Titled("[[[Group]]]");
 
-                           columns.Add(x => x.SystemName);
+                           columns.Add(x => x.SystemName).Titled("[[[SystemName]]]");
 
                            columns.Add(x => x.Description)
                              .Encoded(false)
                              .Sanitized(false)
-                             .RenderValueAs(x => DisplayDescription(x));
+                             .RenderValueAs(x => DisplayDescription(x)).Titled("[[[Description]]]");
 
                            columns.Add(x => x.DisplayOrder).Titled("[[[Ordering]]]");
 
                            columns.Add(x => x.Installed)
                              .Encoded(false)
                              .Sanitized(false)
-                             .RenderValueAs(x => RazorHelper.DisplayYesNo(x.Installed));
+                             .RenderValueAs(x => RazorHelper.DisplayYesNo(x.Installed)).Titled("[[[Installed]]]");
 
 
                        }).Sortable().Filterable().WithPaging(10).Selectable(false)

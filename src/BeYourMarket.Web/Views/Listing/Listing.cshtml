@@ -47,10 +47,10 @@
                         <input id="ItemID" name="ItemID" type="hidden" value="@Model.ItemCurrent.ID" />
                         <div class="input-daterange input-group datepicker form-group" id="datepicker">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="From" data-rule-required="true" data-rule-date="true" />
+                            <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" data-rule-required="true" data-rule-date="true" />
 
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="To" data-rule-required="true" data-rule-date="true" />
+                            <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" data-rule-required="true" data-rule-date="true" />
                         </div>
                         <button class="btn btn-primary">[[[Booking]]]</button>
                     </form>
@@ -181,7 +181,7 @@
                                             <input type="hidden" id="ItemID" name="ItemID" value="@Model.ItemCurrent.ID" />
 
                                             <div class="form-group">
-                                                <textarea rows="4" class="form-control" id="Message" name="Message" placeholder="Message" required minlength="20"></textarea>
+                                                <textarea rows="4" class="form-control" id="Message" name="Message" placeholder="[[[Message]]]" required minlength="20"></textarea>
                                             </div>
                                             <button type="submit" class="btn btn-primary pushme">[[[Send]]]</button>
                                         </form>
