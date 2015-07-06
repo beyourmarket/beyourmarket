@@ -456,8 +456,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             }
 
             var languagesEnabled = model.Languages.Where(x => x.Enabled);
-            
-
+                        
             if (languagesEnabled.Count() == 0)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";

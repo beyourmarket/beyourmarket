@@ -10,6 +10,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using i18n;
+using BeYourMarket.Web.Utilities;
 
 namespace BeYourMarket.Web
 {
@@ -37,6 +39,15 @@ namespace BeYourMarket.Web
             i18n.UrlLocalizer.UrlLocalizationScheme = i18n.UrlLocalizationScheme.Scheme1;
 
             i18n.LocalizedApplication.Current.DefaultLanguage = BeYourMarket.Web.Utilities.LanguageHelper.DefaultCulture;
+
+            // Use theme razor if database is installed
+            if (ConnectionStringHelper.IsDatabaseInstalled())
+            {
+                //remove all view engines
+                ViewEngines.Engines.Clear();
+                //except the themeable razor view engine we use
+                ViewEngines.Engines.Add(new ThemeableRazorViewEngine());
+            }
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
@@ -61,16 +72,19 @@ namespace BeYourMarket.Web
                         {
                             Response.RedirectToRoute("Install");
                         }
-                    }                                            
+                    }
                 }
             }
 
-            if (ConnectionStringHelper.IsDatabaseInstalled())
+            // Check if language from the url is enabled, if not, redirect to the default language
+            var language = Context.GetPrincipalAppLanguageForRequest().GetLanguage();
+            if (!LanguageHelper.AvailableLanguges.Languages.Any(x => x.Culture == language && x.Enabled))
             {
-                //remove all view engines
-                ViewEngines.Engines.Clear();
-                //except the themeable razor view engine we use
-                ViewEngines.Engines.Add(new ThemeableRazorViewEngine());
+                var returnUrl = LocalizedApplication.Current.UrlLocalizerForApp.SetLangTagInUrlPath(
+                    Request.RequestContext.HttpContext, Request.Url.AbsolutePath, UriKind.RelativeOrAbsolute, 
+                    string.IsNullOrEmpty(LanguageHelper.DefaultCulture) ? null : LanguageHelper.DefaultCulture).ToString();
+
+                Response.Redirect(returnUrl);
             }
         }
     }
