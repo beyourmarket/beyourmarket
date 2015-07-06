@@ -65,8 +65,9 @@ namespace BeYourMarket.Web
                     string controllerName = rd.Values.ContainsKey("controller") ? rd.GetRequiredString("controller") : string.Empty;
                     string actionName = rd.Values.ContainsKey("action") ? rd.GetRequiredString("action") : string.Empty;
 
-                    // check if it's bundles or content
-                    if (!(controllerName.Equals("bundles") || controllerName.Equals("content")))
+                    // check if it's bundles or content or set language
+                    if (!(controllerName.Equals("bundles", StringComparison.InvariantCultureIgnoreCase) ||
+                        controllerName.Equals("content", StringComparison.InvariantCultureIgnoreCase)))
                     {
                         if (!controllerName.Equals("install", StringComparison.InvariantCultureIgnoreCase))
                         {
@@ -76,15 +77,18 @@ namespace BeYourMarket.Web
                 }
             }
 
-            // Check if language from the url is enabled, if not, redirect to the default language
-            var language = Context.GetPrincipalAppLanguageForRequest().GetLanguage();
-            if (!LanguageHelper.AvailableLanguges.Languages.Any(x => x.Culture == language && x.Enabled))
+            if (ConnectionStringHelper.IsDatabaseInstalled())
             {
-                var returnUrl = LocalizedApplication.Current.UrlLocalizerForApp.SetLangTagInUrlPath(
-                    Request.RequestContext.HttpContext, Request.Url.AbsolutePath, UriKind.RelativeOrAbsolute, 
-                    string.IsNullOrEmpty(LanguageHelper.DefaultCulture) ? null : LanguageHelper.DefaultCulture).ToString();
+                // Check if language from the url is enabled, if not, redirect to the default language
+                var language = Context.GetPrincipalAppLanguageForRequest().GetLanguage();
+                if (!LanguageHelper.AvailableLanguges.Languages.Any(x => x.Culture == language && x.Enabled))
+                {
+                    var returnUrl = LocalizedApplication.Current.UrlLocalizerForApp.SetLangTagInUrlPath(
+                        Request.RequestContext.HttpContext, Request.Url.PathAndQuery, UriKind.RelativeOrAbsolute,
+                        string.IsNullOrEmpty(LanguageHelper.DefaultCulture) ? null : LanguageHelper.DefaultCulture).ToString();
 
-                Response.Redirect(returnUrl);
+                    Response.Redirect(returnUrl);
+                }
             }
         }
     }

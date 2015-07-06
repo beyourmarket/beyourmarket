@@ -70,8 +70,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 bool exists = System.IO.Directory.Exists(Server.MapPath(subPath));
 
                 if (!exists)
-                    System.IO.Directory.CreateDirectory(Server.MapPath(subPath));   
-            }            
+                    System.IO.Directory.CreateDirectory(Server.MapPath(subPath));
+            }
 
             ConnectionStringSettings connectionStringSettings = null;
             string connectionString = null;
@@ -101,6 +101,9 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             ConnectionStringHelper.AddAndSaveOneConnectionStringSettings(configuration, connectionStringSettings);
 
+            // Set language first before redirection, otherwise, the model will be re-written
+            InstallLanguage();
+
             return RedirectToAction("Install", model);
         }
 
@@ -119,6 +122,32 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             var user = UserManager.FindByEmail(model.Email);
             await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
+            InstallPlugins();            
+
+            return RedirectToAction("Index", "Home", new { area = "" });
+        }
+
+        private void InstallLanguage()
+        {
+            var languageCurrent = ControllerContext.HttpContext.GetPrincipalAppLanguageForRequest().GetLanguage();
+            var availableLangauges = i18n.LanguageHelpers.GetAppLanguages();
+
+            var modelFile = LanguageHelper.GetLanguages();
+            var model = new LanguageSettingModel()
+            {
+                DefaultCulture = languageCurrent,
+                Languages = availableLangauges.Select(x => new LanguageSetting()
+                {
+                    Culture = x.Key,
+                    Enabled = x.Key == languageCurrent
+                }).ToList()
+            };
+
+            LanguageHelper.SaveLanguages(model);
+        }
+
+        private void InstallPlugins()
+        {
             // Install plugin marked as installed
             var plugins = _pluginFinder.GetPluginDescriptors(LoadPluginsMode.InstalledOnly);
             foreach (var plugin in plugins)
@@ -126,8 +155,6 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 plugin.Instance().Install();
                 plugin.Instance().Enable(true);
             }
-
-            return RedirectToAction("Index", "Home", new { area = "" });
         }
 
         [ChildActionOnly]
@@ -153,6 +180,42 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             }
 
             return PartialView("_LanguageSelector", model);
+        }
+
+        public ActionResult SetLanguage(string langtag, string returnUrl)
+        {
+            // If valid 'langtag' passed.
+            i18n.LanguageTag lt = i18n.LanguageTag.GetCachedInstance(langtag);
+            if (lt.IsValid())
+            {
+                // Set persistent cookie in the client to remember the language choice.
+                Response.Cookies.Add(new System.Web.HttpCookie("i18n.langtag")
+                {
+                    Value = lt.ToString(),
+                    HttpOnly = true,
+                    Expires = DateTime.UtcNow.AddYears(1)
+                });
+            }
+            // Owise...delete any 'language' cookie in the client.
+            else
+            {
+                var cookie = Response.Cookies["i18n.langtag"];
+                if (cookie != null)
+                {
+                    cookie.Value = null;
+                    cookie.Expires = DateTime.UtcNow.AddMonths(-1);
+                }
+            }
+            // Update PAL setting so that new language is reflected in any URL patched in the 
+            // response (Late URL Localization).
+            HttpContext.SetPrincipalAppLanguageForRequest(lt);
+            // Patch in the new langtag into any return URL.
+            if (returnUrl.IsSet())
+            {
+                returnUrl = LocalizedApplication.Current.UrlLocalizerForApp.SetLangTagInUrlPath(HttpContext, returnUrl, UriKind.RelativeOrAbsolute, lt == null ? null : lt.ToString()).ToString();
+            }
+            //Redirect user agent as approp.
+            return this.Redirect(returnUrl);
         }
     }
 }

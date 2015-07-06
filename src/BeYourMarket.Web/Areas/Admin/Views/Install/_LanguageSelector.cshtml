@@ -1,0 +1,17 @@
+﻿@using i18n;
+@model BeYourMarket.Web.Models.LanguageSelectorModel
+
+@if (Model.LanguageList.Count > 0)
+{
+    <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">@Model.DisplayName <span class="caret"></span></a>
+        <ul role="menu" class="dropdown-menu fadeInUp animated">
+            @foreach (var item in Model.LanguageList)
+            {
+                <li>
+                    <a href="@Url.Action("SetLanguage", "Install", new { langtag = item.Culture, returnUrl = Request.Url.PathAndQuery })">@item.DisplayName</a>
+                </li>
+            }
+        </ul>
+    </li>
+}
