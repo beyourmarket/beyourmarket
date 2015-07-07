@@ -9,12 +9,13 @@ install:
 build:
   project: src/BeYourMarket.sln
   publish_wap: true
+  publish_wap_xcopy: true
   publish_nuget: true
   verbosity: minimal
 
 artifacts:
   # pushing a single file
-  - path: beyourmarket-{version}.zip
+  - path: beyourmarket.zip
   
 environment:
     COVERALLS_REPO_TOKEN:  
