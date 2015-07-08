@@ -12,6 +12,7 @@ build:
   publish_wap_xcopy: true
   publish_nuget: true
   verbosity: minimal
+  include_nuget_references: true
 
 artifacts:
   # pushing a single file
