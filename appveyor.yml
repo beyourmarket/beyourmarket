@@ -25,6 +25,7 @@ build:
 artifacts:
   # pushing a single file
   - path: beyourmarket.zip
+  - path: '**\*.nupkg'
   
 environment:
     COVERALLS_REPO_TOKEN:  
