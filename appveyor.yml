@@ -13,7 +13,13 @@ assembly_info:
   assembly_version: "{version}"
   assembly_file_version: "{version}"
   assembly_informational_version: "{version}"
-  
+
+# build platform, i.e. x86, x64, Any CPU. This setting is optional.
+platform: Any CPU
+
+# build Configuration
+configuration: Release
+
 build:
   project: src/BeYourMarket.sln
   publish_wap: true
@@ -24,8 +30,8 @@ build:
 
 artifacts:
   # pushing a single file
-  - path: beyourmarket.zip
-  - path: 'BeYourMarket*.nupkg'
+  - path: .\src\BeYourMarket.Web
+    name: beyourmarket
   
 environment:
     COVERALLS_REPO_TOKEN:  
@@ -36,11 +42,4 @@ environment:
 after_test: 
   - .\src\packages\OpenCover.4.5.3723\OpenCover.Console.exe -register:user -target:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\MSTest.exe" -targetargs:"/noresults /noisolation /testcontainer:"".\src\Tests\BeYourMarket.Test\bin\Debug\BeYourMarket.Test.dll" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:.\coverage.xml
   - .\src\packages\coveralls.io.1.3.4\tools\coveralls.net.exe --opencover .\coverage.xml
-  - bash <(curl -s https://codecov.io/bash)
-  - ps: .\src\.nuget\pack.ps1
 
-deploy:
-  provider: NuGet
-  api_key:
-    secure: bH4MVszqiQDNHFkIjkpXNVjnv5JvIvqQIkPRUGIrkJAk4ZXwHLezZ2/ImaBv8z6R
-  artifact: /.*\.nupkg/  
