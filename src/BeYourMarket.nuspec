@@ -4,8 +4,8 @@
     <id>BeYourMarket</id>
     <version>$version$</version>
     <title>BeYourMarket</title>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <authors>BeYourMarket</authors>
+    <owners>BeYourMarket</owners>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <projectUrl>https://github.com/beyourmarket/beyourmarket</projectUrl>
     <iconUrl>http://beyourmarket.com/images/logo.png</iconUrl>
