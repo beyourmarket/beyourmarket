@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>BeYourMarket</id>
+    <version>$version$</version>
+    <title>BeYourMarket</title>
+    <authors>BeYourMarket</authors>
+    <owners>BeYourMarket</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/beyourmarket/beyourmarket</projectUrl>
+    <iconUrl>http://beyourmarket.com/images/logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Installs BeYourMarket marketplace in your Visual Studio ASP.NET project</description>
+    <summary>.net Opensource Marketplace</summary>
+    <copyright>Copyright 2015</copyright>
+    <tags>BeYourMarket Marketplace</tags>
+  </metadata>
+</package>
