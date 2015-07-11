@@ -71,7 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\GoogleAnalyticsController.cs" />
-    <Compile Include="GoogleAnalyticPlugin.cs" />
+    <Compile Include="GoogleAnalyticsPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

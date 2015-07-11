@@ -33,7 +33,7 @@ namespace Plugin.Widget.GoogleAnalytics.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            var setting = BeYourMarket.Service.CacheHelper.GetSettingDictionary(GoogleAnalyticPlugin.SettingTrackingID);
+            var setting = BeYourMarket.Service.CacheHelper.GetSettingDictionary(GoogleAnalyticsPlugin.SettingTrackingID);
 
             if (setting == null)
                 return new EmptyResult();
@@ -45,7 +45,7 @@ namespace Plugin.Widget.GoogleAnalytics.Controllers
         #region Admin Method
         public ActionResult Configure()
         {
-            var model = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, GoogleAnalyticPlugin.SettingTrackingID);
+            var model = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, GoogleAnalyticsPlugin.SettingTrackingID);
             return View("~/Plugins/Plugin.Widget.GoogleAnalytics/Views/Configure.cshtml", model);
         }
 
@@ -53,7 +53,7 @@ namespace Plugin.Widget.GoogleAnalytics.Controllers
         [Authorize(Roles = "Administrator")]
         public async Task<ActionResult> Configure(string trackingID)
         {
-            var settingExisting = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, GoogleAnalyticPlugin.SettingTrackingID);
+            var settingExisting = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, GoogleAnalyticsPlugin.SettingTrackingID);
             settingExisting.Value = trackingID;
 
             _settingDictionaryService.SaveSettingDictionary(settingExisting);

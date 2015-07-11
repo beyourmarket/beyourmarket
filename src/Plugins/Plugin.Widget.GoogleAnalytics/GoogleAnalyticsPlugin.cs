@@ -11,14 +11,14 @@ using System.Web.Routing;
 
 namespace Plugin.Widget.GoogleAnalytics
 {
-    public class GoogleAnalyticPlugin : HookBasePlugin
+    public class GoogleAnalyticsPlugin : HookBasePlugin
     {
         public const string SettingTrackingID = "GoogleAnalytics_TrackingID";
 
         private readonly ISettingDictionaryService _settingDictionaryService;
         private readonly IUnitOfWorkAsync _unitOfWorkAsync;
 
-        public GoogleAnalyticPlugin(
+        public GoogleAnalyticsPlugin(
             ISettingDictionaryService settingDictionaryService,
             IUnitOfWorkAsync unitOfWorkAsync)
         {
