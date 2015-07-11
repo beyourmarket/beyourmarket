@@ -275,6 +275,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             settingExisting.AgreementText = setting.AgreementText;
             settingExisting.SignupText = setting.SignupText;
 
+            settingExisting.Theme = setting.Theme;
             settingExisting.LastUpdated = setting.LastUpdated;
             settingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 
@@ -456,7 +457,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             }
 
             var languagesEnabled = model.Languages.Where(x => x.Enabled);
-                        
+
             if (languagesEnabled.Count() == 0)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";

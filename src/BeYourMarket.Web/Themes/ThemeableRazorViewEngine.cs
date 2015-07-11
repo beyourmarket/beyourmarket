@@ -124,6 +124,10 @@ namespace BeYourMarket.Web.Themes
 
             var viewPath = GetPath(controllerContext, viewName, "View", useCache, ViewLocationFormats, AreaMasterLocationFormats, out strViewPath);
 
+            // Set default layout
+            if (string.IsNullOrEmpty(masterName) && !controllerContext.IsChildAction)
+                masterName = "_Layout";
+
             var viewMasterPath = GetPath(controllerContext, masterName, "Master", useCache, MasterLocationFormats, AreaMasterLocationFormats, out strViewMasterPath);
 
             if (!string.IsNullOrEmpty(viewPath))
