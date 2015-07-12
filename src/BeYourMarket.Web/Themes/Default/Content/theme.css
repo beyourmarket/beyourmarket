@@ -1373,8 +1373,6 @@ body > .header .logo .icon {
   border-radius: 2px;
   background-clip: padding-box;
   border: 1px solid #D8D1CC;
-  height: 320px;
-  max-height: 320px;
 }
 .card .card-title {
   color: #50505f;
@@ -1424,7 +1422,7 @@ body > .header .logo .icon {
   left: 0;
   right: 0;
   top: 0;
-  height: 175px;
+  min-height: 175px;
   bottom: 0;
   width: 100%;
   z-index: -1;
@@ -1499,8 +1497,14 @@ body > .header .logo .icon {
   /* Fallback for browsers do NOT support vh unit */
   min-height: 90vh;
   /* These two lines are counted as one :-)       */
+  height: 90vh;
   display: flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  /* Safari */
   align-items: center;
+  -webkit-align-items: center;
+  /* Safari 7.0+ */
 }
 .stripe-connect {
   display: inline-block;
@@ -1619,5 +1623,11 @@ body > .header .logo .icon {
   color: #333;
   line-height: 30px;
   font-weight: bold;
+}
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 /*# sourceMappingURL=theme.css.map */

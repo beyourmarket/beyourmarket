@@ -22,7 +22,7 @@
                 <h3>@Model.User.FullName</h3>
                 <p class="lead text-lighten">
                     [[[Joined since]]] @Model.User.RegisterDate.ToShortDateString()
-                </p>                               
+                </p>
             </div>
         </div>
     </div>
@@ -34,30 +34,39 @@
                 <div class="col-md-12 section-title ">
                     <h4>[[[Listings]]]</h4>
                 </div>
-                @foreach (var item in Model.Items)
-                {
-                    <div class="col-sm-6 col-md-3">
-                        <div class="card">
-                            <div class="card-image">
-                                <a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })">
-                                    <img alt="Listing Thumbnail" src="@item.UrlPicture">
-                                    <span class="card-img-label">@item.ItemCurrent.PriceFormatted</span>
-                                </a>
-                            </div>
-                            <div class="card-content">
-                                <h5><a class="card-title ">@item.ItemCurrent.Title</a></h5>
-                                <p>
-                                    @item.ItemCurrent.Description
-                                </p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#">[[[Location]]]</a>
-                                <span class="pull-right grey-text"> @item.ItemCurrent.Created.ToShortDateString()</span>
+            </div>
+
+            @foreach (var batch in Model.Items.Batch(4))
+            {
+                <div class="row-eq-height">
+                    @foreach (var item in batch)
+                    {
+                        <div class="col-sm-6 col-md-3">
+                            <div class="card">
+                                <div class="card-image">
+                                    <a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })">
+                                        <img alt="Listing Thumbnail" src="@item.UrlPicture">
+                                        <span class="card-img-label">@item.ItemCurrent.PriceFormatted</span>
+                                    </a>
+                                </div>
+                                <div class="card-content">
+                                    <h5><a class="card-title ">@item.ItemCurrent.Title</a></h5>
+                                    <p>
+                                        @item.ItemCurrent.Description.PrefixString(30)
+                                    </p>
+                                </div>
+                                <div class="card-action">
+                                    @if (!string.IsNullOrEmpty(item.ItemCurrent.Location))
+                                    {
+                                        <a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })"><i class="fa fa-map-marker"></i> @item.ItemCurrent.Location</a>
+                                    }
+                                    <span class="pull-right grey-text"> @item.ItemCurrent.Created.ToShortDateString()</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                }
-            </div>
+                    }
+                </div>
+            }
 
         </div>
     </div>

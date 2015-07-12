@@ -313,7 +313,7 @@
         <text>
             <script type="text/javascript">
                 function initialize() {
-                    var myLatlng = new google.maps.LatLng(@Model.ItemCurrent.Latitude.Value.ToString().ToLowerInvariant(), @Model.ItemCurrent.Longitude.Value.ToString().ToLowerInvariant());
+                    var myLatlng = new google.maps.LatLng(@Model.ItemCurrent.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture), @Model.ItemCurrent.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture));
                     var mapOptions = {
                         zoom: 14,
                         center: myLatlng

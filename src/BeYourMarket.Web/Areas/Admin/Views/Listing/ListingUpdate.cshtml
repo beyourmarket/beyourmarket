@@ -267,7 +267,7 @@
             @if (hasLatLng){
                 <text>
             mapOptions = {
-                center: new google.maps.LatLng(@Model.ListingItem.Latitude, @Model.ListingItem.Longitude),
+                center: new google.maps.LatLng(@Model.ListingItem.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture), @Model.ListingItem.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture)),
                 zoom: 14
             };
             </text>

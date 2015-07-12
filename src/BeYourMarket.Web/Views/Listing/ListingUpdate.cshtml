@@ -180,7 +180,7 @@
             @if (hasLatLng){
                 <text>
             mapOptions = {
-                center: new google.maps.LatLng(@Model.ListingItem.Latitude, @Model.ListingItem.Longitude),
+                center: new google.maps.LatLng(@Model.ListingItem.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture), @Model.ListingItem.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture)),
                 zoom: 14
             };
             </text>
@@ -192,7 +192,7 @@
             @if (hasLatLng){
                 <text>
             var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(@Model.ListingItem.Latitude, @Model.ListingItem.Longitude),
+                position: new google.maps.LatLng(@Model.ListingItem.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture), @Model.ListingItem.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture)),
                 map: map
             });
 
