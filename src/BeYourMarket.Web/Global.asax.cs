@@ -91,5 +91,40 @@ namespace BeYourMarket.Web
                 }
             }
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            Response.Clear();
+
+            HttpException httpException = exception as HttpException;
+
+            Elmah.ErrorSignal.FromCurrentContext().Raise(exception);            
+
+            if (httpException != null)
+            {
+                string action = null;
+
+                switch (httpException.GetHttpCode())
+                {
+                    case 404:
+                        // page not found
+                        action = "NotFound";
+                        break;
+                    case 500:
+                        // server error
+                        action = "Error";
+                        break;
+                }
+
+                if (!string.IsNullOrEmpty(action))
+                {
+                    // clear error on server
+                    Server.ClearError();
+
+                    Response.Redirect(String.Format("~/Error/{0}", action));
+                }
+            }
+        }
     }
 }
