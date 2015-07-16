@@ -44,6 +44,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
@@ -1324,4 +1326,41 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
+  <Target Name="ExcludeRootBinariesDeployment">
+    <ItemGroup>
+      <RootBinFiles Include="bin\*">
+        <InProject>false</InProject>
+      </RootBinFiles>
+    </ItemGroup>
+    <PropertyGroup>
+      <ExcludeFilesFromDeployment>
+        **\*.Debug.config;
+        **\*.Release.config;
+        **\obj\**;
+        **\bin\*.xml;
+        **\*.cs;
+        **\packages.config;
+        **\*.csproj;
+        **\*.csproj.user;        
+        Images\Item\*.*;
+        Images\Profile\*.*;
+        Properties\**\*;
+      </ExcludeFilesFromDeployment>
+    </PropertyGroup>
+  </Target>
+  <Target Name="ExcludeRootBinariesPackage" DependsOnTargets="ExcludeRootBinariesDeployment" BeforeTargets="ExcludeFilesFromPackage">
+    <ItemGroup>
+      <ExcludeFromPackageFiles Include="$(ExcludeFilesFromDeployment)" />
+    </ItemGroup>
+  </Target>
+  <PropertyGroup>
+    <PluginsBinDirectory>$(ProjectDir)\Plugins\Bin\</PluginsBinDirectory>
+  </PropertyGroup>
+  <Target Name="CreatePluginsBinDirectory">
+    <MakeDir Directories="$(PluginsBinDirectory)" />
+  </Target>
+  <Target Name="AfterBuild" DependsOnTargets="MvcBuildViews">
+    <CallTarget Targets="ExcludeRootBinariesDeployment" />
+    <CallTarget Targets="CreatePluginsBinDirectory" />
+  </Target>
 </Project>
