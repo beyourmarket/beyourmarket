@@ -94,8 +94,11 @@ namespace BeYourMarket.Web
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            Exception exception = Server.GetLastError();
-            Response.Clear();
+            // Skip error processing if debugging
+            if (HttpContext.Current.IsDebuggingEnabled)
+                return;
+
+            Exception exception = Server.GetLastError();            
 
             HttpException httpException = exception as HttpException;
 
@@ -113,16 +116,24 @@ namespace BeYourMarket.Web
                         break;
                     case 500:
                         // server error
-                        action = "Error";
+                        action = "Index";
                         break;
                 }
 
                 if (!string.IsNullOrEmpty(action))
                 {
                     // clear error on server
+                    Response.Clear();
                     Server.ClearError();
+                    Response.TrySkipIisCustomErrors = true;
 
-                    Response.Redirect(String.Format("~/Error/{0}", action));
+                    // Call target Controller and pass the routeData.
+                    IController errorController = new BeYourMarket.Web.Controllers.ErrorController();                     
+                    var routeData = new RouteData();
+                    routeData.Values.Add("controller", "Error");
+                    routeData.Values.Add("action", action);
+
+                    errorController.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
                 }
             }
         }

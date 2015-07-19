@@ -369,9 +369,15 @@ namespace Plugin.Payment.Stripe.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult TransactionOverview()
         {
-            var orders = _orderService.Query(x => x.Status == (int)Enum_OrderStatus.Confirmed).SelectAsync();
+            var orders = _orderService.Query(x => x.Status == (int)Enum_OrderStatus.Confirmed).Select();
 
             var transactionPayment = _transactionService.Query().Select();
+
+            // set orders
+            foreach (var payment in transactionPayment)
+            {
+                payment.Order = orders.Where(x => x.ID == payment.OrderID).FirstOrDefault();
+            }
 
             var transactionGridPayment = new TransactionGrid(transactionPayment.AsQueryable().OrderByDescending(x => x.Created));
 

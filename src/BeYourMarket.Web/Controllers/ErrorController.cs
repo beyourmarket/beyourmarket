@@ -20,7 +20,7 @@ namespace BeYourMarket.Web.Controllers
         }
 
         public ActionResult Error(System.Web.Mvc.HandleErrorInfo errorInfo)
-        {
+        {            
             if (Request.IsAjaxRequest())
             {
                 return PartialView(errorInfo);
