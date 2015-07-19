@@ -26,7 +26,11 @@ Development Branch (`dev`)
 ##Demo
 [![Try online](https://img.shields.io/badge/try-demo-green.svg)](http://demo.beyourmarket.com)
 
+Frontend:
+http://demo.beyourmarket.com/
+
 Admin Panel:
+http://demo.beyourmarket.com/en/admin
 
 username: demo@beyourmarket.com
 
