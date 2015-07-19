@@ -36,12 +36,11 @@
                 </div>
             </div>
 
-            @foreach (var batch in Model.Items.Batch(4))
-            {
-                <div class="row-eq-height">
-                    @foreach (var item in batch)
+
+            <div class="row-eq-height">
+                    @foreach (var item in Model.Items)
                     {
-                        <div class="col-sm-6 col-md-3">
+                        <div class="col-sm-6 col-md-4 col-lg-3">
                             <div class="card">
                                 <div class="card-image">
                                     <a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })">
@@ -50,23 +49,21 @@
                                     </a>
                                 </div>
                                 <div class="card-content">
-                                    <h5><a class="card-title ">@item.ItemCurrent.Title</a></h5>
-                                    <p>
-                                        @item.ItemCurrent.Description.PrefixString(30)
+                                    <h5><a class="card-title">@item.ItemCurrent.Title</a></h5>
+                                    <p class="truncate">
+                                        @item.ItemCurrent.Description
                                     </p>
                                 </div>
                                 <div class="card-action">
                                     @if (!string.IsNullOrEmpty(item.ItemCurrent.Location))
                                     {
                                         <a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })"><i class="fa fa-map-marker"></i> @item.ItemCurrent.Location</a>
-                                    }
-                                    <span class="pull-right grey-text"> @item.ItemCurrent.Created.ToShortDateString()</span>
+                                    }                                    
                                 </div>
                             </div>
                         </div>
                     }
                 </div>
-            }
 
         </div>
     </div>

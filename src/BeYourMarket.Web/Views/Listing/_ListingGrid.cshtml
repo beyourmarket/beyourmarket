@@ -4,34 +4,30 @@
     Layout = null;
 }
 
-@foreach (var batch in Model.ItemsPageList.Batch(3))
-{
-    <div class="row-eq-height">
-        @foreach (var item in batch)
-        {
-            <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="card">
-                    <div class="card-image">
-                        <a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })">
-                            <img alt="Listing Thumbnail" src="@item.UrlPicture">
-                            <span class="card-img-label">@Html.DisplayFor(x => item.ItemCurrent.PriceFormatted)</span>
-                        </a>
-                    </div>
-                    <div class="card-content">
-                        <h5><a class="card-title ">@item.ItemCurrent.Title</a></h5>
-                        <p>
-                            @item.ItemCurrent.Description.PrefixString(10)
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        @if (!string.IsNullOrEmpty(item.ItemCurrent.Location))
+<div class="row-eq-height">
+    @foreach (var item in Model.ItemsPageList)
+    {
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card">
+                <div class="card-image">
+                    <a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })">
+                        <img alt="Listing Thumbnail" src="@item.UrlPicture">
+                        <span class="card-img-label">@Html.DisplayFor(x => item.ItemCurrent.PriceFormatted)</span>
+                    </a>
+                </div>
+                <div class="card-content">
+                    <h5><a class="card-title ">@item.ItemCurrent.Title</a></h5>
+                    <p class="truncate">
+                        @item.ItemCurrent.Description
+                    </p>
+                </div>
+                <div class="card-action">
+                    @if (!string.IsNullOrEmpty(item.ItemCurrent.Location))
                         {
-                            <a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })"><i class="fa fa-map-marker"></i> @item.ItemCurrent.Location</a>
-                        }
-                        <div class="grey-text"> @item.ItemCurrent.Created.ToShortDateString()</div>
-                    </div>
+                        <a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })"><i class="fa fa-map-marker"></i> @item.ItemCurrent.Location</a>
+                        }                    
                 </div>
             </div>
-        }
-    </div>
-}
+        </div>
+    }
+</div>

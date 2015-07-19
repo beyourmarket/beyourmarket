@@ -13,19 +13,25 @@ $(function () {
 
 
 
-    $(document).ready(function () {
+    $(document).ready(function () {        
         $("[data-toggle='offcanvas']").click(function (e) {
-            e.preventDefault();
+            e.preventDefault();            
             if ($(window).width() <= 992) {
                 $(".row-offcanvas").toggleClass("active");
                 $(".left-section").removeClass("collapse-left");
-                $(".right-section").removeClass("strech");
+                $(".right-section").removeClass("stretch");
                 $(".row-offcanvas").toggleClass("relative")
             } else {
                 $(".left-section").toggleClass("collapse-left");
-                $(".right-section").toggleClass("strech")
+                $(".right-section").toggleClass("stretch")
             }
         });
+
+        // collapse sidebar for ipad or small devices mode
+        if ($(window).width() <= 1024) {
+            $(".left-section").toggleClass("collapse-left");
+            $(".right-section").toggleClass("stretch")
+        }
     });    
 
     window.onresize = function(event) {
