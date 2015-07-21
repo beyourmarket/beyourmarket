@@ -7,7 +7,7 @@
 <div class="row-eq-height">
     @foreach (var item in Model.ItemsPageList)
     {
-        <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="col-sm-6 col-md-4 col-lg-4">
             <div class="card">
                 <div class="card-image">
                     <a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })">

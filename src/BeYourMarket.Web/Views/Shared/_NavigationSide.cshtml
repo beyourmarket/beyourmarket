@@ -45,11 +45,11 @@
 
 <aside class="left-section sidebar-offcanvas">
     <section class="sidebar">
-        <form action="#" method="get" class="user-panel form-rounded hidden-lg hidden-md">
+        <form method="get" action="@Url.Action("Search", "Home")" class="user-panel form-rounded hidden-lg hidden-md">
             <div class="input-group">
-                <input type="text" name="q" class="form-control input-sm" placeholder="[[[Search for...]]]" />
+                <input type="text" id="SearchText" name="SearchText" class="form-control input-sm" placeholder="@CacheHelper.Settings.SearchPlaceHolder" />
                 <span class="input-group-btn">
-                    <button type='submit' name='search' class="btn btn-sm btn-flat"><i class="mdi-action-search "></i></button>
+                    <button type="submit" name="search" class="btn btn-sm btn-flat"><i class="mdi-action-search "></i></button>
                 </span>
             </div>
         </form>
@@ -64,6 +64,11 @@
                 <li class="hidden-lg hidden-md">
                     <a href="@Url.Action("Register", "Account")">
                         <span>[[[Create an account]]]</span>
+                    </a>
+                </li>
+                <li class="hidden-lg hidden-md">
+                    <a href="@Url.Action("ListingUpdate", "Listing")">
+                        <span>[[[Publish new listing]]]</span>
                     </a>
                 </li>
             }
