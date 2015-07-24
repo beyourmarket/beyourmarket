@@ -39,12 +39,14 @@ password: Password
 
 ## RoadMap ##
 
-#### Support Plugin architecture development (July/August 2015) v. 1.1beta
+#### v. 1.2beta - Support Custom Theme  (August/September 2015)
+- Develop your own theme
+
+## Release ##
+
+#### v. 1.1beta - Support Plugin architecture development (July/August 2015)
 - Create plugin for your own widget (e.g. add google analytics tracking)
 - Create plugin for  other marketplace payment API like Braintree
-
-#### Support Custom Theme  (August/September 2015) v. 1.2beta
-- Develop your own theme
 
 We will build features based on community needs, please raise your [suggestion](https://github.com/beyourmarket/beyourmarket/issues/new)
 
