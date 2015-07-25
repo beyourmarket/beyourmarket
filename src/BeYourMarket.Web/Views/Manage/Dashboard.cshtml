@@ -73,7 +73,7 @@
             }, function (isConfirm) {
                 if (isConfirm) {
                     $.post('@Url.Action("ListingDelete","Listing")', { id: id })
-                    .done(function (result) {                        
+                    .done(function (result) {
                         if (result.Success) {
                             $("#item_" + id).remove();
                             swal("[[[Deleted!]]]", result.Message, "success");

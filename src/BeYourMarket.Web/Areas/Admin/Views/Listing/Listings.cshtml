@@ -58,12 +58,12 @@
                              .RenderValueAs(x => DisplayDeleteLink(x.ID, x.Title));
 
                            columns.Add(x => x.ID);
-                           columns.Add(x => x.CategoryID).RenderValueAs(x => GetCategoryName(x.CategoryID));
-                           columns.Add(x => x.Active);
-                           columns.Add(x => x.Title);
-                           columns.Add(x => x.Description);
-                           columns.Add(x => x.ShowEmail);
-                           columns.Add(x => x.Created).RenderValueAs(x => x.Created.ToShortDateString());
+                           columns.Add(x => x.CategoryID).RenderValueAs(x => GetCategoryName(x.CategoryID)).Titled("[[[Category]]]");
+                           columns.Add(x => x.Active).Titled("[[[Active]]]");
+                           columns.Add(x => x.Title).Titled("[[[Title]]]");
+                           columns.Add(x => x.Description).Titled("[[[Description]]]");
+                           columns.Add(x => x.ShowEmail).Titled("[[[ShowEmail]]]");
+                           columns.Add(x => x.Created).RenderValueAs(x => x.Created.ToShortDateString()).Titled("[[[CreatedDate]]]");
 
 
                        }).Sortable().Filterable().WithPaging(10).Selectable(false)

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-07-13 00:49+02:00\n"
-"PO-Revision-Date: 2015-07-13 00:49+02:00\n"
+"POT-Creation-Date: 2015-07-25 14:14+02:00\n"
+"PO-Revision-Date: 2015-07-25 14:14+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -42,6 +42,7 @@ msgid "Accept Email"
 msgstr ""
 
 #: Views\Listing\ListingUpdate.cshtml:48
+#: Areas\Admin\Views\Listing\Listings.cshtml:62
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:128
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:48
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:128
@@ -80,9 +81,9 @@ msgid "Admin"
 msgstr ""
 
 #: Views\Shared\_LoginPartial.cshtml:20
-#: Views\Shared\_NavigationSide.cshtml:89
+#: Views\Shared\_NavigationSide.cshtml:94
 #: obj\Release\Package\PackageTmp\Views\Shared\_LoginPartial.cshtml:20
-#: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:89
+#: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:94
 msgid "Admin Panel"
 msgstr ""
 
@@ -91,8 +92,8 @@ msgstr ""
 msgid "Admin user email"
 msgstr ""
 
-#: Views\Shared\_NavigationSide.cshtml:72
-#: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:72
+#: Views\Shared\_NavigationSide.cshtml:77
+#: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:77
 msgid "Administration"
 msgstr ""
 
@@ -107,17 +108,17 @@ msgid "Agreement"
 msgstr ""
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:116
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:109
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:116
 msgid "Agreement Label"
 msgstr ""
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:104
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:97
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:104
 msgid "Agreement Required"
 msgstr ""
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:123
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:116
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:123
 msgid "Agreement Text"
 msgstr ""
 
@@ -225,7 +226,7 @@ msgstr ""
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:91
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:191
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:64
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:132
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:139
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\SettingsEmail.cshtml:69
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\SettingsLanguage.cshtml:43
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\UserUpdate.cshtml:139
@@ -253,10 +254,10 @@ msgstr ""
 msgid "Cancelled!"
 msgstr ""
 
-#: Views\Shared\_NavigationSide.cshtml:95
+#: Views\Shared\_NavigationSide.cshtml:100
 #: Areas\Admin\Views\Listing\Categories.cshtml:8
 #: Areas\Admin\Views\Listing\Categories.cshtml:30
-#: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:95
+#: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:100
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:8
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:30
 msgid "Categories"
@@ -268,8 +269,9 @@ msgstr ""
 #: Views\Listing\_ListingGridList.cshtml:35
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:4
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:12
-#: Areas\Admin\Views\Listing\CustomFields.cshtml:62
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:63
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:76
+#: Areas\Admin\Views\Listing\Listings.cshtml:61
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:30
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:67
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:129
@@ -401,9 +403,9 @@ msgid "Contact number (Click to show)"
 msgstr ""
 
 #: Views\Home\Contact.cshtml:16
-#: Views\Shared\_NavigationSide.cshtml:108
+#: Views\Shared\_NavigationSide.cshtml:113
 #: obj\Release\Package\PackageTmp\Views\Home\Contact.cshtml:16
-#: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:108
+#: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:113
 msgid "Contact us"
 msgstr ""
 
@@ -463,6 +465,10 @@ msgstr ""
 msgid "Created"
 msgstr ""
 
+#: Areas\Admin\Views\Listing\Listings.cshtml:66
+msgid "CreatedDate"
+msgstr ""
+
 #: Areas\Admin\Views\Design\CodeStyle.cshtml:9
 #: Areas\Admin\Views\Design\CodeStyle.cshtml:19
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Design\CodeStyle.cshtml:9
@@ -511,12 +517,12 @@ msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:4
 #: Views\Shared\_LoginPartial.cshtml:14
-#: Views\Shared\_NavigationSide.cshtml:76
+#: Views\Shared\_NavigationSide.cshtml:81
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:3
 #: Areas\Admin\Views\Shared\_NavigationSide.cshtml:75
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:4
 #: obj\Release\Package\PackageTmp\Views\Shared\_LoginPartial.cshtml:14
-#: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:76
+#: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:81
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Dashboard.cshtml:3
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Shared\_NavigationSide.cshtml:75
 msgid "Dashboard"
@@ -578,6 +584,7 @@ msgstr ""
 #: Views\Listing\_ListingGridList.cshtml:40
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:37
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:23
+#: Areas\Admin\Views\Listing\Listings.cshtml:64
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:44
 #: Areas\Admin\Views\Manage\Settings.cshtml:24
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:95
@@ -715,7 +722,7 @@ msgstr ""
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:138
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:71
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:83
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:102
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:109
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\SettingsLanguage.cshtml:32
 msgid "Enabled"
 msgstr ""
@@ -1002,7 +1009,7 @@ msgid "Last Updated"
 msgstr ""
 
 #: Views\Home\Index.cshtml:33
-#: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:32
+#: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:33
 msgid "Latest Listings"
 msgstr ""
 
@@ -1068,7 +1075,6 @@ msgstr ""
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:55
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:67
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:69
-#: obj\Release\Package\PackageTmp\Views\Listing\Profile.cshtml:54
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:43
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:165
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:167
@@ -1203,6 +1209,7 @@ msgid "My Listings"
 msgstr ""
 
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:16
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:56
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:40
 #: Areas\Admin\Views\Manage\Settings.cshtml:17
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CategoryUpdate.cshtml:16
@@ -1245,7 +1252,7 @@ msgstr ""
 msgid "Only show listings with photos"
 msgstr ""
 
-#: Areas\Admin\Views\Listing\CustomFields.cshtml:66
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:67
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:47
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:66
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:47
@@ -1302,6 +1309,13 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
+#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:20
+#: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:20
+#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:20
+#: obj\Release\Package\PackageTmp\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:20
+msgid "Paid"
+msgstr ""
+
 #: Models\AccountViewModels.cs:58
 #: Models\AccountViewModels.cs:75
 #: Models\AccountViewModels.cs:94
@@ -1355,8 +1369,12 @@ msgid "Payout information"
 msgstr ""
 
 #: Views\Payment\Orders.cshtml:40
+#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:24
+#: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:24
+#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:24
 #: Areas\Admin\Views\Payment\Order.cshtml:40
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:40
+#: obj\Release\Package\PackageTmp\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:24
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:40
 msgid "Pending"
 msgstr ""
@@ -1487,11 +1505,13 @@ msgstr ""
 #: Views\Manage\Dashboard.cshtml:28
 #: Views\Shared\_Layout.cshtml:56
 #: Views\Shared\_LoginPartial.cshtml:15
-#: Views\Shared\_NavigationSide.cshtml:81
+#: Views\Shared\_NavigationSide.cshtml:71
+#: Views\Shared\_NavigationSide.cshtml:86
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:28
 #: obj\Release\Package\PackageTmp\Views\Shared\_Layout.cshtml:56
 #: obj\Release\Package\PackageTmp\Views\Shared\_LoginPartial.cshtml:15
-#: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:81
+#: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:71
+#: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:86
 msgid "Publish new listing"
 msgstr ""
 
@@ -1548,7 +1568,7 @@ msgstr ""
 msgid "Remember this browser?"
 msgstr ""
 
-#: Areas\Admin\Views\Listing\CustomFields.cshtml:67
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:68
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:58
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:67
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:58
@@ -1595,7 +1615,7 @@ msgstr ""
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:90
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:190
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:63
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:131
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:138
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\SettingsEmail.cshtml:68
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\SettingsLanguage.cshtml:42
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\UserUpdate.cshtml:138
@@ -1605,15 +1625,13 @@ msgstr ""
 
 #: Views\Home\Index.cshtml:25
 #: Views\Manage\Dashboard.cshtml:24
-#: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:24
+#: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:25
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:24
 msgid "Search"
 msgstr ""
 
 #: Views\Shared\_Layout.cshtml:44
-#: Views\Shared\_NavigationSide.cshtml:50
 #: obj\Release\Package\PackageTmp\Views\Shared\_Layout.cshtml:44
-#: obj\Release\Package\PackageTmp\Views\Shared\_NavigationSide.cshtml:50
 msgid "Search for..."
 msgstr ""
 
@@ -1632,7 +1650,7 @@ msgstr ""
 msgid "Search your listings..."
 msgstr ""
 
-#: Areas\Admin\Views\Listing\CustomFields.cshtml:68
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:69
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:70
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:68
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:70
@@ -1640,7 +1658,7 @@ msgid "Searchable"
 msgstr ""
 
 #: Views\Home\Index.cshtml:33
-#: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:32
+#: obj\Release\Package\PackageTmp\Views\Home\Index.cshtml:33
 msgid "See All Listings"
 msgstr ""
 
@@ -1692,6 +1710,10 @@ msgstr ""
 msgid "Show Phone"
 msgstr ""
 
+#: Areas\Admin\Views\Listing\Listings.cshtml:65
+msgid "ShowEmail"
+msgstr ""
+
 #: Views\Listing\Listing.cshtml:198
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:198
 msgid "Sign in"
@@ -1703,7 +1725,7 @@ msgid "Sign in to contact the owner"
 msgstr ""
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:130
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:123
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:130
 msgid "Signup Text"
 msgstr ""
 
@@ -1832,6 +1854,7 @@ msgid "The provider has not setup the payment option yet, please contact the pro
 msgstr ""
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:97
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:97
 msgid "Theme"
 msgstr ""
 
@@ -1848,23 +1871,24 @@ msgid "This account has been locked out, please try again later."
 msgstr ""
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:132
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:125
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:132
 msgid "This is an info text that can be shown to users in the signup page. There you can give the users instructions for signing up, information like where to get an invite, etc. By default there are no instructions."
 msgstr ""
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:125
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:118
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:125
 msgid "This is the content of the actual agreement that the user needs to accept."
 msgstr ""
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:118
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:111
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:118
 msgid "This text will be shown next to a checkbox in the checkout form"
 msgstr ""
 
 #: Views\Listing\_ListingGridList.cshtml:38
 #: Views\Payment\Orders.cshtml:102
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:30
+#: Areas\Admin\Views\Listing\Listings.cshtml:63
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:37
 #: Areas\Admin\Views\Payment\Order.cshtml:93
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:38
@@ -1926,7 +1950,7 @@ msgstr ""
 msgid "Transactions"
 msgstr ""
 
-#: Areas\Admin\Views\Listing\CustomFields.cshtml:57
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:58
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:33
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:57
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:33

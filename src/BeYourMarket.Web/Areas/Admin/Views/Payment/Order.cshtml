@@ -122,39 +122,39 @@
         function confirmOrderAction(id, status) {
             var message;
             if (status == 2) {
-                message = "[[[Confirm to accept the order]]]"
+                message = "@Html.Raw(HttpUtility.HtmlDecode("[[[Confirm to accept the order]]]"))"
             } else if (status == 3) {
-                message = "[[[Confirm to cancel the order]]]"
+                message = "@Html.Raw(HttpUtility.HtmlDecode("[[[Confirm to cancel the order]]]"))"
             } else {
                 return;
             }
-            swal({
-                title: "[[[Are you sure?]]]",
-                text: message,
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "[[[Yes!]]]",
-                cancelButtonText: "[[[No!]]]",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            }, function (isConfirm) {
-                if (isConfirm) {
-                    $.post('@Url.Action("OrderAction", "Payment")', { id: id, status: status })
-                    .done(function (data) {
-                        if (data.Success) {
-                            location.reload();
-                        } else {
-                            swal("[[[Failed]]]", data.Message, "error");
-                        }
-                    })
-                    .fail(function (xhr, textStatus, errorThrown) {
-                        swal("[[[Failed]]]", xhr.responseText, "error");
-                    })
-                } else {
-                    swal("[[[Cancelled]]]", "", "error");
-                }
-            });
-        }
-    </script>
+        swal({
+            title: "[[[Are you sure?]]]",
+            text: message,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "[[[Yes!]]]",
+            cancelButtonText: "[[[No!]]]",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                $.post('@Url.Action("OrderAction", "Payment")', { id: id, status: status })
+                .done(function (data) {
+                    if (data.Success) {
+                        location.reload();
+                    } else {
+                        swal("[[[Failed]]]", data.Message, "error");
+                    }
+                })
+                .fail(function (xhr, textStatus, errorThrown) {
+                    swal("[[[Failed]]]", xhr.responseText, "error");
+                })
+            } else {
+                swal("[[[Cancelled]]]", "", "error");
+            }
+        });
+    }
+</script>
 }

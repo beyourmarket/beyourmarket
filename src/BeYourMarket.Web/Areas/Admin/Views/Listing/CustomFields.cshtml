@@ -53,7 +53,8 @@
                              .RenderValueAs(x => DisplayUpdateLink(x.ID));
 
                            columns.Add(x => x.ID);
-                           columns.Add(x => x.Name);
+                           columns.Add(x => x.Name).Titled("[[[Name]]]");
+                           
                            columns.Add(x => x.ControlTypeID).Titled("[[[Type]]]")
                                .Encoded(false)
                              .Sanitized(false)
