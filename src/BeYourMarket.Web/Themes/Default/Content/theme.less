@@ -1320,7 +1320,7 @@ body > .header .logo .icon {
 
 .landing-bg {
     color: @background-color;
-    width: 100%;
+    width: 100%;    
     background-position: 50% 50%;
     background-attachment: fixed;
     background-size: cover;
@@ -1333,7 +1333,11 @@ body > .header .logo .icon {
     display: -webkit-flex; /* Safari */
 
     align-items: center;
-    -webkit-align-items: center; /* Safari 7.0+ */       
+    -webkit-align-items: center; /* Safari 7.0+ */  
+            
+    position: relative;    
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);    
 }
 
 .stripe-connect {

@@ -1510,6 +1510,9 @@ body > .header .logo .icon {
   align-items: center;
   -webkit-align-items: center;
   /* Safari 7.0+ */
+  position: relative;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 .stripe-connect {
   display: inline-block;
