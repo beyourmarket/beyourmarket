@@ -266,8 +266,6 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             settingExisting.SearchPlaceHolder = setting.SearchPlaceHolder;
 
             settingExisting.EmailContact = setting.EmailContact;
-            settingExisting.BookingEnabled = setting.BookingEnabled;
-            settingExisting.BookingText = setting.BookingText;
             settingExisting.Currency = setting.Currency;
 
             settingExisting.AgreementRequired = setting.AgreementRequired;

@@ -32,6 +32,11 @@ namespace BeYourMarket.Service
             get { return _container.Resolve<ICategoryService>(); }
         }
 
+        private IItemTypeService ItemTypeService
+        {
+            get { return _container.Resolve<IItemTypeService>(); }
+        }
+
         private IContentPageService ContentPageService
         {
             get { return _container.Resolve<IContentPageService>(); }
@@ -117,6 +122,10 @@ namespace BeYourMarket.Service
                         case CacheKeys.Categories:
                             var categories = CategoryService.Queryable().Where(x => x.Enabled).OrderBy(x => x.Ordering).ToList();
                             UpdateCache(CacheKeys.Categories, categories);
+                            break;
+                        case CacheKeys.ItemTypes:
+                            var itemTypes = ItemTypeService.Queryable().ToList();
+                            UpdateCache(CacheKeys.ItemTypes, itemTypes);
                             break;
                         case CacheKeys.ContentPages:
                             var contentPages = ContentPageService.Queryable().Where(x => x.Published).OrderBy(x => x.Ordering).ToList();

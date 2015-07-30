@@ -45,6 +45,8 @@ namespace BeYourMarket.Web.App_Start
                 .RegisterType<IRepositoryAsync<CategoryStat>, Repository<CategoryStat>>()
                 .RegisterType<IRepositoryAsync<AspNetUser>, Repository<AspNetUser>>()
                 .RegisterType<IRepositoryAsync<AspNetRole>, Repository<AspNetRole>>()
+                .RegisterType<IRepositoryAsync<ItemType>, Repository<ItemType>>()
+                .RegisterType<IRepositoryAsync<CategoryItemType>, Repository<CategoryItemType>>()
 
                 .RegisterType<ISettingService, SettingService>()
                 .RegisterType<ICategoryService, CategoryService>()
@@ -62,6 +64,8 @@ namespace BeYourMarket.Web.App_Start
                 .RegisterType<IEmailTemplateService, EmailTemplateService>()
                 .RegisterType<IAspNetUserService, AspNetUserService>()
                 .RegisterType<IAspNetRoleService, AspNetRoleService>()
+                .RegisterType<IItemTypeService, ItemTypeService>()
+                .RegisterType<ICategoryItemTypeService, CategoryItemTypeService>()
                 .RegisterType<IStoredProcedures, BeYourMarketContext>(new PerRequestLifetimeManager())
                 .RegisterType<SqlDbService, SqlDbService>() 
                 .RegisterType<DataCacheService, DataCacheService>(new ContainerControlledLifetimeManager());

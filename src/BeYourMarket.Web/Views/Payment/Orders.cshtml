@@ -103,8 +103,9 @@
 
                                            columns.Add(x => x.PriceFormatted).Titled("[[[Price]]]");
 
-                                           columns.Add(x => x.FromDate).Titled("[[[From]]]").RenderValueAs(x => x.FromDate.Value.ToShortDateString());
-                                           columns.Add(x => x.ToDate).Titled("[[[To]]]").RenderValueAs(x => x.ToDate.Value.ToShortDateString());
+                                           columns.Add(x => x.Quantity).Titled("[[[Quantity]]]");
+                                           columns.Add(x => x.Description).Titled("[[[Description]]]");
+
                                            columns.Add(x => x.ID).Titled("[[[Order ID]]]");
                                            columns.Add(x => x.Created).Titled("[[[Created]]]").RenderValueAs(x => x.Created.ToShortDateString());
 
@@ -129,7 +130,7 @@
     <script src="~/Scripts/gridmvc.min.js"></script>
 
     <script type="text/javascript">
-        function confirmOrderAction(id, status) {            
+        function confirmOrderAction(id, status) {
             var message;
             if (status == 2) {
                 message = "[[[Confirm to accept the order]]]"
@@ -152,7 +153,7 @@
                 if (isConfirm) {
                     $.post('@Url.Action("OrderAction", "Payment")', { id: id, status: status })
                     .done(function (data) {
-                        if (data.Success) {                            
+                        if (data.Success) {
                             location.reload();
                         } else {
                             swal("[[[Failed!]]]", data.Message, "error");

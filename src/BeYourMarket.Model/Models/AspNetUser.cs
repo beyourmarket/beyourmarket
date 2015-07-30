@@ -9,9 +9,9 @@ namespace BeYourMarket.Model.Models
         {
             this.AspNetUserClaims = new List<AspNetUserClaim>();
             this.AspNetUserLogins = new List<AspNetUserLogin>();
-            this.Items = new List<Item>();
             this.Orders = new List<Order>();
             this.Orders1 = new List<Order>();
+            this.Items = new List<Item>();
             this.AspNetRoles = new List<AspNetRole>();
         }
 
@@ -40,9 +40,9 @@ namespace BeYourMarket.Model.Models
         public bool Disabled { get; set; }
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual ICollection<Item> Items { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<Order> Orders1 { get; set; }
+        public virtual ICollection<Item> Items { get; set; }
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }
 }

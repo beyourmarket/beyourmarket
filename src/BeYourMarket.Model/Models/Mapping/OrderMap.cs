@@ -32,6 +32,7 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.FromDate).HasColumnName("FromDate");
             this.Property(t => t.ToDate).HasColumnName("ToDate");
             this.Property(t => t.ItemID).HasColumnName("ItemID");
+            this.Property(t => t.ItemTypeID).HasColumnName("ItemTypeID");
             this.Property(t => t.Status).HasColumnName("Status");
             this.Property(t => t.Quantity).HasColumnName("Quantity");
             this.Property(t => t.Price).HasColumnName("Price");

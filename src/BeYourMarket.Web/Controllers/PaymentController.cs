@@ -170,7 +170,11 @@ namespace BeYourMarket.Web.Controllers
 
         public async Task<ActionResult> Payment(int id)
         {
-            var selectQuery = await _orderService.Query(x => x.ID == id).Include(x => x.Item).Include(x => x.Item.ItemPictures).SelectAsync();
+            var selectQuery = await _orderService.Query(x => x.ID == id)
+                .Include(x => x.Item)                
+                .Include(x => x.Item.ItemType)
+                .Include(x => x.Item.ItemPictures)
+                .SelectAsync();
 
             var order = selectQuery.FirstOrDefault();
 
@@ -220,8 +224,8 @@ namespace BeYourMarket.Web.Controllers
                     TempData[TempDataKeys.UserMessage] = string.Format("[[[The provider has not setup the payment option for {0} yet, please contact the provider.]]]", descriptor.FriendlyName);
 
                     return RedirectToAction("Listing", "Listing", new { id = order.ItemID });
-                }   
-            }            
+                }
+            }
 
             if (order.ID == 0)
             {
@@ -231,6 +235,7 @@ namespace BeYourMarket.Web.Controllers
                 order.Status = (int)Enum_OrderStatus.Created;
                 order.UserProvider = item.UserID;
                 order.UserReceiver = User.Identity.GetUserId();
+                order.ItemTypeID = order.ItemTypeID;
 
                 if (order.UserProvider == order.UserReceiver)
                 {
@@ -249,8 +254,15 @@ namespace BeYourMarket.Web.Controllers
                     order.Quantity = order.ToDate.Value.Date.AddDays(1).Subtract(order.FromDate.Value.Date).Days;
                     order.Price = order.Quantity * item.Price;
                 }
+                else if (order.Quantity.HasValue)
+                {
+                    order.Description = string.Format("{0} #{1}", item.Title, item.ID);
+                    order.Quantity = order.Quantity.Value;
+                    order.Price = item.Price;
+                }
                 else
                 {
+                    // Default
                     order.Description = string.Format("{0} #{1}", item.Title, item.ID);
                     order.Quantity = 1;
                     order.Price = item.Price;

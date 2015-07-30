@@ -33,8 +33,11 @@
                         }
                     </div>
 
-                    <div class="col-md-6">                        
-                            <input type="hidden" id="id" name="id" value="@Model.ItemOrder.ID" />
+                    <div class="col-md-6">
+                        <input type="hidden" id="id" name="id" value="@Model.ItemOrder.ID" />
+
+                        @if (Model.ItemOrder.Item.ItemType.OrderTypeID == (int)Enum_ItemOrderType.DateRange)
+                        {
                             <div class="form-group">
                                 <label for="FromDate">[[[From Date]]]</label>
                                 <div class="input-group date datepicker">
@@ -48,11 +51,19 @@
                                     <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" readonly value="@Model.ItemOrder.FromDate.Value.ToShortDateString()" /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                 </div>
                             </div>
+                        }
+                        else if (Model.ItemOrder.Item.ItemType.OrderTypeID == (int)Enum_ItemOrderType.Quantity)
+                        {
+                            <div class="form-group">
+                                <label for="OrderTypeLabel">@Model.ItemOrder.Item.ItemType.OrderTypeLabel</label>
+                                <input type="text" class="form-control" id="OrderTypeLabel" name="OrderTypeLabel" readonly value="@Model.ItemOrder.Quantity" />
+                            </div>
+                        }                        
 
-                            <h5>[[[Price]]]: @Model.ItemOrder.PriceFormatted</h5>
+                        <h5>[[[Price]]]: @Model.ItemOrder.PriceFormatted</h5>
 
-                            <!-- Payment Hook -->
-                            @Html.DoAction(HookName.Payment, Model.ItemOrder)                        
+                        <!-- Payment Hook -->
+                        @Html.DoAction(HookName.Payment, Model.ItemOrder)
                     </div>
 
                 </div>

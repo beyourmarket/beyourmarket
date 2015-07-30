@@ -37,6 +37,14 @@ namespace BeYourMarket.Service
             }
         }
 
+        public static List<ItemType> ItemTypes
+        {
+            get
+            {
+                return ContainerManager.GetConfiguredContainer().Resolve<BeYourMarket.Service.DataCacheService>().GetCachedItem(CacheKeys.ItemTypes) as List<ItemType>;
+            }
+        }
+
         public static List<ContentPage> ContentPages
         {
             get

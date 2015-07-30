@@ -71,6 +71,7 @@
     <Compile Include="Models\AspNetUserLogin.cs" />
     <Compile Include="Models\BeYourMarketContext.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CategoryItemType.cs" />
     <Compile Include="Models\CategoryStat.cs" />
     <Compile Include="Models\ContentPage.cs" />
     <Compile Include="Models\EmailTemplate.cs" />
@@ -79,10 +80,12 @@
     <Compile Include="Models\ItemMeta.cs" />
     <Compile Include="Models\ItemPicture.cs" />
     <Compile Include="Models\ItemStat.cs" />
+    <Compile Include="Models\ItemType.cs" />
     <Compile Include="Models\Mapping\AspNetRoleMap.cs" />
     <Compile Include="Models\Mapping\AspNetUserClaimMap.cs" />
     <Compile Include="Models\Mapping\AspNetUserLoginMap.cs" />
     <Compile Include="Models\Mapping\AspNetUserMap.cs" />
+    <Compile Include="Models\Mapping\CategoryItemTypeMap.cs" />
     <Compile Include="Models\Mapping\CategoryMap.cs" />
     <Compile Include="Models\Mapping\CategoryStatMap.cs" />
     <Compile Include="Models\Mapping\ContentPageMap.cs" />
@@ -92,6 +95,7 @@
     <Compile Include="Models\Mapping\ItemMetaMap.cs" />
     <Compile Include="Models\Mapping\ItemPictureMap.cs" />
     <Compile Include="Models\Mapping\ItemStatMap.cs" />
+    <Compile Include="Models\Mapping\ItemTypeMap.cs" />
     <Compile Include="Models\Mapping\MetaCategoryMap.cs" />
     <Compile Include="Models\Mapping\MetaFieldMap.cs" />
     <Compile Include="Models\Mapping\OrderMap.cs" />

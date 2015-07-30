@@ -47,6 +47,7 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.Title).HasColumnName("Title");
             this.Property(t => t.Description).HasColumnName("Description");
             this.Property(t => t.CategoryID).HasColumnName("CategoryID");
+            this.Property(t => t.ItemTypeID).HasColumnName("ItemTypeID");
             this.Property(t => t.UserID).HasColumnName("UserID");
             this.Property(t => t.Price).HasColumnName("Price");
             this.Property(t => t.Currency).HasColumnName("Currency");
@@ -73,6 +74,9 @@ namespace BeYourMarket.Model.Models.Mapping
             this.HasRequired(t => t.Category)
                 .WithMany(t => t.Items)
                 .HasForeignKey(d => d.CategoryID);
+            this.HasRequired(t => t.ItemType)
+                .WithMany(t => t.Items)
+                .HasForeignKey(d => d.ItemTypeID);
 
         }
     }

@@ -27,6 +27,7 @@
     var groupListings = new string[] {
             "listings",
             "listingupdate",
+            "listingtypes",
             "categories",
             "categoryupdate",
             "customfields",
@@ -79,6 +80,7 @@
             <a href="#"><i class="fa fa-th-list"></i> <span class="nav-label">[[[Listings]]]</span></a>
             <ul class="list-unstyled">
                 <li class="@DisplayAttribute("categories")"><a href="@Url.Action("Categories", "Listing")">[[[Manage Categories]]]</a></li>
+                <li class="@DisplayAttribute("listingtypes")"><a href="@Url.Action("ListingTypes", "Listing")">[[[Manage Listing Types]]]</a></li>
                 <li class="@DisplayAttribute("listings")"><a href="@Url.Action("Listings", "Listing")">[[[Manage Listings]]]</a></li>
                 <li class="@DisplayAttribute("customfields")"><a href="@Url.Action("CustomFields", "Listing")">[[[Custom Fields]]]</a></li>
             </ul>

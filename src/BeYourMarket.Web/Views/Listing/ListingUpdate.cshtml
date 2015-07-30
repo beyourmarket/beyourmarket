@@ -21,16 +21,22 @@
                 <div class="panel-body bdr-b ">
                     <form action="@Url.Action("ListingUpdate", "Listing" )" id="listingUpdateForm" method="post" role="form" enctype="multipart/form-data" onkeypress="return event.keyCode != 13;">
                         @Html.Partial("_UserMessage")
-                        @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })                        
+                        @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
 
                         <fieldset>
                             <legend>[[[Listing Details]]]</legend>
                             <label>[[[Category]]]</label>
-
                             @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.ListingItem.CategoryID), new { @class = "form-control input-lg" })
 
+                            <!-- Show Listing Type -->
+                            @if (Model.ItemTypes.Count > 1)
+                            {
+                                <label>[[[Listing Type]]]</label>
+                                @Html.DropDownListFor(m => m.ItemTypeID, new SelectList(Model.ItemTypes, "ID", "Name", Model.ListingItem.ItemTypeID), new { @class = "form-control input-lg" })
+                            }                            
+
                             <div class="form-group">
-                                <label>Title</label>
+                                <label>[[[Title]]]</label>
                                 <input type="text" class="form-control input-lg" placeholder="[[[Enter Title]]]" id="Title" name="Title" value="@Model.ListingItem.Title" required>
                             </div>
 
@@ -103,6 +109,7 @@
                             <a class="btn btn-default" href="@Url.Action("Dashboard", "Manage")">[[[Cancel]]]</a>
                         </fieldset>
                     </form>
+
                 </div>
             </div>
         </div>

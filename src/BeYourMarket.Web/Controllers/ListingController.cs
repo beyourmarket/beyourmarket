@@ -143,7 +143,8 @@ namespace BeYourMarket.Web.Controllers
 
             var model = new ListingUpdateModel()
             {
-                Categories = CacheHelper.Categories
+                Categories = CacheHelper.Categories,
+                ItemTypes = CacheHelper.ItemTypes
             };
 
             if (id.HasValue)
@@ -205,6 +206,7 @@ namespace BeYourMarket.Web.Controllers
             model.CustomFields = customFieldModel;
             model.UserID = item.UserID;
             model.CategoryID = item.CategoryID;
+            model.ItemTypeID = item.ItemTypeID;
 
             return View("~/Views/Listing/ListingUpdate.cshtml", model);
         }
@@ -213,7 +215,12 @@ namespace BeYourMarket.Web.Controllers
         public async Task<ActionResult> Listing(int id)
         {
             var itemQuery = await _itemService.Query(x => x.ID == id)
-                .Include(x => x.Category).Include(x => x.ItemMetas).Include(x => x.ItemMetas.Select(y => y.MetaField)).Include(x => x.ItemStats).SelectAsync();
+                .Include(x => x.Category)
+                .Include(x => x.ItemMetas)
+                .Include(x => x.ItemMetas.Select(y => y.MetaField))
+                .Include(x => x.ItemStats)
+                .Include(x => x.ItemType)
+                .SelectAsync();
 
             var item = itemQuery.FirstOrDefault();
 
@@ -254,9 +261,7 @@ namespace BeYourMarket.Web.Controllers
                 ItemCurrent = item,
                 Pictures = picturesModel,
                 DatesBooked = datesBooked,
-                User = user,
-                // allow only booking if there is a price and payment methods
-                BookingAllowed = CacheHelper.Settings.BookingEnabled && item.Price.HasValue && item.Active && item.Enabled
+                User = user,                
             };
 
             // Update stat count
@@ -298,6 +303,10 @@ namespace BeYourMarket.Web.Controllers
 
             int nextPictureOrderId = 0;
 
+            // Set default listing type ID
+            if (item.ItemTypeID == 0)
+                item.ItemTypeID = CacheHelper.ItemTypes.FirstOrDefault().ID;
+
             if (item.ID == 0)
             {
                 item.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
@@ -305,6 +314,7 @@ namespace BeYourMarket.Web.Controllers
                 item.Expiration = DateTime.MaxValue.AddDays(-1);
                 item.UserID = User.Identity.GetUserId();
                 item.Enabled = true;
+                item.Currency = CacheHelper.Settings.Currency;
 
                 updateCount = true;
                 _itemService.Insert(item);
@@ -319,6 +329,7 @@ namespace BeYourMarket.Web.Controllers
                 itemExisting.Title = item.Title;
                 itemExisting.Description = item.Description;
                 itemExisting.Active = item.Active;
+                itemExisting.Price = item.Price;
 
                 itemExisting.ContactEmail = item.ContactEmail;
                 itemExisting.ContactName = item.ContactName;
@@ -494,7 +505,10 @@ namespace BeYourMarket.Web.Controllers
             if (user == null)
                 return new HttpNotFoundResult();
 
-            var items = await _itemService.Query(x => x.UserID == id).Include(x => x.ItemPictures).SelectAsync();
+            var items = await _itemService.Query(x => x.UserID == id)
+                .Include(x => x.ItemPictures)
+                .Include(x => x.ItemType)
+                .SelectAsync();
 
             var itemsModel = new List<ItemModel>();
             foreach (var item in items.OrderByDescending(x => x.Created))

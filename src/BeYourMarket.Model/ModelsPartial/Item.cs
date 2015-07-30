@@ -1,4 +1,5 @@
-﻿using BeYourMarket.Model.Models;
+﻿using BeYourMarket.Model.Enum;
+using BeYourMarket.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,6 +25,14 @@ namespace BeYourMarket.Model.Models
             get
             {
                 return Price.HasValue ? string.Format("{0:N2} {1}", Price.Value, Currency) : string.Empty;
+            }
+        }
+
+        public bool OrderAllowed
+        {
+            get
+            {
+                return Price.HasValue && Active && Enabled && ItemType.OrderTypeID != (int)Enum_ItemOrderType.None;
             }
         }
     }

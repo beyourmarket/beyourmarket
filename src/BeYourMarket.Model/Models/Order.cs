@@ -9,6 +9,7 @@ namespace BeYourMarket.Model.Models
         public Nullable<System.DateTime> FromDate { get; set; }
         public Nullable<System.DateTime> ToDate { get; set; }
         public int ItemID { get; set; }
+        public int ItemTypeID { get; set; }
         public int Status { get; set; }
         public Nullable<double> Quantity { get; set; }
         public Nullable<double> Price { get; set; }

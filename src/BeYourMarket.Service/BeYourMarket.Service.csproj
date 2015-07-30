@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="AspNetRoleService.cs" />
     <Compile Include="CacheKeys.cs" />
+    <Compile Include="CategoryItemTypeService.cs" />
     <Compile Include="CategoryStatService.cs" />
     <Compile Include="EmailTemplateService.cs" />
     <Compile Include="CustomFieldCategoryService.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="ItemPictureService.cs" />
     <Compile Include="CustomFieldService.cs" />
     <Compile Include="ContentPageService.cs" />
+    <Compile Include="ItemTypeService.cs" />
     <Compile Include="Models\Statistics.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="PictureService.cs" />

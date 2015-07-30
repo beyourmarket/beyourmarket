@@ -18,42 +18,62 @@
             @Html.Partial("_UserMessage")
 
             <div class="col-md-12">
-                <div class="pull-right">
-                    <a href="@Url.Action("Profile", "Listing", new { id = Model.User.Id })">
-                        <img class="img-circle profile-picture" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.User.Id)" />
-                    </a>
-                    <h5>@Model.User.FullName</h5>
-                    <p class="text-lighten">
-                        [[[Joined since]]] @Model.User.RegisterDate.ToShortDateString()
-                    </p>
+                <div class="row">
+                    <div class="pull-right">
+                        <a href="@Url.Action("Profile", "Listing", new { id = Model.User.Id })">
+                            <img class="img-circle profile-picture" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.User.Id)" />
+                        </a>
+                        <h5>@Model.User.FullName</h5>
+                        <p class="text-lighten">
+                            [[[Joined since]]] @Model.User.RegisterDate.ToShortDateString()
+                        </p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h3>@Model.ItemCurrent.Title</h3>
+                        @if (Model.ItemCurrent.Price.HasValue)
+                        {
+                            <h4>
+                                @Html.DisplayFor(x => x.ItemCurrent.PriceFormatted) @Model.ItemCurrent.ItemType.PriceUnitLabel
+                            </h4>
+                        }
+                        <p class="lead text-lighten">
+                            @Model.ItemCurrent.Location
+                        </p>
+                    </div>
                 </div>
 
-                <div class="col-md-6">
-                    <h3>@Model.ItemCurrent.Title</h3>
-                    @if (Model.ItemCurrent.Price.HasValue)
-                    {
-                        <h4>
-                            @Html.DisplayFor(x => x.ItemCurrent.PriceFormatted)
-                        </h4>
-                    }
-                    <p class="lead text-lighten">
-                        @Model.ItemCurrent.Location
-                    </p>
-                </div>
-
-                @if (Model.BookingAllowed)
+                @if (Model.ItemCurrent.OrderAllowed)
                 {
-                    <form class="form-inline" action="@Url.Action("Order", "Payment")" method="get" role="form">
-                        <input id="ItemID" name="ItemID" type="hidden" value="@Model.ItemCurrent.ID" />
-                        <div class="input-daterange input-group datepicker form-group" id="datepicker">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" data-rule-required="true" data-rule-date="true" />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form-inline" action="@Url.Action("Order", "Payment")" method="get" role="form">
+                                <input id="ItemID" name="ItemID" type="hidden" value="@Model.ItemCurrent.ID" />
+                                <input id="ItemTypeID" name="ItemTypeID" type="hidden" value="@Model.ItemCurrent.ItemTypeID" />
+                                @if (!string.IsNullOrEmpty(Model.ItemCurrent.ItemType.OrderTypeLabel))
+                                {                                    
+                                    <h5>@Model.ItemCurrent.ItemType.OrderTypeLabel</h5>
+                                }                                
 
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" data-rule-required="true" data-rule-date="true" />
+                                @if (Model.ItemCurrent.ItemType.OrderTypeID == (int)Enum_ItemOrderType.DateRange)
+                                {
+                                    <div class="input-daterange input-group datepicker form-group" id="datepicker">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" data-rule-required="true" data-rule-date="true" />
+
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" data-rule-required="true" data-rule-date="true" />
+                                    </div>
+                                }
+                                else if (Model.ItemCurrent.ItemType.OrderTypeID == (int)Enum_ItemOrderType.Quantity)
+                                {
+                                    <input type="text" class="form-control" id="Quantity" name="Quantity" data-rule-required="true" data-rule-number="true" data-rule-min="0" />
+                                }
+
+                                <button class="btn btn-primary">@Model.ItemCurrent.ItemType.ButtonLabel</button>
+                            </form>
                         </div>
-                        <button class="btn btn-primary">[[[Booking]]]</button>
-                    </form>
+                    </div>
                 }
             </div>
         </div>

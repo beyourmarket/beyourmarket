@@ -42,9 +42,6 @@ namespace BeYourMarket.Model.Models.Mapping
                 .IsFixedLength()
                 .HasMaxLength(3);
 
-            this.Property(t => t.BookingText)
-                .HasMaxLength(10);
-
             this.Property(t => t.SmtpHost)
                 .HasMaxLength(100);
 
@@ -80,8 +77,6 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.TransactionFeePercent).HasColumnName("TransactionFeePercent");
             this.Property(t => t.TransactionMinimumSize).HasColumnName("TransactionMinimumSize");
             this.Property(t => t.TransactionMinimumFee).HasColumnName("TransactionMinimumFee");
-            this.Property(t => t.BookingEnabled).HasColumnName("BookingEnabled");
-            this.Property(t => t.BookingText).HasColumnName("BookingText");
             this.Property(t => t.SmtpHost).HasColumnName("SmtpHost");
             this.Property(t => t.SmtpPort).HasColumnName("SmtpPort");
             this.Property(t => t.SmtpUserName).HasColumnName("SmtpUserName");

@@ -21,6 +21,7 @@ namespace BeYourMarket.Model.Models
         public DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public DbSet<AspNetUser> AspNetUsers { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<CategoryItemType> CategoryItemTypes { get; set; }
         public DbSet<CategoryStat> CategoryStats { get; set; }
         public DbSet<ContentPage> ContentPages { get; set; }
         public DbSet<EmailTemplate> EmailTemplates { get; set; }
@@ -29,6 +30,7 @@ namespace BeYourMarket.Model.Models
         public DbSet<ItemPicture> ItemPictures { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<ItemStat> ItemStats { get; set; }
+        public DbSet<ItemType> ItemTypes { get; set; }
         public DbSet<MetaCategory> MetaCategories { get; set; }
         public DbSet<MetaField> MetaFields { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -46,6 +48,7 @@ namespace BeYourMarket.Model.Models
             modelBuilder.Configurations.Add(new AspNetUserLoginMap());
             modelBuilder.Configurations.Add(new AspNetUserMap());
             modelBuilder.Configurations.Add(new CategoryMap());
+            modelBuilder.Configurations.Add(new CategoryItemTypeMap());
             modelBuilder.Configurations.Add(new CategoryStatMap());
             modelBuilder.Configurations.Add(new ContentPageMap());
             modelBuilder.Configurations.Add(new EmailTemplateMap());
@@ -54,6 +57,7 @@ namespace BeYourMarket.Model.Models
             modelBuilder.Configurations.Add(new ItemPictureMap());
             modelBuilder.Configurations.Add(new ItemMap());
             modelBuilder.Configurations.Add(new ItemStatMap());
+            modelBuilder.Configurations.Add(new ItemTypeMap());
             modelBuilder.Configurations.Add(new MetaCategoryMap());
             modelBuilder.Configurations.Add(new MetaFieldMap());
             modelBuilder.Configurations.Add(new OrderMap());

@@ -1,0 +1,117 @@
+﻿@model BeYourMarket.Model.Models.ItemType
+
+@{
+    ViewBag.Title = "[[[Listing Type Update]]]";
+}
+
+@section Styles {
+    <link href="~/css/select2/select2.css" rel="stylesheet" />
+}
+
+<div class="wraper container-fluid">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">[[[Listing Type]]]</h3></div>
+                <div class="panel-body">
+                    <form action="@Url.Action("ListingTypeUpdate", "Listing")" id="listingTypeForm" method="post" class="form-horizontal" role="form">
+
+                        @Html.HiddenFor(x => x.ID)
+
+                        @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">ID</label>
+                            <div class="col-sm-10">
+                                <p class="form-control-static">@Model.ID</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">[[[Name]]]</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required>
+                            </div>
+                        </div>
+
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">[[[Order Type]]]</label>
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(m => m.OrderTypeID, EnumHelper.GetSelectList(typeof(BeYourMarket.Model.Enum.Enum_ItemOrderType)), new { @class = "form-control", required = "" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">[[[Order Type Label]]]</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="OrderTypeLabel" name="OrderTypeLabel" value="@Model.OrderTypeLabel">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">[[[ButtonLabel]]]</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="ButtonLabel" name="ButtonLabel" value="@Model.ButtonLabel" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">[[[PriceUnitLabel]]]</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="PriceUnitLabel" name="PriceUnitLabel" value="@Model.PriceUnitLabel">
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <label class="cr-styled">
+                                    <input checked="@Model.PaymentEnabled" id="PaymentEnabled" name="PaymentEnabled" type="checkbox" value="true" />
+                                    <i class="fa"></i>
+                                    [[[PaymentEnabled]]]
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <label class="cr-styled">
+                                    <input checked="@Model.ShippingEnabled" id="ShippingEnabled" name="ShippingEnabled" type="checkbox" value="true" />
+                                    <i class="fa"></i>
+                                    [[[ShippingEnabled]]]
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Save]]]</button>
+                                <a href="@Url.Action("ListingTypes", "Listing")" class="btn btn-default"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/css/select2/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Select2
+            $(".select2").select2({
+                width: '100%'
+            });
+        });
+
+    </script>
+}
+

@@ -1,0 +1,88 @@
+﻿@using GridMvc.Html
+@model BeYourMarket.Web.Models.ListingTypeModel
+
+@section Styles {
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <link href="~/Content/gridmvc.datepicker.min.css" rel="stylesheet" />
+}
+
+@{
+    ViewBag.Title = "[[[ListingTypes]]]";
+}
+
+@helper DisplayUpdateLink(int id)
+{
+    <a class="btn btn-primary btn-sm" href="@Url.Action("ListingTypeUpdate", "Listing", new { id = id })"><i class="fa fa-edit"></i> [[[Edit]]]</a>
+}
+
+@helper DisplayDeleteLink(int id, string title)
+{
+    <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete(@id, '@title');"><i class="fa fa-remove"></i> [[[Delete]]]</a>
+}
+
+@helper GetOrderTypeName(int id)
+{
+    var orderType = (BeYourMarket.Model.Enum.Enum_ItemOrderType)id;
+    <span>@orderType.ToString()</span>
+}
+
+
+<div class="wraper container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">[[[ListingTypes]]]</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.Partial("_UserMessage")
+
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <a class="btn btn-primary" href="@Url.Action("ListingTypeUpdate", "Listing")"><i class="fa fa-plus"></i> [[[Add New]]]</a>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @Html.Grid(Model.Grid).Columns(columns =>
+                       {
+                           columns.Add()
+                             .Encoded(false)
+                             .Sanitized(false)
+                             .RenderValueAs(x => DisplayUpdateLink(x.ID));
+
+                           columns.Add(x => x.ID);
+                           columns.Add(x => x.Name).Titled("[[[Name]]]");
+
+                           columns.Add(x => x.ButtonLabel).Titled("[[[Button Label]]]");
+                           columns.Add(x => x.PriceUnitLabel).Titled("[[[Price Unit Label]]]");                           
+                           
+                           columns.Add(x => x.OrderTypeID)
+                               .Encoded(false)
+                               .Sanitized(false)
+                               .RenderValueAs(x => GetOrderTypeName(x.OrderTypeID)).Titled("[[[Order Type]]]");
+
+                           columns.Add(x => x.OrderTypeLabel).Titled("[[[Order Type Label]]]");
+                                                      
+
+                           columns.Add(x => x.PaymentEnabled).Titled("[[[Payment Enabled]]]");
+                           columns.Add(x => x.ShippingEnabled).Titled("[[[Shipping Enabled]]]");
+
+
+                       }).Sortable().Filterable().WithPaging(10).Selectable(false)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/gridmvc.min.js"></script>
+}

@@ -19,11 +19,15 @@ namespace BeYourMarket.Web.Models
 
         public int CategoryID { get; set; }
 
+        public int ItemTypeID { get; set; }
+
         public string UserID { get; set; }
 
         public Item ListingItem { get; set; }
 
         public List<Category> Categories { get; set; }
+
+        public List<ItemType> ItemTypes { get; set; }
 
         public List<ApplicationUser> Users { get; set; }
 

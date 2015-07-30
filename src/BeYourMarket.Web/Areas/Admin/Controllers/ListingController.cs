@@ -43,7 +43,10 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         private readonly ISettingDictionaryService _settingDictionaryService;
 
         private readonly ICategoryService _categoryService;
+        private readonly ICategoryItemTypeService _categoryItemTypeService;
+
         private readonly IItemService _itemService;
+        private readonly IItemTypeService _itemTypeService;
 
         private readonly ICustomFieldService _customFieldService;
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
@@ -54,9 +57,9 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         private readonly IOrderService _orderService;
 
         private readonly IItemPictureService _itemPictureService;
-        private readonly IPictureService _pictureService;        
+        private readonly IPictureService _pictureService;
 
-        private readonly IEmailTemplateService _emailTemplateService;        
+        private readonly IEmailTemplateService _emailTemplateService;
 
         private readonly DataCacheService _dataCacheService;
         private readonly SqlDbService _sqlDbService;
@@ -99,7 +102,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             {
                 _roleManager = value;
             }
-        }  
+        }
         #endregion
 
         #region Constructor
@@ -107,7 +110,9 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             IUnitOfWorkAsync unitOfWorkAsync,
             ISettingService settingService,
             ICategoryService categoryService,
+            ICategoryItemTypeService categoryItemTypeService,
             IItemService itemService,
+            IItemTypeService itemTypeService,
             ICustomFieldService customFieldService,
             ICustomFieldCategoryService customFieldCategoryService,
             ICustomFieldItemService customFieldItemService,
@@ -116,7 +121,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             ISettingDictionaryService settingDictionaryService,
             IEmailTemplateService emailTemplateService,
             IPictureService pictureService,
-           IItemPictureService itemPictureService,
+            IItemPictureService itemPictureService,
             DataCacheService dataCacheService,
             SqlDbService sqlDbService)
         {
@@ -124,7 +129,11 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _settingDictionaryService = settingDictionaryService;
 
             _categoryService = categoryService;
+            _categoryItemTypeService = categoryItemTypeService;
+
             _itemService = itemService;
+            _itemTypeService = itemTypeService;
+
             _pictureService = pictureService;
             _itemPictureService = itemPictureService;
 
@@ -132,14 +141,14 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _customFieldCategoryService = customFieldCategoryService;
             _customFieldItemService = customFieldItemService;
 
-            _orderService = orderService;            
+            _orderService = orderService;
 
             _emailTemplateService = emailTemplateService;
             _contentPageService = contentPageService;
             _unitOfWorkAsync = unitOfWorkAsync;
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
-        } 
+        }
         #endregion
 
         #region Methods
@@ -201,36 +210,67 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         {
             Category category;
 
+            var categoryModel = new CategoryModel();
+
+            var itemTypes = await _itemTypeService.Query().SelectAsync();
+            categoryModel.ItemTypes = itemTypes.ToList();
+
             if (id.HasValue)
+            {
                 category = await _categoryService.FindAsync(id);
+                var categoryItemTypes = await _categoryItemTypeService.Query(x => x.CategoryID == id.Value).SelectAsync();
+                categoryModel.CategoryItemTypeID = categoryItemTypes.Select(x => x.ItemTypeID).ToList();
+            }
             else
                 category = new Category() { Enabled = true };
 
-            return View(category);
+            categoryModel.Category = category;
+
+            return View(categoryModel);
         }
 
         [HttpPost]
-        public async Task<ActionResult> CategoryUpdate(Category category)
+        public async Task<ActionResult> CategoryUpdate(CategoryModel model)
         {
-            if (category.ID == 0)
+            if (model.Category.ID == 0)
             {
-                category.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
-                category.Parent = 0;
+                model.Category.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
+                model.Category.Parent = 0;
 
-                _categoryService.Insert(category);
+                _categoryService.Insert(model.Category);
             }
             else
             {
-                var categoryExisting = await _categoryService.FindAsync(category.ID);
+                var categoryExisting = await _categoryService.FindAsync(model.Category.ID);
 
-                categoryExisting.Name = category.Name;
-                categoryExisting.Description = category.Description;
-                categoryExisting.Enabled = category.Enabled;
+                categoryExisting.Name = model.Category.Name;
+                categoryExisting.Description = model.Category.Description;
+                categoryExisting.Enabled = model.Category.Enabled;
 
                 categoryExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 
                 _categoryService.Update(categoryExisting);
             }
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            // Delete existing category item types
+            var itemTypes = _categoryItemTypeService.Queryable().Where(x => x.CategoryID == model.Category.ID).Select(x => x.ID).ToList();
+            foreach (var itemTypeId in itemTypes)
+            {
+                await _categoryItemTypeService.DeleteAsync(itemTypeId);
+            }
+
+            // Insert category item types
+            foreach (var categoryItemTypeId in model.CategoryItemTypeID)
+            {
+                _categoryItemTypeService.Insert(new CategoryItemType()
+                {
+                    CategoryID = model.Category.ID,
+                    ItemTypeID = categoryItemTypeId,
+                    ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
+                });   
+            }            
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
@@ -342,13 +382,14 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
                 TempData[TempDataKeys.UserMessage] = "[[[There are not categories available yet.]]]";
-            }  
+            }
 
             Item item;
 
             var model = new ListingUpdateModel()
             {
-                Categories = CacheHelper.Categories
+                Categories = CacheHelper.Categories,
+                ItemTypes = CacheHelper.ItemTypes
             };
 
             if (id.HasValue)
@@ -398,6 +439,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             model.Users = UserManager.Users.ToList();
             model.UserID = item.UserID;
             model.CategoryID = item.CategoryID;
+            model.ItemTypeID = item.ItemTypeID;
 
             return View(model);
         }
@@ -438,7 +480,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 item.IP = Request.GetVisitorIP();
                 item.Expiration = DateTime.MaxValue.AddDays(-1);
                 item.UserID = User.Identity.GetUserId();
-                
+
                 updateCount = true;
                 _itemService.Insert(item);
             }
@@ -470,6 +512,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
                 itemExisting.Price = item.Price;
                 itemExisting.Currency = item.Currency;
+
+                itemExisting.ItemTypeID = item.ItemTypeID;
 
                 itemExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 
@@ -584,7 +628,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             if (item.Orders.Count > 0)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
-                TempData[TempDataKeys.UserMessage] = "[[[You cannot delete item with orders! You can deactivate it instead.]]]";                
+                TempData[TempDataKeys.UserMessage] = "[[[You cannot delete item with orders! You can deactivate it instead.]]]";
             }
 
             // Delete pictures
@@ -627,6 +671,67 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 var result = new { Success = "false", Message = ex.Message };
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public ActionResult ListingTypes()
+        {
+            var grid = new ListingTypesGrid(_itemTypeService.Queryable().OrderBy(x => x.ID));
+            
+
+            var model = new ListingTypeModel()
+            {
+                Grid = grid
+            };
+
+            return View(model);
+        }
+
+        public async Task<ActionResult> ListingTypeUpdate(int? id)
+        {
+            ItemType itemType = new ItemType();
+
+            if (id.HasValue)
+            {
+                itemType = await _itemTypeService.FindAsync(id);
+
+                if (itemType == null)
+                    return new HttpNotFoundResult();
+            }
+
+            return View(itemType);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ListingTypeUpdate(ItemType model)
+        {
+            if (model.ID == 0)
+            {
+                model.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
+
+                _itemTypeService.Insert(model);
+            }
+            else
+            {
+                var itemTypeExisting = await _itemTypeService.FindAsync(model.ID);
+
+                itemTypeExisting.Name = model.Name;
+                itemTypeExisting.ButtonLabel = model.ButtonLabel;                
+                itemTypeExisting.PriceUnitLabel = model.PriceUnitLabel;
+                itemTypeExisting.OrderTypeID = model.OrderTypeID;
+                itemTypeExisting.OrderTypeLabel = model.OrderTypeLabel;
+                itemTypeExisting.PaymentEnabled = model.PaymentEnabled;
+                itemTypeExisting.ShippingEnabled = model.ShippingEnabled;                
+
+                itemTypeExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
+
+                _itemTypeService.Update(itemTypeExisting);
+            }
+
+            await _unitOfWorkAsync.SaveChangesAsync();            
+
+            _dataCacheService.RemoveCachedItem(CacheKeys.ItemTypes);
+
+            return RedirectToAction("ListingTypes");
         }
         #endregion
     }

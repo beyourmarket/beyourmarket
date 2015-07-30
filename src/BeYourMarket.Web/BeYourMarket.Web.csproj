@@ -287,6 +287,7 @@
     <Compile Include="Migrations\BeYourMarketDatabaseInitializer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppearanceModel.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\ContactUserModel.cs" />
     <Compile Include="Models\CustomFieldItemModel.cs" />
@@ -294,7 +295,9 @@
     <Compile Include="Models\ContentPageModel.cs" />
     <Compile Include="Models\Grids\ContentPagesGrid.cs" />
     <Compile Include="Models\Grids\ListingModelGrid.cs" />
+    <Compile Include="Models\Grids\ListingTypesGrid.cs" />
     <Compile Include="Models\LanguageSelectorModel.cs" />
+    <Compile Include="Models\ListingTypeModel.cs" />
     <Compile Include="Models\MetaFieldModel.cs" />
     <Compile Include="Models\NavigationSideModel.cs" />
     <Compile Include="Models\Grids\OrdersGrid.cs" />
@@ -368,6 +371,8 @@
     <Content Include="languages.json" />
     <Content Include="locale\en\messages.po" />
     <Content Include="Areas\Admin\Views\Install\_LanguageSelector.cshtml" />
+    <Content Include="Areas\Admin\Views\Listing\ListingTypes.cshtml" />
+    <Content Include="Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

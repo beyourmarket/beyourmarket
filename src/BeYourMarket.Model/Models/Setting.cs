@@ -21,8 +21,6 @@ namespace BeYourMarket.Model.Models
         public double TransactionFeePercent { get; set; }
         public double TransactionMinimumSize { get; set; }
         public double TransactionMinimumFee { get; set; }
-        public bool BookingEnabled { get; set; }
-        public string BookingText { get; set; }
         public string SmtpHost { get; set; }
         public Nullable<int> SmtpPort { get; set; }
         public string SmtpUserName { get; set; }

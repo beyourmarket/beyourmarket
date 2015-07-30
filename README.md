@@ -41,6 +41,8 @@ password: Password
 
 #### v. 1.2beta - Support Custom Theme  (August/September 2015)
 - Develop your own theme
+- Support Custom Listing Types (Offer, Rent, Request)
+- Facebook authentication integration
 
 ## Release ##
 

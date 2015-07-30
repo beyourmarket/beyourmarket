@@ -18,6 +18,7 @@ namespace BeYourMarket.Model.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public int CategoryID { get; set; }
+        public int ItemTypeID { get; set; }
         public string UserID { get; set; }
         public Nullable<double> Price { get; set; }
         public string Currency { get; set; }
@@ -41,6 +42,7 @@ namespace BeYourMarket.Model.Models
         public virtual ICollection<ItemComment> ItemComments { get; set; }
         public virtual ICollection<ItemMeta> ItemMetas { get; set; }
         public virtual ICollection<ItemPicture> ItemPictures { get; set; }
+        public virtual ItemType ItemType { get; set; }
         public virtual ICollection<ItemStat> ItemStats { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
     }

@@ -100,7 +100,11 @@ namespace BeYourMarket.Web.Controllers
 
             // Category
             if (model.CategoryID != 0)
-                items = await _itemService.Query(x => x.CategoryID == model.CategoryID).Include(x => x.ItemPictures).Include(x => x.Category).SelectAsync();
+                items = await _itemService.Query(x => x.CategoryID == model.CategoryID)
+                    .Include(x => x.ItemPictures)
+                    .Include(x => x.Category)
+                    .Include(x => x.ItemType)
+                    .SelectAsync();
 
             // Search Text
             if (!string.IsNullOrEmpty(model.SearchText))

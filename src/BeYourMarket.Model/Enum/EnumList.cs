@@ -96,4 +96,10 @@ namespace BeYourMarket.Model.Enum
         Enabled = 2,
         Disabled = 3
     }
+
+    public enum Enum_ItemOrderType { 
+        None = 0,
+        DateRange,
+        Quantity
+    }
 }
