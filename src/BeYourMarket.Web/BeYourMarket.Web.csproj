@@ -373,6 +373,7 @@
     <Content Include="Areas\Admin\Views\Install\_LanguageSelector.cshtml" />
     <Content Include="Areas\Admin\Views\Listing\ListingTypes.cshtml" />
     <Content Include="Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml" />
+    <Content Include="Views\Listing\_ListingCard.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

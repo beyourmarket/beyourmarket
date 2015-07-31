@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-07-31 01:56+02:00\n"
-"PO-Revision-Date: 2015-07-31 01:56+02:00\n"
+"POT-Creation-Date: 2015-08-01 01:16+02:00\n"
+"PO-Revision-Date: 2015-08-01 01:16+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -39,7 +39,7 @@ msgstr "Acceptér email"
 
 #: Views\Listing\ListingUpdate.cshtml:54
 #: Areas\Admin\Views\Listing\Listings.cshtml:62
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:128
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:135
 msgid "Active"
 msgstr "Aktiv"
 
@@ -165,7 +165,7 @@ msgstr ""
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:59
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:91
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:91
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:191
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:198
 #: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:64
 #: Areas\Admin\Views\Manage\Settings.cshtml:120
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:69
@@ -287,11 +287,11 @@ msgstr "Du er nu forbundet til Stripe"
 msgid "Contact"
 msgstr "Kontakt"
 
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:58
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:65
 msgid "Contact Email"
 msgstr "Kontakt email"
 
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:51
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:58
 msgid "Contact Name"
 msgstr "Kontaktnavn"
 
@@ -340,7 +340,7 @@ msgstr "Opret testdata"
 #: Views\Listing\_ListingGridList.cshtml:44
 #: Views\Payment\Orders.cshtml:110
 #: Areas\Admin\Views\Listing\Listings.cshtml:66
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:110
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:117
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:38
 #: Areas\Admin\Views\Payment\Order.cshtml:103
 msgid "Created"
@@ -351,7 +351,7 @@ msgstr "Oprettet"
 msgid "CSS Code Editor"
 msgstr "CSS kode editor"
 
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:82
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:89
 #: Areas\Admin\Views\Manage\Settings.cshtml:59
 #: Areas\Admin\Views\Manage\Settings.cshtml:61
 msgid "Currency"
@@ -437,7 +437,7 @@ msgstr "Slettet"
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:37
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:26
 #: Areas\Admin\Views\Listing\Listings.cshtml:64
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:44
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:51
 #: Areas\Admin\Views\Manage\Settings.cshtml:24
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:95
 msgid "Description"
@@ -527,7 +527,7 @@ msgid "Enable"
 msgstr "Aktivér"
 
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:37
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:138
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:145
 #: Areas\Admin\Views\Manage\Settings.cshtml:71
 #: Areas\Admin\Views\Manage\Settings.cshtml:90
 #: Areas\Admin\Views\Manage\SettingsLanguage.cshtml:32
@@ -593,7 +593,7 @@ msgstr "Fejl"
 msgid "Error processing the page"
 msgstr "Fejl. Siden kunne ikke loades."
 
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:96
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:103
 msgid "Expiration"
 msgstr "Udløber"
 
@@ -705,7 +705,7 @@ msgstr "Installeret"
 msgid "Installing..."
 msgstr "Installerer..."
 
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:103
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:110
 msgid "IP"
 msgstr "IP"
 
@@ -741,7 +741,7 @@ msgstr "Sidste registrerede IP"
 msgid "Last Name"
 msgstr "Efternavn"
 
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:117
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:124
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:39
 msgid "Last Updated"
 msgstr "Senest opdateret"
@@ -768,6 +768,7 @@ msgstr "Annonce ID"
 
 #: Views\Listing\ListingUpdate.cshtml:34
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:16
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:37
 msgid "Listing Type"
 msgstr ""
 
@@ -809,8 +810,8 @@ msgstr ""
 #: Views\Listing\ListingUpdate.cshtml:73
 #: Views\Listing\ListingUpdate.cshtml:75
 #: Views\Listing\_ListingGridList.cshtml:43
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:165
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:167
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:172
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:174
 msgid "Location"
 msgstr "Område"
 
@@ -1106,7 +1107,7 @@ msgstr "Plugins"
 msgid "Port"
 msgstr "Port"
 
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:148
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:155
 msgid "Premium"
 msgstr "Premium"
 
@@ -1120,7 +1121,7 @@ msgstr "Tilbage"
 #: Views\Listing\_ListingGridList.cshtml:41
 #: Views\Payment\Orders.cshtml:104
 #: Views\Payment\Payment.cshtml:63
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:89
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:96
 #: Areas\Admin\Views\Payment\Order.cshtml:98
 msgid "Price"
 msgstr "Pris"
@@ -1239,7 +1240,7 @@ msgstr "Din adgangskode er nulstillet"
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:58
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:90
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:90
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:190
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:197
 #: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:63
 #: Areas\Admin\Views\Manage\Settings.cshtml:119
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:68
@@ -1317,7 +1318,7 @@ msgid "ShippingEnabled"
 msgstr ""
 
 #: Areas\Admin\Views\Listing\Listings.cshtml:65
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:69
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:76
 msgid "Show Email"
 msgstr "Vis email"
 
@@ -1475,7 +1476,7 @@ msgstr ""
 #: Views\Payment\Orders.cshtml:102
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:30
 #: Areas\Admin\Views\Listing\Listings.cshtml:63
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:37
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:44
 #: Areas\Admin\Views\Payment\Order.cshtml:93
 msgid "Title"
 msgstr "Titel"
@@ -1528,7 +1529,7 @@ msgid "Unsuccessful login with service."
 msgstr "Kunne ikke logge ind med servicen."
 
 #: Views\Listing\ListingUpdate.cshtml:64
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:154
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:161
 msgid "Upload Pictures"
 msgstr "Upload billeder"
 
@@ -1544,7 +1545,7 @@ msgstr "Brug integreret autentifikation"
 msgid "Use this area to provide additional information."
 msgstr "Brug dette område til at give ekstra information."
 
-#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:75
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:82
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:16
 msgid "User"
 msgstr "Bruger"

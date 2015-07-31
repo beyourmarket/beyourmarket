@@ -34,6 +34,13 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-md-2 control-label">[[[Listing Type]]]</label>
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(m => m.ItemTypeID, new SelectList(Model.ItemTypes, "ID", "Name", Model.ListingItem.ItemTypeID), new { @class = "form-control input-lg" })
+                            </div>
+                        </div>                        
+
+                        <div class="form-group">
                             <label class="col-md-2 control-label">[[[Title]]]</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="Title" name="Title" value="@Model.ListingItem.Title" required>

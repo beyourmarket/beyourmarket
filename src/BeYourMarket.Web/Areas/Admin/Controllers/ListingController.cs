@@ -269,8 +269,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                     CategoryID = model.Category.ID,
                     ItemTypeID = categoryItemTypeId,
                     ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
-                });   
-            }            
+                });
+            }
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
@@ -676,7 +676,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         public ActionResult ListingTypes()
         {
             var grid = new ListingTypesGrid(_itemTypeService.Queryable().OrderBy(x => x.ID));
-            
+
 
             var model = new ListingTypeModel()
             {
@@ -704,10 +704,13 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> ListingTypeUpdate(ItemType model)
         {
+            var isNew = false;
+
             if (model.ID == 0)
             {
                 model.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
 
+                isNew = true;
                 _itemTypeService.Insert(model);
             }
             else
@@ -715,19 +718,34 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 var itemTypeExisting = await _itemTypeService.FindAsync(model.ID);
 
                 itemTypeExisting.Name = model.Name;
-                itemTypeExisting.ButtonLabel = model.ButtonLabel;                
+                itemTypeExisting.ButtonLabel = model.ButtonLabel;
                 itemTypeExisting.PriceUnitLabel = model.PriceUnitLabel;
                 itemTypeExisting.OrderTypeID = model.OrderTypeID;
                 itemTypeExisting.OrderTypeLabel = model.OrderTypeLabel;
                 itemTypeExisting.PaymentEnabled = model.PaymentEnabled;
-                itemTypeExisting.ShippingEnabled = model.ShippingEnabled;                
+                itemTypeExisting.ShippingEnabled = model.ShippingEnabled;
 
                 itemTypeExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 
                 _itemTypeService.Update(itemTypeExisting);
             }
 
-            await _unitOfWorkAsync.SaveChangesAsync();            
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            // Add item type to each category
+            if (isNew)
+            {
+                foreach (var category in CacheHelper.Categories)
+                {
+                    _categoryItemTypeService.Insert(new CategoryItemType()
+                    {
+                        CategoryID = category.ID,
+                        ItemTypeID = model.ID,
+                        ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
+                    });
+                }
+                await _unitOfWorkAsync.SaveChangesAsync();
+            }
 
             _dataCacheService.RemoveCachedItem(CacheKeys.ItemTypes);
 
