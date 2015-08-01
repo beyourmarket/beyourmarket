@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-08-02 00:47+02:00\n"
-"PO-Revision-Date: 2015-08-02 00:47+02:00\n"
+"POT-Creation-Date: 2015-08-02 01:03+02:00\n"
+"PO-Revision-Date: 2015-08-02 01:03+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -44,9 +44,9 @@ msgstr "Acceptér email"
 #: Views\Listing\ListingUpdate.cshtml:52
 #: Areas\Admin\Views\Listing\Listings.cshtml:67
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:133
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:54
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:62
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:135
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:52
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:67
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:133
 msgid "Active"
 msgstr "Aktiv"
 
@@ -66,10 +66,10 @@ msgstr "Tilføj valgmulighed"
 #: Areas\Admin\Views\Listing\Listings.cshtml:44
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:46
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\ContentPage\ContentPages.cshtml:28
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:36
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:40
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:40
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:42
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:42
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:46
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:44
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:46
 msgid "Add New"
 msgstr "Tilføj ny"
 
@@ -152,7 +152,7 @@ msgid "Appearance"
 msgstr "Udseende"
 
 #: Views\Listing\Listings.cshtml:95
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:78
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:95
 msgid "Apply"
 msgstr "Tilføj"
 
@@ -160,10 +160,10 @@ msgstr "Tilføj"
 #: Views\Payment\Orders.cshtml:143
 #: Areas\Admin\Views\Listing\Listings.cshtml:91
 #: Areas\Admin\Views\Payment\Order.cshtml:141
-#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:64
+#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:65
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:143
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:86
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:135
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:91
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:141
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
@@ -188,8 +188,8 @@ msgstr "Brødtekst"
 
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:64
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:40
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:60
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:54
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:64
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:40
 msgid "Button Label"
 msgstr ""
 
@@ -213,18 +213,18 @@ msgstr ""
 #: Areas\Admin\Views\Payment\Order.cshtml:25
 #: Areas\Admin\Views\Payment\Order.cshtml:29
 #: Areas\Admin\Views\Payment\PaymentSetting.cshtml:46
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:109
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:107
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:25
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:29
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:77
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Design\Appearance.cshtml:45
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Design\CodeScript.cshtml:34
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Design\CodeStyle.cshtml:34
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:58
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:64
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CategoryUpdate.cshtml:59
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:91
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:91
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:198
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:103
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:196
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:64
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:120
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\SettingsEmail.cshtml:69
@@ -241,16 +241,16 @@ msgstr "Annullér"
 #: Areas\Admin\Views\Payment\Order.cshtml:164
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:46
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:46
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:158
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:164
 msgid "Cancelled"
 msgstr "Annulleret"
 
 #: Views\Manage\Dashboard.cshtml:89
 #: Views\Payment\Orders.cshtml:166
 #: Areas\Admin\Views\Listing\Listings.cshtml:104
-#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:88
+#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:89
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:166
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:99
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:104
 msgid "Cancelled!"
 msgstr "Annulleret"
 
@@ -274,16 +274,16 @@ msgstr "Kategorier"
 #: Areas\Admin\Views\Listing\Listings.cshtml:65
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:31
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:67
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:149
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:109
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:50
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:28
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:29
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:35
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CategoryUpdate.cshtml:4
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CategoryUpdate.cshtml:12
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:63
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:69
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:76
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:61
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:30
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:65
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:31
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Dashboard.cshtml:67
 msgid "Category"
 msgstr "Kategori"
@@ -364,14 +364,14 @@ msgstr "Bekræft adgangskode"
 #: Views\Payment\Orders.cshtml:136
 #: Areas\Admin\Views\Payment\Order.cshtml:134
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:136
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:128
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:134
 msgid "Confirm to accept the order"
 msgstr "Bekræft for at acceptere ordren"
 
 #: Views\Payment\Orders.cshtml:138
 #: Areas\Admin\Views\Payment\Order.cshtml:136
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:138
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:130
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:136
 msgid "Confirm to cancel the order"
 msgstr "Bekræft for at annullere ordren"
 
@@ -387,19 +387,19 @@ msgid "Contact"
 msgstr "Kontakt"
 
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:63
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:65
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:63
 msgid "Contact Email"
 msgstr "Kontakt email"
 
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:56
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:58
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:56
 msgid "Contact Name"
 msgstr "Kontaktnavn"
 
 #: Views\Listing\Listing.cshtml:195
 #: Views\Listing\Listing.cshtml:195
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:187
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:187
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:195
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:195
 msgid "Contact number (Click to show)"
 msgstr "Telefonnr. (Klik for at vise)"
 
@@ -461,10 +461,10 @@ msgstr "Opret testdata"
 #: Areas\Admin\Views\Payment\Order.cshtml:112
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:44
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:110
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:66
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:117
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:71
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:115
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:38
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:106
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:112
 msgid "Created"
 msgstr "Oprettet"
 
@@ -478,7 +478,7 @@ msgstr "CSS kode editor"
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:87
 #: Areas\Admin\Views\Manage\Settings.cshtml:59
 #: Areas\Admin\Views\Manage\Settings.cshtml:61
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:89
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:87
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:59
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:61
 msgid "Currency"
@@ -553,7 +553,7 @@ msgid "database-username"
 msgstr "Brugernavn til database"
 
 #: Views\Listing\Listing.cshtml:141
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:109
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:141
 msgid "Date Posted"
 msgstr "Dato oprettet"
 
@@ -576,7 +576,7 @@ msgid "Delete"
 msgstr "Slet"
 
 #: Views\Manage\Dashboard.cshtml:80
-#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:79
+#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:80
 msgid "Deleted!"
 msgstr "Slettet"
 
@@ -592,21 +592,21 @@ msgstr "Slettet"
 #: Areas\Admin\Views\Payment\Order.cshtml:106
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:99
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:84
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:44
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:42
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:40
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:107
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:37
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CategoryUpdate.cshtml:26
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:64
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:51
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:69
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:49
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:24
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:100
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:95
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:106
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:99
 msgid "Description"
 msgstr "Beskrivelse"
 
 #: Views\Listing\ListingUpdate.cshtml:43
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:45
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:43
 msgid "Description..."
 msgstr "Beskrivelse..."
 
@@ -632,7 +632,7 @@ msgstr "Du er ikke længere forbundet til Stripe"
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:15
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:15
 #: Areas\Admin\Views\Manage\Users.cshtml:40
-#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:47
+#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:46
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\ContentPage\ContentPages.cshtml:15
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:18
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:15
@@ -654,7 +654,7 @@ msgstr "Edit"
 #: Areas\Admin\Views\Manage\Users.cshtml:23
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:55
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:46
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:193
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:201
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:45
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Users.cshtml:23
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\UserUpdate.cshtml:55
@@ -663,7 +663,7 @@ msgstr "Email"
 
 #: Views\Listing\ListingUpdate.cshtml:101
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:18
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:103
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:101
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\SettingsEmail.cshtml:18
 msgid "Email Address"
 msgstr "Email-adresse"
@@ -726,7 +726,7 @@ msgstr "Aktivér"
 #: Areas\Admin\Views\Manage\Settings.cshtml:90
 #: Areas\Admin\Views\Manage\SettingsLanguage.cshtml:32
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CategoryUpdate.cshtml:37
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:145
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:143
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:71
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:90
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\SettingsLanguage.cshtml:32
@@ -748,17 +748,17 @@ msgid "Enter Email"
 msgstr "Indtast email"
 
 #: Views\Listing\ListingUpdate.cshtml:102
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:104
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:102
 msgid "Enter Email Address"
 msgstr "Indtast email-adresse"
 
 #: Views\Listing\ListingUpdate.cshtml:94
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:96
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:94
 msgid "Enter Phone Number"
 msgstr "Indtast telefonnr."
 
 #: Views\Listing\ListingUpdate.cshtml:38
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:40
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:38
 msgid "Enter Title"
 msgstr "Indtast titel"
 
@@ -795,7 +795,7 @@ msgid "Enter your email."
 msgstr "Indtast email"
 
 #: Views\Listing\ListingUpdate.cshtml:90
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:92
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:90
 msgid "Enter Your Full Name"
 msgstr "Fulde navn"
 
@@ -810,7 +810,7 @@ msgid "Error processing the page"
 msgstr "Fejl. Siden kunne ikke loades."
 
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:101
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:103
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:101
 msgid "Expiration"
 msgstr "Udløber"
 
@@ -821,8 +821,8 @@ msgstr "Eksterne login"
 
 #: Areas\Admin\Views\Payment\Order.cshtml:157
 #: Areas\Admin\Views\Payment\Order.cshtml:161
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:151
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:155
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:157
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:161
 msgid "Failed"
 msgstr "Mislykkedes"
 
@@ -830,8 +830,8 @@ msgstr "Mislykkedes"
 #: Views\Manage\Dashboard.cshtml:86
 #: Views\Payment\Orders.cshtml:159
 #: Views\Payment\Orders.cshtml:163
-#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:81
-#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:85
+#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:82
+#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:86
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:159
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:163
 msgid "Failed!"
@@ -871,7 +871,7 @@ msgstr "Har du glemt din adgangskode?"
 #: Views\Listing\Listings.cshtml:77
 #: Views\Payment\Payment.cshtml:44
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:62
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:62
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:77
 #: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:44
 msgid "From"
 msgstr "Fra"
@@ -889,7 +889,7 @@ msgid "Frontend"
 msgstr "Frontend"
 
 #: Views\Listing\ListingUpdate.cshtml:89
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:91
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:89
 msgid "Full Name"
 msgstr "Fulde navn"
 
@@ -899,12 +899,12 @@ msgid "General Settings"
 msgstr "Generelle indstillinger"
 
 #: Views\Listing\Listings.cshtml:108
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:91
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:108
 msgid "Grid"
 msgstr "Gitter"
 
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:92
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:88
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:92
 msgid "Group"
 msgstr "Gruppe"
 
@@ -914,30 +914,37 @@ msgid "Guide"
 msgstr "Guide"
 
 #: Areas\Admin\Views\Listing\Categories.cshtml:37
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:37
 msgid "Here you can add categories and subcategories. There shall always be one category for each listing."
 msgstr ""
 
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:41
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:41
 msgid "Here you can define custom fields for listings in different categories."
 msgstr ""
 
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:41
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:41
 msgid "Here you can define the listing types like offer, request, etc. This will be supported and configured in different categories."
 msgstr ""
 
 #: Areas\Admin\Views\Listing\Listings.cshtml:39
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:39
 msgid "Here you can manage all the listings in the marketplace."
 msgstr ""
 
 #: Areas\Admin\Views\Payment\Order.cshtml:71
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:71
 msgid "Here you can manage all the orders, you can cancel or accept orders on behalf of the users."
 msgstr ""
 
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:70
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:70
 msgid "Here you can manage all the plugins. To add/develop a new plugin, please read the documentation."
 msgstr ""
 
 #: Areas\Admin\Views\Payment\Transaction.cshtml:19
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Transaction.cshtml:19
 msgid "Here you can view all the transactions. Transactions is supported only when payment plugin is installed and payment method is configured."
 msgstr ""
 
@@ -974,7 +981,7 @@ msgid "Installation - BeYourMarket - Peer to Peer MarketPlace"
 msgstr "Installation af - BeYourMarket - Peer to Peer Markedsplads"
 
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:106
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:102
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:106
 msgid "Installed"
 msgstr "Installeret"
 
@@ -984,7 +991,7 @@ msgid "Installing..."
 msgstr "Installerer..."
 
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:108
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:110
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:108
 msgid "IP"
 msgstr "IP"
 
@@ -1033,7 +1040,7 @@ msgstr "Efternavn"
 
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:122
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:39
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:124
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:122
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:39
 msgid "Last Updated"
 msgstr "Senest opdateret"
@@ -1049,17 +1056,17 @@ msgid "Let me in"
 msgstr "Luk mig ind"
 
 #: Views\Listing\Listings.cshtml:109
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:92
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:109
 msgid "List"
 msgstr "Liste"
 
 #: Views\Listing\ListingUpdate.cshtml:28
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:27
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:28
 msgid "Listing Details"
 msgstr "Annoncedetaljer"
 
 #: Views\Listing\Listing.cshtml:149
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:133
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:149
 msgid "Listing ID"
 msgstr "Annonce ID"
 
@@ -1070,10 +1077,13 @@ msgstr "Annonce ID"
 #: Areas\Admin\Views\Listing\Listings.cshtml:66
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:16
 #: Areas\Admin\Views\Shared\_ListingTypes.cshtml:5
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:34
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:125
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:55
+#: obj\Release\Package\PackageTmp\Views\Shared\_ListingTypes.cshtml:6
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CategoryUpdate.cshtml:44
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:66
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:16
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:37
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Shared\_ListingTypes.cshtml:5
 msgid "Listing Type"
 msgstr ""
 
@@ -1085,6 +1095,7 @@ msgstr ""
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:10
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:35
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:10
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:35
 msgid "Listing Types"
 msgstr ""
 
@@ -1119,10 +1130,6 @@ msgstr "Annoncer"
 msgid "Listings by category"
 msgstr "Annoncer efter kategori"
 
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:35
-msgid "ListingTypes"
-msgstr ""
-
 #: Views\Listing\Listing.cshtml:133
 #: Views\Listing\Listings.cshtml:70
 #: Views\Listing\ListingUpdate.cshtml:71
@@ -1130,13 +1137,13 @@ msgstr ""
 #: Views\Listing\_ListingGridList.cshtml:43
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:170
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:172
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:125
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:55
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:133
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:70
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:71
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:73
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:75
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:43
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:170
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:172
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:174
 msgid "Location"
 msgstr "Område"
 
@@ -1236,14 +1243,14 @@ msgid "Manage Users"
 msgstr "Administrér brugere"
 
 #: Views\Listing\Listing.cshtml:181
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:173
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:181
 msgid "Map"
 msgstr "Kort"
 
 #: Views\Home\Contact.cshtml:28
 #: Views\Listing\Listing.cshtml:212
 #: obj\Release\Package\PackageTmp\Views\Home\Contact.cshtml:28
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:204
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:212
 msgid "Message"
 msgstr "Besked"
 
@@ -1279,9 +1286,9 @@ msgstr "Mine annoncer"
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:32
 #: Areas\Admin\Views\Manage\Settings.cshtml:17
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CategoryUpdate.cshtml:19
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:56
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:62
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:40
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:58
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:62
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:32
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:17
 msgid "Name"
@@ -1298,32 +1305,32 @@ msgid "New password"
 msgstr "Ny adgangskode"
 
 #: Views\Listing\Listing.cshtml:263
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:255
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:263
 msgid "Next"
 msgstr "Næste"
 
 #: Views\Payment\Orders.cshtml:149
 #: Areas\Admin\Views\Payment\Order.cshtml:147
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:149
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:141
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:147
 msgid "No!"
 msgstr "Nej"
 
 #: Views\Manage\Dashboard.cshtml:71
 #: Areas\Admin\Views\Listing\Listings.cshtml:97
-#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:70
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:92
+#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:71
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:97
 msgid "No, cancel please!"
 msgstr "Nej, annullér"
 
 #: Views\Listing\Listings.cshtml:88
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:73
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:88
 msgid "Only show listings with photos"
 msgstr "Vis kun annoncer med billeder"
 
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:73
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:47
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:67
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:73
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:47
 msgid "Options"
 msgstr "Valgmuligheder"
@@ -1331,26 +1338,26 @@ msgstr "Valgmuligheder"
 #: Views\Payment\Orders.cshtml:109
 #: Areas\Admin\Views\Payment\Order.cshtml:110
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:109
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:104
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:110
 msgid "Order ID"
 msgstr "Ordre ID"
 
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:70
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:86
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:66
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:40
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:70
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:86
 msgid "Order Type"
 msgstr ""
 
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:72
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:68
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:72
 msgid "Order Type Label"
 msgstr ""
 
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:51
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:101
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:51
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:97
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:101
 msgid "Ordering"
 msgstr "Bestilling"
 
@@ -1370,13 +1377,13 @@ msgstr "Bestilling"
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Dashboard.cshtml:27
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:7
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:65
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:71
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:77
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Shared\_NavigationSide.cshtml:120
 msgid "Orders"
 msgstr "Ordrer"
 
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:93
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:47
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:93
 msgid "OrderType Label"
 msgstr ""
 
@@ -1386,7 +1393,7 @@ msgid "Other Info"
 msgstr "Yderligere info"
 
 #: Views\Listing\Listings.cshtml:141
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:124
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:141
 msgid "Page {0} of {1}"
 msgstr "Side {0} af {1}"
 
@@ -1425,13 +1432,14 @@ msgstr "Adgangskode"
 #: Views\Payment\Payment.cshtml:7
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:67
 #: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:7
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:67
 msgid "Payment"
 msgstr "Betaling"
 
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:75
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:79
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:71
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:73
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:75
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:79
 msgid "Payment Enabled"
 msgstr ""
 
@@ -1484,7 +1492,7 @@ msgid "Phone Number"
 msgstr "Telefonnr."
 
 #: Views\Listing\ListingUpdate.cshtml:93
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:95
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:93
 msgid "Phone Number (Optional)"
 msgstr "Telefonnr. (Valgfri)"
 
@@ -1535,12 +1543,12 @@ msgid "Port"
 msgstr "Port"
 
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:153
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:155
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:153
 msgid "Premium"
 msgstr "Premium"
 
 #: Views\Listing\Listing.cshtml:259
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:251
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:259
 msgid "Previous"
 msgstr "Tilbage"
 
@@ -1553,23 +1561,23 @@ msgstr "Tilbage"
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:94
 #: Areas\Admin\Views\Payment\Order.cshtml:104
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:117
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:60
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:49
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:75
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:47
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:41
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:104
 #: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:63
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:96
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:98
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:94
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:104
 msgid "Price"
 msgstr "Pris"
 
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:65
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:61
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:65
 msgid "Price Unit Label"
 msgstr ""
 
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:47
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:61
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:47
 msgid "PriceUnit Label"
 msgstr ""
 
@@ -1592,7 +1600,7 @@ msgid "Profile Picture"
 msgstr "Profilbillede"
 
 #: Areas\Admin\Views\Payment\Order.cshtml:101
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:95
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:101
 msgid "Provider"
 msgstr "Udbyder"
 
@@ -1602,7 +1610,7 @@ msgid "Publish a listing (it's 100% free)"
 msgstr "Opret en annonce (Det er 100% gratis)"
 
 #: Views\Listing\ListingUpdate.cshtml:106
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:108
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:106
 msgid "Publish Listing"
 msgstr "Opret annonce"
 
@@ -1625,19 +1633,19 @@ msgid "Published"
 msgstr "Oprettet"
 
 #: Views\Listing\ListingUpdate.cshtml:87
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:89
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:87
 msgid "Publisher's Info"
 msgstr "Annoncørinfo"
 
 #: Views\Payment\Orders.cshtml:106
 #: Areas\Admin\Views\Payment\Order.cshtml:108
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:106
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:102
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:108
 msgid "Quantity"
 msgstr ""
 
 #: Areas\Admin\Views\Payment\Order.cshtml:102
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:96
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:102
 msgid "Receiver"
 msgstr "Modtager"
 
@@ -1681,7 +1689,7 @@ msgstr "Husk denne browser?"
 
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:74
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:58
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:68
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:74
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:58
 msgid "Required"
 msgstr "Påkrævet"
@@ -1722,11 +1730,11 @@ msgstr "Din adgangskode er nulstillet"
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Design\Appearance.cshtml:44
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Design\CodeScript.cshtml:33
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Design\CodeStyle.cshtml:33
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:57
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:63
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CategoryUpdate.cshtml:58
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:90
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:90
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:197
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:102
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:195
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:63
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:119
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\SettingsEmail.cshtml:68
@@ -1754,7 +1762,7 @@ msgid "Search PlaceHolder"
 msgstr "Pladsholdertekst for søg"
 
 #: Views\Listing\Listings.cshtml:83
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:68
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:83
 msgid "Search Text"
 msgstr "Søgetekst"
 
@@ -1765,7 +1773,7 @@ msgstr "Søg i dine annonce..."
 
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:75
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:70
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:69
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:75
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:70
 msgid "Searchable"
 msgstr "Søgbar"
@@ -1786,7 +1794,7 @@ msgstr "Vælg 2-faktor autentificering:"
 #: Views\Listing\Listing.cshtml:214
 #: obj\Release\Package\PackageTmp\Views\Account\SendCode.cshtml:3
 #: obj\Release\Package\PackageTmp\Views\Home\Contact.cshtml:34
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:206
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:214
 msgid "Send"
 msgstr "Send"
 
@@ -1816,30 +1824,30 @@ msgstr "Del"
 
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:76
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:59
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:72
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:83
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:76
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:59
 msgid "Shipping Enabled"
 msgstr ""
 
 #: Areas\Admin\Views\Listing\Listings.cshtml:70
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:74
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:65
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:76
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:70
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:74
 msgid "Show Email"
 msgstr "Vis email"
 
 #: Views\Listing\ListingUpdate.cshtml:97
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:99
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:97
 msgid "Show Phone"
 msgstr "Vis telefonnr."
 
 #: Views\Listing\Listing.cshtml:226
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:218
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:226
 msgid "Sign in"
 msgstr "Log ind"
 
 #: Views\Listing\Listing.cshtml:223
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:215
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:223
 msgid "Sign in to contact the owner"
 msgstr "Log ind for a kontakte ejeren"
 
@@ -1885,7 +1893,7 @@ msgstr "SSL"
 #: Views\Payment\Orders.cshtml:97
 #: Areas\Admin\Views\Payment\Order.cshtml:94
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:97
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:88
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:94
 msgid "Status"
 msgstr "Status"
 
@@ -1910,7 +1918,7 @@ msgid "Success"
 msgstr "Succes"
 
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:94
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:90
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:94
 msgid "SystemName"
 msgstr "Systemnavn"
 
@@ -2014,13 +2022,13 @@ msgstr ""
 #: Areas\Admin\Views\Listing\Listings.cshtml:68
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:42
 #: Areas\Admin\Views\Payment\Order.cshtml:99
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:39
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:37
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:38
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:102
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:30
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:63
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:44
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:93
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:68
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:42
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:99
 msgid "Title"
 msgstr "Titel"
 
@@ -2029,7 +2037,7 @@ msgstr "Titel"
 #: Views\Listing\Listings.cshtml:78
 #: Views\Payment\Payment.cshtml:51
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:65
-#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:63
+#: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:78
 #: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:51
 msgid "To"
 msgstr "Til"
@@ -2040,6 +2048,7 @@ msgid "To complete this wizard, you must know some information regarding your da
 msgstr "For at færdiggøre installationen skal du bruge information om din database. Hvis du installerer på en lokal maskine eller server, skal du måske bruge information fra systemadministratoren."
 
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:68
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:68
 msgid "To configure payment method for payout, please configure the Payment plugin"
 msgstr ""
 
@@ -2077,7 +2086,7 @@ msgstr "Transaktioner"
 
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:64
 #: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:33
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:58
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:64
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:33
 msgid "Type"
 msgstr "Type"
@@ -2094,8 +2103,8 @@ msgstr "Kunne ikke logge ind med servicen."
 
 #: Views\Listing\ListingUpdate.cshtml:62
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:159
-#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:64
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:161
+#: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:62
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:159
 msgid "Upload Pictures"
 msgstr "Upload billeder"
 
@@ -2116,7 +2125,7 @@ msgstr "Brug dette område til at give ekstra information."
 
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:80
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:16
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:82
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:80
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\UserUpdate.cshtml:16
 msgid "User"
 msgstr "Bruger"
@@ -2158,7 +2167,7 @@ msgid "Version"
 msgstr "Version"
 
 #: Views\Listing\Listing.cshtml:196
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:188
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:196
 msgid "View User's other listings"
 msgstr "Se andre annoncer fra denne bruger"
 
@@ -2168,7 +2177,7 @@ msgid "View Your Profile"
 msgstr "Se profil"
 
 #: Views\Listing\Listing.cshtml:157
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:141
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:157
 msgid "Views"
 msgstr "Besøgende"
 
@@ -2180,14 +2189,14 @@ msgstr "Velkommen til {0} Admin panel"
 #: Views\Payment\Orders.cshtml:148
 #: Areas\Admin\Views\Payment\Order.cshtml:146
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:148
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:140
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:146
 msgid "Yes!"
 msgstr "Ja"
 
 #: Views\Manage\Dashboard.cshtml:70
 #: Areas\Admin\Views\Listing\Listings.cshtml:96
-#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:69
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:91
+#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:70
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:96
 msgid "Yes, delete it!"
 msgstr "ja, slet"
 
@@ -2201,8 +2210,8 @@ msgstr "Du kan ikke slette varer, der har udestående ordre. Du kan deaktivere v
 
 #: Views\Manage\Dashboard.cshtml:66
 #: Areas\Admin\Views\Listing\Listings.cshtml:92
-#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:65
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:87
+#: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:66
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:92
 msgid "You will delete"
 msgstr "Du vil slette"
 
@@ -2254,6 +2263,9 @@ msgstr "Din adgangskode er blevet nulstillet"
 #~ msgstr ""
 
 #~ msgid "ListingType"
+#~ msgstr ""
+
+#~ msgid "ListingTypes"
 #~ msgstr ""
 
 #~ msgid "OrderType"
