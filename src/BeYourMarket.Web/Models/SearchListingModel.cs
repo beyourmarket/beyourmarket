@@ -12,6 +12,8 @@ namespace BeYourMarket.Web.Models
     {
         public int CategoryID { get; set; }
 
+        public List<int> ListingTypeID { get; set; }
+
         public string SearchText { get; set; }
 
         public string Location { get; set; }
@@ -31,6 +33,8 @@ namespace BeYourMarket.Web.Models
         public List<Category> Categories { get; set; }
 
         public List<Category> BreadCrumb { get; set; }
+
+        public List<ListingType> ListingTypes { get; set; }
 
         public ListingModelGrid Grid { get; set; }
     }

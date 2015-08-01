@@ -52,6 +52,21 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>[[[Listing Type]]]</label>
+                                    @foreach (var listingType in Model.ListingTypes)
+                                    {
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                @{var listingTypeCheckBoxID = "ListingTypeID_" + listingType.ID; }
+                                                <input type="radio" id="@listingTypeCheckBoxID" name="ListingTypeID" value="@listingType.ID" @( Model.ListingTypeID.Contains(listingType.ID) ? "checked" : "") onchange="this.form.submit()" />
+                                                <label for="@listingTypeCheckBoxID">@listingType.Name</label>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+
+                                <div class="form-group">
                                     <label>[[[Location]]]</label>
                                     <input type="text" class="form-control" placeholder="Location" id="Location" name="Location" value="@Model.Location">
                                 </div>
@@ -71,8 +86,10 @@
 
                                 <input type="checkbox" id="PhotoOnly" name="PhotoOnly" value="true" @( Model.PhotoOnly ? "checked" : "") />
                                 <label for="PhotoOnly">[[[Only show listings with photos]]]</label>
+
                                 @Html.HiddenFor(x => x.SortView)
                             </fieldset>
+
                         </div>
                         <div class="panel-footer">
                             <button type="submit" class="btn btn-sm btn-primary" href="">[[[Apply]]]</button>
@@ -121,7 +138,7 @@
                     <div class="container-fluid">
                         <div class=" col-md-12">
                             <h5 class="pull-left mrg-t">
-                                @string.Format("[[[Page {0} of {1}]]]", Model.ListingsPageList.PageCount < Model.PageNumber ? 0 : Model.PageNumber, Model.ListingsPageList.PageCount)                                
+                                @string.Format("[[[Page {0} of {1}]]]", Model.ListingsPageList.PageCount < Model.PageNumber ? 0 : Model.PageNumber, Model.ListingsPageList.PageCount)
                             </h5>
                             @Html.PagedListPager(Model.ListingsPageList, (page) => { return Request.UrlReplace("PageNumber", page.ToString()); },
                             new PagedListRenderOptions

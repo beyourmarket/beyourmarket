@@ -44,6 +44,7 @@ namespace BeYourMarket.Web.Controllers
                 return RedirectToAction("ContentPage", "Home", new { id = id.ToLowerInvariant() });
 
             var model = new SearchListingModel();
+            model.ListingTypeID = CacheHelper.ListingTypes.Select(x => x.ID).ToList();
             await GetSearchResult(model);
 
             return View(model);
@@ -100,11 +101,27 @@ namespace BeYourMarket.Web.Controllers
 
             // Category
             if (model.CategoryID != 0)
+            {
                 items = await _listingService.Query(x => x.CategoryID == model.CategoryID)
                     .Include(x => x.ListingPictures)
                     .Include(x => x.Category)
                     .Include(x => x.ListingType)
                     .SelectAsync();
+
+                // Set listing types
+                model.ListingTypes = CacheHelper.ListingTypes.Where(x => x.CategoryListingTypes.Any(y => y.CategoryID == model.CategoryID)).ToList();
+            }
+            else
+            {
+                model.ListingTypes = CacheHelper.ListingTypes;
+            }
+
+            // Set default Listing Type if it's not set or listing type is not set
+            if (model.ListingTypeID == null || !model.ListingTypes.Any(x => model.ListingTypeID.Contains(x.ID)))
+            {
+                model.ListingTypeID = new List<int>();
+                model.ListingTypeID.Add(model.ListingTypes.FirstOrDefault().ID);
+            }
 
             // Search Text
             if (!string.IsNullOrEmpty(model.SearchText))
@@ -119,7 +136,12 @@ namespace BeYourMarket.Web.Controllers
 
             // Latest
             if (items == null)
+            {
                 items = await _listingService.Query().OrderBy(x => x.OrderByDescending(y => y.Created)).Include(x => x.ListingPictures).Include(x => x.Category).SelectAsync();
+            }
+
+            // Filter items by Listing Type
+            items = items.Where(x => model.ListingTypeID.Contains(x.ListingTypeID));
 
             // Location
             if (!string.IsNullOrEmpty(model.Location))
@@ -152,6 +174,7 @@ namespace BeYourMarket.Web.Controllers
 
             model.BreadCrumb = breadCrumb;
             model.Categories = CacheHelper.Categories;
+
             model.Listings = itemsModelList;
             model.ListingsPageList = itemsModelList.ToPagedList(model.PageNumber, model.PageSize);
             model.Grid = new ListingModelGrid(model.ListingsPageList.AsQueryable());
@@ -196,11 +219,11 @@ namespace BeYourMarket.Web.Controllers
             var model = new LanguageSelectorModel();
             model.Culture = languageCurrent.GetLanguage();
             model.DisplayName = languageCurrent.GetCultureInfo().NativeName;
-            
+
             foreach (var language in languages)
             {
                 if (language.Culture != languageCurrent.GetLanguage() && language.Enabled)
-                {                    
+                {
                     model.LanguageList.Add(new LanguageSelectorModel()
                     {
                         Culture = language.Culture,

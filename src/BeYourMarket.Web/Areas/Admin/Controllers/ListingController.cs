@@ -364,7 +364,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
         public ActionResult Listings()
         {
-            var grid = new ListingsGrid(_listingService.Queryable().OrderByDescending(x => x.Created));
+            var grid = new ListingsGrid(_listingService.Query().Include(x => x.ListingType).Select().OrderByDescending(x => x.Created).AsQueryable());
             var categories = CacheHelper.Categories;
 
             var model = new ListingModel()
@@ -736,10 +736,14 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 listingTypeExisting.Name = model.Name;
                 listingTypeExisting.ButtonLabel = model.ButtonLabel;
                 listingTypeExisting.PriceUnitLabel = model.PriceUnitLabel;
-                listingTypeExisting.OrderTypeID = model.OrderTypeID;
-                listingTypeExisting.OrderTypeLabel = model.OrderTypeLabel;
-                listingTypeExisting.PaymentEnabled = model.PaymentEnabled;
                 listingTypeExisting.ShippingEnabled = model.ShippingEnabled;
+
+                listingTypeExisting.PaymentEnabled = model.PaymentEnabled;
+                if (model.PaymentEnabled)
+                {
+                    listingTypeExisting.OrderTypeID = model.OrderTypeID;
+                    listingTypeExisting.OrderTypeLabel = model.OrderTypeLabel;
+                }
 
                 listingTypeExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 

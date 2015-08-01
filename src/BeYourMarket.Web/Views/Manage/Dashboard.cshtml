@@ -21,11 +21,11 @@
                                 <div class="pull-left">
                                     <form class="form-inline" action="@Url.Action("Dashboard", "Manage")" method="get" role="form">
                                         <input type="text" id="searchText" name="searchText" class="input-sm form-control" placeholder="[[[Search your listings...]]]" value="@Request.QueryString["searchText"]">
-                                        <button class="btn btn-primary btn-sm" type="submit">[[[Search]]]</button>
+                                        <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search"></i> [[[Search]]]</button>
                                     </form>
                                 </div>
                                 <div class="pull-right">
-                                    <a class="btn btn-info btn-sm hidden-lg hidden-md" href=""><i class="mdi-content-add-circle-outline"></i></a><a class="btn btn-default btn-sm hidden-sm hidden-xs" href="@Url.Action("ListingUpdate", "Listing")">[[[Publish new listing]]]</a>
+                                    <a class="btn btn-default btn-sm hidden-sm hidden-xs" href="@Url.Action("ListingUpdate", "Listing")"><i class="mdi-content-add-circle-outline"></i> [[[Publish new listing]]]</a>
                                 </div>
                             </div>
 
@@ -39,12 +39,13 @@
                                         <div class="media-body">
                                             <h4 class="media-heading"><a href="@Url.Action("Listing", "Listing", new { id = item.ListingCurrent.ID })"> @item.ListingCurrent.Title</a></h4>
                                             <p class="hidden-xs">
-                                                @item.ListingCurrent.Description.PrefixString(250)
+                                                @item.ListingCurrent.Description.PrefixString(150)
                                             </p>
                                         </div>
-                                        <div>
+                                        <div class="pull-right">
+                                            <a class="btn btn-primary btn-sm" href="@Url.Action("ListingUpdate", "Listing", new { id = item.ListingCurrent.ID })"><i class="fa fa-edit"></i>[[[Edit]]]</a>
+                                            <a class="btn btn-default btn-sm" href="javascript:void(0);" onclick="confirmDelete(@item.ListingCurrent.ID, '@item.ListingCurrent.Title');"><i class="fa fa-remove"></i>[[[Delete]]]</a>
                                         </div>
-                                        <a class="btn btn-default btn-sm" href="@Url.Action("ListingUpdate", "Listing", new { id = item.ListingCurrent.ID })">[[[Edit]]]</a><a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete(@item.ListingCurrent.ID, '@item.ListingCurrent.Title');">[[[Delete]]]</a>
                                     </li>
                                 }
                             </ul>

@@ -51,9 +51,9 @@
                                 <input id="ListingID" name="ListingID" type="hidden" value="@Model.ListingCurrent.ID" />
                                 <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingCurrent.ListingTypeID" />
                                 @if (!string.IsNullOrEmpty(Model.ListingCurrent.ListingType.OrderTypeLabel))
-                                {                                    
+                                {
                                     <h5>@Model.ListingCurrent.ListingType.OrderTypeLabel</h5>
-                                }                                
+                                }
 
                                 @if (Model.ListingCurrent.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
                                 {
@@ -106,10 +106,10 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                [[[Date Posted]]]
+                                                [[[Category]]]
                                             </td>
                                             <td>
-                                                @Model.ListingCurrent.Created.ToShortDateString()
+                                                <a href="@Url.Action("Search", "Home", new { categoryId = Model.ListingCurrent.CategoryID })">@Model.ListingCurrent.Category.Name</a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -122,10 +122,26 @@
                                         </tr>
                                         <tr>
                                             <td>
+                                                [[[Listing Type]]]
+                                            </td>
+                                            <td>
+                                                @Model.ListingCurrent.ListingType.Name
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
                                                 [[[Location]]]
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(x => Model.ListingCurrent.Location)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                [[[Date Posted]]]
+                                            </td>
+                                            <td>
+                                                @Model.ListingCurrent.Created.ToShortDateString()
                                             </td>
                                         </tr>
                                         <tr>
@@ -142,14 +158,6 @@
                                             </td>
                                             <td>
                                                 @Model.ListingCurrent.ListingStats.FirstOrDefault().CountView
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                [[[Category]]]
-                                            </td>
-                                            <td>
-                                                <a href="@Url.Action("Search", "Home", new { categoryId = Model.ListingCurrent.CategoryID })">@Model.ListingCurrent.Category.Name</a>
                                             </td>
                                         </tr>
 

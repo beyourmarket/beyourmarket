@@ -63,6 +63,7 @@
 
                            columns.Add(x => x.ID);
                            columns.Add(x => x.CategoryID).RenderValueAs(x => GetCategoryName(x.CategoryID)).Titled("[[[Category]]]");
+                           columns.Add(x => x.ListingType.Name).Titled("[[[Listing Type]]]");
                            columns.Add(x => x.Active).Titled("[[[Active]]]");
                            columns.Add(x => x.Title).Titled("[[[Title]]]");
                            columns.Add(x => x.Description).Titled("[[[Description]]]");
