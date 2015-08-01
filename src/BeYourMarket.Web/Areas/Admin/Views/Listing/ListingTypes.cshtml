@@ -7,7 +7,7 @@
 }
 
 @{
-    ViewBag.Title = "[[[ListingTypes]]]";
+    ViewBag.Title = "[[[Listing Types]]]";
 }
 
 @helper DisplayUpdateLink(int id)
@@ -32,10 +32,14 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">[[[ListingTypes]]]</h3>
+                    <h3 class="panel-title">[[[Listing Types]]]</h3>
                 </div>
                 <div class="panel-body">
                     @Html.Partial("_UserMessage")
+
+                    <div class="alert alert-info">
+                        <p>[[[Here you can define the listing types like offer, request, etc. This will be supported and configured in different categories.]]]</p>
+                    </div>
 
                     <div class="row">
                         <div class="col-lg-10">

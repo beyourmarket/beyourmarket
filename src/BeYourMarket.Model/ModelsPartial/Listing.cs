@@ -32,7 +32,7 @@ namespace BeYourMarket.Model.Models
         {
             get
             {
-                return Price.HasValue && Active && Enabled && ListingType.OrderTypeID != (int)Enum_ListingOrderType.None;
+                return Price.HasValue && Active && Enabled && ListingType != null && ListingType.OrderTypeID != (int)Enum_ListingOrderType.None;
             }
         }
     }

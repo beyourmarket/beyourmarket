@@ -11,7 +11,13 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    [[[Transactions]]]
+                    <h3 class="panel-title">[[[Transactions]]]</h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="alert alert-info">
+                        <p>[[[Here you can view all the transactions. Transactions is supported only when payment plugin is installed and payment method is configured.]]]</p>
+                    </div>
                 </div>
 
                 @Html.DoAction(HookName.TransactionOverview)

@@ -62,9 +62,15 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    [[[Orders]]]
+                    <h3 class="panel-title">[[[Orders]]]</h3>                    
                 </div>
                 <div class="panel-body">
+                    @Html.Partial("_UserMessage")
+
+                    <div class="alert alert-info">
+                        <p>[[[Here you can manage all the orders, you can cancel or accept orders on behalf of the users.]]]</p>
+                    </div>
+
                     @using (Html.BeginForm("ProfileUpdate", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()

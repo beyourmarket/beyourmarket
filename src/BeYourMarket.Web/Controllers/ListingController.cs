@@ -100,7 +100,7 @@ namespace BeYourMarket.Web.Controllers
             _listingService = listingService;
             _pictureService = pictureService;
             _ListingPictureservice = ListingPictureservice;
-            _orderService = orderService;            
+            _orderService = orderService;
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
             _customFieldListingService = customFieldListingService;
@@ -128,13 +128,27 @@ namespace BeYourMarket.Web.Controllers
             return PartialView("_CategoryCustomFields", customFieldModel);
         }
 
+        public async Task<ActionResult> ListingTypesPartial(int categoryID, int listingID)
+        {
+            var model = new ListingUpdateModel();
+            model.ListingTypes = CacheHelper.ListingTypes.Where(x => x.CategoryListingTypes.Any(y => y.CategoryID == categoryID)).ToList();
+            model.ListingItem = new Listing();
+
+            if (listingID > 0)
+                model.ListingItem = await _listingService.FindAsync(listingID);
+
+            model.ListingTypeID = model.ListingItem.ListingTypeID;
+
+            return PartialView("_ListingTypes", model);
+        }
+
         public async Task<ActionResult> ListingUpdate(int? id)
         {
             if (CacheHelper.Categories.Count == 0)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
                 TempData[TempDataKeys.UserMessage] = "[[[There are not categories available yet.]]]";
-            }   
+            }
 
             Listing item;
 
@@ -143,8 +157,7 @@ namespace BeYourMarket.Web.Controllers
 
             var model = new ListingUpdateModel()
             {
-                Categories = CacheHelper.Categories,
-                ListingTypes = CacheHelper.ListingTypes
+                Categories = CacheHelper.Categories
             };
 
             if (id.HasValue)
@@ -208,6 +221,9 @@ namespace BeYourMarket.Web.Controllers
             model.CategoryID = item.CategoryID;
             model.ListingTypeID = item.ListingTypeID;
 
+            // Listing types
+            model.ListingTypes = CacheHelper.ListingTypes.Where(x => x.CategoryListingTypes.Any(y => y.CategoryID == model.CategoryID)).ToList();
+
             return View("~/Views/Listing/ListingUpdate.cshtml", model);
         }
 
@@ -261,7 +277,7 @@ namespace BeYourMarket.Web.Controllers
                 ListingCurrent = item,
                 Pictures = picturesModel,
                 DatesBooked = datesBooked,
-                User = user,                
+                User = user,
             };
 
             // Update stat count
@@ -289,14 +305,14 @@ namespace BeYourMarket.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ListingUpdate(Listing item, FormCollection form, IEnumerable<HttpPostedFileBase> files)
+        public async Task<ActionResult> ListingUpdate(Listing listing, FormCollection form, IEnumerable<HttpPostedFileBase> files)
         {
             if (CacheHelper.Categories.Count == 0)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
                 TempData[TempDataKeys.UserMessage] = "[[[There are not categories available yet.]]]";
 
-                return RedirectToAction("Listing", new { id = item.ID });
+                return RedirectToAction("Listing", new { id = listing.ID });
             }
 
             bool updateCount = false;
@@ -304,51 +320,54 @@ namespace BeYourMarket.Web.Controllers
             int nextPictureOrderId = 0;
 
             // Set default listing type ID
-            if (item.ListingTypeID == 0)
-                item.ListingTypeID = CacheHelper.ListingTypes.FirstOrDefault().ID;
+            if (listing.ListingTypeID == 0)
+                listing.ListingTypeID = CacheHelper.ListingTypes.FirstOrDefault().ID;
 
-            if (item.ID == 0)
+            if (listing.ID == 0)
             {
-                item.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
-                item.IP = Request.GetVisitorIP();
-                item.Expiration = DateTime.MaxValue.AddDays(-1);
-                item.UserID = User.Identity.GetUserId();
-                item.Enabled = true;
-                item.Currency = CacheHelper.Settings.Currency;
+                listing.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
+                listing.IP = Request.GetVisitorIP();
+                listing.Expiration = DateTime.MaxValue.AddDays(-1);
+                listing.UserID = User.Identity.GetUserId();
+                listing.Enabled = true;
+                listing.Currency = CacheHelper.Settings.Currency;
 
                 updateCount = true;
-                _listingService.Insert(item);
+                _listingService.Insert(listing);
             }
             else
             {
-                if (await NotMeListing(item.ID))
+                if (await NotMeListing(listing.ID))
                     return new HttpUnauthorizedResult();
 
-                var itemExisting = await _listingService.FindAsync(item.ID);
+                var listingExisting = await _listingService.FindAsync(listing.ID);
 
-                itemExisting.Title = item.Title;
-                itemExisting.Description = item.Description;
-                itemExisting.Active = item.Active;
-                itemExisting.Price = item.Price;
+                listingExisting.Title = listing.Title;
+                listingExisting.Description = listing.Description;
+                listingExisting.Active = listing.Active;
+                listingExisting.Price = listing.Price;
 
-                itemExisting.ContactEmail = item.ContactEmail;
-                itemExisting.ContactName = item.ContactName;
-                itemExisting.ContactPhone = item.ContactPhone;
+                listingExisting.ContactEmail = listing.ContactEmail;
+                listingExisting.ContactName = listing.ContactName;
+                listingExisting.ContactPhone = listing.ContactPhone;
 
-                itemExisting.Latitude = item.Latitude;
-                itemExisting.Longitude = item.Longitude;
-                itemExisting.Location = item.Location;
+                listingExisting.Latitude = listing.Latitude;
+                listingExisting.Longitude = listing.Longitude;
+                listingExisting.Location = listing.Location;
 
-                itemExisting.ShowPhone = item.ShowPhone;
-                itemExisting.ShowEmail = item.ShowEmail;
+                listingExisting.ShowPhone = listing.ShowPhone;
+                listingExisting.ShowEmail = listing.ShowEmail;
 
-                itemExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
+                listingExisting.CategoryID = listing.CategoryID;
+                listingExisting.ListingTypeID = listing.ListingTypeID;
 
-                _listingService.Update(itemExisting);
+                listingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
+
+                _listingService.Update(listingExisting);
             }
 
             // Delete existing fields on item
-            var customFieldItemQuery = await _customFieldListingService.Query(x => x.ListingID == item.ID).SelectAsync();
+            var customFieldItemQuery = await _customFieldListingService.Query(x => x.ListingID == listing.ID).SelectAsync();
             var customFieldIds = customFieldItemQuery.Select(x => x.ID).ToList();
             foreach (var customFieldId in customFieldIds)
             {
@@ -356,7 +375,7 @@ namespace BeYourMarket.Web.Controllers
             }
 
             // Get custom fields
-            var customFieldCategoryQuery = await _customFieldCategoryService.Query(x => x.CategoryID == item.CategoryID).Include(x => x.MetaField.ListingMetas).SelectAsync();
+            var customFieldCategoryQuery = await _customFieldCategoryService.Query(x => x.CategoryID == listing.CategoryID).Include(x => x.MetaField.ListingMetas).SelectAsync();
             var customFieldCategories = customFieldCategoryQuery.ToList();
 
             foreach (var metaCategory in customFieldCategories)
@@ -375,7 +394,7 @@ namespace BeYourMarket.Web.Controllers
 
                 var itemMeta = new ListingMeta()
                 {
-                    ListingID = item.ID,
+                    ListingID = listing.ID,
                     Value = formValue,
                     FieldID = field.ID,
                     ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
@@ -388,7 +407,7 @@ namespace BeYourMarket.Web.Controllers
 
             if (Request.Files.Count > 0)
             {
-                var itemPictureQuery = _ListingPictureservice.Queryable().Where(x => x.ListingID == item.ID);
+                var itemPictureQuery = _ListingPictureservice.Queryable().Where(x => x.ListingID == listing.ID);
                 if (itemPictureQuery.Count() > 0)
                     nextPictureOrderId = itemPictureQuery.Max(x => x.Ordering);
             }
@@ -421,7 +440,7 @@ namespace BeYourMarket.Web.Controllers
                     }
 
                     var itemPicture = new ListingPicture();
-                    itemPicture.ListingID = item.ID;
+                    itemPicture.ListingID = listing.ID;
                     itemPicture.PictureID = picture.ID;
                     itemPicture.Ordering = nextPictureOrderId;
 
@@ -436,11 +455,11 @@ namespace BeYourMarket.Web.Controllers
             // Update statistics count
             if (updateCount)
             {
-                _sqlDbService.UpdateCategoryItemCount(item.CategoryID);
+                _sqlDbService.UpdateCategoryItemCount(listing.CategoryID);
                 _dataCacheService.RemoveCachedItem(CacheKeys.Statistics);
             }
 
-            return RedirectToAction("Listing", new { id = item.ID });
+            return RedirectToAction("Listing", new { id = listing.ID });
         }
 
         [HttpPost]
@@ -454,14 +473,14 @@ namespace BeYourMarket.Web.Controllers
             {
                 var resultFailed = new { Success = false, Message = "You cannot delete item with orders! You can deactivate it instead." };
                 return Json(resultFailed, JsonRequestBehavior.AllowGet);
-            }            
+            }
 
             // Delete pictures
             var pictureIds = _ListingPictureservice.Query(x => x.ListingID == id).Select(x => x.ListingID).ToList();
             foreach (var pictureId in pictureIds)
             {
                 await _ListingPictureservice.DeleteAsync(pictureId);
-            }                        
+            }
 
             await _listingService.DeleteAsync(id);
 

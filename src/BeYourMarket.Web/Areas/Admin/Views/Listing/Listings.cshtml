@@ -35,6 +35,10 @@
                 <div class="panel-body">
                     @Html.Partial("_UserMessage")
 
+                    <div class="alert alert-info">
+                        <p>[[[Here you can manage all the listings in the marketplace.]]]</p>
+                    </div>
+
                     <div class="row">
                         <div class="col-lg-10">
                             <a class="btn btn-primary" href="@Url.Action("ListingUpdate", "Listing")"><i class="fa fa-plus"></i> [[[Add New]]]</a>

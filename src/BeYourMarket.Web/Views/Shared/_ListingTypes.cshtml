@@ -1,0 +1,9 @@
+﻿@model BeYourMarket.Web.Models.ListingUpdateModel
+
+<!-- Show Listing Type -->
+@if (Model.ListingTypes.Count > 1)
+{
+    <label>[[[Listing Type]]]</label>
+    @Html.DropDownListFor(m => m.ListingTypeID, new SelectList(Model.ListingTypes, "ID", "Name", Model.ListingItem.ListingTypeID), new { @class = "form-control input-lg" })
+}
+

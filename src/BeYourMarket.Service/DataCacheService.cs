@@ -124,7 +124,7 @@ namespace BeYourMarket.Service
                             UpdateCache(CacheKeys.Categories, categories);
                             break;
                         case CacheKeys.ListingTypes:
-                            var ListingTypes = ListingTypeService.Queryable().ToList();
+                            var ListingTypes = ListingTypeService.Query().Include(x => x.CategoryListingTypes).Select().ToList();
                             UpdateCache(CacheKeys.ListingTypes, ListingTypes);
                             break;
                         case CacheKeys.ContentPages:

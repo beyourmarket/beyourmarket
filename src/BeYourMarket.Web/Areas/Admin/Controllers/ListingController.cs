@@ -388,8 +388,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             var model = new ListingUpdateModel()
             {
-                Categories = CacheHelper.Categories,
-                ListingTypes = CacheHelper.ListingTypes
+                Categories = CacheHelper.Categories
             };
 
             if (id.HasValue)
@@ -441,6 +440,9 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             model.CategoryID = item.CategoryID;
             model.ListingTypeID = item.ListingTypeID;
 
+            // Listing types
+            model.ListingTypes = CacheHelper.ListingTypes.Where(x => x.CategoryListingTypes.Any(y => y.CategoryID == model.CategoryID)).ToList();
+
             return View(model);
         }
 
@@ -458,15 +460,29 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             return PartialView("_CategoryCustomFields", customFieldModel);
         }
 
+        public async Task<ActionResult> ListingTypesPartial(int categoryID, int listingID)
+        {
+            var model = new ListingUpdateModel();
+            model.ListingTypes = CacheHelper.ListingTypes.Where(x => x.CategoryListingTypes.Any(y => y.CategoryID == categoryID)).ToList();
+            model.ListingItem = new Listing();
+
+            if (listingID > 0)
+                model.ListingItem = await _listingService.FindAsync(listingID);
+
+            model.ListingTypeID = model.ListingItem.ListingTypeID;
+
+            return PartialView("_ListingTypes", model);
+        }
+
         [HttpPost]
-        public async Task<ActionResult> ListingUpdate(Listing item, FormCollection form, IEnumerable<HttpPostedFileBase> files)
+        public async Task<ActionResult> ListingUpdate(Listing listing, FormCollection form, IEnumerable<HttpPostedFileBase> files)
         {
             if (CacheHelper.Categories.Count == 0)
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
                 TempData[TempDataKeys.UserMessage] = "[[[There are not categories available yet.]]]";
 
-                return RedirectToAction("Listing", new { id = item.ID });
+                return RedirectToAction("Listing", new { id = listing.ID });
             }
 
             bool updateCount = false;
@@ -474,54 +490,54 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             int nextPictureOrderId = 0;
 
             // Add new listing
-            if (item.ID == 0)
+            if (listing.ID == 0)
             {
-                item.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
-                item.IP = Request.GetVisitorIP();
-                item.Expiration = DateTime.MaxValue.AddDays(-1);
-                item.UserID = User.Identity.GetUserId();
+                listing.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
+                listing.IP = Request.GetVisitorIP();
+                listing.Expiration = DateTime.MaxValue.AddDays(-1);
+                listing.UserID = User.Identity.GetUserId();
 
                 updateCount = true;
-                _listingService.Insert(item);
+                _listingService.Insert(listing);
             }
             else
             {
                 // Update listing
-                var itemExisting = await _listingService.FindAsync(item.ID);
+                var listingExisting = await _listingService.FindAsync(listing.ID);
 
-                itemExisting.Title = item.Title;
-                itemExisting.Description = item.Description;
-                itemExisting.CategoryID = item.CategoryID;
+                listingExisting.Title = listing.Title;
+                listingExisting.Description = listing.Description;
+                listingExisting.CategoryID = listing.CategoryID;
 
-                itemExisting.Enabled = item.Enabled;
-                itemExisting.Active = item.Active;
-                itemExisting.Premium = item.Premium;
+                listingExisting.Enabled = listing.Enabled;
+                listingExisting.Active = listing.Active;
+                listingExisting.Premium = listing.Premium;
 
-                itemExisting.ContactEmail = item.ContactEmail;
-                itemExisting.ContactName = item.ContactName;
-                itemExisting.ContactPhone = item.ContactPhone;
+                listingExisting.ContactEmail = listing.ContactEmail;
+                listingExisting.ContactName = listing.ContactName;
+                listingExisting.ContactPhone = listing.ContactPhone;
 
-                itemExisting.Latitude = item.Latitude;
-                itemExisting.Longitude = item.Longitude;
-                itemExisting.Location = item.Location;
+                listingExisting.Latitude = listing.Latitude;
+                listingExisting.Longitude = listing.Longitude;
+                listingExisting.Location = listing.Location;
 
-                itemExisting.ShowPhone = item.ShowPhone;
-                itemExisting.ShowEmail = item.ShowEmail;
+                listingExisting.ShowPhone = listing.ShowPhone;
+                listingExisting.ShowEmail = listing.ShowEmail;
 
-                itemExisting.UserID = item.UserID;
+                listingExisting.UserID = listing.UserID;
 
-                itemExisting.Price = item.Price;
-                itemExisting.Currency = item.Currency;
+                listingExisting.Price = listing.Price;
+                listingExisting.Currency = listing.Currency;
 
-                itemExisting.ListingTypeID = item.ListingTypeID;
+                listingExisting.ListingTypeID = listing.ListingTypeID;
 
-                itemExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
+                listingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 
-                _listingService.Update(itemExisting);
+                _listingService.Update(listingExisting);
             }
 
             // Delete existing fields on item
-            var customFieldItemQuery = await _customFieldListingService.Query(x => x.ListingID == item.ID).SelectAsync();
+            var customFieldItemQuery = await _customFieldListingService.Query(x => x.ListingID == listing.ID).SelectAsync();
             var customFieldIds = customFieldItemQuery.Select(x => x.ID).ToList();
             foreach (var customFieldId in customFieldIds)
             {
@@ -529,7 +545,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             }
 
             // Get custom fields
-            var customFieldCategoryQuery = await _customFieldCategoryService.Query(x => x.CategoryID == item.CategoryID).Include(x => x.MetaField.ListingMetas).SelectAsync();
+            var customFieldCategoryQuery = await _customFieldCategoryService.Query(x => x.CategoryID == listing.CategoryID).Include(x => x.MetaField.ListingMetas).SelectAsync();
             var customFieldCategories = customFieldCategoryQuery.ToList();
 
             // Update custom fields
@@ -549,7 +565,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
                 var itemMeta = new ListingMeta()
                 {
-                    ListingID = item.ID,
+                    ListingID = listing.ID,
                     Value = formValue,
                     FieldID = field.ID,
                     ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
@@ -563,7 +579,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             // Update photos
             if (Request.Files.Count > 0)
             {
-                var itemPictureQuery = _ListingPictureservice.Queryable().Where(x => x.ListingID == item.ID);
+                var itemPictureQuery = _ListingPictureservice.Queryable().Where(x => x.ListingID == listing.ID);
                 if (itemPictureQuery.Count() > 0)
                     nextPictureOrderId = itemPictureQuery.Max(x => x.Ordering);
             }
@@ -596,7 +612,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                     }
 
                     var itemPicture = new ListingPicture();
-                    itemPicture.ListingID = item.ID;
+                    itemPicture.ListingID = listing.ID;
                     itemPicture.PictureID = picture.ID;
                     itemPicture.Ordering = nextPictureOrderId;
 
@@ -611,7 +627,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             // Update statistics count
             if (updateCount)
             {
-                _sqlDbService.UpdateCategoryItemCount(item.CategoryID);
+                _sqlDbService.UpdateCategoryItemCount(listing.CategoryID);
                 _dataCacheService.RemoveCachedItem(CacheKeys.Statistics);
             }
 
@@ -715,19 +731,19 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             }
             else
             {
-                var ListingTypeExisting = await _ListingTypeService.FindAsync(model.ID);
+                var listingTypeExisting = await _ListingTypeService.FindAsync(model.ID);
 
-                ListingTypeExisting.Name = model.Name;
-                ListingTypeExisting.ButtonLabel = model.ButtonLabel;
-                ListingTypeExisting.PriceUnitLabel = model.PriceUnitLabel;
-                ListingTypeExisting.OrderTypeID = model.OrderTypeID;
-                ListingTypeExisting.OrderTypeLabel = model.OrderTypeLabel;
-                ListingTypeExisting.PaymentEnabled = model.PaymentEnabled;
-                ListingTypeExisting.ShippingEnabled = model.ShippingEnabled;
+                listingTypeExisting.Name = model.Name;
+                listingTypeExisting.ButtonLabel = model.ButtonLabel;
+                listingTypeExisting.PriceUnitLabel = model.PriceUnitLabel;
+                listingTypeExisting.OrderTypeID = model.OrderTypeID;
+                listingTypeExisting.OrderTypeLabel = model.OrderTypeLabel;
+                listingTypeExisting.PaymentEnabled = model.PaymentEnabled;
+                listingTypeExisting.ShippingEnabled = model.ShippingEnabled;
 
-                ListingTypeExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
+                listingTypeExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 
-                _ListingTypeService.Update(ListingTypeExisting);
+                _ListingTypeService.Update(listingTypeExisting);
             }
 
             await _unitOfWorkAsync.SaveChangesAsync();

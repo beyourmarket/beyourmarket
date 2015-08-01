@@ -31,6 +31,12 @@
                 </div>
 
                 <div class="panel-body">
+                    @Html.Partial("_UserMessage")
+
+                    <div class="alert alert-info">                        
+                        <p>[[[Here you can add categories and subcategories. There shall always be one category for each listing.]]]</p>
+                    </div>
+
                     <div class="row">
                         <div class="col-lg-10">
                             <a class="btn btn-primary" href="@Url.Action("CategoryUpdate", "Listing")"><i class="fa fa-plus"></i> [[[Add New]]]</a>

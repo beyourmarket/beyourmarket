@@ -1,0 +1,9 @@
+﻿@model BeYourMarket.Web.Models.ListingUpdateModel
+
+<!-- Show Listing Type -->
+<div class="form-group">
+    <label class="col-md-2 control-label">[[[Listing Type]]]</label>
+    <div class="col-md-10">
+        @Html.DropDownListFor(m => m.ListingTypeID, new SelectList(Model.ListingTypes, "ID", "Name", Model.ListingItem.ListingTypeID), new { @class = "form-control input-lg" })        
+    </div>
+</div>  

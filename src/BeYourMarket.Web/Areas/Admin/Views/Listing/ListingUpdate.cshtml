@@ -19,6 +19,7 @@
                         @Html.Partial("_UserMessage")
                         @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
 
+                        @Html.HiddenFor(x=> x.ListingItem.ID)
                         <div class="form-group">
                             <label class="col-sm-2 control-label">ID</label>
                             <div class="col-sm-10">
@@ -33,12 +34,9 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-md-2 control-label">[[[Listing Type]]]</label>
-                            <div class="col-md-10">
-                                @Html.DropDownListFor(m => m.ListingTypeID, new SelectList(Model.ListingTypes, "ID", "Name", Model.ListingItem.ListingTypeID), new { @class = "form-control input-lg" })
-                            </div>
-                        </div>                        
+                        <div id="listingTypesPlaceHolder">
+                            @Html.Partial("_ListingTypes", Model)
+                        </div>
 
                         <div class="form-group">
                             <label class="col-md-2 control-label">[[[Title]]]</label>
@@ -247,6 +245,7 @@
         $("#CategoryID").change(function () {
             /* Get the selected value of dropdownlist */
             var selectedID = $(this).val();
+            var listingID = $("#ListingItem_ID").val();
 
             /* Request the partial view with .get request. */
             $.get('@Url.Action("ListingPartial", "Listing")?categoryID=' + selectedID, function (data) {
@@ -255,6 +254,17 @@
                 $('#partialPlaceHolder').html(data);
                 /* little fade in effect */
                 $('#partialPlaceHolder').fadeIn('fast');
+            });
+
+
+            $.get('@Url.Action("ListingTypesPartial", "Listing")?categoryID=' + selectedID + '&listingID=' + listingID, function (data) {
+
+                /* data is the pure html returned from action method, load it to your page */
+                $('#listingTypesPlaceHolder').empty();
+                $('#listingTypesPlaceHolder').html(data);
+                /* little fade in effect */
+                $('#listingTypesPlaceHolder').fadeIn('slow');
+                $('#listingTypesPlaceHolder').addClass('fadeIn animated');
             });
         });
     </script>

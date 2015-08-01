@@ -66,6 +66,10 @@
                 <div class="panel-body">
                     @Html.Partial("_UserMessage")
 
+                    <div class="alert alert-info">
+                        <p>[[[Here you can manage all the plugins. To add/develop a new plugin, please read the documentation.]]]</p>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             @Html.Grid(Model).Columns(columns =>

@@ -19,7 +19,8 @@
                     </p>
                 </div>
                 <div class="panel-body bdr-b ">
-                    <form action="@Url.Action("ListingUpdate", "Listing" )" id="listingUpdateForm" method="post" role="form" enctype="multipart/form-data" onkeypress="return event.keyCode != 13;">
+                    <form action="@Url.Action("ListingUpdate", "Listing")" id="listingUpdateForm" method="post" role="form" enctype="multipart/form-data" onkeypress="return event.keyCode != 13;">
+                        @Html.HiddenFor(x => x.ListingItem.ID)
                         @Html.Partial("_UserMessage")
                         @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
 
@@ -28,12 +29,9 @@
                             <label>[[[Category]]]</label>
                             @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.ListingItem.CategoryID), new { @class = "form-control input-lg" })
 
-                            <!-- Show Listing Type -->
-                            @if (Model.ListingTypes.Count > 1)
-                            {
-                                <label>[[[Listing Type]]]</label>
-                                @Html.DropDownListFor(m => m.ListingTypeID, new SelectList(Model.ListingTypes, "ID", "Name", Model.ListingItem.ListingTypeID), new { @class = "form-control input-lg" })
-                            }                            
+                            <div id="listingTypesPlaceHolder">
+                                @Html.Partial("_ListingTypes", Model)
+                            </div>
 
                             <div class="form-group">
                                 <label>[[[Title]]]</label>
@@ -157,8 +155,9 @@
         $("#CategoryID").change(function () {
             /* Get the selected value of dropdownlist */
             var selectedID = $(this).val();
+            var listingID = $("#ListingItem_ID").val();
 
-            /* Request the partial view with .get request. */
+            /* Request the partial view with get request. */
             $.get('@Url.Action("ListingPartial", "Listing")?categoryID=' + selectedID, function (data) {
 
                 /* data is the pure html returned from action method, load it to your page */
@@ -167,6 +166,16 @@
                 /* little fade in effect */
                 $('#partialPlaceHolder').fadeIn('slow');
                 $('#partialPlaceHolder').addClass('fadeIn animated');
+            });
+
+            $.get('@Url.Action("ListingTypesPartial", "Listing")?categoryID=' + selectedID + '&listingID=' + listingID, function (data) {
+
+                /* data is the pure html returned from action method, load it to your page */
+                $('#listingTypesPlaceHolder').empty();
+                $('#listingTypesPlaceHolder').html(data);
+                /* little fade in effect */
+                $('#listingTypesPlaceHolder').fadeIn('slow');
+                $('#listingTypesPlaceHolder').addClass('fadeIn animated');
             });
         });
 
