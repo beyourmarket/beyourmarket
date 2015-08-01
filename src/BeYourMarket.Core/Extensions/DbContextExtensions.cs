@@ -34,8 +34,8 @@ namespace BeYourMarket.Core.Extensions
 
             foreach (var table in tables)
             {
-                var itemType = (EntityType)table;
-                DeleteTable(context, itemType.Name);
+                var ListingType = (EntityType)table;
+                DeleteTable(context, ListingType.Name);
             }
         }
 

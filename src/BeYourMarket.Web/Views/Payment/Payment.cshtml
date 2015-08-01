@@ -16,54 +16,54 @@
     <div class="section panel-header ">
         <div class="container-fluid">
             <div class="col-md-12">
-                <h3>@Model.ItemOrder.Item.Title</h3>
-                <h5>@Model.ItemOrder.Item.Description</h5>
+                <h3>@Model.ListingOrder.Listing.Title</h3>
+                <h5>@Model.ListingOrder.Listing.Description</h5>
 
-                <h3>@Model.ItemOrder.PriceFormatted</h3>
+                <h3>@Model.ListingOrder.PriceFormatted</h3>
 
                 <div class="row">
                     <div class="col-md-6">
-                        @if (Model.ItemOrder.Item.ItemPictures.Count > 0)
+                        @if (Model.ListingOrder.Listing.ListingPictures.Count > 0)
                         {
-                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetItemImagePath(Model.ItemOrder.Item.ItemPictures.FirstOrDefault().ID)" />
+                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(Model.ListingOrder.Listing.ListingPictures.FirstOrDefault().ID)" />
                         }
                         else
                         {
-                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetItemImagePath(0)" />
+                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(0)" />
                         }
                     </div>
 
                     <div class="col-md-6">
-                        <input type="hidden" id="id" name="id" value="@Model.ItemOrder.ID" />
+                        <input type="hidden" id="id" name="id" value="@Model.ListingOrder.ID" />
 
-                        @if (Model.ItemOrder.Item.ItemType.OrderTypeID == (int)Enum_ItemOrderType.DateRange)
+                        @if (Model.ListingOrder.Listing.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
                         {
                             <div class="form-group">
                                 <label for="FromDate">[[[From Date]]]</label>
                                 <div class="input-group date datepicker">
-                                    <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" readonly value="@Model.ItemOrder.FromDate.Value.ToShortDateString()" /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" readonly value="@Model.ListingOrder.FromDate.Value.ToShortDateString()" /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="ToDate">[[[To Date]]]</label>
                                 <div class="input-group date datepicker">
-                                    <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" readonly value="@Model.ItemOrder.FromDate.Value.ToShortDateString()" /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                    <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" readonly value="@Model.ListingOrder.FromDate.Value.ToShortDateString()" /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                 </div>
                             </div>
                         }
-                        else if (Model.ItemOrder.Item.ItemType.OrderTypeID == (int)Enum_ItemOrderType.Quantity)
+                        else if (Model.ListingOrder.Listing.ListingType.OrderTypeID == (int)Enum_ListingOrderType.Quantity)
                         {
                             <div class="form-group">
-                                <label for="OrderTypeLabel">@Model.ItemOrder.Item.ItemType.OrderTypeLabel</label>
-                                <input type="text" class="form-control" id="OrderTypeLabel" name="OrderTypeLabel" readonly value="@Model.ItemOrder.Quantity" />
+                                <label for="OrderTypeLabel">@Model.ListingOrder.Listing.ListingType.OrderTypeLabel</label>
+                                <input type="text" class="form-control" id="OrderTypeLabel" name="OrderTypeLabel" readonly value="@Model.ListingOrder.Quantity" />
                             </div>
                         }                        
 
-                        <h5>[[[Price]]]: @Model.ItemOrder.PriceFormatted</h5>
+                        <h5>[[[Price]]]: @Model.ListingOrder.PriceFormatted</h5>
 
                         <!-- Payment Hook -->
-                        @Html.DoAction(HookName.Payment, Model.ItemOrder)
+                        @Html.DoAction(HookName.Payment, Model.ListingOrder)
                     </div>
 
                 </div>

@@ -21,14 +21,14 @@ namespace BeYourMarket.Web.Utilities
 
         public static bool HasImage(int id)
         {
-            var filePath = string.Format("~/images/item/{0}.jpg", id.ToString(fileFormat));
+            var filePath = string.Format("~/images/listing/{0}.jpg", id.ToString(fileFormat));
 
             return File.Exists(HostingEnvironment.MapPath(filePath));
         }
 
-        public static string GetItemImagePath(int id)
+        public static string GetListingImagePath(int id)
         {
-            var filePath = string.Format("~/images/item/{0}.jpg", id.ToString(fileFormat));
+            var filePath = string.Format("~/images/listing/{0}.jpg", id.ToString(fileFormat));
             if (File.Exists(HostingEnvironment.MapPath(filePath)))
             {
                 return ImageVersion(filePath);

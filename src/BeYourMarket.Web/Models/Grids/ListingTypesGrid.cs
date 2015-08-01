@@ -7,10 +7,10 @@ using System.Web;
 
 namespace BeYourMarket.Web.Models.Grids
 {
-    public class ListingTypesGrid : Grid<ItemType>
+    public class ListingTypesGrid : Grid<ListingType>
     {
-        public ListingTypesGrid(IQueryable<ItemType> itemTypes)
-            : base(itemTypes)
+        public ListingTypesGrid(IQueryable<ListingType> ListingTypes)
+            : base(ListingTypes)
         {
         }
     }

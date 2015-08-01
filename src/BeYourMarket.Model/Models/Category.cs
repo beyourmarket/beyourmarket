@@ -7,9 +7,9 @@ namespace BeYourMarket.Model.Models
     {
         public Category()
         {
-            this.CategoryItemTypes = new List<CategoryItemType>();
+            this.CategoryListingTypes = new List<CategoryListingType>();
             this.CategoryStats = new List<CategoryStat>();
-            this.Items = new List<Item>();
+            this.Listings = new List<Listing>();
             this.MetaCategories = new List<MetaCategory>();
         }
 
@@ -19,9 +19,9 @@ namespace BeYourMarket.Model.Models
         public int Parent { get; set; }
         public bool Enabled { get; set; }
         public int Ordering { get; set; }
-        public virtual ICollection<CategoryItemType> CategoryItemTypes { get; set; }
+        public virtual ICollection<CategoryListingType> CategoryListingTypes { get; set; }
         public virtual ICollection<CategoryStat> CategoryStats { get; set; }
-        public virtual ICollection<Item> Items { get; set; }
+        public virtual ICollection<Listing> Listings { get; set; }
         public virtual ICollection<MetaCategory> MetaCategories { get; set; }
     }
 }

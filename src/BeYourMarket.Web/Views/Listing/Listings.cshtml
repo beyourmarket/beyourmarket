@@ -121,9 +121,9 @@
                     <div class="container-fluid">
                         <div class=" col-md-12">
                             <h5 class="pull-left mrg-t">
-                                @string.Format("[[[Page {0} of {1}]]]", Model.ItemsPageList.PageCount < Model.PageNumber ? 0 : Model.PageNumber, Model.ItemsPageList.PageCount)                                
+                                @string.Format("[[[Page {0} of {1}]]]", Model.ListingsPageList.PageCount < Model.PageNumber ? 0 : Model.PageNumber, Model.ListingsPageList.PageCount)                                
                             </h5>
-                            @Html.PagedListPager(Model.ItemsPageList, (page) => { return Request.UrlReplace("PageNumber", page.ToString()); },
+                            @Html.PagedListPager(Model.ListingsPageList, (page) => { return Request.UrlReplace("PageNumber", page.ToString()); },
                             new PagedListRenderOptions
                                  {
                                      ContainerDivClasses = new List<string>(new string[] { "pull-right" }),

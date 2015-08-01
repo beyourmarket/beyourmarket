@@ -10,7 +10,7 @@ namespace BeYourMarket.Web.Models
     {
         public BeYourMarket.Web.Models.Grids.ListingsGrid Grid { get; set; }
 
-        public List<ItemModel> Items { get; set; }
+        public List<ListingItemModel> Listings { get; set; }
 
         public List<Category> Categories { get; set; }
     }

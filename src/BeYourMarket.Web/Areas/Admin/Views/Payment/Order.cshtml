@@ -52,9 +52,9 @@
     }
 }
 
-@helper DisplayListing(string title, int itemID)
+@helper DisplayListing(string title, int ListingID)
 {
-    <a href="@Url.Action("Listing", "Listing", new { id = itemID })">@title <i class="fa fa-external-link"></i></a>
+    <a href="@Url.Action("Listing", "Listing", new { id = ListingID })">@title <i class="fa fa-external-link"></i></a>
 }
 
 <div class="wraper container-fluid">
@@ -87,19 +87,22 @@
                                                .Sanitized(false)
                                                .Titled("[[[Status]]]").RenderValueAs(x => DisplayStatus(x.Status));
 
-                                           columns.Add(x => x.Item.Title)
+                                           columns.Add(x => x.Listing.Title)
                                                .Encoded(false)
                                                .Sanitized(false)
-                                               .Titled("[[[Title]]]").RenderValueAs(x => DisplayListing(x.Item.Title, x.ItemID));
+                                               .Titled("[[[Title]]]").RenderValueAs(x => DisplayListing(x.Listing.Title, x.ListingID));
 
-                                           columns.Add(x => x.AspNetUser.FullName).Titled("[[[Provider]]]");
-                                           columns.Add(x => x.AspNetUser1.FullName).Titled("[[[Receiver]]]");
+                                           columns.Add(x => x.AspNetUser.Email).Titled("[[[Provider]]]");
+                                           columns.Add(x => x.AspNetUser1.Email).Titled("[[[Receiver]]]");
 
                                            columns.Add(x => x.PriceFormatted).Titled("[[[Price]]]");
 
-                                           columns.Add(x => x.FromDate).Titled("[[[From]]]").RenderValueAs(x => x.FromDate.Value.ToShortDateString());
-                                           columns.Add(x => x.ToDate).Titled("[[[To]]]").RenderValueAs(x => x.ToDate.Value.ToShortDateString());
+                                           columns.Add(x => x.Description).Titled("[[[Description]]]");
+
+                                           columns.Add(x => x.Quantity).Titled("[[[Quantity]]]");
+                                                                                      
                                            columns.Add(x => x.ID).Titled("[[[Order ID]]]");
+                                           
                                            columns.Add(x => x.Created).Titled("[[[Created]]]").RenderValueAs(x => x.Created.ToShortDateString());
 
 

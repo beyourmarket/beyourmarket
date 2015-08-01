@@ -46,7 +46,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         private readonly ISettingDictionaryService _settingDictionaryService;
 
         private readonly ICategoryService _categoryService;
-        private readonly IItemService _itemService;
+        private readonly IListingService _listingService;
 
         private readonly ICustomFieldService _customFieldService;
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
@@ -108,7 +108,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             IUnitOfWorkAsync unitOfWorkAsync,
             ISettingService settingService,
             ICategoryService categoryService,
-            IItemService itemService,
+            IListingService listingService,
             ICustomFieldService customFieldService,
             ICustomFieldCategoryService customFieldCategoryService,
             IContentPageService contentPageService,
@@ -123,7 +123,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _settingDictionaryService = settingDictionaryService;
 
             _categoryService = categoryService;
-            _itemService = itemService;
+            _listingService = listingService;
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
 
@@ -145,7 +145,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             var userId = User.Identity.GetUserId();
 
             var orders = await _orderService.Query(x => x.Status != (int)Enum_OrderStatus.Created)
-                .Include(x => x.Item).Include(x => x.AspNetUser).Include(x => x.AspNetUser1).SelectAsync();
+                .Include(x => x.Listing).Include(x => x.AspNetUser).Include(x => x.AspNetUser1).SelectAsync();
 
             var grid = new OrdersGrid(orders.AsQueryable().OrderByDescending(x => x.Created));
 

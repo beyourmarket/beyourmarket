@@ -29,10 +29,10 @@
                             @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.ListingItem.CategoryID), new { @class = "form-control input-lg" })
 
                             <!-- Show Listing Type -->
-                            @if (Model.ItemTypes.Count > 1)
+                            @if (Model.ListingTypes.Count > 1)
                             {
                                 <label>[[[Listing Type]]]</label>
-                                @Html.DropDownListFor(m => m.ItemTypeID, new SelectList(Model.ItemTypes, "ID", "Name", Model.ListingItem.ItemTypeID), new { @class = "form-control input-lg" })
+                                @Html.DropDownListFor(m => m.ListingTypeID, new SelectList(Model.ListingTypes, "ID", "Name", Model.ListingItem.ListingTypeID), new { @class = "form-control input-lg" })
                             }                            
 
                             <div class="form-group">
@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="Price" name="Price" placeholder="[[[Price]]]" value="@Model.ListingItem.Price">
+                                    <input type="number" min="0" class="form-control" id="Price" name="Price" placeholder="[[[Price]]]" value="@Model.ListingItem.Price" data-rule-number="true" data-rule-min="0">
                                     <span class="input-group-addon">@CacheHelper.Settings.Currency</span>
                                 </div>
                             </div>

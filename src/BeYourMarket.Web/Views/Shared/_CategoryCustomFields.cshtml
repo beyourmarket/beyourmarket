@@ -1,4 +1,4 @@
-﻿@model BeYourMarket.Web.Models.CustomFieldItemModel
+﻿@model BeYourMarket.Web.Models.CustomFieldListingModel
 
 @if (Model.MetaCategories.Count > 0)
 {
@@ -14,7 +14,7 @@
                 options = field.Options.Split(new char[] { ',' });
             }
 
-            var itemMeta = field.ItemMetas.Where(x => x.ItemID == Model.ItemID).FirstOrDefault();
+            var itemMeta = field.ListingMetas.Where(x => x.ListingID == Model.ListingID).FirstOrDefault();
             var itemValue = string.Empty;
             if (itemMeta != null)
             {

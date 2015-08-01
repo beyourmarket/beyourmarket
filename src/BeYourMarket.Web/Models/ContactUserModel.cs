@@ -9,7 +9,7 @@ namespace BeYourMarket.Web.Models
     {
         public string UserID { get; set; }
 
-        public int ItemID { get; set; }
+        public int ListingID { get; set; }
 
         public string Name { get; set; }
 

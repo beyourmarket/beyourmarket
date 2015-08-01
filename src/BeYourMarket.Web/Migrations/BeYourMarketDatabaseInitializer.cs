@@ -58,7 +58,7 @@ namespace BeYourMarket.Web.Migrations
         {
             InstallSettings(context);
             InstallEmailTemplates(context);
-            InstallItemTypes(context);
+            InstallListingTypes(context);
 
             var user = CreateUser();
 
@@ -227,12 +227,12 @@ namespace BeYourMarket.Web.Migrations
 
         private void InstallSampleData(BeYourMarket.Model.Models.BeYourMarketContext context, ApplicationUser user)
         {
-            context.Items.Add(new Model.Models.Item()
+            context.Listings.Add(new Model.Models.Listing()
             {
                 Title = "Preganancy Massage",
                 Description = @"During an hour waiting women be allowed to experience total relaxation and relief of aches. The therapist works gently with the pregnant body to loosen up tight muscles, give peace to the nervous system, increase blood circulation and reduce pain in the body.",
                 CategoryID = 1,
-                ItemTypeID = 1,
+                ListingTypeID = 1,
                 UserID = user.Id,
                 Price = 100,
                 Currency = "DKK",
@@ -250,12 +250,12 @@ namespace BeYourMarket.Web.Migrations
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });
 
-            context.Items.Add(new Model.Models.Item()
+            context.Listings.Add(new Model.Models.Listing()
             {
                 Title = "Facial Treatment",
                 Description = @"Classic 45 min Facial treat: Cleaning, skin analysis, AHA-PHA peeling, light deep cleanse...",
                 CategoryID = 2,
-                ItemTypeID = 1,
+                ListingTypeID = 1,
                 UserID = user.Id,
                 Price = 249,
                 Currency = "DKK",
@@ -273,12 +273,12 @@ namespace BeYourMarket.Web.Migrations
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });
 
-            context.Items.Add(new Model.Models.Item()
+            context.Listings.Add(new Model.Models.Listing()
             {
                 Title = "60min Moisturizing face treatment",
                 Description = @"During an hour waiting women be allowed to experience total relaxation and relief of aches. The therapist works gently with the pregnant body to loosen up tight muscles, give peace to the nervous system, increase blood circulation and reduce pain in the body.",
                 CategoryID = 2,
-                ItemTypeID = 1,
+                ListingTypeID = 1,
                 UserID = user.Id,
                 Price = 219,
                 Currency = "DKK",
@@ -296,12 +296,12 @@ namespace BeYourMarket.Web.Migrations
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });
 
-            context.Items.Add(new Model.Models.Item()
+            context.Listings.Add(new Model.Models.Listing()
             {
                 Title = "Eyelash extensions",
                 Description = @"Give the lashes fullness and length with eyelash extensions. 50-100 fiber hair attached individually at one's own lashes for a natural look. The treatment takes about 90 minutes.",
                 CategoryID = 2,
-                ItemTypeID = 1,
+                ListingTypeID = 1,
                 UserID = user.Id,
                 Price = 375,
                 Currency = "DKK",
@@ -319,12 +319,12 @@ namespace BeYourMarket.Web.Migrations
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });
 
-            context.Items.Add(new Model.Models.Item()
+            context.Listings.Add(new Model.Models.Listing()
             {
                 Title = "60min Massage for 2 persons - 3 types to choose",
                 Description = @"Take your partner by the arm and enjoy an hour of relaxing parma sage. Choose freely between wellness, Aromatherapy- and hotstone massage. By wellness massage using long, smooth movements of the upper layers of the muscles of mental and physical relaxation. Fragrant oils from flowers and herbs used in Aroma Therapy massage for relaxation and enjoyment. By hotstone massage used heated lava rocks to smoothen the muscles, then loosen tensions and aches.",
                 CategoryID = 1,
-                ItemTypeID = 1,
+                ListingTypeID = 1,
                 UserID = user.Id,
                 Price = 549,
                 Currency = "DKK",
@@ -342,12 +342,12 @@ namespace BeYourMarket.Web.Migrations
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });
 
-            context.Items.Add(new Model.Models.Item()
+            context.Listings.Add(new Model.Models.Listing()
             {
                 Title = "1 hour shiatsu massage",
                 Description = @"Let the body come into focus with an hour shiatsu massage that combines deep pressure and long runs. The treatment allows the body to sink into a relaxed state, and it is therefore suitable for stress-related genes and other long-term imbalances. The massage takes place on a mattress on the floor, and it is important to be dressed in comfortable clothes, so the body can completely relax.",
                 CategoryID = 1,
-                ItemTypeID = 1,
+                ListingTypeID = 1,
                 UserID = user.Id,
                 Price = 249,
                 Currency = "DKK",
@@ -365,12 +365,12 @@ namespace BeYourMarket.Web.Migrations
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });
 
-            context.Items.Add(new Model.Models.Item()
+            context.Listings.Add(new Model.Models.Listing()
             {
                 Title = "Hot Stone Massage",
                 Description = @"With heated lava stones are the body's tense muscles supple and ready for a deep massage. The massage works with aches and tension, and brings blood to the muscles for a pain-relieving effect and increased flexibility.",
                 CategoryID = 1,
-                ItemTypeID = 1,
+                ListingTypeID = 1,
                 UserID = user.Id,
                 Price = 249,
                 Currency = "DKK",
@@ -388,12 +388,12 @@ namespace BeYourMarket.Web.Migrations
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });
 
-            context.Items.Add(new Model.Models.Item()
+            context.Listings.Add(new Model.Models.Listing()
             {
                 Title = "Facial massage",
                 Description = @"30 mins facial massage",
                 CategoryID = 1,
-                ItemTypeID = 1,
+                ListingTypeID = 1,
                 UserID = user.Id,
                 Price = 199,
                 Currency = "DKK",
@@ -411,12 +411,12 @@ namespace BeYourMarket.Web.Migrations
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });
 
-            context.Items.Add(new Model.Models.Item()
+            context.Listings.Add(new Model.Models.Listing()
             {
                 Title = "Waxing",
                 Description = @"Choose one of below for waxing: arms / thighs / Lower armpit / Upper lip / Upper lip and chin",
                 CategoryID = 3,
-                ItemTypeID = 1,
+                ListingTypeID = 1,
                 UserID = user.Id,
                 Price = 249,
                 Currency = "DKK",
@@ -435,13 +435,13 @@ namespace BeYourMarket.Web.Migrations
             });
         }
 
-        private void InstallItemTypes(Model.Models.BeYourMarketContext context)
+        private void InstallListingTypes(Model.Models.BeYourMarketContext context)
         {
-            context.ItemTypes.Add(new BeYourMarket.Model.Models.ItemType()
+            context.ListingTypes.Add(new BeYourMarket.Model.Models.ListingType()
             {
                 Name = "Offer",
                 ButtonLabel = "Book",
-                OrderTypeID = (int)Enum_ItemOrderType.DateRange,
+                OrderTypeID = (int)Enum_ListingOrderType.DateRange,
                 OrderTypeLabel = "Number of days",
                 PriceUnitLabel = "Per day",
                 PaymentEnabled = true,
@@ -487,17 +487,17 @@ namespace BeYourMarket.Web.Migrations
 
         private void InstallCategoryTypes(Model.Models.BeYourMarketContext context)
         {
-            context.CategoryItemTypes.Add(new BeYourMarket.Model.Models.CategoryItemType()
+            context.CategoryListingTypes.Add(new BeYourMarket.Model.Models.CategoryListingType()
             {
                 CategoryID = 1,
-                ItemTypeID = 1,
+                ListingTypeID = 1,
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });
 
-            context.CategoryItemTypes.Add(new BeYourMarket.Model.Models.CategoryItemType()
+            context.CategoryListingTypes.Add(new BeYourMarket.Model.Models.CategoryListingType()
             {
                 CategoryID = 2,
-                ItemTypeID = 1,
+                ListingTypeID = 1,
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });
         }
@@ -514,16 +514,16 @@ namespace BeYourMarket.Web.Migrations
 
                 context.SaveChanges();
 
-                context.ItemPictures.Add(new Model.Models.ItemPicture()
+                context.ListingPictures.Add(new Model.Models.ListingPicture()
                 {
-                    ItemID = i,
+                    ListingID = i,
                     PictureID = i,
                     ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
                 });
 
                 // Copy files
-                var pathFrom = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/images/sample/item"), string.Format("{0}.{1}", i.ToString("00000000"), "jpg"));
-                var pathTo = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/images/item"), string.Format("{0}.{1}", i.ToString("00000000"), "jpg"));
+                var pathFrom = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/images/sample/listing"), string.Format("{0}.{1}", i.ToString("00000000"), "jpg"));
+                var pathTo = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/images/listing"), string.Format("{0}.{1}", i.ToString("00000000"), "jpg"));
                 File.Copy(pathFrom, pathTo, true);
             }
         }

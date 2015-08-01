@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace BeYourMarket.Model.Models
 {
-    [MetadataType(typeof(ItemMetaData))]
-    public partial class Item
+    [MetadataType(typeof(ListingMetaData))]
+    public partial class Listing
     {
         public int PriceInCents
         {
@@ -32,12 +32,12 @@ namespace BeYourMarket.Model.Models
         {
             get
             {
-                return Price.HasValue && Active && Enabled && ItemType.OrderTypeID != (int)Enum_ItemOrderType.None;
+                return Price.HasValue && Active && Enabled && ListingType.OrderTypeID != (int)Enum_ListingOrderType.None;
             }
         }
     }
 
-    public class ItemMetaData
+    public class ListingMetaData
     {
         [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = true, NullDisplayText = "-")]
         public Nullable<double> Price { get; set; }

@@ -9,6 +9,6 @@ namespace BeYourMarket.Web.Models
 {
     public class PaymentModel
     {
-        public Order ItemOrder { get; set; }
+        public Order ListingOrder { get; set; }
     }
 }

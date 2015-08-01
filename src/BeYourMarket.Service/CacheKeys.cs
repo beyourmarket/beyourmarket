@@ -11,7 +11,7 @@ namespace BeYourMarket.Service
         Settings,
         SettingDictionary,
         Categories,
-        ItemTypes,
+        ListingTypes,
         ContentPages,
         EmailTemplates,
         Statistics

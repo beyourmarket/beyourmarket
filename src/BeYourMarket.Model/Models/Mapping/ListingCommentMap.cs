@@ -3,9 +3,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace BeYourMarket.Model.Models.Mapping
 {
-    public class ItemCommentMap : EntityTypeConfiguration<ItemComment>
+    public class ListingCommentMap : EntityTypeConfiguration<ListingComment>
     {
-        public ItemCommentMap()
+        public ListingCommentMap()
         {
             // Primary Key
             this.HasKey(t => t.ID);
@@ -31,9 +31,9 @@ namespace BeYourMarket.Model.Models.Mapping
                 .HasMaxLength(128);
 
             // Table & Column Mappings
-            this.ToTable("ItemComments");
+            this.ToTable("ListingComments");
             this.Property(t => t.ID).HasColumnName("ID");
-            this.Property(t => t.ItemID).HasColumnName("ItemID");
+            this.Property(t => t.ListingID).HasColumnName("ListingID");
             this.Property(t => t.Title).HasColumnName("Title");
             this.Property(t => t.Comment).HasColumnName("Comment");
             this.Property(t => t.AuthorName).HasColumnName("AuthorName");
@@ -45,9 +45,9 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.UserID).HasColumnName("UserID");
 
             // Relationships
-            this.HasRequired(t => t.Item)
-                .WithMany(t => t.ItemComments)
-                .HasForeignKey(d => d.ItemID);
+            this.HasRequired(t => t.Listing)
+                .WithMany(t => t.ListingComments)
+                .HasForeignKey(d => d.ListingID);
 
         }
     }

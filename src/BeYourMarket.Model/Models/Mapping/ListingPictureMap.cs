@@ -3,27 +3,27 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace BeYourMarket.Model.Models.Mapping
 {
-    public class ItemPictureMap : EntityTypeConfiguration<ItemPicture>
+    public class ListingPictureMap : EntityTypeConfiguration<ListingPicture>
     {
-        public ItemPictureMap()
+        public ListingPictureMap()
         {
             // Primary Key
             this.HasKey(t => t.ID);
 
             // Properties
             // Table & Column Mappings
-            this.ToTable("ItemPictures");
+            this.ToTable("ListingPictures");
             this.Property(t => t.ID).HasColumnName("ID");
-            this.Property(t => t.ItemID).HasColumnName("ItemID");
+            this.Property(t => t.ListingID).HasColumnName("ListingID");
             this.Property(t => t.PictureID).HasColumnName("PictureID");
             this.Property(t => t.Ordering).HasColumnName("Ordering");
 
             // Relationships
-            this.HasRequired(t => t.Item)
-                .WithMany(t => t.ItemPictures)
-                .HasForeignKey(d => d.ItemID);
+            this.HasRequired(t => t.Listing)
+                .WithMany(t => t.ListingPictures)
+                .HasForeignKey(d => d.ListingID);
             this.HasRequired(t => t.Picture)
-                .WithMany(t => t.ItemPictures)
+                .WithMany(t => t.ListingPictures)
                 .HasForeignKey(d => d.PictureID);
 
         }

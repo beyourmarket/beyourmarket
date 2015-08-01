@@ -37,11 +37,11 @@ namespace BeYourMarket.Service
             }
         }
 
-        public static List<ItemType> ItemTypes
+        public static List<ListingType> ListingTypes
         {
             get
             {
-                return ContainerManager.GetConfiguredContainer().Resolve<BeYourMarket.Service.DataCacheService>().GetCachedItem(CacheKeys.ItemTypes) as List<ItemType>;
+                return ContainerManager.GetConfiguredContainer().Resolve<BeYourMarket.Service.DataCacheService>().GetCachedItem(CacheKeys.ListingTypes) as List<ListingType>;
             }
         }
 

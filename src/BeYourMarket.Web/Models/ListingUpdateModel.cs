@@ -14,25 +14,25 @@ namespace BeYourMarket.Web.Models
             Categories = new List<Category>();
             Users = new List<ApplicationUser>();
             Pictures = new List<PictureModel>();
-            CustomFields = new CustomFieldItemModel();
+            CustomFields = new CustomFieldListingModel();
         }
 
         public int CategoryID { get; set; }
 
-        public int ItemTypeID { get; set; }
+        public int ListingTypeID { get; set; }
 
         public string UserID { get; set; }
 
-        public Item ListingItem { get; set; }
+        public Listing ListingItem { get; set; }
 
         public List<Category> Categories { get; set; }
 
-        public List<ItemType> ItemTypes { get; set; }
+        public List<ListingType> ListingTypes { get; set; }
 
         public List<ApplicationUser> Users { get; set; }
 
         public List<PictureModel> Pictures { get; set; }
 
-        public CustomFieldItemModel CustomFields { get; set; }
+        public CustomFieldListingModel CustomFields { get; set; }
     }
 }

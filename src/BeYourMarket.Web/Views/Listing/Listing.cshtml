@@ -1,10 +1,10 @@
 ﻿@using Microsoft.Practices.Unity;
 @using Microsoft.Practices.Unity.Configuration;
 
-@model BeYourMarket.Web.Models.ItemModel
+@model BeYourMarket.Web.Models.ListingItemModel
 
 @{
-    ViewBag.Title = Model.ItemCurrent.Title;
+    ViewBag.Title = Model.ListingCurrent.Title;
 }
 
 @section Styles {
@@ -30,32 +30,32 @@
                     </div>
 
                     <div class="col-md-6">
-                        <h3>@Model.ItemCurrent.Title</h3>
-                        @if (Model.ItemCurrent.Price.HasValue)
+                        <h3>@Model.ListingCurrent.Title</h3>
+                        @if (Model.ListingCurrent.Price.HasValue)
                         {
                             <h4>
-                                @Html.DisplayFor(x => x.ItemCurrent.PriceFormatted) @Model.ItemCurrent.ItemType.PriceUnitLabel
+                                @Html.DisplayFor(x => x.ListingCurrent.PriceFormatted) @Model.ListingCurrent.ListingType.PriceUnitLabel
                             </h4>
                         }
                         <p class="lead text-lighten">
-                            @Model.ItemCurrent.Location
+                            @Model.ListingCurrent.Location
                         </p>
                     </div>
                 </div>
 
-                @if (Model.ItemCurrent.OrderAllowed)
+                @if (Model.ListingCurrent.OrderAllowed)
                 {
                     <div class="row">
                         <div class="col-md-12">
                             <form class="form-inline" action="@Url.Action("Order", "Payment")" method="get" role="form">
-                                <input id="ItemID" name="ItemID" type="hidden" value="@Model.ItemCurrent.ID" />
-                                <input id="ItemTypeID" name="ItemTypeID" type="hidden" value="@Model.ItemCurrent.ItemTypeID" />
-                                @if (!string.IsNullOrEmpty(Model.ItemCurrent.ItemType.OrderTypeLabel))
+                                <input id="ListingID" name="ListingID" type="hidden" value="@Model.ListingCurrent.ID" />
+                                <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingCurrent.ListingTypeID" />
+                                @if (!string.IsNullOrEmpty(Model.ListingCurrent.ListingType.OrderTypeLabel))
                                 {                                    
-                                    <h5>@Model.ItemCurrent.ItemType.OrderTypeLabel</h5>
+                                    <h5>@Model.ListingCurrent.ListingType.OrderTypeLabel</h5>
                                 }                                
 
-                                @if (Model.ItemCurrent.ItemType.OrderTypeID == (int)Enum_ItemOrderType.DateRange)
+                                @if (Model.ListingCurrent.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
                                 {
                                     <div class="input-daterange input-group datepicker form-group" id="datepicker">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -65,12 +65,12 @@
                                         <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" data-rule-required="true" data-rule-date="true" />
                                     </div>
                                 }
-                                else if (Model.ItemCurrent.ItemType.OrderTypeID == (int)Enum_ItemOrderType.Quantity)
+                                else if (Model.ListingCurrent.ListingType.OrderTypeID == (int)Enum_ListingOrderType.Quantity)
                                 {
                                     <input type="text" class="form-control" id="Quantity" name="Quantity" data-rule-required="true" data-rule-number="true" data-rule-min="0" />
                                 }
 
-                                <button class="btn btn-primary">@Model.ItemCurrent.ItemType.ButtonLabel</button>
+                                <button class="btn btn-primary">@Model.ListingCurrent.ListingType.ButtonLabel</button>
                             </form>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                             <div class="panel panel-default bdr-t-none">
                                 <div class="panel-body">
                                     <p>
-                                        @Model.ItemCurrent.Description
+                                        @Model.ListingCurrent.Description
                                     </p>
                                 </div>
                                 <table class="table">
@@ -109,7 +109,7 @@
                                                 [[[Date Posted]]]
                                             </td>
                                             <td>
-                                                @Model.ItemCurrent.Created.ToShortDateString()
+                                                @Model.ListingCurrent.Created.ToShortDateString()
                                             </td>
                                         </tr>
                                         <tr>
@@ -117,7 +117,7 @@
                                                 [[[Price]]]
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(x => Model.ItemCurrent.PriceFormatted)
+                                                @Html.DisplayFor(x => Model.ListingCurrent.PriceFormatted)
                                             </td>
                                         </tr>
                                         <tr>
@@ -125,7 +125,7 @@
                                                 [[[Location]]]
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(x => Model.ItemCurrent.Location)
+                                                @Html.DisplayFor(x => Model.ListingCurrent.Location)
                                             </td>
                                         </tr>
                                         <tr>
@@ -133,7 +133,7 @@
                                                 [[[Listing ID]]]
                                             </td>
                                             <td>
-                                                @Model.ItemCurrent.ID
+                                                @Model.ListingCurrent.ID
                                             </td>
                                         </tr>
                                         <tr>
@@ -141,7 +141,7 @@
                                                 [[[Views]]]
                                             </td>
                                             <td>
-                                                @Model.ItemCurrent.ItemStats.FirstOrDefault().CountView
+                                                @Model.ListingCurrent.ListingStats.FirstOrDefault().CountView
                                             </td>
                                         </tr>
                                         <tr>
@@ -149,11 +149,11 @@
                                                 [[[Category]]]
                                             </td>
                                             <td>
-                                                <a href="@Url.Action("Search", "Home", new { categoryId = Model.ItemCurrent.CategoryID })">@Model.ItemCurrent.Category.Name</a>
+                                                <a href="@Url.Action("Search", "Home", new { categoryId = Model.ListingCurrent.CategoryID })">@Model.ListingCurrent.Category.Name</a>
                                             </td>
                                         </tr>
 
-                                        @foreach (var item in Model.ItemCurrent.ItemMetas)
+                                        @foreach (var item in Model.ListingCurrent.ListingMetas)
                                         {
                                             <tr>
                                                 <td>
@@ -167,7 +167,7 @@
                                     </tbody>
                                 </table>
 
-                                @if (Model.ItemCurrent.Latitude.HasValue && Model.ItemCurrent.Longitude.HasValue)
+                                @if (Model.ListingCurrent.Latitude.HasValue && Model.ListingCurrent.Longitude.HasValue)
                                 {
                                     <div class="panel-heading bdr-t">
                                         <i class="fa fa-map-marker"></i> [[[Map]]]
@@ -181,11 +181,11 @@
 
                         <div role="tabpanel" class="tab-pane" id="contact">
                             <div class="panel panel-default bdr-t-none">
-                                @if (Model.ItemCurrent.ShowPhone && !string.IsNullOrEmpty(Model.ItemCurrent.ContactPhone))
+                                @if (Model.ListingCurrent.ShowPhone && !string.IsNullOrEmpty(Model.ListingCurrent.ContactPhone))
                                 {
                                     <div class="list-group">
-                                        <a data-text-swap="[[[Contact number (Click to show)]]]" data-text-original="@Model.ItemCurrent.ContactPhone" class="text-swap list-group-item "><i class="mdi-hardware-phone-iphone"></i> [[[Contact number (Click to show)]]]</a>
-                                        <a href="@Url.Action("Profile", "Listing", new { id = Model.ItemCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>[[[View User's other listings]]]</a>
+                                        <a data-text-swap="[[[Contact number (Click to show)]]]" data-text-original="@Model.ListingCurrent.ContactPhone" class="text-swap list-group-item "><i class="mdi-hardware-phone-iphone"></i> [[[Contact number (Click to show)]]]</a>
+                                        <a href="@Url.Action("Profile", "Listing", new { id = Model.ListingCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>[[[View User's other listings]]]</a>
                                     </div>
                                 }
 
@@ -198,7 +198,7 @@
 
                                     <div class="panel-body">
                                         <form role="form" method="post" action="@Url.Action("ContactUser", "Listing")">
-                                            <input type="hidden" id="ItemID" name="ItemID" value="@Model.ItemCurrent.ID" />
+                                            <input type="hidden" id="ListingID" name="ListingID" value="@Model.ListingCurrent.ID" />
 
                                             <div class="form-group">
                                                 <textarea rows="4" class="form-control" id="Message" name="Message" placeholder="[[[Message]]]" required minlength="20"></textarea>
@@ -273,7 +273,7 @@
                         }
                         else
                         {
-                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetItemImagePath(0)" />
+                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(0)" />
                         }
                     </div>
                 </div>
@@ -328,12 +328,12 @@
         });
     </script>
 
-    @if (Model.ItemCurrent.Latitude.HasValue && Model.ItemCurrent.Longitude.HasValue)
+    @if (Model.ListingCurrent.Latitude.HasValue && Model.ListingCurrent.Longitude.HasValue)
     {
         <text>
             <script type="text/javascript">
                 function initialize() {
-                    var myLatlng = new google.maps.LatLng(@Model.ItemCurrent.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture), @Model.ItemCurrent.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                    var myLatlng = new google.maps.LatLng(@Model.ListingCurrent.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture), @Model.ListingCurrent.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture));
                     var mapOptions = {
                         zoom: 14,
                         center: myLatlng
@@ -343,7 +343,7 @@
                     var marker = new google.maps.Marker({
                         position: myLatlng,
                         map: map,
-                        content: '@Model.ItemCurrent.Location'
+                        content: '@Model.ListingCurrent.Location'
                     });
                 }
 

@@ -31,8 +31,8 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.ID).HasColumnName("ID");
             this.Property(t => t.FromDate).HasColumnName("FromDate");
             this.Property(t => t.ToDate).HasColumnName("ToDate");
-            this.Property(t => t.ItemID).HasColumnName("ItemID");
-            this.Property(t => t.ItemTypeID).HasColumnName("ItemTypeID");
+            this.Property(t => t.ListingID).HasColumnName("ListingID");
+            this.Property(t => t.ListingTypeID).HasColumnName("ListingTypeID");
             this.Property(t => t.Status).HasColumnName("Status");
             this.Property(t => t.Quantity).HasColumnName("Quantity");
             this.Property(t => t.Price).HasColumnName("Price");
@@ -53,9 +53,9 @@ namespace BeYourMarket.Model.Models.Mapping
             this.HasRequired(t => t.AspNetUser1)
                 .WithMany(t => t.Orders1)
                 .HasForeignKey(d => d.UserReceiver);
-            this.HasRequired(t => t.Item)
+            this.HasRequired(t => t.Listing)
                 .WithMany(t => t.Orders)
-                .HasForeignKey(d => d.ItemID);
+                .HasForeignKey(d => d.ListingID);
 
         }
     }

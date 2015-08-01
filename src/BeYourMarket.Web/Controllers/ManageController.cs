@@ -32,14 +32,14 @@ namespace BeYourMarket.Web.Controllers
         private readonly ISettingService _settingService;
         private readonly ISettingDictionaryService _settingDictionaryService;
         private readonly ICategoryService _categoryService;
-        private readonly IItemService _itemService;
-        private readonly IItemStatService _itemStatService;
-        private readonly IItemPictureService _itemPictureService;
+        private readonly IListingService _listingService;
+        private readonly IListingStatService _ListingStatservice;
+        private readonly IListingPictureService _ListingPictureservice;
         private readonly IPictureService _pictureService;
         private readonly IOrderService _orderService;
         private readonly ICustomFieldService _customFieldService;
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
-        private readonly ICustomFieldItemService _customFieldItemService;
+        private readonly ICustomFieldListingService _customFieldListingService;
 
         private readonly DataCacheService _dataCacheService;
         private readonly SqlDbService _sqlDbService;
@@ -76,15 +76,15 @@ namespace BeYourMarket.Web.Controllers
             IUnitOfWorkAsync unitOfWorkAsync,
             ISettingService settingService,
             ICategoryService categoryService,
-            IItemService itemService,
+            IListingService listingService,
             IPictureService pictureService,
-            IItemPictureService itemPictureService,
+            IListingPictureService ListingPictureservice,
             IOrderService orderService,
             ICustomFieldService customFieldService,
             ICustomFieldCategoryService customFieldCategoryService,
-            ICustomFieldItemService customFieldItemService,
+            ICustomFieldListingService customFieldListingService,
             ISettingDictionaryService settingDictionaryService,
-            IItemStatService itemStatService,
+            IListingStatService ListingStatservice,
             DataCacheService dataCacheService,
             SqlDbService sqlDbService)
         {
@@ -92,15 +92,15 @@ namespace BeYourMarket.Web.Controllers
             _settingDictionaryService = settingDictionaryService;
 
             _categoryService = categoryService;
-            _itemService = itemService;
+            _listingService = listingService;
             _pictureService = pictureService;
-            _itemPictureService = itemPictureService;
+            _ListingPictureservice = ListingPictureservice;
             _orderService = orderService;            
             
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
-            _customFieldItemService = customFieldItemService;
-            _itemStatService = itemStatService;
+            _customFieldListingService = customFieldListingService;
+            _ListingStatservice = ListingStatservice;
 
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
@@ -398,25 +398,25 @@ namespace BeYourMarket.Web.Controllers
         public async Task<ActionResult> Dashboard(string searchText)
         {
             var userId = User.Identity.GetUserId();
-            var items = await _itemService.Query(x => x.UserID == userId).Include(x => x.ItemPictures).SelectAsync();
+            var items = await _listingService.Query(x => x.UserID == userId).Include(x => x.ListingPictures).SelectAsync();
 
             // Filter string
             if (!string.IsNullOrEmpty(searchText))
                 items = items.Where(x => x.Title.ToLower().Contains(searchText.ToLower().ToString()));
 
-            var itemsModel = new List<ItemModel>();
+            var itemsModel = new List<ListingItemModel>();
             foreach (var item in items.OrderByDescending(x => x.Created))
             {
-                itemsModel.Add(new ItemModel()
+                itemsModel.Add(new ListingItemModel()
                 {
-                    ItemCurrent = item,
-                    UrlPicture = item.ItemPictures.Count == 0 ? ImageHelper.GetItemImagePath(0) : ImageHelper.GetItemImagePath(item.ItemPictures.OrderBy(x => x.Ordering).FirstOrDefault().PictureID)
+                    ListingCurrent = item,
+                    UrlPicture = item.ListingPictures.Count == 0 ? ImageHelper.GetListingImagePath(0) : ImageHelper.GetListingImagePath(item.ListingPictures.OrderBy(x => x.Ordering).FirstOrDefault().PictureID)
                 });
             }
 
             var model = new ListingModel()
             {
-                Items = itemsModel
+                Listings = itemsModel
             };
 
             return View(model);

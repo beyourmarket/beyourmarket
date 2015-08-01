@@ -25,9 +25,9 @@
     }   
 }
 
-@helper DisplayListing(string title, int itemID)
+@helper DisplayListing(string title, int ListingID)
 {
-    <a href="@Url.Action("Listing", "Listing", new { id = itemID })">@title <i class="fa fa-external-link"></i></a>
+    <a href="@Url.Action("Listing", "Listing", new { id = ListingID })">@title <i class="fa fa-external-link"></i></a>
 }
 
 <div class="panel-body">

@@ -1,4 +1,4 @@
-﻿@model BeYourMarket.Model.Models.ItemType
+﻿@model BeYourMarket.Model.Models.ListingType
 
 @{
     ViewBag.Title = "[[[Listing Type Update]]]";
@@ -39,26 +39,26 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label">[[[Order Type]]]</label>
                                 <div class="col-md-10">
-                                    @Html.DropDownListFor(m => m.OrderTypeID, EnumHelper.GetSelectList(typeof(BeYourMarket.Model.Enum.Enum_ItemOrderType)), new { @class = "form-control", required = "" })
+                                    @Html.DropDownListFor(m => m.OrderTypeID, EnumHelper.GetSelectList(typeof(BeYourMarket.Model.Enum.Enum_ListingOrderType)), new { @class = "form-control", required = "" })
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-2 control-label">[[[Order Type Label]]]</label>
+                                <label class="col-md-2 control-label">[[[OrderType Label]]]</label>
                                 <div class="col-md-10">
                                     <input type="text" class="form-control" id="OrderTypeLabel" name="OrderTypeLabel" value="@Model.OrderTypeLabel">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-2 control-label">[[[ButtonLabel]]]</label>
+                                <label class="col-md-2 control-label">[[[Button Label]]]</label>
                                 <div class="col-md-10">
                                     <input type="text" class="form-control" id="ButtonLabel" name="ButtonLabel" value="@Model.ButtonLabel" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-2 control-label">[[[PriceUnitLabel]]]</label>
+                                <label class="col-md-2 control-label">[[[PriceUnit Label]]]</label>
                                 <div class="col-md-10">
                                     <input type="text" class="form-control" id="PriceUnitLabel" name="PriceUnitLabel" value="@Model.PriceUnitLabel">
                                 </div>
@@ -70,7 +70,7 @@
                                 <label class="cr-styled">
                                     <input checked="@Model.PaymentEnabled" id="PaymentEnabled" name="PaymentEnabled" type="checkbox" value="true" />
                                     <i class="fa"></i>
-                                    [[[PaymentEnabled]]]
+                                    [[[Payment Enabled]]]
                                 </label>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                                 <label class="cr-styled">
                                     <input checked="@Model.ShippingEnabled" id="ShippingEnabled" name="ShippingEnabled" type="checkbox" value="true" />
                                     <i class="fa"></i>
-                                    [[[ShippingEnabled]]]
+                                    [[[Shipping Enabled]]]
                                 </label>
                             </div>
                         </div>

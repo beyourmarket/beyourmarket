@@ -37,14 +37,14 @@ namespace BeYourMarket.Web.Controllers
         private readonly ISettingService _settingService;
         private readonly ISettingDictionaryService _settingDictionaryService;
         private readonly ICategoryService _categoryService;
-        private readonly IItemService _itemService;
-        private readonly IItemStatService _itemStatService;
-        private readonly IItemPictureService _itemPictureService;
+        private readonly IListingService _listingService;
+        private readonly IListingStatService _ListingStatservice;
+        private readonly IListingPictureService _ListingPictureservice;
         private readonly IPictureService _pictureService;
         private readonly IOrderService _orderService;
         private readonly ICustomFieldService _customFieldService;
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
-        private readonly ICustomFieldItemService _customFieldItemService;
+        private readonly ICustomFieldListingService _customFieldListingService;
 
         private readonly DataCacheService _dataCacheService;
         private readonly SqlDbService _sqlDbService;
@@ -83,15 +83,15 @@ namespace BeYourMarket.Web.Controllers
             IUnitOfWorkAsync unitOfWorkAsync,
             ISettingService settingService,
             ICategoryService categoryService,
-            IItemService itemService,
+            IListingService listingService,
             IPictureService pictureService,
-            IItemPictureService itemPictureService,
+            IListingPictureService ListingPictureservice,
             IOrderService orderService,
             ICustomFieldService customFieldService,
             ICustomFieldCategoryService customFieldCategoryService,
-            ICustomFieldItemService customFieldItemService,
+            ICustomFieldListingService customFieldListingService,
             ISettingDictionaryService settingDictionaryService,
-            IItemStatService itemStatService,
+            IListingStatService ListingStatservice,
             DataCacheService dataCacheService,
             SqlDbService sqlDbService,
             IPluginFinder pluginFinder)
@@ -100,14 +100,14 @@ namespace BeYourMarket.Web.Controllers
             _settingDictionaryService = settingDictionaryService;
 
             _categoryService = categoryService;
-            _itemService = itemService;
+            _listingService = listingService;
             _pictureService = pictureService;
-            _itemPictureService = itemPictureService;
+            _ListingPictureservice = ListingPictureservice;
             _orderService = orderService;
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
-            _customFieldItemService = customFieldItemService;
-            _itemStatService = itemStatService;
+            _customFieldListingService = customFieldListingService;
+            _ListingStatservice = ListingStatservice;
 
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
@@ -151,7 +151,7 @@ namespace BeYourMarket.Web.Controllers
             var userId = User.Identity.GetUserId();
 
             var orders = await _orderService.Query(x => x.Status != (int)Enum_OrderStatus.Created && (x.UserProvider == userId || x.UserReceiver == userId))
-                .Include(x => x.Item).SelectAsync();
+                .Include(x => x.Listing).SelectAsync();
 
             var grid = new OrdersGrid(orders.AsQueryable().OrderByDescending(x => x.Created));
 
@@ -171,9 +171,9 @@ namespace BeYourMarket.Web.Controllers
         public async Task<ActionResult> Payment(int id)
         {
             var selectQuery = await _orderService.Query(x => x.ID == id)
-                .Include(x => x.Item)                
-                .Include(x => x.Item.ItemType)
-                .Include(x => x.Item.ItemPictures)
+                .Include(x => x.Listing)
+                .Include(x => x.Listing.ListingType)
+                .Include(x => x.Listing.ListingPictures)
                 .SelectAsync();
 
             var order = selectQuery.FirstOrDefault();
@@ -183,7 +183,7 @@ namespace BeYourMarket.Web.Controllers
 
             var model = new PaymentModel()
             {
-                ItemOrder = order
+                ListingOrder = order
             };
 
             ClearCache();
@@ -198,7 +198,7 @@ namespace BeYourMarket.Web.Controllers
 
         public async Task<ActionResult> Order(Order order)
         {
-            var item = await _itemService.FindAsync(order.ItemID);
+            var item = await _listingService.FindAsync(order.ListingID);
 
             if (item == null)
                 return new HttpNotFoundResult();
@@ -210,7 +210,7 @@ namespace BeYourMarket.Web.Controllers
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
                 TempData[TempDataKeys.UserMessage] = "[[[The provider has not setup the payment option yet, please contact the provider.]]]";
 
-                return RedirectToAction("Listing", "Listing", new { id = order.ItemID });
+                return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
             }
 
             foreach (var descriptor in descriptors)
@@ -223,7 +223,7 @@ namespace BeYourMarket.Web.Controllers
                     TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
                     TempData[TempDataKeys.UserMessage] = string.Format("[[[The provider has not setup the payment option for {0} yet, please contact the provider.]]]", descriptor.FriendlyName);
 
-                    return RedirectToAction("Listing", "Listing", new { id = order.ItemID });
+                    return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
                 }
             }
 
@@ -235,14 +235,14 @@ namespace BeYourMarket.Web.Controllers
                 order.Status = (int)Enum_OrderStatus.Created;
                 order.UserProvider = item.UserID;
                 order.UserReceiver = User.Identity.GetUserId();
-                order.ItemTypeID = order.ItemTypeID;
+                order.ListingTypeID = order.ListingTypeID;
 
                 if (order.UserProvider == order.UserReceiver)
                 {
                     TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
                     TempData[TempDataKeys.UserMessage] = "[[[You cannot book the item from yourself!]]]";
 
-                    return RedirectToAction("Listing", "Listing", new { id = order.ItemID });
+                    return RedirectToAction("Listing", "Listing", new { id = order.ListingID });
                 }
 
                 if (order.ToDate.HasValue && order.FromDate.HasValue)

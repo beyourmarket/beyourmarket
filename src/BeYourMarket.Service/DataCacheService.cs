@@ -32,9 +32,9 @@ namespace BeYourMarket.Service
             get { return _container.Resolve<ICategoryService>(); }
         }
 
-        private IItemTypeService ItemTypeService
+        private IListingTypeService ListingTypeService
         {
-            get { return _container.Resolve<IItemTypeService>(); }
+            get { return _container.Resolve<IListingTypeService>(); }
         }
 
         private IContentPageService ContentPageService
@@ -52,14 +52,14 @@ namespace BeYourMarket.Service
             get { return _container.Resolve<ICategoryStatService>(); }
         }
 
-        private IItemService ItemService
+        private IListingService ListingService
         {
-            get { return _container.Resolve<IItemService>(); }
+            get { return _container.Resolve<IListingService>(); }
         }
 
-        private IItemStatService ItemStatService
+        private IListingStatService ListingStatservice
         {
-            get { return _container.Resolve<IItemStatService>(); }
+            get { return _container.Resolve<IListingStatService>(); }
         }
 
         private IOrderService OrderService
@@ -123,9 +123,9 @@ namespace BeYourMarket.Service
                             var categories = CategoryService.Queryable().Where(x => x.Enabled).OrderBy(x => x.Ordering).ToList();
                             UpdateCache(CacheKeys.Categories, categories);
                             break;
-                        case CacheKeys.ItemTypes:
-                            var itemTypes = ItemTypeService.Queryable().ToList();
-                            UpdateCache(CacheKeys.ItemTypes, itemTypes);
+                        case CacheKeys.ListingTypes:
+                            var ListingTypes = ListingTypeService.Queryable().ToList();
+                            UpdateCache(CacheKeys.ListingTypes, ListingTypes);
                             break;
                         case CacheKeys.ContentPages:
                             var contentPages = ContentPageService.Queryable().Where(x => x.Published).OrderBy(x => x.Ordering).ToList();
@@ -141,12 +141,12 @@ namespace BeYourMarket.Service
                             var statistics = new Statistics();
                             statistics.CategoryStats = CategoryStatService.Query().Include(x => x.Category).Select().ToList();
 
-                            statistics.ListingCount = ItemService.Queryable().Count();
+                            statistics.ListingCount = ListingService.Queryable().Count();
                             statistics.UserCount = AspNetUserService.Queryable().Count();
                             statistics.OrderCount = OrderService.Queryable().Count();
                             statistics.TransactionCount = 0;
 
-                            statistics.ItemsCountDictionary = ItemService.GetItemsCount(DateTime.Now.AddDays(-10));
+                            statistics.ItemsCountDictionary = ListingService.GetItemsCount(DateTime.Now.AddDays(-10));
 
                             UpdateCache(CacheKeys.Statistics, statistics);
                             break;
@@ -164,7 +164,7 @@ namespace BeYourMarket.Service
         {
             var unitOfWorkAsync = _container.Resolve<IUnitOfWorkAsync>();
 
-            var categoryCountDctionary = ItemService.GetCategoryCount();
+            var categoryCountDctionary = ListingService.GetCategoryCount();
 
             foreach (var item in categoryCountDctionary)
             {

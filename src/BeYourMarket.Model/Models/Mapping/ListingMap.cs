@@ -3,9 +3,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace BeYourMarket.Model.Models.Mapping
 {
-    public class ItemMap : EntityTypeConfiguration<Item>
+    public class ListingMap : EntityTypeConfiguration<Listing>
     {
-        public ItemMap()
+        public ListingMap()
         {
             // Primary Key
             this.HasKey(t => t.ID);
@@ -42,12 +42,12 @@ namespace BeYourMarket.Model.Models.Mapping
                 .HasMaxLength(250);
 
             // Table & Column Mappings
-            this.ToTable("Items");
+            this.ToTable("Listings");
             this.Property(t => t.ID).HasColumnName("ID");
             this.Property(t => t.Title).HasColumnName("Title");
             this.Property(t => t.Description).HasColumnName("Description");
             this.Property(t => t.CategoryID).HasColumnName("CategoryID");
-            this.Property(t => t.ItemTypeID).HasColumnName("ItemTypeID");
+            this.Property(t => t.ListingTypeID).HasColumnName("ListingTypeID");
             this.Property(t => t.UserID).HasColumnName("UserID");
             this.Property(t => t.Price).HasColumnName("Price");
             this.Property(t => t.Currency).HasColumnName("Currency");
@@ -69,14 +69,14 @@ namespace BeYourMarket.Model.Models.Mapping
 
             // Relationships
             this.HasRequired(t => t.AspNetUser)
-                .WithMany(t => t.Items)
+                .WithMany(t => t.Listings)
                 .HasForeignKey(d => d.UserID);
             this.HasRequired(t => t.Category)
-                .WithMany(t => t.Items)
+                .WithMany(t => t.Listings)
                 .HasForeignKey(d => d.CategoryID);
-            this.HasRequired(t => t.ItemType)
-                .WithMany(t => t.Items)
-                .HasForeignKey(d => d.ItemTypeID);
+            this.HasRequired(t => t.ListingType)
+                .WithMany(t => t.Listings)
+                .HasForeignKey(d => d.ListingTypeID);
 
         }
     }

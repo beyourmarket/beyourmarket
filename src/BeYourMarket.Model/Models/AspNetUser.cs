@@ -11,7 +11,7 @@ namespace BeYourMarket.Model.Models
             this.AspNetUserLogins = new List<AspNetUserLogin>();
             this.Orders = new List<Order>();
             this.Orders1 = new List<Order>();
-            this.Items = new List<Item>();
+            this.Listings = new List<Listing>();
             this.AspNetRoles = new List<AspNetRole>();
         }
 
@@ -42,7 +42,7 @@ namespace BeYourMarket.Model.Models
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<Order> Orders1 { get; set; }
-        public virtual ICollection<Item> Items { get; set; }
+        public virtual ICollection<Listing> Listings { get; set; }
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }
 }

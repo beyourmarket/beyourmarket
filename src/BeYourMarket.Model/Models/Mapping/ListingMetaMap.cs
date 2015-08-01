@@ -3,9 +3,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace BeYourMarket.Model.Models.Mapping
 {
-    public class ItemMetaMap : EntityTypeConfiguration<ItemMeta>
+    public class ListingMetaMap : EntityTypeConfiguration<ListingMeta>
     {
-        public ItemMetaMap()
+        public ListingMetaMap()
         {
             // Primary Key
             this.HasKey(t => t.ID);
@@ -15,18 +15,18 @@ namespace BeYourMarket.Model.Models.Mapping
                 .IsRequired();
 
             // Table & Column Mappings
-            this.ToTable("ItemMeta");
+            this.ToTable("ListingMeta");
             this.Property(t => t.ID).HasColumnName("ID");
-            this.Property(t => t.ItemID).HasColumnName("ItemID");
+            this.Property(t => t.ListingID).HasColumnName("ListingID");
             this.Property(t => t.FieldID).HasColumnName("FieldID");
             this.Property(t => t.Value).HasColumnName("Value");
 
             // Relationships
-            this.HasRequired(t => t.Item)
-                .WithMany(t => t.ItemMetas)
-                .HasForeignKey(d => d.ItemID);
+            this.HasRequired(t => t.Listing)
+                .WithMany(t => t.ListingMetas)
+                .HasForeignKey(d => d.ListingID);
             this.HasRequired(t => t.MetaField)
-                .WithMany(t => t.ItemMetas)
+                .WithMany(t => t.ListingMetas)
                 .HasForeignKey(d => d.FieldID);
 
         }

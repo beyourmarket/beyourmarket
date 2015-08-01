@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace BeYourMarket.Model.Models
 {
-    public partial class Item : Repository.Pattern.Ef6.Entity
+    public partial class Listing : Repository.Pattern.Ef6.Entity
     {
-        public Item()
+        public Listing()
         {
-            this.ItemComments = new List<ItemComment>();
-            this.ItemMetas = new List<ItemMeta>();
-            this.ItemPictures = new List<ItemPicture>();
-            this.ItemStats = new List<ItemStat>();
+            this.ListingComments = new List<ListingComment>();
+            this.ListingMetas = new List<ListingMeta>();
+            this.ListingPictures = new List<ListingPicture>();
+            this.ListingStats = new List<ListingStat>();
             this.Orders = new List<Order>();
         }
 
@@ -18,7 +18,7 @@ namespace BeYourMarket.Model.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public int CategoryID { get; set; }
-        public int ItemTypeID { get; set; }
+        public int ListingTypeID { get; set; }
         public string UserID { get; set; }
         public Nullable<double> Price { get; set; }
         public string Currency { get; set; }
@@ -39,11 +39,11 @@ namespace BeYourMarket.Model.Models
         public System.DateTime LastUpdated { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Category Category { get; set; }
-        public virtual ICollection<ItemComment> ItemComments { get; set; }
-        public virtual ICollection<ItemMeta> ItemMetas { get; set; }
-        public virtual ICollection<ItemPicture> ItemPictures { get; set; }
-        public virtual ItemType ItemType { get; set; }
-        public virtual ICollection<ItemStat> ItemStats { get; set; }
+        public virtual ICollection<ListingComment> ListingComments { get; set; }
+        public virtual ICollection<ListingMeta> ListingMetas { get; set; }
+        public virtual ICollection<ListingPicture> ListingPictures { get; set; }
+        public virtual ListingType ListingType { get; set; }
+        public virtual ICollection<ListingStat> ListingStats { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
     }
 }

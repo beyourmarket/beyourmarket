@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace BeYourMarket.Service
 {
-    public interface IItemPictureService : IService<ItemPicture>
+    public interface ICustomFieldListingService : IService<ListingMeta>
     {
     }
 
-    public class ItemPictureService : Service<ItemPicture>, IItemPictureService
+    public class CustomFieldListingService : Service<ListingMeta>, ICustomFieldListingService
     {
-        public ItemPictureService(IRepositoryAsync<ItemPicture> repository)
+        public CustomFieldListingService(IRepositoryAsync<ListingMeta> repository)
             : base(repository)
         {
         }

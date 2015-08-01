@@ -10,13 +10,13 @@ namespace BeYourMarket.Web.Models
     {
         public CategoryModel()
         {
-            CategoryItemTypeID = new List<int>();
+            CategoryListingTypeID = new List<int>();
         }
 
         public Category Category { get; set; }
 
-        public List<ItemType> ItemTypes { get; set; }
+        public List<ListingType> ListingTypes { get; set; }
 
-        public List<int> CategoryItemTypeID { get; set; }
+        public List<int> CategoryListingTypeID { get; set; }
     }
 }

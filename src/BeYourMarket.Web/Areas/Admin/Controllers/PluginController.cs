@@ -40,7 +40,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         private readonly ISettingDictionaryService _settingDictionaryService;
 
         private readonly ICategoryService _categoryService;
-        private readonly IItemService _itemService;
+        private readonly IListingService _listingService;
 
         private readonly DataCacheService _dataCacheService;
 
@@ -55,7 +55,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             ISettingService settingService,
             ISettingDictionaryService settingDictionaryService,
             ICategoryService categoryService,
-            IItemService itemService,
+            IListingService listingService,
             DataCacheService dataCacheService,
             IPluginFinder pluginFinder)
         {
@@ -63,7 +63,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _settingDictionaryService = settingDictionaryService;
 
             _categoryService = categoryService;
-            _itemService = itemService;
+            _listingService = listingService;
 
             _unitOfWorkAsync = unitOfWorkAsync;
             _dataCacheService = dataCacheService;

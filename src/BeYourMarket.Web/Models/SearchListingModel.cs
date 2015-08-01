@@ -24,9 +24,9 @@ namespace BeYourMarket.Web.Models
 
         public List<MetaCategory> MetaCategories { get; set; }
 
-        public List<ItemModel> Items { get; set; }
+        public List<ListingItemModel> Listings { get; set; }
 
-        public IPagedList<ItemModel> ItemsPageList { get; set; }
+        public IPagedList<ListingItemModel> ListingsPageList { get; set; }
 
         public List<Category> Categories { get; set; }
 

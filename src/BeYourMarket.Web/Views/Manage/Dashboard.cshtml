@@ -30,21 +30,21 @@
                             </div>
 
                             <ul class="media-list list-group">
-                                @foreach (var item in Model.Items)
+                                @foreach (var item in Model.Listings)
                                 {
-                                    <li id="item_@item.ItemCurrent.ID" class="media list-group-item">
-                                        <a class="pull-left" href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })">
+                                    <li id="item_@item.ListingCurrent.ID" class="media list-group-item">
+                                        <a class="pull-left" href="@Url.Action("Listing", "Listing", new { id = item.ListingCurrent.ID })">
                                             <img class="item-thumbnail img-responsive img-rounded" alt="Thumbnail" src="@item.UrlPicture">
                                         </a>
                                         <div class="media-body">
-                                            <h4 class="media-heading"><a href="@Url.Action("Listing", "Listing", new { id = item.ItemCurrent.ID })"> @item.ItemCurrent.Title</a></h4>
+                                            <h4 class="media-heading"><a href="@Url.Action("Listing", "Listing", new { id = item.ListingCurrent.ID })"> @item.ListingCurrent.Title</a></h4>
                                             <p class="hidden-xs">
-                                                @item.ItemCurrent.Description.PrefixString(250)
+                                                @item.ListingCurrent.Description.PrefixString(250)
                                             </p>
                                         </div>
                                         <div>
                                         </div>
-                                        <a class="btn btn-default btn-sm" href="@Url.Action("ListingUpdate", "Listing", new { id = item.ItemCurrent.ID })">[[[Edit]]]</a><a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete(@item.ItemCurrent.ID, '@item.ItemCurrent.Title');">[[[Delete]]]</a>
+                                        <a class="btn btn-default btn-sm" href="@Url.Action("ListingUpdate", "Listing", new { id = item.ListingCurrent.ID })">[[[Edit]]]</a><a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete(@item.ListingCurrent.ID, '@item.ListingCurrent.Title');">[[[Delete]]]</a>
                                     </li>
                                 }
                             </ul>

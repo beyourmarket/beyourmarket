@@ -52,9 +52,9 @@
     }
 }
 
-@helper DisplayListing(string title, int itemID)
+@helper DisplayListing(string title, int ListingID)
 {
-    <a href="@Url.Action("Listing", "Listing", new { id = itemID })">@title <i class="fa fa-external-link"></i></a>
+    <a href="@Url.Action("Listing", "Listing", new { id = ListingID })">@title <i class="fa fa-external-link"></i></a>
 }
 
 <div class="body-content container-fluid">
@@ -96,10 +96,10 @@
                                                .Sanitized(false)
                                                .Titled("[[[Status]]]").RenderValueAs(x => DisplayStatus(x.Status));
 
-                                           columns.Add(x => x.Item.Title)
+                                           columns.Add(x => x.Listing.Title)
                                                .Encoded(false)
                                                .Sanitized(false)
-                                               .Titled("[[[Title]]]").RenderValueAs(x => DisplayListing(x.Item.Title, x.ItemID));
+                                               .Titled("[[[Title]]]").RenderValueAs(x => DisplayListing(x.Listing.Title, x.ListingID));
 
                                            columns.Add(x => x.PriceFormatted).Titled("[[[Price]]]");
 

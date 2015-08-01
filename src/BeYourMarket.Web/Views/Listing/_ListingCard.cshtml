@@ -1,23 +1,23 @@
-﻿@model BeYourMarket.Web.Models.ItemModel
+﻿@model BeYourMarket.Web.Models.ListingItemModel
 
 <div class="card">
     <div class="card-image">
-        <a href="@Url.Action("Listing", "Listing", new { id = Model.ItemCurrent.ID })">
+        <a href="@Url.Action("Listing", "Listing", new { id = Model.ListingCurrent.ID })">
             <img alt="Listing Thumbnail" src="@Model.UrlPicture">
-            @if (Model.ItemCurrent.Price.HasValue)
+            @if (Model.ListingCurrent.Price.HasValue)
             {
-                <span class="card-img-label">@Html.DisplayFor(x => Model.ItemCurrent.PriceFormatted)</span>
+                <span class="card-img-label">@Html.DisplayFor(x => Model.ListingCurrent.PriceFormatted)</span>
             }
         </a>
     </div>
     <div class="card-content">
-        <h5><a class="card-title">@Model.ItemCurrent.Title</a></h5>
+        <h5><a class="card-title">@Model.ListingCurrent.Title</a></h5>
 
         <p class="truncate">
-            @Model.ItemCurrent.Description
+            @Model.ListingCurrent.Description
         </p>
     </div>
     <div class="card-action">
-        <a href="@Url.Action("Listing", "Listing", new { id = Model.ItemCurrent.ID })"><i class="fa fa-map-marker"></i> @Model.ItemCurrent.Location</a>
+        <a href="@Url.Action("Listing", "Listing", new { id = Model.ListingCurrent.ID })"><i class="fa fa-map-marker"></i> @Model.ListingCurrent.Location</a>
     </div>
 </div>

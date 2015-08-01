@@ -41,13 +41,13 @@
 
                         <hr />
                         <div class="form-group">
-                            <label class="col-md-2 control-label">[[[ListingType]]]</label>
+                            <label class="col-md-2 control-label">[[[Listing Type]]]</label>
                             <div class="col-md-10">
                                 <fieldset>
-                                    @foreach (var option in Model.ItemTypes)
+                                    @foreach (var option in Model.ListingTypes)
                                     {
-                                        <input type="checkbox" id="CategoryItemTypeID" name="CategoryItemTypeID" value="@option.ID" checked="@Model.CategoryItemTypeID.Contains(option.ID)" required />
-                                            <label for="CategoryItemTypeID">@option.Name</label>
+                                        <input type="checkbox" id="CategoryListingTypeID" name="CategoryListingTypeID" value="@option.ID" checked="@Model.CategoryListingTypeID.Contains(option.ID)" required />
+                                            <label for="CategoryListingTypeID">@option.Name</label>
                                     }
                                 </fieldset>
                             </div>
@@ -74,7 +74,7 @@
     <script>
         $(document).ready(function () {
             $.validator.addMethod('require-one', function (value) {
-                if ($('#CategoryItemTypeID').is(':checked')) {
+                if ($('#CategoryListingTypeID').is(':checked')) {
                     return $('.require-one:checked').size() > 0;
                 } else {
                     return true;

@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace BeYourMarket.Service
 {
-    public interface IItemService : IService<Item>
+    public interface IListingService : IService<Listing>
     {
         Dictionary<DateTime, int> GetItemsCount(DateTime datetime);
 
         Dictionary<Category, int> GetCategoryCount();
     }
 
-    public class ItemService : Service<Item>, IItemService
+    public class ListingService : Service<Listing>, IListingService
     {
-        public ItemService(IRepositoryAsync<Item> repository)
+        public ListingService(IRepositoryAsync<Listing> repository)
             : base(repository)
         {
         }

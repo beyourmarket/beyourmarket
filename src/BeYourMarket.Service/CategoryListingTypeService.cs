@@ -3,22 +3,22 @@ using Repository.Pattern.Repositories;
 using Service.Pattern;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BeYourMarket.Service
 {
-    public interface IItemTypeService : IService<ItemType>
+    public interface ICategoryListingTypeService : IService<CategoryListingType>
     {
+        
     }
 
-    public class ItemTypeService : Service<ItemType>, IItemTypeService
+    public class CategoryListingTypeService : Service<CategoryListingType>, ICategoryListingTypeService
     {
-        public ItemTypeService(IRepositoryAsync<ItemType> repository)
+        public CategoryListingTypeService(IRepositoryAsync<CategoryListingType> repository)
             : base(repository)
-        {
+        {            
         }
     }
 }

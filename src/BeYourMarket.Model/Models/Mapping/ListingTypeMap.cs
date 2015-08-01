@@ -3,9 +3,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace BeYourMarket.Model.Models.Mapping
 {
-    public class ItemTypeMap : EntityTypeConfiguration<ItemType>
+    public class ListingTypeMap : EntityTypeConfiguration<ListingType>
     {
-        public ItemTypeMap()
+        public ListingTypeMap()
         {
             // Primary Key
             this.HasKey(t => t.ID);
@@ -26,7 +26,7 @@ namespace BeYourMarket.Model.Models.Mapping
                 .HasMaxLength(20);
 
             // Table & Column Mappings
-            this.ToTable("ItemTypes");
+            this.ToTable("ListingTypes");
             this.Property(t => t.ID).HasColumnName("ID");
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.ButtonLabel).HasColumnName("ButtonLabel");

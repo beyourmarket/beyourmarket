@@ -7,7 +7,7 @@ namespace BeYourMarket.Model.Models
     {
         public MetaField()
         {
-            this.ItemMetas = new List<ItemMeta>();
+            this.ListingMetas = new List<ListingMeta>();
             this.MetaCategories = new List<MetaCategory>();
         }
 
@@ -19,7 +19,7 @@ namespace BeYourMarket.Model.Models
         public bool Required { get; set; }
         public bool Searchable { get; set; }
         public Nullable<int> Ordering { get; set; }
-        public virtual ICollection<ItemMeta> ItemMetas { get; set; }
+        public virtual ICollection<ListingMeta> ListingMetas { get; set; }
         public virtual ICollection<MetaCategory> MetaCategories { get; set; }
     }
 }

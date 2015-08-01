@@ -63,7 +63,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         public ActionResult CheckAndInstall(InstallModel model)
         {
             // Create folder if not exists
-            var subPaths = new string[] { "~/App_Data", "~/images/item", "~/images/profile" };
+            var subPaths = new string[] { "~/App_Data", "~/images/listing", "~/images/profile" };
 
             foreach (var subPath in subPaths)
             {

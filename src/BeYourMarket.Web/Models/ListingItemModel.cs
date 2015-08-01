@@ -6,11 +6,11 @@ using System.Web;
 
 namespace BeYourMarket.Web.Models
 {
-    public class ItemModel
+    public class ListingItemModel
     {
-        public List<Item> ItemsOther { get; set; }
+        public List<Listing> ListingsOther { get; set; }
 
-        public Item ItemCurrent { get; set; }
+        public Listing ListingCurrent { get; set; }
 
         public string UrlPicture { get; set; }
 

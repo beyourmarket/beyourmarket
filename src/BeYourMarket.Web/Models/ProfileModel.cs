@@ -8,7 +8,7 @@ namespace BeYourMarket.Web.Models
 {
     public class ProfileModel
     {
-        public List<ItemModel> Items { get; set; }
+        public List<ListingItemModel> Listings { get; set; }
 
         public ApplicationUser User { get; set; }
     }

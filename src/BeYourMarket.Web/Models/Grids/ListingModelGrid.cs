@@ -7,9 +7,9 @@ using System.Web;
 
 namespace BeYourMarket.Web.Models.Grids
 {
-    public class ListingModelGrid : Grid<ItemModel>
+    public class ListingModelGrid : Grid<ListingItemModel>
     {
-        public ListingModelGrid(IQueryable<ItemModel> items)
+        public ListingModelGrid(IQueryable<ListingItemModel> items)
             : base(items)
         {
         }

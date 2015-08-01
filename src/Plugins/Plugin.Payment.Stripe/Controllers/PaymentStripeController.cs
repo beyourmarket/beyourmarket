@@ -66,7 +66,7 @@ namespace Plugin.Payment.Stripe.Controllers
         [HttpPost]
         public async Task<ActionResult> Payment(int id, string stripeToken, string stripeEmail)
         {
-            var selectQuery = await _orderService.Query(x => x.ID == id).Include(x => x.Item).SelectAsync();
+            var selectQuery = await _orderService.Query(x => x.ID == id).Include(x => x.Listing).SelectAsync();
 
             // Check if order exists
             var order = selectQuery.FirstOrDefault();

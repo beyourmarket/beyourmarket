@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace BeYourMarket.Web.Models
 {
-    public class CustomFieldItemModel
+    public class CustomFieldListingModel
     {
         public List<MetaCategory> MetaCategories { get; set; }
 
-        public int ItemID { get; set; }
+        public int ListingID { get; set; }
     }
 }

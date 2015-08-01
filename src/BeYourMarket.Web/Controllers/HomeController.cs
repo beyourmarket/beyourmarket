@@ -20,18 +20,18 @@ namespace BeYourMarket.Web.Controllers
     {
         #region Fields
         private readonly ICategoryService _categoryService;
-        private readonly IItemService _itemService;
+        private readonly IListingService _listingService;
         private readonly IContentPageService _contentPageService;
         #endregion
 
         #region Constructor
         public HomeController(
             ICategoryService categoryService,
-            IItemService itemService,
+            IListingService listingService,
             IContentPageService contentPageService)
         {
             _categoryService = categoryService;
-            _itemService = itemService;
+            _listingService = listingService;
             _contentPageService = contentPageService;
 
         }
@@ -96,14 +96,14 @@ namespace BeYourMarket.Web.Controllers
 
         private async Task GetSearchResult(SearchListingModel model)
         {
-            IEnumerable<Item> items = null;
+            IEnumerable<Listing> items = null;
 
             // Category
             if (model.CategoryID != 0)
-                items = await _itemService.Query(x => x.CategoryID == model.CategoryID)
-                    .Include(x => x.ItemPictures)
+                items = await _listingService.Query(x => x.CategoryID == model.CategoryID)
+                    .Include(x => x.ListingPictures)
                     .Include(x => x.Category)
-                    .Include(x => x.ItemType)
+                    .Include(x => x.ListingType)
                     .SelectAsync();
 
             // Search Text
@@ -114,12 +114,12 @@ namespace BeYourMarket.Web.Controllers
                 if (items != null)
                     items = items.Where(x => x.Title.ToLower().Contains(model.SearchText));
                 else
-                    items = await _itemService.Query(x => x.Title.ToLower().Contains(model.SearchText)).Include(x => x.ItemPictures).Include(x => x.Category).SelectAsync();
+                    items = await _listingService.Query(x => x.Title.ToLower().Contains(model.SearchText)).Include(x => x.ListingPictures).Include(x => x.Category).SelectAsync();
             }
 
             // Latest
             if (items == null)
-                items = await _itemService.Query().OrderBy(x => x.OrderByDescending(y => y.Created)).Include(x => x.ItemPictures).Include(x => x.Category).SelectAsync();
+                items = await _listingService.Query().OrderBy(x => x.OrderByDescending(y => y.Created)).Include(x => x.ListingPictures).Include(x => x.Category).SelectAsync();
 
             // Location
             if (!string.IsNullOrEmpty(model.Location))
@@ -129,7 +129,7 @@ namespace BeYourMarket.Web.Controllers
 
             // Picture
             if (model.PhotoOnly)
-                items = items.Where(x => x.ItemPictures.Count > 0);
+                items = items.Where(x => x.ListingPictures.Count > 0);
 
             /// Price
             if (model.PriceFrom.HasValue)
@@ -139,22 +139,22 @@ namespace BeYourMarket.Web.Controllers
                 items = items.Where(x => x.Price <= model.PriceTo.Value);
 
             // Show active and enabled only
-            var itemsModelList = new List<ItemModel>();
+            var itemsModelList = new List<ListingItemModel>();
             foreach (var item in items.Where(x => x.Active && x.Enabled).OrderByDescending(x => x.Created))
             {
-                itemsModelList.Add(new ItemModel()
+                itemsModelList.Add(new ListingItemModel()
                 {
-                    ItemCurrent = item,
-                    UrlPicture = item.ItemPictures.Count == 0 ? ImageHelper.GetItemImagePath(0) : ImageHelper.GetItemImagePath(item.ItemPictures.OrderBy(x => x.Ordering).FirstOrDefault().PictureID)
+                    ListingCurrent = item,
+                    UrlPicture = item.ListingPictures.Count == 0 ? ImageHelper.GetListingImagePath(0) : ImageHelper.GetListingImagePath(item.ListingPictures.OrderBy(x => x.Ordering).FirstOrDefault().PictureID)
                 });
             }
             var breadCrumb = GetParents(model.CategoryID).Reverse().ToList();
 
             model.BreadCrumb = breadCrumb;
             model.Categories = CacheHelper.Categories;
-            model.Items = itemsModelList;
-            model.ItemsPageList = itemsModelList.ToPagedList(model.PageNumber, model.PageSize);
-            model.Grid = new ListingModelGrid(model.ItemsPageList.AsQueryable());
+            model.Listings = itemsModelList;
+            model.ListingsPageList = itemsModelList.ToPagedList(model.PageNumber, model.PageSize);
+            model.Grid = new ListingModelGrid(model.ListingsPageList.AsQueryable());
         }
 
         IEnumerable<Category> GetParents(int categoryId)
