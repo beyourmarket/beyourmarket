@@ -25,21 +25,22 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            @Html.Grid(Model).Columns(columns =>
-                       {
-                           columns.Add()
-                             .Encoded(false)
-                             .Sanitized(false)
-                             .RenderValueAs(x => DisplayUpdateLink(x.ID));
+                            @Html.Grid(Model).EmptyText("[[[There are on items to display.]]]")
+                            .Columns(columns =>
+                            {
+                            columns.Add()
+                            .Encoded(false)
+                            .Sanitized(false)
+                            .RenderValueAs(x => DisplayUpdateLink(x.ID));
 
-                           columns.Add(x => x.ID);
-                           columns.Add(x => x.Subject).Titled("[[[Subject]]]");
-                           columns.Add(x => x.Slug).Titled("[[[Slug]]]");
-                           columns.Add(x => x.Created).Titled("[[[Created]]]").RenderValueAs(x => x.Created.ToShortDateString());
-                           columns.Add(x => x.LastUpdated).Titled("[[[Last Updated]]]").RenderValueAs(x => x.LastUpdated.ToShortDateString());
+                            columns.Add(x => x.ID);
+                            columns.Add(x => x.Subject).Titled("[[[Subject]]]");
+                            columns.Add(x => x.Slug).Titled("[[[Slug]]]");
+                            columns.Add(x => x.Created).Titled("[[[Created]]]").RenderValueAs(x => x.Created.ToShortDateString());
+                            columns.Add(x => x.LastUpdated).Titled("[[[Last Updated]]]").RenderValueAs(x => x.LastUpdated.ToShortDateString());
 
 
-                       }).Sortable().Filterable().WithPaging(10).Selectable(false)
+                            }).Sortable().Filterable().WithPaging(10).Selectable(false)
                         </div>
                     </div>
 

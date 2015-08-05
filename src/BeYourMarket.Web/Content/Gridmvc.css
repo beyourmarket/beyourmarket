@@ -37,3 +37,7 @@ table.grid-table .grid-popup-additional { padding: 3px 0 0 0; }
 .grid-dropdown ul.menu-list { list-style-type: none; margin: 3px 0 0 0; padding: 0; }
     .grid-dropdown ul.menu-list li a { text-decoration: none; background-position: 6px center; background-repeat: no-repeat; display: block; padding: 4px 5px; }
         .grid-dropdown ul.menu-list li a:hover { background-color: #EEE; text-decoration: none; }
+
+div.grid-wrap{
+    min-height: 250px;
+}

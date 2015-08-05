@@ -39,10 +39,14 @@ password: Password
 
 ## RoadMap ##
 
+#### v. 1.3beta - Support Ratings/Comments/Mail Inbox  (September/October 2015)
+- Introducing Ratings/Comments system
+- Integrated Mail Inbox
+- Facebook authentication integration
+
 #### v. 1.2beta - Support Custom Theme  (August/September 2015)
 - Develop your own theme
 - Support Custom Listing Types (Offer, Rent, Request)
-- Facebook authentication integration
 
 ## Release ##
 
