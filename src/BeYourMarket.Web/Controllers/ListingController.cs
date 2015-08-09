@@ -430,7 +430,7 @@ namespace BeYourMarket.Web.Controllers
                     // Initialize the ImageFactory using the overload to preserve EXIF metadata.
                     using (ImageFactory imageFactory = new ImageFactory(preserveExifData: true))
                     {
-                        var path = Path.Combine(Server.MapPath("~/images/item"), string.Format("{0}.{1}", picture.ID.ToString("00000000"), "jpg"));
+                        var path = Path.Combine(Server.MapPath("~/images/listing"), string.Format("{0}.{1}", picture.ID.ToString("00000000"), "jpg"));
 
                         // Load, resize, set the format and quality and save an image.
                         imageFactory.Load(file.InputStream)
@@ -502,7 +502,7 @@ namespace BeYourMarket.Web.Controllers
 
                 await _unitOfWorkAsync.SaveChangesAsync();
 
-                var path = Path.Combine(Server.MapPath("~/images/item"), string.Format("{0}.{1}", id.ToString("00000000"), "jpg"));
+                var path = Path.Combine(Server.MapPath("~/images/listing"), string.Format("{0}.{1}", id.ToString("00000000"), "jpg"));
 
                 System.IO.File.Delete(path);
 

@@ -227,7 +227,6 @@
                         var pos = new google.maps.LatLng(position.coords.latitude,
                                                          position.coords.longitude);
 
-
                         geocoder.geocode({ 'latLng': pos }, function (results, status) {
                             if (status == google.maps.GeocoderStatus.OK) {
                                 if (results[1]) {
@@ -243,8 +242,8 @@
                                     infowindow.open(map, marker);
 
                                     $('#Location').val(results[1].formatted_address);
-                                    $('#Latitude').val(pos.A);
-                                    $('#Longitude').val(pos.F);
+                                    $('#Latitude').val(pos.lat());
+                                    $('#Longitude').val(pos.lng());                                    
 
                                 } else {
                                     alert('No results found');
@@ -279,10 +278,10 @@
                     window.alert("Autocomplete's returned place contains no geometry");
                     return;
                 }
-
+                
                 // Set lat/long
-                $('#Latitude').val(place.geometry.location.A);
-                $('#Longitude').val(place.geometry.location.F);
+                $('#Latitude').val(place.geometry.location.lat());
+                $('#Longitude').val(place.geometry.location.lng());
 
                 // If the place has a geometry, then present it on a map.
                 if (place.geometry.viewport) {
