@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-08-05 22:48+02:00\n"
-"PO-Revision-Date: 2015-08-05 22:48+02:00\n"
+"POT-Creation-Date: 2015-08-11 21:24+02:00\n"
+"PO-Revision-Date: 2015-08-11 21:24+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1257,7 +1257,7 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: Controllers\ListingController.cs:564
+#: Controllers\ListingController.cs:567
 #: Areas\Admin\Controllers\ManageController.cs:354
 msgid "Message sent succesfully!"
 msgstr ""
@@ -1994,8 +1994,8 @@ msgstr ""
 
 #: Controllers\ListingController.cs:150
 #: Controllers\ListingController.cs:313
-#: Areas\Admin\Controllers\ListingController.cs:384
-#: Areas\Admin\Controllers\ListingController.cs:483
+#: Areas\Admin\Controllers\ListingController.cs:386
+#: Areas\Admin\Controllers\ListingController.cs:485
 msgid "There are not categories available yet."
 msgstr ""
 
@@ -2004,6 +2004,12 @@ msgstr ""
 #: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:39
 #: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:62
 #: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:30
+#: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:39
+#: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:62
+#: Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:30
+#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:39
+#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:62
+#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\TransactionOverview.cshtml:30
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:36
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:54
 #: Areas\Admin\Views\Listing\Listings.cshtml:52
@@ -2227,7 +2233,7 @@ msgstr ""
 msgid "You cannot book the item from yourself!"
 msgstr ""
 
-#: Areas\Admin\Controllers\ListingController.cs:647
+#: Areas\Admin\Controllers\ListingController.cs:652
 msgid "You cannot delete item with orders! You can deactivate it instead."
 msgstr ""
 
@@ -2243,7 +2249,7 @@ msgstr ""
 msgid "Your Email"
 msgstr ""
 
-#: Areas\Admin\Controllers\ListingController.cs:661
+#: Areas\Admin\Controllers\ListingController.cs:666
 msgid "Your listing has been deleted."
 msgstr ""
 

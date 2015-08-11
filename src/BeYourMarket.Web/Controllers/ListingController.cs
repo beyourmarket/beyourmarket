@@ -412,41 +412,44 @@ namespace BeYourMarket.Web.Controllers
                     nextPictureOrderId = itemPictureQuery.Max(x => x.Ordering);
             }
 
-            foreach (HttpPostedFileBase file in files)
+            if (files != null && files.Count() > 0)
             {
-                if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
+                foreach (HttpPostedFileBase file in files)
                 {
-                    // Picture picture and get id
-                    var picture = new Picture();
-                    picture.MimeType = "image/jpeg";
-                    _pictureService.Insert(picture);
-                    await _unitOfWorkAsync.SaveChangesAsync();
-
-                    // Format is automatically detected though can be changed.
-                    ISupportedImageFormat format = new JpegFormat { Quality = 90 };
-                    Size size = new Size(500, 0);
-
-                    //https://naimhamadi.wordpress.com/2014/06/25/processing-images-in-c-easily-using-imageprocessor/
-                    // Initialize the ImageFactory using the overload to preserve EXIF metadata.
-                    using (ImageFactory imageFactory = new ImageFactory(preserveExifData: true))
+                    if ((file != null) && (file.ContentLength > 0) && !string.IsNullOrEmpty(file.FileName))
                     {
-                        var path = Path.Combine(Server.MapPath("~/images/listing"), string.Format("{0}.{1}", picture.ID.ToString("00000000"), "jpg"));
+                        // Picture picture and get id
+                        var picture = new Picture();
+                        picture.MimeType = "image/jpeg";
+                        _pictureService.Insert(picture);
+                        await _unitOfWorkAsync.SaveChangesAsync();
 
-                        // Load, resize, set the format and quality and save an image.
-                        imageFactory.Load(file.InputStream)
-                                    .Resize(size)
-                                    .Format(format)
-                                    .Save(path);
+                        // Format is automatically detected though can be changed.
+                        ISupportedImageFormat format = new JpegFormat { Quality = 90 };
+                        Size size = new Size(500, 0);
+
+                        //https://naimhamadi.wordpress.com/2014/06/25/processing-images-in-c-easily-using-imageprocessor/
+                        // Initialize the ImageFactory using the overload to preserve EXIF metadata.
+                        using (ImageFactory imageFactory = new ImageFactory(preserveExifData: true))
+                        {
+                            var path = Path.Combine(Server.MapPath("~/images/listing"), string.Format("{0}.{1}", picture.ID.ToString("00000000"), "jpg"));
+
+                            // Load, resize, set the format and quality and save an image.
+                            imageFactory.Load(file.InputStream)
+                                        .Resize(size)
+                                        .Format(format)
+                                        .Save(path);
+                        }
+
+                        var itemPicture = new ListingPicture();
+                        itemPicture.ListingID = listing.ID;
+                        itemPicture.PictureID = picture.ID;
+                        itemPicture.Ordering = nextPictureOrderId;
+
+                        _ListingPictureservice.Insert(itemPicture);
+
+                        nextPictureOrderId++;
                     }
-
-                    var itemPicture = new ListingPicture();
-                    itemPicture.ListingID = listing.ID;
-                    itemPicture.PictureID = picture.ID;
-                    itemPicture.Ordering = nextPictureOrderId;
-
-                    _ListingPictureservice.Insert(itemPicture);
-
-                    nextPictureOrderId++;
                 }
             }
 

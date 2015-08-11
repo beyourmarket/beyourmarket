@@ -29,7 +29,7 @@ namespace BeYourMarket.Web
             ModelBinders.Binders.Add(typeof(string), new TrimModelBinder());
 
             // Blacklist certain URLs from being 'localized'.
-            i18n.UrlLocalizer.QuickUrlExclusionFilter = new System.Text.RegularExpressions.Regex(@"(?:sitemap\.xml|\.css|\.jpg|\.png|\.svg|\.woff|\.woff2|\.eot|\.js|\.html)$|(elmah|bundles)");
+            i18n.UrlLocalizer.QuickUrlExclusionFilter = new System.Text.RegularExpressions.Regex(@"(?:sitemap\.xml|\.css|\.jpg|\.png|\.svg|\.woff|\.woff2|\.eot|\.js|\.html)$|(?:elmah|bundles)");
 
             //https://github.com/turquoiseowl/i18n#project-configuration
             // Change from the of temporary redirects during URL localization
