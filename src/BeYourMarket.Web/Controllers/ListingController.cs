@@ -478,13 +478,6 @@ namespace BeYourMarket.Web.Controllers
                 return Json(resultFailed, JsonRequestBehavior.AllowGet);
             }
 
-            // Delete pictures
-            var pictureIds = _ListingPictureservice.Query(x => x.ListingID == id).Select(x => x.ListingID).ToList();
-            foreach (var pictureId in pictureIds)
-            {
-                await _ListingPictureservice.DeleteAsync(pictureId);
-            }
-
             await _listingService.DeleteAsync(id);
 
             await _unitOfWorkAsync.SaveChangesAsync();

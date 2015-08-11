@@ -22,9 +22,11 @@
         cancelTitle: 'Prekini trenutno otpremanje',
         uploadLabel: 'Otpremi',
         uploadTitle: 'Otpremi označene datoteke',
-        msgSizeTooLarge: 'Datoteka "{name}" (<b>{size} KB</b>) prekoračuje maksimalnu dozvoljenu veličinu datoteke od <b>{maxSize} KB</b>. Molimo pokušajte ponovo!',
-        msgFilesTooLess: 'Morate odabrati najmanje <b>{n}</b> {files} za otpremanje. Molimo pokušajte ponovo!',
-        msgFilesTooMany: 'Broj datoteka označenih za otpremanje <b>({n})</b> prekoračuje maksimalni dozvoljeni limit od <b>{m}</b>. Molimo pokušajte ponovo!',
+        msgZoomTitle: 'Приказ детаља',
+        msgZoomModalHeading: 'Детаљан приказ',
+        msgSizeTooLarge: 'Datoteka "{name}" (<b>{size} KB</b>) prekoračuje maksimalnu dozvoljenu veličinu datoteke od <b>{maxSize} KB</b>.',
+        msgFilesTooLess: 'Morate odabrati najmanje <b>{n}</b> {files} za otpremanje.',
+        msgFilesTooMany: 'Broj datoteka označenih za otpremanje <b>({n})</b> prekoračuje maksimalni dozvoljeni limit od <b>{m}</b>.',
         msgFileNotFound: 'Datoteka "{name}" nije pronađena!',
         msgFileSecured: 'Datoteku "{name}" nije moguće pročitati zbog bezbednosnih ograničenja.',
         msgFileNotReadable: 'Datoteku "{name}" nije moguće pročitati.',
@@ -37,6 +39,18 @@
         msgProgress: 'Učitavanje datoteke {index} od {files} - {name} - {percent}% završeno.',
         msgSelected: '{n} {files} je označeno',
         msgFoldersNotAllowed: 'Moguće je prevlačiti samo datoteke! Preskočeno je {n} fascikla.',
-        dropZoneTitle: 'Prevucite datoteke ovde &hellip;'
+        msgImageWidthSmall: 'Ширина Имаге Филе "{name}" мора бити најмање {size} пк.',
+        msgImageHeightSmall: 'Висина Имаге Филе "{name}" мора бити најмање {size} пк.',
+        msgImageWidthLarge: 'Ширина Имаге Филе "{name}" не може бити већи од {size} пк.',
+        msgImageHeightLarge: 'Висина Имаге Филе "{name}" не може бити већи од {size} пк.',
+        dropZoneTitle: 'Prevucite datoteke ovde &hellip;',
+        fileActionSettings: {
+            removeTitle: 'Уклони датотеку',
+            uploadTitle: 'филе уплоад',
+            indicatorNewTitle: 'Још није уплоадед',
+            indicatorSuccessTitle: 'Постављено',
+            indicatorErrorTitle: 'Додај Грешка',
+            indicatorLoadingTitle: 'уплоадинг ...'
+        }
     };
 })(window.jQuery);

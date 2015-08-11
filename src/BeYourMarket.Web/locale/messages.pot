@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-08-11 21:24+02:00\n"
+"POT-Creation-Date: 2015-08-11 22:49+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -462,7 +462,7 @@ msgstr ""
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:110
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:71
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:115
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:38
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:39
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:112
 msgid "Created"
 msgstr ""
@@ -658,6 +658,7 @@ msgstr ""
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:46
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:209
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:45
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:47
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Users.cshtml:23
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\UserUpdate.cshtml:55
 msgid "Email"
@@ -1043,7 +1044,7 @@ msgstr ""
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:122
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:40
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:122
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:39
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:40
 msgid "Last Updated"
 msgstr ""
 
@@ -1312,6 +1313,7 @@ msgid "Next"
 msgstr ""
 
 #: App_Code\RazorHelper.cshtml:3
+#: obj\Release\Package\PackageTmp\App_Code\RazorHelper.cshtml:3
 msgid "No"
 msgstr ""
 
@@ -1870,7 +1872,7 @@ msgstr ""
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:38
 #: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:29
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:44
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:37
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:38
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:29
 msgid "Slug"
 msgstr ""
@@ -1903,7 +1905,7 @@ msgstr ""
 
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:37
 #: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:36
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:36
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:37
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:36
 msgid "Subject"
 msgstr ""
@@ -1988,6 +1990,7 @@ msgstr ""
 #: Areas\Admin\Views\Manage\Settings.cshtml:78
 #: Areas\Admin\Views\Manage\Settings.cshtml:80
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:78
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:80
 msgid "Theme"
 msgstr ""
 
@@ -2016,6 +2019,18 @@ msgstr ""
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:28
 #: Areas\Admin\Views\Payment\Order.cshtml:84
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:75
+#: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:28
+#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:87
+#: obj\Release\Package\PackageTmp\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:39
+#: obj\Release\Package\PackageTmp\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:62
+#: obj\Release\Package\PackageTmp\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:30
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\ContentPage\ContentPages.cshtml:36
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:54
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:52
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:54
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:28
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:84
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:75
 msgid "There are on items to display."
 msgstr ""
 
@@ -2211,6 +2226,7 @@ msgid "Welcome to {0} Admin Panel!"
 msgstr ""
 
 #: App_Code\RazorHelper.cshtml:3
+#: obj\Release\Package\PackageTmp\App_Code\RazorHelper.cshtml:3
 msgid "Yes"
 msgstr ""
 

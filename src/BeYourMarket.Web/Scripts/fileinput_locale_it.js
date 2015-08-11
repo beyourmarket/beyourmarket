@@ -23,9 +23,11 @@
         cancelTitle: 'Annulla i caricamenti in corso',
         uploadLabel: 'Carica',
         uploadTitle: 'Carica i file selezionati',
-        msgSizeTooLarge: 'Il file "{name}" (<b>{size} KB</b>) eccede la dimensione massima di caricamento di <b>{maxSize} KB</b>. Per favore correggi il file e riprova!',
-        msgFilesTooLess: 'Devi selezionare almeno <b>{n}</b> {files} da caricare. Per favore correggi e riprova!',
-        msgFilesTooMany: 'Il numero di file selezionati per il caricamento <b>({n})</b> eccede il numero massimo di file accettati <b>{m}</b>. Per favore correggi e riprova!',
+        msgZoomTitle: 'Guarda i dettagli',
+        msgZoomModalHeading: 'Anteprima dettagliata',
+        msgSizeTooLarge: 'Il file "{name}" (<b>{size} KB</b>) eccede la dimensione massima di caricamento di <b>{maxSize} KB</b>.',
+        msgFilesTooLess: 'Devi selezionare almeno <b>{n}</b> {files} da caricare.',
+        msgFilesTooMany: 'Il numero di file selezionati per il caricamento <b>({n})</b> eccede il numero massimo di file accettati <b>{m}</b>.',
         msgFileNotFound: 'File "{name}" non trovato!',
         msgFileSecured: 'Restrizioni di sicurezza impediscono la lettura del file "{name}".',
         msgFileNotReadable: 'Il file "{name}" non \xE8 leggibile.',
@@ -38,6 +40,18 @@
         msgProgress: 'Caricamento file {index} di {files} - {name} - {percent}% completato.',
         msgSelected: '{n} {files} selezionati',
         msgFoldersNotAllowed: 'Trascina solo file! Ignorata/e {n} cartella/e.',
-        dropZoneTitle: 'Trascina i file qui&hellip;'
+        msgImageWidthSmall: 'Larghezza di file immagine "{name}" deve essere di almeno {size} px.',
+        msgImageHeightSmall: 'Altezza di file immagine "{name}" deve essere di almeno {size} px.',
+        msgImageWidthLarge: 'Larghezza di file immagine "{name}" non può superare {size} px.',
+        msgImageHeightLarge: 'Altezza di file immagine "{name}" non può superare {size} px.',
+        dropZoneTitle: 'Trascina i file qui&hellip;',
+        fileActionSettings: {
+            removeTitle: 'Rimuovere il file',
+            uploadTitle: 'Caricare un file',
+            indicatorNewTitle: 'Non ancora caricato',
+            indicatorSuccessTitle: 'Caricati',
+            indicatorErrorTitle: 'Carica Errore',
+            indicatorLoadingTitle: 'Caricamento ...'
+        }
     };
 })(window.jQuery);

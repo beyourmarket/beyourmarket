@@ -20,7 +20,7 @@ namespace BeYourMarket.Model.Models.Mapping
             // Relationships
             this.HasRequired(t => t.Category)
                 .WithMany(t => t.CategoryStats)
-                .HasForeignKey(d => d.CategoryID);
+                .HasForeignKey(d => d.CategoryID).WillCascadeOnDelete();
 
         }
     }

@@ -21,9 +21,11 @@
         cancelTitle: 'Devam eden yüklemeyi iptal et',
         uploadLabel: 'Yükle',
         uploadTitle: 'Seçilen dosyaları yükle',
-        msgSizeTooLarge: '"{name}" dosyasının boyutu (<b>{size} KB</b>) izin verilen azami dosya boyutu olan <b>{maxSize} KB</b>\'tan büyük. Lütfen tekrar deneyin!',
-        msgFilesTooLess: 'Yüklemek için en az <b>{n}</b> {files} dosya seçmelisiniz. Lütfen tekrar deneyin!',
-        msgFilesTooMany: 'Yüklemek için seçtiğiniz dosya sayısı <b>({n})</b> azami limitin <b>{m}</b> altında olmalıdır. Lütfen tekrar deneyin!',
+        msgZoomTitle: 'Ayrıntıları görüntüle',
+        msgZoomModalHeading: 'Detaylı Önizleme',
+        msgSizeTooLarge: '"{name}" dosyasının boyutu (<b>{size} KB</b>) izin verilen azami dosya boyutu olan <b>{maxSize} KB</b>\'tan büyük.',
+        msgFilesTooLess: 'Yüklemek için en az <b>{n}</b> {files} dosya seçmelisiniz.',
+        msgFilesTooMany: 'Yüklemek için seçtiğiniz dosya sayısı <b>({n})</b> azami limitin <b>{m}</b> altında olmalıdır.',
         msgFileNotFound: '"{name}" dosyası bulunamadı!',
         msgFileSecured: 'Güvenlik kısıtlamaları "{name}" dosyasının okunmasını engelliyor.',
         msgFileNotReadable: '"{name}" dosyası okunabilir değil.',
@@ -36,6 +38,18 @@
         msgProgress: 'Dosya yükleniyor {index} / {files} - {name} - %{percent} tamamlandı.',
         msgSelected: '{n} {files} seçildi',
         msgFoldersNotAllowed: 'Yalnızca dosyaları sürükleyip bırakabilirsiniz! {n} dizin(ler) göz ardı edildi.',
-        dropZoneTitle: 'Dosyaları buraya sürükleyip bırakın &hellip;'
+        msgImageWidthSmall: 'Görüntü dosyası "{name}" genişliği en az {size} piksel olmalıdır.',
+        msgImageHeightSmall: 'Görüntü dosyası "{name}" yüksekliği en az {size} piksel olmalıdır.',
+        msgImageWidthLarge: 'Görüntü dosyası "{name}" genişliği {size} px geçemez.',
+        msgImageHeightLarge: 'Resim dosyası "{name}" Yükseklik {size} px geçemez.',
+        dropZoneTitle: 'Dosyaları buraya sürükleyip bırakın &hellip;',
+        fileActionSettings: {
+            removeTitle: 'dosyayı kaldır',
+            uploadTitle: 'dosya yükleme',
+            indicatorNewTitle: 'Henüz yüklendi',
+            indicatorSuccessTitle: 'yüklendi',
+            indicatorErrorTitle: 'Yükleme Hatası',
+            indicatorLoadingTitle: 'Yükleme ...'
+        }
     };
 })(window.jQuery);

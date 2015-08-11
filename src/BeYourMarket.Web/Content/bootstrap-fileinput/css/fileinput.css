@@ -1,7 +1,7 @@
 /*!
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2015
  * @package bootstrap-fileinput
- * @version 4.2.0
+ * @version 4.2.6
  *
  * File input styling for Bootstrap 3.0
  * Built for Yii Framework 2.0
@@ -9,10 +9,6 @@
  * Year: 2015
  * For more Yii related demos visit http://demos.krajee.com
  */
-.file-input {
-    overflow-x: auto;
-}
-
 .file-loading {
     top: 0;
     right: 0;
@@ -23,6 +19,11 @@
     color: #fff;
     background: transparent url('../img/loading.gif') top left no-repeat;
     border: none;
+}
+
+.file-object {
+    margin: 0 0 -5px 0;
+    padding: 0;
 }
 
 .btn-file {
@@ -38,49 +39,24 @@
     min-height: 100%;
     text-align: right;
     opacity: 0;
-    filter: alpha(opacity=0);
-    opacity: 0;
     background: none repeat scroll 0 0 transparent;
     cursor: inherit;
     display: block;
 }
 
-.file-caption .glyphicon {
-    display: inline-block;
-    min-width: 18px;
-    margin-top: 2px;
-}
-
 .file-caption-name {
     display: inline-block;
     overflow: hidden;
-    max-height: 20px;
-    padding-right: 10px;
+    height: 20px;
     word-break: break-all;
 }
 
-.file-caption-ellipsis {
-    position: absolute;
-    right: 10px;
-    margin-top: -6px;
-    font-size: 1.2em;
-    display: none;
-    font-weight: bold;
-    cursor: default;
+.input-group-lg .file-caption-name {
+    height: 25px;
 }
 
-.kv-has-ellipsis .file-caption-ellipsis {
-    display: inline;
-}
-
-.kv-has-ellipsis {
-    padding-right: 17px;
-}
-
-.kv-search-container .kv-search-clear {
-    position: absolute;
-    padding: 10px;
-    right: 0px;
+.file-preview-detail-modal {
+    text-align: left;
 }
 
 .file-error-message {
@@ -102,10 +78,6 @@
     opacity: 1;
 }
 
-.file-input .btn[disabled], .file-input .btn .disabled {
-    cursor: not-allowed;
-}
-
 .file-preview {
     border-radius: 5px;
     border: 1px solid #ddd;
@@ -117,46 +89,62 @@
 .file-preview-frame {
     display: table;
     margin: 8px;
-    max-height: 160px;
+    height: 160px;
     border: 1px solid #ddd;
-    box-shadow: 1px 1px 5px 0px #a2958a;
+    box-shadow: 1px 1px 5px 0 #a2958a;
     padding: 6px;
     float: left;
     text-align: center;
     vertical-align: middle;
-    background-color: #ddd;        
 }
 
 .file-preview-frame:hover {
-    box-shadow: 3px 3px 5px 0px #333;
+    box-shadow: 3px 3px 5px 0 #333;
 }
 
 .file-preview-image {
-    max-width: 100%;    
-    max-height: 160px;
-    vertical-align: text-center;
+    height: 160px;
+    vertical-align: middle;
 }
 
 .file-preview-text {
+    text-align: left;
     width: 160px;
+    margin-bottom: 2px;
     color: #428bca;
-    font-size: 11px;
-    text-align: center;
+    background: #fff;
+    overflow-x: hidden;
 }
 
 .file-preview-other {
-    padding-top: 48px;
+    display: table-cell;
     text-align: center;
+    vertical-align: middle;
+    width: 160px;
+    height: 160px;
+    border: 2px solid #999;
+    border-radius: 30px;
+    opacity: 0.8;
 }
 
-.file-preview-other i {
-    font-size: 2.4em;
+.file-preview-other:hover {
+    opacity: 1;
 }
 
 .file-other-error {
-    width: 100%;
-    padding-top: 30px;
-    text-align: right
+    text-align: left;
+}
+
+.file-icon-lg {
+    font-size: 1.2em;
+}
+
+.file-icon-2x {
+    font-size: 2.4em;
+}
+
+.file-icon-4x {
+    font-size: 4.8em;
 }
 
 .file-input-new .file-preview, .file-input-new .close, .file-input-new .glyphicon-file,
@@ -169,12 +157,6 @@
     background: transparent url('../img/loading.gif') no-repeat scroll center center content-box !important;
 }
 
-.wrap-indicator {
-    font-weight: bold;
-    color: #245269;
-    cursor: pointer;
-}
-
 .file-actions {
     text-align: left;
 }
@@ -183,21 +165,33 @@
     float: right;
 }
 
-.file-thumbnail-footer .file-caption-name {
-    padding-top: 4px;
-    font-size: 11px;
-    color: #777;
-}
-
 .file-upload-indicator {
     padding-top: 2px;
     cursor: default;
+    opacity: 0.8;
+    width: 60%;
 }
 
 .file-upload-indicator:hover {
-    font-size: 1.2em;
     font-weight: bold;
-    padding-top: 0;
+    opacity: 1;
+}
+
+.file-footer-caption {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 160px;
+    text-align: center;
+    padding-top: 4px;
+    font-size: 11px;
+    color: #777;
+    margin: 5px auto 10px auto;
+}
+
+.file-footer-caption:hover {
+    color: #000;
 }
 
 .file-drop-zone {
@@ -222,12 +216,10 @@
 }
 
 .file-uploading {
-    background-image: url('../img/loading-sm.gif');
-    background-position: center bottom 10px;
-    background-repeat: no-repeat;
+    background: url('../img/loading-sm.gif') no-repeat center bottom 10px;
     opacity: 0.6;
 }
 
-.file-icon-large {
-    font-size: 1.2em;
+.file-input .btn[disabled], .file-input .btn.disabled, .file-input .btn[disabled] *, .file-input .btn.disabled * {
+    cursor: not-allowed;
 }

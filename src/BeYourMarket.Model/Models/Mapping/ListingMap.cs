@@ -73,10 +73,10 @@ namespace BeYourMarket.Model.Models.Mapping
                 .HasForeignKey(d => d.UserID);
             this.HasRequired(t => t.Category)
                 .WithMany(t => t.Listings)
-                .HasForeignKey(d => d.CategoryID);
+                .HasForeignKey(d => d.CategoryID).WillCascadeOnDelete();
             this.HasRequired(t => t.ListingType)
                 .WithMany(t => t.Listings)
-                .HasForeignKey(d => d.ListingTypeID);
+                .HasForeignKey(d => d.ListingTypeID).WillCascadeOnDelete();
 
         }
     }

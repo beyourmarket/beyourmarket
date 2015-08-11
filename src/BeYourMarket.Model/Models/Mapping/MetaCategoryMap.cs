@@ -20,10 +20,10 @@ namespace BeYourMarket.Model.Models.Mapping
             // Relationships
             this.HasRequired(t => t.Category)
                 .WithMany(t => t.MetaCategories)
-                .HasForeignKey(d => d.CategoryID);
+                .HasForeignKey(d => d.CategoryID).WillCascadeOnDelete();
             this.HasRequired(t => t.MetaField)
                 .WithMany(t => t.MetaCategories)
-                .HasForeignKey(d => d.FieldID);
+                .HasForeignKey(d => d.FieldID).WillCascadeOnDelete();
 
         }
     }

@@ -21,9 +21,11 @@
         cancelTitle: 'Interromper envio em andamento',
         uploadLabel: 'Enviar',
         uploadTitle: 'Enviar arquivos selecionados',
-        msgSizeTooLarge: 'O arquivo "{name}" (<b>{size} KB</b>) excede o tamanho máximo permitido de <b>{maxSize} KB</b>. Por favor, tente enviar novamente!',
-        msgFilesTooLess: 'Você deve selecionar pelo menos <b>{n}</b> {files} para enviar. Por favor, tente enviar novamente!',
-        msgFilesTooMany: 'O número de arquivos selecionados para o envio <b>({n})</b> excede o limite máximo permitido de <b>{m}</b>. Por favor, tente enviar novamente!',
+        msgZoomTitle: 'Ver detalhes',
+        msgZoomModalHeading: 'Pré-visualização detalhada',
+        msgSizeTooLarge: 'O arquivo "{name}" (<b>{size} KB</b>) excede o tamanho máximo permitido de <b>{maxSize} KB</b>.',
+        msgFilesTooLess: 'Você deve selecionar pelo menos <b>{n}</b> {files} para enviar.',
+        msgFilesTooMany: 'O número de arquivos selecionados para o envio <b>({n})</b> excede o limite máximo permitido de <b>{m}</b>.',
         msgFileNotFound: 'O arquivo "{name}" não foi encontrado!',
         msgFileSecured: 'Restrições de segurança impedem a leitura do arquivo "{name}".',
         msgFileNotReadable: 'O arquivo "{name}" não pode ser lido.',
@@ -36,6 +38,18 @@
         msgProgress: 'Enviando arquivo {index} de {files} - {name} - {percent}% completo.',
         msgSelected: '{n} {files} selecionado(s)',
         msgFoldersNotAllowed: 'Arraste e solte apenas arquivos! {n} soltar pasta(s) ignoradas.',
-        dropZoneTitle: 'Arraste e solte os arquivos aqui&hellip;'
+        msgImageWidthSmall: 'Largura do arquivo de imagem "{name}" deve ser pelo menos {size} px.',
+        msgImageHeightSmall: 'Altura do arquivo de imagem "{name}" deve ser pelo menos {size} px.',
+        msgImageWidthLarge: 'Largura do arquivo de imagem "{name}" não pode exceder {size} px.',
+        msgImageHeightLarge: 'Altura do arquivo de imagem "{name}" não pode exceder {size} px.',
+        dropZoneTitle: 'Arraste e solte os arquivos aqui&hellip;',
+        fileActionSettings: {
+            removeTitle: 'Remover arquivo',
+            uploadTitle: 'Carregar arquivo',
+            indicatorNewTitle: 'Ainda não carregou',
+            indicatorSuccessTitle: 'Carregado',
+            indicatorErrorTitle: 'Carregar Erro',
+            indicatorLoadingTitle: 'A carregar ...'
+        }
     };
 })(window.jQuery);

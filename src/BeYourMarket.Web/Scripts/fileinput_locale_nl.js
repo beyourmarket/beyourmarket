@@ -21,9 +21,11 @@
         cancelTitle: 'Annuleer gaande upload',
         uploadLabel: 'Upload',
         uploadTitle: 'Upload geselecteerde bestanden',
-        msgSizeTooLarge: 'Bestand "{name}" (<b>{size} KB</b>) is groter dan de toegestaande <b>{maxSize} KB</b>. Probeer opnieuw!',
-        msgFilesTooLess: 'U moet minstens <b>{n}</b> {files} selecteren om te uploaden. Probeer opnieuw!',
-        msgFilesTooMany: 'Aantal geselecteerde bestanden <b>({n})</b> is meer dan de toegestaande <b>{m}</b>. Probeer opnieuw!',
+        msgZoomTitle: 'Bekijk details',
+        msgZoomModalHeading: 'Gedetailleerde Voorbeeld',
+        msgSizeTooLarge: 'Bestand "{name}" (<b>{size} KB</b>) is groter dan de toegestaande <b>{maxSize} KB</b>.',
+        msgFilesTooLess: 'U moet minstens <b>{n}</b> {files} selecteren om te uploaden.',
+        msgFilesTooMany: 'Aantal geselecteerde bestanden <b>({n})</b> is meer dan de toegestaande <b>{m}</b>.',
         msgFileNotFound: 'Bestand "{name}" niet gevonden!',
         msgFileSecured: 'Bestand kan niet gelezen worden in verband met beveiligings redenen "{name}".',
         msgFileNotReadable: 'Bestand "{name}" is niet leesbaar.',
@@ -36,6 +38,18 @@
         msgProgress: 'Bestanden laden {index} van de {files} - {name} - {percent}% compleet.',
         msgSelected: '{n} {files} geselecteerd',
         msgFoldersNotAllowed: 'Drag & drop bestanden alleen! overgeslagen {n} mappen(s).',
-        dropZoneTitle: 'Drag & drop bestanden hier &hellip;'
+        msgImageWidthSmall: 'Breedte van de image-bestand "{name}" moet minstens {size} px zijn.',
+        msgImageHeightSmall: 'Hoogte van de beeld bestand "{name}" moet minstens {size} px zijn.',
+        msgImageWidthLarge: 'Breedte van de image-bestand "{name}" kan niet hoger zijn dan {size} px.',
+        msgImageHeightLarge: 'Hoogte van het beeld bestand "{name}" kan niet hoger zijn dan {size} px.',
+        dropZoneTitle: 'Drag & drop bestanden hier &hellip;',
+        fileActionSettings: {
+            removeTitle: 'Verwijder bestand',
+            uploadTitle: 'bestand uploaden',
+            indicatorNewTitle: 'Nog niet geupload',
+            indicatorSuccessTitle: 'geupload',
+            indicatorErrorTitle: 'uploaden Error',
+            indicatorLoadingTitle: 'uploaden ...'
+        }
     };
 })(window.jQuery);

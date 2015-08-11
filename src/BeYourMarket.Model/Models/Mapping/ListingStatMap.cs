@@ -24,7 +24,7 @@ namespace BeYourMarket.Model.Models.Mapping
             // Relationships
             this.HasRequired(t => t.Listing)
                 .WithMany(t => t.ListingStats)
-                .HasForeignKey(d => d.ListingID);
+                .HasForeignKey(d => d.ListingID).WillCascadeOnDelete();
 
         }
     }

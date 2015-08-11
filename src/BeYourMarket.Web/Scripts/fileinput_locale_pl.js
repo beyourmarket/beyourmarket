@@ -21,9 +21,11 @@
         cancelTitle: 'Anuluj wysyłanie',
         uploadLabel: 'Wgraj',
         uploadTitle: 'Wgraj zaznaczone pliki',
-        msgSizeTooLarge: 'Plik o nazwie "{name}" (<b>{size} KB</b>) przekroczył maksymalną dopuszczalną wielkość pliku wynoszącą <b>{maxSize} KB</b>. Proszę ponowić próbę wysłania pliku!',
-        msgFilesTooLess: 'Musisz wybrać przynajmniej <b>{n}</b> {files} do wgrania. Proszę spróbować jeszcze raz wgrać pliki!',
-        msgFilesTooMany: 'Liczba plików wybranych do wgrania w liczbie <b>({n})</b>, przekracza maksymalny dozwolony limit wynoszący <b>{m}</b>. Proszę spróbować ponownie!',
+        msgZoomTitle: 'Pokaż szczegóły',
+        msgZoomModalHeading: 'Szczegółowe Podgląd',
+        msgSizeTooLarge: 'Plik o nazwie "{name}" (<b>{size} KB</b>) przekroczył maksymalną dopuszczalną wielkość pliku wynoszącą <b>{maxSize} KB</b>.',
+        msgFilesTooLess: 'Musisz wybrać przynajmniej <b>{n}</b> {files} do wgrania.',
+        msgFilesTooMany: 'Liczba plików wybranych do wgrania w liczbie <b>({n})</b>, przekracza maksymalny dozwolony limit wynoszący <b>{m}</b>.',
         msgFileNotFound: 'Plik "{name}" nie istnieje!',
         msgFileSecured: 'Ustawienia zabezpieczeń uniemożliwiają odczyt pliku "{name}".',
         msgFileNotReadable: 'Plik "{name}" nie jest plikiem do odczytu.',
@@ -36,6 +38,18 @@
         msgProgress: 'Wczytywanie pliku {index} z {files} - {name} - {percent}% zakończone.',
         msgSelected: '{n} {files} zaznaczonych',
         msgFoldersNotAllowed: 'Metodą przeciągnij i upuść, można przenosić tylko pliki. Pominięto {n} katalogów.',
-        dropZoneTitle: 'Przeciągnij i upuść pliki tu &hellip;'
+        msgImageWidthSmall: 'Szerokość pliku obrazu "{name}" musi być co najmniej {size} px.',
+        msgImageHeightSmall: 'Wysokość pliku obrazu "{name}" musi być co najmniej {size} px.',
+        msgImageWidthLarge: 'Szerokość pliku obrazu "{name}" nie może przekraczać {size} px.',
+        msgImageHeightLarge: 'Wysokość pliku obrazu "{name}" nie może przekraczać {size} px.',
+        dropZoneTitle: 'Przeciągnij i upuść pliki tu &hellip;',
+        fileActionSettings: {
+            removeTitle: 'Usuń plik',
+            uploadTitle: 'przesyłanie pliku',
+            indicatorNewTitle: 'Jeszcze nie przesłanych',
+            indicatorSuccessTitle: 'Dodane',
+            indicatorErrorTitle: 'Prześlij błąd',
+            indicatorLoadingTitle: 'Zamieszczanie ...'
+        }
     };
 })(window.jQuery);

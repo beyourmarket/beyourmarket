@@ -19,8 +19,10 @@
         cancelTitle: 'Hochladen abbrechen',
         uploadLabel: 'Hochladen',
         uploadTitle: 'Hochladen der ausgewählten Dateien',
+        msgZoomTitle: 'Details anzeigen',
+        msgZoomModalHeading: 'ausführliche Vorschau',
         msgSizeTooLarge: 'Datei "{name}" (<b>{size} KB</b>) überschreitet maximal zulässige Upload-Größe von <b>{maxSize} KB</b>.',
-        msgFilesTooLess: 'Sie müssen mindestens <b>{n}</b> {files} zum Hochladen auswählen. Bitte versuchen es erneut!',
+        msgFilesTooLess: 'Sie müssen mindestens <b>{n}</b> {files} zum Hochladen auswählen.',
         msgFilesTooMany: 'Anzahl der Dateien für den Upload ausgewählt <b>({n})</b> überschreitet maximal zulässige Grenze von <b>{m}</b> Stück.',
         msgFileNotFound: 'Datei "{name}" wurde nicht gefunden!',
         msgFileSecured: 'Sicherheitseinstellungen verhindern das Lesen der Datei "{name}".',
@@ -34,6 +36,18 @@
         msgProgress: 'Datei {index} von {files} - {name} - zu {percent}% fertiggestellt.',
         msgSelected: '{n} {files} ausgewählt',
         msgFoldersNotAllowed: 'Drag & Drop funktioniert nur bei Dateien! {n} Ordner übersprungen.',
-        dropZoneTitle: 'Dateien hierher ziehen &hellip;'
+        msgImageWidthSmall: 'Breite der Bilddatei "{name}" muss mindestens {size} px betragen.',
+        msgImageHeightSmall: 'Höhe der Bilddatei "{name}" muss mindestens {size} px betragen.',
+        msgImageWidthLarge: 'Breite der Bilddatei "{name}" nicht überschreiten {size} px.',
+        msgImageHeightLarge: 'Höhe der Bilddatei "{name}" nicht überschreiten {size} px.',
+        dropZoneTitle: 'Dateien hierher ziehen &hellip;',
+        fileActionSettings: {
+            removeTitle: 'Datei entfernen',
+            uploadTitle: 'Datei hochladen',
+            indicatorNewTitle: 'Noch nicht hochgeladen',
+            indicatorSuccessTitle: 'Hochgeladen',
+            indicatorErrorTitle: 'Upload Fehler',
+            indicatorLoadingTitle: 'Hochladen ...'
+        }
     };
 })(window.jQuery);

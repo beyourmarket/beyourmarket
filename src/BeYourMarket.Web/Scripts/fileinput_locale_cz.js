@@ -21,9 +21,11 @@
         cancelTitle: 'Přerušit  nahrávání',
         uploadLabel: 'Nahrát',
         uploadTitle: 'Nahrát vybrané soubory',
-        msgSizeTooLarge: 'Soubor "{name}" (<b>{size} KB</b>): překročení - maximální povolená velikost <b>{maxSize} KB</b>. Zkuste nahrát znova, prosím!',
-        msgFilesTooLess: 'Musíte vybrat nejméně <b>{n}</b> {files} pro nahrání. Zkuste nahrát znova, prosím!',
-        msgFilesTooMany: 'Počet vybraných souborů pro nahrání <b>({n})</b>: překročení - maximální povolený limit <b>{m}</b>. Zkuste nahrát znova, prosím!',
+        msgZoomTitle: 'zobrazit podrobnosti',
+        msgZoomModalHeading: 'Detailní náhled',
+        msgSizeTooLarge: 'Soubor "{name}" (<b>{size} KB</b>): překročení - maximální povolená velikost <b>{maxSize} KB</b>.',
+        msgFilesTooLess: 'Musíte vybrat nejméně <b>{n}</b> {files} pro nahrání.',
+        msgFilesTooMany: 'Počet vybraných souborů pro nahrání <b>({n})</b>: překročení - maximální povolený limit <b>{m}</b>.',
         msgFileNotFound: 'Soubor "{name}" nebyl nalezen!',
         msgFileSecured: 'Zabezpečení souboru znemožnilo číst soubor "{name}".',
         msgFileNotReadable: 'Soubor "{name}" není čitelný.',
@@ -36,6 +38,18 @@
         msgProgress: 'Nahrávání souboru {index} z {files} - {name} - {percent}% dokončeno.',
         msgSelected: '{n} {files} vybrano',
         msgFoldersNotAllowed: 'Táhni a pusť pouze soubory! Vynechané {n} pustěné složk(y).',
-        dropZoneTitle: 'Táhni a pusť soubory sem &hellip;'
+        msgImageWidthSmall: 'Šířka image soubor "{name}", musí být alespoň {size} px.',
+        msgImageHeightSmall: 'Výška image soubor "{name}", musí být alespoň {size} px.',
+        msgImageWidthLarge: 'Šířka obrazového souboru "{name}" nelze překročit {size} px.',
+        msgImageHeightLarge: 'Výška obrazového souboru "{name}" nelze překročit {size} px.',
+        dropZoneTitle: 'Táhni a pusť soubory sem &hellip;',
+        fileActionSettings: {
+            removeTitle: 'Odstranit soubor',
+            uploadTitle: 'nahrát soubor',
+            indicatorNewTitle: 'Ještě nenahrál',
+            indicatorSuccessTitle: 'Nahraný',
+            indicatorErrorTitle: 'Nahrát Chyba',
+            indicatorLoadingTitle: 'Nahrávání ...'
+        }
     };
 })(window.jQuery);

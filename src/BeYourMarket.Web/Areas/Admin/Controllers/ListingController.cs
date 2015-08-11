@@ -652,13 +652,6 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 TempData[TempDataKeys.UserMessage] = "[[[You cannot delete item with orders! You can deactivate it instead.]]]";
             }
 
-            // Delete pictures
-            var pictureIds = _ListingPictureservice.Query(x => x.ListingID == id).Select(x => x.ListingID).ToList();
-            foreach (var pictureId in pictureIds)
-            {
-                await _ListingPictureservice.DeleteAsync(pictureId);
-            }
-
             await _listingService.DeleteAsync(id);
 
             await _unitOfWorkAsync.SaveChangesAsync();
