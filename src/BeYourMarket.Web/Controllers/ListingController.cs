@@ -321,7 +321,19 @@ namespace BeYourMarket.Web.Controllers
 
             // Set default listing type ID
             if (listing.ListingTypeID == 0)
-                listing.ListingTypeID = CacheHelper.ListingTypes.FirstOrDefault().ID;
+            {
+                var listingType = CacheHelper.ListingTypes.Where(x => x.CategoryListingTypes.Any(y => y.CategoryID == listing.CategoryID));
+
+                if (listingType == null)
+                {
+                    TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                    TempData[TempDataKeys.UserMessage] = "[[[There are not listing types available yet.]]]";
+
+                    return RedirectToAction("Listing", new { id = listing.ID });
+                }
+
+                listing.ListingTypeID = listingType.FirstOrDefault().ID;
+            }
 
             if (listing.ID == 0)
             {

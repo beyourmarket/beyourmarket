@@ -73,7 +73,7 @@
                                 {
                                     <tr>
                                         <th scope="row">@item.Category.Name</th>
-                                        <td><a href="@Url.Action("Listings", "Listing")?grid-filter=@string.Format("CategoryID__1__{0}", item.CategoryID)"> @item.Count Listings</a></td>
+                                        <td><a href="@Url.Action("Listings", "Listing")?grid-filter=@string.Format("CategoryID__1__{0}", item.CategoryID)"> @item.Count [[[Listings]]]</a></td>
                                     </tr>
                                 }
                             </tbody>

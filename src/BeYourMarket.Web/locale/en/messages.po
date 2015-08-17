@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-08-11 22:49+02:00\n"
-"PO-Revision-Date: 2015-08-11 22:49+02:00\n"
+"POT-Creation-Date: 2015-08-17 12:03+02:00\n"
+"PO-Revision-Date: 2015-08-17 12:03+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -171,6 +171,7 @@ msgstr ""
 msgid "At least one language should be enabled!"
 msgstr ""
 
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:47
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:52
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:52
 msgid "Author"
@@ -455,6 +456,7 @@ msgstr ""
 
 #: Views\Listing\_ListingGridList.cshtml:44
 #: Views\Payment\Orders.cshtml:110
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:49
 #: Areas\Admin\Views\Listing\Listings.cshtml:71
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:115
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:39
@@ -584,6 +586,7 @@ msgstr ""
 #: Views\Listing\ListingUpdate.cshtml:42
 #: Views\Listing\_ListingGridList.cshtml:40
 #: Views\Payment\Orders.cshtml:107
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:46
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:37
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:26
 #: Areas\Admin\Views\Listing\Listings.cshtml:69
@@ -846,13 +849,14 @@ msgstr ""
 msgid "Favicon"
 msgstr ""
 
-#: Views\Manage\UserProfile.cshtml:69
+#: Views\Manage\UserProfile.cshtml:70
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:49
 #: obj\Release\Package\PackageTmp\Views\Manage\UserProfile.cshtml:69
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\UserUpdate.cshtml:49
 msgid "Female"
 msgstr ""
 
+#: Views\Manage\UserProfile.cshtml:44
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:29
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\UserUpdate.cshtml:29
 msgid "First Name"
@@ -1037,11 +1041,13 @@ msgstr ""
 msgid "Last Access IP"
 msgstr ""
 
+#: Views\Manage\UserProfile.cshtml:50
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:36
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\UserUpdate.cshtml:36
 msgid "Last Name"
 msgstr ""
 
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:50
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:122
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:40
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:122
@@ -1202,7 +1208,7 @@ msgstr ""
 msgid "Logo"
 msgstr ""
 
-#: Views\Manage\UserProfile.cshtml:66
+#: Views\Manage\UserProfile.cshtml:67
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:46
 #: obj\Release\Package\PackageTmp\Views\Manage\UserProfile.cshtml:66
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\UserUpdate.cshtml:46
@@ -1258,7 +1264,7 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: Controllers\ListingController.cs:567
+#: Controllers\ListingController.cs:572
 #: Areas\Admin\Controllers\ManageController.cs:354
 msgid "Message sent succesfully!"
 msgstr ""
@@ -1492,6 +1498,7 @@ msgstr ""
 
 #: Models\ManageViewModels.cs:65
 #: Views\Manage\AddPhoneNumber.cshtml:3
+#: Views\Manage\UserProfile.cshtml:57
 #: Areas\Admin\Views\Manage\Users.cshtml:25
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:72
 #: obj\Release\Package\PackageTmp\Views\Manage\AddPhoneNumber.cshtml:3
@@ -1603,7 +1610,7 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: Views\Manage\UserProfile.cshtml:74
+#: Views\Manage\UserProfile.cshtml:75
 #: obj\Release\Package\PackageTmp\Views\Manage\UserProfile.cshtml:74
 msgid "Profile Picture"
 msgstr ""
@@ -1636,6 +1643,7 @@ msgstr ""
 msgid "Publish new listing"
 msgstr ""
 
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:48
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:62
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:62
 msgid "Published"
@@ -1718,7 +1726,7 @@ msgstr ""
 msgid "Reset password confirmation"
 msgstr ""
 
-#: Views\Manage\UserProfile.cshtml:81
+#: Views\Manage\UserProfile.cshtml:82
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:76
 #: Areas\Admin\Views\Design\Appearance.cshtml:44
 #: Areas\Admin\Views\Design\CodeScript.cshtml:33
@@ -1869,6 +1877,7 @@ msgstr ""
 msgid "Slogan"
 msgstr ""
 
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:44
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:44
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:38
 #: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:29
@@ -1995,13 +2004,6 @@ msgstr ""
 msgid "Theme"
 msgstr ""
 
-#: Controllers\ListingController.cs:150
-#: Controllers\ListingController.cs:313
-#: Areas\Admin\Controllers\ListingController.cs:386
-#: Areas\Admin\Controllers\ListingController.cs:485
-msgid "There are not categories available yet."
-msgstr ""
-
 #: Views\Listing\_ListingGridList.cshtml:28
 #: Views\Payment\Orders.cshtml:87
 #: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:39
@@ -2020,6 +2022,20 @@ msgstr ""
 #: Areas\Admin\Views\Manage\EmailTemplates.cshtml:28
 #: Areas\Admin\Views\Payment\Order.cshtml:84
 #: Areas\Admin\Views\Plugin\Plugins.cshtml:75
+msgid "There are no items to display."
+msgstr ""
+
+#: Controllers\ListingController.cs:150
+#: Controllers\ListingController.cs:313
+#: Areas\Admin\Controllers\ListingController.cs:386
+#: Areas\Admin\Controllers\ListingController.cs:485
+msgid "There are not categories available yet."
+msgstr ""
+
+#: Controllers\ListingController.cs:330
+msgid "There are not listing types available yet."
+msgstr ""
+
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:28
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:87
 #: obj\Release\Package\PackageTmp\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:39
@@ -2058,6 +2074,7 @@ msgstr ""
 #: Views\Listing\ListingUpdate.cshtml:37
 #: Views\Listing\_ListingGridList.cshtml:38
 #: Views\Payment\Orders.cshtml:102
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:45
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:30
 #: Areas\Admin\Views\Listing\Listings.cshtml:68
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:42
@@ -2180,6 +2197,10 @@ msgstr ""
 msgid "User update"
 msgstr ""
 
+#: Views\Manage\UserProfile.cshtml:36
+msgid "UserName"
+msgstr ""
+
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:47
 #: Areas\Admin\Views\Manage\Users.cshtml:7
 #: Areas\Admin\Views\Manage\Users.cshtml:15
@@ -2265,7 +2286,7 @@ msgstr ""
 msgid "Your Email"
 msgstr ""
 
-#: Areas\Admin\Controllers\ListingController.cs:666
+#: Areas\Admin\Controllers\ListingController.cs:659
 msgid "Your listing has been deleted."
 msgstr ""
 

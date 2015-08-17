@@ -27,13 +27,13 @@
                                     @Html.AntiForgeryToken()
                                     <h4>
                                         <i class="fa fa-user"></i> [[[Profile]]]
-                                        <a class="btn btn-default btn-sm pull-right" href="@Url.Action("Profile", "Listing", new { id = Model.Id })">[[[View Your Profile]]]]</a>
+                                        <a class="btn btn-default btn-sm pull-right" href="@Url.Action("Profile", "Listing", new { id = Model.Id })">[[[View Your Profile]]]</a>
                                     </h4>
                                     <hr />
                                     @Html.ValidationSummary("", new { @class = "text-danger" })
 
-                                    <div class="form-group">
-                                        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                                    <div class="form-group">                                        
+                                        <label class="col-md-2 control-label" for="UserName">[[[UserName]]]</label>
                                         <div class="col-md-10">
                                             @Html.DisplayFor(m => m.UserName, new { @class = "form-control" })
                                         </div>
@@ -41,19 +41,20 @@
 
                                     <div class="form-group">
                                         @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                                        <label class="col-md-2 control-label" for="FirstName">[[[First Name]]]</label>
                                         <div class="col-md-10">
                                             @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                                        <label class="col-md-2 control-label" for="LastName">[[[Last Name]]]</label>
                                         <div class="col-md-10">
                                             @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+                                    <div class="form-group">                                        
+                                        <label class="col-md-2 control-label" for="PhoneNumber">[[[Phone Number]]]</label>
                                         <div class="col-md-10">
                                             @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
                                         </div>

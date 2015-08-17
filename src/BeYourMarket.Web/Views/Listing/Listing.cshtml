@@ -28,6 +28,7 @@
                         <p class="text-lighten">
                             [[[Joined since]]] @Model.User.RegisterDate.ToShortDateString()
                         </p>
+                        <a href="@Url.Action("Profile", "Listing", new { id = Model.User.Id })">View user's profile and other listings</a>
                     </div>
 
                     <div class="col-md-6">

@@ -420,6 +420,10 @@ header {
     font-weight: 400;
 }
 
+.footer a {
+    color: #ffffff;
+}
+
 /* Panel-Tab-Accordions */
 .nav.nav-tabs + .tab-content, .tabs-vertical-env .tab-content {
     background: #FFF;
