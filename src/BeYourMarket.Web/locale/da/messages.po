@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-08-17 17:05+02:00\n"
-"PO-Revision-Date: 2015-08-17 17:05+02:00\n"
+"POT-Creation-Date: 2015-08-17 17:52+02:00\n"
+"PO-Revision-Date: 2015-08-17 17:52+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -253,6 +253,10 @@ msgstr "Konfigurér"
 msgid "Configure Hook"
 msgstr ""
 
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:70
+msgid "Configure Plugins"
+msgstr ""
+
 #: Views\Account\ConfirmEmail.cshtml:2
 msgid "Confirm Email"
 msgstr "Bekræft email"
@@ -467,6 +471,22 @@ msgstr "Deaktivér"
 msgid "Disconnnect to stripe successfully!"
 msgstr "Du er ikke længere forbundet til Stripe"
 
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:42
+msgid "e.g. Book"
+msgstr ""
+
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:95
+msgid "e.g. Number of days"
+msgstr ""
+
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:34
+msgid "e.g. Offer"
+msgstr ""
+
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:49
+msgid "e.g. Per day"
+msgstr ""
+
 #: Views\Listing\Listing.cshtml:40
 #: Views\Manage\Dashboard.cshtml:46
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:15
@@ -627,12 +647,12 @@ msgstr "Fejl"
 msgid "Favicon"
 msgstr "Favicon"
 
-#: Views\Manage\UserProfile.cshtml:70
+#: Views\Manage\UserProfile.cshtml:69
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:49
 msgid "Female"
 msgstr "Kvinde"
 
-#: Views\Manage\UserProfile.cshtml:44
+#: Views\Manage\UserProfile.cshtml:43
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:29
 msgid "First Name"
 msgstr "Fornavn"
@@ -775,7 +795,7 @@ msgstr "Sidst logget på"
 msgid "Last Access IP"
 msgstr "Sidste registrerede IP"
 
-#: Views\Manage\UserProfile.cshtml:50
+#: Views\Manage\UserProfile.cshtml:49
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:36
 msgid "Last Name"
 msgstr "Efternavn"
@@ -899,7 +919,7 @@ msgstr "Log ind på din konto"
 msgid "Logo"
 msgstr "Logo"
 
-#: Views\Manage\UserProfile.cshtml:67
+#: Views\Manage\UserProfile.cshtml:66
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:46
 msgid "Male"
 msgstr "Mand"
@@ -1021,6 +1041,7 @@ msgid "Order Type"
 msgstr "Ordretype"
 
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:77
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:93
 msgid "Order Type Label"
 msgstr "Ordretype"
 
@@ -1040,10 +1061,6 @@ msgstr "Bestilling"
 #: Areas\Admin\Views\Shared\_NavigationSide.cshtml:120
 msgid "Orders"
 msgstr "Ordrer"
-
-#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:93
-msgid "OrderType Label"
-msgstr "Ordretype"
 
 #: Views\Shared\_CategoryCustomFields.cshtml:6
 msgid "Other Info"
@@ -1114,7 +1131,7 @@ msgstr "Afventer"
 
 #: Models\ManageViewModels.cs:65
 #: Views\Manage\AddPhoneNumber.cshtml:3
-#: Views\Manage\UserProfile.cshtml:57
+#: Views\Manage\UserProfile.cshtml:56
 #: Areas\Admin\Views\Manage\Users.cshtml:25
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:72
 msgid "Phone Number"
@@ -1180,11 +1197,8 @@ msgid "Price"
 msgstr "Pris"
 
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:70
-msgid "Price Unit Label"
-msgstr "Prisenhed"
-
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:47
-msgid "PriceUnit Label"
+msgid "Price Unit Label"
 msgstr "Prisenhed"
 
 #: Views\Listing\Profile.cshtml:7
@@ -1195,7 +1209,7 @@ msgstr "Prisenhed"
 msgid "Profile"
 msgstr "Profil"
 
-#: Views\Manage\UserProfile.cshtml:75
+#: Views\Manage\UserProfile.cshtml:74
 msgid "Profile Picture"
 msgstr "Profilbillede"
 
@@ -1286,7 +1300,7 @@ msgstr "Nulstil adgangskode"
 msgid "Reset password confirmation"
 msgstr "Din adgangskode er nulstillet"
 
-#: Views\Manage\UserProfile.cshtml:82
+#: Views\Manage\UserProfile.cshtml:81
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:76
 #: Areas\Admin\Views\Design\Appearance.cshtml:44
 #: Areas\Admin\Views\Design\CodeScript.cshtml:33
@@ -1475,15 +1489,15 @@ msgstr "Tak. Vi ønsker dig en fantastisk day."
 msgid "The {0} must be at least {2} characters long."
 msgstr "{0} skal være mindst {2} tegn."
 
-#: Areas\Admin\Controllers\ListingController.cs:688
+#: Areas\Admin\Controllers\ListingController.cs:700
 msgid "The category has been deleted."
 msgstr ""
 
-#: Areas\Admin\Controllers\ListingController.cs:660
+#: Areas\Admin\Controllers\ListingController.cs:662
 msgid "The listing has been deleted."
 msgstr ""
 
-#: Areas\Admin\Controllers\ListingController.cs:674
+#: Areas\Admin\Controllers\ListingController.cs:684
 msgid "The listing type has been deleted."
 msgstr ""
 
@@ -1723,6 +1737,10 @@ msgstr "Du kan ikke købe en vare af dig selv"
 msgid "You cannot delete item with orders! You can deactivate it instead."
 msgstr "Du kan ikke slette varer, der har udestående ordre. Du kan deaktivere varen i stedet."
 
+#: Areas\Admin\Controllers\ListingController.cs:673
+msgid "You cannot the listing type. There should be at least one listing type."
+msgstr ""
+
 #: Views\Manage\Dashboard.cshtml:66
 #: Areas\Admin\Views\Listing\Listings.cshtml:92
 msgid "You will delete"
@@ -1743,6 +1761,12 @@ msgstr "Din email"
 #: Views\Account\ResetPasswordConfirmation.cshtml:15
 msgid "Your password has been reset."
 msgstr "Din adgangskode er blevet nulstillet"
+
+#~ msgid "OrderType Label"
+#~ msgstr "Ordretype"
+
+#~ msgid "PriceUnit Label"
+#~ msgstr "Prisenhed"
 
 #~ msgid "There are on items to display."
 #~ msgstr ""

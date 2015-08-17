@@ -651,6 +651,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
                 TempData[TempDataKeys.UserMessage] = "[[[You cannot delete item with orders! You can deactivate it instead.]]]";
+
+                return RedirectToAction("Listings");
             }
 
             await _listingService.DeleteAsync(id);
@@ -665,6 +667,14 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> ListingTypeDelete(int id)
         {
+            if (CacheHelper.ListingTypes.Count <= 1)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[You cannot the listing type. There should be at least one listing type.]]]";
+
+                return RedirectToAction("ListingTypes");
+            }
+
             var item = await _ListingTypeService.FindAsync(id);                       
 
             await _ListingTypeService.DeleteAsync(id);
@@ -672,6 +682,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             await _unitOfWorkAsync.SaveChangesAsync();
 
             TempData[TempDataKeys.UserMessage] = "[[[The listing type has been deleted.]]]";
+
+            _dataCacheService.RemoveCachedItem(CacheKeys.ListingTypes);
 
             return RedirectToAction("ListingTypes");
         }
@@ -686,6 +698,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             await _unitOfWorkAsync.SaveChangesAsync();
 
             TempData[TempDataKeys.UserMessage] = "[[[The category has been deleted.]]]";
+
+            _dataCacheService.RemoveCachedItem(CacheKeys.Categories);
 
             return RedirectToAction("Categories");
         }
