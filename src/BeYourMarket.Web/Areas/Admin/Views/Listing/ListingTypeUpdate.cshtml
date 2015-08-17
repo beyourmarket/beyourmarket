@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">[[[Name]]]</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required>
+                                <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" placeholder="[[[e.g. Offer]]]" required>
                             </div>
                         </div>
 
@@ -39,14 +39,14 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label">[[[Button Label]]]</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" id="ButtonLabel" name="ButtonLabel" value="@Model.ButtonLabel" required>
+                                    <input type="text" class="form-control" id="ButtonLabel" name="ButtonLabel" value="@Model.ButtonLabel" placeholder="[[[e.g. Book]]]" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-2 control-label">[[[PriceUnit Label]]]</label>
+                                <label class="col-md-2 control-label">[[[Price Unit Label]]]</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" id="PriceUnitLabel" name="PriceUnitLabel" value="@Model.PriceUnitLabel">
+                                    <input type="text" class="form-control" id="PriceUnitLabel" name="PriceUnitLabel" value="@Model.PriceUnitLabel" placeholder="[[[e.g. Per day]]]">
                                 </div>
                             </div>
                         </fieldset>
@@ -67,7 +67,7 @@
                             <h4>[[[Payment]]]</h4>
                             <p>[[[To configure payment method for payout, please configure the Payment plugin]]]</p>
                             <p>
-                                <a class="btn btn-default" href="@Url.Action("Plugins", "Plugin", new { area = "Admin", id = "" })">Configure Plugins</a>
+                                <a class="btn btn-default" href="@Url.Action("Plugins", "Plugin", new { area = "Admin", id = "" })">[[[Configure Plugins]]]</a>
                             </p>
                         </div>
 
@@ -90,9 +90,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-2 control-label">[[[OrderType Label]]]</label>
+                                <label class="col-md-2 control-label">[[[Order Type Label]]]</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" id="OrderTypeLabel" name="OrderTypeLabel" value="@Model.OrderTypeLabel">
+                                    <input type="text" class="form-control" id="OrderTypeLabel" name="OrderTypeLabel" value="@Model.OrderTypeLabel" placeholder="[[[e.g. Number of days]]]">
                                 </div>
                             </div>
                         </fieldset>
