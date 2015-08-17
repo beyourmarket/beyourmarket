@@ -58,11 +58,16 @@
                              .Sanitized(false)
                              .RenderValueAs(x => DisplayUpdateLink(x.ID));
 
+                           columns.Add()
+                             .Encoded(false)
+                             .Sanitized(false)
+                             .RenderValueAs(x => DisplayDeleteLink(x.ID, x.Name));
+                           
                            columns.Add(x => x.ID);
                            columns.Add(x => x.Name).Titled("[[[Name]]]");
 
                            columns.Add(x => x.ButtonLabel).Titled("[[[Button Label]]]");
-                           columns.Add(x => x.PriceUnitLabel).Titled("[[[Price Unit Label]]]");                           
+                           columns.Add(x => x.PriceUnitLabel).Titled("[[[Price Unit Label]]]");
                            
                            columns.Add(x => x.OrderTypeID)
                                .Encoded(false)
@@ -89,4 +94,32 @@
 
 @section Scripts {
     <script src="~/Scripts/gridmvc.min.js"></script>
+
+    <script type="text/javascript">
+        function confirmDelete(id, title) {
+            swal({
+                title: "[[[Are you sure?]]]",
+                text: "[[[You will delete all listings with the listing type ]]] " + title,
+                type: "input",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "[[[Yes, delete it!]]]",
+                cancelButtonText: "[[[No, cancel please!]]]",
+                inputPlaceholder: "[[[Type DELETE to confirm delete]]]",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            }, function (inputValue) {
+
+                if (inputValue === false)
+                    return false;
+                if (inputValue === "" || inputValue != "DELETE") {
+                    swal.showInputError("[[[Type DELETE to confirm delete]]]"); return false
+                }
+
+                post('@Url.Action("ListingTypeDelete","Listing")', { id: id });
+
+                swal("Deleted!", "[[[Listing type is deleted.]]]", "success");                
+            });
+        }
+    </script>
 }

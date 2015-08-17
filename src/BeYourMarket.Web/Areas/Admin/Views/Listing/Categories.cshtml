@@ -15,7 +15,14 @@
         {
             <li class="dd-item dd3-item" data-id="@item.Item.ID">
                 <div class="dd-handle dd3-handle"></div>
-                <div class="dd3-content">@item.Item.Name<a href="@Url.Action("CategoryUpdate", "Listing", new { id = @item.Item.ID })" class="pull-right"><i class="fa fa-edit"></i> [[[Edit]]]</a></div>
+                <div class="dd3-content">
+                    @item.Item.Name
+                    <div class="pull-right">
+                        <a href="@Url.Action("CategoryUpdate", "Listing", new { id = @item.Item.ID })"><i class="fa fa-edit"></i> [[[Edit]]]</a>
+
+                        <a href="javascript:void(0);" onclick="confirmDelete(@item.Item.ID, '@item.Item.Name');"><i class="fa fa-remove"></i> [[[Delete]]]</a>
+                    </div>
+                </div>
                 @DisplayTree(item.Children)
             </li>
         }
@@ -33,7 +40,7 @@
                 <div class="panel-body">
                     @Html.Partial("_UserMessage")
 
-                    <div class="alert alert-info">                        
+                    <div class="alert alert-info">
                         <p>[[[Here you can add categories and subcategories. There shall always be one category for each listing.]]]</p>
                     </div>
 
@@ -86,6 +93,34 @@
 
             $('#JsonCategories').val(JSON.stringify($('.nestable').nestable('serialize')));
         });
+    </script>
+
+    <script type="text/javascript">
+        function confirmDelete(id, title) {
+            swal({
+                title: "[[[Are you sure?]]]",
+                text: "[[[You will delete all listings with the category ]]] " + title,
+                type: "input",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "[[[Yes, delete it!]]]",
+                cancelButtonText: "[[[No, cancel please!]]]",
+                inputPlaceholder: "[[[Type DELETE to confirm delete]]]",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            }, function (inputValue) {
+
+                if (inputValue === false)
+                    return false;
+                if (inputValue === "" || inputValue != "DELETE") {
+                    swal.showInputError("[[[Type DELETE to confirm delete]]]"); return false
+                }
+
+                post('@Url.Action("CategoryDelete","Listing")', { id: id });
+
+                swal("Deleted!", "[[[Category is deleted.]]]", "success");
+            });
+        }
     </script>
 }
 

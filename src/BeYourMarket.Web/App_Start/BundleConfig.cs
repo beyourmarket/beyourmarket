@@ -27,14 +27,14 @@ namespace BeYourMarket.Web
                       "~/Scripts/app.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                      "~/js/sweet-alert/sweet-alert.min.js",
+                      "~/js/sweet-alert/sweetalert.min.js",                      
                       "~/js/ripples/js/ripples.min.js",
                       "~/js/ripples/js/ripples.init.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css")
                 .Include("~/Content/bootstrap.css",                      
-                      "~/js/sweet-alert/sweet-alert.min.css",
+                      "~/js/sweet-alert/sweetalert.css",
                       "~/css/animate.css",
                       "~/js/ripples/css/ripples.min.css")
                 .Include("~/css/material-design-icons.min.css", new CssRewriteUrlTransformWrapper())

@@ -417,6 +417,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             else
                 item = new Listing()
                 {
+                    CategoryID = CacheHelper.Categories.Any() ? CacheHelper.Categories.FirstOrDefault().ID : 0,
                     Created = DateTime.Now.Date,
                     LastUpdated = DateTime.Now.Date,
                     Expiration = DateTime.Now.AddDays(30),
@@ -656,9 +657,37 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
-            TempData[TempDataKeys.UserMessage] = "[[[Your listing has been deleted.]]]";
+            TempData[TempDataKeys.UserMessage] = "[[[The listing has been deleted.]]]";
 
             return RedirectToAction("Listings");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ListingTypeDelete(int id)
+        {
+            var item = await _ListingTypeService.FindAsync(id);                       
+
+            await _ListingTypeService.DeleteAsync(id);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            TempData[TempDataKeys.UserMessage] = "[[[The listing type has been deleted.]]]";
+
+            return RedirectToAction("ListingTypes");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CategoryDelete(int id)
+        {
+            var item = await _categoryService.FindAsync(id);
+
+            await _categoryService.DeleteAsync(id);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            TempData[TempDataKeys.UserMessage] = "[[[The category has been deleted.]]]";
+
+            return RedirectToAction("Categories");
         }
 
         public async Task<ActionResult> ListingPhotoDelete(int id)
