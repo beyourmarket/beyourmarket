@@ -1,7 +1,7 @@
 version: 1.0.{build}
 
 cache:
-  #- packages
+  - packages
   
 install:
   - nuget restore src\BeYourMarket.sln
