@@ -357,6 +357,8 @@
     <Content Include="Images\Sample\Listing\00000007.jpg" />
     <Content Include="Images\Sample\Listing\00000008.jpg" />
     <Content Include="Images\Sample\Listing\00000009.jpg" />
+    <Content Include="js\sweet-alert\sweetalert.css" />
+    <Content Include="js\sweet-alert\sweetalert.min.js" />
     <Content Include="Plugins\.gitignore" />
     <Content Include="Scripts\app.js" />
     <Content Include="Themes\Default\Content\color.css.map">
@@ -1019,9 +1021,6 @@
     <Content Include="Areas\Admin\Views\Listing\Categories.cshtml" />
     <Content Include="Areas\Admin\Views\Listing\CategoryUpdate.cshtml" />
     <Content Include="Areas\Admin\Views\Listing\Listings.cshtml" />
-    <Content Include="js\sweet-alert\sweet-alert.min.css" />
-    <Content Include="js\sweet-alert\sweet-alert.min.js" />
-    <Content Include="js\sweet-alert\thumbs-up.jpg" />
     <Content Include="js\timepicker\bootstrap-datepicker.js" />
     <Content Include="js\timepicker\bootstrap-datepicker.min.css" />
     <Content Include="js\timepicker\bootstrap-timepicker.min.css" />
