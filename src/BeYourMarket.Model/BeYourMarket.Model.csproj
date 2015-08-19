@@ -96,6 +96,10 @@
     <Compile Include="Models\Mapping\ListingPictureMap.cs" />
     <Compile Include="Models\Mapping\ListingStatMap.cs" />
     <Compile Include="Models\Mapping\ListingTypeMap.cs" />
+    <Compile Include="Models\Mapping\MessageMap.cs" />
+    <Compile Include="Models\Mapping\MessageParticipantMap.cs" />
+    <Compile Include="Models\Mapping\MessageReadStateMap.cs" />
+    <Compile Include="Models\Mapping\MessageThreadMap.cs" />
     <Compile Include="Models\Mapping\MetaCategoryMap.cs" />
     <Compile Include="Models\Mapping\MetaFieldMap.cs" />
     <Compile Include="Models\Mapping\OrderMap.cs" />
@@ -104,6 +108,10 @@
     <Compile Include="Models\Mapping\SettingMap.cs" />
     <Compile Include="Models\Mapping\StripeConnectMap.cs" />
     <Compile Include="Models\Mapping\StripeTransactionMap.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\MessageParticipant.cs" />
+    <Compile Include="Models\MessageReadState.cs" />
+    <Compile Include="Models\MessageThread.cs" />
     <Compile Include="Models\MetaCategory.cs" />
     <Compile Include="Models\MetaField.cs" />
     <Compile Include="Models\Order.cs" />

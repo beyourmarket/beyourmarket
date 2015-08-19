@@ -1,0 +1,90 @@
+﻿@model List<BeYourMarket.Model.Models.Message>
+
+@{
+    ViewBag.Title = "[[[Messages]]]";
+}
+
+<div class="body-content container-fluid">
+    <div class="main-section">
+        <div class="container-fluid mrg-tb">
+
+            @Html.Partial("_DashBoardSide", "messages")
+
+            <div class=" col-md-9">
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane card-content fade active in" id="listings" aria-labelledby="listings-tab">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-primary" href="@Url.Action("Messages", "Manage")"><i class="fa fa-fw fa-level-up fa-rotate-270"></i></a>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-tag"></i>
+                                    <b class="caret"></b>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#fakelink">Action</a></li>
+                                    <li><a href="#fakelink">Another action</a></li>
+                                    <li><a href="#fakelink">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#fakelink">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Message -->
+                        <div class="panel panel-default m-t-20">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Hi Bro, How are you?</h3>
+                            </div>
+
+                            @foreach (var message in Model)
+                            {
+                                <div class="panel-body">
+                                    <div class="media m-b-30 ">
+                                        <a href="#" class="pull-left">
+                                            <img class="pull-left media-object img-circle thumb-sm" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(message.AspNetUser.Id)" />
+                                        </a>
+                                        <div class="media-body">
+                                            <span class="media-meta pull-right"><i class="fa fa-clock-o"></i> @(message.Created.Date == DateTime.Today.Date ? message.Created.ToShortTimeString() : message.Created.ToShortDateString())</span>
+
+                                            <h4 class="text-primary m-0">@message.AspNetUser.FullName</h4>
+                                            @*<small class="text-muted">From: jonathan@velonic.com</small>*@
+                                        </div>
+                                    </div> <!-- media -->
+
+                                    <p><b>@message.MessageThread.Subject</b></p>
+                                    <p>@message.Body</p>
+                                </div>
+                                <!-- panel-body -->
+                            }
+
+                        </div> <!-- End panel -->
+                        <!-- End message -->
+
+                        <!-- Reply -->
+                        <div class="panel panel-default">
+                            <div class="panel-body p-t-10 p-b-10">
+                                <div class="media">
+                                    <a href="#" class="pull-left">
+                                        <img class="pull-left media-object img-circle thumb-sm" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(User.Identity.User().Id)" />
+                                    </a>
+                                    <div class="media-body">
+                                        <textarea class="form-control m-b-10" rows="4" placeholder="Reply here..."></textarea>                                        
+                                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Send]]]</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Reply -->
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+}

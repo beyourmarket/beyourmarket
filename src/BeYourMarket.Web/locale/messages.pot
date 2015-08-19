@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-08-17 17:52+02:00\n"
+"POT-Creation-Date: 2015-08-20 00:48+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -62,11 +62,11 @@ msgstr ""
 msgid "Add new page"
 msgstr ""
 
-#: Views\Shared\_DashBoardSide.cshtml:20
+#: Views\Shared\_DashBoardSide.cshtml:21
 msgid "Admin"
 msgstr ""
 
-#: Views\Shared\_LoginPartial.cshtml:20
+#: Views\Shared\_LoginPartial.cshtml:58
 #: Views\Shared\_NavigationSide.cshtml:94
 msgid "Admin Panel"
 msgstr ""
@@ -123,6 +123,7 @@ msgid "Apply"
 msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:65
+#: Views\Manage\Messages.cshtml:117
 #: Views\Payment\Orders.cshtml:143
 #: Areas\Admin\Views\Listing\Categories.cshtml:101
 #: Areas\Admin\Views\Listing\Listings.cshtml:91
@@ -183,6 +184,7 @@ msgid "Cancelled"
 msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:89
+#: Views\Manage\Messages.cshtml:141
 #: Views\Payment\Orders.cshtml:166
 #: Areas\Admin\Views\Listing\Listings.cshtml:104
 msgid "Cancelled!"
@@ -214,7 +216,7 @@ msgstr ""
 
 #: Views\Manage\ChangePassword.cshtml:3
 #: Views\Manage\ChangePassword.cshtml:47
-#: Views\Shared\_DashBoardSide.cshtml:15
+#: Views\Shared\_DashBoardSide.cshtml:16
 msgid "Change Password"
 msgstr ""
 
@@ -285,7 +287,7 @@ msgstr ""
 msgid "Confirm to cancel the order"
 msgstr ""
 
-#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:209
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:209
 msgid "Connnect to stripe successfully!"
 msgstr ""
 
@@ -335,7 +337,7 @@ msgid "Create"
 msgstr ""
 
 #: Views\Account\Register.cshtml:12
-#: Views\Shared\_LoginPartial.cshtml:34
+#: Views\Shared\_LoginPartial.cshtml:72
 #: Views\Shared\_NavigationSide.cshtml:66
 msgid "Create an account"
 msgstr ""
@@ -389,7 +391,7 @@ msgid "Custom Javascript"
 msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:4
-#: Views\Shared\_LoginPartial.cshtml:14
+#: Views\Shared\_LoginPartial.cshtml:52
 #: Views\Shared\_NavigationSide.cshtml:81
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:3
 #: Areas\Admin\Views\Shared\_NavigationSide.cshtml:76
@@ -436,6 +438,7 @@ msgid "Delete"
 msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:80
+#: Views\Manage\Messages.cshtml:132
 msgid "Deleted!"
 msgstr ""
 
@@ -466,7 +469,7 @@ msgstr ""
 msgid "Disable"
 msgstr ""
 
-#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:174
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:174
 msgid "Disconnnect to stripe successfully!"
 msgstr ""
 
@@ -637,6 +640,8 @@ msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:82
 #: Views\Manage\Dashboard.cshtml:86
+#: Views\Manage\Messages.cshtml:134
+#: Views\Manage\Messages.cshtml:138
 #: Views\Payment\Orders.cshtml:159
 #: Views\Payment\Orders.cshtml:163
 msgid "Failed!"
@@ -854,6 +859,8 @@ msgstr ""
 msgid "Listing Update"
 msgstr ""
 
+#: Views\Listing\Listings.cshtml:9
+#: Views\Listing\Listings.cshtml:116
 #: Views\Listing\Profile.cshtml:35
 #: Views\Shared\_DashBoardSide.cshtml:10
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:10
@@ -871,6 +878,7 @@ msgstr ""
 
 #: Views\Listing\Listing.cshtml:142
 #: Views\Listing\Listings.cshtml:70
+#: Views\Listing\Listings.cshtml:71
 #: Views\Listing\ListingUpdate.cshtml:71
 #: Views\Listing\ListingUpdate.cshtml:73
 #: Views\Listing\_ListingGridList.cshtml:43
@@ -887,7 +895,7 @@ msgstr ""
 msgid "Locked Out."
 msgstr ""
 
-#: Views\Shared\_LoginPartial.cshtml:37
+#: Views\Shared\_LoginPartial.cshtml:75
 #: Views\Shared\_NavigationSide.cshtml:61
 msgid "Log in"
 msgstr ""
@@ -896,7 +904,7 @@ msgstr ""
 msgid "Log in using your {0} account"
 msgstr ""
 
-#: Views\Shared\_LoginPartial.cshtml:23
+#: Views\Shared\_LoginPartial.cshtml:61
 #: Areas\Admin\Views\Shared\_NavigationTop.cshtml:30
 msgid "Log off"
 msgstr ""
@@ -961,13 +969,21 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: Controllers\ListingController.cs:572
+#: Controllers\ListingController.cs:652
 #: Areas\Admin\Controllers\ManageController.cs:354
 msgid "Message sent succesfully!"
 msgstr ""
 
 #: Views\Home\Contact.cshtml:29
 msgid "Message..."
+msgstr ""
+
+#: Views\Manage\Message.cshtml:4
+#: Views\Manage\Messages.cshtml:6
+#: Views\Manage\Messages.cshtml:24
+#: Views\Shared\_DashBoardSide.cshtml:11
+#: Views\Shared\_LoginPartial.cshtml:16
+msgid "Messages"
 msgstr ""
 
 #: Areas\Admin\Views\Payment\PaymentSetting.cshtml:37
@@ -1014,6 +1030,7 @@ msgid "No!"
 msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:71
+#: Views\Manage\Messages.cshtml:123
 #: Areas\Admin\Views\Listing\Categories.cshtml:107
 #: Areas\Admin\Views\Listing\Listings.cshtml:97
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:107
@@ -1052,7 +1069,7 @@ msgstr ""
 #: Views\Payment\Orders.cshtml:7
 #: Views\Payment\Orders.cshtml:72
 #: Views\Payment\Orders.cshtml:80
-#: Views\Shared\_DashBoardSide.cshtml:11
+#: Views\Shared\_DashBoardSide.cshtml:12
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:27
 #: Areas\Admin\Views\Payment\Order.cshtml:7
 #: Areas\Admin\Views\Payment\Order.cshtml:65
@@ -1073,9 +1090,9 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
-#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:20
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:20
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:20
-#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:20
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:20
 msgid "Paid"
 msgstr ""
 
@@ -1111,7 +1128,7 @@ msgstr ""
 msgid "Payment Settings"
 msgstr ""
 
-#: Views\Shared\_DashBoardSide.cshtml:13
+#: Views\Shared\_DashBoardSide.cshtml:14
 #: Areas\Admin\Views\Shared\_NavigationSide.cshtml:117
 msgid "Payments"
 msgstr ""
@@ -1121,9 +1138,9 @@ msgid "Payout information"
 msgstr ""
 
 #: Views\Payment\Orders.cshtml:40
-#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:24
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:24
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:24
-#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:24
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:24
 #: Areas\Admin\Views\Payment\Order.cshtml:40
 msgid "Pending"
 msgstr ""
@@ -1157,8 +1174,8 @@ msgstr ""
 msgid "Please click here to log in"
 msgstr ""
 
-#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:364
-#: C:\Github\bym\main\src\Plugins\Plugin.Widget.GoogleAnalytics\Controllers\GoogleAnalyticsController.cs:65
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:364
+#: C:\Github\bym\dev\src\Plugins\Plugin.Widget.GoogleAnalytics\Controllers\GoogleAnalyticsController.cs:65
 msgid "Plugin updated!"
 msgstr ""
 
@@ -1204,7 +1221,7 @@ msgstr ""
 #: Views\Manage\UserProfile.cshtml:3
 #: Views\Manage\UserProfile.cshtml:22
 #: Views\Manage\UserProfile.cshtml:29
-#: Views\Shared\_DashBoardSide.cshtml:14
+#: Views\Shared\_DashBoardSide.cshtml:15
 msgid "Profile"
 msgstr ""
 
@@ -1226,7 +1243,7 @@ msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:28
 #: Views\Shared\_Layout.cshtml:56
-#: Views\Shared\_LoginPartial.cshtml:15
+#: Views\Shared\_LoginPartial.cshtml:53
 #: Views\Shared\_NavigationSide.cshtml:71
 #: Views\Shared\_NavigationSide.cshtml:86
 msgid "Publish new listing"
@@ -1320,6 +1337,7 @@ msgstr ""
 
 #: Views\Home\Index.cshtml:25
 #: Views\Manage\Dashboard.cshtml:24
+#: Views\Manage\Messages.cshtml:31
 msgid "Search"
 msgstr ""
 
@@ -1331,12 +1349,20 @@ msgstr ""
 msgid "Search PlaceHolder"
 msgstr ""
 
+#: Views\Listing\Listings.cshtml:84
+msgid "Search text"
+msgstr ""
+
 #: Views\Listing\Listings.cshtml:83
 msgid "Search Text"
 msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:23
 msgid "Search your listings..."
+msgstr ""
+
+#: Views\Manage\Messages.cshtml:30
+msgid "Search your mails..."
 msgstr ""
 
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:75
@@ -1348,6 +1374,10 @@ msgstr ""
 msgid "See All Listings"
 msgstr ""
 
+#: Views\Shared\_LoginPartial.cshtml:40
+msgid "See all Messages"
+msgstr ""
+
 #: Views\Account\SendCode.cshtml:15
 msgid "Select Two-Factor Authentication Provider:"
 msgstr ""
@@ -1355,6 +1385,7 @@ msgstr ""
 #: Views\Account\SendCode.cshtml:3
 #: Views\Home\Contact.cshtml:34
 #: Views\Listing\Listing.cshtml:223
+#: Views\Manage\Message.cshtml:74
 msgid "Send"
 msgstr ""
 
@@ -1468,7 +1499,7 @@ msgstr ""
 msgid "Thank you for confirming your email."
 msgstr ""
 
-#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:134
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:134
 msgid "Thanks for your order! You payment will not be charged until the provider accepted your request."
 msgstr ""
 
@@ -1525,15 +1556,15 @@ msgstr ""
 
 #: Views\Listing\_ListingGridList.cshtml:28
 #: Views\Payment\Orders.cshtml:87
-#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:39
-#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:62
-#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:30
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:39
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:62
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:30
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:39
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:62
 #: Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:30
-#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:39
-#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:62
-#: C:\Github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\TransactionOverview.cshtml:30
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:39
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:62
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\TransactionOverview.cshtml:30
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:36
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:54
 #: Areas\Admin\Views\Listing\Listings.cshtml:52
@@ -1544,14 +1575,14 @@ msgstr ""
 msgid "There are no items to display."
 msgstr ""
 
-#: Controllers\ListingController.cs:150
-#: Controllers\ListingController.cs:313
+#: Controllers\ListingController.cs:162
+#: Controllers\ListingController.cs:325
 #: Areas\Admin\Controllers\ListingController.cs:386
 #: Areas\Admin\Controllers\ListingController.cs:486
 msgid "There are not categories available yet."
 msgstr ""
 
-#: Controllers\ListingController.cs:330
+#: Controllers\ListingController.cs:342
 msgid "There are not listing types available yet."
 msgstr ""
 
@@ -1611,7 +1642,7 @@ msgstr ""
 
 #: Views\Payment\Transaction.cshtml:5
 #: Views\Payment\Transaction.cshtml:20
-#: Views\Shared\_DashBoardSide.cshtml:12
+#: Views\Shared\_DashBoardSide.cshtml:13
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:37
 #: Areas\Admin\Views\Payment\Transaction.cshtml:2
 #: Areas\Admin\Views\Payment\Transaction.cshtml:14
@@ -1718,6 +1749,7 @@ msgid "Yes!"
 msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:70
+#: Views\Manage\Messages.cshtml:122
 #: Areas\Admin\Views\Listing\Categories.cshtml:106
 #: Areas\Admin\Views\Listing\Listings.cshtml:96
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:106
@@ -1737,6 +1769,7 @@ msgid "You cannot the listing type. There should be at least one listing type."
 msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:66
+#: Views\Manage\Messages.cshtml:118
 #: Areas\Admin\Views\Listing\Listings.cshtml:92
 msgid "You will delete"
 msgstr ""

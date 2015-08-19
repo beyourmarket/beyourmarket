@@ -4,27 +4,65 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
-    <ul class="nav navbar-nav">
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false">
-                <img alt="Avatar" class="avatar img-circle" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(User.Identity.GetUserId())">
-                <span class="username">@User.Identity.User().FullName </span> <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu fadeInUp animated" role="menu">
-                <li><a href="@Url.Action("Dashboard", "Manage")">[[[Dashboard]]]</a></li>
-                <li><a href="@Url.Action("ListingUpdate", "Listing")">[[[Publish new listing]]]</a></li>
-                <li class="divider"></li>
-
-                @if (User.IsInRole("Administrator"))
-                {
-                    <li><a target="_blank" href="@Url.Action("Index", "Manage", new {Area ="Admin" })">[[[Admin Panel]]]</a></li>
+        <ul class="nav navbar-nav top-menu">
+            <!-- mesages -->
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <i class="fa fa-envelope-o "></i>
+                    <span class="badge badge-sm up bg-blue count">4</span>
+                </a>
+                <ul class="dropdown-menu extended fadeInUp animated nicescroll" tabindex="5001">
+                    <li>
+                        <p>[[[Messages]]]</p>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="pull-left"><img src="img/avatar-2.jpg" class="img-circle thumb-sm m-r-15" alt="img"></span>
+                            <span class="block"><strong>John smith</strong></span>
+                            <span class="media-body block">New tasks needs to be done<br><small class="text-muted">10 seconds ago</small></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="pull-left"><img src="img/avatar-3.jpg" class="img-circle thumb-sm m-r-15" alt="img"></span>
+                            <span class="block"><strong>John smith</strong></span>
+                            <span class="media-body block">New tasks needs to be done<br><small class="text-muted">3 minutes ago</small></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="pull-left"><img src="img/avatar-4.jpg" class="img-circle thumb-sm m-r-15" alt="img"></span>
+                            <span class="block"><strong>John smith</strong></span>
+                            <span class="media-body block">New tasks needs to be done<br><small class="text-muted">10 minutes ago</small></span>
+                        </a>
+                    </li>
+                    <li>
+                        <p><a href="@Url.Action("Messages","Manage")" class="text-right">[[[See all Messages]]]</a></p>
+                    </li>
+                </ul>
+            </li>
+            <!-- /messages -->
+            <!-- user login dropdown -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false">
+                    <img alt="Avatar" class="avatar img-circle" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(User.Identity.GetUserId())">
+                    <span class="username">@User.Identity.User().FullName </span> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu fadeInUp animated" role="menu">
+                    <li><a href="@Url.Action("Dashboard", "Manage")">[[[Dashboard]]]</a></li>
+                    <li><a href="@Url.Action("ListingUpdate", "Listing")">[[[Publish new listing]]]</a></li>
                     <li class="divider"></li>
-                }
-                <li><a href="javascript:document.getElementById('logoutForm').submit()">[[[Log off]]]</a></li>
-            </ul>
-        </li>
 
-    </ul>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li><a target="_blank" href="@Url.Action("Index", "Manage", new {Area ="Admin" })">[[[Admin Panel]]]</a></li>
+                        <li class="divider"></li>
+                    }
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">[[[Log off]]]</a></li>
+                </ul>
+            </li>
+
+        </ul>
     }
 }
 else

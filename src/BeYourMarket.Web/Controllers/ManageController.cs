@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using BeYourMarket.Model.Enum;
 using BeYourMarket.Web.Models.Grids;
 using RestSharp;
+using PagedList;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -33,13 +34,15 @@ namespace BeYourMarket.Web.Controllers
         private readonly ISettingDictionaryService _settingDictionaryService;
         private readonly ICategoryService _categoryService;
         private readonly IListingService _listingService;
-        private readonly IListingStatService _ListingStatservice;
+        private readonly IListingStatService _listingStatservice;
         private readonly IListingPictureService _ListingPictureservice;
         private readonly IPictureService _pictureService;
         private readonly IOrderService _orderService;
         private readonly ICustomFieldService _customFieldService;
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
         private readonly ICustomFieldListingService _customFieldListingService;
+        private readonly IMessageService _messageService;
+        private readonly IMessageParticipantService _messageParticipantService;
 
         private readonly DataCacheService _dataCacheService;
         private readonly SqlDbService _sqlDbService;
@@ -84,7 +87,9 @@ namespace BeYourMarket.Web.Controllers
             ICustomFieldCategoryService customFieldCategoryService,
             ICustomFieldListingService customFieldListingService,
             ISettingDictionaryService settingDictionaryService,
-            IListingStatService ListingStatservice,
+            IListingStatService listingStatservice,
+            IMessageService messageService,
+            IMessageParticipantService messageParticipantService,
             DataCacheService dataCacheService,
             SqlDbService sqlDbService)
         {
@@ -95,12 +100,15 @@ namespace BeYourMarket.Web.Controllers
             _listingService = listingService;
             _pictureService = pictureService;
             _ListingPictureservice = ListingPictureservice;
-            _orderService = orderService;            
-            
+            _orderService = orderService;
+
+            _messageService = messageService;
+            _messageParticipantService = messageParticipantService;
+
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
             _customFieldListingService = customFieldListingService;
-            _ListingStatservice = ListingStatservice;
+            _listingStatservice = listingStatservice;
 
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
@@ -380,6 +388,64 @@ namespace BeYourMarket.Web.Controllers
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+        }
+
+        /// <summary>
+        /// http://stackoverflow.com/questions/6541302/thread-messaging-system-database-schema-design
+        /// </summary>
+        /// <param name="searchText"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public async Task<ActionResult> Messages(string searchText, int? page)
+        {
+            if (searchText != null)
+            {
+                page = 1;
+            }
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+
+            var userId = User.Identity.GetUserId();
+            var participants = await _messageParticipantService.Query(x => x.UserID == userId).SelectAsync();
+
+            // Get messages for the current user
+            var threadIds = participants.Select(x => x.MessageThreadID).ToList();
+
+            var messages = await _messageService.Query(x => threadIds.Contains(x.MessageThreadID))
+                .Include(x => x.AspNetUser)
+                .Include(x => x.MessageReadStates)
+                .Include(x => x.MessageThread)
+                .SelectAsync();
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                messages = messages.Where(s => s.Body.Contains(searchText));
+            }
+
+            var model = messages.ToPagedList(pageNumber, pageSize);
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// return messages sent from a specific user to the current user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public async Task<ActionResult> Message(int threadId)
+        {
+            var userIdCurrent = User.Identity.GetUserId();
+            var mails = await _messageService
+                .Query(x => x.MessageThreadID == threadId)
+                .Include(x => x.AspNetUser)
+                .Include(x => x.MessageThread)
+                .Include(x => x.MessageReadStates)
+                .SelectAsync();
+
+            var model = mails.OrderByDescending(x => x.Created).ToList();
+
+            return View(model);
         }
 
         protected override void Dispose(bool disposing)

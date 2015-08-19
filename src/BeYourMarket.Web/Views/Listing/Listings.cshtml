@@ -6,7 +6,7 @@
 @model BeYourMarket.Web.Models.SearchListingModel
 
 @{
-    ViewBag.Title = "Listings";
+    ViewBag.Title = "[[[Listings]]]";
 }
 
 @section Styles {
@@ -68,7 +68,7 @@
 
                                 <div class="form-group">
                                     <label>[[[Location]]]</label>
-                                    <input type="text" class="form-control" placeholder="Location" id="Location" name="Location" value="@Model.Location">
+                                    <input type="text" class="form-control" placeholder="[[[Location]]]" id="Location" name="Location" value="@Model.Location">
                                 </div>
 
                                 <div class="form-group">
@@ -81,7 +81,7 @@
 
                                 <div class="form-group">
                                     <label>[[[Search Text]]]</label>
-                                    <input type="search" class="form-control" placeholder="Search text" id="SearchText" name="SearchText" value="@Model.SearchText">
+                                    <input type="search" class="form-control" placeholder="[[[Search text]]]" id="SearchText" name="SearchText" value="@Model.SearchText">
                                 </div>
 
                                 <input type="checkbox" id="PhotoOnly" name="PhotoOnly" value="true" @( Model.PhotoOnly ? "checked" : "") />
@@ -113,7 +113,7 @@
                         </div>
 
                         <h4>
-                            Listings
+                            [[[Listings]]]
                         </h4>
                     </div>
                 </div>

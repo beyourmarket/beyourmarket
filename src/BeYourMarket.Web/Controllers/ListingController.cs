@@ -43,6 +43,10 @@ namespace BeYourMarket.Web.Controllers
         private readonly ICustomFieldListingService _customFieldListingService;
 
         private readonly IEmailTemplateService _emailTemplateService;
+        private readonly IMessageService _messageService;
+        private readonly IMessageThreadService _messageThreadService;
+        private readonly IMessageParticipantService _messageParticipantService;
+        private readonly IMessageReadStateService _messageReadStateService;
 
         private readonly DataCacheService _dataCacheService;
         private readonly SqlDbService _sqlDbService;
@@ -90,6 +94,10 @@ namespace BeYourMarket.Web.Controllers
            ISettingDictionaryService settingDictionaryService,
            IListingStatService ListingStatservice,
            IEmailTemplateService emailTemplateService,
+           IMessageService messageService,
+            IMessageThreadService messageThreadService,
+           IMessageParticipantService messageParticipantService,
+           IMessageReadStateService messageReadStateService,
            DataCacheService dataCacheService,
            SqlDbService sqlDbService)
         {
@@ -106,6 +114,10 @@ namespace BeYourMarket.Web.Controllers
             _customFieldListingService = customFieldListingService;
             _ListingStatservice = ListingStatservice;
             _emailTemplateService = emailTemplateService;
+            _messageService = messageService;
+            _messageParticipantService = messageParticipantService;
+            _messageReadStateService = messageReadStateService;
+            _messageThreadService = messageThreadService;
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
 
@@ -558,6 +570,74 @@ namespace BeYourMarket.Web.Controllers
 
         public async Task<ActionResult> ContactUser(ContactUserModel model)
         {
+            var listing = await _listingService.FindAsync(model.ListingID);
+
+            var userIdCurrent = User.Identity.GetUserId();
+            var messageParticipants = await _messageParticipantService.Query(x => x.UserID == listing.UserID && x.UserID == userIdCurrent).SelectAsync();
+
+            // Create message thread
+            var messageThread = new MessageThread()
+            {
+                Subject = listing.Title,
+                Created = DateTime.Now,
+                LastUpdated = DateTime.Now,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
+            };
+
+            _messageThreadService.Insert(messageThread);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            // Insert mail message to db
+            var message = new Message()
+            {
+                UserFrom = userIdCurrent,
+                Body = model.Message,
+                MessageThreadID = messageThread.ID,
+                Created = DateTime.Now,
+                LastUpdated = DateTime.Now,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
+            };
+
+            _messageService.Insert(message);
+
+            // Add message participants
+            _messageParticipantService.Insert(new MessageParticipant()
+            {
+                UserID = userIdCurrent,
+                MessageThreadID = messageThread.ID,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
+            });
+
+            _messageParticipantService.Insert(new MessageParticipant()
+            {
+                UserID = listing.UserID,
+                MessageThreadID = messageThread.ID,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
+            });
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            // Add read state of messages
+            _messageReadStateService.Insert(new MessageReadState()
+            {
+                MessageID = message.ID,
+                UserID = userIdCurrent,
+                ReadDate = DateTime.Now,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
+            });
+
+            _messageReadStateService.Insert(new MessageReadState()
+            {
+                MessageID = message.ID,
+                UserID = listing.UserID,
+                ReadDate = null,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
+            });
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            // Send email with notification
             var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "privatemessage").SelectAsync();
             var emailTemplate = emailTemplateQuery.Single();
 

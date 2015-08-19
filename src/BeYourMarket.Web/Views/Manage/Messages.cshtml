@@ -1,0 +1,146 @@
+﻿@model PagedList.IPagedList<BeYourMarket.Model.Models.Message>
+
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "[[[Messages]]]";
+}
+
+@section Styles {
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+}
+
+<div class="body-content container-fluid">
+    <div class="main-section">
+        <div class="container-fluid mrg-tb">
+
+            @Html.Partial("_DashBoardSide", "messages")
+
+            <div class=" col-md-9">
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane card-content fade active in" id="listings" aria-labelledby="listings-tab">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                [[[Messages]]]
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="pull-left">
+                                    <form class="form-inline" action="@Url.Action("Messages", "Manage")" method="get" role="form">
+                                        <input type="text" id="searchText" name="searchText" class="input-sm form-control" placeholder="[[[Search your mails...]]]" value="@Request.QueryString["searchText"]">
+                                        <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search"></i> [[[Search]]]</button>
+                                    </form>
+                                </div>
+
+                                <div class="btn-group pull-right">
+                                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-tag"></i>
+                                        <b class="caret"></b>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#fakelink">Action</a></li>
+                                        <li><a href="#fakelink">Another action</a></li>
+                                        <li><a href="#fakelink">Something else here</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#fakelink">Separated link</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="panel-body table-responsive">
+                                <table class="table table-hover mails">
+                                    <tbody>
+                                        @foreach (var message in Model)
+                                        {
+                                            <tr class="@(message.MessageReadStates.FirstOrDefault().ReadDate.HasValue ? "active" : "")">
+                                                <td class="mail-select" width="50">
+                                                    <label class="cr-styled">
+                                                        <input type="checkbox"><i class="fa"></i>
+                                                    </label>
+                                                </td>
+
+                                                <td>
+                                                    <a class="text-sm" href="@Url.Action("Profile", "Listing", new { id = message.AspNetUser.Id })">@message.AspNetUser.FullName</a>
+                                                </td>
+
+                                                <td>
+                                                    <img class="pull-left img-circle thumb-sm" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(message.AspNetUser.Id)" />
+                                                </td>
+
+                                                <td width="250">
+                                                    <a href="@Url.Action("Message", "Manage", new { threadId = message.MessageThreadID })">
+                                                        <p class="truncate text-sm">@message.Body</p>
+                                                    </a>
+                                                </td>
+
+                                                <td width="150">
+                                                    <a href="@Url.Action("Message", "Manage", new { threadId = message.MessageThreadID })">
+                                                        <p class="truncate text-lighten text-xs">@message.MessageThread.Subject</p>
+                                                    </a>
+                                                </td>
+
+                                                <td class="text-right">
+                                                    @(message.Created.Date == DateTime.Today.Date ? message.Created.ToShortTimeString() : message.Created.ToShortDateString())
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        @string.Format("Showing {0} - {1} of {2}", Model.PageNumber, Model.PageNumber * Model.TotalItemCount, Model.TotalItemCount)
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <div class="btn-group pull-right">
+                                            <button type="button" class="btn btn-default"><i class="fa fa-chevron-left"></i></button>
+                                            <button type="button" class="btn btn-default"><i class="fa fa-chevron-right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function confirmDelete(id, title) {
+            swal({
+                title: "[[[Are you sure?]]]",
+                text: "[[[You will delete]]] " + title,
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "[[[Yes, delete it!]]]",
+                cancelButtonText: "[[[No, cancel please!]]]",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    $.post('@Url.Action("ListingDelete","Listing")', { id: id })
+                    .done(function (result) {
+                        if (result.Success) {
+                            $("#item_" + id).remove();
+                            swal("[[[Deleted!]]]", result.Message, "success");
+                        } else {
+                            swal("[[[Failed!]]]", result.Message, "error");
+                        }
+                    })
+                    .fail(function (xhr, textStatus, errorThrown) {
+                        swal("[[[Failed!]]]", xhr.responseText, "error");
+                    })
+                } else {
+                    swal("[[[Cancelled!]]]", "", "error");
+                }
+            });
+        }
+    </script>
+}

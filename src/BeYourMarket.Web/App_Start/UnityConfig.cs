@@ -47,6 +47,10 @@ namespace BeYourMarket.Web.App_Start
                 .RegisterType<IRepositoryAsync<AspNetRole>, Repository<AspNetRole>>()
                 .RegisterType<IRepositoryAsync<ListingType>, Repository<ListingType>>()
                 .RegisterType<IRepositoryAsync<CategoryListingType>, Repository<CategoryListingType>>()
+                .RegisterType<IRepositoryAsync<Message>, Repository<Message>>()
+                .RegisterType<IRepositoryAsync<MessageParticipant>, Repository<MessageParticipant>>()
+                .RegisterType<IRepositoryAsync<MessageReadState>, Repository<MessageReadState>>()
+                .RegisterType<IRepositoryAsync<MessageThread>, Repository<MessageThread>>()
 
                 .RegisterType<ISettingService, SettingService>()
                 .RegisterType<ICategoryService, CategoryService>()
@@ -66,6 +70,10 @@ namespace BeYourMarket.Web.App_Start
                 .RegisterType<IAspNetRoleService, AspNetRoleService>()
                 .RegisterType<IListingTypeService, ListingTypeService>()
                 .RegisterType<ICategoryListingTypeService, CategoryListingTypeService>()
+                .RegisterType<IMessageService, MessageService>()
+                .RegisterType<IMessageParticipantService, MessageParticipantService>()
+                .RegisterType<IMessageReadStateService, MessageReadStateService>()
+                .RegisterType<IMessageThreadService, MessageThreadService>()                
                 .RegisterType<IStoredProcedures, BeYourMarketContext>(new PerRequestLifetimeManager())
                 .RegisterType<SqlDbService, SqlDbService>() 
                 .RegisterType<DataCacheService, DataCacheService>(new ContainerControlledLifetimeManager());
