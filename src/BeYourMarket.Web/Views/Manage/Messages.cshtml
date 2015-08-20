@@ -1,9 +1,11 @@
-﻿@model PagedList.IPagedList<BeYourMarket.Model.Models.Message>
+﻿@model PagedList.IPagedList<BeYourMarket.Model.Models.MessageThread>
 
+@using Microsoft.AspNet.Identity
 @using PagedList.Mvc;
 
 @{
     ViewBag.Title = "[[[Messages]]]";
+    var userId = User.Identity.GetUserId();
 }
 
 @section Styles {
@@ -50,21 +52,25 @@
                             <div class="panel-body table-responsive">
                                 <table class="table table-hover mails">
                                     <tbody>
-                                        @foreach (var message in Model)
+                                        @foreach (var messageThread in Model)
                                         {
-                                            <tr class="@(message.MessageReadStates.FirstOrDefault().ReadDate.HasValue ? "active" : "")">
+                                            var message = messageThread.Messages.OrderByDescending(x => x.Created).FirstOrDefault();
+                                            var participant = messageThread.MessageParticipants.Where(x=>x.UserID != userId).FirstOrDefault();
+                                            
+                                            // message state if it's marked as read
+                                            var messageReadState = message.MessageReadStates.Where(x => x.UserID == userId).FirstOrDefault();
+                                            var unRead = messageReadState != null && !messageReadState.ReadDate.HasValue;
+                                            
+                                            <tr class="@(unRead ? "active" : "")">
                                                 <td class="mail-select" width="50">
                                                     <label class="cr-styled">
                                                         <input type="checkbox"><i class="fa"></i>
                                                     </label>
-                                                </td>
+                                                </td>                                                
 
-                                                <td>
-                                                    <a class="text-sm" href="@Url.Action("Profile", "Listing", new { id = message.AspNetUser.Id })">@message.AspNetUser.FullName</a>
-                                                </td>
-
-                                                <td>
-                                                    <img class="pull-left img-circle thumb-sm" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(message.AspNetUser.Id)" />
+                                                <td width="150">
+                                                    <img class="img-circle thumb-sm m-r-5" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(participant.AspNetUser.Id)" />
+                                                    <a class="text-sm" href="@Url.Action("Profile", "Listing", new { id = message.AspNetUser.Id })">@participant.AspNetUser.FullName</a>
                                                 </td>
 
                                                 <td width="250">

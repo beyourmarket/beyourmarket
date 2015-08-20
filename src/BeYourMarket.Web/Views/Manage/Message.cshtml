@@ -1,4 +1,5 @@
-﻿@model List<BeYourMarket.Model.Models.Message>
+﻿@model BeYourMarket.Model.Models.MessageThread
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "[[[Messages]]]";
@@ -13,6 +14,8 @@
             <div class=" col-md-9">
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane card-content fade active in" id="listings" aria-labelledby="listings-tab">
+                        @Html.Partial("_UserMessage")
+
                         <div class="btn-toolbar" role="toolbar">
                             <div class="btn-group">
                                 <a class="btn btn-sm btn-primary" href="@Url.Action("Messages", "Manage")"><i class="fa fa-fw fa-level-up fa-rotate-270"></i></a>
@@ -35,48 +38,58 @@
                         <!-- Message -->
                         <div class="panel panel-default m-t-20">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Hi Bro, How are you?</h3>
+                                <h3 class="panel-title">@Model.Subject</h3>
                             </div>
 
-                            @foreach (var message in Model)
-                            {
-                                <div class="panel-body">
-                                    <div class="media m-b-30 ">
-                                        <a href="#" class="pull-left">
-                                            <img class="pull-left media-object img-circle thumb-sm" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(message.AspNetUser.Id)" />
-                                        </a>
-                                        <div class="media-body">
-                                            <span class="media-meta pull-right"><i class="fa fa-clock-o"></i> @(message.Created.Date == DateTime.Today.Date ? message.Created.ToShortTimeString() : message.Created.ToShortDateString())</span>
-
-                                            <h4 class="text-primary m-0">@message.AspNetUser.FullName</h4>
-                                            @*<small class="text-muted">From: jonathan@velonic.com</small>*@
-                                        </div>
-                                    </div> <!-- media -->
-
-                                    <p><b>@message.MessageThread.Subject</b></p>
-                                    <p>@message.Body</p>
-                                </div>
-                                <!-- panel-body -->
-                            }
-
-                        </div> <!-- End panel -->
-                        <!-- End message -->
-
-                        <!-- Reply -->
-                        <div class="panel panel-default">
+                            <!-- Reply -->
                             <div class="panel-body p-t-10 p-b-10">
                                 <div class="media">
-                                    <a href="#" class="pull-left">
-                                        <img class="pull-left media-object img-circle thumb-sm" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(User.Identity.User().Id)" />
+                                    <a href="@Url.Action("Profile", "Listing", new { id = User.Identity.GetUserId() })" class="pull-left">
+                                        <img class="pull-left media-object img-circle thumb-sm" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(User.Identity.GetUserId())" />
                                     </a>
                                     <div class="media-body">
-                                        <textarea class="form-control m-b-10" rows="4" placeholder="Reply here..."></textarea>                                        
-                                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Send]]]</button>
+                                        <form action="@Url.Action("Message", "Manage")" method="post" role="form">
+                                            <input type="hidden" name="threadId" id="threadId" value="@Model.ID" />
+                                            <textarea class="form-control m-b-10" id="messageText" name="messageText" rows="4" placeholder="[[[Reply here...]]]"></textarea>
+                                            <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Send Message]]]</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Reply -->
+                            <!-- Reply -->
+
+                            <div class="panel-body">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        @foreach (var message in Model.Messages.OrderByDescending(x => x.Created))
+                                        {
+                                            <tr>
+                                                <td class="col-md-2">
+                                                    <div class="media">
+                                                        <a href="@Url.Action("Profile", "Listing", new { id = message.AspNetUser.Id })" cla class="pull-left">
+                                                            <img class="pull-left media-object img-circle thumb-sm" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(message.AspNetUser.Id)" />
+                                                        </a>
+                                                        <small class="text-muted">@message.AspNetUser.FullName</small>
+                                                    </div> <!-- media -->
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <p class="text-md">@message.Body</p>
+                                                    </div>
+                                                </td>
+                                                <td class="col-md-2">
+                                                    <span class="media-meta pull-right"><i class="fa fa-clock-o"></i> @(message.Created.Date == DateTime.Today.Date ? message.Created.ToShortTimeString() : message.Created.ToShortDateString())</span>
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- panel-body -->
+
+                        </div> <!-- End panel -->
+                        <!-- End message -->
 
                     </div>
 

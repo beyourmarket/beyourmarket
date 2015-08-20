@@ -21,6 +21,7 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.MessageID).HasColumnName("MessageID");
             this.Property(t => t.UserID).HasColumnName("UserID");
             this.Property(t => t.ReadDate).HasColumnName("ReadDate");
+            this.Property(t => t.Created).HasColumnName("Created");
 
             // Relationships
             this.HasRequired(t => t.AspNetUser)

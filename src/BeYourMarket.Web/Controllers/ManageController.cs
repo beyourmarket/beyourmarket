@@ -20,6 +20,7 @@ using BeYourMarket.Model.Enum;
 using BeYourMarket.Web.Models.Grids;
 using RestSharp;
 using PagedList;
+using BeYourMarket.Core.Web;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -41,8 +42,11 @@ namespace BeYourMarket.Web.Controllers
         private readonly ICustomFieldService _customFieldService;
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
         private readonly ICustomFieldListingService _customFieldListingService;
+
+        private readonly IMessageThreadService _messageThreadService;
         private readonly IMessageService _messageService;
         private readonly IMessageParticipantService _messageParticipantService;
+        private readonly IMessageReadStateService _messageReadStateService;
 
         private readonly DataCacheService _dataCacheService;
         private readonly SqlDbService _sqlDbService;
@@ -89,7 +93,9 @@ namespace BeYourMarket.Web.Controllers
             ISettingDictionaryService settingDictionaryService,
             IListingStatService listingStatservice,
             IMessageService messageService,
+            IMessageThreadService messageThreadService,
             IMessageParticipantService messageParticipantService,
+            IMessageReadStateService messageReadStateService,
             DataCacheService dataCacheService,
             SqlDbService sqlDbService)
         {
@@ -103,7 +109,9 @@ namespace BeYourMarket.Web.Controllers
             _orderService = orderService;
 
             _messageService = messageService;
+            _messageThreadService = messageThreadService;
             _messageParticipantService = messageParticipantService;
+            _messageReadStateService = messageReadStateService;
 
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
@@ -412,18 +420,22 @@ namespace BeYourMarket.Web.Controllers
             // Get messages for the current user
             var threadIds = participants.Select(x => x.MessageThreadID).ToList();
 
-            var messages = await _messageService.Query(x => threadIds.Contains(x.MessageThreadID))
-                .Include(x => x.AspNetUser)
-                .Include(x => x.MessageReadStates)
-                .Include(x => x.MessageThread)
+            var messageThreads = await _messageThreadService
+                .Query(x => threadIds.Contains(x.ID))
+                .Include(x => x.Messages)
+                .Include(x => x.Messages.Select(y => y.AspNetUser))
+                .Include(x => x.Messages.Select(y => y.MessageReadStates))
+                .Include(x => x.MessageParticipants)
                 .SelectAsync();
 
             if (!string.IsNullOrEmpty(searchText))
             {
-                messages = messages.Where(s => s.Body.Contains(searchText));
+                messageThreads = messageThreads.Where(x => x.Messages.Where(y => y.Body.Contains(searchText)).Any());
             }
 
-            var model = messages.ToPagedList(pageNumber, pageSize);
+            messageThreads = messageThreads.OrderByDescending(x => x.Messages.Max(y => y.Created));
+
+            var model = messageThreads.ToPagedList(pageNumber, pageSize);
 
             return View(model);
         }
@@ -436,16 +448,83 @@ namespace BeYourMarket.Web.Controllers
         public async Task<ActionResult> Message(int threadId)
         {
             var userIdCurrent = User.Identity.GetUserId();
-            var mails = await _messageService
-                .Query(x => x.MessageThreadID == threadId)
-                .Include(x => x.AspNetUser)
-                .Include(x => x.MessageThread)
-                .Include(x => x.MessageReadStates)
+
+            var messageThread = await _messageThreadService
+                .Query(x => x.ID == threadId)
+                .Include(x => x.Messages)
+                .Include(x => x.Messages.Select(y => y.AspNetUser))
+                .Include(x => x.Messages.Select(y => y.MessageReadStates))
+                .Include(x => x.MessageParticipants)
                 .SelectAsync();
 
-            var model = mails.OrderByDescending(x => x.Created).ToList();
+            var model = messageThread.FirstOrDefault();
+
+            // Redirect to inbox if the thread doesn't contain anything
+            if (model == null)
+                return RedirectToAction("Messages");
+
+            // Redirect to inbox if the thread doesn't contain current user
+            if (!model.MessageParticipants.Any(x => x.UserID == userIdCurrent))
+                return RedirectToAction("Messages");
+
+            // Update message read states
+            var messageReadStates = await _messageReadStateService
+                .Query(x => x.UserID == userIdCurrent && !x.ReadDate.HasValue && x.Message.MessageThreadID == threadId)
+                .SelectAsync();
+
+            foreach (var messageReadState in messageReadStates)
+            {
+                messageReadState.ReadDate = DateTime.Now;
+                messageReadState.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
+
+                _messageReadStateService.Update(messageReadState);
+            }
+
+            await _unitOfWorkAsync.SaveChangesAsync();
 
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Message(int threadId, string messageText)
+        {
+            var userIdCurrent = User.Identity.GetUserId();
+
+            var messageParticipants = await _messageParticipantService.Query(x => x.MessageThreadID == threadId).SelectAsync();
+            if (!messageParticipants.Any(x => x.UserID == userIdCurrent))
+                return RedirectToAction("Messages");
+
+            // Add message
+            var message = new Message()
+            {
+                MessageThreadID = threadId,
+                UserFrom = userIdCurrent,
+                Body = messageText,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added,
+                Created = DateTime.Now,
+                LastUpdated = DateTime.Now,
+            };
+
+            _messageService.Insert(message);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            // Add message readstate
+            foreach (var messageParticipant in messageParticipants.Where(x => x.UserID != userIdCurrent))
+            {
+                _messageReadStateService.Insert(new MessageReadState()
+                {
+                    MessageID = message.ID,
+                    UserID = messageParticipant.UserID,
+                    ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
+                });
+            }
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            TempData[TempDataKeys.UserMessage] = "[[[Message is sent.]]]";
+
+            return RedirectToAction("Message", new { threadId = threadId });
         }
 
         protected override void Dispose(bool disposing)

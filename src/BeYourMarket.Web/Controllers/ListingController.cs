@@ -585,7 +585,7 @@ namespace BeYourMarket.Web.Controllers
             };
 
             _messageThreadService.Insert(messageThread);
-
+            
             await _unitOfWorkAsync.SaveChangesAsync();
 
             // Insert mail message to db

@@ -77,6 +77,7 @@ namespace BeYourMarket.Web.Migrations
             var user = new ApplicationUser
             {
                 UserName = _installModel.Email,
+                FirstName = "Administrator",                
                 Email = _installModel.Email,
                 RegisterDate = DateTime.Now,
                 RegisterIP = HttpContext.Current.Request.GetVisitorIP(),

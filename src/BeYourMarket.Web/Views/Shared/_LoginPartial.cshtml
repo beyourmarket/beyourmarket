@@ -1,4 +1,10 @@
 ﻿@using Microsoft.AspNet.Identity
+
+@{
+    var userId = User.Identity.GetUserId();
+    var messages = MessageHelper.GetUnReadMessages(userId);
+}
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -9,38 +15,42 @@
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <i class="fa fa-envelope-o "></i>
-                    <span class="badge badge-sm up bg-blue count">4</span>
+                    @if (messages.Count > 0)
+                    {                        
+                        <span class="badge badge-sm up bg-blue count">@messages.Count</span>
+                    }
                 </a>
                 <ul class="dropdown-menu extended fadeInUp animated nicescroll" tabindex="5001">
                     <li>
                         <p>[[[Messages]]]</p>
                     </li>
+
+                    @if (messages.Count > 0)
+                    {
+                        foreach (var message in messages)
+                        {
+                            <li>
+                                <a href="@Url.Action("Message", "Manage", new { threadId = message.MessageThreadID })">
+                                    <span class="pull-left"><img src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(message.AspNetUser.Id)" class="img-circle thumb-sm m-r-15" alt="img"></span>
+                                    <span class="block"><strong>@message.AspNetUser.FullName</strong></span>
+                                    <span class="media-body block">@message.Body<br><small class="text-muted">@message.Created.ToShortTimeString()</small></span>
+                                </a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="@Url.Action("Messages","Manage")" class="text-right">[[[There are no new messages]]]</a>
+                        </li>
+                    }
+
                     <li>
-                        <a href="#">
-                            <span class="pull-left"><img src="img/avatar-2.jpg" class="img-circle thumb-sm m-r-15" alt="img"></span>
-                            <span class="block"><strong>John smith</strong></span>
-                            <span class="media-body block">New tasks needs to be done<br><small class="text-muted">10 seconds ago</small></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pull-left"><img src="img/avatar-3.jpg" class="img-circle thumb-sm m-r-15" alt="img"></span>
-                            <span class="block"><strong>John smith</strong></span>
-                            <span class="media-body block">New tasks needs to be done<br><small class="text-muted">3 minutes ago</small></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pull-left"><img src="img/avatar-4.jpg" class="img-circle thumb-sm m-r-15" alt="img"></span>
-                            <span class="block"><strong>John smith</strong></span>
-                            <span class="media-body block">New tasks needs to be done<br><small class="text-muted">10 minutes ago</small></span>
-                        </a>
-                    </li>
-                    <li>
-                        <p><a href="@Url.Action("Messages","Manage")" class="text-right">[[[See all Messages]]]</a></p>
+                        <p><a href="@Url.Action("Messages","Manage")" class="text-right">[[[See all messages]]]</a></p>
                     </li>
                 </ul>
             </li>
+
             <!-- /messages -->
             <!-- user login dropdown -->
             <li class="dropdown">
