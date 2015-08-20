@@ -527,6 +527,35 @@ namespace BeYourMarket.Web.Controllers
             return RedirectToAction("Message", new { threadId = threadId });
         }
 
+        [HttpPost]
+        public async Task<ActionResult> MessageAction(List<int> messageIds, int actionType)
+        {
+            var action = (Enum_MessageAction) actionType;
+
+            switch (action)
+            {
+                case Enum_MessageAction.MarkAsRead:
+                    var messageReadStates = await _messageReadStateService
+                        .Query(x => messageIds.Contains(x.MessageID) && !x.ReadDate.HasValue)
+                        .SelectAsync();
+
+                    foreach (var messageReadState in messageReadStates)
+                    {
+                        messageReadState.ReadDate = DateTime.Now;
+                        _messageReadStateService.Update(messageReadState);
+                    }
+
+                    await _unitOfWorkAsync.SaveChangesAsync();
+
+                    break;
+               case Enum_MessageAction.None:
+                default:
+                    break;
+            }
+
+            return RedirectToAction("Messages");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)

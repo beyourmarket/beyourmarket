@@ -573,69 +573,17 @@ namespace BeYourMarket.Web.Controllers
             var listing = await _listingService.FindAsync(model.ListingID);
 
             var userIdCurrent = User.Identity.GetUserId();
-            var messageParticipants = await _messageParticipantService.Query(x => x.UserID == listing.UserID && x.UserID == userIdCurrent).SelectAsync();
 
-            // Create message thread
-            var messageThread = new MessageThread()
+            // Check if user send message to itself, which is not allowed
+            if (listing.UserID == userIdCurrent)
             {
-                Subject = listing.Title,
-                Created = DateTime.Now,
-                LastUpdated = DateTime.Now,
-                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
-            };
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[You cannot send message to yourself!]]]";
+                return RedirectToAction("Listing", "Listing", new { id = model.ListingID });
+            }
 
-            _messageThreadService.Insert(messageThread);
-            
-            await _unitOfWorkAsync.SaveChangesAsync();
-
-            // Insert mail message to db
-            var message = new Message()
-            {
-                UserFrom = userIdCurrent,
-                Body = model.Message,
-                MessageThreadID = messageThread.ID,
-                Created = DateTime.Now,
-                LastUpdated = DateTime.Now,
-                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
-            };
-
-            _messageService.Insert(message);
-
-            // Add message participants
-            _messageParticipantService.Insert(new MessageParticipant()
-            {
-                UserID = userIdCurrent,
-                MessageThreadID = messageThread.ID,
-                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
-            });
-
-            _messageParticipantService.Insert(new MessageParticipant()
-            {
-                UserID = listing.UserID,
-                MessageThreadID = messageThread.ID,
-                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
-            });
-
-            await _unitOfWorkAsync.SaveChangesAsync();
-
-            // Add read state of messages
-            _messageReadStateService.Insert(new MessageReadState()
-            {
-                MessageID = message.ID,
-                UserID = userIdCurrent,
-                ReadDate = DateTime.Now,
-                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
-            });
-
-            _messageReadStateService.Insert(new MessageReadState()
-            {
-                MessageID = message.ID,
-                UserID = listing.UserID,
-                ReadDate = null,
-                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
-            });
-
-            await _unitOfWorkAsync.SaveChangesAsync();
+            // Send message to user
+            await MessageHelper.SendMessage(userIdCurrent, listing.UserID, listing.Title, model.Message);
 
             // Send email with notification
             var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "privatemessage").SelectAsync();

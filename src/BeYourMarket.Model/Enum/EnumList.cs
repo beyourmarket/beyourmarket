@@ -109,4 +109,10 @@ namespace BeYourMarket.Model.Enum
         Inbox = 0,
         Archive = 1
     }
+
+    public enum Enum_MessageAction
+    {
+        None = 0,
+        MarkAsRead = 1
+    }
 }
