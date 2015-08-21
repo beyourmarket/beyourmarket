@@ -37,7 +37,7 @@
                                     <div class="media-body">
                                         <form action="@Url.Action("Message", "Manage")" method="post" role="form">
                                             <input type="hidden" name="threadId" id="threadId" value="@Model.ID" />
-                                            <textarea class="form-control m-b-10" id="messageText" name="messageText" rows="4" placeholder="[[[Reply here...]]]"></textarea>
+                                            <textarea class="form-control m-b-10" id="messageText" name="messageText" required rows="4" placeholder="[[[Reply here...]]]"></textarea>
                                             <button class="btn btn-primary" type="submit"><i class="fa fa-send"></i> [[[Send Message]]]</button>
                                         </form>
                                     </div>
