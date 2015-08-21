@@ -20,6 +20,7 @@ using BeYourMarket.Model.Enum;
 using BeYourMarket.Web.Models.Grids;
 using RestSharp;
 using BeYourMarket.Core.Web;
+using BeYourMarket.Service.Models;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -583,7 +584,15 @@ namespace BeYourMarket.Web.Controllers
             }
 
             // Send message to user
-            await MessageHelper.SendMessage(userIdCurrent, listing.UserID, listing.Title, model.Message);
+            var message = new MessageSendModel()
+            {
+                UserFrom = userIdCurrent,
+                UserTo = listing.UserID,
+                Subject = listing.Title,
+                Body = model.Message
+            };
+
+            await MessageHelper.SendMessage(message);
 
             // Send email with notification
             var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "privatemessage").SelectAsync();

@@ -19,6 +19,7 @@ using Plugin.Payment.Stripe.Models.Grids;
 using Plugin.Payment.Services;
 using Plugin.Payment.Stripe.Data;
 using Microsoft.Practices.Unity;
+using BeYourMarket.Service.Models;
 
 namespace Plugin.Payment.Stripe.Controllers
 {
@@ -131,6 +132,21 @@ namespace Plugin.Payment.Stripe.Controllers
             // Payment succeeded
             if (string.IsNullOrEmpty(stripeCharge.FailureCode))
             {
+                // Send message to the user
+                var message = new MessageSendModel()
+                {
+                    UserFrom = order.UserReceiver,
+                    UserTo = order.UserProvider,
+                    Subject = order.Listing.Title,
+                    Body = string.Format(
+                    "[[[Order Requested - %0 - Total Price %1 %2|||{0}|||{1}|||{2}]]]",
+                    order.Description.Replace("[[[", "(((").Replace("]]]", ")))"),
+                    order.Price,
+                    order.Currency)
+                };
+
+                await MessageHelper.SendMessage(message);
+
                 TempData[TempDataKeys.UserMessage] = "[[[Thanks for your order! You payment will not be charged until the provider accepted your request.]]]";
                 return RedirectToAction("Orders", "Payment");
             }
@@ -241,7 +257,7 @@ namespace Plugin.Payment.Stripe.Controllers
 
             if (transaction == null)
             {
-                message = "Transaction not found";
+                message = "[[[Transaction not found]]]";
                 return false;
             }
 

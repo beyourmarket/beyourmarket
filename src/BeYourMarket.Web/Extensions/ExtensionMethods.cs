@@ -96,6 +96,16 @@ namespace BeYourMarket.Web.Extensions
             return text == null ? string.Empty : text.Substring(0, Math.Min(length, text.Length)) + "...";
         }
 
+        /// <summary>
+        /// Transform translation text with [[[ => ((( and  ]]] => )))
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string TransformTranslationParameter(this string text)
+        {
+            return text == null ? string.Empty : text.Replace("[[[", "(((").Replace("]]]", ")))");
+        }
+
         //http://stackoverflow.com/questions/3643613/asp-net-mvc-highlighting-current-page-link-technique
         public static MvcHtmlString MenuItem(
             this HtmlHelper htmlHelper,

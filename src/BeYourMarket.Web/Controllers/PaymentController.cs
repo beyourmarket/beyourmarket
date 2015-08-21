@@ -24,6 +24,8 @@ using BeYourMarket.Core.Plugins;
 using BeYourMarket.Core;
 using Microsoft.Practices.Unity;
 using BeYourMarket.Core.Controllers;
+using BeYourMarket.Service.Models;
+using BeYourMarket.Web.Extensions;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -122,10 +124,16 @@ namespace BeYourMarket.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> OrderAction(int id, int status)
         {
-            var order = await _orderService.FindAsync(id);
+            var orderQuery = await _orderService.Query(x => x.ID == id).Include(x => x.Listing).SelectAsync();
+            var order = orderQuery.FirstOrDefault();
 
             if (order == null)
                 return new HttpNotFoundResult();
+
+            var currentUserId = User.Identity.GetUserId();
+            // Unauthorized access
+            if (order.UserProvider != currentUserId && order.UserReceiver != currentUserId)
+                return new HttpUnauthorizedResult();
 
             var descriptor = _pluginFinder.GetPluginDescriptorBySystemName<IHookPlugin>(order.PaymentPlugin);
             if (descriptor == null)
@@ -137,11 +145,50 @@ namespace BeYourMarket.Web.Controllers
             string message = string.Empty;
             var orderResult = controller.OrderAction(id, status, out message);
 
+            var orderStatus = (Enum_OrderStatus)status;
+            var orderStatusText = string.Empty;
+
+            switch (orderStatus)
+            {
+                case Enum_OrderStatus.Created:
+                case Enum_OrderStatus.Pending:
+                    orderStatusText = "[[[Pending]]]";
+                    break;
+                case Enum_OrderStatus.Confirmed:
+                    orderStatusText = "[[[Confirmed]]]";
+                    break;
+                case Enum_OrderStatus.Cancelled:
+                    orderStatusText = "[[[Cancelled]]]";
+                    break;
+                default:
+                    orderStatusText = orderStatus.ToString();
+                    break;
+            }
+
             var result = new
             {
                 Success = orderResult,
                 Message = message
             };
+
+            if (orderResult)
+            {
+                // Send message to the user
+                var messageSend = new MessageSendModel()
+                {
+                    UserFrom = currentUserId,
+                    UserTo = order.UserProvider == currentUserId ? order.UserReceiver : order.UserProvider,
+                    Subject = order.Listing.Title,
+                    Body = string.Format(
+                    "[[[Order %0 - %1 - Total Price %2 %3|||{0}|||{1}|||{2}|||{3}]]]",
+                    orderStatusText.TransformTranslationParameter(),
+                    order.Description.TransformTranslationParameter(),
+                    order.Price,
+                    order.Currency)
+                };
+
+                await MessageHelper.SendMessage(messageSend);
+            }
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
@@ -150,8 +197,12 @@ namespace BeYourMarket.Web.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var orders = await _orderService.Query(x => x.Status != (int)Enum_OrderStatus.Created && (x.UserProvider == userId || x.UserReceiver == userId))
-                .Include(x => x.Listing).SelectAsync();
+            var orders = await _orderService
+                .Query(x => x.Status != (int)Enum_OrderStatus.Created && (x.UserProvider == userId || x.UserReceiver == userId))
+                .Include(x => x.Listing)
+                .Include(x => x.AspNetUser)
+                .Include(x => x.AspNetUser1)
+                .SelectAsync();
 
             var grid = new OrdersGrid(orders.AsQueryable().OrderByDescending(x => x.Created));
 
@@ -198,10 +249,12 @@ namespace BeYourMarket.Web.Controllers
 
         public async Task<ActionResult> Order(Order order)
         {
-            var item = await _listingService.FindAsync(order.ListingID);
+            var listing = await _listingService.FindAsync(order.ListingID);
 
-            if (item == null)
+            if (listing == null)
                 return new HttpNotFoundResult();
+
+            var userCurrent = User.Identity.User();
 
             // Check if payment method is setup on user or the platform
             var descriptors = _pluginFinder.GetPluginDescriptors<IHookPlugin>(LoadPluginsMode.InstalledOnly, "Payment").Where(x => x.Enabled);
@@ -218,7 +271,7 @@ namespace BeYourMarket.Web.Controllers
                 var controllerType = descriptor.Instance<IHookPlugin>().GetControllerType();
                 var controller = ContainerManager.GetConfiguredContainer().Resolve(controllerType) as IPaymentController;
 
-                if (!controller.HasPaymentMethod(item.UserID))
+                if (!controller.HasPaymentMethod(listing.UserID))
                 {
                     TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
                     TempData[TempDataKeys.UserMessage] = string.Format("[[[The provider has not setup the payment option for {0} yet, please contact the provider.]]]", descriptor.FriendlyName);
@@ -233,9 +286,10 @@ namespace BeYourMarket.Web.Controllers
                 order.Created = DateTime.Now;
                 order.Modified = DateTime.Now;
                 order.Status = (int)Enum_OrderStatus.Created;
-                order.UserProvider = item.UserID;
-                order.UserReceiver = User.Identity.GetUserId();
+                order.UserProvider = listing.UserID;
+                order.UserReceiver = userCurrent.Id;
                 order.ListingTypeID = order.ListingTypeID;
+                order.Currency = listing.Currency;
 
                 if (order.UserProvider == order.UserReceiver)
                 {
@@ -248,24 +302,24 @@ namespace BeYourMarket.Web.Controllers
                 if (order.ToDate.HasValue && order.FromDate.HasValue)
                 {
                     order.Description = string.Format("{0} #{1} ([[[From]]] {2} [[[To]]] {3})",
-                        item.Title, item.ID,
+                        listing.Title, listing.ID,
                         order.FromDate.Value.ToShortDateString(), order.ToDate.Value.ToShortDateString());
 
                     order.Quantity = order.ToDate.Value.Date.AddDays(1).Subtract(order.FromDate.Value.Date).Days;
-                    order.Price = order.Quantity * item.Price;
+                    order.Price = order.Quantity * listing.Price;
                 }
                 else if (order.Quantity.HasValue)
                 {
-                    order.Description = string.Format("{0} #{1}", item.Title, item.ID);
+                    order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
                     order.Quantity = order.Quantity.Value;
-                    order.Price = item.Price;
+                    order.Price = listing.Price;
                 }
                 else
                 {
                     // Default
-                    order.Description = string.Format("{0} #{1}", item.Title, item.ID);
+                    order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
                     order.Quantity = 1;
-                    order.Price = item.Price;
+                    order.Price = listing.Price;
                 }
 
                 _orderService.Insert(order);

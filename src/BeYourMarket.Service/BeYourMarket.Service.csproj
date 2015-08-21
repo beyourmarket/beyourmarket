@@ -81,6 +81,7 @@
     <Compile Include="MessageParticipantService.cs" />
     <Compile Include="MessageReadStateService.cs" />
     <Compile Include="MessageThreadService.cs" />
+    <Compile Include="Models\MessageSendModel.cs" />
     <Compile Include="Models\Statistics.cs" />
     <Compile Include="MessageService.cs" />
     <Compile Include="OrderService.cs" />

@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using BeYourMarket.Web.Models;
 using BeYourMarket.Web.Utilities;
 using BeYourMarket.Service;
+using BeYourMarket.Service.Models;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -213,7 +214,16 @@ namespace BeYourMarket.Web.Controllers
                     var roleAdministrator = await RoleManager.FindByNameAsync(BeYourMarket.Model.Enum.Enum_UserType.Administrator.ToString());
                     var administrator = roleAdministrator.Users.FirstOrDefault();
 
-                    await MessageHelper.SendMessage(administrator.UserId, user.Id, "[[[Welcome to BeYourMarket!]]]", "[[[BeYourMarket is an opensource peer-to-peer marketplace. Bootstrap your marketplace in 5 minutes!]]]");
+                    var message = new MessageSendModel()
+                    {
+                        UserFrom = administrator.UserId,
+                        UserTo = user.Id,
+                        Subject = "[[[Welcome to BeYourMarket!]]]",
+                        Body = "[[[BeYourMarket is an opensource peer-to-peer marketplace. Bootstrap your marketplace in 5 minutes!]]]"
+
+                    };
+
+                    await MessageHelper.SendMessage(message);
 
                     // Send an email with this link
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
