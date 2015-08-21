@@ -1,30 +1,80 @@
 ﻿@using Microsoft.AspNet.Identity
+
+@{
+    var userId = User.Identity.GetUserId();
+    var messages = MessageHelper.GetUnReadMessages(userId);
+}
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
-    <ul class="nav navbar-nav">
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false">
-                <img alt="Avatar" class="avatar img-circle" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(User.Identity.GetUserId())">
-                <span class="username">@User.Identity.User().FullName </span> <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu fadeInUp animated" role="menu">
-                <li><a href="@Url.Action("Dashboard", "Manage")">[[[Dashboard]]]</a></li>
-                <li><a href="@Url.Action("ListingUpdate", "Listing")">[[[Publish new listing]]]</a></li>
-                <li class="divider"></li>
+        <ul class="nav navbar-nav top-menu">
+            <!-- mesages -->
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <i class="fa fa-envelope-o "></i>
+                    @if (messages.Count > 0)
+                    {                        
+                        <span class="badge badge-sm up bg-blue count">@messages.Count</span>
+                    }
+                </a>
+                <ul class="dropdown-menu extended fadeInUp animated nicescroll" tabindex="5001">
+                    <li>
+                        <p>[[[Messages]]]</p>
+                    </li>
 
-                @if (User.IsInRole("Administrator"))
-                {
-                    <li><a target="_blank" href="@Url.Action("Index", "Manage", new {Area ="Admin" })">[[[Admin Panel]]]</a></li>
+                    @if (messages.Count > 0)
+                    {
+                        foreach (var message in messages)
+                        {
+                            <li>
+                                <a class="truncate" href="@Url.Action("Message", "Manage", new { threadId = message.MessageThreadID })">
+                                    <div class="pull-left"><img src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(message.AspNetUser.Id)" class="img-circle thumb-sm m-r-15 m-b-10" alt="img"></div>
+                                    <span class="block">
+                                        <strong>@message.AspNetUser.FullName</strong><br>
+                                        @message.Body<br><small class="text-muted">@message.Created.ToShortTimeString()</small>
+                                    </span>                                    
+                                </a>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="@Url.Action("Messages","Manage")" class="text-right">[[[There are no new messages]]]</a>
+                        </li>
+                    }
+
+                    <li>
+                        <p><a href="@Url.Action("Messages","Manage")" class="text-right">[[[See all messages]]]</a></p>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- /messages -->
+            <!-- user login dropdown -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-expanded="false">
+                    <img alt="Avatar" class="avatar img-circle" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(User.Identity.GetUserId())">
+                    <span class="username">@User.Identity.User().FullName </span> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu fadeInUp animated" role="menu">
+                    <li><a href="@Url.Action("Dashboard", "Manage")">[[[Dashboard]]]</a></li>
+                    <li><a href="@Url.Action("ListingUpdate", "Listing")">[[[Publish new listing]]]</a></li>
                     <li class="divider"></li>
-                }
-                <li><a href="javascript:document.getElementById('logoutForm').submit()">[[[Log off]]]</a></li>
-            </ul>
-        </li>
 
-    </ul>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li><a target="_blank" href="@Url.Action("Index", "Manage", new {Area ="Admin" })">[[[Admin Panel]]]</a></li>
+                        <li class="divider"></li>
+                    }
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">[[[Log off]]]</a></li>
+                </ul>
+            </li>
+
+        </ul>
     }
 }
 else

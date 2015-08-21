@@ -1,0 +1,148 @@
+﻿@model PagedList.IPagedList<BeYourMarket.Model.Models.MessageThread>
+
+@using Microsoft.AspNet.Identity
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "[[[Messages]]]";
+    var userId = User.Identity.GetUserId();
+}
+
+@section Styles {
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+}
+
+<div class="body-content container-fluid">
+    <div class="main-section">
+        <div class="container-fluid mrg-tb">
+
+            @Html.Partial("_DashBoardSide", "messages")
+
+            <div class=" col-md-9">
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane card-content fade active in" id="listings" aria-labelledby="listings-tab">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                [[[Messages]]]
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="btn-toolbar" role="toolbar">
+                                    <div class="pull-left">
+                                        <form class="form-inline" action="@Url.Action("Messages", "Manage")" method="get" role="form">
+                                            <input type="text" id="searchText" name="searchText" class="input-sm form-control" placeholder="[[[Search your mails...]]]" value="@Request.QueryString["searchText"]">
+                                            <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search"></i> [[[Search]]]</button>
+                                        </form>
+                                    </div>
+
+                                    <div class="btn-group pull-right">
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa fa-gear"></i>
+                                            <b class="caret"></b>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="#" id="markReadBtn">[[[Mark as read]]]</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-body table-responsive">
+                                <form action="@Url.Action("MessageAction", "Manage")" id="form0" method="post" role="form">
+                                    <input type="hidden" name="actionType" id="actionType" />
+                                    <table class="table table-hover mails">
+                                        <tbody>
+                                            @foreach (var messageThread in Model)
+                                            {
+                                                var message = messageThread.Messages.OrderByDescending(x => x.Created).FirstOrDefault();
+                                                var participant = messageThread.MessageParticipants.Where(x => x.UserID != userId).FirstOrDefault();
+
+                                                if (participant == null) { 
+                                                    continue;
+                                                }
+                                                
+                                                // message state if it's marked as read
+                                                var messageReadState = message.MessageReadStates.Where(x => x.UserID == userId).FirstOrDefault();
+                                                var unRead = messageReadState != null && !messageReadState.ReadDate.HasValue;
+
+                                                <tr class="@(unRead ? "active" : "")">
+                                                    <td class="mail-select" width="50">
+                                                        <label class="cr-styled">
+                                                            <input type="checkbox" id="messageIds" name="messageIds" value="@message.ID"><i class="fa"></i>
+                                                        </label>
+                                                    </td>
+
+                                                    <td width="200">
+                                                        <img class="img-circle thumb-sm m-r-5" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(participant.AspNetUser.Id)" />
+                                                        <a class="text-xs" href="@Url.Action("Profile", "Listing", new { id = message.AspNetUser.Id })">@participant.AspNetUser.FullName</a>
+                                                    </td>
+
+                                                    <td width="250">
+                                                        <a href="@Url.Action("Message", "Manage", new { threadId = message.MessageThreadID })">
+                                                            <p class="truncate text-sm">
+                                                                @if (unRead)
+                                                                {
+                                                                    <i class="fa fa-circle text-primary m-r-5 text-xs"></i><b>@message.Body</b>
+                                                                }
+                                                                else
+                                                                {
+                                                                    @message.Body
+                                                                }
+                                                            </p>
+                                                        </a>
+                                                    </td>
+
+                                                    <td width="200">
+                                                        <a href="@Url.Action("Message", "Manage", new { threadId = message.MessageThreadID })">
+                                                            <p class="truncate text-xs">@message.MessageThread.Subject</p>
+                                                        </a>
+                                                    </td>
+
+                                                    <td class="text-right">
+                                                        @(message.Created.Date == DateTime.Today.Date ? message.Created.ToShortTimeString() : message.Created.ToShortDateString())
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </form>
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-xs-7 m-t-10">
+                                        @string.Format("[[[Showing {0} - {1} of {2}]]]", Model.PageNumber, Model.PageNumber * Model.TotalItemCount, Model.TotalItemCount)
+                                    </div>
+                                    <div class="col-xs-5">
+                                        @Html.PagedListPager(Model, (page) => { return Request.UrlReplace("PageNumber", page.ToString()); },
+                                        new PagedListRenderOptions
+                                             {
+                                                 ContainerDivClasses = new List<string>(new string[] { "pull-right" }),
+                                                 DisplayPageCountAndCurrentLocation = false,
+                                                 MaximumPageNumbersToDisplay = 5,
+                                                 DisplayEllipsesWhenNotShowingAllPageNumbers = false
+                                             })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var form = document.getElementById("form0");
+
+        document.getElementById("markReadBtn").addEventListener("click", function () {
+            if ($("#messageIds:checked").length == 0)
+                return;
+
+            $('#actionType').val("1");
+            form.submit();
+        });
+    </script>
+}

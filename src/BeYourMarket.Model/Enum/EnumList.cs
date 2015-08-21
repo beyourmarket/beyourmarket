@@ -81,7 +81,7 @@ namespace BeYourMarket.Model.Enum
         Page60 = 60,
         [Description("100")]
         Page100 = 100
-    }    
+    }
 
     public enum Enum_UserType
     {
@@ -97,9 +97,22 @@ namespace BeYourMarket.Model.Enum
         Disabled = 3
     }
 
-    public enum Enum_ListingOrderType { 
+    public enum Enum_ListingOrderType
+    {
         None = 0,
         DateRange,
         Quantity
+    }
+
+    public enum Enum_MessageFolder
+    {
+        Inbox = 0,
+        Archive = 1
+    }
+
+    public enum Enum_MessageAction
+    {
+        None = 0,
+        MarkAsRead = 1
     }
 }

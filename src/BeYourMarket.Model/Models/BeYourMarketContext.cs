@@ -31,6 +31,10 @@ namespace BeYourMarket.Model.Models
         public DbSet<Listing> Listings { get; set; }
         public DbSet<ListingStat> ListingStats { get; set; }
         public DbSet<ListingType> ListingTypes { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<MessageParticipant> MessageParticipants { get; set; }
+        public DbSet<MessageReadState> MessageReadStates { get; set; }
+        public DbSet<MessageThread> MessageThreads { get; set; }
         public DbSet<MetaCategory> MetaCategories { get; set; }
         public DbSet<MetaField> MetaFields { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -58,6 +62,10 @@ namespace BeYourMarket.Model.Models
             modelBuilder.Configurations.Add(new ListingMap());
             modelBuilder.Configurations.Add(new ListingStatMap());
             modelBuilder.Configurations.Add(new ListingTypeMap());
+            modelBuilder.Configurations.Add(new MessageMap());
+            modelBuilder.Configurations.Add(new MessageParticipantMap());
+            modelBuilder.Configurations.Add(new MessageReadStateMap());
+            modelBuilder.Configurations.Add(new MessageThreadMap());
             modelBuilder.Configurations.Add(new MetaCategoryMap());
             modelBuilder.Configurations.Add(new MetaFieldMap());
             modelBuilder.Configurations.Add(new OrderMap());

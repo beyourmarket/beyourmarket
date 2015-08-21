@@ -380,6 +380,8 @@
     <Content Include="Views\Listing\_ListingCard.cshtml" />
     <Content Include="Views\Shared\_ListingTypes.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_ListingTypes.cshtml" />
+    <Content Include="Views\Manage\Messages.cshtml" />
+    <Content Include="Views\Manage\Message.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

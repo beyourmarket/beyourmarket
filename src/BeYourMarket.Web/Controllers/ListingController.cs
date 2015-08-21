@@ -43,6 +43,10 @@ namespace BeYourMarket.Web.Controllers
         private readonly ICustomFieldListingService _customFieldListingService;
 
         private readonly IEmailTemplateService _emailTemplateService;
+        private readonly IMessageService _messageService;
+        private readonly IMessageThreadService _messageThreadService;
+        private readonly IMessageParticipantService _messageParticipantService;
+        private readonly IMessageReadStateService _messageReadStateService;
 
         private readonly DataCacheService _dataCacheService;
         private readonly SqlDbService _sqlDbService;
@@ -90,6 +94,10 @@ namespace BeYourMarket.Web.Controllers
            ISettingDictionaryService settingDictionaryService,
            IListingStatService ListingStatservice,
            IEmailTemplateService emailTemplateService,
+           IMessageService messageService,
+            IMessageThreadService messageThreadService,
+           IMessageParticipantService messageParticipantService,
+           IMessageReadStateService messageReadStateService,
            DataCacheService dataCacheService,
            SqlDbService sqlDbService)
         {
@@ -106,6 +114,10 @@ namespace BeYourMarket.Web.Controllers
             _customFieldListingService = customFieldListingService;
             _ListingStatservice = ListingStatservice;
             _emailTemplateService = emailTemplateService;
+            _messageService = messageService;
+            _messageParticipantService = messageParticipantService;
+            _messageReadStateService = messageReadStateService;
+            _messageThreadService = messageThreadService;
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
 
@@ -558,6 +570,22 @@ namespace BeYourMarket.Web.Controllers
 
         public async Task<ActionResult> ContactUser(ContactUserModel model)
         {
+            var listing = await _listingService.FindAsync(model.ListingID);
+
+            var userIdCurrent = User.Identity.GetUserId();
+
+            // Check if user send message to itself, which is not allowed
+            if (listing.UserID == userIdCurrent)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[You cannot send message to yourself!]]]";
+                return RedirectToAction("Listing", "Listing", new { id = model.ListingID });
+            }
+
+            // Send message to user
+            await MessageHelper.SendMessage(userIdCurrent, listing.UserID, listing.Title, model.Message);
+
+            // Send email with notification
             var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "privatemessage").SelectAsync();
             var emailTemplate = emailTemplateQuery.Single();
 

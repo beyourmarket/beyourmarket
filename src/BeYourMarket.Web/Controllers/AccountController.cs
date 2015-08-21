@@ -20,6 +20,7 @@ namespace BeYourMarket.Web.Controllers
         #region Fields
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationRoleManager _roleManager;
         private readonly IEmailTemplateService _emailTemplateService;
         #endregion
 
@@ -47,11 +48,23 @@ namespace BeYourMarket.Web.Controllers
                 _userManager = value;
             }
         }
+
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
+        }
         #endregion
 
         #region Constructor
         public AccountController(IEmailTemplateService emailTemplateService)
-        {            
+        {
             _emailTemplateService = emailTemplateService;
         }
         #endregion
@@ -195,6 +208,12 @@ namespace BeYourMarket.Web.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    // Send Message
+                    var roleAdministrator = await RoleManager.FindByNameAsync(BeYourMarket.Model.Enum.Enum_UserType.Administrator.ToString());
+                    var administrator = roleAdministrator.Users.FirstOrDefault();
+
+                    await MessageHelper.SendMessage(administrator.UserId, user.Id, "[[[Welcome to BeYourMarket!]]]", "[[[BeYourMarket is an opensource peer-to-peer marketplace. Bootstrap your marketplace in 5 minutes!]]]");
 
                     // Send an email with this link
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

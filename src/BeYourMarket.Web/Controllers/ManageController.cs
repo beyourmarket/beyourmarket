@@ -19,6 +19,8 @@ using System.Collections.Generic;
 using BeYourMarket.Model.Enum;
 using BeYourMarket.Web.Models.Grids;
 using RestSharp;
+using PagedList;
+using BeYourMarket.Core.Web;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -33,13 +35,18 @@ namespace BeYourMarket.Web.Controllers
         private readonly ISettingDictionaryService _settingDictionaryService;
         private readonly ICategoryService _categoryService;
         private readonly IListingService _listingService;
-        private readonly IListingStatService _ListingStatservice;
+        private readonly IListingStatService _listingStatservice;
         private readonly IListingPictureService _ListingPictureservice;
         private readonly IPictureService _pictureService;
         private readonly IOrderService _orderService;
         private readonly ICustomFieldService _customFieldService;
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
         private readonly ICustomFieldListingService _customFieldListingService;
+
+        private readonly IMessageThreadService _messageThreadService;
+        private readonly IMessageService _messageService;
+        private readonly IMessageParticipantService _messageParticipantService;
+        private readonly IMessageReadStateService _messageReadStateService;
 
         private readonly DataCacheService _dataCacheService;
         private readonly SqlDbService _sqlDbService;
@@ -84,7 +91,11 @@ namespace BeYourMarket.Web.Controllers
             ICustomFieldCategoryService customFieldCategoryService,
             ICustomFieldListingService customFieldListingService,
             ISettingDictionaryService settingDictionaryService,
-            IListingStatService ListingStatservice,
+            IListingStatService listingStatservice,
+            IMessageService messageService,
+            IMessageThreadService messageThreadService,
+            IMessageParticipantService messageParticipantService,
+            IMessageReadStateService messageReadStateService,
             DataCacheService dataCacheService,
             SqlDbService sqlDbService)
         {
@@ -95,12 +106,17 @@ namespace BeYourMarket.Web.Controllers
             _listingService = listingService;
             _pictureService = pictureService;
             _ListingPictureservice = ListingPictureservice;
-            _orderService = orderService;            
-            
+            _orderService = orderService;
+
+            _messageService = messageService;
+            _messageThreadService = messageThreadService;
+            _messageParticipantService = messageParticipantService;
+            _messageReadStateService = messageReadStateService;
+
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
             _customFieldListingService = customFieldListingService;
-            _ListingStatservice = ListingStatservice;
+            _listingStatservice = listingStatservice;
 
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
@@ -380,6 +396,164 @@ namespace BeYourMarket.Web.Controllers
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+        }
+
+        /// <summary>
+        /// http://stackoverflow.com/questions/6541302/thread-messaging-system-database-schema-design
+        /// </summary>
+        /// <param name="searchText"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public async Task<ActionResult> Messages(string searchText, int? page)
+        {
+            if (searchText != null)
+            {
+                page = 1;
+            }
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+
+            var userId = User.Identity.GetUserId();
+            var participants = await _messageParticipantService.Query(x => x.UserID == userId).SelectAsync();
+
+            // Get messages for the current user
+            var threadIds = participants.Select(x => x.MessageThreadID).ToList();
+
+            var messageThreads = await _messageThreadService
+                .Query(x => threadIds.Contains(x.ID))
+                .Include(x => x.Messages)
+                .Include(x => x.Messages.Select(y => y.AspNetUser))
+                .Include(x => x.Messages.Select(y => y.MessageReadStates))
+                .Include(x => x.MessageParticipants)
+                .SelectAsync();
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                messageThreads = messageThreads.Where(x => x.Messages.Where(y => y.Body.Contains(searchText)).Any());
+            }
+
+            messageThreads = messageThreads.OrderByDescending(x => x.Messages.Max(y => y.Created));
+
+            var model = messageThreads.ToPagedList(pageNumber, pageSize);
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// return messages sent from a specific user to the current user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public async Task<ActionResult> Message(int threadId)
+        {
+            var userIdCurrent = User.Identity.GetUserId();
+
+            var messageThread = await _messageThreadService
+                .Query(x => x.ID == threadId)
+                .Include(x => x.Messages)
+                .Include(x => x.Messages.Select(y => y.AspNetUser))
+                .Include(x => x.Messages.Select(y => y.MessageReadStates))
+                .Include(x => x.MessageParticipants)
+                .SelectAsync();
+
+            var model = messageThread.FirstOrDefault();
+
+            // Redirect to inbox if the thread doesn't contain anything
+            if (model == null)
+                return RedirectToAction("Messages");
+
+            // Redirect to inbox if the thread doesn't contain current user
+            if (!model.MessageParticipants.Any(x => x.UserID == userIdCurrent))
+                return RedirectToAction("Messages");
+
+            // Update message read states
+            var messageReadStates = await _messageReadStateService
+                .Query(x => x.UserID == userIdCurrent && !x.ReadDate.HasValue && x.Message.MessageThreadID == threadId)
+                .SelectAsync();
+
+            foreach (var messageReadState in messageReadStates)
+            {
+                messageReadState.ReadDate = DateTime.Now;
+                messageReadState.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
+
+                _messageReadStateService.Update(messageReadState);
+            }
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Message(int threadId, string messageText)
+        {
+            var userIdCurrent = User.Identity.GetUserId();
+
+            var messageParticipants = await _messageParticipantService.Query(x => x.MessageThreadID == threadId).SelectAsync();
+            if (!messageParticipants.Any(x => x.UserID == userIdCurrent))
+                return RedirectToAction("Messages");
+
+            // Add message
+            var message = new Message()
+            {
+                MessageThreadID = threadId,
+                UserFrom = userIdCurrent,
+                Body = messageText,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added,
+                Created = DateTime.Now,
+                LastUpdated = DateTime.Now,
+            };
+
+            _messageService.Insert(message);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            // Add message readstate
+            foreach (var messageParticipant in messageParticipants.Where(x => x.UserID != userIdCurrent))
+            {
+                _messageReadStateService.Insert(new MessageReadState()
+                {
+                    MessageID = message.ID,
+                    UserID = messageParticipant.UserID,
+                    ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
+                });
+            }
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            TempData[TempDataKeys.UserMessage] = "[[[Message is sent.]]]";
+
+            return RedirectToAction("Message", new { threadId = threadId });
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> MessageAction(List<int> messageIds, int actionType)
+        {
+            var action = (Enum_MessageAction) actionType;
+
+            switch (action)
+            {
+                case Enum_MessageAction.MarkAsRead:
+                    var messageReadStates = await _messageReadStateService
+                        .Query(x => messageIds.Contains(x.MessageID) && !x.ReadDate.HasValue)
+                        .SelectAsync();
+
+                    foreach (var messageReadState in messageReadStates)
+                    {
+                        messageReadState.ReadDate = DateTime.Now;
+                        _messageReadStateService.Update(messageReadState);
+                    }
+
+                    await _unitOfWorkAsync.SaveChangesAsync();
+
+                    break;
+               case Enum_MessageAction.None:
+                default:
+                    break;
+            }
+
+            return RedirectToAction("Messages");
         }
 
         protected override void Dispose(bool disposing)
