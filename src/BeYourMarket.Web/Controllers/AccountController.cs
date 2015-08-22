@@ -88,11 +88,13 @@ namespace BeYourMarket.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-
+            
             // Require the user to have a confirmed email before they can log on.
             if (CacheHelper.Settings.EmailConfirmedRequired)
             {
