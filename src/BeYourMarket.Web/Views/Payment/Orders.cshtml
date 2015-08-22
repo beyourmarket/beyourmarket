@@ -5,6 +5,7 @@
 
 @{
     ViewBag.Title = "[[[Orders]]]";
+    var currentUserId = User.Identity.GetUserId();
 }
 
 @section Styles {
@@ -57,6 +58,16 @@
     <a href="@Url.Action("Listing", "Listing", new { id = ListingID })">@title <i class="fa fa-external-link"></i></a>
 }
 
+@helper DisplayUser(BeYourMarket.Model.Models.Order order, string userId)
+{
+    var user = userId == order.AspNetUser.Id ? order.AspNetUser1 : order.AspNetUser;
+
+    <a href="@Url.Action("Profile", "Listing", new { id = user.Id})">
+        <img src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(user.Id)" class="img-circle thumb-sm" alt="img">
+        <span class="text-xs">@user.FullName</span>
+    </a>
+}
+
 <div class="body-content container-fluid">
     <div class="main-section">
         <div class="container-fluid mrg-tb">
@@ -96,6 +107,12 @@
                                                .Sanitized(false)
                                                .Titled("[[[Status]]]").RenderValueAs(x => DisplayStatus(x.Status));
 
+                                           columns.Add()
+                                               .Encoded(false)
+                                               .Sanitized(false)
+                                               .Titled("[[[User]]]")
+                                               .RenderValueAs(x => DisplayUser(x, currentUserId));
+
                                            columns.Add(x => x.Listing.Title)
                                                .Encoded(false)
                                                .Sanitized(false)
@@ -107,6 +124,7 @@
                                            columns.Add(x => x.Description).Titled("[[[Description]]]");
 
                                            columns.Add(x => x.ID).Titled("[[[Order ID]]]");
+
                                            columns.Add(x => x.Created).Titled("[[[Created]]]").RenderValueAs(x => x.Created.ToShortDateString());
 
 

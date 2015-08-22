@@ -33,18 +33,20 @@
                                 @foreach (var item in Model.Listings)
                                 {
                                     <li id="item_@item.ListingCurrent.ID" class="media list-group-item">
-                                        <a class="pull-left" href="@Url.Action("Listing", "Listing", new { id = item.ListingCurrent.ID })">
+                                        <a class="pull-left col-xs-2" href="@Url.Action("Listing", "Listing", new { id = item.ListingCurrent.ID })">
                                             <img class="item-thumbnail img-responsive img-rounded" alt="Thumbnail" src="@item.UrlPicture">
                                         </a>
-                                        <div class="media-body">
+                                        <div class="col-xs-6">
                                             <h4 class="media-heading"><a href="@Url.Action("Listing", "Listing", new { id = item.ListingCurrent.ID })"> @item.ListingCurrent.Title</a></h4>
                                             <p class="hidden-xs">
                                                 @item.ListingCurrent.Description.PrefixString(150)
                                             </p>
                                         </div>
-                                        <div class="pull-right">
-                                            <a class="btn btn-primary btn-sm" href="@Url.Action("ListingUpdate", "Listing", new { id = item.ListingCurrent.ID })"><i class="fa fa-edit"></i>[[[Edit]]]</a>
-                                            <a class="btn btn-default btn-sm" href="javascript:void(0);" onclick="confirmDelete(@item.ListingCurrent.ID, '@item.ListingCurrent.Title');"><i class="fa fa-remove"></i>[[[Delete]]]</a>
+                                        <div class="col-xs-4">
+                                            <div class="pull-right">
+                                                <a class="btn btn-primary btn-sm" href="@Url.Action("ListingUpdate", "Listing", new { id = item.ListingCurrent.ID })"><i class="fa fa-edit"></i><span class="hidden-xs">[[[Edit]]]</span></a>
+                                                <a class="btn btn-default btn-sm" href="javascript:void(0);" onclick="confirmDelete(@item.ListingCurrent.ID, '@item.ListingCurrent.Title');"><i class="fa fa-remove"></i><span class="hidden-xs">[[[Delete]]]</span></a>
+                                            </div>
                                         </div>
                                     </li>
                                 }

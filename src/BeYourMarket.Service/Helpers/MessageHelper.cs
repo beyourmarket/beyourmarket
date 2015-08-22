@@ -84,15 +84,15 @@ namespace BeYourMarket.Service
         /// <param name="subject"></param>
         /// <param name="body"></param>
         /// <returns></returns>
-        public static async Task SendMessage(string userFrom, string userTo, string subject, string body)
+        public static async Task SendMessage(MessageSendModel messageModel)
         {
             var unitOfWork = ContainerManager.GetConfiguredContainer().Resolve<IUnitOfWorkAsync>();
 
             var messageThreadQuery = await MessageThreadService
-                .Query(x => 
-                    x.Subject.Equals(subject, StringComparison.InvariantCultureIgnoreCase) &&
-                    x.MessageParticipants.Any(y => y.UserID == userFrom) &&
-                    x.MessageParticipants.Any(y => y.UserID == userTo))
+                .Query(x =>
+                    x.Subject.Equals(messageModel.Subject, StringComparison.InvariantCultureIgnoreCase) &&
+                    x.MessageParticipants.Any(y => y.UserID == messageModel.UserFrom) &&
+                    x.MessageParticipants.Any(y => y.UserID == messageModel.UserTo))
                 .SelectAsync();
 
             var messageThread = messageThreadQuery.FirstOrDefault();
@@ -102,7 +102,7 @@ namespace BeYourMarket.Service
             {
                 messageThread = new MessageThread()
                 {
-                    Subject = subject,
+                    Subject = messageModel.Subject,
                     Created = DateTime.Now,
                     LastUpdated = DateTime.Now,
                     ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
@@ -115,14 +115,14 @@ namespace BeYourMarket.Service
                 // Add message participants
                 MessageParticipantService.Insert(new MessageParticipant()
                 {
-                    UserID = userFrom,
+                    UserID = messageModel.UserFrom,
                     MessageThreadID = messageThread.ID,
                     ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
                 });
 
                 MessageParticipantService.Insert(new MessageParticipant()
                 {
-                    UserID = userTo,
+                    UserID = messageModel.UserTo,
                     MessageThreadID = messageThread.ID,
                     ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
                 });
@@ -131,8 +131,8 @@ namespace BeYourMarket.Service
             // Insert mail message to db
             var message = new Message()
             {
-                UserFrom = userFrom,
-                Body = body,
+                UserFrom = messageModel.UserFrom,
+                Body = messageModel.Body,
                 MessageThreadID = messageThread.ID,
                 Created = DateTime.Now,
                 LastUpdated = DateTime.Now,
@@ -147,7 +147,7 @@ namespace BeYourMarket.Service
             MessageReadStateService.Insert(new MessageReadState()
             {
                 MessageID = message.ID,
-                UserID = userFrom,
+                UserID = messageModel.UserFrom,
                 ReadDate = DateTime.Now,
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });
@@ -155,7 +155,7 @@ namespace BeYourMarket.Service
             MessageReadStateService.Insert(new MessageReadState()
             {
                 MessageID = message.ID,
-                UserID = userTo,
+                UserID = messageModel.UserTo,
                 ReadDate = null,
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });
