@@ -5,7 +5,7 @@
 @{
     var settings = CacheHelper.Settings;
     var themeCss = string.Format("~/Themes/{0}/Content/theme.css", CacheHelper.Settings.Theme);
-    var themeJs = string.Format("~/Themes/{0}/Scripts/theme.js", CacheHelper.Settings.Theme);
+    var themeJs = string.Format("~/Themes/{0}/Scripts/theme.js", CacheHelper.Settings.Theme);    
 }
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
 
     <title>@ViewBag.Title - @settings.Description</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")    
+    @Scripts.Render("~/bundles/modernizr")
 
     <link href="@Url.Content(themeCss)" rel="stylesheet" />
 
@@ -26,9 +26,12 @@
     <link href="~/Content/custom.css" rel="stylesheet" />
 
     @Html.DoAction(HookName.Head)
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 
-<body>    
+<body>
     <header class="header">
         <a href="@Url.Action("Index", "Home")" class="logo">
             <img src="@ImageHelper.GetCommunityImagePath("logo", "png")" alt="@settings.Name">
@@ -59,7 +62,10 @@
 
 
     <div class="wrapper row-offcanvas row-offcanvas-left">
-        @Html.Action("NavigationSide", "Home")
+
+        <aside class="left-section sidebar-offcanvas @(Convert.ToBoolean(ViewBag.SideCollapse) ? "collapse-left" : "")">
+            @Html.Action("NavigationSide", "Home")
+        </aside>
 
         <aside class="right-section">
 
@@ -68,9 +74,6 @@
             </section>
         </aside>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
 
     @RenderSection("scripts", required: false)
 

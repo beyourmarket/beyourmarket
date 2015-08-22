@@ -21,6 +21,12 @@
                 itemValue = itemMeta.Value;
             }
 
+            var requiredSymbol = string.Empty;
+            if (field.Required)
+            {
+                requiredSymbol = "<span class=\"text-red\">*</span>";
+            }
+
             string controlId = string.Format("customfield_{0}_{1}_{2}", metaCategory.ID, metaCategory.CategoryID, metaCategory.FieldID);
 
             switch (controlType)
@@ -29,7 +35,7 @@
                     break;
                 case BeYourMarket.Model.Enum.Enum_MetaFieldControlType.DropdownList:
                     <div class="form-group">
-                        <label>@field.Name</label>
+                        <label>@field.Name @Html.Raw(requiredSymbol)</label>
                         <select class="form-control" name="@controlId" id="@controlId" data-placeholder="@field.Placeholder" @(field.Required ? "required" : "")>
                             @foreach (var option in options)
                             {
@@ -40,7 +46,7 @@
                             break;
                 case BeYourMarket.Model.Enum.Enum_MetaFieldControlType.RadioList:
                 <div class="form-group">
-                    <label>@field.Name</label>
+                    <label>@field.Name @Html.Raw(requiredSymbol)</label>
                     <div>
                         @foreach (var option in options)
                         {
@@ -51,7 +57,7 @@
                         break;
                 case BeYourMarket.Model.Enum.Enum_MetaFieldControlType.Checkboxes:
                 <div class="form-group">
-                    <label>@field.Name</label>
+                    <label>@field.Name @Html.Raw(requiredSymbol)</label>
                     @foreach (var option in options)
                     {
                         <input type="checkbox" id="@controlId" name="@controlId" value="@option" @(itemValue == option ? "checked" : "") @(field.Required ? "required" : "") /><label for="@controlId">@option</label>
@@ -60,13 +66,13 @@
                     break;
                 case BeYourMarket.Model.Enum.Enum_MetaFieldControlType.TextBox:
                 <div class="form-group">
-                    <label>@field.Name</label>
+                    <label>@field.Name @Html.Raw(requiredSymbol)</label>
                     <input type="text" id="@controlId" name="@controlId" class="form-control input-lg" placeholder="@field.Placeholder" value="@itemValue" @(field.Required ? "required" : "")>
                 </div>
                     break;
                 case BeYourMarket.Model.Enum.Enum_MetaFieldControlType.MultilineTextbox:
                 <div class="form-group">
-                    <label>@field.Name</label>
+                    <label>@field.Name @Html.Raw(requiredSymbol)</label>
                     <textarea class="form-control input-lg" rows="4" placeholder="@field.Placeholder" id="@controlId" name="@controlId" @(field.Required ? "required" : "")>@itemValue</textarea>
                 </div>
                     break;

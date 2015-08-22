@@ -10,104 +10,123 @@
 
 <div class="main-section">
     <div class="container-fluid">
-        <div class="center-block col-md-8">
-            <div class="panel panel-default mrg-t">
-                <div class="panel-body bdr-b panel-header">
-                    <h4>[[[Publish a listing (it's 100% free)]]]</h4>
-                    <p class="text-lighten">
-                        @CacheHelper.Settings.SignupText
-                    </p>
-                </div>
-                <div class="panel-body bdr-b ">
-                    <form action="@Url.Action("ListingUpdate", "Listing")" id="listingUpdateForm" method="post" role="form" enctype="multipart/form-data" onkeypress="return event.keyCode != 13;">
-                        @Html.HiddenFor(x => x.ListingItem.ID)
-                        @Html.Partial("_UserMessage")
-                        @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
+        <div class="row">
+            <div class="center-block col-md-8">
+                <div class="panel panel-default mrg-t">
+                    <div class="panel-body bdr-b panel-header">
+                        <h4>[[[Publish a listing (it's 100% free)]]]</h4>
+                        <p class="text-lighten">
+                            @CacheHelper.Settings.SignupText
+                        </p>
+                    </div>
+                    <div class="panel-body bdr-b">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <text>[[[Already a member? ]]]</text>
+                            <a href="@Url.Action("Login", "Account", new { returnUrl = Request.Url.PathAndQuery })" class="m-b-5">[[[Login here]]]</a>
+                        }
+                        <form action="@Url.Action("ListingUpdate", "Listing")" id="listingUpdateForm" method="post" role="form" enctype="multipart/form-data" onkeypress="return event.keyCode != 13;">
+                            @Html.HiddenFor(x => x.ListingItem.ID)
+                            @Html.Partial("_UserMessage")
+                            @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
 
-                        <fieldset>
-                            <legend>[[[Listing Details]]]</legend>
-                            <label>[[[Category]]]</label>
-                            @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.ListingItem.CategoryID), new { @class = "form-control input-lg" })
+                            <fieldset>
+                                <legend>[[[Listing Details]]]</legend>
+                                <label>[[[Category]]]</label>
+                                @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.Categories, "ID", "Name", Model.ListingItem.CategoryID), new { @class = "form-control input-lg m-b-10" })
 
-                            <div id="listingTypesPlaceHolder">
-                                @Html.Partial("_ListingTypes", Model)
-                            </div>
-
-                            <div class="form-group">
-                                <label>[[[Title]]]</label>
-                                <input type="text" class="form-control input-lg" placeholder="[[[Enter Title]]]" id="Title" name="Title" value="@Model.ListingItem.Title" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label>[[[Description]]]</label>
-                                <textarea class="form-control" rows="4" placeholder="[[[Description...]]]" id="Description" name="Description" required>@Model.ListingItem.Description</textarea>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="number" min="0" class="form-control" id="Price" name="Price" placeholder="[[[Price]]]" value="@Model.ListingItem.Price" data-rule-number="true" data-rule-min="0">
-                                    <span class="input-group-addon">@CacheHelper.Settings.Currency</span>
+                                <div id="listingTypesPlaceHolder">
+                                    @Html.Partial("_ListingTypes", Model)
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" id="Active" name="Active" value="true" @(Model.ListingItem.Active ? "checked" : "") /> <label for="Active">[[[Active]]]</label>
-                                <input name="Active" type="hidden" value="false" />
-                            </div>
-                        </fieldset>
 
-                        <div id="partialPlaceHolder">
-                            @Html.Partial("_CategoryCustomFields", Model.CustomFields)
-                        </div>
-
-                        <fieldset>
-                            <legend>[[[Upload Pictures]]]</legend>
-                            <div class="form-group">
-                                <div class="target">                                    
-                                    <input type="file" id="files" name="files" class="file-loading" multiple>
+                                <div class="form-group">
+                                    <label>[[[Title]]] <span class="text-red">*</span></label>
+                                    <input type="text" class="form-control input-lg" placeholder="[[[Enter Title]]]" id="Title" name="Title" value="@Model.ListingItem.Title" required>
                                 </div>
-                            </div>
-                        </fieldset>
 
-                        <fieldset>
-                            <legend>[[[Location]]]</legend>
-                            <div class="form-group">
-                                <label>[[[Location]]]</label>
-                                <input type="text" class="form-control input-lg" placeholder="Enter Location" id="Location" name="Location" value="@Model.ListingItem.Location">
+                                <div class="form-group">
+                                    <label>[[[Description]]] <span class="text-red">*</span></label>
+                                    <textarea class="form-control" rows="4" placeholder="[[[Description...]]]" id="Description" name="Description" required>@Model.ListingItem.Description</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>[[[Price]]]</label>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control" id="Price" name="Price" placeholder="[[[Price]]]" value="@Model.ListingItem.Price" data-rule-number="true" data-rule-min="0">
+                                        <span class="input-group-addon">@CacheHelper.Settings.Currency</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" id="Active" name="Active" value="true" @(Model.ListingItem.Active ? "checked" : "") /> <label for="Active">[[[Active]]]</label>
+                                    <input name="Active" type="hidden" value="false" />
+                                </div>
+                            </fieldset>
+
+                            <div id="partialPlaceHolder">
+                                @Html.Partial("_CategoryCustomFields", Model.CustomFields)
                             </div>
 
-                            <input type="hidden" id="Longitude" name="Longitude" value="@Model.ListingItem.Longitude" />
-                            <input type="hidden" id="Latitude" name="Latitude" value="@Model.ListingItem.Latitude" />
+                            <fieldset>
+                                <legend>[[[Upload Pictures]]]</legend>
+                                <div class="form-group">
+                                    <div class="target">
+                                        <input type="file" id="files" name="files" class="file-loading" multiple>
+                                    </div>
+                                </div>
+                            </fieldset>
 
-                            <div class="form-group">
-                                <div id="map-canvas"></div>
-                            </div>
+                            <fieldset>
+                                <legend>[[[Location]]]</legend>
+                                <div class="form-group">
+                                    <label>[[[Location]]]</label>
+                                    <input type="text" class="form-control input-lg" placeholder="Enter Location" id="Location" name="Location" value="@Model.ListingItem.Location">
+                                </div>
 
-                        </fieldset>
+                                <input type="hidden" id="Longitude" name="Longitude" value="@Model.ListingItem.Longitude" />
+                                <input type="hidden" id="Latitude" name="Latitude" value="@Model.ListingItem.Latitude" />
 
-                        <fieldset>
-                            <legend>[[[Publisher's Info]]]</legend>
-                            <div class="form-group">
-                                <label>[[[Full Name]]]</label>
-                                <input type="text" id="ContactName" name="ContactName" class="form-control input-lg" placeholder="[[[Enter Your Full Name]]]" value="@Model.ListingItem.ContactName" required>
-                            </div>
-                            <div class="form-group">
-                                <label>[[[Phone Number (Optional)]]]</label>
-                                <input type="tel" id="ContactPhone" name="ContactPhone" class="form-control input-lg" placeholder="[[[Enter Phone Number]]]" value="@Model.ListingItem.ContactPhone">
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" id="ShowPhone" name="ShowPhone" value="true" @(Model.ListingItem.ShowPhone ? "checked" : "") /> <label for="ShowPhone">[[[Show Phone]]]</label>
-                                <input name="ShowPhone" type="hidden" value="false" />
-                            </div>
-                            <div class="form-group">
-                                <label>[[[Email Address]]]</label>
-                                <input type="email" id="ContactEmail" name="ContactEmail" class="form-control input-lg" placeholder="[[[Enter Email Address]]]" value="@Model.ListingItem.ContactEmail" required data-rule-email="true">
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Publish Listing]]]</button>
-                            <a class="btn btn-default" href="@Url.Action("Dashboard", "Manage")"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
-                        </fieldset>
-                    </form>
+                                <div class="form-group">
+                                    <div id="map-canvas"></div>
+                                </div>
 
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>[[[Publisher's Info]]]</legend>
+                                <div class="form-group">
+                                    <label>[[[Full Name]]] <span class="text-red">*</span></label>
+                                    <input type="text" id="ContactName" name="ContactName" class="form-control input-lg" placeholder="[[[Enter Your Full Name]]]" value="@Model.ListingItem.ContactName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>[[[Phone Number]]]</label>
+                                    <input type="tel" id="ContactPhone" name="ContactPhone" class="form-control input-lg" placeholder="[[[Enter Phone Number]]]" value="@Model.ListingItem.ContactPhone">
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" id="ShowPhone" name="ShowPhone" value="true" @(Model.ListingItem.ShowPhone ? "checked" : "") /> <label for="ShowPhone">[[[Show Phone]]]</label>
+                                    <input name="ShowPhone" type="hidden" value="false" />
+                                </div>
+                                <div class="form-group">
+                                    <label>[[[Email Address]]] <span class="text-red">*</span></label>
+                                    <input type="email" id="ContactEmail" name="ContactEmail" class="form-control input-lg" placeholder="[[[Enter Email Address]]]" value="@Model.ListingItem.ContactEmail" required data-rule-email="true">
+                                </div>
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                    <div class="form-group">
+                                        <label for="Password">[[[Password]]] <span class="text-red">*</span></label>
+                                        <input type="password" name="Password" id="Password" class="form-control input-lg" placeholder="[[[Password]]]" data-rule-required="true" data-rule-minlength="6">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ConfirmPassword">[[[Confirm Password]]] <span class="text-red">*</span></label>
+                                        <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control input-lg" placeholder="[[[Confirm Password]]]" data-rule-required="true" data-rule-minlength="6" data-rule-equalto="#Password">
+                                    </div>
+                                }
+                            </fieldset>
+                            <fieldset>
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Publish Listing]]]</button>
+                                <a class="btn btn-default" href="@Url.Action("Dashboard", "Manage")"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
+                            </fieldset>
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -243,7 +262,7 @@
 
                                     $('#Location').val(results[1].formatted_address);
                                     $('#Latitude').val(pos.lat());
-                                    $('#Longitude').val(pos.lng());                                    
+                                    $('#Longitude').val(pos.lng());
 
                                 } else {
                                     alert('No results found');
@@ -278,7 +297,7 @@
                     window.alert("Autocomplete's returned place contains no geometry");
                     return;
                 }
-                
+
                 // Set lat/long
                 $('#Latitude').val(place.geometry.location.lat());
                 $('#Longitude').val(place.geometry.location.lng());

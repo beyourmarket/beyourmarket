@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-08-21 17:36+02:00\n"
-"PO-Revision-Date: 2015-08-21 17:36+02:00\n"
+"POT-Creation-Date: 2015-08-22 17:34+02:00\n"
+"PO-Revision-Date: 2015-08-22 17:34+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -46,7 +46,7 @@ msgstr "Acceptér"
 msgid "Accept Email"
 msgstr "Acceptér email"
 
-#: Views\Listing\ListingUpdate.cshtml:52
+#: Views\Listing\ListingUpdate.cshtml:57
 #: Areas\Admin\Views\Listing\Listings.cshtml:67
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:133
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:67
@@ -82,7 +82,7 @@ msgid "Admin"
 msgstr "Admin"
 
 #: Views\Shared\_LoginPartial.cshtml:70
-#: Views\Shared\_NavigationSide.cshtml:94
+#: Views\Shared\_NavigationSide.cshtml:93
 msgid "Admin Panel"
 msgstr "Admin panel"
 
@@ -91,7 +91,7 @@ msgstr "Admin panel"
 msgid "Admin user email"
 msgstr "Administrator email"
 
-#: Views\Shared\_NavigationSide.cshtml:77
+#: Views\Shared\_NavigationSide.cshtml:76
 msgid "Administration"
 msgstr "Administration"
 
@@ -127,6 +127,10 @@ msgstr "Alle kategorier"
 msgid "Already a member?"
 msgstr "Allerede medlem?"
 
+#: Views\Listing\ListingUpdate.cshtml:22
+msgid "Already a member? "
+msgstr ""
+
 #: Views\Shared\Error.cshtml:13
 msgid "An error occurred"
 msgstr "Der opstod en fejl"
@@ -142,7 +146,7 @@ msgstr "Udseende"
 msgid "Apply"
 msgstr "Tilføj"
 
-#: Views\Manage\Dashboard.cshtml:65
+#: Views\Manage\Dashboard.cshtml:67
 #: Views\Payment\Orders.cshtml:161
 #: Areas\Admin\Views\Listing\Categories.cshtml:101
 #: Areas\Admin\Views\Listing\Listings.cshtml:91
@@ -169,7 +173,7 @@ msgstr "Udvikler"
 msgid "Back to the Home"
 msgstr "Tilbage til forsiden"
 
-#: Controllers\AccountController.cs:222
+#: Controllers\AccountController.cs:239
 msgid "BeYourMarket is an opensource peer-to-peer marketplace. Bootstrap your marketplace in 5 minutes!"
 msgstr ""
 
@@ -184,7 +188,7 @@ msgstr "Brødtekst"
 msgid "Button Label"
 msgstr "Label"
 
-#: Views\Listing\ListingUpdate.cshtml:107
+#: Views\Listing\ListingUpdate.cshtml:123
 #: Views\Payment\Orders.cshtml:26
 #: Views\Payment\Orders.cshtml:30
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:77
@@ -219,7 +223,7 @@ msgstr "Annullér"
 msgid "Cancelled"
 msgstr "Annulleret"
 
-#: Views\Manage\Dashboard.cshtml:89
+#: Views\Manage\Dashboard.cshtml:91
 #: Views\Payment\Orders.cshtml:184
 #: Areas\Admin\Views\Listing\Listings.cshtml:104
 #: obj\Release\Package\PackageTmp\Views\Manage\Messages.cshtml:141
@@ -227,7 +231,7 @@ msgstr "Annulleret"
 msgid "Cancelled!"
 msgstr "Annulleret"
 
-#: Views\Shared\_NavigationSide.cshtml:100
+#: Views\Shared\_NavigationSide.cshtml:99
 #: Areas\Admin\Views\Listing\Categories.cshtml:8
 #: Areas\Admin\Views\Listing\Categories.cshtml:37
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:8
@@ -235,9 +239,9 @@ msgstr "Annulleret"
 msgid "Categories"
 msgstr "Kategorier"
 
-#: Views\Listing\Listing.cshtml:118
+#: Views\Listing\Listing.cshtml:120
 #: Views\Listing\Listings.cshtml:50
-#: Views\Listing\ListingUpdate.cshtml:29
+#: Views\Listing\ListingUpdate.cshtml:34
 #: Views\Listing\_ListingGridList.cshtml:35
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:4
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:12
@@ -315,12 +319,14 @@ msgid "Confirm new password"
 msgstr "Bekræft ny adgangskode"
 
 #: Models\AccountViewModels.cs:79
-#: Models\AccountViewModels.cs:98
+#: Models\AccountViewModels.cs:104
 msgid "Confirm password"
 msgstr "Bekræft adgangskode"
 
 #: Views\Account\Register.cshtml:54
 #: Views\Account\Register.cshtml:55
+#: Views\Listing\ListingUpdate.cshtml:116
+#: Views\Listing\ListingUpdate.cshtml:117
 msgid "Confirm Password"
 msgstr "Bekræft adgangskode"
 
@@ -343,7 +349,7 @@ msgid "Connnect to stripe successfully!"
 msgstr "Du er nu forbundet til Stripe"
 
 #: Views\Home\Contact.cshtml:4
-#: Views\Listing\Listing.cshtml:94
+#: Views\Listing\Listing.cshtml:96
 msgid "Contact"
 msgstr "Kontakt"
 
@@ -355,13 +361,13 @@ msgstr "Kontakt email"
 msgid "Contact Name"
 msgstr "Kontaktnavn"
 
-#: Views\Listing\Listing.cshtml:204
-#: Views\Listing\Listing.cshtml:204
+#: Views\Listing\Listing.cshtml:206
+#: Views\Listing\Listing.cshtml:206
 msgid "Contact number (Click to show)"
 msgstr "Telefonnr. (Klik for at vise)"
 
 #: Views\Home\Contact.cshtml:16
-#: Views\Shared\_NavigationSide.cshtml:113
+#: Views\Shared\_NavigationSide.cshtml:112
 msgid "Contact us"
 msgstr "Kontakt os"
 
@@ -390,7 +396,7 @@ msgstr "Opret"
 
 #: Views\Account\Register.cshtml:12
 #: Views\Shared\_LoginPartial.cshtml:84
-#: Views\Shared\_NavigationSide.cshtml:66
+#: Views\Shared\_NavigationSide.cshtml:65
 msgid "Create an account"
 msgstr "Opret konto"
 
@@ -452,7 +458,7 @@ msgstr "Brugerdefineret Javascript"
 
 #: Views\Manage\Dashboard.cshtml:4
 #: Views\Shared\_LoginPartial.cshtml:64
-#: Views\Shared\_NavigationSide.cshtml:81
+#: Views\Shared\_NavigationSide.cshtml:80
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:3
 #: Areas\Admin\Views\Shared\_NavigationSide.cshtml:76
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Dashboard.cshtml:3
@@ -485,7 +491,7 @@ msgstr "Adgangskode til database"
 msgid "database-username"
 msgstr "Brugernavn til database"
 
-#: Views\Listing\Listing.cshtml:150
+#: Views\Listing\Listing.cshtml:152
 msgid "Date Posted"
 msgstr "Dato oprettet"
 
@@ -498,7 +504,7 @@ msgstr "Standardsprog"
 msgid "Default language must be enabled first!"
 msgstr "Du skal først vælge et standardsprog"
 
-#: Views\Manage\Dashboard.cshtml:47
+#: Views\Manage\Dashboard.cshtml:48
 #: Areas\Admin\Views\Listing\Categories.cshtml:23
 #: Areas\Admin\Views\Listing\Listings.cshtml:19
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:20
@@ -508,13 +514,13 @@ msgstr "Du skal først vælge et standardsprog"
 msgid "Delete"
 msgstr "Slet"
 
-#: Views\Manage\Dashboard.cshtml:80
+#: Views\Manage\Dashboard.cshtml:82
 #: obj\Release\Package\PackageTmp\Views\Manage\Messages.cshtml:132
 msgid "Deleted!"
 msgstr "Slettet"
 
-#: Views\Listing\Listing.cshtml:93
-#: Views\Listing\ListingUpdate.cshtml:42
+#: Views\Listing\Listing.cshtml:95
+#: Views\Listing\ListingUpdate.cshtml:47
 #: Views\Listing\_ListingGridList.cshtml:40
 #: Views\Payment\Orders.cshtml:124
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:46
@@ -532,7 +538,7 @@ msgstr "Slettet"
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: Views\Listing\ListingUpdate.cshtml:43
+#: Views\Listing\ListingUpdate.cshtml:48
 msgid "Description..."
 msgstr "Beskrivelse..."
 
@@ -570,8 +576,8 @@ msgstr ""
 msgid "e.g. Per day"
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:40
-#: Views\Manage\Dashboard.cshtml:46
+#: Views\Listing\Listing.cshtml:29
+#: Views\Manage\Dashboard.cshtml:47
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:15
 #: Areas\Admin\Views\Listing\Categories.cshtml:21
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:15
@@ -589,10 +595,10 @@ msgstr "Edit"
 #: Models\AccountViewModels.cs:45
 #: Models\AccountViewModels.cs:52
 #: Models\AccountViewModels.cs:69
-#: Models\AccountViewModels.cs:88
-#: Models\AccountViewModels.cs:109
+#: Models\AccountViewModels.cs:94
+#: Models\AccountViewModels.cs:115
 #: Views\Account\Register.cshtml:46
-#: Views\Listing\Listing.cshtml:210
+#: Views\Listing\Listing.cshtml:212
 #: Areas\Admin\Views\Manage\Settings.cshtml:45
 #: Areas\Admin\Views\Manage\Settings.cshtml:47
 #: Areas\Admin\Views\Manage\Users.cshtml:23
@@ -603,7 +609,7 @@ msgstr "Edit"
 msgid "Email"
 msgstr "Email"
 
-#: Views\Listing\ListingUpdate.cshtml:101
+#: Views\Listing\ListingUpdate.cshtml:106
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:18
 msgid "Email Address"
 msgstr "Email-adresse"
@@ -674,15 +680,15 @@ msgstr "Indtast email"
 msgid "Enter Email"
 msgstr "Indtast email"
 
-#: Views\Listing\ListingUpdate.cshtml:102
+#: Views\Listing\ListingUpdate.cshtml:107
 msgid "Enter Email Address"
 msgstr "Indtast email-adresse"
 
-#: Views\Listing\ListingUpdate.cshtml:94
+#: Views\Listing\ListingUpdate.cshtml:99
 msgid "Enter Phone Number"
 msgstr "Indtast telefonnr."
 
-#: Views\Listing\ListingUpdate.cshtml:38
+#: Views\Listing\ListingUpdate.cshtml:43
 msgid "Enter Title"
 msgstr "Indtast titel"
 
@@ -711,7 +717,7 @@ msgstr "Indtast brugerdefineret Javascript nedenfor"
 msgid "Enter your email."
 msgstr "Indtast email"
 
-#: Views\Listing\ListingUpdate.cshtml:90
+#: Views\Listing\ListingUpdate.cshtml:95
 msgid "Enter Your Full Name"
 msgstr "Fulde navn"
 
@@ -736,8 +742,8 @@ msgstr "Eksterne login"
 msgid "Failed"
 msgstr "Mislykkedes"
 
-#: Views\Manage\Dashboard.cshtml:82
-#: Views\Manage\Dashboard.cshtml:86
+#: Views\Manage\Dashboard.cshtml:84
+#: Views\Manage\Dashboard.cshtml:88
 #: Views\Payment\Orders.cshtml:177
 #: Views\Payment\Orders.cshtml:181
 #: obj\Release\Package\PackageTmp\Views\Manage\Messages.cshtml:134
@@ -754,6 +760,7 @@ msgstr "Favicon"
 msgid "Female"
 msgstr "Kvinde"
 
+#: Models\AccountViewModels.cs:83
 #: Views\Manage\UserProfile.cshtml:43
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:29
 msgid "First Name"
@@ -769,7 +776,7 @@ msgid "Forgot your password?"
 msgstr "Har du glemt din adgangskode?"
 
 #: Controllers\PaymentController.cs:304
-#: Views\Listing\Listing.cshtml:71
+#: Views\Listing\Listing.cshtml:73
 #: Views\Listing\Listings.cshtml:77
 #: Views\Payment\Payment.cshtml:44
 msgid "From"
@@ -786,7 +793,7 @@ msgstr "Fra dato"
 msgid "Frontend"
 msgstr "Frontend"
 
-#: Views\Listing\ListingUpdate.cshtml:89
+#: Views\Listing\ListingUpdate.cshtml:94
 msgid "Full Name"
 msgstr "Fulde navn"
 
@@ -894,7 +901,7 @@ msgstr "Javascript kode editor"
 msgid "Join"
 msgstr "Opret"
 
-#: Views\Listing\Listing.cshtml:29
+#: Views\Listing\Listing.cshtml:50
 #: Views\Listing\Profile.cshtml:24
 msgid "Joined since"
 msgstr "Medlem siden"
@@ -916,6 +923,7 @@ msgstr "Sidst logget på"
 msgid "Last Access IP"
 msgstr "Sidste registrerede IP"
 
+#: Models\AccountViewModels.cs:86
 #: Views\Manage\UserProfile.cshtml:49
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:36
 msgid "Last Name"
@@ -939,15 +947,15 @@ msgstr "Luk mig ind"
 msgid "List"
 msgstr "Liste"
 
-#: Views\Listing\ListingUpdate.cshtml:28
+#: Views\Listing\ListingUpdate.cshtml:33
 msgid "Listing Details"
 msgstr "Annoncedetaljer"
 
-#: Views\Listing\Listing.cshtml:158
+#: Views\Listing\Listing.cshtml:160
 msgid "Listing ID"
 msgstr "Annonce ID"
 
-#: Views\Listing\Listing.cshtml:134
+#: Views\Listing\Listing.cshtml:136
 #: Views\Listing\Listings.cshtml:55
 #: Views\Shared\_ListingTypes.cshtml:6
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:44
@@ -1008,11 +1016,11 @@ msgstr "Annoncer"
 msgid "Listings by category"
 msgstr "Annoncer efter kategori"
 
-#: Views\Listing\Listing.cshtml:142
+#: Views\Listing\Listing.cshtml:144
 #: Views\Listing\Listings.cshtml:70
 #: Views\Listing\Listings.cshtml:71
-#: Views\Listing\ListingUpdate.cshtml:71
-#: Views\Listing\ListingUpdate.cshtml:73
+#: Views\Listing\ListingUpdate.cshtml:76
+#: Views\Listing\ListingUpdate.cshtml:78
 #: Views\Listing\_ListingGridList.cshtml:43
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:170
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:172
@@ -1028,7 +1036,7 @@ msgid "Locked Out."
 msgstr "Udelukket."
 
 #: Views\Shared\_LoginPartial.cshtml:87
-#: Views\Shared\_NavigationSide.cshtml:61
+#: Views\Shared\_NavigationSide.cshtml:60
 msgid "Log in"
 msgstr "Log ind"
 
@@ -1051,6 +1059,10 @@ msgstr "Login"
 #: Views\Account\ExternalLoginFailure.cshtml:2
 msgid "Login Failure"
 msgstr "Login fejl"
+
+#: Views\Listing\ListingUpdate.cshtml:25
+msgid "Login here"
+msgstr ""
 
 #: Views\Account\Login.cshtml:9
 msgid "Login to your account"
@@ -1100,7 +1112,7 @@ msgstr "Administrér plugins"
 msgid "Manage Users"
 msgstr "Administrér brugere"
 
-#: Views\Listing\Listing.cshtml:190
+#: Views\Listing\Listing.cshtml:192
 msgid "Map"
 msgstr "Kort"
 
@@ -1109,7 +1121,7 @@ msgid "Mark as read"
 msgstr ""
 
 #: Views\Home\Contact.cshtml:28
-#: Views\Listing\Listing.cshtml:221
+#: Views\Listing\Listing.cshtml:223
 msgid "Message"
 msgstr "Besked"
 
@@ -1117,7 +1129,7 @@ msgstr "Besked"
 msgid "Message is sent."
 msgstr ""
 
-#: Controllers\ListingController.cs:609
+#: Controllers\ListingController.cs:687
 #: Areas\Admin\Controllers\ManageController.cs:354
 msgid "Message sent succesfully!"
 msgstr "Beskeden er sendt"
@@ -1173,7 +1185,7 @@ msgstr "Nye annoncer"
 msgid "New password"
 msgstr "Ny adgangskode"
 
-#: Views\Listing\Listing.cshtml:272
+#: Views\Listing\Listing.cshtml:274
 msgid "Next"
 msgstr "Næste"
 
@@ -1187,7 +1199,7 @@ msgstr ""
 msgid "No!"
 msgstr "Nej"
 
-#: Views\Manage\Dashboard.cshtml:71
+#: Views\Manage\Dashboard.cshtml:73
 #: Areas\Admin\Views\Listing\Categories.cshtml:107
 #: Areas\Admin\Views\Listing\Listings.cshtml:97
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:107
@@ -1275,10 +1287,12 @@ msgstr "Betalt"
 
 #: Models\AccountViewModels.cs:58
 #: Models\AccountViewModels.cs:75
-#: Models\AccountViewModels.cs:94
+#: Models\AccountViewModels.cs:100
 #: Views\Account\Login.cshtml:24
 #: Views\Account\Register.cshtml:50
 #: Views\Account\Register.cshtml:51
+#: Views\Listing\ListingUpdate.cshtml:112
+#: Views\Listing\ListingUpdate.cshtml:113
 #: Views\Manage\Index.cshtml:13
 #: Areas\Admin\Views\Install\Index.cshtml:32
 #: Areas\Admin\Views\Install\Index.cshtml:33
@@ -1340,7 +1354,7 @@ msgstr "Afventer"
 msgid "Phone Number"
 msgstr "Telefonnr."
 
-#: Views\Listing\ListingUpdate.cshtml:93
+#: Views\Listing\ListingUpdate.cshtml:98
 msgid "Phone Number (Optional)"
 msgstr "Telefonnr. (Valgfri)"
 
@@ -1389,13 +1403,13 @@ msgstr "Port"
 msgid "Premium"
 msgstr "Premium"
 
-#: Views\Listing\Listing.cshtml:268
+#: Views\Listing\Listing.cshtml:270
 msgid "Previous"
 msgstr "Tilbage"
 
-#: Views\Listing\Listing.cshtml:126
+#: Views\Listing\Listing.cshtml:128
 #: Views\Listing\Listings.cshtml:75
-#: Views\Listing\ListingUpdate.cshtml:47
+#: Views\Listing\ListingUpdate.cshtml:52
 #: Views\Listing\_ListingGridList.cshtml:41
 #: Views\Payment\Orders.cshtml:121
 #: Views\Payment\Payment.cshtml:63
@@ -1431,15 +1445,15 @@ msgstr "Udbyder"
 msgid "Publish a listing (it's 100% free)"
 msgstr "Opret en annonce (Det er 100% gratis)"
 
-#: Views\Listing\ListingUpdate.cshtml:106
+#: Views\Listing\ListingUpdate.cshtml:122
 msgid "Publish Listing"
 msgstr "Opret annonce"
 
 #: Views\Manage\Dashboard.cshtml:28
-#: Views\Shared\_Layout.cshtml:56
+#: Views\Shared\_Layout.cshtml:59
 #: Views\Shared\_LoginPartial.cshtml:65
-#: Views\Shared\_NavigationSide.cshtml:71
-#: Views\Shared\_NavigationSide.cshtml:86
+#: Views\Shared\_NavigationSide.cshtml:70
+#: Views\Shared\_NavigationSide.cshtml:85
 msgid "Publish new listing"
 msgstr "Opret annonce"
 
@@ -1448,7 +1462,7 @@ msgstr "Opret annonce"
 msgid "Published"
 msgstr "Oprettet"
 
-#: Views\Listing\ListingUpdate.cshtml:87
+#: Views\Listing\ListingUpdate.cshtml:92
 msgid "Publisher's Info"
 msgstr "Annoncørinfo"
 
@@ -1545,7 +1559,7 @@ msgstr "Gem"
 msgid "Search"
 msgstr "Søg"
 
-#: Views\Shared\_Layout.cshtml:44
+#: Views\Shared\_Layout.cshtml:47
 msgid "Search for..."
 msgstr "Søg..."
 
@@ -1591,7 +1605,7 @@ msgstr "Vælg 2-faktor autentificering:"
 
 #: Views\Account\SendCode.cshtml:3
 #: Views\Home\Contact.cshtml:34
-#: Views\Listing\Listing.cshtml:223
+#: Views\Listing\Listing.cshtml:225
 #: obj\Release\Package\PackageTmp\Views\Manage\Message.cshtml:74
 msgid "Send"
 msgstr "Send"
@@ -1618,7 +1632,7 @@ msgstr "Server domæne/IP"
 msgid "Settings"
 msgstr "Indstillinger"
 
-#: Views\Listing\Listing.cshtml:95
+#: Views\Listing\Listing.cshtml:97
 msgid "Share"
 msgstr "Del"
 
@@ -1635,7 +1649,7 @@ msgstr "Forsendelse aktiveret"
 msgid "Show Email"
 msgstr "Vis email"
 
-#: Views\Listing\ListingUpdate.cshtml:97
+#: Views\Listing\ListingUpdate.cshtml:102
 msgid "Show Phone"
 msgstr "Vis telefonnr."
 
@@ -1643,11 +1657,11 @@ msgstr "Vis telefonnr."
 msgid "Showing {0} - {1} of {2}"
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:235
+#: Views\Listing\Listing.cshtml:237
 msgid "Sign in"
 msgstr "Log ind"
 
-#: Views\Listing\Listing.cshtml:232
+#: Views\Listing\Listing.cshtml:234
 msgid "Sign in to contact the owner"
 msgstr "Log ind for a kontakte ejeren"
 
@@ -1737,7 +1751,7 @@ msgid "Thanks, have a lovely day."
 msgstr "Tak. Vi ønsker dig en fantastisk day."
 
 #: Models\AccountViewModels.cs:73
-#: Models\AccountViewModels.cs:92
+#: Models\AccountViewModels.cs:98
 #: Models\ManageViewModels.cs:31
 #: Models\ManageViewModels.cs:50
 msgid "The {0} must be at least {2} characters long."
@@ -1765,7 +1779,7 @@ msgid "The page you were looking for doesn't exist."
 msgstr "Siden du leder efter, eksisterer desværre ikke."
 
 #: Models\AccountViewModels.cs:80
-#: Models\AccountViewModels.cs:99
+#: Models\AccountViewModels.cs:105
 msgid "The password and confirmation password do not match."
 msgstr "De to adgangskoder er ikke ens"
 
@@ -1812,14 +1826,14 @@ msgstr ""
 msgid "There are no new messages"
 msgstr ""
 
-#: Controllers\ListingController.cs:163
-#: Controllers\ListingController.cs:326
+#: Controllers\ListingController.cs:165
+#: Controllers\ListingController.cs:350
 #: Areas\Admin\Controllers\ListingController.cs:386
 #: Areas\Admin\Controllers\ListingController.cs:486
 msgid "There are not categories available yet."
 msgstr "Der er ikke oprettet nogen kategorier endnu."
 
-#: Controllers\ListingController.cs:343
+#: Controllers\ListingController.cs:421
 msgid "There are not listing types available yet."
 msgstr ""
 
@@ -1842,7 +1856,7 @@ msgstr "Dette er indholdet af den aftale, brugeren skal acceptere."
 msgid "This text will be shown next to a checkbox in the checkout form"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:37
+#: Views\Listing\ListingUpdate.cshtml:42
 #: Views\Listing\_ListingGridList.cshtml:38
 #: Views\Payment\Orders.cshtml:119
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:45
@@ -1855,7 +1869,7 @@ msgid "Title"
 msgstr "Titel"
 
 #: Controllers\PaymentController.cs:304
-#: Views\Listing\Listing.cshtml:74
+#: Views\Listing\Listing.cshtml:76
 #: Views\Listing\Listings.cshtml:78
 #: Views\Payment\Payment.cshtml:51
 msgid "To"
@@ -1924,7 +1938,7 @@ msgstr "Afinstallér"
 msgid "Unsuccessful login with service."
 msgstr "Kunne ikke logge ind med servicen."
 
-#: Views\Listing\ListingUpdate.cshtml:62
+#: Views\Listing\ListingUpdate.cshtml:67
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:159
 msgid "Upload Pictures"
 msgstr "Upload billeder"
@@ -1985,15 +1999,19 @@ msgstr "Bekræft telefonnr."
 msgid "Version"
 msgstr "Version"
 
-#: Views\Listing\Listing.cshtml:205
+#: Views\Listing\Listing.cshtml:207
 msgid "View User's other listings"
 msgstr "Se andre annoncer fra denne bruger"
+
+#: Views\Listing\Listing.cshtml:52
+msgid "View user's profile and other listings"
+msgstr ""
 
 #: Views\Manage\UserProfile.cshtml:30
 msgid "View Your Profile"
 msgstr "Se profil"
 
-#: Views\Listing\Listing.cshtml:166
+#: Views\Listing\Listing.cshtml:168
 msgid "Views"
 msgstr "Besøgende"
 
@@ -2002,7 +2020,7 @@ msgstr "Besøgende"
 msgid "Welcome to {0} Admin Panel!"
 msgstr "Velkommen til {0} Admin panel"
 
-#: Controllers\AccountController.cs:221
+#: Controllers\AccountController.cs:238
 msgid "Welcome to BeYourMarket!"
 msgstr ""
 
@@ -2016,7 +2034,7 @@ msgstr ""
 msgid "Yes!"
 msgstr "Ja"
 
-#: Views\Manage\Dashboard.cshtml:70
+#: Views\Manage\Dashboard.cshtml:72
 #: Areas\Admin\Views\Listing\Categories.cshtml:106
 #: Areas\Admin\Views\Listing\Listings.cshtml:96
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:106
@@ -2035,7 +2053,7 @@ msgstr "Du kan ikke købe en vare af dig selv"
 msgid "You cannot delete item with orders! You can deactivate it instead."
 msgstr "Du kan ikke slette varer, der har udestående ordre. Du kan deaktivere varen i stedet."
 
-#: Controllers\ListingController.cs:582
+#: Controllers\ListingController.cs:660
 msgid "You cannot send message to yourself!"
 msgstr ""
 
@@ -2043,7 +2061,7 @@ msgstr ""
 msgid "You cannot the listing type. There should be at least one listing type."
 msgstr ""
 
-#: Views\Manage\Dashboard.cshtml:66
+#: Views\Manage\Dashboard.cshtml:68
 #: Areas\Admin\Views\Listing\Listings.cshtml:92
 #: obj\Release\Package\PackageTmp\Views\Manage\Messages.cshtml:118
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:92
@@ -2067,6 +2085,9 @@ msgstr "Din email"
 #: Views\Account\ResetPasswordConfirmation.cshtml:15
 msgid "Your password has been reset."
 msgstr "Din adgangskode er blevet nulstillet"
+
+#~ msgid "Has account already? Login here"
+#~ msgstr ""
 
 #~ msgid "Mail"
 #~ msgstr ""

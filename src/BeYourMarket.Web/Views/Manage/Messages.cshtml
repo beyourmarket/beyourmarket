@@ -13,7 +13,7 @@
 }
 
 <div class="body-content container-fluid">
-    <div class="main-section">
+    <div class="main-section row">
         <div class="container-fluid mrg-tb">
 
             @Html.Partial("_DashBoardSide", "messages")
@@ -57,10 +57,11 @@
                                                 var message = messageThread.Messages.OrderByDescending(x => x.Created).FirstOrDefault();
                                                 var participant = messageThread.MessageParticipants.Where(x => x.UserID != userId).FirstOrDefault();
 
-                                                if (participant == null) { 
+                                                if (participant == null)
+                                                {
                                                     continue;
                                                 }
-                                                
+
                                                 // message state if it's marked as read
                                                 var messageReadState = message.MessageReadStates.Where(x => x.UserID == userId).FirstOrDefault();
                                                 var unRead = messageReadState != null && !messageReadState.ReadDate.HasValue;

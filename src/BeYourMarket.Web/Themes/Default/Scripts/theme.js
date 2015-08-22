@@ -19,18 +19,15 @@ $(function () {
             if ($(window).width() <= 992) {
                 $(".row-offcanvas").toggleClass("active");
                 $(".left-section").removeClass("collapse-left");
-                $(".right-section").removeClass("stretch");
                 $(".row-offcanvas").toggleClass("relative")
             } else {
                 $(".left-section").toggleClass("collapse-left");
-                $(".right-section").toggleClass("stretch")
             }
         });
 
         // collapse sidebar for ipad or small devices mode
         if ($(window).width() <= 1024) {
-            $(".left-section").toggleClass("collapse-left");
-            $(".right-section").toggleClass("stretch")
+            $(".left-section").toggleClass("collapse-left");            
         }
     });    
 

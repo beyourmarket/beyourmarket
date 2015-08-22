@@ -8,7 +8,7 @@
 }
 
 <div class="body-content container-fluid">
-    <div class="main-section">
+    <div class="main-section row">
         <div class="container-fluid mrg-tb">
 
             @Html.Partial("_DashBoardSide", "profile")
@@ -32,14 +32,14 @@
                                     <hr />
                                     @Html.ValidationSummary("", new { @class = "text-danger" })
 
-                                    <div class="form-group">                                        
+                                    <div class="form-group">
                                         <label class="col-md-2 control-label" for="UserName">[[[UserName]]]</label>
                                         <div class="col-md-10">
                                             @Html.DisplayFor(m => m.UserName, new { @class = "form-control" })
                                         </div>
                                     </div>
 
-                                    <div class="form-group">                                        
+                                    <div class="form-group">
                                         <label class="col-md-2 control-label" for="FirstName">[[[First Name]]]</label>
                                         <div class="col-md-10">
                                             @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
@@ -52,7 +52,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">                                        
+                                    <div class="form-group">
                                         <label class="col-md-2 control-label" for="PhoneNumber">[[[Phone Number]]]</label>
                                         <div class="col-md-10">
                                             @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })

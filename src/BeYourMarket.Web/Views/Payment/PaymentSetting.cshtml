@@ -3,7 +3,7 @@
 }
 
 <div class="body-content container-fluid">
-    <div class="main-section">
+    <div class="main-section row">
         <div class="container-fluid mrg-tb">
 
             @Html.Partial("_DashBoardSide", "payment")
@@ -23,7 +23,7 @@
                                 <hr />
                                 <h5>
                                     [[[Payout information]]]
-                                </h5>                                
+                                </h5>
 
                                 @Html.DoAction(HookName.PaymentSetting)
                             </div>

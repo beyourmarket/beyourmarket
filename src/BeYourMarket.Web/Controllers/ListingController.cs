@@ -21,6 +21,7 @@ using BeYourMarket.Web.Models.Grids;
 using RestSharp;
 using BeYourMarket.Core.Web;
 using BeYourMarket.Service.Models;
+using Microsoft.Practices.Unity;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -155,6 +156,7 @@ namespace BeYourMarket.Web.Controllers
             return PartialView("_ListingTypes", model);
         }
 
+        [AllowAnonymous]
         public async Task<ActionResult> ListingUpdate(int? id)
         {
             if (CacheHelper.Categories.Count == 0)
@@ -163,7 +165,7 @@ namespace BeYourMarket.Web.Controllers
                 TempData[TempDataKeys.UserMessage] = "[[[There are not categories available yet.]]]";
             }
 
-            Listing item;
+            Listing listing;
 
             var userId = User.Identity.GetUserId();
             var user = await UserManager.FindByIdAsync(userId);
@@ -182,9 +184,9 @@ namespace BeYourMarket.Web.Controllers
                 if (await NotMeListing(id.Value))
                     return new HttpUnauthorizedResult();
 
-                item = await _listingService.FindAsync(id);
+                listing = await _listingService.FindAsync(id);
 
-                if (item == null)
+                if (listing == null)
                     return new HttpNotFoundResult();
 
                 // Pictures
@@ -203,7 +205,7 @@ namespace BeYourMarket.Web.Controllers
             }
             else
             {
-                item = new Listing()
+                listing = new Listing()
                 {
                     CategoryID = CacheHelper.Categories.Any() ? CacheHelper.Categories.FirstOrDefault().ID : 0,
                     Created = DateTime.Now.Date,
@@ -211,33 +213,47 @@ namespace BeYourMarket.Web.Controllers
                     Expiration = DateTime.MaxValue,
                     Enabled = true,
                     Active = true,
-                    ContactEmail = user.Email,
-                    ContactName = string.Format("{0} {1}", user.FirstName, user.LastName),
-                    ContactPhone = user.PhoneNumber
                 };
+
+                if (User.Identity.IsAuthenticated)
+                {
+                    listing.ContactEmail = user.Email;
+                    listing.ContactName = string.Format("{0} {1}", user.FirstName, user.LastName);
+                    listing.ContactPhone = user.PhoneNumber;
+                }
             }
 
-            // Item
-            model.ListingItem = item;
+            // Populate model with listing
+            await PopulateListingUpdateModel(listing, model);
+
+            return View("~/Views/Listing/ListingUpdate.cshtml", model);
+        }
+
+        private async Task<ListingUpdateModel> PopulateListingUpdateModel(Listing listing, ListingUpdateModel model)
+        {
+            model.ListingItem = listing;
 
             // Custom fields
-            var customFieldCategoryQuery = await _customFieldCategoryService.Query(x => x.CategoryID == item.CategoryID).Include(x => x.MetaField.ListingMetas).SelectAsync();
+            var customFieldCategoryQuery = await _customFieldCategoryService.Query(x => x.CategoryID == listing.CategoryID).Include(x => x.MetaField.ListingMetas).SelectAsync();
             var customFieldCategories = customFieldCategoryQuery.ToList();
             var customFieldModel = new CustomFieldListingModel()
             {
-                ListingID = item.ID,
+                ListingID = listing.ID,
                 MetaCategories = customFieldCategories
             };
 
             model.CustomFields = customFieldModel;
-            model.UserID = item.UserID;
-            model.CategoryID = item.CategoryID;
-            model.ListingTypeID = item.ListingTypeID;
+            model.UserID = listing.UserID;
+            model.CategoryID = listing.CategoryID;
+            model.ListingTypeID = listing.ListingTypeID;
 
             // Listing types
             model.ListingTypes = CacheHelper.ListingTypes.Where(x => x.CategoryListingTypes.Any(y => y.CategoryID == model.CategoryID)).ToList();
 
-            return View("~/Views/Listing/ListingUpdate.cshtml", model);
+            // Listing Categories
+            model.Categories = CacheHelper.Categories;
+
+            return model;
         }
 
         [AllowAnonymous]
@@ -317,7 +333,15 @@ namespace BeYourMarket.Web.Controllers
             return View("~/Views/Listing/Listing.cshtml", itemModel);
         }
 
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult> ListingUpdate(Listing listing, FormCollection form, IEnumerable<HttpPostedFileBase> files)
         {
             if (CacheHelper.Categories.Count == 0)
@@ -326,6 +350,60 @@ namespace BeYourMarket.Web.Controllers
                 TempData[TempDataKeys.UserMessage] = "[[[There are not categories available yet.]]]";
 
                 return RedirectToAction("Listing", new { id = listing.ID });
+            }
+
+            var userIdCurrent = User.Identity.GetUserId();
+
+            // Register account if not login
+            if (!User.Identity.IsAuthenticated)
+            {
+                var accountController = BeYourMarket.Core.ContainerManager.GetConfiguredContainer().Resolve<AccountController>();                
+
+                var modelRegister = new RegisterViewModel()
+                {
+                    Email = listing.ContactEmail,
+                    Password = form["Password"],
+                    ConfirmPassword = form["ConfirmPassword"],                    
+                };
+
+                // Parse first and last name
+                var names = listing.ContactName.Split(' ');
+                if (names.Length == 1)
+                {
+                    modelRegister.FirstName = names[0];
+                }
+                else if (names.Length == 2)
+                {
+                    modelRegister.FirstName = names[0];
+                    modelRegister.LastName = names[1];
+                }
+                else if (names.Length > 2)
+                {
+                    modelRegister.FirstName = names[0];
+                    modelRegister.LastName = listing.ContactName.Substring(listing.ContactName.IndexOf(" ") + 1);
+                }
+
+                // Register account
+                var resultRegister = await accountController.RegisterAccount(modelRegister);
+                
+                // Add errors
+                AddErrors(resultRegister);
+
+                // Show errors if not succeed
+                if (!resultRegister.Succeeded)
+                {
+                    var model = new ListingUpdateModel()
+                    {
+                        ListingItem = listing
+                    };
+                    // Populate model with listing
+                    await PopulateListingUpdateModel(listing, model);
+                    return View("ListingUpdate", model);
+                }
+
+                // update current user id
+                var user = await UserManager.FindByNameAsync(listing.ContactEmail);
+                userIdCurrent = user.Id;
             }
 
             bool updateCount = false;
@@ -353,7 +431,7 @@ namespace BeYourMarket.Web.Controllers
                 listing.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
                 listing.IP = Request.GetVisitorIP();
                 listing.Expiration = DateTime.MaxValue.AddDays(-1);
-                listing.UserID = User.Identity.GetUserId();
+                listing.UserID = userIdCurrent;
                 listing.Enabled = true;
                 listing.Currency = CacheHelper.Settings.Currency;
 

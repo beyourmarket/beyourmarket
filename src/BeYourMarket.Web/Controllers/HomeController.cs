@@ -117,7 +117,8 @@ namespace BeYourMarket.Web.Controllers
             }
 
             // Set default Listing Type if it's not set or listing type is not set
-            if (model.ListingTypeID == null || !model.ListingTypes.Any(x => model.ListingTypeID.Contains(x.ID)))
+            if (model.ListingTypes.Count > 0 &&
+                (model.ListingTypeID == null || !model.ListingTypes.Any(x => model.ListingTypeID.Contains(x.ID))))
             {
                 model.ListingTypeID = new List<int>();
                 model.ListingTypeID.Add(model.ListingTypes.FirstOrDefault().ID);
