@@ -452,7 +452,7 @@ body > .header {
 }
 
 /* Left side collapse */
-.left-section.collapse-left {
+.left-section.collapse-left{
     left: 0;
     display: none;
 }
@@ -465,12 +465,13 @@ body > .header {
     .right-section {
         margin-left: @left-section-margin;
     }
+    
     /*Right side stretch mode*/
-    .right-section.stretch {
-        margin-left: 0;
+    .left-section.collapse-left + .right-section {
+        margin-left: 0;    
     }
 
-    .right-section.stretch > .content-header {
+    .left-section.collapse-left + .right-section > .content-header {
         margin-top: 0px;
     }
 }

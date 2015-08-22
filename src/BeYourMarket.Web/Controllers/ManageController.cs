@@ -568,7 +568,7 @@ namespace BeYourMarket.Web.Controllers
         }
         #endregion
 
-        #region Methods
+        #region Methods        
         public async Task<ActionResult> Dashboard(string searchText)
         {
             var userId = User.Identity.GetUserId();

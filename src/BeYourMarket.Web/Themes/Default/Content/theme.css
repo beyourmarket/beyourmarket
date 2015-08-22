@@ -753,10 +753,10 @@ body > .header {
     margin-left: 230px;
   }
   /*Right side stretch mode*/
-  .right-section.stretch {
+  .left-section.collapse-left + .right-section {
     margin-left: 0;
   }
-  .right-section.stretch > .content-header {
+  .left-section.collapse-left + .right-section > .content-header {
     margin-top: 0px;
   }
 }
