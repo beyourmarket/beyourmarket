@@ -30,7 +30,7 @@ namespace BeYourMarket.Web.Controllers
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return _signInManager ?? System.Web.HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>();
             }
             private set
             {
@@ -42,7 +42,7 @@ namespace BeYourMarket.Web.Controllers
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return _userManager ?? System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
             {
@@ -54,7 +54,7 @@ namespace BeYourMarket.Web.Controllers
         {
             get
             {
-                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+                return _roleManager ?? System.Web.HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
             }
             private set
             {
@@ -189,69 +189,82 @@ namespace BeYourMarket.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
-                {
-                    UserName = model.Email,
-                    Email = model.Email,
-                    RegisterDate = DateTime.Now,
-                    RegisterIP = Request.GetVisitorIP(),
-                    LastAccessDate = DateTime.Now,
-                    LastAccessIP = Request.GetVisitorIP()
-                };
-
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    // Send Message
-                    var roleAdministrator = await RoleManager.FindByNameAsync(BeYourMarket.Model.Enum.Enum_UserType.Administrator.ToString());
-                    var administrator = roleAdministrator.Users.FirstOrDefault();
-
-                    var message = new MessageSendModel()
-                    {
-                        UserFrom = administrator.UserId,
-                        UserTo = user.Id,
-                        Subject = "[[[Welcome to BeYourMarket!]]]",
-                        Body = "[[[BeYourMarket is an opensource peer-to-peer marketplace. Bootstrap your marketplace in 5 minutes!]]]"
-
-                    };
-
-                    await MessageHelper.SendMessage(message);
-
-                    // Send an email with this link
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-
-                    var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "signup").SelectAsync();
-                    var emailTemplate = emailTemplateQuery.FirstOrDefault();
-
-                    if (emailTemplate != null)
-                    {
-                        dynamic email = new Postal.Email("Email");
-                        email.To = CacheHelper.Settings.EmailContact;
-                        email.From = CacheHelper.Settings.EmailContact;
-                        email.Subject = emailTemplate.Subject;
-                        email.Body = emailTemplate.Body;
-                        email.CallbackUrl = callbackUrl;
-                        EmailHelper.SendEmail(email);
-                    }
-
-                    return RedirectToAction("Index", "Manage");
-                }
+                var result = await RegisterAccount(model);
+                
+                // Add errors
                 AddErrors(result);
+
+                if (result.Succeeded)
+                    return RedirectToAction("Index", "Manage");                
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
 
+        public async Task<IdentityResult> RegisterAccount(RegisterViewModel model)
+        {                        
+            var user = new ApplicationUser
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                RegisterDate = DateTime.Now,
+                RegisterIP = System.Web.HttpContext.Current.Request.GetVisitorIP(),
+                LastAccessDate = DateTime.Now,
+                LastAccessIP = System.Web.HttpContext.Current.Request.GetVisitorIP()
+            };
+
+            var result = await UserManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                // Send an email with this link
+                // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                // Send Message
+                var roleAdministrator = await RoleManager.FindByNameAsync(BeYourMarket.Model.Enum.Enum_UserType.Administrator.ToString());
+                var administrator = roleAdministrator.Users.FirstOrDefault();
+
+                var message = new MessageSendModel()
+                {
+                    UserFrom = administrator.UserId,
+                    UserTo = user.Id,
+                    Subject = "[[[Welcome to BeYourMarket!]]]",
+                    Body = "[[[BeYourMarket is an opensource peer-to-peer marketplace. Bootstrap your marketplace in 5 minutes!]]]"
+
+                };
+
+                await MessageHelper.SendMessage(message);
+
+                // Send an email with this link
+                string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+
+                var urlHelper = new UrlHelper(System.Web.HttpContext.Current.Request.RequestContext);
+                var callbackUrl = urlHelper.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: System.Web.HttpContext.Current.Request.Url.Scheme);
+
+                var emailTemplateQuery = await _emailTemplateService.Query(x => x.Slug.ToLower() == "signup").SelectAsync();
+                var emailTemplate = emailTemplateQuery.FirstOrDefault();
+
+                if (emailTemplate != null)
+                {
+                    dynamic email = new Postal.Email("Email");
+                    email.To = CacheHelper.Settings.EmailContact;
+                    email.From = CacheHelper.Settings.EmailContact;
+                    email.Subject = emailTemplate.Subject;
+                    email.Body = emailTemplate.Body;
+                    email.CallbackUrl = callbackUrl;
+                    EmailHelper.SendEmail(email);
+                }
+            }            
+
+            return result;
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

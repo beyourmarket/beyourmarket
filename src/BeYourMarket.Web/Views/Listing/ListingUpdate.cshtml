@@ -19,6 +19,11 @@
                     </p>
                 </div>
                 <div class="panel-body bdr-b ">
+                    [[[Already a member? ]]]
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a href="@Url.Action("Login", "Account", new { returnUrl = Request.Url.PathAndQuery })" class="m-b-5">[[[Login here]]]</a>
+                    }
                     <form action="@Url.Action("ListingUpdate", "Listing")" id="listingUpdateForm" method="post" role="form" enctype="multipart/form-data" onkeypress="return event.keyCode != 13;">
                         @Html.HiddenFor(x => x.ListingItem.ID)
                         @Html.Partial("_UserMessage")
@@ -61,7 +66,7 @@
                         <fieldset>
                             <legend>[[[Upload Pictures]]]</legend>
                             <div class="form-group">
-                                <div class="target">                                    
+                                <div class="target">
                                     <input type="file" id="files" name="files" class="file-loading" multiple>
                                 </div>
                             </div>
@@ -101,6 +106,17 @@
                                 <label>[[[Email Address]]]</label>
                                 <input type="email" id="ContactEmail" name="ContactEmail" class="form-control input-lg" placeholder="[[[Enter Email Address]]]" value="@Model.ListingItem.ContactEmail" required data-rule-email="true">
                             </div>
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <div class="form-group">
+                                    <label for="Password">[[[Password]]] <span class="text-red">*</span></label>
+                                    <input type="password" name="Password" id="Password" class="form-control input-lg" placeholder="[[[Password]]]" data-rule-required="true" data-rule-minlength="6">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ConfirmPassword">[[[Confirm Password]]] <span class="text-red">*</span></label>
+                                    <input type="password" name="ConfirmPassword" id="ConfirmPassword" class="form-control input-lg" placeholder="[[[Confirm Password]]]" data-rule-required="true" data-rule-minlength="6" data-rule-equalto="#Password">
+                                </div>
+                            }
                         </fieldset>
                         <fieldset>
                             <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Publish Listing]]]</button>
@@ -243,7 +259,7 @@
 
                                     $('#Location').val(results[1].formatted_address);
                                     $('#Latitude').val(pos.lat());
-                                    $('#Longitude').val(pos.lng());                                    
+                                    $('#Longitude').val(pos.lng());
 
                                 } else {
                                     alert('No results found');
@@ -278,7 +294,7 @@
                     window.alert("Autocomplete's returned place contains no geometry");
                     return;
                 }
-                
+
                 // Set lat/long
                 $('#Latitude').val(place.geometry.location.lat());
                 $('#Longitude').val(place.geometry.location.lng());
