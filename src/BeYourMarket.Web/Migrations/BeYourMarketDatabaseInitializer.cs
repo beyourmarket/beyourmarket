@@ -501,6 +501,13 @@ namespace BeYourMarket.Web.Migrations
                 ListingTypeID = 1,
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });
+
+            context.CategoryListingTypes.Add(new BeYourMarket.Model.Models.CategoryListingType()
+            {
+                CategoryID = 3,
+                ListingTypeID = 1,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
+            });
         }
 
         private void InstallPictures(Model.Models.BeYourMarketContext context)
