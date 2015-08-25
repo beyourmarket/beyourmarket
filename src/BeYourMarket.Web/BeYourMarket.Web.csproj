@@ -361,6 +361,12 @@
     <Content Include="js\sweet-alert\sweetalert.min.js" />
     <Content Include="Plugins\.gitignore" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\fileinput_locale_bg.js" />
+    <Content Include="Scripts\fileinput_locale_da.js" />
+    <Content Include="Scripts\fileinput_locale_el.js" />
+    <Content Include="Scripts\fileinput_locale_fa.js" />
+    <Content Include="Scripts\fileinput_locale_ro.js" />
+    <Content Include="Scripts\gridmvc.lang.da.js" />
     <Content Include="Themes\Default\Content\color.css.map">
       <DependentUpon>color.css</DependentUpon>
     </Content>
@@ -382,6 +388,8 @@
     <Content Include="Areas\Admin\Views\Shared\_ListingTypes.cshtml" />
     <Content Include="Views\Manage\Messages.cshtml" />
     <Content Include="Views\Manage\Message.cshtml" />
+    <Content Include="Views\Shared\_LocalizationGridMvc.cshtml" />
+    <Content Include="Views\Shared\_LocalizationFileInput.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

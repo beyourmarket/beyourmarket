@@ -46,10 +46,10 @@
                     </div>
 
                     <hr />
-
+                    
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            @Html.Grid(Model.Grid).EmptyText("[[[There are no items to display.]]]").Columns(columns =>
+                            @Html.Grid(Model.Grid).SetLanguage(Context.GetPrincipalAppLanguageForRequest().ToString()).EmptyText("[[[There are no items to display.]]]").Columns(columns =>
                        {
                            columns.Add()
                              .Encoded(false)
@@ -84,6 +84,7 @@
 
 @section Scripts {
     <script src="~/Scripts/gridmvc.min.js"></script>
+    @Html.Partial("_LocalizationGridMvc")
 
     <script type="text/javascript">
         function confirmDelete(id, title) {

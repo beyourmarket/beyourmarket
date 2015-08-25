@@ -96,6 +96,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script src="~/Scripts/fileinput.min.js"></script>
+    @Html.Partial("_LocalizationFileInput")
 
     <script>
         var $input = $("#file");
@@ -112,7 +113,8 @@
             ],
             maxFileSize: 10000,
             browseClass: "btn btn-default",
-            allowedFileTypes: ["image"]
+            allowedFileTypes: ["image"],
+            language: '@Context.GetPrincipalAppLanguageForRequest().ToString()'
         });
 
         //'<img src="http://www.gravatar.com/avatar/?d=mm" class="file-preview-image">'

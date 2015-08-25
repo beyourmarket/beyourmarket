@@ -138,6 +138,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script src="~/Scripts/fileinput.min.js"></script>
+    @Html.Partial("_LocalizationFileInput")
 
     <script>
         @{
@@ -151,24 +152,25 @@
 	        }
         }
 
-        var $input = $("#files");
+    var $input = $("#files");
 
-        $input.fileinput({
-            uploadAsync: false,
-            showCaption: false,
-            showRemove: false,
-            showUpload: false,
-            maxFileCount: 5,
-            overwriteInitial: false,
-            initialPreview: [
-                    @Html.Raw(preview.ToString())
-            ],
-            initialPreviewConfig: [
-                @Html.Raw(previewDelete.ToString())
+    $input.fileinput({
+        uploadAsync: false,
+        showCaption: false,
+        showRemove: false,
+        showUpload: false,
+        maxFileCount: 5,
+        overwriteInitial: false,
+        initialPreview: [
+                @Html.Raw(preview.ToString())
+        ],
+        initialPreviewConfig: [
+            @Html.Raw(previewDelete.ToString())
             ],
             maxFileSize: 10000,
             browseClass: "btn btn-primary",
-            allowedFileTypes: ["image"]
+            allowedFileTypes: ["image"],
+            language: '@Context.GetPrincipalAppLanguageForRequest().ToString()'
         });
 
         $("#CategoryID").change(function () {
@@ -179,24 +181,24 @@
             /* Request the partial view with get request. */
             $.get('@Url.Action("ListingPartial", "Listing")?categoryID=' + selectedID, function (data) {
 
-                /* data is the pure html returned from action method, load it to your page */
-                $('#partialPlaceHolder').empty();
-                $('#partialPlaceHolder').html(data);
-                /* little fade in effect */
-                $('#partialPlaceHolder').fadeIn('slow');
-                $('#partialPlaceHolder').addClass('fadeIn animated');
-            });
-
-            $.get('@Url.Action("ListingTypesPartial", "Listing")?categoryID=' + selectedID + '&listingID=' + listingID, function (data) {
-
-                /* data is the pure html returned from action method, load it to your page */
-                $('#listingTypesPlaceHolder').empty();
-                $('#listingTypesPlaceHolder').html(data);
-                /* little fade in effect */
-                $('#listingTypesPlaceHolder').fadeIn('slow');
-                $('#listingTypesPlaceHolder').addClass('fadeIn animated');
-            });
+            /* data is the pure html returned from action method, load it to your page */
+            $('#partialPlaceHolder').empty();
+            $('#partialPlaceHolder').html(data);
+            /* little fade in effect */
+            $('#partialPlaceHolder').fadeIn('slow');
+            $('#partialPlaceHolder').addClass('fadeIn animated');
         });
+
+        $.get('@Url.Action("ListingTypesPartial", "Listing")?categoryID=' + selectedID + '&listingID=' + listingID, function (data) {
+
+            /* data is the pure html returned from action method, load it to your page */
+            $('#listingTypesPlaceHolder').empty();
+            $('#listingTypesPlaceHolder').html(data);
+            /* little fade in effect */
+            $('#listingTypesPlaceHolder').fadeIn('slow');
+            $('#listingTypesPlaceHolder').addClass('fadeIn animated');
+        });
+    });
 
     </script>
 
