@@ -7,9 +7,9 @@ namespace BeYourMarket.Model.Models
     {
         public Listing()
         {
-            this.ListingComments = new List<ListingComment>();
             this.ListingMetas = new List<ListingMeta>();
             this.ListingPictures = new List<ListingPicture>();
+            this.ListingReviews = new List<ListingReview>();
             this.ListingStats = new List<ListingStat>();
             this.Orders = new List<Order>();
         }
@@ -39,9 +39,9 @@ namespace BeYourMarket.Model.Models
         public System.DateTime LastUpdated { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Category Category { get; set; }
-        public virtual ICollection<ListingComment> ListingComments { get; set; }
         public virtual ICollection<ListingMeta> ListingMetas { get; set; }
         public virtual ICollection<ListingPicture> ListingPictures { get; set; }
+        public virtual ICollection<ListingReview> ListingReviews { get; set; }
         public virtual ListingType ListingType { get; set; }
         public virtual ICollection<ListingStat> ListingStats { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
