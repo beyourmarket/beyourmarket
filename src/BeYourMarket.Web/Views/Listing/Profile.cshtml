@@ -5,6 +5,7 @@
 
 @{
     ViewBag.Title = "[[[Profile]]]";
+    var ratingClass = "s" + Model.User.Rating;
 }
 
 @section Styles {
@@ -17,10 +18,14 @@
     <div class="section panel-header ">
         <div class="container-fluid">
             <div class="col-md-12">
-                <img class="pull-left img-circle profile-picture" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.User.Id)" />
+                <img class="pull-left img-circle profile-picture m-r-10" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.User.Id)" />
 
                 <h3>@Model.User.FullName</h3>
-                <p class="lead text-lighten">
+                <p>
+                    <span class="score @ratingClass"></span>
+                    <span>@string.Format("[[[{0:N0} reviews]]]", Model.Listings.Sum(x => x.ListingCurrent.ListingReviews.Count))</span>
+                </p>
+                <p class="lead text-lighten text-sm">
                     [[[Joined since]]] @Model.User.RegisterDate.ToShortDateString()
                 </p>
             </div>
@@ -38,13 +43,13 @@
 
 
             <div class="row row-eq-height">
-                    @foreach (var item in Model.Listings)
-                    {
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                            @Html.Partial("~/Views/Listing/_ListingCard.cshtml", item)
-                        </div>
-                    }
-                </div>
+                @foreach (var item in Model.Listings)
+                {
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                        @Html.Partial("~/Views/Listing/_ListingCard.cshtml", item)
+                    </div>
+                }
+            </div>
 
         </div>
     </div>

@@ -357,6 +357,8 @@
     <Content Include="Images\Sample\Listing\00000007.jpg" />
     <Content Include="Images\Sample\Listing\00000008.jpg" />
     <Content Include="Images\Sample\Listing\00000009.jpg" />
+    <Content Include="js\star-rating\star-rating.css" />
+    <Content Include="js\star-rating\star-rating.js" />
     <Content Include="js\sweet-alert\sweetalert.css" />
     <Content Include="js\sweet-alert\sweetalert.min.js" />
     <Content Include="Plugins\.gitignore" />
@@ -390,6 +392,7 @@
     <Content Include="Views\Manage\Message.cshtml" />
     <Content Include="Views\Shared\_LocalizationGridMvc.cshtml" />
     <Content Include="Views\Shared\_LocalizationFileInput.cshtml" />
+    <Content Include="Views\Payment\Review.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

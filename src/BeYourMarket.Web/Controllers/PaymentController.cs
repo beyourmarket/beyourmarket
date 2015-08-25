@@ -41,8 +41,9 @@ namespace BeYourMarket.Web.Controllers
         private readonly ISettingDictionaryService _settingDictionaryService;
         private readonly ICategoryService _categoryService;
         private readonly IListingService _listingService;
-        private readonly IListingStatService _ListingStatservice;
-        private readonly IListingPictureService _ListingPictureservice;
+        private readonly IListingStatService _listingStatservice;
+        private readonly IListingPictureService _listingPictureservice;
+        private readonly IListingReviewService _listingReviewService;
         private readonly IPictureService _pictureService;
         private readonly IOrderService _orderService;
         private readonly ICustomFieldService _customFieldService;
@@ -94,7 +95,8 @@ namespace BeYourMarket.Web.Controllers
             ICustomFieldCategoryService customFieldCategoryService,
             ICustomFieldListingService customFieldListingService,
             ISettingDictionaryService settingDictionaryService,
-            IListingStatService ListingStatservice,
+            IListingStatService listingStatservice,
+            IListingReviewService listingReviewService,
             DataCacheService dataCacheService,
             SqlDbService sqlDbService,
             IPluginFinder pluginFinder)
@@ -103,14 +105,17 @@ namespace BeYourMarket.Web.Controllers
             _settingDictionaryService = settingDictionaryService;
 
             _categoryService = categoryService;
+            
             _listingService = listingService;
             _pictureService = pictureService;
-            _ListingPictureservice = ListingPictureservice;
+            _listingPictureservice = ListingPictureservice;
+            _listingStatservice = listingStatservice;
+            _listingReviewService = listingReviewService;
+
             _orderService = orderService;
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
-            _customFieldListingService = customFieldListingService;
-            _ListingStatservice = ListingStatservice;
+            _customFieldListingService = customFieldListingService;            
 
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
@@ -331,6 +336,29 @@ namespace BeYourMarket.Web.Controllers
             ClearCache();
 
             return RedirectToAction("Payment", new { id = order.ID });
+        }
+
+        /// <summary>
+        /// review for an order on a listing
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ActionResult> Review(int id)
+        {
+            var reviewModel = new ListingReview();
+
+            return View(reviewModel);
+        }
+
+        /// <summary>
+        /// Submit review
+        /// </summary>
+        /// <param name="listingReview"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult> Review(ListingReview listingReview)
+        {
+            return View();
         }
 
         private void ClearCache()

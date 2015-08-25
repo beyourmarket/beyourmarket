@@ -43,6 +43,8 @@ namespace BeYourMarket.Web.Models
 
         public int LeadSourceID { get; set; }
 
+        public double Rating { get; set; }
+
         [NotMapped]
         public bool RoleAdministrator { get; set; }
 

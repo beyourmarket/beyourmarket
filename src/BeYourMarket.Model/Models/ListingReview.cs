@@ -5,6 +5,11 @@ namespace BeYourMarket.Model.Models
 {
     public partial class ListingReview : Repository.Pattern.Ef6.Entity
     {
+        public ListingReview()
+        {
+            this.Orders = new List<Order>();
+        }
+
         public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -16,5 +21,6 @@ namespace BeYourMarket.Model.Models
         public bool Spam { get; set; }
         public System.DateTime Created { get; set; }
         public virtual Listing Listing { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

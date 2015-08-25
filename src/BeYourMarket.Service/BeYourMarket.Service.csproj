@@ -77,6 +77,7 @@
     <Compile Include="ListingPictureService.cs" />
     <Compile Include="CustomFieldService.cs" />
     <Compile Include="ContentPageService.cs" />
+    <Compile Include="ListingReviewService.cs" />
     <Compile Include="ListingTypeService.cs" />
     <Compile Include="MessageParticipantService.cs" />
     <Compile Include="MessageReadStateService.cs" />

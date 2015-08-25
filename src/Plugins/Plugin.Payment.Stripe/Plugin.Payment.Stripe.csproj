@@ -46,6 +46,12 @@
     <Reference Include="GridMvc">
       <HintPath>..\..\packages\Grid.Mvc.Redux.1.0.4\lib\GridMvc.dll</HintPath>
     </Reference>
+    <Reference Include="i18n">
+      <HintPath>..\..\packages\i18n.2.1.4.0\lib\net40\i18n.dll</HintPath>
+    </Reference>
+    <Reference Include="i18n.Domain">
+      <HintPath>..\..\packages\i18n.2.1.4.0\lib\net40\i18n.Domain.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -159,6 +165,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="readme.txt" />
     <Content Include="Scripts\gridmvc.customwidgets.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.fr.js" />

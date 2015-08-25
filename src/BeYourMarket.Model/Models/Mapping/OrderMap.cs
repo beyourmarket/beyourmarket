@@ -43,6 +43,7 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.UserProvider).HasColumnName("UserProvider");
             this.Property(t => t.UserReceiver).HasColumnName("UserReceiver");
             this.Property(t => t.PaymentPlugin).HasColumnName("PaymentPlugin");
+            this.Property(t => t.ReviewID).HasColumnName("ReviewID");
             this.Property(t => t.Created).HasColumnName("Created");
             this.Property(t => t.Modified).HasColumnName("Modified");
 
@@ -53,9 +54,12 @@ namespace BeYourMarket.Model.Models.Mapping
             this.HasRequired(t => t.AspNetUser1)
                 .WithMany(t => t.Orders1)
                 .HasForeignKey(d => d.UserReceiver);
+            this.HasOptional(t => t.ListingReview)
+                .WithMany(t => t.Orders)
+                .HasForeignKey(d => d.ReviewID);
             this.HasRequired(t => t.Listing)
                 .WithMany(t => t.Orders)
-                .HasForeignKey(d => d.ListingID);
+                .HasForeignKey(d => d.ListingID).WillCascadeOnDelete();
 
         }
     }
