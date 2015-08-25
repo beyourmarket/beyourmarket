@@ -58,6 +58,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script src="~/Scripts/fileinput.min.js"></script>
+    @Html.Partial("_LocalizationFileInput")
     <script src="~/js/colorpicker/js/bootstrap-colorpicker.min.js"></script>
 
     <script>
@@ -78,7 +79,8 @@
             ],
             maxFileSize: 10000,
             browseClass: "btn btn-default",
-            allowedFileTypes: ["image"]
+            allowedFileTypes: ["image"],
+            language: '@Context.GetPrincipalAppLanguageForRequest().ToString()'
         });
 
         var $fileCover = $("#CoverPhoto");
@@ -98,7 +100,8 @@
             ],
             maxFileSize: 10000,
             browseClass: "btn btn-default",
-            allowedFileTypes: ["image"]
+            allowedFileTypes: ["image"],
+            language: '@Context.GetPrincipalAppLanguageForRequest().ToString()'
         });
 
         var $favicon = $("#Favicon");
@@ -118,7 +121,8 @@
             ],
             maxFileSize: 10000,
             browseClass: "btn btn-default",
-            allowedFileTypes: ["image"]
+            allowedFileTypes: ["image"],
+            language: '@Context.GetPrincipalAppLanguageForRequest().ToString()'
         });
 
     </script>

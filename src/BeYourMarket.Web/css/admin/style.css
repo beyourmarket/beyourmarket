@@ -420,9 +420,9 @@ header {
     font-weight: 400;
 }
 
-.footer a {
-    color: #ffffff;
-}
+    .footer a {
+        color: #ffffff;
+    }
 
 /* Panel-Tab-Accordions */
 .nav.nav-tabs + .tab-content, .tabs-vertical-env .tab-content {
@@ -1803,4 +1803,15 @@ ul.p-social-link {
     height: 350px;
     margin: 0px;
     padding: 0px;
+}
+
+
+.file-preview-frame, .file-preview-image, .file-preview-other {
+    max-width: 640px;
+}
+
+@media (max-width: 768px) {
+    .file-preview-frame, .file-preview-image, .file-preview-other {
+        width: 100%;
+    }
 }
