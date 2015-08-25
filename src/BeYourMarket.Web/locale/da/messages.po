@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-08-25 15:10+02:00\n"
-"PO-Revision-Date: 2015-08-25 15:10+02:00\n"
+"POT-Creation-Date: 2015-08-25 17:58+02:00\n"
+"PO-Revision-Date: 2015-08-25 17:58+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -177,11 +177,11 @@ msgstr "Tilføj"
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:102
 #: Areas\Admin\Views\Payment\Order.cshtml:142
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:67
-#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:161
+#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:162
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:101
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:91
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:101
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:141
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:92
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:102
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:142
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
@@ -260,13 +260,13 @@ msgstr "Label"
 msgid "Cancel"
 msgstr "Annullér"
 
-#: Controllers\PaymentController.cs:161
+#: Controllers\PaymentController.cs:162
 #: Views\Payment\Orders.cshtml:47
 #: Areas\Admin\Views\Payment\Order.cshtml:46
 #: Areas\Admin\Views\Payment\Order.cshtml:165
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:47
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:46
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:164
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:165
 msgid "Cancelled"
 msgstr "Annulleret"
 
@@ -274,8 +274,8 @@ msgstr "Annulleret"
 #: Views\Payment\Orders.cshtml:185
 #: Areas\Admin\Views\Listing\Listings.cshtml:105
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:91
-#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:184
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:104
+#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:185
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:105
 msgid "Cancelled!"
 msgstr "Annulleret"
 
@@ -402,19 +402,19 @@ msgstr "Bekræft adgangskode"
 
 #: Views\Payment\Orders.cshtml:155
 #: Areas\Admin\Views\Payment\Order.cshtml:135
-#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:154
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:134
+#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:155
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:135
 msgid "Confirm to accept the order"
 msgstr "Bekræft for at acceptere ordren"
 
 #: Views\Payment\Orders.cshtml:157
 #: Areas\Admin\Views\Payment\Order.cshtml:137
-#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:156
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:136
+#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:157
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:137
 msgid "Confirm to cancel the order"
 msgstr "Bekræft for at annullere ordren"
 
-#: Controllers\PaymentController.cs:158
+#: Controllers\PaymentController.cs:159
 msgid "Confirmed"
 msgstr ""
 
@@ -894,8 +894,8 @@ msgstr "Eksterne login"
 
 #: Areas\Admin\Views\Payment\Order.cshtml:158
 #: Areas\Admin\Views\Payment\Order.cshtml:162
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:157
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:161
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:158
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:162
 msgid "Failed"
 msgstr "Mislykkedes"
 
@@ -905,8 +905,8 @@ msgstr "Mislykkedes"
 #: Views\Payment\Orders.cshtml:182
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:84
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:88
-#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:177
-#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:181
+#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:178
+#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:182
 msgid "Failed!"
 msgstr "Fejl"
 
@@ -942,7 +942,7 @@ msgstr "Glemt at bekræfte adgangskode"
 msgid "Forgot your password?"
 msgstr "Har du glemt din adgangskode?"
 
-#: Controllers\PaymentController.cs:304
+#: Controllers\PaymentController.cs:305
 #: Views\Listing\Listing.cshtml:73
 #: Views\Listing\Listings.cshtml:77
 #: Views\Payment\Payment.cshtml:44
@@ -1169,7 +1169,7 @@ msgid "Listing Type"
 msgstr "Annoncetype"
 
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:122
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:121
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:122
 msgid "Listing type is deleted."
 msgstr ""
 
@@ -1439,8 +1439,8 @@ msgstr ""
 
 #: Views\Payment\Orders.cshtml:168
 #: Areas\Admin\Views\Payment\Order.cshtml:148
-#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:167
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:147
+#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:168
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:148
 msgid "No!"
 msgstr "Nej"
 
@@ -1450,8 +1450,8 @@ msgstr "Nej"
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:108
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:73
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:107
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:97
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:107
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:98
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:108
 msgid "No, cancel please!"
 msgstr "Nej, annullér"
 
@@ -1467,7 +1467,7 @@ msgstr "Vis kun annoncer med billeder"
 msgid "Options"
 msgstr "Valgmuligheder"
 
-#: Controllers\PaymentController.cs:183
+#: Controllers\PaymentController.cs:184
 msgid "Order %0 - %1 - Total Price %2 %3"
 msgstr ""
 
@@ -1611,7 +1611,7 @@ msgstr "Betalinger"
 msgid "Payout information"
 msgstr "Udbetalingsoplysninger"
 
-#: Controllers\PaymentController.cs:155
+#: Controllers\PaymentController.cs:156
 #: Views\Payment\Orders.cshtml:41
 #: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:24
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:24
@@ -2163,11 +2163,11 @@ msgstr "Siden du leder efter, eksisterer desværre ikke."
 msgid "The password and confirmation password do not match."
 msgstr "De to adgangskoder er ikke ens"
 
-#: Controllers\PaymentController.cs:277
+#: Controllers\PaymentController.cs:278
 msgid "The provider has not setup the payment option for {0} yet, please contact the provider."
 msgstr "Annoncøren har ikke opsat betaling for {0} endnu. Venligst kontakt annoncøren."
 
-#: Controllers\PaymentController.cs:264
+#: Controllers\PaymentController.cs:265
 msgid "The provider has not setup the payment option yet, please contact the provider."
 msgstr "Annoncøren har ikke opsat nogen betalingsmetode endnu. Venligst kontakt annoncøren."
 
@@ -2266,7 +2266,7 @@ msgstr ""
 msgid "Title"
 msgstr "Titel"
 
-#: Controllers\PaymentController.cs:304
+#: Controllers\PaymentController.cs:305
 #: Views\Listing\Listing.cshtml:76
 #: Views\Listing\Listings.cshtml:78
 #: Views\Payment\Payment.cshtml:51
@@ -2335,8 +2335,8 @@ msgstr "Type"
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:117
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:108
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:116
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:108
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:116
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:109
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:117
 msgid "Type DELETE to confirm delete"
 msgstr ""
 
@@ -2458,8 +2458,8 @@ msgstr ""
 
 #: Views\Payment\Orders.cshtml:167
 #: Areas\Admin\Views\Payment\Order.cshtml:147
-#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:166
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:146
+#: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:167
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:147
 msgid "Yes!"
 msgstr "Ja"
 
@@ -2469,12 +2469,12 @@ msgstr "Ja"
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:107
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:72
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Categories.cshtml:106
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:96
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:106
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:97
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:107
 msgid "Yes, delete it!"
 msgstr "ja, slet"
 
-#: Controllers\PaymentController.cs:297
+#: Controllers\PaymentController.cs:298
 msgid "You cannot book the item from yourself!"
 msgstr "Du kan ikke købe en vare af dig selv"
 
@@ -2493,7 +2493,7 @@ msgstr ""
 #: Views\Manage\Dashboard.cshtml:68
 #: Areas\Admin\Views\Listing\Listings.cshtml:93
 #: obj\Release\Package\PackageTmp\Views\Manage\Dashboard.cshtml:68
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:92
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:93
 msgid "You will delete"
 msgstr "Du vil slette"
 
@@ -2503,7 +2503,7 @@ msgid "You will delete all listings with the category "
 msgstr ""
 
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:103
-#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:102
+#: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypes.cshtml:103
 msgid "You will delete all listings with the listing type "
 msgstr ""
 

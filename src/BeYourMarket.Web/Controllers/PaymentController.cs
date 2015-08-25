@@ -26,6 +26,7 @@ using Microsoft.Practices.Unity;
 using BeYourMarket.Core.Controllers;
 using BeYourMarket.Service.Models;
 using BeYourMarket.Web.Extensions;
+using i18n;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -146,7 +147,7 @@ namespace BeYourMarket.Web.Controllers
             var orderResult = controller.OrderAction(id, status, out message);
 
             var orderStatus = (Enum_OrderStatus)status;
-            var orderStatusText = string.Empty;
+            var orderStatusText = string.Empty;            
 
             switch (orderStatus)
             {
@@ -181,8 +182,8 @@ namespace BeYourMarket.Web.Controllers
                     Subject = order.Listing.Title,
                     Body = string.Format(
                     "[[[Order %0 - %1 - Total Price %2 %3|||{0}|||{1}|||{2}|||{3}]]]",
-                    orderStatusText.TransformTranslationParameter(),
-                    order.Description.TransformTranslationParameter(),
+                    HttpContext.ParseAndTranslate(orderStatusText),
+                    HttpContext.ParseAndTranslate(order.Description),
                     order.Price,
                     order.Currency)
                 };
