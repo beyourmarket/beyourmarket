@@ -16,38 +16,47 @@
     <!-- Start Page Heading -->
     <div class="section panel-header ">
         <div class="container-fluid">
-            <div class="col-md-12">
-                <img class="pull-left img-circle profile-picture" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.User.Id)" />
+            <div class="col-md-12 text-center-sm">
+                <img class="pull-left-md img-circle profile-picture m-r-10" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.User.Id)" />
 
-                <h3>@Model.User.FullName</h3>
-                <p class="lead text-lighten">
+                <h4>@Model.User.FullName</h4>
+                <p>
+                    <span class="score @Model.User.RatingClass"></span>
+                    <span>@string.Format("[[[{0:N0} reviews]]]", Model.ListingReviews.Count)</span>
+                </p>
+                <p class="lead text-lighten text-sm">
                     [[[Joined since]]] @Model.User.RegisterDate.ToShortDateString()
                 </p>
             </div>
         </div>
     </div>
 
-    <div class="container body-content">
+    <div class="container-fluid mrg-tb">
 
-        <div class="container-fluid mrg-tb">
-            <div class="row">
-                <div class="col-md-12 section-title ">
-                    <h4>[[[Listings]]]</h4>
-                </div>
-            </div>
+        @Html.Partial("~/Views/Listing/_ListingReview.cshtml", Model.ListingReviews)
 
-
-            <div class="row row-eq-height">
-                    @foreach (var item in Model.Listings)
-                    {
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                            @Html.Partial("~/Views/Listing/_ListingCard.cshtml", item)
-                        </div>
-                    }
-                </div>
-
-        </div>
     </div>
+
+    <div class="container-fluid mrg-tb">
+        <div class="row">
+            <div class="col-md-12 section-title ">
+                <h4><i class="fa fa-th-list"></i> [[[Listings]]] (@Model.Listings.Count)</h4>
+            </div>
+        </div>
+
+
+        <div class="row row-eq-height">
+            @foreach (var item in Model.Listings)
+            {
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    @Html.Partial("~/Views/Listing/_ListingCard.cshtml", item)
+                </div>
+            }
+        </div>
+
+    </div>
+
+
 
 </div>
 

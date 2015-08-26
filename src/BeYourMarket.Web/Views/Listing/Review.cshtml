@@ -1,0 +1,93 @@
+﻿@model BeYourMarket.Model.Models.ListingReview
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "[[[Reviews]]]";    
+}
+
+<div class="body-content container-fluid">
+    <div class="main-section row">
+        <div class="container-fluid mrg-tb">
+
+            @Html.Partial("_DashBoardSide", "orders")
+
+            <div class=" col-md-9">
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane card-content fade active in" id="listings" aria-labelledby="listings-tab">
+                        @Html.Partial("_UserMessage")
+
+                        <!-- Review -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-comments-o"></i> [[[Review]]]</h3>
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="col-md-3 col-xs-12">
+                                    <div class="">
+                                        <a href="@Url.Action("Profile", "Listing", new { id = Model.AspNetUserTo.Id })">
+                                            <img class="img-circle profile-picture" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.AspNetUserTo.Id)" />
+                                        </a>
+                                        <h5>@Model.AspNetUserTo.FullName</h5>
+                                        <p class="text-lighten">
+                                            [[[Joined since]]] @Model.AspNetUserTo.RegisterDate.ToShortDateString()
+                                        </p>
+                                        <span class="score @Model.AspNetUserTo.RatingClass"></span>
+                                        <span>@string.Format("[[[{0:N0} reviews]]]", Model.AspNetUserTo.ListingReviewsUserTo.Count)</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-9 col-xs-12">
+                                    <h3>
+                                        @Model.Listing.Title
+                                    </h3>
+                                    @if (Model.Listing.Price.HasValue)
+                                    {
+                                    <h4>
+                                        @Html.DisplayFor(x => x.Listing.PriceFormatted) @Model.Listing.ListingType.PriceUnitLabel
+                                    </h4>
+                                    }
+                                    <p class="lead text-lighten">
+                                        @Model.Listing.Location
+                                    </p>
+                                </div>
+                            </div>
+
+                            <hr />
+                            <!-- Reply -->
+                            <div class="panel-body p-t-10 p-b-10">
+
+                                <div class="media">
+                                    <a href="@Url.Action("Profile", "Listing", new { id = User.Identity.GetUserId() })" class="pull-left">
+                                        <img class="pull-left media-object img-circle thumb-sm m-t-10" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(User.Identity.GetUserId())" />
+                                    </a>
+                                    <div class="media-body">
+                                        <form action="@Url.Action("Review", "Listing")" method="post" role="form">
+                                            @Html.AntiForgeryToken()
+                                            @Html.HiddenFor(x => x.ListingID)
+                                            @Html.HiddenFor(x => x.OrderID)
+
+                                            <span class="text-md">[[[Please Rate]]]</span>
+                                            <input id="Rating" name="Rating" class="rating" data-show-clear="false" data-show-caption="false" data-size="sm" />
+                                            <textarea class="form-control m-b-10" id="Description" name="Description" required rows="4" placeholder="[[[Write your review...]]]"></textarea>
+                                            <button class="btn btn-primary" type="submit"><i class="fa fa-send"></i> [[[Send Review]]]</button>
+                                            <a class="btn btn-default" href="@Url.Action("Orders","Payment")"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- panel-body -->
+
+                        </div> <!-- End panel -->
+                        <!-- End message -->
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+}

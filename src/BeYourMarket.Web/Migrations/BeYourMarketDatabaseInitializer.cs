@@ -82,7 +82,8 @@ namespace BeYourMarket.Web.Migrations
                 RegisterDate = DateTime.Now,
                 RegisterIP = HttpContext.Current.Request.GetVisitorIP(),
                 LastAccessDate = DateTime.Now,
-                LastAccessIP = HttpContext.Current.Request.GetVisitorIP()
+                LastAccessIP = HttpContext.Current.Request.GetVisitorIP(),
+                Rating = 4
             };
 
             using (var context = new ApplicationDbContext())
@@ -98,6 +99,11 @@ namespace BeYourMarket.Web.Migrations
                 var result = userManager.Create(user, _installModel.Password);
                 var roleAdded = userManager.AddToRole(user.Id, Enum_UserType.Administrator.ToString());
             }
+
+            // Copy profile image
+            var pathFrom = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/images/sample/profile"), "admin.jpg");
+            var pathTo = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/images/profile"), string.Format("{0}.{1}", user.Id, "jpg"));
+            File.Copy(pathFrom, pathTo, true);
 
             return user;
         }
@@ -433,7 +439,7 @@ namespace BeYourMarket.Web.Migrations
                 Created = DateTime.Now,
                 LastUpdated = DateTime.Now,
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
-            });
+            });            
         }
 
         private void InstallListingTypes(Model.Models.BeYourMarketContext context)

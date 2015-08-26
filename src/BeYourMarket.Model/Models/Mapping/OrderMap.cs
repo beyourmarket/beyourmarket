@@ -47,11 +47,11 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.Modified).HasColumnName("Modified");
 
             // Relationships
-            this.HasRequired(t => t.AspNetUser)
-                .WithMany(t => t.Orders)
+            this.HasRequired(t => t.AspNetUserProvider)
+                .WithMany(t => t.OrdersProvider)
                 .HasForeignKey(d => d.UserProvider);
-            this.HasRequired(t => t.AspNetUser1)
-                .WithMany(t => t.Orders1)
+            this.HasRequired(t => t.AspNetUserReceiver)
+                .WithMany(t => t.OrdersReceiver)
                 .HasForeignKey(d => d.UserReceiver);
             this.HasRequired(t => t.Listing)
                 .WithMany(t => t.Orders)

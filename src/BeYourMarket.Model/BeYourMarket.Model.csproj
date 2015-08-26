@@ -76,9 +76,9 @@
     <Compile Include="Models\ContentPage.cs" />
     <Compile Include="Models\EmailTemplate.cs" />
     <Compile Include="Models\Listing.cs" />
-    <Compile Include="Models\ListingComment.cs" />
     <Compile Include="Models\ListingMeta.cs" />
     <Compile Include="Models\ListingPicture.cs" />
+    <Compile Include="Models\ListingReview.cs" />
     <Compile Include="Models\ListingStat.cs" />
     <Compile Include="Models\ListingType.cs" />
     <Compile Include="Models\Mapping\AspNetRoleMap.cs" />
@@ -90,10 +90,10 @@
     <Compile Include="Models\Mapping\CategoryStatMap.cs" />
     <Compile Include="Models\Mapping\ContentPageMap.cs" />
     <Compile Include="Models\Mapping\EmailTemplateMap.cs" />
-    <Compile Include="Models\Mapping\ListingCommentMap.cs" />
     <Compile Include="Models\Mapping\ListingMap.cs" />
     <Compile Include="Models\Mapping\ListingMetaMap.cs" />
     <Compile Include="Models\Mapping\ListingPictureMap.cs" />
+    <Compile Include="Models\Mapping\ListingReviewMap.cs" />
     <Compile Include="Models\Mapping\ListingStatMap.cs" />
     <Compile Include="Models\Mapping\ListingTypeMap.cs" />
     <Compile Include="Models\Mapping\MessageMap.cs" />

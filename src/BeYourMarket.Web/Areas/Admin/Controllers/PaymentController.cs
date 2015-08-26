@@ -145,7 +145,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             var userId = User.Identity.GetUserId();
 
             var orders = await _orderService.Query(x => x.Status != (int)Enum_OrderStatus.Created)
-                .Include(x => x.Listing).Include(x => x.AspNetUser).Include(x => x.AspNetUser1).SelectAsync();
+                .Include(x => x.Listing).Include(x => x.AspNetUserProvider).Include(x => x.AspNetUserReceiver).SelectAsync();
 
             var grid = new OrdersGrid(orders.AsQueryable().OrderByDescending(x => x.Created));
 

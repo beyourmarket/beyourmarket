@@ -10,11 +10,13 @@ namespace BeYourMarket.Model.Models
             this.AspNetUserClaims = new List<AspNetUserClaim>();
             this.AspNetUserLogins = new List<AspNetUserLogin>();
             this.Listings = new List<Listing>();
-            this.Orders = new List<Order>();
-            this.Orders1 = new List<Order>();
             this.Messages = new List<Message>();
             this.MessageParticipants = new List<MessageParticipant>();
             this.MessageReadStates = new List<MessageReadState>();
+            this.OrdersProvider = new List<Order>();
+            this.OrdersReceiver = new List<Order>();
+            this.ListingReviewsUserFrom = new List<ListingReview>();
+            this.ListingReviewsUserTo = new List<ListingReview>();
             this.AspNetRoles = new List<AspNetRole>();
         }
 
@@ -41,14 +43,17 @@ namespace BeYourMarket.Model.Models
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
         public bool Disabled { get; set; }
+        public double Rating { get; set; }
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual ICollection<Listing> Listings { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<Order> Orders1 { get; set; }
         public virtual ICollection<Message> Messages { get; set; }
         public virtual ICollection<MessageParticipant> MessageParticipants { get; set; }
         public virtual ICollection<MessageReadState> MessageReadStates { get; set; }
+        public virtual ICollection<Order> OrdersProvider { get; set; }
+        public virtual ICollection<Order> OrdersReceiver { get; set; }
+        public virtual ICollection<ListingReview> ListingReviewsUserFrom { get; set; }
+        public virtual ICollection<ListingReview> ListingReviewsUserTo { get; set; }
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }
 }

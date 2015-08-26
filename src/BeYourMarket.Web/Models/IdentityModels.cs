@@ -43,6 +43,8 @@ namespace BeYourMarket.Web.Models
 
         public int LeadSourceID { get; set; }
 
+        public double Rating { get; set; }
+
         [NotMapped]
         public bool RoleAdministrator { get; set; }
 
@@ -55,6 +57,14 @@ namespace BeYourMarket.Web.Models
             }
         }
 
+        [NotMapped]
+        public string RatingClass
+        {
+            get
+            {
+                return "s" + Math.Round(Rating * 2);
+            }
+        }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

@@ -258,7 +258,7 @@ body .section {
 }
 /*right section - contains main content*/
 .right-section {
-    background-color:@background-color;
+    background-color: @background-color;
     margin-left: @left-section-margin;
     padding-bottom: 50px;
 }
@@ -452,7 +452,7 @@ body > .header {
 }
 
 /* Left side collapse */
-.left-section.collapse-left{
+.left-section.collapse-left {
     left: 0;
     display: none;
 }
@@ -465,10 +465,10 @@ body > .header {
     .right-section {
         margin-left: @left-section-margin;
     }
-    
+
     /*Right side stretch mode*/
     .left-section.collapse-left + .right-section {
-        margin-left: 0;    
+        margin-left: 0;
     }
 
     .left-section.collapse-left + .right-section > .content-header {
@@ -564,7 +564,7 @@ body > .header .logo {
     padding: 0 30px;
     width: @left-section-margin;
     font-weight: 400;
-    height: 65px;    
+    height: 65px;
     display: block;
 }
 
@@ -585,16 +585,17 @@ body > .header .logo .icon {
     .navbar-nav > li > a {
         padding-top: 14px;
         padding-bottom: 14px;
-        line-height: 20px;        
+        line-height: 20px;
     }
 
     .navbar-nav .open .dropdown-menu {
         position: absolute;
         background-color: @background-color;
-    }    
+    }
 }
+
 @media (min-width: 768px) and (max-width:1024px) {
-    .user-nav .navbar-nav > li > a {        
+    .user-nav .navbar-nav > li > a {
         font-size: 14px;
     }
 }
@@ -1181,7 +1182,7 @@ body > .header .logo .icon {
     -moz-border-radius: 2px;
     border-radius: 2px;
     background-clip: padding-box;
-    border: 1px solid #D8D1CC;    
+    border: 1px solid #D8D1CC;
 }
 
 .card .card-title {
@@ -1191,8 +1192,7 @@ body > .header .logo .icon {
 }
 
 .card a {
-    color: #796763;
-    margin-right: 16px;
+    color: #796763;    
     -webkit-transition: color 0.3s ease;
     -moz-transition: color 0.3s ease;
     -o-transition: color 0.3s ease;
@@ -1254,6 +1254,7 @@ body > .header .logo .icon {
 }
 
 .card .card-content {
+    position: relative;
     padding: 16px;
     -webkit-border-radius: 0 0 2px 2px;
     -moz-border-radius: 0 0 2px 2px;
@@ -1321,24 +1322,21 @@ body > .header .logo .icon {
 
 .landing-bg {
     color: @background-color;
-    width: 100%;    
+    width: 100%;
     background-position: 50% 50%;
     background-attachment: fixed;
     background-size: cover;
     min-height: 90%; /* Fallback for browsers do NOT support vh unit */
     min-height: 90vh; /* These two lines are counted as one :-)       */
-    height:90vh;    
-    
+    height: 90vh;
     display: flex;
-    display: -ms-flexbox;    
+    display: -ms-flexbox;
     display: -webkit-flex; /* Safari */
-
     align-items: center;
-    -webkit-align-items: center; /* Safari 7.0+ */  
-            
-    position: relative;    
+    -webkit-align-items: center; /* Safari 7.0+ */
+    position: relative;
     -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);    
+    transform: translate3d(0, 0, 0);
 }
 
 .stripe-connect {
@@ -1477,37 +1475,36 @@ body > .header .logo .icon {
 }
 
 .row-eq-height {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;  
-
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;    
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 @media (min-width: 768px) and (max-width:1024px) {
-  .row-eq-height .col-md-4{
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;        
-      width: 33%;
-  }  
+    .row-eq-height .col-md-4 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        width: 33%;
+    }
 }
 
-@media (min-width: 992px){
-    .col-lg-3{
-      width:24.5%;
-  }
+@media (min-width: 992px) {
+    .col-lg-3 {
+        width: 24.5%;
+    }
 }
 
-.truncate {  
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.truncate {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .badge.up {
@@ -1518,9 +1515,9 @@ body > .header .logo .icon {
 }
 
 .top-menu .dropdown-menu li a {
-  font-size: 14px;
-  text-align: left;
-  padding: 5px 15px;
+    font-size: 14px;
+    text-align: left;
+    padding: 5px 15px;
 }
 
 .dropdown .extended {
@@ -1534,32 +1531,51 @@ body > .header .logo .icon {
     max-height: 330px;
 }
 
-    .dropdown .extended li {
-        border-bottom: 1px solid #f0f0f0;
-        line-height: 20px;
-    }
+.dropdown .extended li {
+    border-bottom: 1px solid #f0f0f0;
+    line-height: 20px;
+}
 
-        .dropdown .extended li a {
-            padding: 10px 20px !important;
-        }
+.dropdown .extended li a {
+    padding: 10px 20px !important;
+}
 
-    .dropdown .extended i {
-        float: left;
-        width: 38px;
-        margin-right: 10px;
-        text-align: center;
-        margin-top: 5px;
-    }
+.dropdown .extended i {
+    float: left;
+    width: 38px;
+    margin-right: 10px;
+    text-align: center;
+    margin-top: 5px;
+}
 
-    .dropdown .extended p {
-        font-weight: 600;
-        background-color: #E4E9ED;
-        padding: 10px 15px 11px 15px;
-        margin-bottom: 0px;
-    }
+.dropdown .extended p {
+    font-weight: 600;
+    background-color: #E4E9ED;
+    padding: 10px 15px 11px 15px;
+    margin-bottom: 0px;
+}
 
 @media (min-width: 768px) {
     table.mails {
         table-layout: fixed;
     }
+}
+
+@media (max-width: 767px) {
+    .text-center-sm {
+        text-align: center;
+    }
+}
+
+@media (min-width: 992px) {
+    .pull-left-md {
+        float: left;
+    }
+}
+
+.img-profile-card{
+    position: absolute;
+    top: -40px;
+    right: 10px;
+    z-index: 3;
 }

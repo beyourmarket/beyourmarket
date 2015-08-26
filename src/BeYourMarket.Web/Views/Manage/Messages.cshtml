@@ -67,15 +67,13 @@
                                                 var unRead = messageReadState != null && !messageReadState.ReadDate.HasValue;
 
                                                 <tr class="@(unRead ? "active" : "")">
-                                                    <td class="mail-select" width="50">
-                                                        <label class="cr-styled">
-                                                            <input type="checkbox" id="messageIds" name="messageIds" value="@message.ID"><i class="fa"></i>
-                                                        </label>
-                                                    </td>
-
                                                     <td width="200">
-                                                        <img class="img-circle thumb-sm m-r-5" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(participant.AspNetUser.Id)" />
-                                                        <a class="text-xs" href="@Url.Action("Profile", "Listing", new { id = message.AspNetUser.Id })">@participant.AspNetUser.FullName</a>
+                                                        <img class="img-circle thumb-sm m-r-5 pull-left" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(participant.AspNetUser.Id)" />
+                                                        <div>
+                                                            <a class="text-xs" href="@Url.Action("Profile", "Listing", new { id = message.AspNetUser.Id })">@participant.AspNetUser.FullName</a>
+                                                            <br />
+                                                            <span class="score @participant.AspNetUser.RatingClass text-xs"></span>
+                                                        </div>
                                                     </td>
 
                                                     <td width="250">
@@ -101,6 +99,12 @@
 
                                                     <td class="text-right">
                                                         @(message.Created.Date == DateTime.Today.Date ? message.Created.ToShortTimeString() : message.Created.ToShortDateString())
+                                                    </td>
+
+                                                    <td class="mail-select" width="50">
+                                                        <label class="cr-styled">
+                                                            <input type="checkbox" id="messageIds" name="messageIds" value="@message.ID"><i class="fa"></i>
+                                                        </label>
                                                     </td>
                                                 </tr>
                                             }

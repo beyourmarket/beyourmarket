@@ -1386,7 +1386,6 @@ body > .header .logo .icon {
 }
 .card a {
   color: #796763;
-  margin-right: 16px;
   -webkit-transition: color 0.3s ease;
   -moz-transition: color 0.3s ease;
   -o-transition: color 0.3s ease;
@@ -1439,6 +1438,7 @@ body > .header .logo .icon {
   padding: 16px;
 }
 .card .card-content {
+  position: relative;
   padding: 16px;
   -webkit-border-radius: 0 0 2px 2px;
   -moz-border-radius: 0 0 2px 2px;
@@ -1706,5 +1706,21 @@ body > .header .logo .icon {
   table.mails {
     table-layout: fixed;
   }
+}
+@media (max-width: 767px) {
+  .text-center-sm {
+    text-align: center;
+  }
+}
+@media (min-width: 992px) {
+  .pull-left-md {
+    float: left;
+  }
+}
+.img-profile-card {
+  position: absolute;
+  top: -40px;
+  right: 10px;
+  z-index: 3;
 }
 /*# sourceMappingURL=theme.css.map */

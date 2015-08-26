@@ -26,6 +26,7 @@ using Microsoft.Practices.Unity;
 using BeYourMarket.Core.Controllers;
 using BeYourMarket.Service.Models;
 using BeYourMarket.Web.Extensions;
+using i18n;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -40,8 +41,9 @@ namespace BeYourMarket.Web.Controllers
         private readonly ISettingDictionaryService _settingDictionaryService;
         private readonly ICategoryService _categoryService;
         private readonly IListingService _listingService;
-        private readonly IListingStatService _ListingStatservice;
-        private readonly IListingPictureService _ListingPictureservice;
+        private readonly IListingStatService _listingStatservice;
+        private readonly IListingPictureService _listingPictureservice;
+        private readonly IListingReviewService _listingReviewService;
         private readonly IPictureService _pictureService;
         private readonly IOrderService _orderService;
         private readonly ICustomFieldService _customFieldService;
@@ -93,7 +95,8 @@ namespace BeYourMarket.Web.Controllers
             ICustomFieldCategoryService customFieldCategoryService,
             ICustomFieldListingService customFieldListingService,
             ISettingDictionaryService settingDictionaryService,
-            IListingStatService ListingStatservice,
+            IListingStatService listingStatservice,
+            IListingReviewService listingReviewService,
             DataCacheService dataCacheService,
             SqlDbService sqlDbService,
             IPluginFinder pluginFinder)
@@ -102,14 +105,17 @@ namespace BeYourMarket.Web.Controllers
             _settingDictionaryService = settingDictionaryService;
 
             _categoryService = categoryService;
+
             _listingService = listingService;
             _pictureService = pictureService;
-            _ListingPictureservice = ListingPictureservice;
+            _listingPictureservice = ListingPictureservice;
+            _listingStatservice = listingStatservice;
+            _listingReviewService = listingReviewService;
+
             _orderService = orderService;
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
             _customFieldListingService = customFieldListingService;
-            _ListingStatservice = ListingStatservice;
 
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
@@ -181,8 +187,8 @@ namespace BeYourMarket.Web.Controllers
                     Subject = order.Listing.Title,
                     Body = string.Format(
                     "[[[Order %0 - %1 - Total Price %2 %3|||{0}|||{1}|||{2}|||{3}]]]",
-                    orderStatusText.TransformTranslationParameter(),
-                    order.Description.TransformTranslationParameter(),
+                    HttpContext.ParseAndTranslate(orderStatusText),
+                    HttpContext.ParseAndTranslate(order.Description),
                     order.Price,
                     order.Currency)
                 };
@@ -200,8 +206,9 @@ namespace BeYourMarket.Web.Controllers
             var orders = await _orderService
                 .Query(x => x.Status != (int)Enum_OrderStatus.Created && (x.UserProvider == userId || x.UserReceiver == userId))
                 .Include(x => x.Listing)
-                .Include(x => x.AspNetUser)
-                .Include(x => x.AspNetUser1)
+                .Include(x => x.AspNetUserProvider)
+                .Include(x => x.AspNetUserReceiver)
+                .Include(x => x.ListingReviews)
                 .SelectAsync();
 
             var grid = new OrdersGrid(orders.AsQueryable().OrderByDescending(x => x.Created));

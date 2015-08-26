@@ -13,14 +13,14 @@
     <link href="~/Content/gridmvc.datepicker.min.css" rel="stylesheet" />
 }
 
-@helper DisplayUpdateLink(int id, string userProvider, int status)
+@helper DisplayUpdateLink(int id, string userProvider, int status, IEnumerable<BeYourMarket.Model.Models.ListingReview> reviews)
 {
+    var userId = User.Identity.GetUserId();
+        
     // Show link only in pending state
-    if (status == 1)
-    {
-        var user = User.Identity.GetUserId();
-
-        if (user == userProvider)
+    if (status == (int)Enum_OrderStatus.Pending)
+    {        
+        if (userId == userProvider)
         {
             <a class="btn btn-success btn-sm m-b-5" href="javascript:void(0);" onclick="confirmOrderAction(@id, 2);"><i class="fa fa-thumbs-up"></i> [[[Accept]]]</a>
             <a class="btn btn-danger btn-sm m-b-5" href="javascript:void(0);" onclick="confirmOrderAction(@id, 3);"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
@@ -29,6 +29,10 @@
         {
             <a class="btn btn-danger btn-sm m-b-5" href="javascript:void(0);" onclick="confirmOrderAction(@id, 3);"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
         }
+    }// Show link for review
+    else if (status == (int)Enum_OrderStatus.Confirmed && !reviews.Any(x => x.UserFrom == userId))
+    {        
+        <a class="btn btn-info btn-sm" href="@Url.Action("Review", "Listing", new { id = id })"><i class="fa fa-comment"></i> [[[Review]]]</a>
     }
 }
 
@@ -60,7 +64,7 @@
 
 @helper DisplayUser(BeYourMarket.Model.Models.Order order, string userId)
 {
-    var user = userId == order.AspNetUser.Id ? order.AspNetUser1 : order.AspNetUser;
+    var user = userId == order.AspNetUserProvider.Id ? order.AspNetUserReceiver : order.AspNetUserProvider;
 
     <a href="@Url.Action("Profile", "Listing", new { id = user.Id})">
         <img src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(user.Id)" class="img-circle thumb-sm" alt="img">
@@ -100,7 +104,7 @@
                                            columns.Add()
                                              .Encoded(false)
                                              .Sanitized(false)
-                                             .RenderValueAs(x => DisplayUpdateLink(x.ID, x.UserProvider, x.Status));
+                                             .RenderValueAs(x => DisplayUpdateLink(x.ID, x.UserProvider, x.Status, x.ListingReviews));
 
                                            columns.Add(x => x.Status)
                                                .Encoded(false)

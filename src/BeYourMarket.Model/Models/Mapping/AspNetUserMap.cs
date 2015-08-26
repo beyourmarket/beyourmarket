@@ -47,6 +47,7 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.AccessFailedCount).HasColumnName("AccessFailedCount");
             this.Property(t => t.UserName).HasColumnName("UserName");
             this.Property(t => t.Disabled).HasColumnName("Disabled");
+            this.Property(t => t.Rating).HasColumnName("Rating");
         }
     }
 }

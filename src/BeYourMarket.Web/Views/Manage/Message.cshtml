@@ -25,6 +25,10 @@
                         <!-- Message -->
                         <div class="panel panel-default m-t-20">
                             <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-users"></i> @string.Join(", ", Model.MessageParticipants.Select(x => x.AspNetUser.FullName).ToArray())</h3>
+                            </div>
+
+                            <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-comments-o"></i> @Model.Subject</h3>
                             </div>
 
