@@ -358,6 +358,7 @@
     <Content Include="Images\Sample\Listing\00000007.jpg" />
     <Content Include="Images\Sample\Listing\00000008.jpg" />
     <Content Include="Images\Sample\Listing\00000009.jpg" />
+    <Content Include="Images\Sample\Profile\admin.jpg" />
     <Content Include="js\star-rating\star-rating.css" />
     <Content Include="js\star-rating\star-rating.js" />
     <Content Include="js\sweet-alert\sweetalert.css" />
