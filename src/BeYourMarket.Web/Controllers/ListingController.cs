@@ -647,7 +647,11 @@ namespace BeYourMarket.Web.Controllers
                 });
             }
 
-            var reviews = await _listingReviewService.Query(x => x.UserTo == id).SelectAsync();
+            // include reviews
+            var reviews = await _listingReviewService
+                .Query(x => x.UserTo == id)
+                .Include(x=>x.AspNetUserFrom)
+                .SelectAsync();
 
             var model = new ProfileModel()
             {

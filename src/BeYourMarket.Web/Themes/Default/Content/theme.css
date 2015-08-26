@@ -1707,4 +1707,14 @@ body > .header .logo .icon {
     table-layout: fixed;
   }
 }
+@media (max-width: 767px) {
+  .text-center-sm {
+    text-align: center;
+  }
+}
+@media (min-width: 992px) {
+  .pull-left-md {
+    float: left;
+  }
+}
 /*# sourceMappingURL=theme.css.map */

@@ -4,7 +4,7 @@
 @model BeYourMarket.Web.Models.ProfileModel
 
 @{
-    ViewBag.Title = "[[[Profile]]]";    
+    ViewBag.Title = "[[[Profile]]]";
 }
 
 @section Styles {
@@ -16,10 +16,10 @@
     <!-- Start Page Heading -->
     <div class="section panel-header ">
         <div class="container-fluid">
-            <div class="col-md-12">
-                <img class="pull-left img-circle profile-picture m-r-10" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.User.Id)" />
+            <div class="col-md-12 text-center-sm">
+                <img class="pull-left-md img-circle profile-picture m-r-10" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.User.Id)" />
 
-                <h3>@Model.User.FullName</h3>
+                <h4>@Model.User.FullName</h4>
                 <p>
                     <span class="score @Model.User.RatingClass"></span>
                     <span>@string.Format("[[[{0:N0} reviews]]]", Model.ListingReviews.Count)</span>
@@ -31,27 +31,55 @@
         </div>
     </div>
 
-    <div class="container body-content">
-
-        <div class="container-fluid mrg-tb">
-            <div class="row">
-                <div class="col-md-12 section-title ">
-                    <h4>[[[Listings]]]</h4>
-                </div>
+    <div class="container-fluid mrg-tb">
+        <div class="row">
+            <div class="col-md-12 section-title ">
+                <h4>[[[Reviews]]] (@Model.ListingReviews.Count)</h4>
             </div>
-
-
-            <div class="row row-eq-height">
-                @foreach (var item in Model.Listings)
-                {
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                        @Html.Partial("~/Views/Listing/_ListingCard.cshtml", item)
-                    </div>
-                }
-            </div>
-
         </div>
+
+
+        @foreach (var review in Model.ListingReviews)
+        {
+            var ratingClass = "s" + review.Rating * 2;
+            <div class="row text-center-sm">
+                <div class="col-md-2 col-xs-12">
+                    <img class="img-circle thumb-sm m-r-5" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(review.AspNetUserFrom.Id)" />
+                    <p><a class="text-xs" href="@Url.Action("Profile", "Listing", new { id = review.AspNetUserFrom.Id })">@review.AspNetUserFrom.FullName</a></p>
+                </div>
+                <div class="col-md-10 col-xs-12">
+                    <span class="score @ratingClass"></span>
+                    <p class="text-sm">@review.Description</p>
+                    <small class="text-lighten">@review.Created.ToShortDateString()</small>
+                </div>
+                
+            </div>
+
+            <hr />
+        }
+
     </div>
+
+    <div class="container-fluid mrg-tb">
+        <div class="row">
+            <div class="col-md-12 section-title ">
+                <h4>[[[Listings]]] (@Model.Listings.Count)</h4>
+            </div>
+        </div>
+
+
+        <div class="row row-eq-height">
+            @foreach (var item in Model.Listings)
+            {
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                    @Html.Partial("~/Views/Listing/_ListingCard.cshtml", item)
+                </div>
+            }
+        </div>
+
+    </div>
+
+
 
 </div>
 
