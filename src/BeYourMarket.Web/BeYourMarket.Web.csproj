@@ -392,7 +392,7 @@
     <Content Include="Views\Manage\Message.cshtml" />
     <Content Include="Views\Shared\_LocalizationGridMvc.cshtml" />
     <Content Include="Views\Shared\_LocalizationFileInput.cshtml" />
-    <Content Include="Views\Payment\Review.cshtml" />
+    <Content Include="Views\Listing\Review.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

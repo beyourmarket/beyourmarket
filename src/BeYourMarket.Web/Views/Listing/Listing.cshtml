@@ -5,8 +5,7 @@
 @model BeYourMarket.Web.Models.ListingItemModel
 
 @{
-    ViewBag.Title = Model.ListingCurrent.Title;
-    var ratingClass = "s" + Model.User.Rating;
+    ViewBag.Title = Model.ListingCurrent.Title;    
 }
 
 @section Styles {
@@ -52,8 +51,8 @@
                             </p>
                             <a href="@Url.Action("Profile", "Listing", new { id = Model.User.Id })">
                                 [[[View user's profile and other listings]]]<div>
-                                    <span class="score @ratingClass"></span>
-                                    <span>@string.Format("[[[{0:N0} reviews]]]", Model.ListingCurrent.ListingReviews.Count)</span>
+                                    <span class="score @Model.User.RatingClass"></span>
+                                    <span>@string.Format("[[[{0:N0} reviews]]]", Model.ListingReviews.Count)</span>
                                 </div>
                             </a>
                         </div>

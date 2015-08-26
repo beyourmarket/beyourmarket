@@ -17,7 +17,15 @@ namespace BeYourMarket.Model.Models
             {
                 return string.Format("{0} {1}".Trim(), FirstName, LastName);
             }
-        }        
+        }
+
+        public string RatingClass
+        {
+            get
+            {
+                return "s" + Math.Round(Rating * 2);
+            }
+        }
     }
 
     public class AspNetUserMetaData

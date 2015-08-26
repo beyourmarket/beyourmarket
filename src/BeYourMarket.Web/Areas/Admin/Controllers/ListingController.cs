@@ -46,7 +46,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         private readonly ICategoryListingTypeService _categoryListingTypeService;
 
         private readonly IListingService _listingService;
-        private readonly IListingTypeService _ListingTypeService;
+        private readonly IListingTypeService _listingTypeService;
+        private readonly IListingReviewService _listingReviewService;
 
         private readonly ICustomFieldService _customFieldService;
         private readonly ICustomFieldCategoryService _customFieldCategoryService;
@@ -56,7 +57,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
         private readonly IOrderService _orderService;
 
-        private readonly IListingPictureService _ListingPictureservice;
+        private readonly IListingPictureService _listingPictureservice;
         private readonly IPictureService _pictureService;
 
         private readonly IEmailTemplateService _emailTemplateService;
@@ -112,7 +113,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             ICategoryService categoryService,
             ICategoryListingTypeService categoryListingTypeService,
             IListingService listingService,
-            IListingTypeService ListingTypeService,
+            IListingTypeService listingTypeService,
             ICustomFieldService customFieldService,
             ICustomFieldCategoryService customFieldCategoryService,
             ICustomFieldListingService customFieldListingService,
@@ -121,7 +122,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             ISettingDictionaryService settingDictionaryService,
             IEmailTemplateService emailTemplateService,
             IPictureService pictureService,
-            IListingPictureService ListingPictureservice,
+            IListingPictureService listingPictureservice,
+            IListingReviewService listingReviewService,
             DataCacheService dataCacheService,
             SqlDbService sqlDbService)
         {
@@ -132,10 +134,12 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             _categoryListingTypeService = categoryListingTypeService;
 
             _listingService = listingService;
-            _ListingTypeService = ListingTypeService;
+            _listingTypeService = listingTypeService;
 
             _pictureService = pictureService;
-            _ListingPictureservice = ListingPictureservice;
+            
+            _listingPictureservice = listingPictureservice;
+            _listingReviewService = listingReviewService;
 
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
@@ -213,7 +217,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             var categoryModel = new CategoryModel();
 
-            var ListingTypes = await _ListingTypeService.Query().SelectAsync();
+            var ListingTypes = await _listingTypeService.Query().SelectAsync();
             categoryModel.ListingTypes = ListingTypes.ToList();
 
             if (id.HasValue)
@@ -401,7 +405,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                     return new HttpNotFoundResult();
 
                 // Pictures
-                var pictures = await _ListingPictureservice.Query(x => x.ListingID == id).SelectAsync();
+                var pictures = await _listingPictureservice.Query(x => x.ListingID == id).SelectAsync();
 
                 var picturesModel = pictures.Select(x =>
                     new PictureModel()
@@ -582,7 +586,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             // Update photos
             if (Request.Files.Count > 0)
             {
-                var itemPictureQuery = _ListingPictureservice.Queryable().Where(x => x.ListingID == listing.ID);
+                var itemPictureQuery = _listingPictureservice.Queryable().Where(x => x.ListingID == listing.ID);
                 if (itemPictureQuery.Count() > 0)
                     nextPictureOrderId = itemPictureQuery.Max(x => x.Ordering);
             }
@@ -621,7 +625,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                         itemPicture.PictureID = picture.ID;
                         itemPicture.Ordering = nextPictureOrderId;
 
-                        _ListingPictureservice.Insert(itemPicture);
+                        _listingPictureservice.Insert(itemPicture);
 
                         nextPictureOrderId++;
                     }
@@ -675,9 +679,9 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 return RedirectToAction("ListingTypes");
             }
 
-            var item = await _ListingTypeService.FindAsync(id);                       
+            var item = await _listingTypeService.FindAsync(id);                       
 
-            await _ListingTypeService.DeleteAsync(id);
+            await _listingTypeService.DeleteAsync(id);
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
@@ -709,10 +713,10 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             try
             {
                 await _pictureService.DeleteAsync(id);
-                var itemPicture = _ListingPictureservice.Query(x => x.PictureID == id).Select().FirstOrDefault();
+                var itemPicture = _listingPictureservice.Query(x => x.PictureID == id).Select().FirstOrDefault();
 
                 if (itemPicture != null)
-                    await _ListingPictureservice.DeleteAsync(itemPicture.ID);
+                    await _listingPictureservice.DeleteAsync(itemPicture.ID);
 
                 await _unitOfWorkAsync.SaveChangesAsync();
 
@@ -732,7 +736,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
         public ActionResult ListingTypes()
         {
-            var grid = new ListingTypesGrid(_ListingTypeService.Queryable().OrderBy(x => x.ID));
+            var grid = new ListingTypesGrid(_listingTypeService.Queryable().OrderBy(x => x.ID));
 
 
             var model = new ListingTypeModel()
@@ -749,7 +753,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             if (id.HasValue)
             {
-                ListingType = await _ListingTypeService.FindAsync(id);
+                ListingType = await _listingTypeService.FindAsync(id);
 
                 if (ListingType == null)
                     return new HttpNotFoundResult();
@@ -768,11 +772,11 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 model.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added;
 
                 isNew = true;
-                _ListingTypeService.Insert(model);
+                _listingTypeService.Insert(model);
             }
             else
             {
-                var listingTypeExisting = await _ListingTypeService.FindAsync(model.ID);
+                var listingTypeExisting = await _listingTypeService.FindAsync(model.ID);
 
                 listingTypeExisting.Name = model.Name;
                 listingTypeExisting.ButtonLabel = model.ButtonLabel;
@@ -788,7 +792,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
                 listingTypeExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 
-                _ListingTypeService.Update(listingTypeExisting);
+                _listingTypeService.Update(listingTypeExisting);
             }
 
             await _unitOfWorkAsync.SaveChangesAsync();

@@ -57,6 +57,14 @@ namespace BeYourMarket.Web.Models
             }
         }
 
+        [NotMapped]
+        public string RatingClass
+        {
+            get
+            {
+                return "s" + Math.Round(Rating * 2);
+            }
+        }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

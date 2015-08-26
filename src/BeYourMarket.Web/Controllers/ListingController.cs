@@ -35,9 +35,12 @@ namespace BeYourMarket.Web.Controllers
         private readonly ISettingService _settingService;
         private readonly ISettingDictionaryService _settingDictionaryService;
         private readonly ICategoryService _categoryService;
+
         private readonly IListingService _listingService;
         private readonly IListingStatService _ListingStatservice;
-        private readonly IListingPictureService _ListingPictureservice;
+        private readonly IListingPictureService _listingPictureservice;
+        private readonly IListingReviewService _listingReviewService;
+
         private readonly IPictureService _pictureService;
         private readonly IOrderService _orderService;
         private readonly ICustomFieldService _customFieldService;
@@ -88,13 +91,14 @@ namespace BeYourMarket.Web.Controllers
            ICategoryService categoryService,
            IListingService listingService,
            IPictureService pictureService,
-           IListingPictureService ListingPictureservice,
+           IListingPictureService listingPictureservice,
            IOrderService orderService,
            ICustomFieldService customFieldService,
            ICustomFieldCategoryService customFieldCategoryService,
            ICustomFieldListingService customFieldListingService,
            ISettingDictionaryService settingDictionaryService,
-           IListingStatService ListingStatservice,
+           IListingStatService listingStatservice,
+            IListingReviewService listingReviewService,
            IEmailTemplateService emailTemplateService,
            IMessageService messageService,
             IMessageThreadService messageThreadService,
@@ -108,13 +112,14 @@ namespace BeYourMarket.Web.Controllers
 
             _categoryService = categoryService;
             _listingService = listingService;
+            _listingReviewService = listingReviewService;
             _pictureService = pictureService;
-            _ListingPictureservice = ListingPictureservice;
+            _listingPictureservice = listingPictureservice;
             _orderService = orderService;
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
             _customFieldListingService = customFieldListingService;
-            _ListingStatservice = ListingStatservice;
+            _ListingStatservice = listingStatservice;
             _emailTemplateService = emailTemplateService;
             _messageService = messageService;
             _messageParticipantService = messageParticipantService;
@@ -190,7 +195,7 @@ namespace BeYourMarket.Web.Controllers
                     return new HttpNotFoundResult();
 
                 // Pictures
-                var pictures = await _ListingPictureservice.Query(x => x.ListingID == id).SelectAsync();
+                var pictures = await _listingPictureservice.Query(x => x.ListingID == id).SelectAsync();
 
                 var picturesModel = pictures.Select(x =>
                     new PictureModel()
@@ -265,6 +270,7 @@ namespace BeYourMarket.Web.Controllers
                 .Include(x => x.ListingMetas.Select(y => y.MetaField))
                 .Include(x => x.ListingStats)
                 .Include(x => x.ListingType)
+                .Include(x => x.ListingReviews)
                 .SelectAsync();
 
             var item = itemQuery.FirstOrDefault();
@@ -288,7 +294,7 @@ namespace BeYourMarket.Web.Controllers
                 }
             }
 
-            var pictures = await _ListingPictureservice.Query(x => x.ListingID == id).SelectAsync();
+            var pictures = await _listingPictureservice.Query(x => x.ListingID == id).SelectAsync();
 
             var picturesModel = pictures.Select(x =>
                 new PictureModel()
@@ -299,6 +305,8 @@ namespace BeYourMarket.Web.Controllers
                     Ordering = x.Ordering
                 }).OrderBy(x => x.Ordering).ToList();
 
+            var reviews = await _listingReviewService.Query(x => x.UserTo == item.UserID).SelectAsync();
+
             var user = await UserManager.FindByIdAsync(item.UserID);
 
             var itemModel = new ListingItemModel()
@@ -307,6 +315,7 @@ namespace BeYourMarket.Web.Controllers
                 Pictures = picturesModel,
                 DatesBooked = datesBooked,
                 User = user,
+                ListingReviews = reviews.ToList()
             };
 
             // Update stat count
@@ -357,13 +366,13 @@ namespace BeYourMarket.Web.Controllers
             // Register account if not login
             if (!User.Identity.IsAuthenticated)
             {
-                var accountController = BeYourMarket.Core.ContainerManager.GetConfiguredContainer().Resolve<AccountController>();                
+                var accountController = BeYourMarket.Core.ContainerManager.GetConfiguredContainer().Resolve<AccountController>();
 
                 var modelRegister = new RegisterViewModel()
                 {
                     Email = listing.ContactEmail,
                     Password = form["Password"],
-                    ConfirmPassword = form["ConfirmPassword"],                    
+                    ConfirmPassword = form["ConfirmPassword"],
                 };
 
                 // Parse first and last name
@@ -385,7 +394,7 @@ namespace BeYourMarket.Web.Controllers
 
                 // Register account
                 var resultRegister = await accountController.RegisterAccount(modelRegister);
-                
+
                 // Add errors
                 AddErrors(resultRegister);
 
@@ -510,7 +519,7 @@ namespace BeYourMarket.Web.Controllers
 
             if (Request.Files.Count > 0)
             {
-                var itemPictureQuery = _ListingPictureservice.Queryable().Where(x => x.ListingID == listing.ID);
+                var itemPictureQuery = _listingPictureservice.Queryable().Where(x => x.ListingID == listing.ID);
                 if (itemPictureQuery.Count() > 0)
                     nextPictureOrderId = itemPictureQuery.Max(x => x.Ordering);
             }
@@ -549,7 +558,7 @@ namespace BeYourMarket.Web.Controllers
                         itemPicture.PictureID = picture.ID;
                         itemPicture.Ordering = nextPictureOrderId;
 
-                        _ListingPictureservice.Insert(itemPicture);
+                        _listingPictureservice.Insert(itemPicture);
 
                         nextPictureOrderId++;
                     }
@@ -594,10 +603,10 @@ namespace BeYourMarket.Web.Controllers
             try
             {
                 await _pictureService.DeleteAsync(id);
-                var itemPicture = _ListingPictureservice.Query(x => x.PictureID == id).Select().FirstOrDefault();
+                var itemPicture = _listingPictureservice.Query(x => x.PictureID == id).Select().FirstOrDefault();
 
                 if (itemPicture != null)
-                    await _ListingPictureservice.DeleteAsync(itemPicture.ID);
+                    await _listingPictureservice.DeleteAsync(itemPicture.ID);
 
                 await _unitOfWorkAsync.SaveChangesAsync();
 
@@ -638,10 +647,13 @@ namespace BeYourMarket.Web.Controllers
                 });
             }
 
+            var reviews = await _listingReviewService.Query(x => x.UserTo == id).SelectAsync();
+
             var model = new ProfileModel()
             {
                 Listings = itemsModel,
-                User = user
+                User = user,
+                ListingReviews = reviews.ToList()
             };
 
             return View("~/Views/Listing/Profile.cshtml", model);
@@ -694,6 +706,98 @@ namespace BeYourMarket.Web.Controllers
             var userId = User.Identity.GetUserId();
             var item = await _listingService.FindAsync(id);
             return item.UserID != userId;
+        }
+
+        /// <summary>
+        /// review for an order on a listing
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ActionResult> Review(int id)
+        {
+            var currentUserId = User.Identity.GetUserId();
+
+            // check if user has right to review the order            
+            var reviewModel = new ListingReview();
+
+            var orderQuery = await _orderService
+                .Query(x => x.ID == id)
+                .Include(x => x.Listing)
+                .Include(x => x.Listing.AspNetUser)
+                .Include(x => x.Listing.ListingType)
+                .Include(x => x.Listing.ListingReviews)
+                .Include(x => x.AspNetUser)
+                .Include(x => x.AspNetUser1)
+                .SelectAsync();
+
+            var order = orderQuery.FirstOrDefault();
+
+            reviewModel.Listing = order.Listing;
+            reviewModel.OrderID = order.ID;
+            reviewModel.ListingID = order.ListingID;
+
+            // set user for review
+            reviewModel.AspNetUser1 = currentUserId == order.UserProvider ? order.AspNetUser1 : order.AspNetUser;
+
+            return View(reviewModel);
+        }
+
+        /// <summary>
+        /// Submit review
+        /// </summary>
+        /// <param name="listingReview"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Review(ListingReview listingReview)
+        {
+            var currentUserId = User.Identity.GetUserId();
+
+            var orderQuery = await _orderService.Query(x => x.ID == listingReview.OrderID)
+                .Include(x => x.Listing)
+                .SelectAsync();
+
+            var order = orderQuery.FirstOrDefault();
+
+            var userTo = order.UserProvider == currentUserId ? order.UserReceiver : order.UserProvider;
+
+            // User cannot comment himself
+            if (currentUserId == userTo)
+                return RedirectToAction("Orders", "Payment");
+
+            // check if user has right to review the order
+            if (order == null || (order.UserProvider != currentUserId && order.UserReceiver != currentUserId))
+                return RedirectToAction("Orders", "Payment");
+
+            // update review id on the order
+            var review = new ListingReview()
+            {
+                UserFrom = currentUserId,
+                UserTo = userTo,
+                ListingID = order.ListingID,
+                OrderID = listingReview.OrderID,
+                Description = listingReview.Description,
+                Rating = listingReview.Rating,
+                Spam = false,
+                Active = true,
+                Enabled = true,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added,
+                Created = DateTime.Now
+            };
+
+            _listingReviewService.Insert(review);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            // update rating on the user            
+            var listingReviewQuery = await _listingReviewService.Query(x => x.UserTo == order.Listing.UserID).SelectAsync();
+            var rating = listingReviewQuery.Average(x => x.Rating);
+
+            var user = await UserManager.FindByIdAsync(order.Listing.UserID);
+            user.Rating = rating;
+            await UserManager.UpdateAsync(user);
+
+            return View();
         }
         #endregion
     }

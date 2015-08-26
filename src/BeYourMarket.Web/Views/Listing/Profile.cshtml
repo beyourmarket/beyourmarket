@@ -4,8 +4,7 @@
 @model BeYourMarket.Web.Models.ProfileModel
 
 @{
-    ViewBag.Title = "[[[Profile]]]";
-    var ratingClass = "s" + Model.User.Rating;
+    ViewBag.Title = "[[[Profile]]]";    
 }
 
 @section Styles {
@@ -22,8 +21,8 @@
 
                 <h3>@Model.User.FullName</h3>
                 <p>
-                    <span class="score @ratingClass"></span>
-                    <span>@string.Format("[[[{0:N0} reviews]]]", Model.Listings.Sum(x => x.ListingCurrent.ListingReviews.Count))</span>
+                    <span class="score @Model.User.RatingClass"></span>
+                    <span>@string.Format("[[[{0:N0} reviews]]]", Model.ListingReviews.Count)</span>
                 </p>
                 <p class="lead text-lighten text-sm">
                     [[[Joined since]]] @Model.User.RegisterDate.ToShortDateString()

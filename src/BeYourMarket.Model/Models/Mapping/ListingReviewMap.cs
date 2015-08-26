@@ -12,13 +12,16 @@ namespace BeYourMarket.Model.Models.Mapping
 
             // Properties
             this.Property(t => t.Title)
-                .IsRequired()
                 .HasMaxLength(250);
 
             this.Property(t => t.Description)
                 .IsRequired();
 
             this.Property(t => t.UserFrom)
+                .IsRequired()
+                .HasMaxLength(128);
+
+            this.Property(t => t.UserTo)
                 .IsRequired()
                 .HasMaxLength(128);
 
@@ -29,16 +32,27 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.Description).HasColumnName("Description");
             this.Property(t => t.Rating).HasColumnName("Rating");
             this.Property(t => t.ListingID).HasColumnName("ListingID");
+            this.Property(t => t.OrderID).HasColumnName("OrderID");
             this.Property(t => t.UserFrom).HasColumnName("UserFrom");
+            this.Property(t => t.UserTo).HasColumnName("UserTo");
             this.Property(t => t.Active).HasColumnName("Active");
             this.Property(t => t.Enabled).HasColumnName("Enabled");
             this.Property(t => t.Spam).HasColumnName("Spam");
             this.Property(t => t.Created).HasColumnName("Created");
 
             // Relationships
+            this.HasRequired(t => t.AspNetUser)
+                .WithMany(t => t.ListingReviews)
+                .HasForeignKey(d => d.UserFrom);
+            this.HasRequired(t => t.AspNetUser1)
+                .WithMany(t => t.ListingReviews1)
+                .HasForeignKey(d => d.UserTo);
             this.HasRequired(t => t.Listing)
                 .WithMany(t => t.ListingReviews)
                 .HasForeignKey(d => d.ListingID);
+            this.HasRequired(t => t.Order)
+                .WithMany(t => t.ListingReviews)
+                .HasForeignKey(d => d.OrderID);
 
         }
     }

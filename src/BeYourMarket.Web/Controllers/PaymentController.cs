@@ -105,7 +105,7 @@ namespace BeYourMarket.Web.Controllers
             _settingDictionaryService = settingDictionaryService;
 
             _categoryService = categoryService;
-            
+
             _listingService = listingService;
             _pictureService = pictureService;
             _listingPictureservice = ListingPictureservice;
@@ -115,7 +115,7 @@ namespace BeYourMarket.Web.Controllers
             _orderService = orderService;
             _customFieldService = customFieldService;
             _customFieldCategoryService = customFieldCategoryService;
-            _customFieldListingService = customFieldListingService;            
+            _customFieldListingService = customFieldListingService;
 
             _dataCacheService = dataCacheService;
             _sqlDbService = sqlDbService;
@@ -152,7 +152,7 @@ namespace BeYourMarket.Web.Controllers
             var orderResult = controller.OrderAction(id, status, out message);
 
             var orderStatus = (Enum_OrderStatus)status;
-            var orderStatusText = string.Empty;            
+            var orderStatusText = string.Empty;
 
             switch (orderStatus)
             {
@@ -208,6 +208,7 @@ namespace BeYourMarket.Web.Controllers
                 .Include(x => x.Listing)
                 .Include(x => x.AspNetUser)
                 .Include(x => x.AspNetUser1)
+                .Include(x => x.ListingReviews)
                 .SelectAsync();
 
             var grid = new OrdersGrid(orders.AsQueryable().OrderByDescending(x => x.Created));
@@ -336,29 +337,6 @@ namespace BeYourMarket.Web.Controllers
             ClearCache();
 
             return RedirectToAction("Payment", new { id = order.ID });
-        }
-
-        /// <summary>
-        /// review for an order on a listing
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public async Task<ActionResult> Review(int id)
-        {
-            var reviewModel = new ListingReview();
-
-            return View(reviewModel);
-        }
-
-        /// <summary>
-        /// Submit review
-        /// </summary>
-        /// <param name="listingReview"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public async Task<ActionResult> Review(ListingReview listingReview)
-        {
-            return View();
         }
 
         private void ClearCache()

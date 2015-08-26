@@ -15,6 +15,8 @@ namespace BeYourMarket.Model.Models
             this.MessageReadStates = new List<MessageReadState>();
             this.Orders = new List<Order>();
             this.Orders1 = new List<Order>();
+            this.ListingReviews = new List<ListingReview>();
+            this.ListingReviews1 = new List<ListingReview>();
             this.AspNetRoles = new List<AspNetRole>();
         }
 
@@ -50,6 +52,8 @@ namespace BeYourMarket.Model.Models
         public virtual ICollection<MessageReadState> MessageReadStates { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<Order> Orders1 { get; set; }
+        public virtual ICollection<ListingReview> ListingReviews { get; set; }
+        public virtual ICollection<ListingReview> ListingReviews1 { get; set; }
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }
 }
