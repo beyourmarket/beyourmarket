@@ -206,8 +206,8 @@ namespace BeYourMarket.Web.Controllers
             var orders = await _orderService
                 .Query(x => x.Status != (int)Enum_OrderStatus.Created && (x.UserProvider == userId || x.UserReceiver == userId))
                 .Include(x => x.Listing)
-                .Include(x => x.AspNetUser)
-                .Include(x => x.AspNetUser1)
+                .Include(x => x.AspNetUserProvider)
+                .Include(x => x.AspNetUserReceiver)
                 .Include(x => x.ListingReviews)
                 .SelectAsync();
 

@@ -17,8 +17,8 @@ namespace BeYourMarket.Model.Models
         public bool Enabled { get; set; }
         public bool Spam { get; set; }
         public System.DateTime Created { get; set; }
-        public virtual AspNetUser AspNetUser { get; set; }
-        public virtual AspNetUser AspNetUser1 { get; set; }
+        public virtual AspNetUser AspNetUserFrom { get; set; }
+        public virtual AspNetUser AspNetUserTo { get; set; }
         public virtual Listing Listing { get; set; }
         public virtual Order Order { get; set; }
     }

@@ -25,15 +25,15 @@
                             <div class="panel-body">
                                 <div class="col-md-3 col-xs-12">
                                     <div class="">
-                                        <a href="@Url.Action("Profile", "Listing", new { id = Model.AspNetUser1.Id })">
-                                            <img class="img-circle profile-picture" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.AspNetUser1.Id)" />
+                                        <a href="@Url.Action("Profile", "Listing", new { id = Model.AspNetUserTo.Id })">
+                                            <img class="img-circle profile-picture" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.AspNetUserTo.Id)" />
                                         </a>
-                                        <h5>@Model.AspNetUser1.FullName</h5>
+                                        <h5>@Model.AspNetUserTo.FullName</h5>
                                         <p class="text-lighten">
-                                            [[[Joined since]]] @Model.AspNetUser1.RegisterDate.ToShortDateString()
+                                            [[[Joined since]]] @Model.AspNetUserTo.RegisterDate.ToShortDateString()
                                         </p>
-                                        <span class="score @Model.AspNetUser1.RatingClass"></span>
-                                        <span>@string.Format("[[[{0:N0} reviews]]]", Model.AspNetUser1.ListingReviews1.Count)</span>
+                                        <span class="score @Model.AspNetUserTo.RatingClass"></span>
+                                        <span>@string.Format("[[[{0:N0} reviews]]]", Model.AspNetUserTo.ListingReviewsUserTo.Count)</span>
                                     </div>
                                 </div>
 

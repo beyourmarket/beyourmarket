@@ -64,7 +64,7 @@
 
 @helper DisplayUser(BeYourMarket.Model.Models.Order order, string userId)
 {
-    var user = userId == order.AspNetUser.Id ? order.AspNetUser1 : order.AspNetUser;
+    var user = userId == order.AspNetUserProvider.Id ? order.AspNetUserReceiver : order.AspNetUserProvider;
 
     <a href="@Url.Action("Profile", "Listing", new { id = user.Id})">
         <img src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(user.Id)" class="img-circle thumb-sm" alt="img">

@@ -98,8 +98,8 @@
                                                .Sanitized(false)
                                                .Titled("[[[Title]]]").RenderValueAs(x => DisplayListing(x.Listing.Title, x.ListingID));
 
-                                           columns.Add(x => x.AspNetUser.Email).Titled("[[[Provider]]]");
-                                           columns.Add(x => x.AspNetUser1.Email).Titled("[[[Receiver]]]");
+                                           columns.Add(x => x.AspNetUserProvider.Email).Titled("[[[Provider]]]");
+                                           columns.Add(x => x.AspNetUserReceiver.Email).Titled("[[[Receiver]]]");
 
                                            columns.Add(x => x.PriceFormatted).Titled("[[[Price]]]");
 

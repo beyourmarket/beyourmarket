@@ -726,8 +726,8 @@ namespace BeYourMarket.Web.Controllers
                 .Include(x => x.Listing.AspNetUser)
                 .Include(x => x.Listing.ListingType)
                 .Include(x => x.Listing.ListingReviews)
-                .Include(x => x.AspNetUser)
-                .Include(x => x.AspNetUser1)
+                .Include(x => x.AspNetUserProvider)
+                .Include(x => x.AspNetUserReceiver)
                 .SelectAsync();
 
             var order = orderQuery.FirstOrDefault();
@@ -737,7 +737,7 @@ namespace BeYourMarket.Web.Controllers
             reviewModel.ListingID = order.ListingID;
 
             // set user for review
-            reviewModel.AspNetUser1 = currentUserId == order.UserProvider ? order.AspNetUser1 : order.AspNetUser;
+            reviewModel.AspNetUserTo = currentUserId == order.UserProvider ? order.AspNetUserReceiver : order.AspNetUserProvider;
 
             return View(reviewModel);
         }
@@ -790,14 +790,15 @@ namespace BeYourMarket.Web.Controllers
             await _unitOfWorkAsync.SaveChangesAsync();
 
             // update rating on the user            
-            var listingReviewQuery = await _listingReviewService.Query(x => x.UserTo == order.Listing.UserID).SelectAsync();
+            var listingReviewQuery = await _listingReviewService.Query(x => x.UserTo == userTo).SelectAsync();
             var rating = listingReviewQuery.Average(x => x.Rating);
 
-            var user = await UserManager.FindByIdAsync(order.Listing.UserID);
+            var user = await UserManager.FindByIdAsync(userTo);
             user.Rating = rating;
             await UserManager.UpdateAsync(user);
 
-            return View();
+            TempData[TempDataKeys.UserMessage] = "[[[Thanks for your feedback!]]]";
+            return RedirectToAction("Orders", "Payment");
         }
         #endregion
     }

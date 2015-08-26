@@ -41,11 +41,11 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.Created).HasColumnName("Created");
 
             // Relationships
-            this.HasRequired(t => t.AspNetUser)
-                .WithMany(t => t.ListingReviews)
+            this.HasRequired(t => t.AspNetUserFrom)
+                .WithMany(t => t.ListingReviewsUserFrom)
                 .HasForeignKey(d => d.UserFrom);
-            this.HasRequired(t => t.AspNetUser1)
-                .WithMany(t => t.ListingReviews1)
+            this.HasRequired(t => t.AspNetUserTo)
+                .WithMany(t => t.ListingReviewsUserTo)
                 .HasForeignKey(d => d.UserTo);
             this.HasRequired(t => t.Listing)
                 .WithMany(t => t.ListingReviews)
