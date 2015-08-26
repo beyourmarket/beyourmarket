@@ -1192,8 +1192,7 @@ body > .header .logo .icon {
 }
 
 .card a {
-    color: #796763;
-    margin-right: 16px;
+    color: #796763;    
     -webkit-transition: color 0.3s ease;
     -moz-transition: color 0.3s ease;
     -o-transition: color 0.3s ease;
@@ -1255,6 +1254,7 @@ body > .header .logo .icon {
 }
 
 .card .card-content {
+    position: relative;
     padding: 16px;
     -webkit-border-radius: 0 0 2px 2px;
     -moz-border-radius: 0 0 2px 2px;
@@ -1571,4 +1571,11 @@ body > .header .logo .icon {
     .pull-left-md {
         float: left;
     }
+}
+
+.img-profile-card{
+    position: absolute;
+    top: -40px;
+    right: 10px;
+    z-index: 3;
 }

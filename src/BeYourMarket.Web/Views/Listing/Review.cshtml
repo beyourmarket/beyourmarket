@@ -67,7 +67,8 @@
                                             @Html.HiddenFor(x => x.ListingID)
                                             @Html.HiddenFor(x => x.OrderID)
 
-                                            <input id="Rating" name="Rating" class="rating" data-show-clear="false" data-show-caption="false" data-size="sm">
+                                            <span class="text-md">[[[Please Rate]]]</span>
+                                            <input id="Rating" name="Rating" class="rating" data-show-clear="false" data-show-caption="false" data-size="sm" />
                                             <textarea class="form-control m-b-10" id="Description" name="Description" required rows="4" placeholder="[[[Write your review...]]]"></textarea>
                                             <button class="btn btn-primary" type="submit"><i class="fa fa-send"></i> [[[Send Review]]]</button>
                                             <a class="btn btn-default" href="@Url.Action("Orders","Payment")"><i class="fa fa-remove"></i> [[[Cancel]]]</a>

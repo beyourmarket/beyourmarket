@@ -270,7 +270,6 @@ namespace BeYourMarket.Web.Controllers
                 .Include(x => x.ListingMetas.Select(y => y.MetaField))
                 .Include(x => x.ListingStats)
                 .Include(x => x.ListingType)
-                .Include(x => x.ListingReviews)
                 .SelectAsync();
 
             var item = itemQuery.FirstOrDefault();
@@ -305,7 +304,10 @@ namespace BeYourMarket.Web.Controllers
                     Ordering = x.Ordering
                 }).OrderBy(x => x.Ordering).ToList();
 
-            var reviews = await _listingReviewService.Query(x => x.UserTo == item.UserID).SelectAsync();
+            var reviews = await _listingReviewService
+                .Query(x => x.UserTo == item.UserID)
+                .Include(x => x.AspNetUserFrom)
+                .SelectAsync();
 
             var user = await UserManager.FindByIdAsync(item.UserID);
 
@@ -635,6 +637,8 @@ namespace BeYourMarket.Web.Controllers
             var items = await _listingService.Query(x => x.UserID == id)
                 .Include(x => x.ListingPictures)
                 .Include(x => x.ListingType)
+                .Include(x => x.AspNetUser)
+                .Include(x => x.ListingReviews)
                 .SelectAsync();
 
             var itemsModel = new List<ListingItemModel>();
@@ -650,7 +654,7 @@ namespace BeYourMarket.Web.Controllers
             // include reviews
             var reviews = await _listingReviewService
                 .Query(x => x.UserTo == id)
-                .Include(x=>x.AspNetUserFrom)
+                .Include(x => x.AspNetUserFrom)
                 .SelectAsync();
 
             var model = new ProfileModel()
@@ -777,8 +781,7 @@ namespace BeYourMarket.Web.Controllers
             var review = new ListingReview()
             {
                 UserFrom = currentUserId,
-                UserTo = userTo,
-                ListingID = order.ListingID,
+                UserTo = userTo,                
                 OrderID = listingReview.OrderID,
                 Description = listingReview.Description,
                 Rating = listingReview.Rating,
@@ -788,6 +791,10 @@ namespace BeYourMarket.Web.Controllers
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added,
                 Created = DateTime.Now
             };
+
+            // Set listing id if it's service receiver
+            if (order.UserReceiver == currentUserId)
+                review.ListingID = order.ListingID;
 
             _listingReviewService.Insert(review);
 

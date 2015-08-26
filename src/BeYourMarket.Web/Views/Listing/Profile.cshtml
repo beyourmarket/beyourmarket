@@ -32,38 +32,15 @@
     </div>
 
     <div class="container-fluid mrg-tb">
-        <div class="row">
-            <div class="col-md-12 section-title ">
-                <h4>[[[Reviews]]] (@Model.ListingReviews.Count)</h4>
-            </div>
-        </div>
 
-
-        @foreach (var review in Model.ListingReviews)
-        {
-            var ratingClass = "s" + review.Rating * 2;
-            <div class="row text-center-sm">
-                <div class="col-md-2 col-xs-12">
-                    <img class="img-circle thumb-sm m-r-5" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(review.AspNetUserFrom.Id)" />
-                    <p><a class="text-xs" href="@Url.Action("Profile", "Listing", new { id = review.AspNetUserFrom.Id })">@review.AspNetUserFrom.FullName</a></p>
-                </div>
-                <div class="col-md-10 col-xs-12">
-                    <span class="score @ratingClass"></span>
-                    <p class="text-sm">@review.Description</p>
-                    <small class="text-lighten">@review.Created.ToShortDateString()</small>
-                </div>
-                
-            </div>
-
-            <hr />
-        }
+        @Html.Partial("~/Views/Listing/_ListingReview.cshtml", Model.ListingReviews)
 
     </div>
 
     <div class="container-fluid mrg-tb">
         <div class="row">
             <div class="col-md-12 section-title ">
-                <h4>[[[Listings]]] (@Model.Listings.Count)</h4>
+                <h4><i class="fa fa-th-list"></i> [[[Listings]]] (@Model.Listings.Count)</h4>
             </div>
         </div>
 

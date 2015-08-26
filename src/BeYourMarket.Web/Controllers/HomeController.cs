@@ -106,6 +106,8 @@ namespace BeYourMarket.Web.Controllers
                     .Include(x => x.ListingPictures)
                     .Include(x => x.Category)
                     .Include(x => x.ListingType)
+                    .Include(x => x.AspNetUser)
+                    .Include(x => x.ListingReviews)
                     .SelectAsync();
 
                 // Set listing types
@@ -132,13 +134,23 @@ namespace BeYourMarket.Web.Controllers
                 if (items != null)
                     items = items.Where(x => x.Title.ToLower().Contains(model.SearchText));
                 else
-                    items = await _listingService.Query(x => x.Title.ToLower().Contains(model.SearchText)).Include(x => x.ListingPictures).Include(x => x.Category).SelectAsync();
+                    items = await _listingService.Query(x => x.Title.ToLower().Contains(model.SearchText))
+                        .Include(x => x.ListingPictures)
+                        .Include(x => x.Category)
+                        .Include(x => x.AspNetUser)
+                        .Include(x => x.ListingReviews)
+                        .SelectAsync();
             }
 
             // Latest
             if (items == null)
             {
-                items = await _listingService.Query().OrderBy(x => x.OrderByDescending(y => y.Created)).Include(x => x.ListingPictures).Include(x => x.Category).SelectAsync();
+                items = await _listingService.Query().OrderBy(x => x.OrderByDescending(y => y.Created))
+                    .Include(x => x.ListingPictures)
+                    .Include(x => x.Category)
+                    .Include(x => x.AspNetUser)
+                    .Include(x => x.ListingReviews)
+                    .SelectAsync();
             }
 
             // Filter items by Listing Type

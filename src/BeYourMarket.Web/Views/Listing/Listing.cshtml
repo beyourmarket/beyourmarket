@@ -5,7 +5,7 @@
 @model BeYourMarket.Web.Models.ListingItemModel
 
 @{
-    ViewBag.Title = Model.ListingCurrent.Title;    
+    ViewBag.Title = Model.ListingCurrent.Title;
 }
 
 @section Styles {
@@ -99,7 +99,6 @@
         <ul class="nav nav-tabs" role="tablist" id="myTab">
             <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">[[[Description]]]</a></li>
             <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">[[[Contact]]]</a></li>
-            <li class="pull-right" role="presentation"><a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=#@Request.Url.AbsoluteUri.ToLowerInvariant()"><i class="mdi-social-share"></i> [[[Share]]]</a></li>
         </ul>
     </div>
 
@@ -300,8 +299,23 @@
                             <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(0)" />
                         }
                     </div>
+
+                    <!-- AddToAny BEGIN -->
+                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                        <span class="pull-left m-r-5"><i class="fa fa-share-alt"></i> [[[Share]]]</span>                       
+                        <a href="https://www.addtoany.com/share_save"></a>
+                        <a class="a2a_button_facebook"></a>
+                        <a class="a2a_button_twitter"></a>
+                        <a class="a2a_button_google_plus"></a>
+                        <a class="a2a_button_linkedin"></a>
+                    </div>
+
+                    <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>    
                 </div>
             </div>
+
+            <hr />
+            @Html.Partial("~/Views/Listing/_ListingReview.cshtml", Model.ListingReviews)
         </div>
     </div>
 
