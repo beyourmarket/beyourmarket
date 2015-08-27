@@ -4,6 +4,83 @@
         <name>i18n.Domain</name>
     </assembly>
     <members>
+        <member name="T:i18n.ILanguageTag">
+            <summary>
+            Describes a language tag value, as defined in RFC 5646 (BCP 47).
+            </summary>
+            <seealso href="http://tools.ietf.org/html/rfc5646#section-2.1"/>
+        </member>
+        <member name="M:i18n.ILanguageTag.ToString">
+            <summary>
+            Returns the full language tag.
+            </summary>
+            <returns>A string describing the full language tag or "" if null or error instance.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetLanguage">
+            <summary>
+            Returns the mandatory 2 character language subtag.
+            </summary>
+            <returns>A string describing a language subtag, or null if no such subtag present (indicating a null or error instance).</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetExtlang">
+            <summary>
+            Returns the optional 3 character extlang subtag.
+            </summary>
+            <returns>A string describing a extlang subtag, or null if no such subtag present.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetScript">
+            <summary>
+            Returns the optional 4 character script subtag.
+            </summary>
+            <returns>A string describing a script subtag, or null if no such subtag present.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetRegion">
+            <summary>
+            Returns the optional 2 or 3 character region subtag.
+            </summary>
+            <returns>A string describing a region subtag, or null if no such subtag present.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetVariant">
+            <summary>
+            Returns zero or more optional variant subtags.
+            </summary>
+            <returns>An array of strings describing the variant subtags, or null if no such subtag present.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetExtension">
+            <summary>
+            Returns the optional extension subtag.
+            </summary>
+            <returns>A string describing an extension subtag, or null if no such subtag present.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetPrivateuse">
+            <summary>
+            Returns the optional privateuse subtag.
+            </summary>
+            <returns>A string describing a privateuse subtag, or null if no such subtag present.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetParent">
+            <summary>
+            Returns an object representing any logical parent of the tag.
+            </summary>
+            <returns>Parent object or null if no parent.</returns>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetMaxParents">
+            <summary>
+            Returns the maximum number of parents possible.
+            This is really a static value provided by the underlying impl.
+            </summary>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetCultureInfo">
+            <summary>
+            Corresponding CultureInfo instance, or null if the langtag is unsupported on this system.
+            </summary>
+        </member>
+        <member name="M:i18n.ILanguageTag.GetNativeNameTitleCase">
+            <summary>
+            If the system supports a cultureinfo object for the language, this is the native name of 
+            the language suitable for user display, otherwise it is the language tag string.
+            </summary>
+        </member>
         <member name="T:i18n.Domain.Abstract.INuggetFinder">
             <summary>
             For finding nuggets that needs translating. Likely implementations is FileFinder and DatabaseFinder but anything is possible.
@@ -163,6 +240,295 @@
             </summary>
             <returns>All found nuggets.</returns>
         </member>
+        <member name="T:i18n.LanguageTag">
+            <summary>
+            Helper class for parsing and manipulating language tags.
+            </summary>
+            <remarks>
+            Supports a subset of BCP 47 language tag spec corresponding to the Windows
+            support for language names, namely the following subtags:
+                language    (mandatory, 2 or 3 alphachars)
+                script      (optional, 4 alphachars, or 5 alphachars in the special case of Microsoft Pseudo-Locales)
+                region      (optional, 2 alphachars | 3 decdigits)
+                private use (optional, -x- followed by 4 or more alphanumeric chars)
+            Example tags supported:
+                "en"                [language]
+                "en-US"             [language + region]
+                "zh"                [language]
+                "zh-HK"             [language + region]
+                "zh-123"            [language + region]
+                "zh-Hant"           [language + script]
+                "zh-Hant-HK"        [language + script + region]
+                "zh-Hant-HK-x-AAAA" [language + script + region + private use]
+                "qps-ploc"          [language + script] [Microsoft pseudo-locale]
+                "qps-plocm"         [language + script] [Microsoft pseudo-locale]
+                "qps-ploca"         [language + script] [Microsoft pseudo-locale]
+            </remarks>
+            <seealso href="http://www.microsoft.com/resources/msdn/goglobal/default.mspx"/>
+        </member>
+        <member name="F:i18n.LanguageTag.m_langtag">
+            <summary>
+            Original full language tag string passed to constructor.
+            </summary>
+        </member>
+        <member name="F:i18n.LanguageTag.m_langtagLC">
+            <summary>
+            Original full language tag string passed to constructor, converted to all lowercase.
+            </summary>
+        </member>
+        <member name="F:i18n.LanguageTag.m_parent">
+            <summary>
+            Reference to any parent language tag, or null if no parent determined.
+            The parent is the the language tag with one less subtag.
+            E.g. if all three supported subtags are set (language, script and region), the parent 
+            will be the language tag composed of the language and script subtags.
+            </summary>
+        </member>
+        <member name="M:i18n.LanguageTag.#ctor(System.String)">
+            <summary>
+            Constructs a new instance based on a language tag string.
+            If successful, then the Language property is set to a valid language subtag.
+            </summary>
+            <param name="langtag">
+            Supports a subset of BCP 47 language tag spec corresponding to the Windows
+            support for language names, namely the following subtags:
+                language (mandatory, 2 alphachars)
+                script   (optional, 4 alphachars)
+                region   (optional, 2 alphachars | 3 decdigits)
+                privateuse (optional, 4+ alphanumericchars)
+            Example tags supported:
+                "en"               [language]
+                "en-US"            [language + region]
+                "zh"               [language]
+                "zh-HK"            [language + region]
+                "zh-123"           [language + region]
+                "zh-Hant"          [language + script]
+                "zh-Hant-HK"       [language + script + region]
+                "en-GB-x-ACMECorp" [language + region + privateuse]
+            </param>
+            <seealso href="http://www.microsoft.com/resources/msdn/goglobal/default.mspx"/>
+        </member>
+        <member name="M:i18n.LanguageTag.GetCachedInstance(System.String)">
+            <summary>
+            Instance factory that supports re-use of instances which by definition are read-only.
+            </summary>
+            <param name="langtag">
+            Supports a subset of BCP 47 language tag spec corresponding to the Windows
+            support for language names, namely the following subtags:
+                language (mandatory, 2 alphachars)
+                script   (optional, 4 alphachars)
+                region   (optional, 2 alphachars | 3 decdigits)
+            Example tags supported:
+                "en"            [language]
+                "en-US"         [language + region]
+                "zh"            [language]
+                "zh-HK"         [language + region]
+                "zh-123"        [language + region]
+                "zh-Hant"       [language + script]
+                "zh-Hant-HK"    [language + script + region]
+                "en-GB+ACMECorp" [language + region + privateuse]
+            </param>
+            <returns>Either new or pre-exisiting instance, or null if langtag is invalid.</returns>
+            <seealso href="http://www.microsoft.com/resources/msdn/goglobal/default.mspx"/>
+        </member>
+        <member name="M:i18n.LanguageTag.ToString">
+            <returns>
+            Language tag string.
+            Supports a subset of BCP 47 language tag spec corresponding to the Windows
+            support for language names, namely the following subtags:
+                language (mandatory, 2 alphachars)
+                script   (optional, 4 alphachars)
+                region   (optional, 2 alphachars | 3 decdigits)
+            Example tags supported:
+                "en"            [language]
+                "en-US"         [language + region]
+                "zh"            [language]
+                "zh-HK"         [language + region]
+                "zh-123"        [language + region]
+                "zh-Hant"       [language + script]
+                "zh-Hant-HK"    [language + script + region]
+                "en-GB-x-ABCD" [language + region + privateuse]
+            </returns>
+        </member>
+        <member name="M:i18n.LanguageTag.Match(i18n.LanguageTag,i18n.LanguageTag.MatchGrade)">
+            <summary>
+            Performs 'language matching' between lang described by this (A)
+            and language decibed by i_rhs (B). Essentially, returns an assessment of
+            how well a speaker of A will understand B.
+            The key points are as follows:
+              · The Script is almost as relevant as the language itself; that is, if
+                you speak a language but do not understand the script, you cannot
+                read that language. Thus a mismatch in Script should score low.
+              · The Region is less relevant than Script to understanding of language.
+                The one exception to this is where the Region has traditionally been
+                used to also indicate the Script. E.g.
+                    zh-CH -> Chinese (Simplified)  i.e. zh-Hans
+                    zh-TW -> Chinese (Traditional) i.e. zh-Hant
+                In these cases we normalize all legacy langtags to their new values
+                before matching. E.g. zh-CH is normalized to zh-Hans.
+            «LX113»
+            </summary>
+            <param name="i_rhs"></param>
+            <returns>
+            Returns a score on to what extent the two languages match. The value ranges from
+            100 (exact match) down to 0 (fundamental language tag mismatch), with values 
+            in between which may be used to compare quality of a match, larger the value
+            meaning better quality.
+            </returns>
+            <remarks>
+            Matching values:
+                                                         RHS
+            this                    lang    lang+script     lang+region     lang+script+region
+            ----------------------------------------------------------------------------------
+            lang                |   A       D               C               D
+            lang+script         |   D       A               D               B
+            lang+region         |   C       D               A               D
+            lang+script+region  |   D       B               D               A
+            
+            NB: For the purposes of the logic above, lang incorporates Language + PrivateUse subtags.
+            
+            A. Exact match (100)
+                All three subtags match.
+            B. Unbalanced Region Mismatch (99) [zh, zh-HK] [zh-Hans, zh-Hans-HK]
+                Language and Script match;
+                one side has Region set while the other doesn't.
+                Here there is the possibility that due to defaults Region matches.
+            C. Balanced Region Mismatch (98) [zh-IK, zh-HK] [zh-Hans-IK, zh-Hans-HK]
+                Language and Script match;
+                both sides have Region set but to different values.
+                Here there is NO possibility that Region matches.
+            D. Unbalanced Script Mismatch (97) [zh-HK, zh-Hant-HK]
+                Language matches, Region may match;
+                one side has Script set while the other doesn't.
+                Here there is the possibility that due to defaults Script matches.
+            E. Balanced Script Mismatch (96)
+                Language matches, Region may match;
+                both sides have Script set but to different values.
+                Here there is NO possibility that Script matches.
+            F. Language Mismatch (0)
+                Language doesn't match.
+            </remarks>
+            <seealso href="http://msdn.microsoft.com/en-us/library/windows/apps/jj673578.aspx"/>
+        </member>
+        <member name="M:i18n.LanguageTag.Match(i18n.LanguageTag[],i18n.LanguageTag.MatchGrade)">
+            <summary>
+            Looks up in the passed collection of supported AppLanguages the language that is best matched
+            to this langtag. I.e. the written AppLanguage that a user understanding this langtag
+            will most-likely understand.
+            </summary>
+            <returns>Selected CultureInfoEx instance from the AppLanguages collection or null if there was no match.</returns>
+        </member>
+        <member name="M:i18n.LanguageTag.ExtractLangTagFromUrl(System.String,System.UriKind,System.String@)">
+            <summary>
+            Helper for detecting a URL prefixed with a langtag part, and if found outputs
+            both the langtag and the URL with the prefix removed.
+            </summary>
+            <remarks>
+            This method does not check for the validity of the returned langtag other than
+            it matching the pattern of a langtag as supported by this LanguageTag class.
+            </remarks>
+            <param name="url">Either an absolute or relative URL string, as specified by the uriKind parameter.</param>
+            <param name="uriKind">
+            Indicates the type of URI in the url parameter. If the URL is known to be relative, this method is more efficient if this 
+            parameter is set to UriKind.Relative.
+            </param>
+            <param name="urlPatched">
+            On success, set to the URL with the prefix path part removed.
+            On failure, set to value of url param.
+            </param>
+            <returns>On success a langtag string, otherwise null.</returns>
+            <remarks>
+            <para>
+            For URL /zh-Hans/account/signup we return "zh-Hans" and output /account/signup.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:i18n.LanguageTag.SetLangTagInUrlPath(System.String,System.UriKind,System.String)">
+            <summary>
+            Patches in the langtag into the passed url, replacing any extant langtag in the url if necessary.
+            </summary>
+            <param name="url">Either an absolute or relative URL string, as specified by the uriKind parameter.</param>
+            <param name="uriKind">
+            Indicates the type of URI in the url parameter. If the URL is known to be relative, this method is more efficient if this 
+            parameter is set to UriKind.Relative.
+            </param>
+            <param name="langtag">
+            Optional langtag to be patched into the URL, or null if any langtag 
+            to be removed from the URL.
+            </param>
+            <returns>UriBuilder containing the modified version of url.</returns>
+            <remarks>
+            <para>"http://example.com/account/signup"         , "en" -> "http://example.com/en/account/signup"</para>
+            <para>"http://example.com/zh-Hans/account/signup" , "en" -> "http://example.com/en/account/signup"</para>
+            </remarks>
+        </member>
+        <member name="P:i18n.LanguageTag.Language">
+            <summary>
+            Mandatory Language subtag, or if CON fails then null.
+            </summary>
+        </member>
+        <member name="P:i18n.LanguageTag.Script">
+            <summary>
+            Optional Script subtag.
+            </summary>
+        </member>
+        <member name="P:i18n.LanguageTag.Region">
+            <summary>
+            Optional Region subtag.
+            </summary>
+        </member>
+        <member name="P:i18n.LanguageTag.PrivateUse">
+            <summary>
+            Optional PrivateUse subtag, excluding the "x-" part. 
+            E.g. for a langtag of "en-GB-x-ACMECorp" this property is "ACMECorp".
+            </summary>
+        </member>
+        <member name="P:i18n.LanguageTag.GlobalKey">
+            <summary>
+            Unique string per language which is suitable for using as a key in global
+            caches such as HttpRuntime.Cache. Inited during construction.
+            </summary>
+        </member>
+        <member name="P:i18n.LanguageTag.CultureInfo">
+            <summary>
+            Corresponding CultureInfo instance, or null if the langtag is unsupported on this system.
+            </summary>
+        </member>
+        <member name="P:i18n.LanguageTag.NativeNameTitleCase">
+            <summary>
+            If the system supports a cultureinfo object for the language, this is the native name of 
+            the language suitable for user display, otherwise it is the language tag string.
+            </summary>
+        </member>
+        <member name="F:i18n.LanguageTag.MatchGrade.ExactMatch">
+            <summary>
+            Only consider a match where language and script and region and private use parts match.
+            E.g. fr matches fr
+            E.g. zh-Hans-HK matches zh-Hans-HK
+            E.g. fr-FR-x-AAAA matches fr-FR-x-AAAA
+            </summary>
+        </member>
+        <member name="F:i18n.LanguageTag.MatchGrade.DefaultRegion">
+            <summary>
+            Only consider a match where language and script parts match, one region is set and the other region 
+            is not set.
+            E.g. fr matches fr-BE
+            E.g. zh-Hans-HK matches zh-Hans
+            </summary>
+        </member>
+        <member name="F:i18n.LanguageTag.MatchGrade.ScriptMatch">
+            <summary>
+            Only consider a match where language and script parts match. Region part need not match.
+            E.g. fr-CA matches fr-BE
+            E.g. zh-Hant-HK matches zh-Hant-TW
+            </summary>
+        </member>
+        <member name="F:i18n.LanguageTag.MatchGrade.LanguageMatch">
+            <summary>
+            Only consider a match where language matches. Script and region parts need not match.
+            E.g. zh-Hans-HK matches zh
+            </summary>
+        </member>
         <member name="T:i18n.Domain.Entities.Language">
             <summary>
             Keeps all information about a language that can be handy when listing languages.
@@ -255,6 +621,28 @@
             <summary>
             Holds a complete translation in any one language. The template (TemplateItems) will have told the language which id's/strings that needs translation.
             </summary>
+        </member>
+        <member name="M:i18n.Extensions.IsSet(System.String)">
+            <summary>
+            String extension method to simplify testing for non-null/non-empty values.
+            </summary>
+        </member>
+        <member name="M:i18n.Extensions.UrlPrependPath(System.String,System.String)">
+            <summary>
+            Prepends a folder to the path part of the passed URL string.
+            </summary>
+            <param name="url">Either an absolute or relative URL string.</param>
+            <param name="folder">Folder part to be prepended. E.g. "account".</param>
+            <returns>Amended URL string.</returns>
+            <remarks>
+            Examples:
+            <para>
+            http://example.com , en -> http://example.com/en
+            http://example.com/ , en -> http://example.com/en
+            http://example.com/accounts , en -> http://example.com/en/accounts
+            / , en -> /en
+            </para>
+            </remarks>
         </member>
         <member name="M:i18n.Helpers.MiscHelpers.IsTextWithBom_Utf8(System.Byte[])">
             <summary>
