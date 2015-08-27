@@ -17,6 +17,54 @@
 
     <div class="main-section">
 
+        <div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="contactModalLabel"><i class="fa fa-envelope"></i> [[[Contact]]] @Model.User.FullName</h4>
+                    </div>
+                    <div class="modal-body">                        
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="panel-body">
+                                @if (Model.ListingCurrent.ShowPhone && !string.IsNullOrEmpty(Model.ListingCurrent.ContactPhone))
+                                {
+                                    <div class="list-group">
+                                        <a data-text-swap="[[[Contact number (Click to show)]]]" data-text-original="@Model.ListingCurrent.ContactPhone" class="text-swap list-group-item"><i class="mdi-hardware-phone-iphone"></i> [[[Contact number (Double click to show)]]]</a>
+                                        <a href="@Url.Action("Profile", "Listing", new { id = Model.ListingCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>[[[View User's other listings]]]</a>
+                                    </div>
+                                }
+                                
+                                <form role="form" method="post" action="@Url.Action("ContactUser", "Listing")">
+                                    <input type="hidden" id="ListingID" name="ListingID" value="@Model.ListingCurrent.ID" />
+
+                                    <div class="form-group">
+                                        <textarea rows="4" class="form-control" id="Message" name="Message" placeholder="[[[Message]]]" required minlength="20"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary pushme"><i class="fa fa-send"></i> [[[Send]]]</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> [[[Close]]]</button>
+                                </form>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="panel-body row">
+                                <div class="alert alert-info" role="alert">
+                                    [[[Sign in to contact the owner]]]
+                                </div>
+                                <div class="col-md-12">
+                                    <a class="btn btn-primary" href="@Url.Action("Login", "Account", new { returnUrl = ViewContext.HttpContext.Request.Url.PathAndQuery  })"><i class="fa fa-sign-in"></i> [[[Sign in]]]</a>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> [[[Close]]]</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="container-fluid">
                 <div class="row">
@@ -31,15 +79,15 @@
                                     <!-- Show edit button if administrator or the user who create the listing -->
                                     @if (Model.ListingCurrent.UserID == User.Identity.GetUserId() || User.IsInRole("Administrator"))
                                     {
-                                    <a class="btn btn-primary" href="@Url.Action("ListingUpdate", "Listing", new { id = Model.ListingCurrent.ID, area = "" })"><i class="fa fa-edit"></i> [[[Edit]]]</a>
+                                        <a class="btn btn-primary" href="@Url.Action("ListingUpdate", "Listing", new { id = Model.ListingCurrent.ID, area = "" })"><i class="fa fa-edit"></i> [[[Edit]]]</a>
                                     }
                                 </h3>
 
                                 @if (Model.ListingCurrent.Price.HasValue)
                                 {
-                                <h4>
-                                    @Html.DisplayFor(x => x.ListingCurrent.PriceFormatted) @Model.ListingCurrent.ListingType.PriceUnitLabel
-                                </h4>
+                                    <h4>
+                                        @Html.DisplayFor(x => x.ListingCurrent.PriceFormatted) @Model.ListingCurrent.ListingType.PriceUnitLabel
+                                    </h4>
                                 }
                                 <p class="lead text-lighten">
                                     @Model.ListingCurrent.Location
@@ -53,10 +101,16 @@
                                 <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab"><i class="fa fa-info"></i>[[[Description]]]</a></li>
                                 @if (Model.ListingCurrent.Latitude.HasValue && Model.ListingCurrent.Longitude.HasValue)
                                 {
-                                <li role="presentation"><a href="#map-canvas"><i class="fa fa-map-marker"></i>[[[Maps]]]</a></li>
+                                    <li role="presentation"><a href="#map-canvas"><i class="fa fa-map-marker"></i>[[[Maps]]]</a></li>
                                 }
-                                <li role="presentation"><a href="#reviewList"><i class="fa fa-star"></i>[[[Reviews]]]</a></li>
-                                <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"><i class="fa fa-envelope"></i>[[[Contact]]]</a></li>
+
+                                <li role="presentation">
+                                    <a href="#reviewList"><i class="fa fa-star"></i>[[[Reviews]]]</a>
+                                </li>
+
+                                <li role="presentation">
+                                    <a id="contactModal" data-toggle="modal" data-target="#contactModal"><i class="fa fa-envelope"></i>[[[Contact]]]</a>
+                                </li>
                             </ul>
                         </div>
 
@@ -76,51 +130,51 @@
                                     <div class="panel-body">
                                         @if (Model.Pictures.Count > 0)
                                         {
-                                            <div id="carousel-gallery" class="carousel slide" data-ride="carousel">
-                                                <ol class="carousel-indicators">
-                                                    @for (int i = 0; i < Model.Pictures.Count; i++)
+                                        <div id="carousel-gallery" class="carousel slide" data-ride="carousel">
+                                            <ol class="carousel-indicators">
+                                                @for (int i = 0; i < Model.Pictures.Count; i++)
                                                     {
-                                                        <li data-target="#carousel-gallery" data-slide-to="@i"></li>
+                                                    <li data-target="#carousel-gallery" data-slide-to="@i"></li>
                                                     }
-                                                </ol>
+                                            </ol>
 
-                                                <div class="carousel-inner" role="listbox">
-                                                    @for (int i = 0; i < Model.Pictures.Count; i++)
+                                            <div class="carousel-inner" role="listbox">
+                                                @for (int i = 0; i < Model.Pictures.Count; i++)
                                                     {
-                                                        <div class="item @(i == 0 ? "active" : "")">
-                                                            <img style=" margin-left: auto; margin-right: auto;" alt="" src="@Model.Pictures[i].Url" data-holder-rendered="true">
-                                                        </div>
+                                                    <div class="item @(i == 0 ? "active" : "")">
+                                                        <img style=" margin-left: auto; margin-right: auto;" alt="" src="@Model.Pictures[i].Url" data-holder-rendered="true">
+                                                    </div>
                                                     }
-                                                </div>
-
-                                                <a class="left carousel-control" href="#carousel-gallery" role="button" data-slide="prev">
-                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                                    <span class="sr-only">[[[Previous]]]</span>
-                                                </a>
-                                                <a class="right carousel-control" href="#carousel-gallery" role="button" data-slide="next">
-                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                                    <span class="sr-only">[[[Next]]]</span>
-                                                </a>
-
                                             </div>
 
-                                            <div class="panel-body">
-                                                <div class="row">
-                                                    @foreach (var thumbnail in Model.Pictures)
-                                                    {
-                                                        <div class="col-xs-6 col-md-2">
-                                                            <a href="@thumbnail.Url" class="boxer" title="" data-gallery="gallery" data-lightbox-gallery="photo_gallery">
-                                                                <img alt="Thumbnail" src="@thumbnail.Url" style=" width: 100%; display: block;">
-                                                            </a>
-                                                        </div>
-                                                    }
-                                                </div>
+                                            <a class="left carousel-control" href="#carousel-gallery" role="button" data-slide="prev">
+                                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                                <span class="sr-only">[[[Previous]]]</span>
+                                            </a>
+                                            <a class="right carousel-control" href="#carousel-gallery" role="button" data-slide="next">
+                                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                                <span class="sr-only">[[[Next]]]</span>
+                                            </a>
 
+                                        </div>
+
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                @foreach (var thumbnail in Model.Pictures)
+                                                    {
+                                                    <div class="col-xs-6 col-md-2">
+                                                        <a href="@thumbnail.Url" class="boxer" title="" data-gallery="gallery" data-lightbox-gallery="photo_gallery">
+                                                            <img alt="Thumbnail" src="@thumbnail.Url" style=" width: 100%; display: block;">
+                                                        </a>
+                                                    </div>
+                                                    }
                                             </div>
+
+                                        </div>
                                         }
                                         else
                                         {
-                                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(0)" />
+                                        <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(0)" />
                                         }
                                     </div>
                                     <!---Pictures-->
@@ -186,14 +240,14 @@
 
                                             @foreach (var item in Model.ListingCurrent.ListingMetas)
                                             {
-                                                <tr>
-                                                    <td>
-                                                        @item.MetaField.Name
-                                                    </td>
-                                                    <td>
-                                                        @item.Value
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    @item.MetaField.Name
+                                                </td>
+                                                <td>
+                                                    @item.Value
+                                                </td>
+                                            </tr>
                                             }
                                         </tbody>
                                     </table>
@@ -201,12 +255,12 @@
 
                                     @if (Model.ListingCurrent.Latitude.HasValue && Model.ListingCurrent.Longitude.HasValue)
                                     {
-                                        <div class="panel-heading bdr-t">
-                                            <i class="fa fa-map-marker"></i> [[[Map]]]
-                                        </div>
-                                        <div class="panel-body">
-                                            <div id="map-canvas"></div>
-                                        </div>
+                                    <div class="panel-heading bdr-t">
+                                        <i class="fa fa-map-marker"></i> [[[Map]]]
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="map-canvas"></div>
+                                    </div>
                                     }
                                 </div>
                             </div>
@@ -215,42 +269,17 @@
                                 <div class="panel panel-default bdr-t-none">
                                     @if (Model.ListingCurrent.ShowPhone && !string.IsNullOrEmpty(Model.ListingCurrent.ContactPhone))
                                     {
-                                        <div class="list-group">
-                                            <a data-text-swap="[[[Contact number (Click to show)]]]" data-text-original="@Model.ListingCurrent.ContactPhone" class="text-swap list-group-item "><i class="mdi-hardware-phone-iphone"></i> [[[Contact number (Click to show)]]]</a>
-                                            <a href="@Url.Action("Profile", "Listing", new { id = Model.ListingCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>[[[View User's other listings]]]</a>
-                                        </div>
+                                    <div class="list-group">
+                                        <a data-text-swap="[[[Contact number (Click to show)]]]" data-text-original="@Model.ListingCurrent.ContactPhone" class="text-swap list-group-item "><i class="mdi-hardware-phone-iphone"></i> [[[Contact number (Click to show)]]]</a>
+                                        <a href="@Url.Action("Profile", "Listing", new { id = Model.ListingCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>[[[View User's other listings]]]</a>
+                                    </div>
                                     }
 
                                     <div class="panel-heading">
                                         <span>[[[Contact]]] @Model.User.FullName</span>
                                     </div>
 
-                                    @if (User.Identity.IsAuthenticated)
-                                    {
-
-                                        <div class="panel-body">
-                                            <form role="form" method="post" action="@Url.Action("ContactUser", "Listing")">
-                                                <input type="hidden" id="ListingID" name="ListingID" value="@Model.ListingCurrent.ID" />
-
-                                                <div class="form-group">
-                                                    <textarea rows="4" class="form-control" id="Message" name="Message" placeholder="[[[Message]]]" required minlength="20"></textarea>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary pushme">[[[Send]]]</button>
-                                            </form>
-                                        </div>
-                                    }
-                                    else
-                                    {
-
-                                        <div class="panel-body">
-                                            <div class="alert alert-info" role="alert">
-                                                [[[Sign in to contact the owner]]]
-                                            </div>
-                                            <div class="col-md-12">
-                                                <a class="btn btn-primary" href="@Url.Action("Login", "Account", new { returnUrl = ViewContext.HttpContext.Request.Url.PathAndQuery  })">[[[Sign in]]]</a>
-                                            </div>
-                                        </div>
-                                    }
+                                    <a id="contactModal" data-toggle="modal" data-target="#contactModal"><i class="fa fa-envelope"></i>[[[Contact]]]</a>
                                 </div>
                             </div>
                         </div>
@@ -258,46 +287,46 @@
                         @Html.Partial("~/Views/Listing/_ListingReview.cshtml", Model.ListingReviews)
                     </div>
 
-                    <div >
+                    <div>
                         <div class="col-md-4 col-xs-12">
                             <div id="sidebar" data-spy="affix" data-offset-top="120" class="affix text-center">
                                 @if (Model.ListingCurrent.OrderAllowed)
                                 {
-                                    <div class="panel panel-default panel-body mrg-t">
-                                        @if (Model.ListingCurrent.Price.HasValue)
+                                <div class="panel panel-default panel-body mrg-t">
+                                    @if (Model.ListingCurrent.Price.HasValue)
                                         {
-                                            <h4>
-                                                @Html.DisplayFor(x => x.ListingCurrent.PriceFormatted) @Model.ListingCurrent.ListingType.PriceUnitLabel
-                                            </h4>
+                                        <h4>
+                                            @Html.DisplayFor(x => x.ListingCurrent.PriceFormatted) @Model.ListingCurrent.ListingType.PriceUnitLabel
+                                        </h4>
                                         }
 
-                                        <form action="@Url.Action("Order", "Payment")" method="get" role="form">
-                                            <input id="ListingID" name="ListingID" type="hidden" value="@Model.ListingCurrent.ID" />
-                                            <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingCurrent.ListingTypeID" />
-                                            @if (!string.IsNullOrEmpty(Model.ListingCurrent.ListingType.OrderTypeLabel))
+                                    <form action="@Url.Action("Order", "Payment")" method="get" role="form">
+                                        <input id="ListingID" name="ListingID" type="hidden" value="@Model.ListingCurrent.ID" />
+                                        <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingCurrent.ListingTypeID" />
+                                        @if (!string.IsNullOrEmpty(Model.ListingCurrent.ListingType.OrderTypeLabel))
                                             {
-                                                <h5>@Model.ListingCurrent.ListingType.OrderTypeLabel</h5>
+                                            <h5>@Model.ListingCurrent.ListingType.OrderTypeLabel</h5>
                                             }
 
-                                            @if (Model.ListingCurrent.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
+                                        @if (Model.ListingCurrent.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
                                             {
-                                                <div class="input-daterange input-group datepicker form-group" id="datepicker">
-                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                                    <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" data-rule-required="true" data-rule-date="true" />
+                                            <div class="input-daterange input-group datepicker form-group" id="datepicker">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" data-rule-required="true" data-rule-date="true" />
 
-                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                                    <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" data-rule-required="true" data-rule-date="true" />
-                                                </div>
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" data-rule-required="true" data-rule-date="true" />
+                                            </div>
                                             }
                                             else if (Model.ListingCurrent.ListingType.OrderTypeID == (int)Enum_ListingOrderType.Quantity)
                                             {
-                                                <input type="text" class="form-control" id="Quantity" name="Quantity" data-rule-required="true" data-rule-number="true" data-rule-min="0" />
+                                            <input type="text" class="form-control" id="Quantity" name="Quantity" data-rule-required="true" data-rule-number="true" data-rule-min="0" />
                                             }
 
-                                            <button class="btn btn-primary btn-block">@Model.ListingCurrent.ListingType.ButtonLabel</button>
-                                        </form>
+                                        <button class="btn btn-primary btn-block">@Model.ListingCurrent.ListingType.ButtonLabel</button>
+                                    </form>
 
-                                    </div>
+                                </div>
                                 }
 
                                 <div class="panel panel-default panel-body mrg-t text-center">
@@ -314,9 +343,9 @@
                                             <span>@string.Format("[[[{0:N0} reviews]]]", Model.ListingReviews.Count)</span>
                                         </div>
                                     </a>
-
-                                    <a href="#contact" onclick="contact();" class="btn btn-default btn-block">[[[Contact]]]</a>
-                                </div>
+                                    
+                                    <a id="contactModal" data-toggle="modal" data-target="#contactModal" class="btn btn-default btn-block">[[[Contact]]]</a>
+                                </div> 
 
                                 <!-- AddToAny BEGIN -->
                                 <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
@@ -332,7 +361,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -377,15 +406,7 @@
             el.text() == el.data("text-swap")
               ? el.text(el.data("text-original"))
               : el.text(el.data("text-swap"));
-        });
-
-        function contact(){
-            //$('#mainTab a[href="#contact"]').trigger('click');
-            //$('#Message').focus();
-
-            $('#mainTab a[href="#contact"]').tab('show');
-            $('#Message').focus();
-        }
+        });        
     </script>
 
     <script type="text/javascript">
