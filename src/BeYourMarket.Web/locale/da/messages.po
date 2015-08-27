@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-08-26 22:29+02:00\n"
-"PO-Revision-Date: 2015-08-26 22:29+02:00\n"
+"POT-Creation-Date: 2015-08-27 14:07+02:00\n"
+"PO-Revision-Date: 2015-08-27 14:07+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -227,7 +227,7 @@ msgid "Button Label"
 msgstr "Label"
 
 #: Views\Listing\ListingUpdate.cshtml:125
-#: Views\Listing\Review.cshtml:73
+#: Views\Listing\Review.cshtml:74
 #: Views\Payment\Orders.cshtml:26
 #: Views\Payment\Orders.cshtml:30
 #: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:77
@@ -248,7 +248,7 @@ msgstr "Label"
 #: Areas\Admin\Views\Payment\Order.cshtml:29
 #: Areas\Admin\Views\Payment\PaymentSetting.cshtml:46
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:125
-#: obj\Release\Package\PackageTmp\Views\Listing\Review.cshtml:73
+#: obj\Release\Package\PackageTmp\Views\Listing\Review.cshtml:74
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:26
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:30
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:77
@@ -299,7 +299,7 @@ msgstr "Annulleret"
 msgid "Categories"
 msgstr "Kategorier"
 
-#: Views\Listing\Listing.cshtml:136
+#: Views\Listing\Listing.cshtml:124
 #: Views\Listing\Listings.cshtml:50
 #: Views\Listing\ListingUpdate.cshtml:35
 #: Views\Listing\_ListingGridList.cshtml:35
@@ -310,7 +310,7 @@ msgstr "Kategorier"
 #: Areas\Admin\Views\Listing\Listings.cshtml:65
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:31
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:67
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:125
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:124
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:50
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:35
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingGridList.cshtml:35
@@ -450,10 +450,10 @@ msgstr "Kontakt email"
 msgid "Contact Name"
 msgstr "Kontaktnavn"
 
-#: Views\Listing\Listing.cshtml:222
-#: Views\Listing\Listing.cshtml:222
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:211
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:211
+#: Views\Listing\Listing.cshtml:210
+#: Views\Listing\Listing.cshtml:210
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:210
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:210
 msgid "Contact number (Click to show)"
 msgstr "Telefonnr. (Klik for at vise)"
 
@@ -608,8 +608,8 @@ msgstr "Adgangskode til database"
 msgid "database-username"
 msgstr "Brugernavn til database"
 
-#: Views\Listing\Listing.cshtml:168
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:157
+#: Views\Listing\Listing.cshtml:156
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:156
 msgid "Date Posted"
 msgstr "Dato oprettet"
 
@@ -731,13 +731,13 @@ msgstr "Edit"
 #: Models\AccountViewModels.cs:94
 #: Models\AccountViewModels.cs:115
 #: Views\Account\Register.cshtml:46
-#: Views\Listing\Listing.cshtml:228
+#: Views\Listing\Listing.cshtml:216
 #: Areas\Admin\Views\Manage\Settings.cshtml:45
 #: Areas\Admin\Views\Manage\Settings.cshtml:47
 #: Areas\Admin\Views\Manage\Users.cshtml:23
 #: Areas\Admin\Views\Manage\UserUpdate.cshtml:55
 #: obj\Release\Package\PackageTmp\Views\Account\Register.cshtml:46
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:217
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:216
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:45
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Settings.cshtml:47
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Users.cshtml:23
@@ -1159,19 +1159,19 @@ msgstr "Liste"
 msgid "Listing Details"
 msgstr "Annoncedetaljer"
 
-#: Views\Listing\Listing.cshtml:176
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:165
+#: Views\Listing\Listing.cshtml:164
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:164
 msgid "Listing ID"
 msgstr "Annonce ID"
 
-#: Views\Listing\Listing.cshtml:152
+#: Views\Listing\Listing.cshtml:140
 #: Views\Listing\Listings.cshtml:55
 #: Views\Shared\_ListingTypes.cshtml:6
 #: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:44
 #: Areas\Admin\Views\Listing\Listings.cshtml:66
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:16
 #: Areas\Admin\Views\Shared\_ListingTypes.cshtml:5
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:141
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:140
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:55
 #: obj\Release\Package\PackageTmp\Views\Shared\_ListingTypes.cshtml:6
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CategoryUpdate.cshtml:44
@@ -1219,7 +1219,7 @@ msgstr "Opdatér annonce"
 #: Areas\Admin\Views\Shared\_NavigationSide.cshtml:80
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:9
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:116
-#: obj\Release\Package\PackageTmp\Views\Listing\Profile.cshtml:66
+#: obj\Release\Package\PackageTmp\Views\Listing\Profile.cshtml:43
 #: obj\Release\Package\PackageTmp\Views\Shared\_DashBoardSide.cshtml:10
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\CustomFields.cshtml:10
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\Listings.cshtml:10
@@ -1235,7 +1235,7 @@ msgstr "Annoncer"
 msgid "Listings by category"
 msgstr "Annoncer efter kategori"
 
-#: Views\Listing\Listing.cshtml:160
+#: Views\Listing\Listing.cshtml:148
 #: Views\Listing\Listings.cshtml:70
 #: Views\Listing\Listings.cshtml:71
 #: Views\Listing\ListingUpdate.cshtml:78
@@ -1243,7 +1243,7 @@ msgstr "Annoncer efter kategori"
 #: Views\Listing\_ListingGridList.cshtml:43
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:170
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:172
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:149
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:148
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:70
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:71
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:78
@@ -1354,8 +1354,8 @@ msgstr "Administrér plugins"
 msgid "Manage Users"
 msgstr "Administrér brugere"
 
-#: Views\Listing\Listing.cshtml:208
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:197
+#: Views\Listing\Listing.cshtml:196
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:196
 msgid "Map"
 msgstr "Kort"
 
@@ -1365,13 +1365,13 @@ msgid "Mark as read"
 msgstr ""
 
 #: Views\Home\Contact.cshtml:28
-#: Views\Listing\Listing.cshtml:239
+#: Views\Listing\Listing.cshtml:227
 #: obj\Release\Package\PackageTmp\Views\Home\Contact.cshtml:28
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:228
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:227
 msgid "Message"
 msgstr "Besked"
 
-#: Controllers\ManageController.cs:525
+#: Controllers\ManageController.cs:526
 msgid "Message is sent."
 msgstr ""
 
@@ -1440,8 +1440,8 @@ msgstr "Nye annoncer"
 msgid "New password"
 msgstr "Ny adgangskode"
 
-#: Views\Listing\Listing.cshtml:290
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:279
+#: Views\Listing\Listing.cshtml:278
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:278
 msgid "Next"
 msgstr "Næste"
 
@@ -1672,6 +1672,11 @@ msgstr "Tjek venligst din email for at nulstille din adgangskode."
 msgid "Please click here to log in"
 msgstr "Klik her for at logge ind"
 
+#: Views\Listing\Review.cshtml:70
+#: obj\Release\Package\PackageTmp\Views\Listing\Review.cshtml:70
+msgid "Please Rate"
+msgstr ""
+
 #: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:380
 #: C:\Github\bym\dev\src\Plugins\Plugin.Widget.GoogleAnalytics\Controllers\GoogleAnalyticsController.cs:65
 msgid "Plugin updated!"
@@ -1701,12 +1706,12 @@ msgstr "Port"
 msgid "Premium"
 msgstr "Premium"
 
-#: Views\Listing\Listing.cshtml:286
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:275
+#: Views\Listing\Listing.cshtml:274
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:274
 msgid "Previous"
 msgstr "Tilbage"
 
-#: Views\Listing\Listing.cshtml:144
+#: Views\Listing\Listing.cshtml:132
 #: Views\Listing\Listings.cshtml:75
 #: Views\Listing\ListingUpdate.cshtml:52
 #: Views\Listing\ListingUpdate.cshtml:54
@@ -1715,7 +1720,7 @@ msgstr "Tilbage"
 #: Views\Payment\Payment.cshtml:63
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:94
 #: Areas\Admin\Views\Payment\Order.cshtml:104
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:133
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:132
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:75
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:52
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:54
@@ -1842,8 +1847,8 @@ msgstr "Husk mig?"
 msgid "Remember this browser?"
 msgstr "Husk denne browser?"
 
-#: Views\Manage\Message.cshtml:47
-#: obj\Release\Package\PackageTmp\Views\Manage\Message.cshtml:40
+#: Views\Manage\Message.cshtml:44
+#: obj\Release\Package\PackageTmp\Views\Manage\Message.cshtml:44
 msgid "Reply here..."
 msgstr ""
 
@@ -1879,8 +1884,9 @@ msgstr ""
 #: Views\Listing\Review.cshtml:5
 #: Views\Listing\_ListingCard.cshtml:26
 #: Views\Listing\_ListingReview.cshtml:9
-#: obj\Release\Package\PackageTmp\Views\Listing\Profile.cshtml:37
 #: obj\Release\Package\PackageTmp\Views\Listing\Review.cshtml:5
+#: obj\Release\Package\PackageTmp\Views\Listing\_ListingCard.cshtml:26
+#: obj\Release\Package\PackageTmp\Views\Listing\_ListingReview.cshtml:9
 msgid "Reviews"
 msgstr ""
 
@@ -1983,10 +1989,10 @@ msgstr "Vælg 2-faktor autentificering:"
 
 #: Views\Account\SendCode.cshtml:3
 #: Views\Home\Contact.cshtml:34
-#: Views\Listing\Listing.cshtml:241
+#: Views\Listing\Listing.cshtml:229
 #: obj\Release\Package\PackageTmp\Views\Account\SendCode.cshtml:3
 #: obj\Release\Package\PackageTmp\Views\Home\Contact.cshtml:34
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:230
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:229
 msgid "Send"
 msgstr "Send"
 
@@ -1995,13 +2001,13 @@ msgstr "Send"
 msgid "Send Copy"
 msgstr "Send kopi"
 
-#: Views\Manage\Message.cshtml:48
-#: obj\Release\Package\PackageTmp\Views\Manage\Message.cshtml:41
+#: Views\Manage\Message.cshtml:45
+#: obj\Release\Package\PackageTmp\Views\Manage\Message.cshtml:45
 msgid "Send Message"
 msgstr ""
 
-#: Views\Listing\Review.cshtml:72
-#: obj\Release\Package\PackageTmp\Views\Listing\Review.cshtml:72
+#: Views\Listing\Review.cshtml:73
+#: obj\Release\Package\PackageTmp\Views\Listing\Review.cshtml:73
 msgid "Send Review"
 msgstr ""
 
@@ -2019,7 +2025,8 @@ msgstr "Server domæne/IP"
 msgid "Settings"
 msgstr "Indstillinger"
 
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:102
+#: Views\Listing\Listing.cshtml:305
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:305
 msgid "Share"
 msgstr "Del"
 
@@ -2043,17 +2050,17 @@ msgid "Show Phone"
 msgstr "Vis telefonnr."
 
 #: Views\Manage\Messages.cshtml:118
-#: obj\Release\Package\PackageTmp\Views\Manage\Messages.cshtml:114
+#: obj\Release\Package\PackageTmp\Views\Manage\Messages.cshtml:118
 msgid "Showing {0} - {1} of {2}"
 msgstr ""
 
-#: Views\Listing\Listing.cshtml:253
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:242
+#: Views\Listing\Listing.cshtml:241
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:241
 msgid "Sign in"
 msgstr "Log ind"
 
-#: Views\Listing\Listing.cshtml:250
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:239
+#: Views\Listing\Listing.cshtml:238
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:238
 msgid "Sign in to contact the owner"
 msgstr "Log ind for a kontakte ejeren"
 
@@ -2149,7 +2156,7 @@ msgstr "Tester"
 msgid "Thank you for confirming your email."
 msgstr "Tak fordi du bekræftede din email."
 
-#: Controllers\ListingController.cs:808
+#: Controllers\ListingController.cs:811
 msgid "Thanks for your feedback!"
 msgstr ""
 
@@ -2305,7 +2312,6 @@ msgstr "Titel"
 #: Controllers\PaymentController.cs:311
 #: Views\Listing\Listing.cshtml:81
 #: Views\Listing\Listings.cshtml:78
-#: Views\Manage\Message.cshtml:34
 #: Views\Payment\Payment.cshtml:51
 #: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:81
 #: obj\Release\Package\PackageTmp\Views\Listing\Listings.cshtml:78
@@ -2459,8 +2465,8 @@ msgstr "Bekræft telefonnr."
 msgid "Version"
 msgstr "Version"
 
-#: Views\Listing\Listing.cshtml:223
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:212
+#: Views\Listing\Listing.cshtml:211
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:211
 msgid "View User's other listings"
 msgstr "Se andre annoncer fra denne bruger"
 
@@ -2474,8 +2480,8 @@ msgstr ""
 msgid "View Your Profile"
 msgstr "Se profil"
 
-#: Views\Listing\Listing.cshtml:184
-#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:173
+#: Views\Listing\Listing.cshtml:172
+#: obj\Release\Package\PackageTmp\Views\Listing\Listing.cshtml:172
 msgid "Views"
 msgstr "Besøgende"
 
@@ -2488,8 +2494,8 @@ msgstr "Velkommen til {0} Admin panel"
 msgid "Welcome to BeYourMarket!"
 msgstr ""
 
-#: Views\Listing\Review.cshtml:71
-#: obj\Release\Package\PackageTmp\Views\Listing\Review.cshtml:71
+#: Views\Listing\Review.cshtml:72
+#: obj\Release\Package\PackageTmp\Views\Listing\Review.cshtml:72
 msgid "Write your review..."
 msgstr ""
 

@@ -78,11 +78,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Grid.Mvc.Redux.1.0.4\lib\GridMvc.dll</HintPath>
     </Reference>
-    <Reference Include="i18n">
-      <HintPath>..\packages\i18n.2.1.3.0\lib\net40\i18n.dll</HintPath>
+    <Reference Include="i18n, Version=2.1.4.0, Culture=neutral, PublicKeyToken=b54a7283d4bad1bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\i18n.2.1.4.0\lib\net40\i18n.dll</HintPath>
     </Reference>
-    <Reference Include="i18n.Domain">
-      <HintPath>..\packages\i18n.2.1.3.0\lib\net40\i18n.Domain.dll</HintPath>
+    <Reference Include="i18n.Domain, Version=2.1.4.0, Culture=neutral, PublicKeyToken=b54a7283d4bad1bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\i18n.2.1.4.0\lib\net40\i18n.Domain.dll</HintPath>
     </Reference>
     <Reference Include="ImageProcessor, Version=2.2.8.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -364,6 +366,9 @@
     <Content Include="js\sweet-alert\sweetalert.css" />
     <Content Include="js\sweet-alert\sweetalert.min.js" />
     <Content Include="Plugins\.gitignore" />
+    <Content Include="PostBuild\i18n.Domain.pdb" />
+    <Content Include="PostBuild\i18n.pdb" />
+    <Content Include="PostBuild\i18n.PostBuild.pdb" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\fileinput_locale_bg.js" />
     <Content Include="Scripts\fileinput_locale_da.js" />

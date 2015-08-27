@@ -426,6 +426,7 @@ namespace BeYourMarket.Web.Controllers
                 .Include(x => x.Messages.Select(y => y.AspNetUser))
                 .Include(x => x.Messages.Select(y => y.MessageReadStates))
                 .Include(x => x.MessageParticipants)
+                .Include(x => x.MessageParticipants.Select(y => y.AspNetUser))
                 .SelectAsync();
 
             if (!string.IsNullOrEmpty(searchText))
@@ -455,7 +456,7 @@ namespace BeYourMarket.Web.Controllers
                 .Include(x => x.Messages.Select(y => y.AspNetUser))
                 .Include(x => x.Messages.Select(y => y.MessageReadStates))
                 .Include(x => x.MessageParticipants)
-                .Include(x => x.MessageParticipants.Select(y=>y.AspNetUser))
+                .Include(x => x.MessageParticipants.Select(y => y.AspNetUser))
                 .SelectAsync();
 
             var model = messageThread.FirstOrDefault();
@@ -531,7 +532,7 @@ namespace BeYourMarket.Web.Controllers
         [HttpPost]
         public async Task<ActionResult> MessageAction(List<int> messageIds, int actionType)
         {
-            var action = (Enum_MessageAction) actionType;
+            var action = (Enum_MessageAction)actionType;
 
             switch (action)
             {
@@ -549,7 +550,7 @@ namespace BeYourMarket.Web.Controllers
                     await _unitOfWorkAsync.SaveChangesAsync();
 
                     break;
-               case Enum_MessageAction.None:
+                case Enum_MessageAction.None:
                 default:
                     break;
             }
@@ -569,7 +570,7 @@ namespace BeYourMarket.Web.Controllers
         }
         #endregion
 
-        #region Methods        
+        #region Methods
         public async Task<ActionResult> Dashboard(string searchText)
         {
             var userId = User.Identity.GetUserId();

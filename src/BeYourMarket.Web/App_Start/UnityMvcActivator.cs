@@ -27,19 +27,46 @@ namespace BeYourMarket.Web.App_Start
 
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-            //http://stackoverflow.com/questions/699852/how-to-find-all-the-classes-which-implement-a-given-interface
-            foreach (var assembly in assemblies)
+            try
             {
-                var instances = from t in assembly.GetTypes()
-                                where t.GetInterfaces().Contains(typeof(IDependencyRegister))
-                                         && t.GetConstructor(Type.EmptyTypes) != null
-                                select Activator.CreateInstance(t) as IDependencyRegister;
-
-                foreach (var instance in instances.OrderBy(x => x.Order))
+                //http://stackoverflow.com/questions/699852/how-to-find-all-the-classes-which-implement-a-given-interface
+                foreach (var assembly in assemblies)
                 {
-                    instance.Register(container);
-                }   
-            }            
+                    var instances = from t in assembly.GetTypes()
+                                    where t.GetInterfaces().Contains(typeof(IDependencyRegister))
+                                             && t.GetConstructor(Type.EmptyTypes) != null
+                                    select Activator.CreateInstance(t) as IDependencyRegister;
+
+                    foreach (var instance in instances.OrderBy(x => x.Order))
+                    {
+                        instance.Register(container);
+                    }
+                }
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+            http://stackoverflow.com/questions/1091853/error-message-unable-to-load-one-or-more-of-the-requested-types-retrieve-the-l
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                foreach (Exception exSub in ex.LoaderExceptions)
+                {
+                    sb.AppendLine(exSub.Message);
+                    System.IO.FileNotFoundException exFileNotFound = exSub as System.IO.FileNotFoundException;
+                    if (exFileNotFound != null)
+                    {
+                        if (!string.IsNullOrEmpty(exFileNotFound.FusionLog))
+                        {
+                            sb.AppendLine("Fusion Log:");
+                            sb.AppendLine(exFileNotFound.FusionLog);
+                        }
+                    }
+                    sb.AppendLine();
+                }
+                string errorMessage = sb.ToString();
+
+                throw new Exception(errorMessage, ex);
+                //Display or log the error based on your application.
+            }
+
 
             // TODO: Uncomment if you want to use PerRequestLifetimeManager
             // Microsoft.Web.Infrastructure.DynamicModuleHelper.DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));
