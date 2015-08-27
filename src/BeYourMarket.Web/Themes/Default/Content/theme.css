@@ -738,12 +738,19 @@ body .header {
 }
 /* Left side collapse */
 .left-section.collapse-left {
-  left: 0;
-  display: none;
+  margin-left: -230px;
+  -moz-transition: margin-left 0.2s;
+  -o-transition: margin-left 0.2s;
+  -webkit-transition: margin-left 0.2s;
+  transition: margin-left 0.2s;
 }
 @media screen and (min-width: 992px) {
   .right-section {
     margin-left: 230px;
+    -moz-transition: margin-left 0.2s;
+    -o-transition: margin-left 0.2s;
+    -webkit-transition: margin-left 0.2s;
+    transition: margin-left 0.2s;
   }
   /*Right side stretch mode*/
   .left-section.collapse-left + .right-section {
@@ -1026,30 +1033,34 @@ header .navbar-form {
     position: relative;
   }
   .row-offcanvas-right .sidebar-offcanvas {
-    right: -230px;
+    margin-right: -230px;
   }
   .row-offcanvas-left .sidebar-offcanvas {
-    left: -230px;
+    margin-left: -230px;
   }
   .row-offcanvas-right.active {
-    right: 230px;
+    margin-right: 230px;
   }
   .row-offcanvas-left.active {
-    left: 230px;
+    margin-left: 230px;
+    -moz-transition: margin-left 0.2s;
+    -o-transition: margin-left 0.2s;
+    -webkit-transition: margin-left 0.2s;
+    transition: margin-left 0.2s;
   }
   .sidebar-offcanvas {
-    left: 0;
+    margin-left: 0;
   }
   body.fixed .sidebar-offcanvas {
     margin-top: 50px;
-    left: -230px;
+    margin-left: -230px;
   }
   body.fixed .row-offcanvas-left.active .navbar {
-    left: 230px !important;
-    right: 0;
+    margin-left: 230px !important;
+    margin-right: 0;
   }
   body.fixed .row-offcanvas-left.active .sidebar-offcanvas {
-    left: 0px;
+    margin-left: 0;
   }
   .nav-tabs > li {
     float: none !important;
