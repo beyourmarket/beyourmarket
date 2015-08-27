@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-08-27 14:07+02:00\n"
+"POT-Creation-Date: 2015-08-27 15:04+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1370,7 +1370,7 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: Controllers\ManageController.cs:526
+#: Controllers\ManageController.cs:527
 msgid "Message is sent."
 msgstr ""
 

@@ -258,8 +258,7 @@ body .section {
 }
 /*right section - contains main content*/
 .right-section {
-    background-color: @background-color;
-    margin-left: @left-section-margin;
+    background-color: @background-color;    
     padding-bottom: 50px;
 }
 /*left section - contains sidebar*/
@@ -292,11 +291,11 @@ body .section {
     line-height: 29px;
 }
 
-body.fixed > .header, body.fixed .left-section, body.fixed .navbar {
+body.fixed .header, body.fixed .left-section, body.fixed .navbar {
     position: fixed;
 }
 
-body.fixed > .header {
+body.fixed .header {
     top: 0;
     right: 0;
     left: 0;
@@ -443,11 +442,8 @@ header .navbar-form .input-group .form-control {
     color: #ffffff;
 }
 
-body > .header {
-    position: absolute;
+body .header {
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 100;
 }
 
@@ -458,10 +454,6 @@ body > .header {
 }
 
 @media screen and (min-width:992px) {
-    .left-section {
-        top: 60px;
-    }
-
     .right-section {
         margin-left: @left-section-margin;
     }
@@ -487,18 +479,17 @@ header .navbar-form {
     margin-bottom: 7px;
 }
 
-body > .header {
+.header {
     position: relative;
     max-height: 100px;
     z-index: 100;
 }
 
-body > .header .navbar {
-    margin-bottom: 0;
-    margin-left: @left-section-margin;
+.header .navbar {
+    margin-bottom: 0;    
 }
 
-body > .header .navbar .sidebar-toggle {
+.header .navbar .sidebar-toggle {
     float: left;
     padding: 9px 5px;
     margin-top: 12px;
@@ -513,11 +504,11 @@ body > .header .navbar .sidebar-toggle {
     border-radius: 0 !important;
 }
 
-body > .header .navbar .sidebar-toggle:hover .icon-bar {
+.header .navbar .sidebar-toggle:hover .icon-bar {
     opacity: 0.6;
 }
 
-body > .header .navbar .sidebar-toggle .icon-bar {
+.header .navbar .sidebar-toggle .icon-bar {
     display: block;
     width: 25px;
     height: 3px;
@@ -526,20 +517,20 @@ body > .header .navbar .sidebar-toggle .icon-bar {
     border-radius: 4px;
 }
 
-body > .header .navbar .sidebar-toggle .icon-bar + .icon-bar {
+.header .navbar .sidebar-toggle .icon-bar + .icon-bar {
     margin-top: 3px;
 }
 
-body > .header .navbar .nav > li.user > a {
+.header .navbar .nav > li.user > a {
     font-weight: bold;
 }
 
-body > .header .navbar .nav > li.post-ad > a {
+.header .navbar .nav > li.post-ad > a {
     background: #48A1DD;
     color: white;
 }
 
-body > .header .navbar .nav > li > a > .label {
+.header .navbar .nav > li > a > .label {
     position: absolute;
     top: 12px;
     right: 6px;
@@ -552,11 +543,11 @@ body > .header .navbar .nav > li > a > .label {
     padding: 2px;
 }
 
-body > .header .navbar .nav > li > a:hover > .label {
+.header .navbar .nav > li > a:hover > .label {
     top: 3px;
 }
 
-body > .header .logo {
+.header .logo {
     float: left;
     font-size: 25px;
     line-height: 60px;
@@ -565,10 +556,10 @@ body > .header .logo {
     width: @left-section-margin;
     font-weight: 400;
     height: 65px;
-    display: block;
+    display: block;    
 }
 
-body > .header .logo .icon {
+.header .logo .icon {
     margin-right: 10px;
 }
 
@@ -601,21 +592,21 @@ body > .header .logo .icon {
 }
 
 @media screen and (max-width:560px) {
-    body > .header {
+    .header {
         position: relative;
     }
 
-    body > .header .logo, body > .header .navbar {
+    .header .logo, body .header .navbar {
         width: 100%;
         float: none;
         position: relative !important;
     }
 
-    body > .header .navbar {
+    .header .navbar {
         margin: 0;
     }
 
-    body.fixed > .header {
+    body.fixed .header {
         position: fixed;
     }
 
@@ -752,7 +743,7 @@ body > .header .logo .icon {
     background: @side-bar-color;
     -webkit-box-shadow: inset -3px 0px 8px -4px rgba(0,0,0,0.1);
     -moz-box-shadow: inset -3px 0px 8px -4px rgba(0,0,0,0.1);
-    box-shadow: inset -3px 0px 8px -4px rgba(0,0,0,0.07);
+    box-shadow: inset -3px 0px 8px -4px rgba(0,0,0,0.07);    
 }
 
 .sidebar a {
@@ -1192,7 +1183,7 @@ body > .header .logo .icon {
 }
 
 .card a {
-    color: #796763;    
+    color: #796763;
     -webkit-transition: color 0.3s ease;
     -moz-transition: color 0.3s ease;
     -o-transition: color 0.3s ease;
@@ -1573,9 +1564,38 @@ body > .header .logo .icon {
     }
 }
 
-.img-profile-card{
+.img-profile-card {
     position: absolute;
     top: -40px;
     right: 10px;
     z-index: 3;
+}
+
+@media (min-width: 768px) {
+    .left-section, .affix{
+        position:fixed;
+    }
+
+    #sidebar.affix, #sidebar.affix-bottom {
+            width: 280px;            
+    }
+}
+
+@media (min-width: 1200px) {
+    #sidebar.affix, #sidebar.affix-bottom {
+            width: 320px;
+    }
+}
+@media (max-width: 768px) {
+    .affix {
+        position: static;
+    }
+}
+
+.navbar-brand > img {    
+    display:inline-block;
+}
+
+.navbar-brand {
+    color: @color;
 }

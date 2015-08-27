@@ -14,308 +14,328 @@
 }
 
 <div class="body-content">
-    <div class="section panel-header ">
-        <div class="container-fluid">
-            @Html.Partial("_UserMessage")
-
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-9 col-xs-12">
-                        <h3>
-                            @Model.ListingCurrent.Title
-                            <!-- Show edit button if administrator or the user who create the listing -->
-                            @if (Model.ListingCurrent.UserID == User.Identity.GetUserId() || User.IsInRole("Administrator"))
-                            {
-                                <a class="btn btn-primary" href="@Url.Action("ListingUpdate", "Listing", new { id = Model.ListingCurrent.ID, area = "" })"><i class="fa fa-edit"></i> [[[Edit]]]</a>
-                            }
-                        </h3>
-                        @if (Model.ListingCurrent.Price.HasValue)
-                        {
-                            <h4>
-                                @Html.DisplayFor(x => x.ListingCurrent.PriceFormatted) @Model.ListingCurrent.ListingType.PriceUnitLabel
-                            </h4>
-                        }
-                        <p class="lead text-lighten">
-                            @Model.ListingCurrent.Location
-                        </p>
-                    </div>
-
-                    <div class="col-md-3 col-xs-12">
-                        <div class="">
-                            <a href="@Url.Action("Profile", "Listing", new { id = Model.User.Id })">
-                                <img class="img-circle profile-picture" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.User.Id)" />
-                            </a>
-                            <h5>@Model.User.FullName</h5>
-                            <p class="text-lighten">
-                                [[[Joined since]]] @Model.User.RegisterDate.ToShortDateString()
-                            </p>
-                            <a href="@Url.Action("Profile", "Listing", new { id = Model.User.Id })">
-                                [[[View user's profile and other listings]]]<div>
-                                    <span class="score @Model.User.RatingClass"></span>
-                                    <span>@string.Format("[[[{0:N0} reviews]]]", Model.ListingReviews.Count)</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                @if (Model.ListingCurrent.OrderAllowed)
-                {
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form class="form-inline" action="@Url.Action("Order", "Payment")" method="get" role="form">
-                                <input id="ListingID" name="ListingID" type="hidden" value="@Model.ListingCurrent.ID" />
-                                <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingCurrent.ListingTypeID" />
-                                @if (!string.IsNullOrEmpty(Model.ListingCurrent.ListingType.OrderTypeLabel))
-                                {
-                                    <h5>@Model.ListingCurrent.ListingType.OrderTypeLabel</h5>
-                                }
-
-                                @if (Model.ListingCurrent.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
-                                {
-                                    <div class="input-daterange input-group datepicker form-group" id="datepicker">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                        <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" data-rule-required="true" data-rule-date="true" />
-
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                        <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" data-rule-required="true" data-rule-date="true" />
-                                    </div>
-                                }
-                                else if (Model.ListingCurrent.ListingType.OrderTypeID == (int)Enum_ListingOrderType.Quantity)
-                                {
-                                    <input type="text" class="form-control" id="Quantity" name="Quantity" data-rule-required="true" data-rule-number="true" data-rule-min="0" />
-                                }
-
-                                <button class="btn btn-primary">@Model.ListingCurrent.ListingType.ButtonLabel</button>
-                            </form>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-
-    <div class="panel-header bdr-b container-fluid">
-        <ul class="nav nav-tabs" role="tablist" id="myTab">
-            <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">[[[Description]]]</a></li>
-            <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">[[[Contact]]]</a></li>
-        </ul>
-    </div>
 
     <div class="main-section">
 
-        <div class="container-fluid">
+        <div class="row">
+            <div class="container-fluid">
+                <div class="row">
+                    @Html.Partial("_UserMessage")
 
-            <div class="row">
+                    <div class="col-md-8 col-xs-12">
+                        <div class="section panel-header">
+                            <div class="col-md-12">
+                                <h3>
+                                    @Model.ListingCurrent.Title
+                                    <span class="score @Model.ListingCurrent.RatingClass text-md"></span>
+                                    <!-- Show edit button if administrator or the user who create the listing -->
+                                    @if (Model.ListingCurrent.UserID == User.Identity.GetUserId() || User.IsInRole("Administrator"))
+                                    {
+                                    <a class="btn btn-primary" href="@Url.Action("ListingUpdate", "Listing", new { id = Model.ListingCurrent.ID, area = "" })"><i class="fa fa-edit"></i> [[[Edit]]]</a>
+                                    }
+                                </h3>
 
-                <div class="col-md-6">
-                    <div class="tab-content row">
-                        <div role="tabpanel" class="tab-pane fade active in" id="description">
-                            <div class="panel panel-default bdr-t-none">
-                                <div class="panel-body">
-                                    <p>
-                                        @Model.ListingCurrent.Description
-                                    </p>
-                                </div>
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                [[[Category]]]
-                                            </td>
-                                            <td>
-                                                <a href="@Url.Action("Search", "Home", new { categoryId = Model.ListingCurrent.CategoryID })">@Model.ListingCurrent.Category.Name</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                [[[Price]]]
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(x => Model.ListingCurrent.PriceFormatted)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                [[[Listing Type]]]
-                                            </td>
-                                            <td>
-                                                @Model.ListingCurrent.ListingType.Name
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                [[[Location]]]
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(x => Model.ListingCurrent.Location)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                [[[Date Posted]]]
-                                            </td>
-                                            <td>
-                                                @Model.ListingCurrent.Created.ToShortDateString()
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                [[[Listing ID]]]
-                                            </td>
-                                            <td>
-                                                @Model.ListingCurrent.ID
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                [[[Views]]]
-                                            </td>
-                                            <td>
-                                                @Model.ListingCurrent.ListingStats.FirstOrDefault().CountView
-                                            </td>
-                                        </tr>
+                                @if (Model.ListingCurrent.Price.HasValue)
+                                {
+                                <h4>
+                                    @Html.DisplayFor(x => x.ListingCurrent.PriceFormatted) @Model.ListingCurrent.ListingType.PriceUnitLabel
+                                </h4>
+                                }
+                                <p class="lead text-lighten">
+                                    @Model.ListingCurrent.Location
+                                </p>
+                            </div>
 
-                                        @foreach (var item in Model.ListingCurrent.ListingMetas)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @item.MetaField.Name
-                                                </td>
-                                                <td>
-                                                    @item.Value
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
+                        </div>
 
+                        <div class="panel-header bdr-b container-fluid">
+                            <ul class="nav nav-tabs" role="tablist" id="mainTab">
+                                <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab"><i class="fa fa-info"></i>[[[Description]]]</a></li>
                                 @if (Model.ListingCurrent.Latitude.HasValue && Model.ListingCurrent.Longitude.HasValue)
                                 {
+                                <li role="presentation"><a href="#map-canvas"><i class="fa fa-map-marker"></i>[[[Maps]]]</a></li>
+                                }
+                                <li role="presentation"><a href="#reviewList"><i class="fa fa-star"></i>[[[Reviews]]]</a></li>
+                                <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"><i class="fa fa-envelope"></i>[[[Contact]]]</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in" id="description">
+                                <div class="panel panel-default bdr-t-none">
+                                    <div class="panel-body">
+                                        <p>
+                                            @Model.ListingCurrent.Description
+                                        </p>
+                                    </div>
+
+                                    <!---Pictures-->
                                     <div class="panel-heading bdr-t">
-                                        <i class="fa fa-map-marker"></i> [[[Map]]]
+                                        <i class="fa fa-picture-o"></i> [[[Pictures]]]
                                     </div>
                                     <div class="panel-body">
-                                        <div id="map-canvas"></div>
-                                    </div>
-                                }
-                            </div>
-                        </div>
+                                        @if (Model.Pictures.Count > 0)
+                                        {
+                                            <div id="carousel-gallery" class="carousel slide" data-ride="carousel">
+                                                <ol class="carousel-indicators">
+                                                    @for (int i = 0; i < Model.Pictures.Count; i++)
+                                                    {
+                                                        <li data-target="#carousel-gallery" data-slide-to="@i"></li>
+                                                    }
+                                                </ol>
 
-                        <div role="tabpanel" class="tab-pane" id="contact">
-                            <div class="panel panel-default bdr-t-none">
-                                @if (Model.ListingCurrent.ShowPhone && !string.IsNullOrEmpty(Model.ListingCurrent.ContactPhone))
-                                {
-                                    <div class="list-group">
-                                        <a data-text-swap="[[[Contact number (Click to show)]]]" data-text-original="@Model.ListingCurrent.ContactPhone" class="text-swap list-group-item "><i class="mdi-hardware-phone-iphone"></i> [[[Contact number (Click to show)]]]</a>
-                                        <a href="@Url.Action("Profile", "Listing", new { id = Model.ListingCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>[[[View User's other listings]]]</a>
-                                    </div>
-                                }
+                                                <div class="carousel-inner" role="listbox">
+                                                    @for (int i = 0; i < Model.Pictures.Count; i++)
+                                                    {
+                                                        <div class="item @(i == 0 ? "active" : "")">
+                                                            <img style=" margin-left: auto; margin-right: auto;" alt="" src="@Model.Pictures[i].Url" data-holder-rendered="true">
+                                                        </div>
+                                                    }
+                                                </div>
 
-                                <div class="panel-heading">
-                                    [[[Email]]]
-                                </div>
+                                                <a class="left carousel-control" href="#carousel-gallery" role="button" data-slide="prev">
+                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                                    <span class="sr-only">[[[Previous]]]</span>
+                                                </a>
+                                                <a class="right carousel-control" href="#carousel-gallery" role="button" data-slide="next">
+                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                                    <span class="sr-only">[[[Next]]]</span>
+                                                </a>
 
-                                @if (User.Identity.IsAuthenticated)
-                                {
-
-                                    <div class="panel-body">
-                                        <form role="form" method="post" action="@Url.Action("ContactUser", "Listing")">
-                                            <input type="hidden" id="ListingID" name="ListingID" value="@Model.ListingCurrent.ID" />
-
-                                            <div class="form-group">
-                                                <textarea rows="4" class="form-control" id="Message" name="Message" placeholder="[[[Message]]]" required minlength="20"></textarea>
                                             </div>
-                                            <button type="submit" class="btn btn-primary pushme">[[[Send]]]</button>
-                                        </form>
-                                    </div>
-                                }
-                                else
-                                {
 
-                                    <div class="panel-body">
-                                        <div class="alert alert-info" role="alert">
-                                            [[[Sign in to contact the owner]]]
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    @foreach (var thumbnail in Model.Pictures)
+                                                    {
+                                                        <div class="col-xs-6 col-md-2">
+                                                            <a href="@thumbnail.Url" class="boxer" title="" data-gallery="gallery" data-lightbox-gallery="photo_gallery">
+                                                                <img alt="Thumbnail" src="@thumbnail.Url" style=" width: 100%; display: block;">
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                </div>
+
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(0)" />
+                                        }
+                                    </div>
+                                    <!---Pictures-->
+
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    [[[Category]]]
+                                                </td>
+                                                <td>
+                                                    <a href="@Url.Action("Search", "Home", new { categoryId = Model.ListingCurrent.CategoryID })">@Model.ListingCurrent.Category.Name</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    [[[Price]]]
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(x => Model.ListingCurrent.PriceFormatted)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    [[[Listing Type]]]
+                                                </td>
+                                                <td>
+                                                    @Model.ListingCurrent.ListingType.Name
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    [[[Location]]]
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(x => Model.ListingCurrent.Location)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    [[[Date Posted]]]
+                                                </td>
+                                                <td>
+                                                    @Model.ListingCurrent.Created.ToShortDateString()
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    [[[Listing ID]]]
+                                                </td>
+                                                <td>
+                                                    @Model.ListingCurrent.ID
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    [[[Views]]]
+                                                </td>
+                                                <td>
+                                                    @Model.ListingCurrent.ListingStats.FirstOrDefault().CountView
+                                                </td>
+                                            </tr>
+
+                                            @foreach (var item in Model.ListingCurrent.ListingMetas)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @item.MetaField.Name
+                                                    </td>
+                                                    <td>
+                                                        @item.Value
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+
+
+                                    @if (Model.ListingCurrent.Latitude.HasValue && Model.ListingCurrent.Longitude.HasValue)
+                                    {
+                                        <div class="panel-heading bdr-t">
+                                            <i class="fa fa-map-marker"></i> [[[Map]]]
                                         </div>
-                                        <div class="col-md-12">
-                                            <a class="btn btn-primary" href="@Url.Action("Login", "Account", new { returnUrl = ViewContext.HttpContext.Request.Url.PathAndQuery  })">[[[Sign in]]]</a>
+                                        <div class="panel-body">
+                                            <div id="map-canvas"></div>
                                         </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane" id="contact">
+                                <div class="panel panel-default bdr-t-none">
+                                    @if (Model.ListingCurrent.ShowPhone && !string.IsNullOrEmpty(Model.ListingCurrent.ContactPhone))
+                                    {
+                                        <div class="list-group">
+                                            <a data-text-swap="[[[Contact number (Click to show)]]]" data-text-original="@Model.ListingCurrent.ContactPhone" class="text-swap list-group-item "><i class="mdi-hardware-phone-iphone"></i> [[[Contact number (Click to show)]]]</a>
+                                            <a href="@Url.Action("Profile", "Listing", new { id = Model.ListingCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>[[[View User's other listings]]]</a>
+                                        </div>
+                                    }
+
+                                    <div class="panel-heading">
+                                        <span>[[[Contact]]] @Model.User.FullName</span>
+                                    </div>
+
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+
+                                        <div class="panel-body">
+                                            <form role="form" method="post" action="@Url.Action("ContactUser", "Listing")">
+                                                <input type="hidden" id="ListingID" name="ListingID" value="@Model.ListingCurrent.ID" />
+
+                                                <div class="form-group">
+                                                    <textarea rows="4" class="form-control" id="Message" name="Message" placeholder="[[[Message]]]" required minlength="20"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary pushme">[[[Send]]]</button>
+                                            </form>
+                                        </div>
+                                    }
+                                    else
+                                    {
+
+                                        <div class="panel-body">
+                                            <div class="alert alert-info" role="alert">
+                                                [[[Sign in to contact the owner]]]
+                                            </div>
+                                            <div class="col-md-12">
+                                                <a class="btn btn-primary" href="@Url.Action("Login", "Account", new { returnUrl = ViewContext.HttpContext.Request.Url.PathAndQuery  })">[[[Sign in]]]</a>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        @Html.Partial("~/Views/Listing/_ListingReview.cshtml", Model.ListingReviews)
+                    </div>
+
+                    <div >
+                        <div class="col-md-4 col-xs-12">
+                            <div id="sidebar" data-spy="affix" data-offset-top="120" class="affix text-center">
+                                @if (Model.ListingCurrent.OrderAllowed)
+                                {
+                                    <div class="panel panel-default panel-body mrg-t">
+                                        @if (Model.ListingCurrent.Price.HasValue)
+                                        {
+                                            <h4>
+                                                @Html.DisplayFor(x => x.ListingCurrent.PriceFormatted) @Model.ListingCurrent.ListingType.PriceUnitLabel
+                                            </h4>
+                                        }
+
+                                        <form action="@Url.Action("Order", "Payment")" method="get" role="form">
+                                            <input id="ListingID" name="ListingID" type="hidden" value="@Model.ListingCurrent.ID" />
+                                            <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingCurrent.ListingTypeID" />
+                                            @if (!string.IsNullOrEmpty(Model.ListingCurrent.ListingType.OrderTypeLabel))
+                                            {
+                                                <h5>@Model.ListingCurrent.ListingType.OrderTypeLabel</h5>
+                                            }
+
+                                            @if (Model.ListingCurrent.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
+                                            {
+                                                <div class="input-daterange input-group datepicker form-group" id="datepicker">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                    <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" data-rule-required="true" data-rule-date="true" />
+
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                    <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" data-rule-required="true" data-rule-date="true" />
+                                                </div>
+                                            }
+                                            else if (Model.ListingCurrent.ListingType.OrderTypeID == (int)Enum_ListingOrderType.Quantity)
+                                            {
+                                                <input type="text" class="form-control" id="Quantity" name="Quantity" data-rule-required="true" data-rule-number="true" data-rule-min="0" />
+                                            }
+
+                                            <button class="btn btn-primary btn-block">@Model.ListingCurrent.ListingType.ButtonLabel</button>
+                                        </form>
+
                                     </div>
                                 }
+
+                                <div class="panel panel-default panel-body mrg-t text-center">
+                                    <a href="@Url.Action("Profile", "Listing", new { id = Model.User.Id })">
+                                        <img class="img-circle profile-picture" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.User.Id)" />
+                                    </a>
+                                    <h5>@Model.User.FullName</h5>
+                                    <p class="text-lighten">
+                                        [[[Joined since]]] @Model.User.RegisterDate.ToShortDateString()
+                                    </p>
+                                    <a href="@Url.Action("Profile", "Listing", new { id = Model.User.Id })">
+                                        [[[View user's profile and other listings]]]<div>
+                                            <span class="score @Model.User.RatingClass"></span>
+                                            <span>@string.Format("[[[{0:N0} reviews]]]", Model.ListingReviews.Count)</span>
+                                        </div>
+                                    </a>
+
+                                    <a href="#contact" onclick="contact();" class="btn btn-default btn-block">[[[Contact]]]</a>
+                                </div>
+
+                                <!-- AddToAny BEGIN -->
+                                <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                                    <span class="pull-left m-r-5"><i class="fa fa-share-alt"></i> [[[Share]]]</span>
+                                    <a href="https://www.addtoany.com/share_save"></a>
+                                    <a class="a2a_button_facebook"></a>
+                                    <a class="a2a_button_twitter"></a>
+                                    <a class="a2a_button_google_plus"></a>
+                                    <a class="a2a_button_linkedin"></a>
+                                </div>
+
+                                <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
 
-                <div class="col-md-6">
-
-                    <div class="panel panel-default mrg-t">
-                        @if (Model.Pictures.Count > 0)
-                        {
-                            <div id="carousel-gallery" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    @for (int i = 0; i < Model.Pictures.Count; i++)
-                                    {
-                                        <li data-target="#carousel-gallery" data-slide-to="@i"></li>
-                                    }
-                                </ol>
-
-                                <div class="carousel-inner" role="listbox">
-                                    @for (int i = 0; i < Model.Pictures.Count; i++)
-                                    {
-                                        <div class="item @(i == 0 ? "active" : "")">
-                                            <img style=" margin-left: auto; margin-right: auto;" alt="" src="@Model.Pictures[i].Url" data-holder-rendered="true">
-                                        </div>
-                                    }
-                                </div>
-
-                                <a class="left carousel-control" href="#carousel-gallery" role="button" data-slide="prev">
-                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                    <span class="sr-only">[[[Previous]]]</span>
-                                </a>
-                                <a class="right carousel-control" href="#carousel-gallery" role="button" data-slide="next">
-                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                    <span class="sr-only">[[[Next]]]</span>
-                                </a>
-
-                            </div>
-
-                            <div class="panel-body">
-                                <div class="row">
-                                    @foreach (var thumbnail in Model.Pictures)
-                                    {
-                                        <div class="col-xs-6 col-md-2">
-                                            <a href="@thumbnail.Url" class="boxer" title="" data-gallery="gallery" data-lightbox-gallery="photo_gallery">
-                                                <img alt="Thumbnail" src="@thumbnail.Url" style=" width: 100%; display: block;">
-                                            </a>
-                                        </div>
-                                    }
-                                </div>
-
-                            </div>
-                        }
-                        else
-                        {
-                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(0)" />
-                        }
-                    </div>
-
-                    <!-- AddToAny BEGIN -->
-                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-                        <span class="pull-left m-r-5"><i class="fa fa-share-alt"></i> [[[Share]]]</span>                       
-                        <a href="https://www.addtoany.com/share_save"></a>
-                        <a class="a2a_button_facebook"></a>
-                        <a class="a2a_button_twitter"></a>
-                        <a class="a2a_button_google_plus"></a>
-                        <a class="a2a_button_linkedin"></a>
-                    </div>
-
-                    <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>    
-                </div>
             </div>
-
-            <hr />
-            @Html.Partial("~/Views/Listing/_ListingReview.cshtml", Model.ListingReviews)
         </div>
     </div>
 
@@ -358,6 +378,14 @@
               ? el.text(el.data("text-original"))
               : el.text(el.data("text-swap"));
         });
+
+        function contact(){
+            //$('#mainTab a[href="#contact"]').trigger('click');
+            //$('#Message').focus();
+
+            $('#mainTab a[href="#contact"]').tab('show');
+            $('#Message').focus();
+        }
     </script>
 
     <script type="text/javascript">
