@@ -70,7 +70,7 @@
                                                     <td width="200">
                                                         <img class="img-circle thumb-sm m-r-5 pull-left" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(participant.AspNetUser.Id)" />
                                                         <div>
-                                                            <a class="text-xs" href="@Url.Action("Profile", "Listing", new { id = message.AspNetUser.Id })">@participant.AspNetUser.FullName</a>
+                                                            <a class="text-xs" href="@Url.Action("Profile", "Listing", new { id = participant.AspNetUser.Id })">@participant.AspNetUser.FullName</a>
                                                             <br />
                                                             <span class="score @participant.AspNetUser.RatingClass text-xs"></span>
                                                         </div>

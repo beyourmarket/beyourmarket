@@ -32,42 +32,48 @@
 </head>
 
 <body>
-    <header class="header">
-        <a href="@Url.Action("Index", "Home")" class="logo">
-            <img src="@ImageHelper.GetCommunityImagePath("logo", "png")" alt="@settings.Name">
-        </a>
-        <nav class="navbar navbar-static-top user-nav" role="navigation">
-            <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <form method="get" action="@Url.Action("Search", "Home")" class="navbar-form navbar-left hidden-xs hidden-sm">
-                <input type="text" class="form-control trans input-lg" name="SearchText" id="SearchText" placeholder="[[[Search for...]]]">
-                <button type="submit" class="btn trans btn-lg ">
-                    <i class="mdi-action-search"></i>
-                </button>
-            </form>
-
-            @Html.Action("LanguageSelector", "Home")
-
-            <div class="navbar-right">
-                @Html.Partial("_LoginPartial")
-            </div>
-
-            <a class="btn navbar-btn btn-default hidden-sm hidden-xs navbar-right" href="@Url.Action("ListingUpdate", "Listing", new { id = string.Empty })"><i class="mdi-content-add-circle-outline"></i> [[[Publish new listing]]]</a>
-        </nav>
-    </header>
-
-
     <div class="wrapper row-offcanvas row-offcanvas-left">
 
         <aside class="left-section sidebar-offcanvas @(Convert.ToBoolean(ViewBag.SideCollapse) ? "collapse-left" : "")">
+            <header class="header hidden-xs">
+                <a href="@Url.Action("Index", "Home")" class="logo">
+                    <img src="@ImageHelper.GetCommunityImagePath("logo", "png")" alt="@settings.Name">
+                </a>
+            </header>
+
             @Html.Action("NavigationSide", "Home")
         </aside>
 
         <aside class="right-section">
+            <header class="header">
+                <nav class="navbar navbar-static-top user-nav" role="navigation">
+                    <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+
+                    <a href="@Url.Action("Index", "Home")" class="visible-xs navbar-brand">
+                        <img src="@ImageHelper.GetCommunityImagePath("favicon", "jpg")" alt="@settings.Name" class="m-r-5"><span class="small">@settings.Name</span>
+                    </a>
+
+                    <form method="get" action="@Url.Action("Search", "Home")" class="navbar-form navbar-left hidden-xs hidden-sm">
+                        <input type="text" class="form-control trans input-lg" name="SearchText" id="SearchText" placeholder="[[[Search for...]]]">
+                        <button type="submit" class="btn trans btn-lg ">
+                            <i class="mdi-action-search"></i>
+                        </button>
+                    </form>
+
+                    @Html.Action("LanguageSelector", "Home")
+
+                    <div class="navbar-right">
+                        @Html.Partial("_LoginPartial")
+                    </div>
+
+                    <a class="btn navbar-btn btn-default hidden-sm hidden-xs navbar-right" href="@Url.Action("ListingUpdate", "Listing", new { id = string.Empty })"><i class="mdi-content-add-circle-outline"></i> [[[Publish new listing]]]</a>
+                </nav>
+            </header>
 
             <section class="content">
                 @RenderBody()
