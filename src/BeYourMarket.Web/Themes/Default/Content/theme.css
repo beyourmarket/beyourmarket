@@ -581,6 +581,10 @@ body .section {
   width: 230px;
   top: 0;
   height: 100%;
+  -moz-transition: margin-left 0.2s;
+  -o-transition: margin-left 0.2s;
+  -webkit-transition: margin-left 0.2s;
+  transition: margin-left 0.2s;
 }
 .right-section > .content-header {
   position: relative;
