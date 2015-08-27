@@ -365,6 +365,7 @@
     <Content Include="js\star-rating\star-rating.js" />
     <Content Include="js\sweet-alert\sweetalert.css" />
     <Content Include="js\sweet-alert\sweetalert.min.js" />
+    <Content Include="Manifest.xml" />
     <Content Include="Plugins\.gitignore" />
     <Content Include="PostBuild\i18n.Domain.pdb" />
     <Content Include="PostBuild\i18n.pdb" />
@@ -401,6 +402,7 @@
     <Content Include="Views\Shared\_LocalizationFileInput.cshtml" />
     <Content Include="Views\Listing\Review.cshtml" />
     <Content Include="Views\Listing\_ListingReview.cshtml" />
+    <Content Include="connectionstrings.release.config" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
