@@ -35,6 +35,22 @@ namespace BeYourMarket.Model.Models
                 return Price.HasValue && Active && Enabled && ListingType != null && ListingType.OrderTypeID != (int)Enum_ListingOrderType.None;
             }
         }
+
+        public double Rating
+        {
+            get
+            {
+                return ListingReviews.Any() ? ListingReviews.Average(x => x.Rating) : 0;
+            }
+        }
+
+        public string RatingClass
+        {
+            get
+            {
+                return "s" + Math.Round(Rating * 2);
+            }
+        }
     }
 
     public class ListingMetaData
