@@ -15,5 +15,7 @@ namespace BeYourMarket.Service.Models
         public string Subject { get; set; }
 
         public string Body { get; set; }
+
+        public int? ListingID { get; set; }
     }
 }

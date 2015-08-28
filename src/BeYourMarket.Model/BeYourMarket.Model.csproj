@@ -64,6 +64,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelsPartial\ContentPage.cs" />
     <Compile Include="ModelsPartial\AspNetUser.cs" />
+    <Compile Include="ModelsPartial\ListingReview.cs" />
     <Compile Include="ModelsPartial\Order.cs" />
     <Compile Include="ModelsPartial\Listing.cs" />
     <Compile Include="Models\AspNetRole.cs" />

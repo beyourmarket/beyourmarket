@@ -688,7 +688,8 @@ namespace BeYourMarket.Web.Controllers
                 UserFrom = userIdCurrent,
                 UserTo = listing.UserID,
                 Subject = listing.Title,
-                Body = model.Message
+                Body = model.Message,
+                ListingID = listing.ID
             };
 
             await MessageHelper.SendMessage(message);
@@ -782,7 +783,7 @@ namespace BeYourMarket.Web.Controllers
             var review = new ListingReview()
             {
                 UserFrom = currentUserId,
-                UserTo = userTo,                
+                UserTo = userTo,
                 OrderID = listingReview.OrderID,
                 Description = listingReview.Description,
                 Rating = listingReview.Rating,
@@ -808,6 +809,18 @@ namespace BeYourMarket.Web.Controllers
             var user = await UserManager.FindByIdAsync(userTo);
             user.Rating = rating;
             await UserManager.UpdateAsync(user);
+
+            // Notify the user with the rating and comment
+            var message = new MessageSendModel()
+            {
+                UserFrom = review.UserFrom,
+                UserTo = review.UserTo,
+                Subject = review.Title,
+                Body = string.Format("{0} <span class=\"score s{1} text-xs\"></span>", review.Description, review.RatingClass),
+                ListingID = order.ListingID
+            };
+
+            await MessageHelper.SendMessage(message);
 
             TempData[TempDataKeys.UserMessage] = "[[[Thanks for your feedback!]]]";
             return RedirectToAction("Orders", "Payment");

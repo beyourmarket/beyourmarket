@@ -51,6 +51,14 @@ namespace BeYourMarket.Model.Models
                 return "s" + Math.Round(Rating * 2);
             }
         }
+
+        public int DefaultPictureID
+        {
+            get
+            {
+                return ListingPictures.Count == 0 ? 0 : ListingPictures.OrderBy(x => x.Ordering).FirstOrDefault().PictureID;
+            }
+        }
     }
 
     public class ListingMetaData

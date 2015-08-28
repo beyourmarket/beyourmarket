@@ -81,11 +81,11 @@
                                                             <p class="truncate text-sm">
                                                                 @if (unRead)
                                                                 {
-                                                                    <i class="fa fa-circle text-primary m-r-5 text-xs"></i><b>@message.Body</b>
+                                                                    <i class="fa fa-circle text-primary m-r-5 text-xs"></i><b>@Html.Raw(message.Body)</b>
                                                                 }
                                                                 else
                                                                 {
-                                                                    @message.Body
+                                                                    @Html.Raw(message.Body)
                                                                 }
                                                             </p>
                                                         </a>
@@ -93,7 +93,7 @@
 
                                                     <td width="200">
                                                         <a href="@Url.Action("Message", "Manage", new { threadId = message.MessageThreadID })">
-                                                            <p class="truncate text-xs">@message.MessageThread.Subject</p>
+                                                            <p class="truncate text-xs">@Html.Raw(message.MessageThread.Subject)</p>
                                                         </a>
                                                     </td>
 

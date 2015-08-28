@@ -88,14 +88,29 @@ namespace BeYourMarket.Service
         {
             var unitOfWork = ContainerManager.GetConfiguredContainer().Resolve<IUnitOfWorkAsync>();
 
-            var messageThreadQuery = await MessageThreadService
-                .Query(x =>
-                    x.Subject.Equals(messageModel.Subject, StringComparison.InvariantCultureIgnoreCase) &&
-                    x.MessageParticipants.Any(y => y.UserID == messageModel.UserFrom) &&
-                    x.MessageParticipants.Any(y => y.UserID == messageModel.UserTo))
-                .SelectAsync();
+            MessageThread messageThread;
 
-            var messageThread = messageThreadQuery.FirstOrDefault();
+            // Use message subject to find the message thread if no listing id is provided
+            if (!messageModel.ListingID.HasValue)
+            {
+                var messageThreadQuery = await MessageThreadService
+                    .Query(x =>
+                        x.Subject.Equals(messageModel.Subject, StringComparison.InvariantCultureIgnoreCase) &&
+                        x.MessageParticipants.Any(y => y.UserID == messageModel.UserFrom) &&
+                        x.MessageParticipants.Any(y => y.UserID == messageModel.UserTo))
+                    .SelectAsync();
+
+                messageThread = messageThreadQuery.FirstOrDefault();
+            }
+            else
+            {
+                // Otherwise, use listing ID
+                var messageThreadQuery = await MessageThreadService
+                    .Query(x => x.ListingID == messageModel.ListingID)
+                    .SelectAsync();
+
+                messageThread = messageThreadQuery.FirstOrDefault();
+            }
 
             // Create message thread if there is not one yet.
             if (messageThread == null)
@@ -103,6 +118,7 @@ namespace BeYourMarket.Service
                 messageThread = new MessageThread()
                 {
                     Subject = messageModel.Subject,
+                    ListingID = messageModel.ListingID,
                     Created = DateTime.Now,
                     LastUpdated = DateTime.Now,
                     ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added

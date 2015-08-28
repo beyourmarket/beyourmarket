@@ -457,6 +457,9 @@ namespace BeYourMarket.Web.Controllers
                 .Include(x => x.Messages.Select(y => y.MessageReadStates))
                 .Include(x => x.MessageParticipants)
                 .Include(x => x.MessageParticipants.Select(y => y.AspNetUser))
+                .Include(x => x.Listing)
+                .Include(x => x.Listing.ListingPictures)
+                .Include(x => x.Listing.ListingType)
                 .SelectAsync();
 
             var model = messageThread.FirstOrDefault();

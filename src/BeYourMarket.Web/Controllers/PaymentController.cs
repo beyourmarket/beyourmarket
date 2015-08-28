@@ -178,23 +178,27 @@ namespace BeYourMarket.Web.Controllers
             };
 
             if (orderResult)
-            {
+            {                                
                 // Send message to the user
                 var messageSend = new MessageSendModel()
                 {
                     UserFrom = currentUserId,
                     UserTo = order.UserProvider == currentUserId ? order.UserReceiver : order.UserProvider,
+                    ListingID = order.ListingID,
                     Subject = order.Listing.Title,
-                    Body = string.Format(
-                    "[[[Order %0 - %1 - Total Price %2 %3|||{0}|||{1}|||{2}|||{3}]]]",
+                    Body = HttpContext.ParseAndTranslate(string.Format(
+                    "[[[Order %0 - %1 - Total Price %2 %3. <a href=\"%4\">See Details</a>|||{0}|||{1}|||{2}|||{3}|||{4}]]]",
                     HttpContext.ParseAndTranslate(orderStatusText),
                     HttpContext.ParseAndTranslate(order.Description),
                     order.Price,
-                    order.Currency)
+                    order.Currency,
+                    Url.Action("Orders")))
                 };
 
                 await MessageHelper.SendMessage(messageSend);
             }
+
+            TempData[TempDataKeys.UserMessage] = string.Format("[[[The order is %0.|||{0}]]]", orderStatus);
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
@@ -308,9 +312,12 @@ namespace BeYourMarket.Web.Controllers
 
                 if (order.ToDate.HasValue && order.FromDate.HasValue)
                 {
-                    order.Description = string.Format("{0} #{1} ([[[From]]] {2} [[[To]]] {3})",
-                        listing.Title, listing.ID,
-                        order.FromDate.Value.ToShortDateString(), order.ToDate.Value.ToShortDateString());
+                    order.Description = HttpContext.ParseAndTranslate(
+                        string.Format("{0} #{1} ([[[From]]] {2} [[[To]]] {3})",
+                        listing.Title, 
+                        listing.ID,
+                        order.FromDate.Value.ToShortDateString(), 
+                        order.ToDate.Value.ToShortDateString()));
 
                     order.Quantity = order.ToDate.Value.Date.AddDays(1).Subtract(order.FromDate.Value.Date).Days;
                     order.Price = order.Quantity * listing.Price;

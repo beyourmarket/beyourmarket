@@ -12,6 +12,7 @@ namespace BeYourMarket.Model.Models
             this.ListingReviews = new List<ListingReview>();
             this.ListingStats = new List<ListingStat>();
             this.Orders = new List<Order>();
+            this.MessageThreads = new List<MessageThread>();
         }
 
         public int ID { get; set; }
@@ -45,5 +46,6 @@ namespace BeYourMarket.Model.Models
         public virtual ListingType ListingType { get; set; }
         public virtual ICollection<ListingStat> ListingStats { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<MessageThread> MessageThreads { get; set; }
     }
 }

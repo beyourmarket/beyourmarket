@@ -20,7 +20,7 @@
             <h5 class="card-title">@Model.ListingCurrent.Title</h5>
 
             <p class="truncate">
-                @Model.ListingCurrent.Description
+                @Html.Raw(Model.ListingCurrent.Description)
             </p>
             <p>
                 <span class="score @Model.ListingCurrent.RatingClass text-sm"></span> @Model.ListingCurrent.ListingReviews.Count [[[Reviews]]]

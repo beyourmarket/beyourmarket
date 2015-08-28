@@ -20,6 +20,7 @@ using Plugin.Payment.Services;
 using Plugin.Payment.Stripe.Data;
 using Microsoft.Practices.Unity;
 using BeYourMarket.Service.Models;
+using i18n;
 
 namespace Plugin.Payment.Stripe.Controllers
 {
@@ -138,11 +139,12 @@ namespace Plugin.Payment.Stripe.Controllers
                     UserFrom = order.UserReceiver,
                     UserTo = order.UserProvider,
                     Subject = order.Listing.Title,
-                    Body = string.Format(
+                    ListingID = order.ListingID,
+                    Body = HttpContext.ParseAndTranslate(string.Format(
                     "[[[Order Requested - %0 - Total Price %1 %2|||{0}|||{1}|||{2}]]]",
-                    order.Description.Replace("[[[", "(((").Replace("]]]", ")))"),
+                    order.Description,
                     order.Price,
-                    order.Currency)
+                    order.Currency))
                 };
 
                 await MessageHelper.SendMessage(message);

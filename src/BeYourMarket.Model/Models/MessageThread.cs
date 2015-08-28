@@ -13,8 +13,10 @@ namespace BeYourMarket.Model.Models
 
         public int ID { get; set; }
         public string Subject { get; set; }
+        public Nullable<int> ListingID { get; set; }
         public System.DateTime Created { get; set; }
         public System.DateTime LastUpdated { get; set; }
+        public virtual Listing Listing { get; set; }
         public virtual ICollection<Message> Messages { get; set; }
         public virtual ICollection<MessageParticipant> MessageParticipants { get; set; }
     }

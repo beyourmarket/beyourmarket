@@ -12,6 +12,7 @@ using BeYourMarket.Web.Models;
 using BeYourMarket.Web.Utilities;
 using BeYourMarket.Service;
 using BeYourMarket.Service.Models;
+using i18n;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -237,8 +238,8 @@ namespace BeYourMarket.Web.Controllers
                 {
                     UserFrom = administrator.UserId,
                     UserTo = user.Id,
-                    Subject = "[[[Welcome to BeYourMarket!]]]",
-                    Body = "[[[BeYourMarket is an opensource peer-to-peer marketplace. Bootstrap your marketplace in 5 minutes!]]]"
+                    Subject = HttpContext.ParseAndTranslate(string.Format("[[[Welcome to {0}!]]]", CacheHelper.Settings.Name)),
+                    Body = HttpContext.ParseAndTranslate(string.Format("[[[Hi, Welcome to {0}! I am happy to assist you if you has any questions.]]]", CacheHelper.Settings.Name))
 
                 };
 

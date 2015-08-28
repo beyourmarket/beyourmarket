@@ -34,7 +34,7 @@
                                     <div class="pull-left"><img src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(message.AspNetUser.Id)" class="img-circle thumb-sm m-r-15 m-b-10" alt="img"></div>
                                     <span class="block">
                                         <strong>@message.AspNetUser.FullName</strong><br>
-                                        @message.Body<br><small class="text-muted">@message.Created.ToShortTimeString()</small>
+                                        @Html.Raw(message.Body)<br><small class="text-muted">@message.Created.ToShortTimeString()</small>
                                     </span>                                    
                                 </a>
                             </li>

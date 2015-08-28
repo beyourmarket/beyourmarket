@@ -24,6 +24,8 @@
 
                         <!-- Message -->
                         <div class="panel panel-default m-t-20">
+
+                            <!-- Header -->
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-users"></i> @string.Join(", ", Model.MessageParticipants.Select(x => x.AspNetUser.FullName).ToArray())</h3>
                             </div>
@@ -31,7 +33,39 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-comments-o"></i> @Model.Subject</h3>
                             </div>
+                            <!-- Header -->
+                            <!-- Listing -->
+                            @if (Model.ListingID.HasValue)
+                            {
+                                <div class="panel-body p-t-10 p-b-10">
+                                    <div class="col-md-2">
+                                        <a href="@Url.Action("Listing", "Listing", new { id = Model.ListingID })">
+                                            <img class="thumb-lg img-circle" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(Model.Listing.DefaultPictureID)" />
+                                        </a>
+                                    </div>
 
+                                    <div class="col-md-10">
+                                        <a href="@Url.Action("Listing", "Listing", new { id = Model.ListingID })">
+                                            <h3>
+                                                @Model.Listing.Title
+                                                <span class="score @Model.Listing.RatingClass text-md"></span>
+                                            </h3>
+                                        </a>
+
+                                        @if (Model.Listing.Price.HasValue)
+                                        {
+                                            <h4>
+                                                @Html.DisplayFor(x => x.Listing.PriceFormatted) @Model.Listing.ListingType.PriceUnitLabel
+                                            </h4>
+                                        }
+                                        <p class="lead text-lighten">
+                                            @Model.Listing.Location
+                                        </p>
+
+                                    </div>
+                                </div>
+                            }
+                            <!-- Listing -->
                             <!-- Reply -->
                             <div class="panel-body p-t-10 p-b-10">
                                 <div class="media">
