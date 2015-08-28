@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enum\EnumList.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelsPartial\ContentPage.cs" />
     <Compile Include="ModelsPartial\AspNetUser.cs" />
     <Compile Include="ModelsPartial\Order.cs" />
@@ -137,6 +138,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BeYourMarket.Core\BeYourMarket.Core.csproj">
+      <Project>{b5899d9b-49ed-4034-a52d-fc9d188c4873}</Project>
+      <Name>BeYourMarket.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Frameworks\Repository.Pattern.Ef6\Repository.Pattern.Ef6.csproj">
       <Project>{f68a1d19-93fb-47c1-a22b-42bea3e4fd8c}</Project>
       <Name>Repository.Pattern.Ef6</Name>

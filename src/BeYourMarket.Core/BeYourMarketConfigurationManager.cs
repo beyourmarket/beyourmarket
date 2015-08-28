@@ -33,5 +33,23 @@ namespace BeYourMarket.Core
                 return ConfigurationManager.AppSettings["TwilioToken"].ToString();
             }
         }
+
+        public static bool AutomaticMigrationDataLossAllowed
+        {
+            get
+            {
+                return string.IsNullOrEmpty(ConfigurationManager.AppSettings["AutomaticMigrationDataLossAllowed"]) ? 
+                    false : Convert.ToBoolean(ConfigurationManager.AppSettings["AutomaticMigrationDataLossAllowed"]);
+            }
+        }
+
+        public static bool MigrateDatabaseToLatestVersion
+        {
+            get
+            {
+                return string.IsNullOrEmpty(ConfigurationManager.AppSettings["MigrateDatabaseToLatestVersion"]) ?
+                    false : Convert.ToBoolean(ConfigurationManager.AppSettings["MigrateDatabaseToLatestVersion"]);
+            }
+        }
     }
 }

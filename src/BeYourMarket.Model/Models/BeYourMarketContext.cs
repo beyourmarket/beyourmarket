@@ -1,6 +1,8 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using BeYourMarket.Model.Models.Mapping;
+using BeYourMarket.Core.Migrations;
+using BeYourMarket.Core;
 
 namespace BeYourMarket.Model.Models
 {
@@ -8,7 +10,13 @@ namespace BeYourMarket.Model.Models
     {
         static BeYourMarketContext()
         {
-            Database.SetInitializer<BeYourMarketContext>(null);
+            // Check if migrate database to latest version automatically (using automatic migration)
+            // AutomaticMigrationDataLossAllowed is disabled by default (can be configred in web.config)
+            // reference: http://stackoverflow.com/questions/10646111/entity-framework-migrations-enable-automigrations-along-with-added-migration
+            if (BeYourMarketConfigurationManager.MigrateDatabaseToLatestVersion)
+                Database.SetInitializer(new MigrateDatabaseToLatestVersion<BeYourMarketContext, ConfigurationInstall<BeYourMarket.Model.Models.BeYourMarketContext>>());
+            else
+                Database.SetInitializer<BeYourMarketContext>(null);
         }
 
         public BeYourMarketContext()
@@ -46,7 +54,7 @@ namespace BeYourMarket.Model.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-			modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.OneToManyCascadeDeleteConvention>();
             modelBuilder.Configurations.Add(new AspNetRoleMap());
             modelBuilder.Configurations.Add(new AspNetUserClaimMap());
             modelBuilder.Configurations.Add(new AspNetUserLoginMap());

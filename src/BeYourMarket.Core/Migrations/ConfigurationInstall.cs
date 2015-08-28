@@ -11,6 +11,8 @@ namespace BeYourMarket.Core.Migrations
         public ConfigurationInstall()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = BeYourMarketConfigurationManager.AutomaticMigrationDataLossAllowed;
+            ContextKey = "BeYourMarket.Model.Models.BeYourMarketContext";
 
             TargetDatabase = new System.Data.Entity.Infrastructure.DbConnectionInfo("DefaultConnection");            
         }
