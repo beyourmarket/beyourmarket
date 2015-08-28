@@ -200,14 +200,16 @@
 }
 
 .score {
-  display: inline-block;  
-  font-size: 25px;
+  vertical-align: middle;
+  font-size: 2em;
+  font-family: 'FontAwesome';
+  display:inline-block;
   color: #ccc;
   position: relative;
 }
 .score::before,
 .score::after {
-  content: "\2605\2605\2605\2605\2605";
+  content: "\f005 \f005 \f005 \f005 \f005";
   display: block;
 }
 .score::after {
