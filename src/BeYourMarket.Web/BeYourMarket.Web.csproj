@@ -773,9 +773,6 @@
     <Content Include="js\codemirror\codemirror.css" />
     <Content Include="js\codemirror\codemirror.js" />
     <Content Include="js\codemirror\custom.codemirror.js" />
-    <Content Include="js\codemirror\formatting.js" />
-    <Content Include="js\codemirror\javascript.js" />
-    <Content Include="js\codemirror\xml.js" />
     <Content Include="js\colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="js\colorpicker\css\bootstrap-colorpicker.min.css" />
     <Content Include="js\colorpicker\img\bootstrap-colorpicker\alpha-horizontal.png" />

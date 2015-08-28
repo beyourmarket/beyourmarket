@@ -3,6 +3,7 @@
 @section Styles {
     <link href="~/js/codemirror/codemirror.css" rel="stylesheet" />
     <link href="~/js/codemirror/ambiance.css" rel="stylesheet" />
+    <link href="~/js/codemirror/ambiance-mobile.css" rel="stylesheet" />
 }
 
 @{
@@ -31,7 +32,7 @@
                 <div class="form-group">
                     <div class="col-lg-12">
                         <button id="submitBtn" class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Save]]]</button>
-                        <button class="btn btn-default" type="button"><i class="fa fa-remove"></i> [[[Cancel]]]</button>
+                        <a href="@Url.Action("CodeStyle", "Design")" class="btn btn-default"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
                     </div>
                 </div>
             </div>
