@@ -421,10 +421,15 @@
             <script type="text/javascript">
                 function initialize() {
                     var myLatlng = new google.maps.LatLng(@Model.ListingCurrent.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture), @Model.ListingCurrent.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                    var isDraggable = $(document).width() > 480 ? true : false; // If document (your website) is wider than 480px, isDraggable = true, else isDraggable = false
+
                     var mapOptions = {
+                        draggable: isDraggable,
+                        scrollwheel: false, // Prevent users to start zooming the map when scrolling down the page
                         zoom: 14,
                         center: myLatlng
-                    }
+                    };
+
                     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
                     var marker = new google.maps.Marker({

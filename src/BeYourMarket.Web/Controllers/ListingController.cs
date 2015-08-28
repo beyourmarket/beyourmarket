@@ -576,6 +576,7 @@ namespace BeYourMarket.Web.Controllers
                 _dataCacheService.RemoveCachedItem(CacheKeys.Statistics);
             }
 
+            TempData[TempDataKeys.UserMessage] = "[[[Listing is updated!]]]";
             return RedirectToAction("Listing", new { id = listing.ID });
         }
 

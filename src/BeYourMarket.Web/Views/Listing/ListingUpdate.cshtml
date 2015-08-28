@@ -206,10 +206,14 @@
         //https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
         //https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
         function initialize() {
+            var isDraggable = $(document).width() > 480 ? true : false; // If document (your website) is wider than 480px, isDraggable = true, else isDraggable = false
+
             var mapOptions = {
+                draggable: isDraggable,
+                scrollwheel: false, // Prevent users to start zooming the map when scrolling down the page
+                zoom: 14,
                 center: new google.maps.LatLng(-33.8688, 151.2195),
-                zoom: 14
-            };
+            };            
 
             @{ var hasLatLng = @Model.ListingItem.Latitude.HasValue && @Model.ListingItem.Longitude.HasValue; }
             var hasLatLng = @hasLatLng.ToString().ToLowerInvariant();
