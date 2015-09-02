@@ -141,10 +141,11 @@ namespace Plugin.Payment.Stripe.Controllers
                     Subject = order.Listing.Title,
                     ListingID = order.ListingID,
                     Body = HttpContext.ParseAndTranslate(string.Format(
-                    "[[[Order Requested - %0 - Total Price %1 %2|||{0}|||{1}|||{2}]]]",
+                    "[[[Order Requested - %0 - Total Price %1 %2. <a href=\"%3\">See Details</a>|||{0}|||{1}|||{2}|||{3}]]]",
                     order.Description,
                     order.Price,
-                    order.Currency))
+                    order.Currency,
+                    Url.Action("Orders", "Payment")))
                 };
 
                 await MessageHelper.SendMessage(message);

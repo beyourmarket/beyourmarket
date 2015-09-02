@@ -402,7 +402,12 @@
     <Content Include="Views\Shared\_LocalizationFileInput.cshtml" />
     <Content Include="Views\Listing\Review.cshtml" />
     <Content Include="Views\Listing\_ListingReview.cshtml" />
-    <Content Include="connectionstrings.release.config" />
+    <None Include="connectionstrings.release.config">
+      <DependentUpon>connectionstrings.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1108,7 +1113,7 @@
     <Content Include="js\ripples\css\ripples.min.css.map" />
     <Content Include="js\ripples\js\ripples.min.js.map" />
     <Content Include="connectionstrings.config">
-      <SubType>Designer</SubType>
+      <TransformOnBuild>true</TransformOnBuild>
     </Content>
     <Content Include="Scripts\gridmvc.customwidgets.js" />
     <Content Include="Scripts\gridmvc.js" />
@@ -1385,6 +1390,12 @@
   <PropertyGroup>
     <PluginsBinDirectory>$(ProjectDir)\Plugins\Bin\</PluginsBinDirectory>
   </PropertyGroup>
+  <PropertyGroup Label="SlowCheetah">
+    <SlowCheetahToolsPath>$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\..\packages\SlowCheetah.2.5.15\tools\))</SlowCheetahToolsPath>
+    <SlowCheetah_EnableImportFromNuGet Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='' ">true</SlowCheetah_EnableImportFromNuGet>
+    <SlowCheetah_NuGetImportPath Condition=" '$(SlowCheetah_NuGetImportPath)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\Properties\SlowCheetah\SlowCheetah.Transforms.targets ))</SlowCheetah_NuGetImportPath>
+    <SlowCheetahTargets Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='true' and Exists('$(SlowCheetah_NuGetImportPath)') ">$(SlowCheetah_NuGetImportPath)</SlowCheetahTargets>
+  </PropertyGroup>
   <Target Name="CreatePluginsBinDirectory">
     <MakeDir Directories="$(PluginsBinDirectory)" />
   </Target>
@@ -1392,4 +1403,5 @@
     <CallTarget Targets="ExcludeRootBinariesDeployment" />
     <CallTarget Targets="CreatePluginsBinDirectory" />
   </Target>
+  <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" Label="SlowCheetah" />
 </Project>
