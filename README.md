@@ -43,6 +43,8 @@ password: Password
 - Facebook authentication integration
 - Support Cash on Delivery
 
+## Release ##
+
 #### v. 1.3beta - Support Ratings/Comments/Mail Inbox  (September/October 2015)
 - Introducing Ratings/Comments system
 - Integrated Mail Inbox
@@ -50,8 +52,6 @@ password: Password
 #### v. 1.2beta - Support Custom Theme  (August/September 2015)
 - Develop your own theme
 - Support Custom Listing Types (Offer, Rent, Request)
-
-## Release ##
 
 #### v. 1.1beta - Support Plugin architecture development (July/August 2015)
 - Create plugin for your own widget (e.g. add google analytics tracking)
