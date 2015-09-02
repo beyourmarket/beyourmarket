@@ -44,12 +44,15 @@ namespace BeYourMarket.Model.Models.Mapping
             this.HasRequired(t => t.AspNetUserFrom)
                 .WithMany(t => t.ListingReviewsUserFrom)
                 .HasForeignKey(d => d.UserFrom);
+
             this.HasRequired(t => t.AspNetUserTo)
                 .WithMany(t => t.ListingReviewsUserTo)
                 .HasForeignKey(d => d.UserTo);
-            this.HasRequired(t => t.Listing)
+
+            this.HasOptional(t => t.Listing)
                 .WithMany(t => t.ListingReviews)
                 .HasForeignKey(d => d.ListingID);
+
             this.HasRequired(t => t.Order)
                 .WithMany(t => t.ListingReviews)
                 .HasForeignKey(d => d.OrderID);
