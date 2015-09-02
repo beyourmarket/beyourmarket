@@ -134,7 +134,7 @@
 </div>
 
 @section Scripts {
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap" async defer></script>
     @Scripts.Render("~/bundles/jqueryval")
 
     <script src="~/Scripts/fileinput.min.js"></script>
@@ -205,7 +205,7 @@
     <script>
         //https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
         //https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
-        function initialize() {
+        function initMap() {
             var isDraggable = $(document).width() > 480 ? true : false; // If document (your website) is wider than 480px, isDraggable = true, else isDraggable = false
 
             var mapOptions = {
@@ -368,9 +368,7 @@
 
             var infowindow = new google.maps.InfoWindow(options);
             map.setCenter(options.position);
-        }
-
-        google.maps.event.addDomListener(window, 'load', initialize);
+        }        
     </script>
 
 }
