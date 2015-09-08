@@ -20,7 +20,7 @@ namespace BeYourMarket.Model.Models.Mapping
                 .HasMaxLength(20);
 
             this.Property(t => t.PriceUnitLabel)
-                .HasMaxLength(10);
+                .HasMaxLength(20);
 
             this.Property(t => t.OrderTypeLabel)
                 .HasMaxLength(20);
