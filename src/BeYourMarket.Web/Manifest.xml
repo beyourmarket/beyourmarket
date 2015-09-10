@@ -1,3 +1,4 @@
 ﻿<MSDeploy.iisApp>
   <iisApp path="BeYourMarket" />
+  <setacl path="BeYourMarket" setAclAccess="Modify" />
 </MSDeploy.iisApp>

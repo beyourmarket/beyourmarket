@@ -366,6 +366,7 @@
     <Content Include="js\sweet-alert\sweetalert.css" />
     <Content Include="js\sweet-alert\sweetalert.min.js" />
     <Content Include="Manifest.xml" />
+    <Content Include="Parameters.xml" />
     <Content Include="Plugins\.gitignore" />
     <Content Include="PostBuild\i18n.Domain.pdb" />
     <Content Include="PostBuild\i18n.pdb" />

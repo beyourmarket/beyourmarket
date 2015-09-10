@@ -1,0 +1,23 @@
+﻿<parameters>
+  <parameter name="AppPath" 
+             defaultValue="Default Web Site/BeYourMarket" 
+             tags="iisapp">
+    
+    <parameterEntry type="ProviderPath" 
+                    scope="iisapp" 
+                    match="BeYourMarket" />
+  </parameter>
+
+  <!-- This is the parameter that is used to set ACLs, it's set to the application path filled in by the user -->
+  <parameter
+    name="SetAclParameter1"
+    defaultValue="{AppPath}"
+    tags="Hidden">
+    
+    <parameterEntry
+      type="ProviderPath" scope="setAcl"
+      match="BeYourMarket" />
+    
+  </parameter>
+  
+</parameters>
