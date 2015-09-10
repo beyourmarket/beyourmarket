@@ -5,13 +5,13 @@ $(function () {
         var e = $(window).height() - $("body > .header").height() - ($("body > footer").outerHeight() || 0);
         $(".wrapper").css("min-height", e + "px");
         var t = $(".wrapper").height();
-        if (t > e) $(".left-section, html, body").css("min-height", t + "px");
+        if (t > e){
+            $(".left-section, html, body").css("min-height", t + "px");            
+        }
         else {
             $(".left-section, html, body").css("min-height", e + "px")
         }
     }
-
-
 
     $(document).ready(function () {        
         $("[data-toggle='offcanvas']").click(function (e) {

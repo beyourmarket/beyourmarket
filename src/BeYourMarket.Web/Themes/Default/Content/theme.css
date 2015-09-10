@@ -333,9 +333,9 @@ body {
   overflow-x: hidden !important;
   font-family: 'Questrial', sans-serif;
   -webkit-font-smoothing: antialiased;
-  min-height: 100%;
   background: #ffffff;
   color: #50505f;
+  position: relative;
 }
 p {
   font-weight: 500;
@@ -568,7 +568,7 @@ body .section {
 }
 .right-section,
 .left-section {
-  min-height: 100%;
+  height: 100%;
   display: block;
 }
 /*right section - contains main content*/
@@ -1732,10 +1732,6 @@ header .navbar-form {
   z-index: 3;
 }
 @media (min-width: 768px) {
-  .left-section,
-  .affix {
-    position: fixed;
-  }
   #sidebar.affix,
   #sidebar.affix-bottom {
     width: 280px;
