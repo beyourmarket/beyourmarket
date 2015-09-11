@@ -1,0 +1,69 @@
+{
+  "supplemental": {
+    "version": {
+      "_unicodeVersion": "7.0.0",
+      "_number": "$Revision: 8268 $"
+    },
+    "generation": {
+      "_date": "$Date: 2013-03-01 08:26:02 -0600 (Fri, 01 Mar 2013) $"
+    },
+    "gender": {
+      "personList": {
+        "af": "neutral",
+        "bn": "neutral",
+        "bg": "neutral",
+        "da": "neutral",
+        "de": "neutral",
+        "en": "neutral",
+        "et": "neutral",
+        "eu": "neutral",
+        "fa": "neutral",
+        "fil": "neutral",
+        "fi": "neutral",
+        "gu": "neutral",
+        "hu": "neutral",
+        "id": "neutral",
+        "ja": "neutral",
+        "kn": "neutral",
+        "ko": "neutral",
+        "ml": "neutral",
+        "ms": "neutral",
+        "no": "neutral",
+        "sv": "neutral",
+        "sw": "neutral",
+        "ta": "neutral",
+        "te": "neutral",
+        "th": "neutral",
+        "tr": "neutral",
+        "vi": "neutral",
+        "zu": "neutral",
+        "el": "mixedNeutral",
+        "is": "mixedNeutral",
+        "ar": "maleTaints",
+        "ca": "maleTaints",
+        "cs": "maleTaints",
+        "hr": "maleTaints",
+        "es": "maleTaints",
+        "fr": "maleTaints",
+        "he": "maleTaints",
+        "hi": "maleTaints",
+        "it": "maleTaints",
+        "lt": "maleTaints",
+        "lv": "maleTaints",
+        "mr": "maleTaints",
+        "nl": "maleTaints",
+        "pl": "maleTaints",
+        "pt": "maleTaints",
+        "ro": "maleTaints",
+        "ru": "maleTaints",
+        "sk": "maleTaints",
+        "sl": "maleTaints",
+        "sr": "maleTaints",
+        "uk": "maleTaints",
+        "ur": "maleTaints",
+        "zh": "maleTaints",
+        "zh-Hant": "maleTaints"
+      }
+    }
+  }
+}

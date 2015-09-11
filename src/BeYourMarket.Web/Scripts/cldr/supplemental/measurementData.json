@@ -1,0 +1,44 @@
+{
+  "supplemental": {
+    "version": {
+      "_unicodeVersion": "7.0.0",
+      "_number": "$Revision: 11318 $"
+    },
+    "generation": {
+      "_date": "$Date: 2015-02-25 23:47:56 -0600 (Wed, 25 Feb 2015) $"
+    },
+    "measurementData": {
+      "measurementSystem": {
+        "001": "metric",
+        "LR": "metric",
+        "MM": "metric",
+        "BS": "US",
+        "BZ": "US",
+        "KY": "US",
+        "PR": "US",
+        "PW": "US",
+        "LR": "US",
+        "MM": "US",
+        "US": "US",
+        "GB": "UK"
+      },
+      "paperSize": {
+        "001": "A4",
+        "BZ": "US-Letter",
+        "CA": "US-Letter",
+        "CL": "US-Letter",
+        "CO": "US-Letter",
+        "CR": "US-Letter",
+        "GT": "US-Letter",
+        "MX": "US-Letter",
+        "NI": "US-Letter",
+        "PA": "US-Letter",
+        "PH": "US-Letter",
+        "PR": "US-Letter",
+        "SV": "US-Letter",
+        "US": "US-Letter",
+        "VE": "US-Letter"
+      }
+    }
+  }
+}

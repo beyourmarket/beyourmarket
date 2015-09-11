@@ -258,6 +258,9 @@ namespace BeYourMarket.Web.Controllers
             return View();
         }
 
+        [HttpPost]
+        //http://stackoverflow.com/questions/29800361/generate-a-return-url-with-a-custom-authorizeattribute
+        //http://stackoverflow.com/questions/16305962/what-initially-sets-the-returnurl-parameter-when-using-authorizeattribute
         public async Task<ActionResult> Order(Order order)
         {
             var listing = await _listingService.FindAsync(order.ListingID);

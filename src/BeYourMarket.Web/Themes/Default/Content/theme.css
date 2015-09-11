@@ -756,6 +756,7 @@ body .header {
     -o-transition: margin-left 0.2s;
     -webkit-transition: margin-left 0.2s;
     transition: margin-left 0.2s;
+    min-height: 800px;
   }
   /*Right side stretch mode*/
   .left-section.collapse-left + .right-section {

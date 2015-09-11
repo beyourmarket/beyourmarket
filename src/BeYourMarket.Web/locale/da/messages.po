@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-09-08 11:36+02:00\n"
-"PO-Revision-Date: 2015-09-08 11:36+02:00\n"
+"POT-Creation-Date: 2015-09-11 03:43+02:00\n"
+"PO-Revision-Date: 2015-09-11 03:43+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -424,7 +424,7 @@ msgstr "Bekræft for at annullere ordren"
 msgid "Confirmed"
 msgstr ""
 
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:228
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:228
 msgid "Connnect to stripe successfully!"
 msgstr "Du er nu forbundet til Stripe"
 
@@ -690,7 +690,7 @@ msgstr "Design"
 msgid "Disable"
 msgstr "Deaktivér"
 
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:193
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:193
 msgid "Disconnnect to stripe successfully!"
 msgstr "Du er ikke længere forbundet til Stripe"
 
@@ -733,7 +733,7 @@ msgstr ""
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\EmailTemplates.cshtml:15
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Manage\Users.cshtml:40
 msgid "Edit"
-msgstr "Edit"
+msgstr "Redigér"
 
 #: Models\AccountViewModels.cs:45
 #: Models\AccountViewModels.cs:52
@@ -844,6 +844,11 @@ msgstr "Indtast email"
 msgid "Enter Email Address"
 msgstr "Indtast email-adresse"
 
+#: Views\Listing\ListingUpdate.cshtml:81
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:174
+msgid "Enter Location"
+msgstr ""
+
 #: Views\Listing\ListingUpdate.cshtml:101
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:101
 msgid "Enter Phone Number"
@@ -917,6 +922,10 @@ msgstr "Eksterne login"
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:162
 msgid "Failed"
 msgstr "Mislykkedes"
+
+#: Controllers\ManageController.cs:271
+msgid "Failed to verify phone"
+msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:84
 #: Views\Manage\Dashboard.cshtml:88
@@ -1088,6 +1097,14 @@ msgstr "Installeret"
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Install\Index.cshtml:112
 msgid "Installing..."
 msgstr "Installerer..."
+
+#: Controllers\AccountController.cs:173
+msgid "Invalid code."
+msgstr ""
+
+#: Controllers\AccountController.cs:130
+msgid "Invalid login attempt."
+msgstr ""
 
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:108
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingUpdate.cshtml:108
@@ -1469,7 +1486,7 @@ msgstr "Næste"
 #: App_Code\RazorHelper.cshtml:3
 #: obj\Release\Package\PackageTmp\App_Code\RazorHelper.cshtml:3
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #: Views\Payment\Orders.cshtml:172
 #: Areas\Admin\Views\Payment\Order.cshtml:148
@@ -1512,7 +1529,7 @@ msgstr ""
 msgid "Order ID"
 msgstr "Ordre ID"
 
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:144
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:144
 msgid "Order Requested - %0 - Total Price %1 %2. <a href=\\"%3\\">See Details</a>"
 msgstr ""
 
@@ -1573,9 +1590,9 @@ msgstr "Side {0} af {1}"
 msgid "Pages"
 msgstr "Sider"
 
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:21
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:21
 #: obj\Release\Package\PackageTmp\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
 msgid "Paid"
 msgstr "Betalt"
@@ -1647,9 +1664,9 @@ msgstr "Udbetalingsoplysninger"
 
 #: Controllers\PaymentController.cs:161
 #: Views\Payment\Orders.cshtml:45
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:25
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:25
 #: Areas\Admin\Views\Payment\Order.cshtml:40
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:45
 #: obj\Release\Package\PackageTmp\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
@@ -1703,8 +1720,8 @@ msgstr "Klik her for at logge ind"
 msgid "Please Rate"
 msgstr ""
 
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:383
-#: C:\github\bym\main\src\Plugins\Plugin.Widget.GoogleAnalytics\Controllers\GoogleAnalyticsController.cs:65
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:383
+#: C:\Github\bym\dev\src\Plugins\Plugin.Widget.GoogleAnalytics\Controllers\GoogleAnalyticsController.cs:65
 msgid "Plugin updated!"
 msgstr "Plugin opdateret"
 
@@ -2188,7 +2205,7 @@ msgstr "Tak fordi du bekræftede din email."
 msgid "Thanks for your feedback!"
 msgstr ""
 
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:153
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:153
 #, fuzzy
 msgid "Thanks for your order! You payment will not be charged until the provider accepted your request."
 msgstr "Tak for din ordre. Din betaling vil ikke blive trukket, før annoncøren har accepteret ordren."
@@ -2255,15 +2272,15 @@ msgstr "Tema"
 
 #: Views\Listing\_ListingGridList.cshtml:28
 #: Views\Payment\Orders.cshtml:102
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
 #: Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:40
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:63
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\TransactionOverview.cshtml:31
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:40
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:63
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\TransactionOverview.cshtml:31
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:36
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:54
 #: Areas\Admin\Views\Listing\Listings.cshtml:52
@@ -2284,7 +2301,7 @@ msgstr "Tema"
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:84
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Plugin\Plugins.cshtml:75
 msgid "There are no items to display."
-msgstr ""
+msgstr "Der er ingen emner at vise."
 
 #: Views\Shared\_LoginPartial.cshtml:46
 #: obj\Release\Package\PackageTmp\Views\Shared\_LoginPartial.cshtml:46
@@ -2300,7 +2317,7 @@ msgstr "Der er ikke oprettet nogen kategorier endnu."
 
 #: Controllers\ListingController.cs:432
 msgid "There are not listing types available yet."
-msgstr ""
+msgstr "Der er ingen annoncetyper tilgængelige endnu."
 
 #: Views\Listing\_ListingReview.cshtml:35
 #: obj\Release\Package\PackageTmp\Views\Listing\_ListingReview.cshtml:35
@@ -2364,7 +2381,7 @@ msgstr "For at færdiggøre installationen skal du bruge information om din data
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:68
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:68
 msgid "To configure payment method for payout, please configure the Payment plugin"
-msgstr ""
+msgstr "For at opsætte betaling skal du konfigurere et betalingsplugin."
 
 #: Views\Payment\Payment.cshtml:49
 #: obj\Release\Package\PackageTmp\Views\Payment\Payment.cshtml:49
@@ -2376,7 +2393,7 @@ msgstr "Til dato"
 msgid "Transaction fee (%)"
 msgstr "Transaktionsgebyr (%)"
 
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:263
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:263
 msgid "Transaction not found"
 msgstr ""
 
@@ -2474,7 +2491,7 @@ msgstr "Opdatér bruger"
 #: Views\Manage\UserProfile.cshtml:36
 #: obj\Release\Package\PackageTmp\Views\Manage\UserProfile.cshtml:36
 msgid "UserName"
-msgstr ""
+msgstr "Brugernavn"
 
 #: Areas\Admin\Views\Manage\Dashboard.cshtml:47
 #: Areas\Admin\Views\Manage\Users.cshtml:7
@@ -2541,7 +2558,7 @@ msgstr ""
 #: App_Code\RazorHelper.cshtml:3
 #: obj\Release\Package\PackageTmp\App_Code\RazorHelper.cshtml:3
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: Views\Payment\Orders.cshtml:171
 #: Areas\Admin\Views\Payment\Order.cshtml:147
@@ -2565,6 +2582,7 @@ msgstr "ja, slet"
 msgid "You cannot book the item from yourself!"
 msgstr "Du kan ikke købe en vare af dig selv"
 
+#: Controllers\ListingController.cs:592
 #: Areas\Admin\Controllers\ListingController.cs:657
 msgid "You cannot delete item with orders! You can deactivate it instead."
 msgstr "Du kan ikke slette varer, der har udestående ordre. Du kan deaktivere varen i stedet."
@@ -2599,145 +2617,12 @@ msgstr ""
 msgid "Your Email"
 msgstr "Din email"
 
+#: Controllers\ListingController.cs:600
+msgid "Your listing has been deleted."
+msgstr ""
+
 #: Views\Account\ResetPasswordConfirmation.cshtml:15
 #: obj\Release\Package\PackageTmp\Views\Account\ResetPasswordConfirmation.cshtml:15
 msgid "Your password has been reset."
 msgstr "Din adgangskode er blevet nulstillet"
-
-#~ msgid " => ((( and  "
-#~ msgstr ""
-
-#~ msgid "Based on {0:N0} reviews"
-#~ msgstr ""
-
-#~ msgid "Based on {1:N0} reviews"
-#~ msgstr ""
-
-#~ msgid "BeYourMarket is an opensource peer-to-peer marketplace. Bootstrap your marketplace in 5 minutes!"
-#~ msgstr ""
-
-#~ msgid "Has account already? Login here"
-#~ msgstr ""
-
-#~ msgid "Mail"
-#~ msgstr ""
-
-#~ msgid "Order %0 - %1 - Total Price %2 %3"
-#~ msgstr ""
-
-#~ msgid "Order Requested - %0 - Total Price %1 %2"
-#~ msgstr ""
-
-#~ msgid "OrderType Label"
-#~ msgstr "Ordretype"
-
-#~ msgid "Phone Number (Optional)"
-#~ msgstr "Telefonnr. (Valgfri)"
-
-#~ msgid "PriceUnit Label"
-#~ msgstr "Prisenhed"
-
-#~ msgid "See all Messages"
-#~ msgstr ""
-
-#~ msgid "Service %0 on %1 - Total Price %2 %3"
-#~ msgstr ""
-
-#~ msgid "Service {0} on {1} - Total Price {2} {3}"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Service {0} on {1} - Total Price {2} {3}]]\", orderStatusText, order.Description, order.Price, order.Currency)\n"
-#~ "                };\n"
-#~ "\n"
-#~ "                await MessageHelper.SendMessage(messageSend);\n"
-#~ "            }\n"
-#~ "\n"
-#~ "            return Json(result, JsonRequestBehavior.AllowGet);\n"
-#~ "        }\n"
-#~ "\n"
-#~ "        public async Task<ActionResult> Orders()\n"
-#~ "        {\n"
-#~ "            var userId = User.Identity.GetUserId();\n"
-#~ "\n"
-#~ "            var orders = await _orderService.Query(x => x.Status != (int)Enum_OrderStatus.Created && (x.UserProvider == userId || x.UserReceiver == userId))\n"
-#~ "                .Include(x => x.Listing).SelectAsync();\n"
-#~ "\n"
-#~ "            var grid = new OrdersGrid(orders.AsQueryable().OrderByDescending(x => x.Created));\n"
-#~ "\n"
-#~ "            var model = new OrderModel()\n"
-#~ "            {\n"
-#~ "                Grid = grid\n"
-#~ "            };\n"
-#~ "\n"
-#~ "            return View(model);\n"
-#~ "        }\n"
-#~ "\n"
-#~ "        public ActionResult PaymentSetting()\n"
-#~ "        {\n"
-#~ "            return View();\n"
-#~ "        }\n"
-#~ "\n"
-#~ "        public async Task<ActionResult> Payment(int id)\n"
-#~ "        {\n"
-#~ "            var selectQuery = await _orderService.Query(x => x.ID == id)\n"
-#~ "                .Include(x => x.Listing)\n"
-#~ "                .Include(x => x.Listing.ListingType)\n"
-#~ "                .Include(x => x.Listing.ListingPictures)\n"
-#~ "                .SelectAsync();\n"
-#~ "\n"
-#~ "            var order = selectQuery.FirstOrDefault();\n"
-#~ "\n"
-#~ "            if (order == null)\n"
-#~ "                return new HttpNotFoundResult();\n"
-#~ "\n"
-#~ "            var model = new PaymentModel()\n"
-#~ "            {\n"
-#~ "                ListingOrder = order\n"
-#~ "            };\n"
-#~ "\n"
-#~ "            ClearCache();\n"
-#~ "\n"
-#~ "            return View(model);\n"
-#~ "        }\n"
-#~ "\n"
-#~ "        public async Task<ActionResult> Transaction()\n"
-#~ "        {\n"
-#~ "            return View();\n"
-#~ "        }\n"
-#~ "\n"
-#~ "        public async Task<ActionResult> Order(Order order)\n"
-#~ "        {\n"
-#~ "            var listing = await _listingService.FindAsync(order.ListingID);\n"
-#~ "\n"
-#~ "            if (listing == null)\n"
-#~ "                return new HttpNotFoundResult();\n"
-#~ "\n"
-#~ "            var userCurrent = User.Identity.User();\n"
-#~ "\n"
-#~ "            // Check if payment method is setup on user or the platform\n"
-#~ "            var descriptors = _pluginFinder.GetPluginDescriptors<IHookPlugin>(LoadPluginsMode.InstalledOnly, \"Payment\").Where(x => x.Enabled);\n"
-#~ "            if (descriptors.Count() == 0)\n"
-#~ "            {\n"
-#~ "                TempData[TempDataKeys.UserMessageAlertState] = \"bg-danger\";\n"
-#~ "                TempData[TempDataKeys.UserMessage] = \"[[[The provider has not setup the payment option yet, please contact the provider."
-#~ msgstr ""
-
-#~ msgid "Service requested on %0 - Total Price %1 %2"
-#~ msgstr ""
-
-#~ msgid "Service requested on {0} - Total Price {1} {2}"
-#~ msgstr ""
-
-#~ msgid "There are on items to display."
-#~ msgstr ""
-
-#~ msgid "Welcome to BeYourMarket!"
-#~ msgstr ""
-
-#~ msgid "You will delete all listings with listing type "
-#~ msgstr ""
-
-#~ msgid "Your listing has been deleted."
-#~ msgstr "Annoncen er slettet"
 

@@ -127,7 +127,7 @@ namespace BeYourMarket.Web.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "[[[Invalid login attempt.]]]");
                     return View(model);
             }
         }
@@ -170,7 +170,7 @@ namespace BeYourMarket.Web.Controllers
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid code.");
+                    ModelState.AddModelError("", "[[[Invalid code.]]]");
                     return View(model);
             }
         }

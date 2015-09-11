@@ -1,0 +1,10 @@
+﻿@{
+    var lang = Context.GetPrincipalAppLanguageForRequest().ToString();
+    var filePath = string.Format("~/js/timepicker/locales/bootstrap-datepicker.{0}.js", lang);
+    var fileExists = File.Exists(Server.MapPath(filePath));    
+}
+
+@if (fileExists)
+{
+    <script src="@Url.Content(filePath)" type="text/javascript"></script>       
+}

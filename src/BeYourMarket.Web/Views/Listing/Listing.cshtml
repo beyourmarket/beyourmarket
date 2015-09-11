@@ -300,7 +300,7 @@
                                         </h4>
                                         }
 
-                                    <form action="@Url.Action("Order", "Payment")" method="get" role="form">
+                                    <form action="@Url.Action("Order", "Payment", new { returnUrl = Url.Action("Listing", "Listing", new { id =  Model.ListingCurrent.ID}) })" method="post" role="form">
                                         <input id="ListingID" name="ListingID" type="hidden" value="@Model.ListingCurrent.ID" />
                                         <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingCurrent.ListingTypeID" />
                                         @if (!string.IsNullOrEmpty(Model.ListingCurrent.ListingType.OrderTypeLabel))
@@ -370,10 +370,13 @@
 
 </div>
 
-@section Scripts {
-    <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap" async defer></script>
-    @Scripts.Render("~/bundles/jqueryval")
+@section Scripts {    
+    @Scripts.Render("~/bundles/jqueryval")    
+
     <script src="~/js/timepicker/bootstrap-datepicker.js"></script>
+    @Html.Partial("_LocalizationDatePicker")
+
+    @Html.Partial("_LocalizationJQueryValidation")
 
     @{
         var datesDisabled = new System.Text.StringBuilder();
@@ -384,13 +387,14 @@
     }
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('.datepicker').datepicker({
-                startDate: new Date(),
-                daysOfWeekDisabled: "0",
-                datesDisabled: [@Html.Raw(datesDisabled.ToString())]
-            });
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            startDate: new Date(),
+            daysOfWeekDisabled: "0",
+            datesDisabled: [@Html.Raw(datesDisabled.ToString())],
+            language: '@Context.GetPrincipalAppLanguageForRequest().ToString()'
         });
+    });
     </script>
 
 
@@ -441,4 +445,6 @@
             </script>
         </text>
     }
+    
+    <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap" async defer></script>
 }

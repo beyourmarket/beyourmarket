@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-09-08 11:36+02:00\n"
-"PO-Revision-Date: 2015-09-08 11:36+02:00\n"
+"POT-Creation-Date: 2015-09-11 03:43+02:00\n"
+"PO-Revision-Date: 2015-09-11 03:43+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -424,7 +424,7 @@ msgstr ""
 msgid "Confirmed"
 msgstr ""
 
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:228
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:228
 msgid "Connnect to stripe successfully!"
 msgstr ""
 
@@ -690,7 +690,7 @@ msgstr ""
 msgid "Disable"
 msgstr ""
 
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:193
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:193
 msgid "Disconnnect to stripe successfully!"
 msgstr ""
 
@@ -844,6 +844,11 @@ msgstr ""
 msgid "Enter Email Address"
 msgstr ""
 
+#: Views\Listing\ListingUpdate.cshtml:81
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:174
+msgid "Enter Location"
+msgstr ""
+
 #: Views\Listing\ListingUpdate.cshtml:101
 #: obj\Release\Package\PackageTmp\Views\Listing\ListingUpdate.cshtml:101
 msgid "Enter Phone Number"
@@ -916,6 +921,10 @@ msgstr ""
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:158
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Payment\Order.cshtml:162
 msgid "Failed"
+msgstr ""
+
+#: Controllers\ManageController.cs:271
+msgid "Failed to verify phone"
 msgstr ""
 
 #: Views\Manage\Dashboard.cshtml:84
@@ -1087,6 +1096,14 @@ msgstr ""
 #: Areas\Admin\Views\Install\Index.cshtml:112
 #: obj\Release\Package\PackageTmp\Areas\Admin\Views\Install\Index.cshtml:112
 msgid "Installing..."
+msgstr ""
+
+#: Controllers\AccountController.cs:173
+msgid "Invalid code."
+msgstr ""
+
+#: Controllers\AccountController.cs:130
+msgid "Invalid login attempt."
 msgstr ""
 
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:108
@@ -1512,7 +1529,7 @@ msgstr ""
 msgid "Order ID"
 msgstr ""
 
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:144
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:144
 msgid "Order Requested - %0 - Total Price %1 %2. <a href=\\"%3\\">See Details</a>"
 msgstr ""
 
@@ -1573,9 +1590,9 @@ msgstr ""
 msgid "Pages"
 msgstr ""
 
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:21
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:21
 #: obj\Release\Package\PackageTmp\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
 msgid "Paid"
 msgstr ""
@@ -1647,9 +1664,9 @@ msgstr ""
 
 #: Controllers\PaymentController.cs:161
 #: Views\Payment\Orders.cshtml:45
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:25
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:25
 #: Areas\Admin\Views\Payment\Order.cshtml:40
 #: obj\Release\Package\PackageTmp\Views\Payment\Orders.cshtml:45
 #: obj\Release\Package\PackageTmp\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
@@ -1703,8 +1720,8 @@ msgstr ""
 msgid "Please Rate"
 msgstr ""
 
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:383
-#: C:\github\bym\main\src\Plugins\Plugin.Widget.GoogleAnalytics\Controllers\GoogleAnalyticsController.cs:65
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:383
+#: C:\Github\bym\dev\src\Plugins\Plugin.Widget.GoogleAnalytics\Controllers\GoogleAnalyticsController.cs:65
 msgid "Plugin updated!"
 msgstr ""
 
@@ -2185,7 +2202,7 @@ msgstr ""
 msgid "Thanks for your feedback!"
 msgstr ""
 
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:153
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:153
 msgid "Thanks for your order! You payment will not be charged until the provider accepted your request."
 msgstr ""
 
@@ -2251,15 +2268,15 @@ msgstr ""
 
 #: Views\Listing\_ListingGridList.cshtml:28
 #: Views\Payment\Orders.cshtml:102
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
 #: Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:40
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:63
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\bin\Views\TransactionOverview.cshtml:31
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:40
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:63
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\bin\Views\TransactionOverview.cshtml:31
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:36
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:54
 #: Areas\Admin\Views\Listing\Listings.cshtml:52
@@ -2372,7 +2389,7 @@ msgstr ""
 msgid "Transaction fee (%)"
 msgstr ""
 
-#: C:\github\bym\main\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:263
+#: C:\Github\bym\dev\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:263
 msgid "Transaction not found"
 msgstr ""
 
@@ -2561,6 +2578,7 @@ msgstr ""
 msgid "You cannot book the item from yourself!"
 msgstr ""
 
+#: Controllers\ListingController.cs:592
 #: Areas\Admin\Controllers\ListingController.cs:657
 msgid "You cannot delete item with orders! You can deactivate it instead."
 msgstr ""
@@ -2593,6 +2611,10 @@ msgstr ""
 #: Views\Home\Contact.cshtml:24
 #: obj\Release\Package\PackageTmp\Views\Home\Contact.cshtml:24
 msgid "Your Email"
+msgstr ""
+
+#: Controllers\ListingController.cs:600
+msgid "Your listing has been deleted."
 msgstr ""
 
 #: Views\Account\ResetPasswordConfirmation.cshtml:15
@@ -2795,8 +2817,5 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "You will delete all listings with listing type "
-#~ msgstr ""
-
-#~ msgid "Your listing has been deleted."
 #~ msgstr ""
 

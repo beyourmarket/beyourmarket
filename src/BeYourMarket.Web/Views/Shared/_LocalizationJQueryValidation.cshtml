@@ -1,0 +1,53 @@
+﻿<!-- https://github.com/jquery/globalize -->
+<!-- A JavaScript library for internationalization and localization that leverages the official Unicode CLDR JSON data -->
+
+<script src="~/Scripts/cldr.js"></script>
+<script src="~/Scripts/cldr/event.js"></script>
+<script src="~/Scripts/cldr/supplemental.js"></script>
+<script src="~/Scripts/cldr/unresolved.js"></script>
+
+<script src="~/Scripts/globalize.js"></script>
+<script src="~/Scripts/globalize/number.js"></script>
+<script src="~/Scripts/globalize/date.js"></script>
+<script src="~/Scripts/jquery.validate.globalize.js"></script>
+
+@{
+    var lang = Context.GetPrincipalAppLanguageForRequest().ToString();
+    var filePath = string.Format("~/Scripts/localization/messages_{0}.js", lang);
+    var fileExists = File.Exists(Server.MapPath(filePath));
+
+    var cldrNumber = string.Format("/Scripts/cldr/main/{0}/numbers.json", lang);
+    var cldrGregorian = string.Format("/Scripts/cldr/main/{0}/ca-gregorian.json", lang);
+    var cldrTimeZone = string.Format("/Scripts/cldr/main/{0}/timeZoneNames.json", lang);
+}
+
+@if (fileExists)
+{
+    <script src="@Url.Content(filePath)" type="text/javascript"></script>
+}
+
+<!-- http://stackoverflow.com/questions/25281816/js-globalize-load-json-cldr -->
+<script>
+    $(document).ready(function () {
+        $.when($.get('/Scripts/cldr/supplemental/likelySubtags.json'),
+               $.get('@cldrNumber'),
+               $.get('/Scripts/cldr/supplemental/numberingSystems.json'),
+               $.get('@cldrGregorian'),
+               $.get('@cldrTimeZone'),
+               $.get('/Scripts/cldr/supplemental/timeData.json'),
+               $.get('/Scripts/cldr/supplemental/weekData.json'))
+        .done(function (r1, r2, r3, r4, r5, r6, r7) {
+            Globalize.load(r1[0]);
+            Globalize.load(r2[0]);
+            Globalize.load(r3[0]);
+            Globalize.load(r4[0]);
+            Globalize.load(r5[0]);
+            Globalize.load(r6[0]);
+            Globalize.load(r7[0]);
+
+            // set current language
+            Globalize.locale('@lang');
+
+        });
+    });
+</script>

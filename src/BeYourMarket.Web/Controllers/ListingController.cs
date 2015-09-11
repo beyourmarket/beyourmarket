@@ -589,7 +589,7 @@ namespace BeYourMarket.Web.Controllers
             // Delete item if no orders associated with it
             if (item.Orders.Count > 0)
             {
-                var resultFailed = new { Success = false, Message = "You cannot delete item with orders! You can deactivate it instead." };
+                var resultFailed = new { Success = false, Message = "[[[You cannot delete item with orders! You can deactivate it instead.]]]" };
                 return Json(resultFailed, JsonRequestBehavior.AllowGet);
             }
 
@@ -597,7 +597,7 @@ namespace BeYourMarket.Web.Controllers
 
             await _unitOfWorkAsync.SaveChangesAsync();
 
-            var result = new { Success = true, Message = "Your listing has been deleted." };
+            var result = new { Success = true, Message = "[[[Your listing has been deleted.]]]" };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
