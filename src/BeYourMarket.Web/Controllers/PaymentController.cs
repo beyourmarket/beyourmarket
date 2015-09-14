@@ -178,7 +178,7 @@ namespace BeYourMarket.Web.Controllers
             };
 
             if (orderResult)
-            {                                
+            {
                 // Send message to the user
                 var messageSend = new MessageSendModel()
                 {
@@ -259,14 +259,17 @@ namespace BeYourMarket.Web.Controllers
         }
 
         [HttpPost]
-        //http://stackoverflow.com/questions/29800361/generate-a-return-url-with-a-custom-authorizeattribute
-        //http://stackoverflow.com/questions/16305962/what-initially-sets-the-returnurl-parameter-when-using-authorizeattribute
+        [AllowAnonymous]
         public async Task<ActionResult> Order(Order order)
         {
             var listing = await _listingService.FindAsync(order.ListingID);
 
             if (listing == null)
                 return new HttpNotFoundResult();
+
+            // Redirect if not authenticated
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("Login", "Account", new { ReturnUrl = Url.Action("Listing", "Listing", new { id = order.ListingID }) });
 
             var userCurrent = User.Identity.User();
 
@@ -317,9 +320,9 @@ namespace BeYourMarket.Web.Controllers
                 {
                     order.Description = HttpContext.ParseAndTranslate(
                         string.Format("{0} #{1} ([[[From]]] {2} [[[To]]] {3})",
-                        listing.Title, 
+                        listing.Title,
                         listing.ID,
-                        order.FromDate.Value.ToShortDateString(), 
+                        order.FromDate.Value.ToShortDateString(),
                         order.ToDate.Value.ToShortDateString()));
 
                     order.Quantity = order.ToDate.Value.Date.AddDays(1).Subtract(order.FromDate.Value.Date).Days;
