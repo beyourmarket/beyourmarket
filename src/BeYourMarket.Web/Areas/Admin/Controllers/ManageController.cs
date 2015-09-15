@@ -33,6 +33,7 @@ using BeYourMarket.Core.Plugins;
 using BeYourMarket.Core;
 using BeYourMarket.Core.Controllers;
 using Microsoft.Practices.Unity;
+using System.Globalization;
 
 namespace BeYourMarket.Web.Areas.Admin.Controllers
 {
@@ -252,6 +253,16 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         {
             var setting = _settingService.Queryable().FirstOrDefault();
 
+            if (string.IsNullOrEmpty(setting.DateFormat))
+            {
+                setting.TimeFormat = DateTimeFormatInfo.CurrentInfo.ShortTimePattern;
+            }
+
+            if (string.IsNullOrEmpty(setting.DateFormat))
+            {
+                setting.DateFormat = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
+            }            
+            
             return View(setting);
         }
 
@@ -274,6 +285,10 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             settingExisting.SignupText = setting.SignupText;
 
             settingExisting.Theme = setting.Theme;
+
+            settingExisting.DateFormat = setting.DateFormat;
+            settingExisting.TimeFormat = setting.TimeFormat;
+
             settingExisting.LastUpdated = setting.LastUpdated;
             settingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 

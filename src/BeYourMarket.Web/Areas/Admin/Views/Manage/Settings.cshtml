@@ -115,6 +115,20 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-md-2 control-label" for="DateFormat">[[[Date Format]]]</label>
+                            <div class="col-md-10">
+                                <input type="text" id="DateFormat" name="DateFormat" class="form-control" value="@Model.DateFormat" required>
+                            </div>
+                        </div>                        
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="TimeFormat">[[[Time Format]]]</label>
+                            <div class="col-md-10">
+                                <input type="text" id="TimeFormat" name="TimeFormat" class="form-control" value="@Model.TimeFormat" required>
+                            </div>
+                        </div>  
+
+                        <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
                                 <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> [[[Save]]]</button>
                                 <a href="@Url.Action("Settings", "Manage")" class="btn btn-default"><i class="fa fa-remove"></i> [[[Cancel]]]</a>
