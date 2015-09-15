@@ -489,7 +489,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             // Update cache
             LanguageHelper.Refresh();
-            return SetLanguage(model.DefaultCulture, Url.Action("SettingsLanguage", "Manage"));
+
+            return SetLanguage(model.DefaultCulture, Url.Action("SettingsLanguage", "Manage"));            
         }
 
         #endregion
