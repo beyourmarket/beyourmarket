@@ -86,8 +86,15 @@ namespace BeYourMarket.Web
                 var language = Context.GetPrincipalAppLanguageForRequest().GetLanguage();
 
                 // Short Date and time pattern
-                System.Globalization.DateTimeFormatInfo.CurrentInfo.ShortDatePattern = CacheHelper.Settings.DateFormat;
-                System.Globalization.DateTimeFormatInfo.CurrentInfo.ShortTimePattern = CacheHelper.Settings.TimeFormat;
+                try
+                {                   
+                    System.Globalization.DateTimeFormatInfo.CurrentInfo.ShortDatePattern = CacheHelper.Settings.DateFormat;
+                    System.Globalization.DateTimeFormatInfo.CurrentInfo.ShortTimePattern = CacheHelper.Settings.TimeFormat;
+                }
+                catch
+                {                    
+                    // CacheHelper might not be ready
+                }
 
                 if (!LanguageHelper.AvailableLanguges.Languages.Any(x => x.Culture == language && x.Enabled))
                 {
