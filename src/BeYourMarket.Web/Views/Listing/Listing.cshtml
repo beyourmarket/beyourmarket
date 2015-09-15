@@ -382,7 +382,7 @@
         var datesDisabled = new System.Text.StringBuilder();
         foreach (var fromDate in Model.DatesBooked)
         {
-            datesDisabled.AppendFormat("'{0}',", fromDate.ToString("MM/dd/yyyy"));
+            datesDisabled.AppendFormat("'{0}',", fromDate.ToShortDateString());
         }
     }
 

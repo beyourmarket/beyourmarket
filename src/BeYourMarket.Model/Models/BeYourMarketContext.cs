@@ -13,10 +13,12 @@ namespace BeYourMarket.Model.Models
             // Check if migrate database to latest version automatically (using automatic migration)
             // AutomaticMigrationDataLossAllowed is disabled by default (can be configred in web.config)
             // reference: http://stackoverflow.com/questions/10646111/entity-framework-migrations-enable-automigrations-along-with-added-migration
-            if (BeYourMarketConfigurationManager.MigrateDatabaseToLatestVersion)
+            if (BeYourMarketConfigurationManager.MigrateDatabaseToLatestVersion){
                 Database.SetInitializer(new MigrateDatabaseToLatestVersion<BeYourMarketContext, ConfigurationInstall<BeYourMarket.Model.Models.BeYourMarketContext>>());
-            else
+            }
+            else { 
                 Database.SetInitializer<BeYourMarketContext>(null);
+            }
         }
 
         public BeYourMarketContext()

@@ -12,6 +12,9 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using i18n;
 using BeYourMarket.Web.Utilities;
+using System.Threading;
+using System.Globalization;
+using BeYourMarket.Service;
 
 namespace BeYourMarket.Web
 {
@@ -52,7 +55,7 @@ namespace BeYourMarket.Web
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            //ensure database is installed            
+            // ensure database is installed            
             if (!ConnectionStringHelper.IsDatabaseInstalled())
             {
                 HttpContextBase context = new HttpContextWrapper(HttpContext.Current);
@@ -81,6 +84,11 @@ namespace BeYourMarket.Web
             {
                 // Check if language from the url is enabled, if not, redirect to the default language
                 var language = Context.GetPrincipalAppLanguageForRequest().GetLanguage();
+
+                // Short Date and time pattern
+                System.Globalization.DateTimeFormatInfo.CurrentInfo.ShortDatePattern = CacheHelper.Settings.DateFormat;
+                System.Globalization.DateTimeFormatInfo.CurrentInfo.ShortTimePattern = CacheHelper.Settings.TimeFormat;
+
                 if (!LanguageHelper.AvailableLanguges.Languages.Any(x => x.Culture == language && x.Enabled))
                 {
                     var returnUrl = LocalizedApplication.Current.UrlLocalizerForApp.SetLangTagInUrlPath(

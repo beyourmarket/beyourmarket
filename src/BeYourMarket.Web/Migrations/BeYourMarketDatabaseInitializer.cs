@@ -10,6 +10,7 @@ using BeYourMarket.Web.Models;
 using BeYourMarket.Model.Enum;
 using System.IO;
 using BeYourMarket.Core.Migrations;
+using System.Globalization;
 
 namespace BeYourMarket.Web.Migrations
 {
@@ -127,6 +128,8 @@ namespace BeYourMarket.Web.Migrations
                     TransactionMinimumFee = 10,
                     EmailConfirmedRequired = false,
                     Theme = "Default",
+                    DateFormat = DateTimeFormatInfo.CurrentInfo.ShortDatePattern,
+                    TimeFormat = DateTimeFormatInfo.CurrentInfo.ShortTimePattern,
                     Created = DateTime.Now,
                     LastUpdated = DateTime.Now,
                     ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
@@ -158,6 +161,8 @@ namespace BeYourMarket.Web.Migrations
                     TransactionMinimumFee = 10,
                     EmailConfirmedRequired = false,
                     Theme = "Default",
+                    DateFormat = DateTimeFormatInfo.CurrentInfo.ShortDatePattern,
+                    TimeFormat = DateTimeFormatInfo.CurrentInfo.ShortTimePattern,
                     Created = DateTime.Now,
                     LastUpdated = DateTime.Now,
                     ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
