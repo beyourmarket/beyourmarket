@@ -180,6 +180,33 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             return View(model);
         }
 
+        public async Task<ActionResult> UserDelete(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return new HttpNotFoundResult();
+
+            var model = await UserManager.FindByIdAsync(id);
+
+            //http://stackoverflow.com/questions/24588758/how-to-iterate-roles-in-ienumerableapplicationuser-and-display-role-names-in-r
+            //http://stackoverflow.com/questions/27347802/how-to-list-users-with-role-names-in-asp-net-mvc-5
+            var roleAdministrator = await RoleManager.FindByNameAsync(Enum_UserType.Administrator.ToString());
+            model.RoleAdministrator = model.Roles.Any(x => x.RoleId == roleAdministrator.Id);
+
+            if (model.RoleAdministrator)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[You cannot delete Administrator, change the user role first.]]]";
+                return RedirectToAction("Users");
+            }
+                
+            // delete user
+            await UserManager.DeleteAsync(model);
+            _dataCacheService.RemoveCachedItem(CacheKeys.Statistics);
+
+            TempData[TempDataKeys.UserMessage] = string.Format("[[[User {0} is deleted.]]]", model.FullName);
+            return RedirectToAction("Users");
+        }
+
         [HttpPost]
         public async Task<ActionResult> UserUpdate(ApplicationUser user)
         {
@@ -208,6 +235,14 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             }
 
             await UserManager.UpdateAsync(existingUser);
+
+            // Update new password if there is one
+            var newPassword = Request.Form["Password"].ToString();
+            if (!string.IsNullOrEmpty(newPassword))
+            {
+                var resetToken = await UserManager.GeneratePasswordResetTokenAsync(existingUser.Id);
+                await UserManager.ResetPasswordAsync(existingUser.Id, resetToken, newPassword);
+            }
 
             return RedirectToAction("Users");
         }
@@ -261,8 +296,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             if (string.IsNullOrEmpty(setting.DateFormat))
             {
                 setting.DateFormat = DateTimeFormatInfo.CurrentInfo.ShortDatePattern;
-            }            
-            
+            }
+
             return View(setting);
         }
 
@@ -279,7 +314,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             settingExisting.EmailContact = setting.EmailContact;
             settingExisting.EmailConfirmedRequired = setting.EmailConfirmedRequired;
 
-            settingExisting.Currency = setting.Currency;            
+            settingExisting.Currency = setting.Currency;
 
             settingExisting.AgreementRequired = setting.AgreementRequired;
             settingExisting.AgreementLabel = setting.AgreementLabel;
@@ -492,7 +527,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             // Update cache
             LanguageHelper.Refresh();
 
-            return SetLanguage(model.DefaultCulture, Url.Action("SettingsLanguage", "Manage"));            
+            return SetLanguage(model.DefaultCulture, Url.Action("SettingsLanguage", "Manage"));
         }
 
         #endregion

@@ -426,27 +426,49 @@ margin-top: 0px;
 }
 
 
+.bg-primary {
+  color: #fff;
+  background-color: #337ab7;
+}
+a.bg-primary:hover {
+  background-color: #286090;
+}
+.bg-success {
+  background-color: #dff0d8;
+}
+a.bg-success:hover {
+  background-color: #c1e2b3;
+}
+.bg-info {
+  background-color: #d9edf7;
+}
+a.bg-info:hover {
+  background-color: #afd9ee;
+}
+.bg-warning {
+  background-color: #fcf8e3;
+}
+a.bg-warning:hover {
+  background-color: #f7ecb5;
+}
+.bg-danger {
+  background-color: #f2dede;
+}
+a.bg-danger:hover {
+  background-color: #e4b9b9;
+}
 
-.bg-primary{
-    background-color: rgba(59, 192, 195, 0.8);
-}
-.bg-success{
-    background-color: rgba(51, 184, 108, 0.8);
-}
-.bg-info{
-    background-color: rgba(28, 168, 221, 0.8);
-}
-.bg-warning{
-    background-color: rgba(235, 193, 66, 0.8);
-}
-.bg-danger{
-    background-color: rgba(203, 42, 42, 0.8);
-}
 .bg-muted {
     background-color: #d0d0d0;
 }
 .bg-inverse {
     background-color: rgba(20, 8, 45, 0.8);
+}
+.bg-blue{
+    background-color: rgba(28, 168, 221, 0.8);
+}
+.bg-green{
+    background-color: rgba(51, 184, 108, 0.8);
 }
 .bg-purple {
     background-color: rgba(97, 92, 168, 0.8) !important;

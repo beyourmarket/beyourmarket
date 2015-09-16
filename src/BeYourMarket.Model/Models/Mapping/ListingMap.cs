@@ -70,7 +70,7 @@ namespace BeYourMarket.Model.Models.Mapping
             // Relationships
             this.HasRequired(t => t.AspNetUser)
                 .WithMany(t => t.Listings)
-                .HasForeignKey(d => d.UserID);
+                .HasForeignKey(d => d.UserID).WillCascadeOnDelete();
             this.HasRequired(t => t.Category)
                 .WithMany(t => t.Listings)
                 .HasForeignKey(d => d.CategoryID).WillCascadeOnDelete();

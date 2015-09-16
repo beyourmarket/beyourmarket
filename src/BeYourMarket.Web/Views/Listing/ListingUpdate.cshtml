@@ -25,7 +25,7 @@
                             <text>[[[Already a member? ]]]</text>
                             <a href="@Url.Action("Login", "Account", new { returnUrl = Request.Url.PathAndQuery })" class="m-b-5">[[[Login here]]]</a>
                         }
-                        <form action="@Url.Action("ListingUpdate", "Listing")" id="listingUpdateForm" method="post" role="form" enctype="multipart/form-data" onkeypress="return event.keyCode != 13;">
+                        <form action="@Url.Action("ListingUpdate", "Listing")" id="listingUpdateForm" method="post" role="form" enctype="multipart/form-data">
                             @Html.HiddenFor(x => x.ListingItem.ID)
                             @Html.Partial("_UserMessage")
                             @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
@@ -46,8 +46,9 @@
 
                                 <div class="form-group">
                                     <label>[[[Description]]] <span class="text-red">*</span></label>
-                                    <textarea class="form-control" rows="4" placeholder="[[[Description...]]]" id="Description" name="Description" required>@Model.ListingItem.Description</textarea>
+                                    <textarea class="form-control" rows="5" placeholder="[[[Description...]]]" id="Description" name="Description" required>@Model.ListingItem.Description</textarea>
                                 </div>
+
                                 <div class="form-group">
                                     <label>[[[Price]]]</label>
                                     <div class="input-group">

@@ -24,7 +24,7 @@ namespace BeYourMarket.Model.Models.Mapping
             // Relationships
             this.HasRequired(t => t.AspNetUser)
                 .WithMany(t => t.MessageParticipants)
-                .HasForeignKey(d => d.UserID);
+                .HasForeignKey(d => d.UserID).WillCascadeOnDelete();
             this.HasRequired(t => t.MessageThread)
                 .WithMany(t => t.MessageParticipants)
                 .HasForeignKey(d => d.MessageThreadID);
