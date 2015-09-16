@@ -277,7 +277,9 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             settingExisting.SearchPlaceHolder = setting.SearchPlaceHolder;
 
             settingExisting.EmailContact = setting.EmailContact;
-            settingExisting.Currency = setting.Currency;
+            settingExisting.EmailConfirmedRequired = setting.EmailConfirmedRequired;
+
+            settingExisting.Currency = setting.Currency;            
 
             settingExisting.AgreementRequired = setting.AgreementRequired;
             settingExisting.AgreementLabel = setting.AgreementLabel;

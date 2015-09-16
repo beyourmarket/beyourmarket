@@ -290,44 +290,7 @@
                     <div>
                         <div class="col-md-4 col-xs-12">
                             <div id="sidebar" data-spy="affix" data-offset-top="120" class="affix text-center">
-                                @if (Model.ListingCurrent.OrderAllowed)
-                                {
-                                <div class="panel panel-default panel-body mrg-t">
-                                    @if (Model.ListingCurrent.Price.HasValue)
-                                        {
-                                        <h4>
-                                            @Html.DisplayFor(x => x.ListingCurrent.PriceFormatted) @Model.ListingCurrent.ListingType.PriceUnitLabel
-                                        </h4>
-                                        }
-
-                                    <form action="@Url.Action("Order", "Payment", new { returnUrl = Url.Action("Listing", "Listing", new { id =  Model.ListingCurrent.ID}) })" method="post" role="form">
-                                        <input id="ListingID" name="ListingID" type="hidden" value="@Model.ListingCurrent.ID" />
-                                        <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingCurrent.ListingTypeID" />
-                                        @if (!string.IsNullOrEmpty(Model.ListingCurrent.ListingType.OrderTypeLabel))
-                                            {
-                                            <h5>@Model.ListingCurrent.ListingType.OrderTypeLabel</h5>
-                                            }
-
-                                        @if (Model.ListingCurrent.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
-                                            {
-                                            <div class="input-daterange input-group datepicker form-group" id="datepicker">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                                <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" data-rule-required="true" data-rule-date="true" />
-
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                                <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" data-rule-required="true" data-rule-date="true" />
-                                            </div>
-                                            }
-                                            else if (Model.ListingCurrent.ListingType.OrderTypeID == (int)Enum_ListingOrderType.Quantity)
-                                            {
-                                            <input type="text" class="form-control" id="Quantity" name="Quantity" data-rule-required="true" data-rule-number="true" data-rule-min="0" />
-                                            }
-
-                                        <button class="btn btn-primary btn-block">@Model.ListingCurrent.ListingType.ButtonLabel</button>
-                                    </form>
-
-                                </div>
-                                }
+                                @Html.Partial("_ListingPayment", Model.ListingCurrent)
 
                                 <div class="panel panel-default panel-body mrg-t text-center">
                                     <a href="@Url.Action("Profile", "Listing", new { id = Model.User.Id })">

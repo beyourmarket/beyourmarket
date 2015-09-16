@@ -1,0 +1,40 @@
+﻿@model BeYourMarket.Model.Models.Listing
+
+@if (RazorHelper.IsPaymentSupport() && Model.OrderAllowed)
+{
+    <div class="panel panel-default panel-body mrg-t">
+        @if (Model.Price.HasValue)
+        {
+            <h4>
+                @Html.DisplayFor(x => x.PriceFormatted) @Model.ListingType.PriceUnitLabel
+            </h4>
+        }
+
+        <form action="@Url.Action("Order", "Payment", new { returnUrl = Url.Action("Listing", "Listing", new { id =  Model.ID}) })" method="post" role="form">
+            <input id="ListingID" name="ListingID" type="hidden" value="@Model.ID" />
+            <input id="ListingTypeID" name="ListingTypeID" type="hidden" value="@Model.ListingTypeID" />
+            @if (!string.IsNullOrEmpty(Model.ListingType.OrderTypeLabel))
+            {
+                <h5>@Model.ListingType.OrderTypeLabel</h5>
+            }
+
+            @if (Model.ListingType.OrderTypeID == (int)Enum_ListingOrderType.DateRange)
+            {
+                <div class="input-daterange input-group datepicker form-group" id="datepicker">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input type="text" class="form-control" id="FromDate" name="FromDate" placeholder="[[[From]]]" data-rule-required="true" data-rule-date="true" />
+
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input type="text" class="form-control" id="ToDate" name="ToDate" placeholder="[[[To]]]" data-rule-required="true" data-rule-date="true" />
+                </div>
+            }
+            else if (Model.ListingType.OrderTypeID == (int)Enum_ListingOrderType.Quantity)
+            {
+                <input type="text" class="form-control" id="Quantity" name="Quantity" data-rule-required="true" data-rule-number="true" data-rule-min="0" />
+            }
+
+            <button class="btn btn-primary btn-block">@Model.ListingType.ButtonLabel</button>
+        </form>
+
+    </div>
+}

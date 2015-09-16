@@ -72,15 +72,14 @@
             </li>
             }
             else
-            {
-            <li class="divider"><i class="fa fa-dashboard"></i> [[[Administration]]]</li>
-
-            <li class="">
+            {            
+            <li class="">                
                 <a href="@Url.Action("Dashboard", "Manage", new { Area = "" })">
-                    <span>[[[Dashboard]]]</span>
+                    <i class="fa fa-dashboard"></i> <span>[[[Dashboard]]]</span>
                 </a>
             </li>
-            <li class="hidden-lg hidden-md">
+
+            <li class="hidden-lg hidden-md">                
                 <a href="@Url.Action("ListingUpdate", "Listing")">
                     <span>[[[Publish new listing]]]</span>
                 </a>
@@ -88,11 +87,11 @@
 
                 if (User.IsInRole("Administrator"))
                 {
-            <li>
-                <a target="_blank" href="@Url.Action("Index", "Manage", new {Area ="Admin" })">
-                    <span>[[[Admin Panel]]]</span>
-                </a>
-            </li>
+                <li>
+                    <a target="_blank" href="@Url.Action("Index", "Manage", new {Area ="Admin" })">
+                        <i class="fa fa-desktop"></i> <span>[[[Admin Panel]]]</span>
+                    </a>
+                </li>
                 }
             }
 
