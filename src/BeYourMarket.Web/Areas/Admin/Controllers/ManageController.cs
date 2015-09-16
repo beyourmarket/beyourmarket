@@ -327,6 +327,9 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             settingExisting.DateFormat = setting.DateFormat;
             settingExisting.TimeFormat = setting.TimeFormat;
 
+            settingExisting.ListingReviewEnabled = setting.ListingReviewEnabled;
+            settingExisting.ListingReviewMaxPerDay = setting.ListingReviewMaxPerDay;
+
             settingExisting.LastUpdated = setting.LastUpdated;
             settingExisting.ObjectState = Repository.Pattern.Infrastructure.ObjectState.Modified;
 

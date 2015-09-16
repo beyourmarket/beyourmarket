@@ -25,7 +25,7 @@
                                     <span class="text-md">[[[Please Rate]]]</span>
                                     <input id="Rating" name="Rating" class="rating" data-show-clear="false" data-show-caption="false" data-size="sm" />
                                     <textarea class="form-control m-b-10" id="Description" name="Description" required rows="4" placeholder="[[[Write your review...]]]"></textarea>
-                                    <button class="btn btn-primary" type="submit"><i class="fa fa-send"></i> [[[Send Review]]]</button>                                    
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-send"></i> [[[Send Review]]]</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> [[[Close]]]</button>
                                 </form>
                             </div>
@@ -39,7 +39,7 @@
                             [[[Sign in to review]]]
                         </div>
                         <div class="col-md-12">
-                            <a class="btn btn-primary" href="@Url.Action("Login", "Account" , new { returnUrl=ViewContext.HttpContext.Request.Url.PathAndQuery })"><i class="fa fa-sign-in"></i> [[[Sign in]]]</a>
+                            <a class="btn btn-primary" href="@Url.Action("Login", "Account", new { returnUrl = ViewContext.HttpContext.Request.Url.PathAndQuery })"><i class="fa fa-sign-in"></i> [[[Sign in]]]</a>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> [[[Close]]]</button>
                         </div>
                     </div>
@@ -51,4 +51,9 @@
 </div>
 
 <!--- Button -->
-<a id="reviewModal" class="btn btn-default" data-toggle="modal" data-target="#reviewModal"><i class="fa fa-comment"></i> [[[Review]]]</a>
+@{
+    if (CacheHelper.Settings.ListingReviewEnabled)
+    {
+        <a id = "reviewModal" class="btn btn-default" data-toggle="modal" data-target="#reviewModal"><i class="fa fa-comment"></i> [[[Review]]]</a>
+    }
+}

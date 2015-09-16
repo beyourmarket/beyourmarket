@@ -36,6 +36,8 @@ namespace BeYourMarket.Model.Models
         public string Theme { get; set; }
         public string DateFormat { get; set; }
         public string TimeFormat { get; set; }
+        public bool ListingReviewEnabled { get; set; }
+        public int ListingReviewMaxPerDay { get; set; }
         public System.DateTime Created { get; set; }
         public System.DateTime LastUpdated { get; set; }
         public virtual ICollection<SettingDictionary> SettingDictionaries { get; set; }

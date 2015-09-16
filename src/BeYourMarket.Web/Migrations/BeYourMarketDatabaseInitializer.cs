@@ -130,6 +130,8 @@ namespace BeYourMarket.Web.Migrations
                     Theme = "Default",
                     DateFormat = DateTimeFormatInfo.CurrentInfo.ShortDatePattern,
                     TimeFormat = DateTimeFormatInfo.CurrentInfo.ShortTimePattern,
+                    ListingReviewEnabled = true,
+                    ListingReviewMaxPerDay = 5,
                     Created = DateTime.Now,
                     LastUpdated = DateTime.Now,
                     ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
@@ -163,6 +165,8 @@ namespace BeYourMarket.Web.Migrations
                     Theme = "Default",
                     DateFormat = DateTimeFormatInfo.CurrentInfo.ShortDatePattern,
                     TimeFormat = DateTimeFormatInfo.CurrentInfo.ShortTimePattern,
+                    ListingReviewEnabled = true,
+                    ListingReviewMaxPerDay = 5,
                     Created = DateTime.Now,
                     LastUpdated = DateTime.Now,
                     ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added

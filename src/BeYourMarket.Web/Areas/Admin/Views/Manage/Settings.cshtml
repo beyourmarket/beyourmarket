@@ -13,6 +13,10 @@
                 <div class="panel-body">
                     <form action="@Url.Action("SettingsUpdate", "Manage")" id="settingsForm" method="post" class="form-horizontal" role="form">
                         <input type="hidden" name="ID" id="ID" value="@Model.ID" />
+                        
+                        <h4><i class="fa fa-gears"></i> General</h4>
+                        <hr />
+
                         <div class="form-group">
                             <label class="col-md-2 control-label">[[[Name]]]</label>
                             <div class="col-md-10">
@@ -70,7 +74,6 @@
                                     <i class="fa"></i>
                                     [[[Enabled]]]
                                 </label>
-                                <input name="EmailConfirmedRequired" type="hidden" value="false" />
                             </div>
                         </div>
 
@@ -81,6 +84,9 @@
                             </div>
                         </div>
 
+                        <h4><i class="fa fa-flag-checkered"></i> Agreement</h4>
+                        <hr />
+
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="AgreementRequired">[[[Agreement Required]]]</label>
                             <div class="col-md-10">
@@ -89,7 +95,6 @@
                                     <i class="fa"></i>
                                     [[[Enabled]]]
                                 </label>
-                                <input name="AgreementRequired" type="hidden" value="false" />
                             </div>
                         </div>
 
@@ -113,6 +118,30 @@
                                 <textarea class="form-control" rows="4" placeholder="[[[This is an info text that can be shown to users in the signup page. There you can give the users instructions for signing up, information like where to get an invite, etc. By default there are no instructions.]]]" id="SignupText" name="SignupText">@Model.SignupText</textarea>
                             </div>
                         </div>
+
+                        <h4><i class="fa fa-comments"></i> Review</h4>
+                        <hr />
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="ListingReviewEnabled">[[[Allow Listing Review]]]</label>
+                            <div class="col-md-10">
+                                <label class="cr-styled control-label">
+                                    <input checked="@Model.ListingReviewEnabled" id="ListingReviewEnabled" name="ListingReviewEnabled" type="checkbox" value="true" />
+                                    <i class="fa"></i>
+                                    [[[Enabled]]]
+                                </label>                                
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="ListingReviewMaxPerDay">[[[Max. Review per day]]]</label>
+                            <div class="col-md-10">
+                                <input type="number" min="1" id="ListingReviewMaxPerDay" name="ListingReviewMaxPerDay" class="form-control" value="@Model.ListingReviewMaxPerDay" required>
+                            </div>
+                        </div>
+
+                        <h4><i class="fa fa-calendar"></i> Date/Time format</h4>
+                        <hr />
 
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="DateFormat">[[[Date Format]]]</label>

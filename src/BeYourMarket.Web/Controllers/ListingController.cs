@@ -772,7 +772,8 @@ namespace BeYourMarket.Web.Controllers
             var userTo = order.UserProvider == currentUserId ? order.UserReceiver : order.UserProvider;
 
             // User cannot comment himself
-            if (currentUserId == userTo) {
+            if (currentUserId == userTo)
+            {
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
                 TempData[TempDataKeys.UserMessage] = "[[[You cannot review yourself!]]]";
                 return RedirectToAction("Orders", "Payment");
@@ -843,6 +844,27 @@ namespace BeYourMarket.Web.Controllers
         {
             var currentUserId = User.Identity.GetUserId();
 
+            // Check if listing review is enabled
+            if (!CacheHelper.Settings.ListingReviewEnabled)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[Listing review is not allowed!]]]";
+                return RedirectToAction("Listing", "Listing", new { id = listingReview.ID });
+            }
+
+            // Check if users reach max review limit       
+            var today = DateTime.Today.Date;
+            var reviewQuery = await _listingReviewService.Query(x => x.UserFrom == currentUserId 
+            && System.Data.Entity.DbFunctions.TruncateTime(x.Created) == today).SelectAsync();            
+            var reviewCount = reviewQuery.Count();
+
+            if (reviewCount >= CacheHelper.Settings.ListingReviewMaxPerDay)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[You have reach the review limits today!]]]";
+                return RedirectToAction("Listing", "Listing", new { id = listingReview.ID });
+            }
+
             var listingQuery = await _listingService.Query(x => x.ID == listingReview.ID)
                 .Include(x => x.AspNetUser)
                 .SelectAsync();
@@ -855,7 +877,7 @@ namespace BeYourMarket.Web.Controllers
                 TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
                 TempData[TempDataKeys.UserMessage] = "[[[You cannot review yourself!]]]";
                 return RedirectToAction("Listing", "Listing", new { id = listingReview.ID });
-            }                
+            }
 
             // update review id on the order
             var review = new ListingReview()
