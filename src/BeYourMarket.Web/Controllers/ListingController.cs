@@ -772,12 +772,19 @@ namespace BeYourMarket.Web.Controllers
             var userTo = order.UserProvider == currentUserId ? order.UserReceiver : order.UserProvider;
 
             // User cannot comment himself
-            if (currentUserId == userTo)
+            if (currentUserId == userTo) {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[You cannot review yourself!]]]";
                 return RedirectToAction("Orders", "Payment");
+            }
 
             // check if user has right to review the order
             if (order == null || (order.UserProvider != currentUserId && order.UserReceiver != currentUserId))
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[You cannot review the order!]]]";
                 return RedirectToAction("Orders", "Payment");
+            }
 
             // update review id on the order
             var review = new ListingReview()
@@ -824,6 +831,74 @@ namespace BeYourMarket.Web.Controllers
 
             TempData[TempDataKeys.UserMessage] = "[[[Thanks for your feedback!]]]";
             return RedirectToAction("Orders", "Payment");
+        }
+
+        /// <summary>
+        /// Submit review by listing id
+        /// </summary>
+        /// <param name="listingReview"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult> ReviewListing(ListingReview listingReview)
+        {
+            var currentUserId = User.Identity.GetUserId();
+
+            var listingQuery = await _listingService.Query(x => x.ID == listingReview.ID)
+                .Include(x => x.AspNetUser)
+                .SelectAsync();
+
+            var listing = listingQuery.FirstOrDefault();
+
+            // User cannot comment himself
+            if (currentUserId == listing.UserID)
+            {
+                TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
+                TempData[TempDataKeys.UserMessage] = "[[[You cannot review yourself!]]]";
+                return RedirectToAction("Listing", "Listing", new { id = listingReview.ID });
+            }                
+
+            // update review id on the order
+            var review = new ListingReview()
+            {
+                UserFrom = currentUserId,
+                UserTo = listing.UserID,
+                Description = listingReview.Description,
+                Rating = listingReview.Rating,
+                Spam = false,
+                Active = true,
+                Enabled = true,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added,
+                Created = DateTime.Now
+            };
+
+            review.ListingID = listingReview.ID;
+
+            _listingReviewService.Insert(review);
+
+            await _unitOfWorkAsync.SaveChangesAsync();
+
+            // update rating on the user            
+            var listingReviewQuery = await _listingReviewService.Query(x => x.UserTo == listing.UserID).SelectAsync();
+            var rating = listingReviewQuery.Average(x => x.Rating);
+
+            var user = await UserManager.FindByIdAsync(listing.UserID);
+            user.Rating = rating;
+            await UserManager.UpdateAsync(user);
+
+            // Notify the user with the rating and comment
+            var message = new MessageSendModel()
+            {
+                UserFrom = review.UserFrom,
+                UserTo = review.UserTo,
+                Subject = review.Title,
+                Body = string.Format("{0} <span class=\"score s{1} text-xs\"></span>", review.Description, review.RatingClass),
+                ListingID = listingReview.ID
+            };
+
+            await MessageHelper.SendMessage(message);
+
+            TempData[TempDataKeys.UserMessage] = "[[[Thanks for your feedback!]]]";
+            return RedirectToAction("Listing", "Listing", new { id = listingReview.ID });
         }
         #endregion
     }

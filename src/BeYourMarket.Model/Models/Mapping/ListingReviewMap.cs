@@ -53,7 +53,7 @@ namespace BeYourMarket.Model.Models.Mapping
                 .WithMany(t => t.ListingReviews)
                 .HasForeignKey(d => d.ListingID);
 
-            this.HasRequired(t => t.Order)
+            this.HasOptional(t => t.Order)
                 .WithMany(t => t.ListingReviews)
                 .HasForeignKey(d => d.OrderID);
 

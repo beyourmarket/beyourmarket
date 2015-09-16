@@ -180,6 +180,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             return View(model);
         }
 
+        [HttpPost]
         public async Task<ActionResult> UserDelete(string id)
         {
             if (string.IsNullOrEmpty(id))

@@ -10,7 +10,7 @@ namespace BeYourMarket.Model.Models
         public string Description { get; set; }
         public double Rating { get; set; }
         public Nullable<int> ListingID { get; set; }
-        public int OrderID { get; set; }
+        public Nullable<int> OrderID { get; set; }
         public string UserFrom { get; set; }
         public string UserTo { get; set; }
         public bool Active { get; set; }

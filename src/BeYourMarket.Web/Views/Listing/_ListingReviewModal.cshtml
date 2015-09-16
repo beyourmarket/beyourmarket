@@ -1,0 +1,54 @@
+﻿@model BeYourMarket.Web.Models.ListingItemModel
+@using Microsoft.AspNet.Identity
+
+<!--- Modal -->
+<div id="reviewModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="reviewModalLabel"><i class="fa fa-envelope"></i> [[[Review]]] @Model.ListingCurrent.Title</h4>
+            </div>
+            <div class="modal-body">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="panel-body">
+                        <div class="media">
+                            <a href="@Url.Action("Profile", "Listing", new { id = User.Identity.GetUserId() })" class="pull-left">
+                                <img class="pull-left media-object img-circle thumb-sm m-t-10" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(User.Identity.GetUserId())" />
+                            </a>
+                            <div class="media-body">
+                                <form action="@Url.Action("ReviewListing", "Listing")" method="post" role="form">
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("ID", Model.ListingCurrent.ID)
+
+                                    <span class="text-md">[[[Please Rate]]]</span>
+                                    <input id="Rating" name="Rating" class="rating" data-show-clear="false" data-show-caption="false" data-size="sm" />
+                                    <textarea class="form-control m-b-10" id="Description" name="Description" required rows="4" placeholder="[[[Write your review...]]]"></textarea>
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-send"></i> [[[Send Review]]]</button>                                    
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> [[[Close]]]</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="panel-body row">
+                        <div class="alert alert-info" role="alert">
+                            [[[Sign in to review]]]
+                        </div>
+                        <div class="col-md-12">
+                            <a class="btn btn-primary" href="@Url.Action("Login", "Account" , new { returnUrl=ViewContext.HttpContext.Request.Url.PathAndQuery })"><i class="fa fa-sign-in"></i> [[[Sign in]]]</a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> [[[Close]]]</button>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--- Button -->
+<a id="reviewModal" class="btn btn-default" data-toggle="modal" data-target="#reviewModal"><i class="fa fa-comment"></i> [[[Review]]]</a>
