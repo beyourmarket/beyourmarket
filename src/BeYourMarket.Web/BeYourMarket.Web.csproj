@@ -27,6 +27,8 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -473,6 +475,10 @@
     <Content Include="Areas\Admin\Views\Listing\ListingTypes.cshtml" />
     <Content Include="Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml" />
     <Content Include="Views\Listing\_ListingCard.cshtml" />
+    <None Include="compilerconfig.json" />
+    <Content Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </Content>
     <None Include="Views\Listing\_ListingContactModal.cshtml" />
     <Content Include="Views\Shared\_ListingTypes.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_ListingTypes.cshtml" />
@@ -1472,6 +1478,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\packages\BuildWebCompiler.1.3.144\build\BuildWebCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildWebCompiler.1.3.144\build\BuildWebCompiler.targets'))" />
   </Target>
   <PropertyGroup>
     <PostBuildEvent>"$(TargetDir)PostBuild\i18n.PostBuild.exe" "$(ProjectDir)\web.config"</PostBuildEvent>
@@ -1526,4 +1533,5 @@
     <CallTarget Targets="CreatePluginsBinDirectory" />
   </Target>
   <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" Label="SlowCheetah" />
+  <Import Project="..\packages\BuildWebCompiler.1.3.144\build\BuildWebCompiler.targets" Condition="Exists('..\packages\BuildWebCompiler.1.3.144\build\BuildWebCompiler.targets')" />
 </Project>

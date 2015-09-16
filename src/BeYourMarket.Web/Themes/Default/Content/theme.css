@@ -1281,11 +1281,6 @@ header .navbar-form {
   background-color: #F44345;
   border-color: #F44345;
 }
-.alert-info {
-  color: #FFF;
-  background-color: #60B8B8;
-  border-color: #60B8B8;
-}
 /* Component:Navs*/
 /* NAV PILLS */
 .nav.nav-pills > li > a {
@@ -1755,4 +1750,3 @@ header .navbar-form {
 .navbar-brand {
   color: #50505f;
 }
-/*# sourceMappingURL=theme.css.map */
