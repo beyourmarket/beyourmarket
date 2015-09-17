@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{271DDE13-2E1C-47FB-99D1-4C474AF63885}"
 	ProjectSection(SolutionItems) = preProject
@@ -35,6 +35,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{37F405EC-C7CF-468A-9E09-0FBA40258248}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeYourMarket.Test", "Tests\BeYourMarket.Test\BeYourMarket.Test.csproj", "{7C01D756-FB6D-430D-9F72-98FBF9347434}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Widget.Disqus", "Plugins\Plugin.Widget.Disqus\Plugin.Widget.Disqus.csproj", "{99862F14-2E6E-4092-B8E0-3D746DCB1A07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -106,6 +108,14 @@ Global
 		{7C01D756-FB6D-430D-9F72-98FBF9347434}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C01D756-FB6D-430D-9F72-98FBF9347434}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7C01D756-FB6D-430D-9F72-98FBF9347434}.Release|x86.ActiveCfg = Release|Any CPU
+		{99862F14-2E6E-4092-B8E0-3D746DCB1A07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99862F14-2E6E-4092-B8E0-3D746DCB1A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99862F14-2E6E-4092-B8E0-3D746DCB1A07}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{99862F14-2E6E-4092-B8E0-3D746DCB1A07}.Debug|x86.Build.0 = Debug|Any CPU
+		{99862F14-2E6E-4092-B8E0-3D746DCB1A07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99862F14-2E6E-4092-B8E0-3D746DCB1A07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99862F14-2E6E-4092-B8E0-3D746DCB1A07}.Release|x86.ActiveCfg = Release|Any CPU
+		{99862F14-2E6E-4092-B8E0-3D746DCB1A07}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,5 +127,6 @@ Global
 		{3473A0DE-0653-49C0-BEC2-18231EFC77CF} = {EF48A340-8ECD-4131-BF1C-2B0489780183}
 		{F7B87CE6-B494-47AD-BB0C-BE11A290BDC3} = {EF48A340-8ECD-4131-BF1C-2B0489780183}
 		{7C01D756-FB6D-430D-9F72-98FBF9347434} = {37F405EC-C7CF-468A-9E09-0FBA40258248}
+		{99862F14-2E6E-4092-B8E0-3D746DCB1A07} = {EF48A340-8ECD-4131-BF1C-2B0489780183}
 	EndGlobalSection
 EndGlobal

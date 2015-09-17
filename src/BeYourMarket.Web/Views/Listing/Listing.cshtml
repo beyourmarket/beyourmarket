@@ -241,6 +241,9 @@
                         @Html.Partial("~/Views/Listing/_ListingReview.cshtml", Model.ListingReviews)
 
                         @Html.Partial("~/Views/Listing/_ListingReviewModal.cshtml", Model)
+
+                        <!-- Listing Hook -->
+                        @Html.DoAction(HookName.Listing, Model.ListingCurrent.ID)
                     </div>
 
                     <div>

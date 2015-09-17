@@ -70,6 +70,7 @@ namespace BeYourMarket.Web.Migrations
                 InstallSampleData(context, user);
                 InstallPictures(context);
                 InstallStripe(context);
+                InstallDisqus(context);
             }
         }
 
@@ -578,6 +579,19 @@ namespace BeYourMarket.Web.Migrations
                 SettingID = 1,
                 Name = "StripeClientID",
                 Value = "ca_6Rh18px61rjCEZIav5ItunZ1mKD8YjvU",
+                Created = DateTime.Now,
+                LastUpdated = DateTime.Now,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
+            });
+        }
+
+        private void InstallDisqus(Model.Models.BeYourMarketContext context)
+        {
+            context.SettingDictionaries.Add(new Model.Models.SettingDictionary()
+            {
+                SettingID = 1,
+                Name = "Disqus_ShortName",
+                Value = "beyourmarket",
                 Created = DateTime.Now,
                 LastUpdated = DateTime.Now,
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added

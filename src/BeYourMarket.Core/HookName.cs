@@ -10,6 +10,8 @@ namespace BeYourMarket.Core
     {
         public const string Head = "html_tag_head";
 
+        public const string Listing = "html_tag_listing";        
+
         public const string Payment = "html_tag_payment";
 
         public const string PaymentSetting = "html_tag_paymentSetting";
