@@ -64,6 +64,7 @@ namespace BeYourMarket.Web.Themes
                 //default
                 "~/Views/{1}/{0}.cshtml", 
                 "~/Views/Shared/{0}.cshtml",
+                "~/Views/Emails/{0}.cshtml",
             };
 
             MasterLocationFormats = new[]
@@ -74,7 +75,8 @@ namespace BeYourMarket.Web.Themes
 
                 //default
                 "~/Views/{1}/{0}.cshtml", 
-                "~/Views/Shared/{0}.cshtml"
+                "~/Views/Shared/{0}.cshtml",
+                "~/Views/Emails/{0}.cshtml",
             };
 
             PartialViewLocationFormats = new[]
@@ -85,7 +87,8 @@ namespace BeYourMarket.Web.Themes
 
                 //default
                 "~/Views/{1}/{0}.cshtml", 
-                "~/Views/Shared/{0}.cshtml", 
+                "~/Views/Shared/{0}.cshtml",
+                "~/Views/Emails/{0}.cshtml",
             };
 
             FileExtensions = new[] { "cshtml" };
