@@ -69,10 +69,10 @@ namespace Plugin.Widget.Disqus.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        public async Task<ActionResult> Configure(string trackingID)
+        public async Task<ActionResult> Configure(string shortName)
         {
             var settingExisting = _settingDictionaryService.GetSettingDictionary(CacheHelper.Settings.ID, DisqusPlugin.SettingDisqusShortName);
-            settingExisting.Value = trackingID;
+            settingExisting.Value = shortName;
 
             _settingDictionaryService.SaveSettingDictionary(settingExisting);
 
