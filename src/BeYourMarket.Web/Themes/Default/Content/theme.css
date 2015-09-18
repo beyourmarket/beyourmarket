@@ -328,7 +328,9 @@ header {
   }
 }
 /* Core:General style----------------------------*/
-html,
+html {
+  height: 100%;
+}
 body {
   overflow-x: hidden !important;
   font-family: 'Questrial', sans-serif;
@@ -336,6 +338,8 @@ body {
   background: #ffffff;
   color: #50505f;
   position: relative;
+  width: 100%;
+  min-height: 100%;
 }
 p {
   font-weight: 500;
@@ -568,7 +572,6 @@ body .section {
 }
 .right-section,
 .left-section {
-  height: 100%;
   display: block;
 }
 /*right section - contains main content*/
@@ -578,14 +581,17 @@ body .section {
 }
 /*left section - contains sidebar*/
 .left-section {
-  position: absolute;
+  position: fixed;
   width: 230px;
   top: 0;
-  height: 100%;
   -moz-transition: margin-left 0.2s;
   -o-transition: margin-left 0.2s;
   -webkit-transition: margin-left 0.2s;
   transition: margin-left 0.2s;
+  height: 100% !important;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .right-section > .content-header {
   position: relative;
@@ -1281,11 +1287,6 @@ header .navbar-form {
   background-color: #F44345;
   border-color: #F44345;
 }
-.alert-info {
-  color: #FFF;
-  background-color: #60B8B8;
-  border-color: #60B8B8;
-}
 /* Component:Navs*/
 /* NAV PILLS */
 .nav.nav-pills > li > a {
@@ -1755,4 +1756,3 @@ header .navbar-form {
 .navbar-brand {
   color: #50505f;
 }
-/*# sourceMappingURL=theme.css.map */

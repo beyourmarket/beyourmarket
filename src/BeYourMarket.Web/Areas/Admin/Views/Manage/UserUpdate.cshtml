@@ -15,6 +15,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><h3 class="panel-title">[[[User]]] - @Model.FullName</h3></div>
                 <div class="panel-body">
+                    @Html.Partial("_UserMessage")
                     <form action="@Url.Action("UserUpdate", "Manage")" id="settingsForm" method="post" class="form-horizontal" role="form">
                         @Html.ValidationSummary(true, string.Empty, new { @class = "alert alert-danger" })
 
@@ -54,7 +55,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">[[[Email]]]</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="Email" name="Email" value="@Model.Email">
+                                <input type="text" class="form-control" id="Email" name="Email" value="@Model.Email" required>
                             </div>
                         </div>
 
@@ -72,6 +73,13 @@
                             <label class="col-md-2 control-label">[[[Phone Number]]]</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" value="@Model.PhoneNumber">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">[[[New Password]]]</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="Password" name="Password">
                             </div>
                         </div>
 

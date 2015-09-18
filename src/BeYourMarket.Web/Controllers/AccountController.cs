@@ -13,6 +13,7 @@ using BeYourMarket.Web.Utilities;
 using BeYourMarket.Service;
 using BeYourMarket.Service.Models;
 using i18n;
+using BeYourMarket.Model.Enum;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -99,13 +100,17 @@ namespace BeYourMarket.Web.Controllers
             // Require the user to have a confirmed email before they can log on.
             if (CacheHelper.Settings.EmailConfirmedRequired)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
+                var user = await UserManager.FindByNameAsync(model.Email);                
                 if (user != null)
                 {
-                    if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+                    var roleAdministrator = await RoleManager.FindByNameAsync(Enum_UserType.Administrator.ToString());
+                    var isAdministrator = user.Roles.Any(x => x.RoleId == roleAdministrator.Id);
+
+                    // Skip email check unless it's an administrator
+                    if (!isAdministrator && !await UserManager.IsEmailConfirmedAsync(user.Id))
                     {
-                        ViewBag.ErrorMessage = "You must have a confirmed email to log on.";
-                        return View("Error");
+                        ModelState.AddModelError("", "[[[You must have a confirmed email to log on.]]]");
+                        return View(model);
                     }
                 }
             }
@@ -257,7 +262,7 @@ namespace BeYourMarket.Web.Controllers
                 if (emailTemplate != null)
                 {
                     dynamic email = new Postal.Email("Email");
-                    email.To = CacheHelper.Settings.EmailContact;
+                    email.To = user.Email;
                     email.From = CacheHelper.Settings.EmailContact;
                     email.Subject = emailTemplate.Subject;
                     email.Body = emailTemplate.Body;

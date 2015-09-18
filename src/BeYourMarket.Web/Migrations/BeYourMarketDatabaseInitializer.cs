@@ -70,6 +70,7 @@ namespace BeYourMarket.Web.Migrations
                 InstallSampleData(context, user);
                 InstallPictures(context);
                 InstallStripe(context);
+                InstallDisqus(context);
             }
         }
 
@@ -130,6 +131,8 @@ namespace BeYourMarket.Web.Migrations
                     Theme = "Default",
                     DateFormat = DateTimeFormatInfo.CurrentInfo.ShortDatePattern,
                     TimeFormat = DateTimeFormatInfo.CurrentInfo.ShortTimePattern,
+                    ListingReviewEnabled = true,
+                    ListingReviewMaxPerDay = 5,
                     Created = DateTime.Now,
                     LastUpdated = DateTime.Now,
                     ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
@@ -163,6 +166,8 @@ namespace BeYourMarket.Web.Migrations
                     Theme = "Default",
                     DateFormat = DateTimeFormatInfo.CurrentInfo.ShortDatePattern,
                     TimeFormat = DateTimeFormatInfo.CurrentInfo.ShortTimePattern,
+                    ListingReviewEnabled = true,
+                    ListingReviewMaxPerDay = 5,
                     Created = DateTime.Now,
                     LastUpdated = DateTime.Now,
                     ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
@@ -183,7 +188,7 @@ namespace BeYourMarket.Web.Migrations
 	                        <tbody>
 		                        <tr>
 			                        <td class=""padding"">
-			                        <p><a class=""btn-primary"" href=""@ViewBag.CallbackUrl"">Please confirm your email by clicking this link</a></p>
+			                        <p><a class=""btn-primary"" href=""{CallbackUrl}"">Please confirm your email by clicking this link</a></p>
 			                        </td>
 		                        </tr>
 	                        </tbody>
@@ -457,6 +462,7 @@ namespace BeYourMarket.Web.Migrations
                 OrderTypeLabel = "Number of days",
                 PriceUnitLabel = "Per day",
                 PaymentEnabled = true,
+                PriceEnabled = true,
                 ShippingEnabled = false,
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });
@@ -574,6 +580,19 @@ namespace BeYourMarket.Web.Migrations
                 SettingID = 1,
                 Name = "StripeClientID",
                 Value = "ca_6Rh18px61rjCEZIav5ItunZ1mKD8YjvU",
+                Created = DateTime.Now,
+                LastUpdated = DateTime.Now,
+                ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
+            });
+        }
+
+        private void InstallDisqus(Model.Models.BeYourMarketContext context)
+        {
+            context.SettingDictionaries.Add(new Model.Models.SettingDictionary()
+            {
+                SettingID = 1,
+                Name = "Disqus_ShortName",
+                Value = "beyourmarket",
                 Created = DateTime.Now,
                 LastUpdated = DateTime.Now,
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added

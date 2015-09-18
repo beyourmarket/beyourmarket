@@ -32,11 +32,11 @@ $(function () {
     });    
 
     window.onresize = function(event) {
-        e();
+        //e();
     };
 
     window.onload = function () {
-        e();
+        //e();
     };
 
 });

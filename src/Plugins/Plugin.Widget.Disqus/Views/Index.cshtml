@@ -1,0 +1,42 @@
+﻿@model Plugin.Widget.Disqus.Models.DisqusModel
+
+<div>
+    <div class="row">
+        <div class="col-md-12 section-title ">
+            <h4><span class="disqus-comment-count" data-disqus-url="@Request.Url.PathAndQuery"><i class="fa fa-comments"></i> [[[Comments]]]</span></h4>
+        </div>
+    </div>
+    <div id="disqus_thread"></div>
+</div>
+
+<script type="text/javascript">
+    var disqus_shortname = '@Model.DisqusShortName';
+    var disqus_developer = window.location.hostname == "localhost" ? 1 : 0;
+
+    function disqus_config() {
+        this.callbacks.onNewComment = [function (comment) {
+            $.get("@Url.Action("CommentListing", "Disqus", new { id = Model.ListingID, area = string.Empty })&comment=" + comment.text, function (data) {
+            });
+        }];
+    }
+
+    (function () {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = '@Model.DisqusShortName';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>

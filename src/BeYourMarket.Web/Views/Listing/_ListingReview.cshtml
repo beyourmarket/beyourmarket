@@ -1,4 +1,5 @@
 ﻿@model List<BeYourMarket.Model.Models.ListingReview>
+@using Microsoft.AspNet.Identity
 
 @{
     Layout = null;
@@ -16,7 +17,9 @@
         var ratingClass = "s" + review.Rating * 2;
         <div class="row text-center-sm">
             <div class="col-md-2 col-xs-12">
-                <img class="img-circle thumb-sm m-r-5" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(review.AspNetUserFrom.Id)" />
+                <a href="@Url.Action("Profile", "Listing", new { id = review.AspNetUserFrom.Id })">
+                    <img class="img-circle thumb-sm m-r-5" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(review.AspNetUserFrom.Id)" />
+                </a>
                 <p><a class="text-xs" href="@Url.Action("Profile", "Listing", new { id = review.AspNetUserFrom.Id })">@review.AspNetUserFrom.FullName</a></p>
             </div>
             <div class="col-md-10 col-xs-12">
@@ -33,5 +36,5 @@
     @if (!Model.Any())
     {
         <p>[[[There is no review yet.]]]</p>
-    }
+    }    
 </div>

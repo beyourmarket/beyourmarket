@@ -30,7 +30,7 @@ namespace BeYourMarket.Model.Models.Mapping
             // Relationships
             this.HasRequired(t => t.AspNetUser)
                 .WithMany(t => t.Messages)
-                .HasForeignKey(d => d.UserFrom);
+                .HasForeignKey(d => d.UserFrom).WillCascadeOnDelete();
             this.HasRequired(t => t.MessageThread)
                 .WithMany(t => t.Messages)
                 .HasForeignKey(d => d.MessageThreadID);

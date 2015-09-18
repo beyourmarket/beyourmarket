@@ -13,6 +13,10 @@
                 <div class="panel-body">
                     <form action="@Url.Action("SettingsUpdate", "Manage")" id="settingsForm" method="post" class="form-horizontal" role="form">
                         <input type="hidden" name="ID" id="ID" value="@Model.ID" />
+                        
+                        <h4><i class="fa fa-gears"></i> General</h4>
+                        <hr />
+
                         <div class="form-group">
                             <label class="col-md-2 control-label">[[[Name]]]</label>
                             <div class="col-md-10">
@@ -70,7 +74,6 @@
                                     <i class="fa"></i>
                                     [[[Enabled]]]
                                 </label>
-                                <input name="EmailConfirmedRequired" type="hidden" value="false" />
                             </div>
                         </div>
 
@@ -81,6 +84,9 @@
                             </div>
                         </div>
 
+                        <h4><i class="fa fa-flag-checkered"></i> Agreement</h4>
+                        <hr />
+
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="AgreementRequired">[[[Agreement Required]]]</label>
                             <div class="col-md-10">
@@ -89,7 +95,6 @@
                                     <i class="fa"></i>
                                     [[[Enabled]]]
                                 </label>
-                                <input name="AgreementRequired" type="hidden" value="false" />
                             </div>
                         </div>
 
@@ -114,6 +119,30 @@
                             </div>
                         </div>
 
+                        <h4><i class="fa fa-comments"></i> Review</h4>
+                        <hr />
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="ListingReviewEnabled">[[[Allow Listing Review]]]</label>
+                            <div class="col-md-10">
+                                <label class="cr-styled control-label">
+                                    <input checked="@Model.ListingReviewEnabled" id="ListingReviewEnabled" name="ListingReviewEnabled" type="checkbox" value="true" />
+                                    <i class="fa"></i>
+                                    [[[Enabled]]]
+                                </label>                                
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="ListingReviewMaxPerDay">[[[Max. Review per day]]]</label>
+                            <div class="col-md-10">
+                                <input type="number" min="1" id="ListingReviewMaxPerDay" name="ListingReviewMaxPerDay" class="form-control" value="@Model.ListingReviewMaxPerDay" required>
+                            </div>
+                        </div>
+
+                        <h4><i class="fa fa-calendar"></i> Date/Time format</h4>
+                        <hr />
+
                         <div class="form-group">
                             <label class="col-md-2 control-label" for="DateFormat">[[[Date Format]]]</label>
                             <div class="col-md-10">
@@ -129,7 +158,7 @@
                         </div>
 
                         <div class="alert alert-info col-md-offset-2">
-                            <a href="https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx">[[[Documentation about Date and Time Format.]]]</a>
+                            <a href="https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx" target="_blank">[[[Documentation about Date and Time Format.]]]</a>
                         </div>
 
                         <div class="form-group">

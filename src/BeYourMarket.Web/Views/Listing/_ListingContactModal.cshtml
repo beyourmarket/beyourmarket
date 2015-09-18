@@ -1,0 +1,49 @@
+﻿@model BeYourMarket.Web.Models.ListingItemModel
+
+<div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="contactModalLabel"><i class="fa fa-envelope"></i> [[[Contact]]] @Model.User.FullName</h4>
+            </div>
+            <div class="modal-body">
+                @if (User.Identity.IsAuthenticated)
+                {
+                <div class="panel-body">
+                    @if (Model.ListingCurrent.ShowPhone && !string.IsNullOrEmpty(Model.ListingCurrent.ContactPhone))
+                    {
+                    <div class="list-group">
+                        <a data-text-swap="[[[Contact number (Click to show)]]]" data-text-original="@Model.ListingCurrent.ContactPhone" class="text-swap list-group-item"><i class="mdi-hardware-phone-iphone"></i> [[[Contact number (Double click to show)]]]</a>
+                        <a href="@Url.Action(" Profile", "Listing" , new { id=Model.ListingCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>[[[View User's other listings]]]</a>
+                    </div>
+                    }
+
+                    <form role="form" method="post" action="@Url.Action("ContactUser", "Listing" )">
+                        <input type="hidden" id="ListingID" name="ListingID" value="@Model.ListingCurrent.ID" />
+
+                        <div class="form-group">
+                            <textarea rows="4" class="form-control" id="Message" name="Message" placeholder="[[[Message]]]" required minlength="5"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary pushme"><i class="fa fa-send"></i> [[[Send]]]</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> [[[Close]]]</button>
+                    </form>
+                </div>
+                }
+                else
+                {
+                <div class="panel-body row">
+                    <div class="alert alert-info" role="alert">
+                        [[[Sign in to contact the owner]]]
+                    </div>
+                    <div class="col-md-12">
+                        <a class="btn btn-primary" href="@Url.Action(" Login", "Account" , new { returnUrl=ViewContext.HttpContext.Request.Url.PathAndQuery })"><i class="fa fa-sign-in"></i> [[[Sign in]]]</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> [[[Close]]]</button>
+                    </div>
+                </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

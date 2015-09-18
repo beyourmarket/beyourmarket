@@ -15,6 +15,7 @@ using BeYourMarket.Web.Utilities;
 using System.Threading;
 using System.Globalization;
 using BeYourMarket.Service;
+using Microsoft.Practices.Unity;
 
 namespace BeYourMarket.Web
 {
@@ -37,9 +38,23 @@ namespace BeYourMarket.Web
             //https://github.com/turquoiseowl/i18n#project-configuration
             // Change from the of temporary redirects during URL localization
             i18n.LocalizedApplication.Current.PermanentRedirects = false;
-
+            
             // Change the URL localization scheme from Scheme1.
             i18n.UrlLocalizer.UrlLocalizationScheme = i18n.UrlLocalizationScheme.Scheme1;
+
+            // Filter certain URLs from being 'localized'.
+            i18n.UrlLocalizer.OutgoingUrlFilters += delegate (string url, Uri currentRequestUrl) {
+                Uri uri;
+                if (Uri.TryCreate(url, UriKind.Absolute, out uri)
+                    || Uri.TryCreate(currentRequestUrl, url, out uri))
+                {
+                    if (url.StartsWith("?", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            };
 
             i18n.LocalizedApplication.Current.DefaultLanguage = BeYourMarket.Web.Utilities.LanguageHelper.DefaultCulture;
 
@@ -82,19 +97,19 @@ namespace BeYourMarket.Web
 
             if (ConnectionStringHelper.IsDatabaseInstalled())
             {
-                // Check if language from the url is enabled, if not, redirect to the default language
-                var language = Context.GetPrincipalAppLanguageForRequest().GetLanguage();
+                var dbContext = Core.ContainerManager.GetConfiguredContainer()
+                    .Resolve<Repository.Pattern.DataContext.IDataContextAsync>() as Model.Models.BeYourMarketContext;
 
-                // Short Date and time pattern
-                try
-                {                   
+                // Set date time format only if the database is ready
+                if (dbContext.Database.Exists())
+                {
+                    // Short Date and time pattern
                     System.Globalization.DateTimeFormatInfo.CurrentInfo.ShortDatePattern = CacheHelper.Settings.DateFormat;
                     System.Globalization.DateTimeFormatInfo.CurrentInfo.ShortTimePattern = CacheHelper.Settings.TimeFormat;
                 }
-                catch
-                {                    
-                    // CacheHelper might not be ready
-                }
+
+                // Check if language from the url is enabled, if not, redirect to the default language
+                var language = Context.GetPrincipalAppLanguageForRequest().GetLanguage();
 
                 if (!LanguageHelper.AvailableLanguges.Languages.Any(x => x.Culture == language && x.Enabled))
                 {

@@ -25,7 +25,7 @@ namespace BeYourMarket.Model.Models.Mapping
             // Relationships
             this.HasRequired(t => t.AspNetUser)
                 .WithMany(t => t.AspNetUserClaims)
-                .HasForeignKey(d => d.UserId);
+                .HasForeignKey(d => d.UserId).WillCascadeOnDelete();
 
         }
     }

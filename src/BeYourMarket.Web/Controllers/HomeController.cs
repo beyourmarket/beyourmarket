@@ -131,10 +131,19 @@ namespace BeYourMarket.Web.Controllers
             {
                 model.SearchText = model.SearchText.ToLower();
 
+                // Search by title, description, location
                 if (items != null)
-                    items = items.Where(x => x.Title.ToLower().Contains(model.SearchText));
+                {
+                    items = items.Where(x =>
+                        x.Title.ToLower().Contains(model.SearchText) ||
+                        x.Description.ToLower().Contains(model.SearchText) ||
+                        x.Location.ToLower().Contains(model.SearchText));
+                }
                 else
-                    items = await _listingService.Query(x => x.Title.ToLower().Contains(model.SearchText))
+                    items = await _listingService.Query(
+                        x => x.Title.ToLower().Contains(model.SearchText) ||
+                        x.Description.ToLower().Contains(model.SearchText) ||
+                        x.Location.ToLower().Contains(model.SearchText))
                         .Include(x => x.ListingPictures)
                         .Include(x => x.Category)
                         .Include(x => x.AspNetUser)

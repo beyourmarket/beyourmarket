@@ -14,6 +14,7 @@ namespace BeYourMarket.Model.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string ButtonLabel { get; set; }
+        public bool PriceEnabled { get; set; }
         public string PriceUnitLabel { get; set; }
         public int OrderTypeID { get; set; }
         public string OrderTypeLabel { get; set; }

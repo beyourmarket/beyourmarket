@@ -1,0 +1,35 @@
+﻿@model BeYourMarket.Model.Models.SettingDictionary
+
+@{
+    ViewBag.Title = "Settings - Disqus";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">Configure Disqus</h3></div>
+            <div class="panel-body">
+                <form action="@Url.Action("Configure", "Disqus")" id="settingsForm" method="post" class="form-horizontal" role="form">
+
+                    @Html.HiddenFor(x => x.ID)
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">disqus_shortname</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="shortName" name="shortName" value="@Model.Value" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
+                            <a href="@Url.Action("Plugins", "Plugin", new { area = "Admin" })" class="btn btn-default"><i class="fa fa-remove"></i> Cancel</a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

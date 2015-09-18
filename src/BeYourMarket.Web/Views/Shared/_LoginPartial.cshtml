@@ -1,12 +1,10 @@
 ﻿@using Microsoft.AspNet.Identity
 
-@{
+@if (User != null && User.Identity.IsAuthenticated)
+{
     var userId = User.Identity.GetUserId();
     var messages = MessageHelper.GetUnReadMessages(userId);
-}
 
-@if (User.Identity.IsAuthenticated)
-{
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()

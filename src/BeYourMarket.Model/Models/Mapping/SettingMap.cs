@@ -72,6 +72,12 @@ namespace BeYourMarket.Model.Models.Mapping
                 .IsRequired()
                 .HasMaxLength(10);
 
+            this.Property(t => t.ListingReviewEnabled)
+                .IsRequired();
+
+            this.Property(t => t.ListingReviewMaxPerDay)
+                .IsRequired();
+
             // Table & Column Mappings
             this.ToTable("Settings");
             this.Property(t => t.ID).HasColumnName("ID");
@@ -100,6 +106,8 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.Theme).HasColumnName("Theme");
             this.Property(t => t.DateFormat).HasColumnName("DateFormat");
             this.Property(t => t.TimeFormat).HasColumnName("TimeFormat");
+            this.Property(t => t.ListingReviewEnabled).HasColumnName("ListingReviewEnabled");
+            this.Property(t => t.ListingReviewMaxPerDay).HasColumnName("ListingReviewMaxPerDay");
             this.Property(t => t.Created).HasColumnName("Created");
             this.Property(t => t.LastUpdated).HasColumnName("LastUpdated");
         }
