@@ -32,7 +32,7 @@
                                .RenderValueAs(x => GetImage(x.UrlPicture, x.ListingCurrent.ID)).Titled("[[[Picture]]]");
 
                            if (Model.CategoryID == 0)
-                               columns.Add(x => x.ListingCurrent).RenderValueAs(x => GetCategoryName(x.ListingCurrent.CategoryID)).Titled("[[[Category]]]");
+                               columns.Add(x => x.ListingCurrent.CategoryID).RenderValueAs(x => GetCategoryName(x.ListingCurrent.CategoryID)).Titled("[[[Category]]]");
 
                            columns.Add(x => x.ListingCurrent.Title).Encoded(false).Sanitized(false)
                                .RenderValueAs(x => GetItemLink(x.ListingCurrent.Title, x.ListingCurrent.ID)).Titled("[[[Title]]]");

@@ -37,9 +37,24 @@ namespace BeYourMarket.Web
             //https://github.com/turquoiseowl/i18n#project-configuration
             // Change from the of temporary redirects during URL localization
             i18n.LocalizedApplication.Current.PermanentRedirects = false;
-
+            
             // Change the URL localization scheme from Scheme1.
             i18n.UrlLocalizer.UrlLocalizationScheme = i18n.UrlLocalizationScheme.Scheme1;
+
+            // Filter certain URLs from being 'localized'.
+            i18n.UrlLocalizer.OutgoingUrlFilters += delegate (string url, Uri currentRequestUrl) {
+                Uri uri;
+                if (Uri.TryCreate(url, UriKind.Absolute, out uri)
+                    || Uri.TryCreate(currentRequestUrl, url, out uri))
+                {
+                    if (url.StartsWith("?", StringComparison.OrdinalIgnoreCase) || 
+                        url.StartsWith("//", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            };
 
             i18n.LocalizedApplication.Current.DefaultLanguage = BeYourMarket.Web.Utilities.LanguageHelper.DefaultCulture;
 

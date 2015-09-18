@@ -8,13 +8,19 @@
 @left-section-margin: 230px;
 
 /* Core:General style----------------------------*/
-html, body {
+html {
+    height: 100%;
+}
+
+body {
     overflow-x: hidden !important;
     font-family: 'Questrial',sans-serif;
-    -webkit-font-smoothing: antialiased;        
+    -webkit-font-smoothing: antialiased;
     background: @background-color;
     color: @color;
-    position: relative;
+    position: relative;    
+    width: 100%;
+    min-height: 100%;
 }
 
 p {
@@ -254,7 +260,6 @@ body .section {
 }
 
 .right-section, .left-section {
-    height: 100%;
     display: block;
 }
 /*right section - contains main content*/
@@ -264,14 +269,16 @@ body .section {
 }
 /*left section - contains sidebar*/
 .left-section {
-    position: absolute;
+    position: fixed;
     width: @left-section-margin;
     top: 0;
-    height: 100%;        
     -moz-transition: margin-left 0.2s;
     -o-transition: margin-left 0.2s;
     -webkit-transition: margin-left 0.2s;
     transition: margin-left 0.2s;
+    height: 100% !important;
+    overflow:scroll;
+    overflow-x:hidden;
 }
 
 .right-section > .content-header {
@@ -1583,7 +1590,7 @@ header .navbar-form {
     z-index: 3;
 }
 
-@media (min-width: 768px) {    
+@media (min-width: 768px) {
     #sidebar.affix, #sidebar.affix-bottom {
         width: 280px;
     }
