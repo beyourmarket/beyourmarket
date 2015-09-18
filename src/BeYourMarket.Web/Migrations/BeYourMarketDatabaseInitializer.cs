@@ -188,7 +188,7 @@ namespace BeYourMarket.Web.Migrations
 	                        <tbody>
 		                        <tr>
 			                        <td class=""padding"">
-			                        <p><a class=""btn-primary"" href=""@ViewBag.CallbackUrl"">Please confirm your email by clicking this link</a></p>
+			                        <p><a class=""btn-primary"" href=""{CallbackUrl}"">Please confirm your email by clicking this link</a></p>
 			                        </td>
 		                        </tr>
 	                        </tbody>

@@ -591,6 +591,7 @@ body .section {
   height: 100% !important;
   overflow: scroll;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 .right-section > .content-header {
   position: relative;
