@@ -104,8 +104,8 @@ namespace BeYourMarket.Web.Controllers
                 {
                     if (!await UserManager.IsEmailConfirmedAsync(user.Id))
                     {
-                        ViewBag.ErrorMessage = "You must have a confirmed email to log on.";
-                        return View("Error");
+                        ModelState.AddModelError("", "[[[You must have a confirmed email to log on.]]]");
+                        return View(model);
                     }
                 }
             }
@@ -257,7 +257,7 @@ namespace BeYourMarket.Web.Controllers
                 if (emailTemplate != null)
                 {
                     dynamic email = new Postal.Email("Email");
-                    email.To = CacheHelper.Settings.EmailContact;
+                    email.To = user.Email;
                     email.From = CacheHelper.Settings.EmailContact;
                     email.Subject = emailTemplate.Subject;
                     email.Body = emailTemplate.Body;

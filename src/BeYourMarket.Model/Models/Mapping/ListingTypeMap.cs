@@ -34,6 +34,7 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.OrderTypeID).HasColumnName("OrderTypeID");
             this.Property(t => t.OrderTypeLabel).HasColumnName("OrderTypeLabel");
             this.Property(t => t.PaymentEnabled).HasColumnName("PaymentEnabled");
+            this.Property(t => t.PriceEnabled).HasColumnName("PriceEnabled");
             this.Property(t => t.ShippingEnabled).HasColumnName("ShippingEnabled");
         }
     }

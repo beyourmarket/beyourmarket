@@ -167,10 +167,14 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
         public async Task<ActionResult> UserUpdate(string id)
         {
-            if (string.IsNullOrEmpty(id))
-                return new HttpNotFoundResult();
+            var model = new ApplicationUser();
 
-            var model = await UserManager.FindByIdAsync(id);
+            if (string.IsNullOrEmpty(id))
+            {
+                return View(model);
+            }
+
+            model = await UserManager.FindByIdAsync(id);
 
             //http://stackoverflow.com/questions/24588758/how-to-iterate-roles-in-ienumerableapplicationuser-and-display-role-names-in-r
             //http://stackoverflow.com/questions/27347802/how-to-list-users-with-role-names-in-asp-net-mvc-5
@@ -199,7 +203,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 TempData[TempDataKeys.UserMessage] = "[[[You cannot delete Administrator, change the user role first.]]]";
                 return RedirectToAction("Users");
             }
-                
+
             // delete user
             await UserManager.DeleteAsync(model);
             _dataCacheService.RemoveCachedItem(CacheKeys.Statistics);
@@ -211,10 +215,30 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<ActionResult> UserUpdate(ApplicationUser user)
         {
-            if (string.IsNullOrEmpty(user.Id))
-                return new HttpNotFoundResult();
-
+            // Create user if there is no user id
             var existingUser = await UserManager.FindByIdAsync(user.Id);
+            if (existingUser == null)
+            {
+                user.UserName = user.Email;
+                user.Email = user.Email;
+                user.RegisterDate = DateTime.Now;
+                user.RegisterIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
+                user.LastAccessDate = DateTime.Now;
+                user.LastAccessIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
+
+                var result = await UserManager.CreateAsync(user);
+
+                if (!result.Succeeded)
+                {
+                    AddErrors(result);
+                    return View(user);
+                }
+
+                // Update cache
+                _dataCacheService.RemoveCachedItem(CacheKeys.Statistics);
+            }
+
+            existingUser = await UserManager.FindByIdAsync(user.Id);
             existingUser.FirstName = user.FirstName;
             existingUser.LastName = user.LastName;
             existingUser.Gender = user.Gender;
@@ -246,6 +270,14 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
             }
 
             return RedirectToAction("Users");
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
         }
 
         public ActionResult Users()

@@ -783,6 +783,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 listingTypeExisting.PriceUnitLabel = model.PriceUnitLabel;
                 listingTypeExisting.ShippingEnabled = model.ShippingEnabled;
 
+                listingTypeExisting.PriceEnabled = model.PriceEnabled;
                 listingTypeExisting.PaymentEnabled = model.PaymentEnabled;
                 if (model.PaymentEnabled)
                 {

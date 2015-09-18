@@ -17,7 +17,7 @@
 
     <div class="main-section">
 
-        @Html.Partial("_ListingContactModal", Model)        
+        @Html.Partial("_ListingContactModal", Model)
 
         <div class="row">
             <div class="container-fluid">
@@ -84,51 +84,51 @@
                                     <div class="panel-body">
                                         @if (Model.Pictures.Count > 0)
                                         {
-                                        <div id="carousel-gallery" class="carousel slide" data-ride="carousel">
-                                            <ol class="carousel-indicators">
-                                                @for (int i = 0; i < Model.Pictures.Count; i++)
+                                            <div id="carousel-gallery" class="carousel slide" data-ride="carousel">
+                                                <ol class="carousel-indicators">
+                                                    @for (int i = 0; i < Model.Pictures.Count; i++)
                                                     {
-                                                    <li data-target="#carousel-gallery" data-slide-to="@i"></li>
+                                                        <li data-target="#carousel-gallery" data-slide-to="@i"></li>
                                                     }
-                                            </ol>
+                                                </ol>
 
-                                            <div class="carousel-inner" role="listbox">
-                                                @for (int i = 0; i < Model.Pictures.Count; i++)
+                                                <div class="carousel-inner" role="listbox">
+                                                    @for (int i = 0; i < Model.Pictures.Count; i++)
                                                     {
-                                                    <div class="item @(i == 0 ? "active" : "")">
-                                                        <img style=" margin-left: auto; margin-right: auto;" alt="" src="@Model.Pictures[i].Url" data-holder-rendered="true">
-                                                    </div>
+                                                        <div class="item @(i == 0 ? "active" : "")">
+                                                            <img style=" margin-left: auto; margin-right: auto;" alt="" src="@Model.Pictures[i].Url" data-holder-rendered="true">
+                                                        </div>
                                                     }
+                                                </div>
+
+                                                <a class="left carousel-control" href="#carousel-gallery" role="button" data-slide="prev">
+                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                                    <span class="sr-only">[[[Previous]]]</span>
+                                                </a>
+                                                <a class="right carousel-control" href="#carousel-gallery" role="button" data-slide="next">
+                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                                    <span class="sr-only">[[[Next]]]</span>
+                                                </a>
+
                                             </div>
 
-                                            <a class="left carousel-control" href="#carousel-gallery" role="button" data-slide="prev">
-                                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                                <span class="sr-only">[[[Previous]]]</span>
-                                            </a>
-                                            <a class="right carousel-control" href="#carousel-gallery" role="button" data-slide="next">
-                                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                                <span class="sr-only">[[[Next]]]</span>
-                                            </a>
-
-                                        </div>
-
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                @foreach (var thumbnail in Model.Pictures)
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    @foreach (var thumbnail in Model.Pictures)
                                                     {
-                                                    <div class="col-xs-6 col-md-2">
-                                                        <a href="@thumbnail.Url" class="boxer" title="" data-gallery="gallery" data-lightbox-gallery="photo_gallery">
-                                                            <img alt="Thumbnail" src="@thumbnail.Url" style=" width: 100%; display: block;">
-                                                        </a>
-                                                    </div>
+                                                        <div class="col-xs-6 col-md-2">
+                                                            <a href="@thumbnail.Url" class="boxer" title="" data-gallery="gallery" data-lightbox-gallery="photo_gallery">
+                                                                <img alt="Thumbnail" src="@thumbnail.Url" style=" width: 100%; display: block;">
+                                                            </a>
+                                                        </div>
                                                     }
-                                            </div>
+                                                </div>
 
-                                        </div>
+                                            </div>
                                         }
                                         else
                                         {
-                                        <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(0)" />
+                                            <img style="width: 100%" src="@BeYourMarket.Web.Utilities.ImageHelper.GetListingImagePath(0)" />
                                         }
                                     </div>
                                     <!---Pictures-->
@@ -143,14 +143,17 @@
                                                     <a href="@Url.Action("Search", "Home", new { categoryId = Model.ListingCurrent.CategoryID })">@Model.ListingCurrent.Category.Name</a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    [[[Price]]]
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(x => Model.ListingCurrent.PriceFormatted)
-                                                </td>
-                                            </tr>
+                                            @if (Model.ListingCurrent.Price.HasValue)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        [[[Price]]]
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(x => Model.ListingCurrent.PriceFormatted)
+                                                    </td>
+                                                </tr>
+                                            }
                                             <tr>
                                                 <td>
                                                     [[[Listing Type]]]
@@ -194,14 +197,14 @@
 
                                             @foreach (var item in Model.ListingCurrent.ListingMetas)
                                             {
-                                            <tr>
-                                                <td>
-                                                    @item.MetaField.Name
-                                                </td>
-                                                <td>
-                                                    @item.Value
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td>
+                                                        @item.MetaField.Name
+                                                    </td>
+                                                    <td>
+                                                        @item.Value
+                                                    </td>
+                                                </tr>
                                             }
                                         </tbody>
                                     </table>
@@ -209,12 +212,12 @@
 
                                     @if (Model.ListingCurrent.Latitude.HasValue && Model.ListingCurrent.Longitude.HasValue)
                                     {
-                                    <div class="panel-heading bdr-t">
-                                        <i class="fa fa-map-marker"></i> [[[Map]]]
-                                    </div>
-                                    <div class="panel-body">
-                                        <div id="map-canvas"></div>
-                                    </div>
+                                        <div class="panel-heading bdr-t">
+                                            <i class="fa fa-map-marker"></i> [[[Map]]]
+                                        </div>
+                                        <div class="panel-body">
+                                            <div id="map-canvas"></div>
+                                        </div>
                                     }
                                 </div>
                             </div>
@@ -223,10 +226,10 @@
                                 <div class="panel panel-default bdr-t-none">
                                     @if (Model.ListingCurrent.ShowPhone && !string.IsNullOrEmpty(Model.ListingCurrent.ContactPhone))
                                     {
-                                    <div class="list-group">
-                                        <a data-text-swap="[[[Contact number (Click to show)]]]" data-text-original="@Model.ListingCurrent.ContactPhone" class="text-swap list-group-item "><i class="mdi-hardware-phone-iphone"></i> [[[Contact number (Click to show)]]]</a>
-                                        <a href="@Url.Action("Profile", "Listing", new { id = Model.ListingCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>[[[View User's other listings]]]</a>
-                                    </div>
+                                        <div class="list-group">
+                                            <a data-text-swap="[[[Contact number (Click to show)]]]" data-text-original="@Model.ListingCurrent.ContactPhone" class="text-swap list-group-item "><i class="mdi-hardware-phone-iphone"></i> [[[Contact number (Click to show)]]]</a>
+                                            <a href="@Url.Action("Profile", "Listing", new { id = Model.ListingCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>[[[View User's other listings]]]</a>
+                                        </div>
                                     }
 
                                     <div class="panel-heading">
@@ -265,9 +268,9 @@
                                             <span>@string.Format("[[[{0:N0} reviews]]]", Model.ListingReviews.Count)</span>
                                         </div>
                                     </a>
-                                    
+
                                     <a id="contactModal" data-toggle="modal" data-target="#contactModal" class="btn btn-default btn-block">[[[Contact]]]</a>
-                                </div> 
+                                </div>
 
                                 <!-- AddToAny BEGIN -->
                                 <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
@@ -292,8 +295,8 @@
 
 </div>
 
-@section Scripts {    
-    @Scripts.Render("~/bundles/jqueryval")    
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 
     <script src="~/js/timepicker/bootstrap-datepicker.js"></script>
     @Html.Partial("_LocalizationDatePicker")
@@ -309,14 +312,14 @@
     }
 
     <script type="text/javascript">
-    $(document).ready(function () {
-        $('.datepicker').datepicker({
-            startDate: new Date(),
-            daysOfWeekDisabled: "0",
-            datesDisabled: [@Html.Raw(datesDisabled.ToString())],
-            language: '@Context.GetPrincipalAppLanguageForRequest().ToString()'
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                startDate: new Date(),
+                daysOfWeekDisabled: "0",
+                datesDisabled: [@Html.Raw(datesDisabled.ToString())],
+                language: '@Context.GetPrincipalAppLanguageForRequest().ToString()'
+            });
         });
-    });
     </script>
 
 
@@ -332,7 +335,7 @@
             el.text() == el.data("text-swap")
               ? el.text(el.data("text-original"))
               : el.text(el.data("text-swap"));
-        });        
+        });
     </script>
 
     <script type="text/javascript">
@@ -363,10 +366,10 @@
                         map: map,
                         content: '@Model.ListingCurrent.Location'
                     });
-                }                
+                }
             </script>
         </text>
     }
-    
+
     <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap" async defer></script>
 }

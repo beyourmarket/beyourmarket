@@ -462,6 +462,7 @@ namespace BeYourMarket.Web.Migrations
                 OrderTypeLabel = "Number of days",
                 PriceUnitLabel = "Per day",
                 PaymentEnabled = true,
+                PriceEnabled = true,
                 ShippingEnabled = false,
                 ObjectState = Repository.Pattern.Infrastructure.ObjectState.Added
             });

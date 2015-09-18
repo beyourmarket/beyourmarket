@@ -161,6 +161,21 @@ namespace BeYourMarket.Web.Controllers
             return PartialView("_ListingTypes", model);
         }
 
+        [HttpGet]
+        public ActionResult ListingType(int listingTypeID)
+        {
+            var listingType = CacheHelper.ListingTypes.Where(x => x.ID == listingTypeID).FirstOrDefault();
+
+            if (listingType == null)
+                return new JsonResult();
+
+            return Json(new
+            {
+                PaymentEnabled = listingType.PaymentEnabled,
+                PriceEnabled = listingType.PriceEnabled
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         [AllowAnonymous]
         public async Task<ActionResult> ListingUpdate(int? id)
         {
@@ -424,9 +439,9 @@ namespace BeYourMarket.Web.Controllers
             // Set default listing type ID
             if (listing.ListingTypeID == 0)
             {
-                var listingType = CacheHelper.ListingTypes.Where(x => x.CategoryListingTypes.Any(y => y.CategoryID == listing.CategoryID));
+                var listingTypes = CacheHelper.ListingTypes.Where(x => x.CategoryListingTypes.Any(y => y.CategoryID == listing.CategoryID));
 
-                if (listingType == null)
+                if (listingTypes == null)
                 {
                     TempData[TempDataKeys.UserMessageAlertState] = "bg-danger";
                     TempData[TempDataKeys.UserMessage] = "[[[There are not listing types available yet.]]]";
@@ -434,7 +449,7 @@ namespace BeYourMarket.Web.Controllers
                     return RedirectToAction("Listing", new { id = listing.ID });
                 }
 
-                listing.ListingTypeID = listingType.FirstOrDefault().ID;
+                listing.ListingTypeID = listingTypes.FirstOrDefault().ID;
             }
 
             if (listing.ID == 0)
@@ -854,8 +869,8 @@ namespace BeYourMarket.Web.Controllers
 
             // Check if users reach max review limit       
             var today = DateTime.Today.Date;
-            var reviewQuery = await _listingReviewService.Query(x => x.UserFrom == currentUserId 
-            && System.Data.Entity.DbFunctions.TruncateTime(x.Created) == today).SelectAsync();            
+            var reviewQuery = await _listingReviewService.Query(x => x.UserFrom == currentUserId
+            && System.Data.Entity.DbFunctions.TruncateTime(x.Created) == today).SelectAsync();
             var reviewCount = reviewQuery.Count();
 
             if (reviewCount >= CacheHelper.Settings.ListingReviewMaxPerDay)

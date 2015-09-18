@@ -51,11 +51,11 @@ namespace BeYourMarket.Model.Models.Mapping
 
             this.HasOptional(t => t.Listing)
                 .WithMany(t => t.ListingReviews)
-                .HasForeignKey(d => d.ListingID);
+                .HasForeignKey(d => d.ListingID).WillCascadeOnDelete();
 
             this.HasOptional(t => t.Order)
                 .WithMany(t => t.ListingReviews)
-                .HasForeignKey(d => d.OrderID);
+                .HasForeignKey(d => d.OrderID).WillCascadeOnDelete();
 
         }
     }
