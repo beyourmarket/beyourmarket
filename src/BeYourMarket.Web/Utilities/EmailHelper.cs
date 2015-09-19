@@ -22,6 +22,7 @@ namespace BeYourMarket.Web.Utilities
 
         public static void SendEmail(Email email, bool preMailer = true)
         {
+            var httpContext = Elmah.ErrorSignal.FromCurrentContext();
 
             Task.Factory.StartNew(() =>
             {
@@ -63,7 +64,7 @@ namespace BeYourMarket.Web.Utilities
                 catch (Exception ex)
                 {
                     //http://stackoverflow.com/questions/7441062/how-to-use-elmah-to-manually-log-errors
-                    Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+                    httpContext.Raise(ex);
                 }
             });
         }

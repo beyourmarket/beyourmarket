@@ -38,12 +38,13 @@ namespace BeYourMarket.Web
             //https://github.com/turquoiseowl/i18n#project-configuration
             // Change from the of temporary redirects during URL localization
             i18n.LocalizedApplication.Current.PermanentRedirects = false;
-            
+
             // Change the URL localization scheme from Scheme1.
             i18n.UrlLocalizer.UrlLocalizationScheme = i18n.UrlLocalizationScheme.Scheme1;
 
             // Filter certain URLs from being 'localized'.
-            i18n.UrlLocalizer.OutgoingUrlFilters += delegate (string url, Uri currentRequestUrl) {
+            i18n.UrlLocalizer.OutgoingUrlFilters += delegate (string url, Uri currentRequestUrl)
+            {
                 Uri uri;
                 if (Uri.TryCreate(url, UriKind.Absolute, out uri)
                     || Uri.TryCreate(currentRequestUrl, url, out uri))
@@ -100,17 +101,20 @@ namespace BeYourMarket.Web
                 var dbContext = Core.ContainerManager.GetConfiguredContainer()
                     .Resolve<Repository.Pattern.DataContext.IDataContextAsync>() as Model.Models.BeYourMarketContext;
 
+                var language = Context.GetPrincipalAppLanguageForRequest().GetLanguage();
+
                 // Set date time format only if the database is ready
                 if (dbContext.Database.Exists())
                 {
                     // Short Date and time pattern
-                    System.Globalization.DateTimeFormatInfo.CurrentInfo.ShortDatePattern = CacheHelper.Settings.DateFormat;
-                    System.Globalization.DateTimeFormatInfo.CurrentInfo.ShortTimePattern = CacheHelper.Settings.TimeFormat;
+                    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo(language);
+                    culture.DateTimeFormat.ShortDatePattern = CacheHelper.Settings.DateFormat;
+                    culture.DateTimeFormat.ShortTimePattern = CacheHelper.Settings.TimeFormat;
+                    Thread.CurrentThread.CurrentCulture = culture;
+                    Thread.CurrentThread.CurrentUICulture = culture;                    
                 }
 
                 // Check if language from the url is enabled, if not, redirect to the default language
-                var language = Context.GetPrincipalAppLanguageForRequest().GetLanguage();
-
                 if (!LanguageHelper.AvailableLanguges.Languages.Any(x => x.Culture == language && x.Enabled))
                 {
                     var returnUrl = LocalizedApplication.Current.UrlLocalizerForApp.SetLangTagInUrlPath(
@@ -128,11 +132,11 @@ namespace BeYourMarket.Web
             if (HttpContext.Current.IsDebuggingEnabled)
                 return;
 
-            Exception exception = Server.GetLastError();            
+            Exception exception = Server.GetLastError();
 
             HttpException httpException = exception as HttpException;
 
-            Elmah.ErrorSignal.FromCurrentContext().Raise(exception);            
+            Elmah.ErrorSignal.FromCurrentContext().Raise(exception);
 
             if (httpException != null)
             {
@@ -158,7 +162,7 @@ namespace BeYourMarket.Web
                     Response.TrySkipIisCustomErrors = true;
 
                     // Call target Controller and pass the routeData.
-                    IController errorController = new BeYourMarket.Web.Controllers.ErrorController();                     
+                    IController errorController = new BeYourMarket.Web.Controllers.ErrorController();
                     var routeData = new RouteData();
                     routeData.Values.Add("controller", "Error");
                     routeData.Values.Add("action", action);
