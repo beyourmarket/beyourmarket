@@ -22,6 +22,7 @@ using RestSharp;
 using BeYourMarket.Core.Web;
 using BeYourMarket.Service.Models;
 using Microsoft.Practices.Unity;
+using BeYourMarket.Web.Extensions;
 
 namespace BeYourMarket.Web.Controllers
 {
@@ -688,7 +689,8 @@ namespace BeYourMarket.Web.Controllers
             var listing = await _listingService.FindAsync(model.ListingID);
 
             var userIdCurrent = User.Identity.GetUserId();
-
+            var user = userIdCurrent.User();
+            
             // Check if user send message to itself, which is not allowed
             if (listing.UserID == userIdCurrent)
             {
@@ -714,7 +716,7 @@ namespace BeYourMarket.Web.Controllers
             var emailTemplate = emailTemplateQuery.Single();
 
             dynamic email = new Postal.Email("Email");
-            email.To = CacheHelper.Settings.EmailContact;
+            email.To = user.Email;
             email.From = CacheHelper.Settings.EmailContact;
             email.Subject = emailTemplate.Subject;
             email.Body = emailTemplate.Body;

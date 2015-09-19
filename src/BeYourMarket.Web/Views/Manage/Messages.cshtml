@@ -91,13 +91,13 @@
                                                         </a>
                                                     </td>
 
-                                                    <td width="200">
+                                                    <td width="150">
                                                         <a href="@Url.Action("Message", "Manage", new { threadId = message.MessageThreadID })">
                                                             <p class="truncate text-xs">@Html.Raw(message.MessageThread.Subject)</p>
                                                         </a>
                                                     </td>
 
-                                                    <td class="text-right">
+                                                    <td width="100" class="text-right">
                                                         @(message.Created.Date == DateTime.Today.Date ? message.Created.ToShortTimeString() : message.Created.ToShortDateString())
                                                     </td>
 

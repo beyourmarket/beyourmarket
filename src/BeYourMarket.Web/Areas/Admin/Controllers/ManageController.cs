@@ -439,7 +439,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             EmailHelper.SendEmail(email);
 
-            TempData[TempDataKeys.UserMessage] = "[[[Message sent succesfully!]]]";
+            TempData[TempDataKeys.UserMessage] = string.Format("[[[Message sent to {0} succesfully!]]]", CacheHelper.Settings.EmailContact);
 
             return RedirectToAction("EmailTemplateUpdate", new { id = id });
         }

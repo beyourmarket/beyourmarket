@@ -330,7 +330,7 @@ namespace BeYourMarket.Web.Controllers
                 var emailTemplate = emailTemplateQuery.Single();
 
                 dynamic email = new Postal.Email("Email");
-                email.To = CacheHelper.Settings.EmailContact;
+                email.To = user.Email;
                 email.From = CacheHelper.Settings.EmailContact;
                 email.Subject = emailTemplate.Subject;
                 email.Body = emailTemplate.Body;
