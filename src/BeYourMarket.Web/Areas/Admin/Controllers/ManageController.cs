@@ -433,7 +433,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
             dynamic email = new Postal.Email("Email");
             email.To = CacheHelper.Settings.EmailContact;
-            email.From = CacheHelper.Settings.EmailContact;
+            email.From = CacheHelper.Settings.EmailAddress;
             email.Subject = "[[[Testing]]] - " + emailTemplate.Subject;
             email.Body = emailTemplate.Body;
 

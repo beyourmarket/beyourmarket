@@ -263,7 +263,7 @@ namespace BeYourMarket.Web.Controllers
                 {
                     dynamic email = new Postal.Email("Email");
                     email.To = user.Email;
-                    email.From = CacheHelper.Settings.EmailContact;
+                    email.From = CacheHelper.Settings.EmailAddress;
                     email.Subject = emailTemplate.Subject;
                     email.Body = emailTemplate.Body;
                     email.CallbackUrl = callbackUrl;
@@ -331,7 +331,7 @@ namespace BeYourMarket.Web.Controllers
 
                 dynamic email = new Postal.Email("Email");
                 email.To = user.Email;
-                email.From = CacheHelper.Settings.EmailContact;
+                email.From = CacheHelper.Settings.EmailAddress;
                 email.Subject = emailTemplate.Subject;
                 email.Body = emailTemplate.Body;
                 email.CallbackUrl = callbackUrl;
