@@ -305,7 +305,7 @@ namespace BeYourMarket.Web.Controllers
                 order.Status = (int)Enum_OrderStatus.Created;
                 order.UserProvider = listing.UserID;
                 order.UserReceiver = userCurrent.Id;
-                order.ListingTypeID = order.ListingTypeID;
+                order.ListingTypeID = listing.ListingTypeID;
                 order.Currency = listing.Currency;
 
                 if (order.UserProvider == order.UserReceiver)
