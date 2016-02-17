@@ -332,7 +332,7 @@ namespace BeYourMarket.Web.Controllers
                 {
                     order.Description = string.Format("{0} #{1}", listing.Title, listing.ID);
                     order.Quantity = order.Quantity.Value;
-                    order.Price = listing.Price;
+                    order.Price = order.Quantity * listing.Price;
                 }
                 else
                 {
