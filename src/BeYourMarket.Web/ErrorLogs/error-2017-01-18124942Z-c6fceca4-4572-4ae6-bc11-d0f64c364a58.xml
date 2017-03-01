@@ -1,0 +1,188 @@
+﻿<error errorId="c6fceca4-4572-4ae6-bc11-d0f64c364a58" host="N107142" type="System.Web.HttpException" message="The controller for path '/82f2e73e16064bfcae6caf7b2f1713ce/arterysignalr/ping' was not found or does not implement IController." source="System.Web.Mvc" detail="System.Web.HttpException (0x80004005): The controller for path '/82f2e73e16064bfcae6caf7b2f1713ce/arterysignalr/ping' was not found or does not implement IController.&#xD;&#xA;   konum: System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)&#xD;&#xA;   konum: System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)&#xD;&#xA;   konum: System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController&amp; controller, IControllerFactory&amp; factory)&#xD;&#xA;   konum: System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)&#xD;&#xA;   konum: System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)&#xD;&#xA;   konum: System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)&#xD;&#xA;   konum: System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   konum: System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="ramazanburak19@gmail.com" time="2017-01-18T12:49:42.9590613Z" statusCode="404">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_CONTENT_TYPE:application/x-www-form-urlencoded; charset=UTF-8&#xD;&#xA;HTTP_ACCEPT:text/plain, */*; q=0.01&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, sdch, br&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:tr-TR,tr;q=0.8,en-US;q=0.6,en;q=0.4&#xD;&#xA;HTTP_COOKIE:__RequestVerificationToken=uUO6qTzw3KQGcyRw30wnPpVv8yiNU673DI0vLwHLu_PICN1k0uCGO4UC1N5G6saLa_NC1N6VVDlXNnURLTwlinjjOfMTyw2qseOuXRCoPGM1; i18n.langtag=tr; ASP.NET_SessionId=4ildbn4utz2fnjqthgszmksf; .AspNet.ApplicationCookie=zWvJnpN27tq9KOVhO4nvBFPpd_tpiTp9YDIr8BB-trskXPQyUbbgGbeInvn1VyyBswwWCiZDhKIVRnYwVA9qBil8jcU1MG8nt_sa92dzX7HYT1Qfbqb1v7DGgEbq5WXdewFgFpdoZoNYe0XI8uhRIPVda9CROgEzhLgWWWZNiN1YUophY8uodqbC5bgfsvRu9xHqopEFF_xv4loXS6L_OPyLDRFcvA-Mr4Bzal3r6aN3Mnqdop5wxdq5m0FnzWG9DjG7UV8n0vGOfQvI_XcXEzaIC1pX62IoGvaK-Jd4LbJYDVKxg0rCxStltgi0W66jZQWsfDoE5CcmtfHM9NHqQ2Tv6cKJIprSKWKSoNxGHT2eYXWhI6OmI6nZJDHM_5zIPrA4QJJF1NpaBEBjUo9RREzhfkqhNVsygh8kc_gLNX7h9ssor8MtQeDoznGqq46CyXBDbKuSQKxOr5wLJMDIEsNGOxzzYKKLxYXEYnRikk3V3h0jz86G8UoStBFII36Hf0gfCgpOKMOUvh972_4-naOx5BpcWG9lUKZzcJ8mYdA&#xD;&#xA;HTTP_HOST:localhost:50527&#xD;&#xA;HTTP_REFERER:http://localhost:50527/tr/admin/manage/settings&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36&#xD;&#xA;HTTP_X_REQUESTED_WITH:XMLHttpRequest&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Connection: keep-alive&#xD;&#xA;Content-Type: application/x-www-form-urlencoded; charset=UTF-8&#xD;&#xA;Accept: text/plain, */*; q=0.01&#xD;&#xA;Accept-Encoding: gzip, deflate, sdch, br&#xD;&#xA;Accept-Language: tr-TR,tr;q=0.8,en-US;q=0.6,en;q=0.4&#xD;&#xA;Cookie: __RequestVerificationToken=uUO6qTzw3KQGcyRw30wnPpVv8yiNU673DI0vLwHLu_PICN1k0uCGO4UC1N5G6saLa_NC1N6VVDlXNnURLTwlinjjOfMTyw2qseOuXRCoPGM1; i18n.langtag=tr; ASP.NET_SessionId=4ildbn4utz2fnjqthgszmksf; .AspNet.ApplicationCookie=zWvJnpN27tq9KOVhO4nvBFPpd_tpiTp9YDIr8BB-trskXPQyUbbgGbeInvn1VyyBswwWCiZDhKIVRnYwVA9qBil8jcU1MG8nt_sa92dzX7HYT1Qfbqb1v7DGgEbq5WXdewFgFpdoZoNYe0XI8uhRIPVda9CROgEzhLgWWWZNiN1YUophY8uodqbC5bgfsvRu9xHqopEFF_xv4loXS6L_OPyLDRFcvA-Mr4Bzal3r6aN3Mnqdop5wxdq5m0FnzWG9DjG7UV8n0vGOfQvI_XcXEzaIC1pX62IoGvaK-Jd4LbJYDVKxg0rCxStltgi0W66jZQWsfDoE5CcmtfHM9NHqQ2Tv6cKJIprSKWKSoNxGHT2eYXWhI6OmI6nZJDHM_5zIPrA4QJJF1NpaBEBjUo9RREzhfkqhNVsygh8kc_gLNX7h9ssor8MtQeDoznGqq46CyXBDbKuSQKxOr5wLJMDIEsNGOxzzYKKLxYXEYnRikk3V3h0jz86G8UoStBFII36Hf0gfCgpOKMOUvh972_4-naOx5BpcWG9lUKZzcJ8mYdA&#xD;&#xA;Host: localhost:50527&#xD;&#xA;Referer: http://localhost:50527/tr/admin/manage/settings&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36&#xD;&#xA;X-Requested-With: XMLHttpRequest&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/15/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="C:\Users\bramazan\beyourmarket-master\beyourmarket-master\src\BeYourMarket.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="ApplicationCookie" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="ramazanburak19@gmail.com" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="ramazanburak19@gmail.com" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="ramazanburak19@gmail.com" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="application/x-www-form-urlencoded; charset=UTF-8" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="15" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/15" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/82f2e73e16064bfcae6caf7b2f1713ce/arterysignalr/ping" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="C:\Users\bramazan\beyourmarket-master\beyourmarket-master\src\BeYourMarket.Web\82f2e73e16064bfcae6caf7b2f1713ce\arterysignalr\ping" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="requestUrl=http%3A%2F%2Flocalhost%3A50527%2Ftr%2Fadmin%2Fmanage%2Fsettings&amp;browserName=Chrome&amp;_=1484743782940" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="49219" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/82f2e73e16064bfcae6caf7b2f1713ce/arterysignalr/ping" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="50527" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/8.0" />
+    </item>
+    <item name="URL">
+      <value string="/82f2e73e16064bfcae6caf7b2f1713ce/arterysignalr/ping" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_CONTENT_TYPE">
+      <value string="application/x-www-form-urlencoded; charset=UTF-8" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/plain, */*; q=0.01" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, sdch, br" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="tr-TR,tr;q=0.8,en-US;q=0.6,en;q=0.4" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="__RequestVerificationToken=uUO6qTzw3KQGcyRw30wnPpVv8yiNU673DI0vLwHLu_PICN1k0uCGO4UC1N5G6saLa_NC1N6VVDlXNnURLTwlinjjOfMTyw2qseOuXRCoPGM1; i18n.langtag=tr; ASP.NET_SessionId=4ildbn4utz2fnjqthgszmksf; .AspNet.ApplicationCookie=zWvJnpN27tq9KOVhO4nvBFPpd_tpiTp9YDIr8BB-trskXPQyUbbgGbeInvn1VyyBswwWCiZDhKIVRnYwVA9qBil8jcU1MG8nt_sa92dzX7HYT1Qfbqb1v7DGgEbq5WXdewFgFpdoZoNYe0XI8uhRIPVda9CROgEzhLgWWWZNiN1YUophY8uodqbC5bgfsvRu9xHqopEFF_xv4loXS6L_OPyLDRFcvA-Mr4Bzal3r6aN3Mnqdop5wxdq5m0FnzWG9DjG7UV8n0vGOfQvI_XcXEzaIC1pX62IoGvaK-Jd4LbJYDVKxg0rCxStltgi0W66jZQWsfDoE5CcmtfHM9NHqQ2Tv6cKJIprSKWKSoNxGHT2eYXWhI6OmI6nZJDHM_5zIPrA4QJJF1NpaBEBjUo9RREzhfkqhNVsygh8kc_gLNX7h9ssor8MtQeDoznGqq46CyXBDbKuSQKxOr5wLJMDIEsNGOxzzYKKLxYXEYnRikk3V3h0jz86G8UoStBFII36Hf0gfCgpOKMOUvh972_4-naOx5BpcWG9lUKZzcJ8mYdA" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:50527" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:50527/tr/admin/manage/settings" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36" />
+    </item>
+    <item name="HTTP_X_REQUESTED_WITH">
+      <value string="XMLHttpRequest" />
+    </item>
+  </serverVariables>
+  <queryString>
+    <item name="requestUrl">
+      <value string="http://localhost:50527/tr/admin/manage/settings" />
+    </item>
+    <item name="browserName">
+      <value string="Chrome" />
+    </item>
+    <item name="_">
+      <value string="1484743782940" />
+    </item>
+  </queryString>
+  <cookies>
+    <item name="__RequestVerificationToken">
+      <value string="uUO6qTzw3KQGcyRw30wnPpVv8yiNU673DI0vLwHLu_PICN1k0uCGO4UC1N5G6saLa_NC1N6VVDlXNnURLTwlinjjOfMTyw2qseOuXRCoPGM1" />
+    </item>
+    <item name="i18n.langtag">
+      <value string="tr" />
+    </item>
+    <item name="ASP.NET_SessionId">
+      <value string="4ildbn4utz2fnjqthgszmksf" />
+    </item>
+    <item name=".AspNet.ApplicationCookie">
+      <value string="zWvJnpN27tq9KOVhO4nvBFPpd_tpiTp9YDIr8BB-trskXPQyUbbgGbeInvn1VyyBswwWCiZDhKIVRnYwVA9qBil8jcU1MG8nt_sa92dzX7HYT1Qfbqb1v7DGgEbq5WXdewFgFpdoZoNYe0XI8uhRIPVda9CROgEzhLgWWWZNiN1YUophY8uodqbC5bgfsvRu9xHqopEFF_xv4loXS6L_OPyLDRFcvA-Mr4Bzal3r6aN3Mnqdop5wxdq5m0FnzWG9DjG7UV8n0vGOfQvI_XcXEzaIC1pX62IoGvaK-Jd4LbJYDVKxg0rCxStltgi0W66jZQWsfDoE5CcmtfHM9NHqQ2Tv6cKJIprSKWKSoNxGHT2eYXWhI6OmI6nZJDHM_5zIPrA4QJJF1NpaBEBjUo9RREzhfkqhNVsygh8kc_gLNX7h9ssor8MtQeDoznGqq46CyXBDbKuSQKxOr5wLJMDIEsNGOxzzYKKLxYXEYnRikk3V3h0jz86G8UoStBFII36Hf0gfCgpOKMOUvh972_4-naOx5BpcWG9lUKZzcJ8mYdA" />
+    </item>
+  </cookies>
+</error>

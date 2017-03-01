@@ -1,0 +1,2041 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2017-03-01 22:57+03:00\n"
+"PO-Revision-Date: 2017-03-01 22:57+03:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: i18n.POTGenerator\n"
+
+#: Extensions\ExtensionMethods.cs:106
+msgid "\", \"(((\").Replace(\""
+msgstr "\", \"(((\").Replace(\""
+
+#: Views\Listing\Listing.cshtml:267
+#: Views\Listing\Profile.cshtml:25
+#: Views\Listing\Review.cshtml:36
+msgid "{0:N0} reviews"
+msgstr "{0:N0} incelemeler"
+
+#: Areas\Admin\Controllers\PluginController.cs:123
+msgid "{0} is disabled"
+msgstr "{0} pasif edildi"
+
+#: Areas\Admin\Controllers\PluginController.cs:119
+msgid "{0} is enabled"
+msgstr "{0} aktif edildi"
+
+#: Areas\Admin\Controllers\PluginController.cs:111
+msgid "{0} is installed"
+msgstr "{0} kuruldu"
+
+#: Areas\Admin\Controllers\PluginController.cs:115
+msgid "{0} is uninstalled"
+msgstr "{0} kaldırıldı"
+
+#: Views\Home\About.cshtml:2
+msgid "About"
+msgstr "Hakkında"
+
+#: Views\Payment\Orders.cshtml:25
+#: Areas\Admin\Views\Payment\Order.cshtml:24
+msgid "Accept"
+msgstr "Kabul"
+
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:101
+msgid "Accept Email"
+msgstr "E-Posta Onayı"
+
+#: Views\Listing\ListingUpdate.cshtml:64
+#: Areas\Admin\Views\Listing\Listings.cshtml:67
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:138
+msgid "Active"
+msgstr "Aktif"
+
+#: Views\Manage\AddPhoneNumber.cshtml:11
+msgid "Add a phone number"
+msgstr "Telefon Numarası Ekle"
+
+#: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:113
+msgid "add an option"
+msgstr "Seçenek Ekle"
+
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:28
+#: Areas\Admin\Views\Listing\Categories.cshtml:49
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:46
+#: Areas\Admin\Views\Listing\Listings.cshtml:44
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:46
+#: Areas\Admin\Views\Manage\Users.cshtml:28
+msgid "Add New"
+msgstr "Yeni Ekle"
+
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:139
+msgid "Add new page"
+msgstr "Yeni Sayfa"
+
+#: Views\Shared\_DashBoardSide.cshtml:25
+msgid "Admin"
+msgstr "Yönetici"
+
+#: Views\Shared\_LoginPartial.cshtml:69
+#: Views\Shared\_NavigationSide.cshtml:92
+msgid "Admin Panel"
+msgstr "Yönetici Paneli"
+
+#: Areas\Admin\Views\Install\Index.cshtml:28
+msgid "Admin user email"
+msgstr "Yönetici Maili"
+
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:111
+msgid "Administrator"
+msgstr "Yönetici"
+
+#: Views\Account\Register.cshtml:26
+msgid "Agreement"
+msgstr "Sözleşme"
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:102
+msgid "Agreement Label"
+msgstr "Sözleşme Etiketi"
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:91
+msgid "Agreement Required"
+msgstr "Sözleşme Gereklidir"
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:109
+msgid "Agreement Text"
+msgstr "Sözleşme Metni"
+
+#: Views\Listing\Listings.cshtml:51
+#: Views\Shared\_NavigationSide.cshtml:25
+msgid "All Categories"
+msgstr "Tüm Kategoriler"
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:126
+msgid "Allow Listing Review"
+msgstr "Yorumlara izin ver"
+
+#: Views\Account\Register.cshtml:69
+msgid "Already a member?"
+msgstr "Zaten üye misin?"
+
+#: Views\Listing\ListingUpdate.cshtml:25
+msgid "Already a member? "
+msgstr "Zaten üye misin?"
+
+#: Views\Shared\Error.cshtml:13
+msgid "An error occurred"
+msgstr "Bir hata oluştu"
+
+#: Areas\Admin\Views\Design\Appearance.cshtml:4
+#: Areas\Admin\Views\Design\Appearance.cshtml:17
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:92
+msgid "Appearance"
+msgstr "Görünüm"
+
+#: Views\Listing\Listings.cshtml:95
+msgid "Apply"
+msgstr "Uygula"
+
+#: Views\Manage\Dashboard.cshtml:67
+#: Views\Payment\Orders.cshtml:166
+#: Areas\Admin\Views\Listing\Categories.cshtml:101
+#: Areas\Admin\Views\Listing\Listings.cshtml:92
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:102
+#: Areas\Admin\Views\Manage\Users.cshtml:77
+#: Areas\Admin\Views\Payment\Order.cshtml:142
+msgid "Are you sure?"
+msgstr "Emin misiniz?"
+
+#: Areas\Admin\Controllers\ManageController.cs:550
+msgid "At least one language should be enabled!"
+msgstr "En az bir dil etkinleştirilmelidir"
+
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:47
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:52
+msgid "Author"
+msgstr "Yazar"
+
+#: Views\Shared\Error.cshtml:47
+msgid "Back to the Home"
+msgstr "Ana sayfaya dön"
+
+#: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:55
+msgid "Body"
+msgstr "Gövde"
+
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:69
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:40
+msgid "Button Label"
+msgstr "Buton Etiketi"
+
+#: Views\Listing\ListingUpdate.cshtml:130
+#: Views\Listing\Review.cshtml:74
+#: Views\Payment\Orders.cshtml:26
+#: Views\Payment\Orders.cshtml:30
+#: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:77
+#: Areas\Admin\Views\Design\Appearance.cshtml:45
+#: Areas\Admin\Views\Design\CodeScript.cshtml:35
+#: Areas\Admin\Views\Design\CodeStyle.cshtml:35
+#: Areas\Admin\Views\Listing\Categories.cshtml:71
+#: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:59
+#: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:91
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:113
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:201
+#: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:64
+#: Areas\Admin\Views\Manage\Settings.cshtml:167
+#: Areas\Admin\Views\Manage\SettingsEmail.cshtml:69
+#: Areas\Admin\Views\Manage\SettingsLanguage.cshtml:43
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:147
+#: Areas\Admin\Views\Payment\Order.cshtml:25
+#: Areas\Admin\Views\Payment\Order.cshtml:29
+#: Areas\Admin\Views\Payment\PaymentSetting.cshtml:46
+msgid "Cancel"
+msgstr "İptal"
+
+#: Controllers\PaymentController.cs:167
+#: Views\Payment\Orders.cshtml:51
+#: Areas\Admin\Views\Payment\Order.cshtml:46
+#: Areas\Admin\Views\Payment\Order.cshtml:165
+msgid "Cancelled"
+msgstr "İptal edildi"
+
+#: Views\Manage\Dashboard.cshtml:91
+#: Views\Payment\Orders.cshtml:189
+#: Areas\Admin\Views\Listing\Listings.cshtml:105
+msgid "Cancelled!"
+msgstr "İptal Edildi!"
+
+#: Views\Shared\_NavigationSide.cshtml:98
+#: Areas\Admin\Views\Listing\Categories.cshtml:8
+#: Areas\Admin\Views\Listing\Categories.cshtml:37
+msgid "Categories"
+msgstr "Kategoriler"
+
+#: Views\Listing\Listing.cshtml:140
+#: Views\Listing\Listings.cshtml:50
+#: Views\Listing\ListingUpdate.cshtml:35
+#: Views\Listing\_ListingGridList.cshtml:35
+#: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:4
+#: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:12
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:69
+#: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:76
+#: Areas\Admin\Views\Listing\Listings.cshtml:65
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:31
+#: Areas\Admin\Views\Manage\Dashboard.cshtml:67
+msgid "Category"
+msgstr "Kategori"
+
+#: Areas\Admin\Views\Listing\Categories.cshtml:121
+msgid "Category is deleted."
+msgstr "Kategori silindi"
+
+#: Views\Manage\ChangePassword.cshtml:3
+#: Views\Manage\ChangePassword.cshtml:47
+#: Views\Shared\_DashBoardSide.cshtml:20
+msgid "Change Password"
+msgstr "Parola Değiştir"
+
+#: Views\Manage\ChangePassword.cshtml:18
+#: Views\Manage\ChangePassword.cshtml:24
+msgid "Change Password Form"
+msgstr "Şifre Değiştirme Formu"
+
+#: Views\Manage\Index.cshtml:10
+msgid "Change your account settings"
+msgstr "Hesap ayarlarınızı değiştirin"
+
+#: Views\Manage\Index.cshtml:18
+msgid "Change your password"
+msgstr "Şifrenizi Değiştirin"
+
+#: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:78
+msgid "Choose Category..."
+msgstr "Kategori Seçin..."
+
+#: Views\Account\Register.cshtml:33
+#: Views\Listing\_ListingContactModal.cshtml:29
+#: Views\Listing\_ListingContactModal.cshtml:41
+#: Views\Listing\_ListingReviewModal.cshtml:29
+#: Views\Listing\_ListingReviewModal.cshtml:43
+msgid "Close"
+msgstr "Kapat"
+
+#: Models\AccountViewModels.cs:32
+#: Models\ManageViewModels.cs:72
+msgid "Code"
+msgstr "Kod"
+
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Widget.Disqus\Views\Index.cshtml:6
+#: Plugins\Plugin.Widget.Disqus\Views\Index.cshtml:6
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Widget.Disqus\bin\Views\Index.cshtml:6
+msgid "Comments"
+msgstr "Yorumlar"
+
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:43
+msgid "Configure"
+msgstr "Düzenle"
+
+#: Areas\Admin\Views\Hook\ConfigureHook.cshtml:8
+msgid "Configure Hook"
+msgstr ""
+
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:80
+msgid "Configure Plugins"
+msgstr "Eklentileri Düzenle"
+
+#: Views\Account\ConfirmEmail.cshtml:2
+msgid "Confirm Email"
+msgstr "E-Posta Onayla"
+
+#: Models\ManageViewModels.cs:37
+#: Models\ManageViewModels.cs:56
+msgid "Confirm new password"
+msgstr "Yeni Şifre (Tekrar)"
+
+#: Models\AccountViewModels.cs:79
+#: Models\AccountViewModels.cs:104
+msgid "Confirm password"
+msgstr "Şifre Onayı"
+
+#: Views\Account\Register.cshtml:54
+#: Views\Account\Register.cshtml:55
+#: Views\Listing\ListingUpdate.cshtml:123
+#: Views\Listing\ListingUpdate.cshtml:124
+msgid "Confirm Password"
+msgstr "Şifre Onayı"
+
+#: Views\Payment\Orders.cshtml:159
+#: Areas\Admin\Views\Payment\Order.cshtml:135
+msgid "Confirm to accept the order"
+msgstr "Şiparişi Onayla"
+
+#: Views\Payment\Orders.cshtml:161
+#: Areas\Admin\Views\Payment\Order.cshtml:137
+msgid "Confirm to cancel the order"
+msgstr "Şiparişi İptal Et"
+
+#: Controllers\PaymentController.cs:164
+msgid "Confirmed"
+msgstr "Onaylandı"
+
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:228
+msgid "Connnect to stripe successfully!"
+msgstr "Stripe'a başarıyla bağlanıldı"
+
+#: Views\Home\Contact.cshtml:4
+#: Views\Listing\Listing.cshtml:66
+#: Views\Listing\Listing.cshtml:236
+#: Views\Listing\Listing.cshtml:239
+#: Views\Listing\Listing.cshtml:271
+#: Views\Listing\_ListingContactModal.cshtml:8
+msgid "Contact"
+msgstr "İletişim"
+
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:68
+msgid "Contact Email"
+msgstr "E-Posta "
+
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:61
+msgid "Contact Name"
+msgstr "Adınız"
+
+#: Views\Listing\Listing.cshtml:230
+#: Views\Listing\Listing.cshtml:230
+#: Views\Listing\_ListingContactModal.cshtml:17
+msgid "Contact number (Click to show)"
+msgstr "İletişim Numarası (Görünür olması için tıklayın)"
+
+#: Views\Listing\_ListingContactModal.cshtml:17
+msgid "Contact number (Double click to show)"
+msgstr "İletişim Numarası (Görünür olması için çift tıklayın)"
+
+#: Views\Home\Contact.cshtml:17
+#: Views\Shared\_NavigationSide.cshtml:111
+msgid "Contact us"
+msgstr "Bizimle İletişime Geçin"
+
+#: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:4
+#: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:16
+msgid "Content Page Update"
+msgstr "Sayfa İçeriği Güncelleme"
+
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:10
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:23
+msgid "Content Pages"
+msgstr "İçerik Sayfaları"
+
+#: Areas\Admin\Views\Manage\Dashboard.cshtml:68
+msgid "Count"
+msgstr "Sayı"
+
+#: Areas\Admin\Views\Design\Appearance.cshtml:29
+msgid "Cover photo"
+msgstr "Kapak Fotoğrafı"
+
+#: Views\Manage\Index.cshtml:22
+msgid "Create"
+msgstr "Oluştur"
+
+#: Views\Account\Register.cshtml:12
+#: Views\Shared\_LoginPartial.cshtml:83
+#: Views\Shared\_NavigationSide.cshtml:65
+msgid "Create an account"
+msgstr "Hesap Oluştur"
+
+#: Areas\Admin\Views\Install\Index.cshtml:39
+msgid "Create Sample Data"
+msgstr "Örnek Veri Oluştur"
+
+#: Views\Listing\_ListingGridList.cshtml:44
+#: Views\Payment\Orders.cshtml:132
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:49
+#: Areas\Admin\Views\Listing\Listings.cshtml:71
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:120
+#: Areas\Admin\Views\Manage\EmailTemplates.cshtml:39
+#: Areas\Admin\Views\Payment\Order.cshtml:112
+msgid "Created"
+msgstr "Oluşturulma Tarihi"
+
+#: Areas\Admin\Views\Design\CodeStyle.cshtml:10
+#: Areas\Admin\Views\Design\CodeStyle.cshtml:20
+msgid "CSS Code Editor"
+msgstr "Css Kodu Düzenleyici"
+
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:92
+#: Areas\Admin\Views\Manage\Settings.cshtml:63
+#: Areas\Admin\Views\Manage\Settings.cshtml:65
+msgid "Currency"
+msgstr "Para Birimi"
+
+#: Models\ManageViewModels.cs:46
+msgid "Current password"
+msgstr "Şimdiki Şifre"
+
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:93
+msgid "Custom CSS"
+msgstr "Özel CSS"
+
+#: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:4
+#: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:17
+msgid "Custom Field"
+msgstr "Özellik"
+
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:35
+#: Areas\Admin\Views\Shared\_CategoryCustomFields.cshtml:6
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:85
+msgid "Custom Fields"
+msgstr "Özellik"
+
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:94
+msgid "Custom Javascript"
+msgstr "Özel Javascript"
+
+#: Views\Manage\Dashboard.cshtml:4
+#: Views\Shared\_LoginPartial.cshtml:63
+#: Views\Shared\_NavigationSide.cshtml:78
+#: Areas\Admin\Views\Manage\Dashboard.cshtml:3
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:76
+msgid "Dashboard"
+msgstr "Gösterge Paneli"
+
+#: Areas\Admin\Views\Install\Index.cshtml:63
+msgid "Database"
+msgstr "Veritabanı"
+
+#: Areas\Admin\Views\Install\Index.cshtml:44
+msgid "Database information"
+msgstr "Veritabanı Bilgisi"
+
+#: Areas\Admin\Views\Install\Index.cshtml:47
+msgid "Database type"
+msgstr "Veritabanı Türü"
+
+#: Areas\Admin\Views\Install\Index.cshtml:83
+msgid "database-password"
+msgstr "Veritabanı-şifre"
+
+#: Areas\Admin\Views\Install\Index.cshtml:78
+msgid "database-username"
+msgstr "Veritabanı-Kullanıcı Adı"
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:147
+msgid "Date Format"
+msgstr "Tarih Formatı"
+
+#: Views\Listing\Listing.cshtml:175
+msgid "Date Posted"
+msgstr "Gönderilme Tarihi"
+
+#: Areas\Admin\Views\Manage\SettingsLanguage.cshtml:17
+msgid "Default Language"
+msgstr "Varsayılan Dil"
+
+#: Areas\Admin\Controllers\ManageController.cs:557
+msgid "Default language must be enabled first!"
+msgstr "Önce varsayılan dil etkinleştirilmelidir"
+
+#: Views\Manage\Dashboard.cshtml:48
+#: Areas\Admin\Views\Listing\Categories.cshtml:23
+#: Areas\Admin\Views\Listing\Listings.cshtml:19
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:20
+#: Areas\Admin\Views\Manage\Users.cshtml:12
+msgid "Delete"
+msgstr "Sil"
+
+#: Views\Manage\Dashboard.cshtml:82
+msgid "Deleted!"
+msgstr "Silindi!"
+
+#: Views\Listing\Listing.cshtml:55
+#: Views\Listing\ListingUpdate.cshtml:48
+#: Views\Listing\_ListingGridList.cshtml:40
+#: Views\Payment\Orders.cshtml:128
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:46
+#: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:37
+#: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:26
+#: Areas\Admin\Views\Listing\Listings.cshtml:69
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:49
+#: Areas\Admin\Views\Manage\Settings.cshtml:28
+#: Areas\Admin\Views\Payment\Order.cshtml:106
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:99
+msgid "Description"
+msgstr "Açıklama"
+
+#: Views\Listing\ListingUpdate.cshtml:49
+msgid "Description..."
+msgstr "Açıklama..."
+
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:90
+msgid "Design"
+msgstr "Tasarım"
+
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:30
+msgid "Disable"
+msgstr "Pasif"
+
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:193
+msgid "Disconnnect to stripe successfully!"
+msgstr "Stripe bağlantısı başarıyla kesildi"
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:161
+msgid "Documentation about Date and Time Format."
+msgstr "Tarih ve Saat Formatı ile İlgili Doküman"
+
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:42
+msgid "e.g. Book"
+msgstr "Örneğin; Kitap"
+
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:105
+msgid "e.g. Number of days"
+msgstr "Örneğin; Gün "
+
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:34
+msgid "e.g. Offer"
+msgstr "Örneğin; Teklif"
+
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:59
+msgid "e.g. Per day"
+msgstr "Örneğin; Günlük"
+
+#: Views\Listing\Listing.cshtml:36
+#: Views\Manage\Dashboard.cshtml:47
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:15
+#: Areas\Admin\Views\Listing\Categories.cshtml:21
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:15
+#: Areas\Admin\Views\Listing\Listings.cshtml:15
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:15
+#: Areas\Admin\Views\Manage\EmailTemplates.cshtml:15
+#: Areas\Admin\Views\Manage\Users.cshtml:57
+msgid "Edit"
+msgstr "Düzenle"
+
+#: Models\AccountViewModels.cs:45
+#: Models\AccountViewModels.cs:52
+#: Models\AccountViewModels.cs:69
+#: Models\AccountViewModels.cs:94
+#: Models\AccountViewModels.cs:115
+#: Views\Account\Register.cshtml:46
+#: Areas\Admin\Views\Manage\Settings.cshtml:49
+#: Areas\Admin\Views\Manage\Settings.cshtml:51
+#: Areas\Admin\Views\Manage\Users.cshtml:39
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:56
+msgid "Email"
+msgstr "E-Posta"
+
+#: Views\Listing\ListingUpdate.cshtml:113
+#: Areas\Admin\Views\Manage\SettingsEmail.cshtml:18
+msgid "Email Address"
+msgstr "E-Posta Adresi"
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:70
+msgid "Email Confirmation Required"
+msgstr "E-Posta Onayı Gereklidir"
+
+#: Areas\Admin\Views\Manage\Users.cshtml:40
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:67
+msgid "Email Confirmed"
+msgstr "E-Posta Onayı"
+
+#: Areas\Admin\Views\Manage\SettingsEmail.cshtml:25
+msgid "Email display name"
+msgstr "Görünen E-Posta Adı"
+
+#: Views\Account\ForgotPassword.cshtml:29
+msgid "Email Link"
+msgstr "E-Posta Linki"
+
+#: Areas\Admin\Views\Manage\SettingsEmail.cshtml:4
+#: Areas\Admin\Views\Manage\SettingsEmail.cshtml:12
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:105
+msgid "Email Settings"
+msgstr "E-Posta Ayarları"
+
+#: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:4
+#: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:16
+msgid "Email Template Update"
+msgstr "E-Posta Şablonu Güncelle"
+
+#: Areas\Admin\Views\Manage\EmailTemplates.cshtml:10
+#: Areas\Admin\Views\Manage\EmailTemplates.cshtml:23
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:108
+msgid "Email Templates"
+msgstr "E-Posta Şablonları"
+
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:34
+msgid "Enable"
+msgstr "Etkinleştir"
+
+#: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:37
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:148
+#: Areas\Admin\Views\Manage\Settings.cshtml:75
+#: Areas\Admin\Views\Manage\Settings.cshtml:96
+#: Areas\Admin\Views\Manage\Settings.cshtml:131
+#: Areas\Admin\Views\Manage\SettingsLanguage.cshtml:32
+msgid "Enabled"
+msgstr "Etkinleştir"
+
+#: Views\Account\Register.cshtml:47
+#: Areas\Admin\Views\Install\Index.cshtml:29
+msgid "Enter email"
+msgstr "E-Posta Girin"
+
+#: Views\Account\Login.cshtml:24
+#: Views\Home\Contact.cshtml:26
+msgid "Enter Email"
+msgstr "E-Posta Girin"
+
+#: Views\Listing\ListingUpdate.cshtml:114
+msgid "Enter Email Address"
+msgstr "E-Posta Adresinizi Girin"
+
+#: Views\Listing\ListingUpdate.cshtml:86
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:179
+msgid "Enter Location"
+msgstr "Lokasyon Girin"
+
+#: Views\Listing\ListingUpdate.cshtml:106
+msgid "Enter Phone Number"
+msgstr "Telefon Numaranızı Girin"
+
+#: Views\Listing\ListingUpdate.cshtml:44
+msgid "Enter Title"
+msgstr "Başlık Girin"
+
+#: Views\Account\VerifyCode.cshtml:12
+#: Views\Manage\VerifyPhoneNumber.cshtml:12
+msgid "Enter verification code"
+msgstr "Doğrulama Kodu"
+
+#: Areas\Admin\Views\Design\CodeStyle.cshtml:24
+msgid "Enter your custom css code here..."
+msgstr "Özel CSS kodunuzu buraya girin..."
+
+#: Areas\Admin\Views\Design\CodeStyle.cshtml:21
+msgid "Enter your custom css styles below"
+msgstr "Aşağıya özel css stillerinizi girin"
+
+#: Areas\Admin\Views\Design\CodeScript.cshtml:24
+msgid "Enter your custom javascript code here..."
+msgstr "Özel javascript kodunuzu buraya girin..."
+
+#: Areas\Admin\Views\Design\CodeScript.cshtml:21
+msgid "Enter your custom javascript styles below"
+msgstr "Aşağıya özel javascript stillerinizi girin"
+
+#: Views\Account\ForgotPassword.cshtml:18
+msgid "Enter your email."
+msgstr "e-postanızı girin"
+
+#: Views\Listing\ListingUpdate.cshtml:102
+msgid "Enter Your Full Name"
+msgstr "Tam Adınızı Girin"
+
+#: Views\Shared\Error.cshtml:4
+msgid "Error"
+msgstr "Hata"
+
+#: Views\Shared\Error.cshtml:29
+msgid "Error processing the page"
+msgstr "Sayfa işlenirken hata oluştu"
+
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:106
+msgid "Expiration"
+msgstr "Sona Erme Tarihi"
+
+#: Views\Manage\Index.cshtml:26
+msgid "External Logins"
+msgstr "Harici Girişler"
+
+#: Areas\Admin\Views\Payment\Order.cshtml:158
+#: Areas\Admin\Views\Payment\Order.cshtml:162
+msgid "Failed"
+msgstr "Başarısız oldu"
+
+#: Controllers\ManageController.cs:271
+msgid "Failed to verify phone"
+msgstr "Telefon doğrulaması yapılamadı"
+
+#: Views\Manage\Dashboard.cshtml:84
+#: Views\Manage\Dashboard.cshtml:88
+#: Views\Payment\Orders.cshtml:182
+#: Views\Payment\Orders.cshtml:186
+msgid "Failed!"
+msgstr "Başarısız oldu!"
+
+#: Areas\Admin\Views\Design\Appearance.cshtml:36
+msgid "Favicon"
+msgstr "Favicon"
+
+#: Views\Manage\UserProfile.cshtml:69
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:50
+msgid "Female"
+msgstr "Kadın"
+
+#: Models\AccountViewModels.cs:83
+#: Views\Manage\UserProfile.cshtml:43
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:30
+msgid "First Name"
+msgstr "Adı"
+
+#: Views\Account\ForgotPasswordConfirmation.cshtml:2
+msgid "Forgot Password Confirmation"
+msgstr "Şifre Onayını Unuttum"
+
+#: Views\Account\ForgotPassword.cshtml:3
+#: Views\Account\Login.cshtml:41
+msgid "Forgot your password?"
+msgstr "Şifrenizi mi unuttunuz?"
+
+#: Controllers\PaymentController.cs:322
+#: Views\Listing\Listings.cshtml:77
+#: Views\Listing\_ListingPayment.cshtml:25
+#: Views\Payment\Payment.cshtml:44
+msgid "From"
+msgstr "Min"
+
+#: Views\Payment\Payment.cshtml:42
+msgid "From Date"
+msgstr "İtibaren"
+
+#: Areas\Admin\Views\Shared\_NavigationTop.cshtml:13
+#: Areas\Admin\Views\Shared\_NavigationTop.cshtml:29
+msgid "Frontend"
+msgstr "Ön yüz"
+
+#: Views\Listing\ListingUpdate.cshtml:101
+msgid "Full Name"
+msgstr "Tam Ad"
+
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:102
+msgid "General Settings"
+msgstr "Genel Ayarlar"
+
+#: Views\Listing\Listings.cshtml:108
+msgid "Grid"
+msgstr "Izgara"
+
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:92
+msgid "Group"
+msgstr "Grup"
+
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:157
+msgid "Guide"
+msgstr "Kılavuz"
+
+#: Areas\Admin\Views\Listing\Categories.cshtml:44
+msgid "Here you can add categories and subcategories. There shall always be one category for each listing."
+msgstr "Buradan kategori ve alt kategorileri ekleyebilirsiniz. Her ilanın bir kategorisi bulunmalıdır"
+
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:41
+msgid "Here you can define custom fields for listings in different categories."
+msgstr "Burada, farklı kategorilerdeki ilanlar için özellikler tanımlayabilirsiniz."
+
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:41
+msgid "Here you can define the listing types like offer, request, etc. This will be supported and configured in different categories."
+msgstr "Burada, teklif, istek, vb. listeleme türlerini tanımlayabilirsiniz. Bu, desteklenecek ve farklı kategorilerde yapılandırılacaktır"
+
+#: Areas\Admin\Views\Listing\Listings.cshtml:39
+msgid "Here you can manage all the listings in the marketplace."
+msgstr "Burada sitenizde yer alan tüm ilanları yönetebilirsiniz."
+
+#: Areas\Admin\Views\Payment\Order.cshtml:71
+msgid "Here you can manage all the orders, you can cancel or accept orders on behalf of the users."
+msgstr "Burada tüm siparişleri yönetebilir, siparişlerinizi kullanıcılar adına iptal edebilir ve ya kabul edebilirsiniz."
+
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:70
+msgid "Here you can manage all the plugins. To add/develop a new plugin, please read the documentation."
+msgstr "Burada tüm eklentileri yönetebilirsiniz. Yeni bir eklenti eklemek / geliştirmek için belgeleri okuyun."
+
+#: Areas\Admin\Views\Payment\Transaction.cshtml:19
+msgid "Here you can view all the transactions. Transactions is supported only when payment plugin is installed and payment method is configured."
+msgstr "Burada tüm işlemleri görebilirsiniz. İşlemler, yalnızca ödeme eklentisi yüklendiğinde ve ödeme yöntemi yapılandırıldığında desteklenir."
+
+#: Controllers\AccountController.cs:247
+msgid "Hi, Welcome to {0}! I am happy to assist you if you has any questions."
+msgstr "Merhaba, {0}! hoşgeldiniz. Herhangi bir sorunuz olduğunda size yardımcı olmaktan memnuniyet duyarız."
+
+#: Areas\Admin\Views\Manage\SettingsEmail.cshtml:32
+msgid "Host"
+msgstr ""
+
+#: Views\Account\Register.cshtml:61
+msgid "I accept the"
+msgstr "Kabul ediyorum"
+
+#: Areas\Admin\Views\Install\Index.cshtml:89
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:21
+msgid "Install"
+msgstr "Yükle"
+
+#: Areas\Admin\Views\Install\Index.cshtml:13
+msgid "Install language"
+msgstr "Dil Yükle"
+
+#: Areas\Admin\Views\Install\Index.cshtml:9
+msgid "Installation"
+msgstr "Kurulum"
+
+#: Areas\Admin\Views\Install\Index.cshtml:2
+msgid "Installation - BeYourMarket - Peer to Peer MarketPlace"
+msgstr "Kurulum - BeYourMarket - Uçtan Uca Pazar Yeri"
+
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:106
+msgid "Installed"
+msgstr "Kurulum"
+
+#: Areas\Admin\Views\Install\Index.cshtml:112
+msgid "Installing..."
+msgstr "Kuruluyor..."
+
+#: Controllers\AccountController.cs:178
+msgid "Invalid code."
+msgstr "Geçersiz Kod"
+
+#: Controllers\AccountController.cs:135
+msgid "Invalid login attempt."
+msgstr "Geçersiz Oturum Açma Girişimi."
+
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:113
+msgid "IP"
+msgstr "IP"
+
+#: Areas\Admin\Views\Design\CodeScript.cshtml:10
+#: Areas\Admin\Views\Design\CodeScript.cshtml:20
+msgid "Javascript Code Editor"
+msgstr "Javascript Kodu Düzenleyici"
+
+#: Views\Account\Register.cshtml:64
+msgid "Join"
+msgstr "Katıl"
+
+#: Views\Listing\Listing.cshtml:262
+#: Views\Listing\Profile.cshtml:28
+#: Views\Listing\Review.cshtml:33
+msgid "Joined since"
+msgstr "Katılma tarihi"
+
+#: Areas\Admin\Views\Manage\SettingsLanguage.cshtml:4
+#: Areas\Admin\Views\Manage\SettingsLanguage.cshtml:11
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:111
+msgid "Language Settings"
+msgstr "Dil Ayarları"
+
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:131
+msgid "Last Access Date"
+msgstr "Son Erişim Tarihi"
+
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:138
+msgid "Last Access IP"
+msgstr "Son Erişim IP'si"
+
+#: Models\AccountViewModels.cs:86
+#: Views\Manage\UserProfile.cshtml:49
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:37
+msgid "Last Name"
+msgstr "Soyadı"
+
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:50
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:127
+#: Areas\Admin\Views\Manage\EmailTemplates.cshtml:40
+msgid "Last Updated"
+msgstr "Son Güncelleme"
+
+#: Views\Home\Index.cshtml:33
+msgid "Latest Listings"
+msgstr "Son İlanlar"
+
+#: Views\Account\Login.cshtml:34
+msgid "Let me in"
+msgstr "Giriş Yap"
+
+#: Views\Listing\Listings.cshtml:109
+msgid "List"
+msgstr "Listele"
+
+#: Views\Listing\ListingUpdate.cshtml:34
+msgid "Listing Details"
+msgstr "İlan Ayrıntıları"
+
+#: Views\Listing\Listing.cshtml:183
+msgid "Listing ID"
+msgstr "İlan ID"
+
+#: Controllers\ListingController.cs:595
+msgid "Listing is updated!"
+msgstr "İlan Güncellendi!"
+
+#: Controllers\ListingController.cs:868
+msgid "Listing review is not allowed!"
+msgstr "İlan incelemesine izin verilmedi!"
+
+#: Views\Listing\Listing.cshtml:159
+#: Views\Listing\Listings.cshtml:55
+#: Views\Shared\_ListingTypes.cshtml:6
+#: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:44
+#: Areas\Admin\Views\Listing\Listings.cshtml:66
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:16
+#: Areas\Admin\Views\Shared\_ListingTypes.cshtml:5
+msgid "Listing Type"
+msgstr "İlan Türü"
+
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:122
+msgid "Listing type is deleted."
+msgstr "İlan türü silindi."
+
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:4
+msgid "Listing Type Update"
+msgstr "İlan türü güncellendi"
+
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:10
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:35
+msgid "Listing Types"
+msgstr "İlan Türleri"
+
+#: Views\Listing\ListingUpdate.cshtml:4
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:4
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:16
+msgid "Listing Update"
+msgstr "İlan Güncelle"
+
+#: Views\Listing\Listings.cshtml:9
+#: Views\Listing\Listings.cshtml:116
+#: Views\Listing\Profile.cshtml:43
+#: Views\Shared\_DashBoardSide.cshtml:10
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:10
+#: Areas\Admin\Views\Listing\Listings.cshtml:10
+#: Areas\Admin\Views\Listing\Listings.cshtml:33
+#: Areas\Admin\Views\Manage\Dashboard.cshtml:17
+#: Areas\Admin\Views\Manage\Dashboard.cshtml:76
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:80
+msgid "Listings"
+msgstr "İlanlar"
+
+#: Areas\Admin\Views\Manage\Dashboard.cshtml:59
+msgid "Listings by category"
+msgstr "Kategoriye göre İlanlar"
+
+#: Views\Listing\Listing.cshtml:167
+#: Views\Listing\Listings.cshtml:70
+#: Views\Listing\Listings.cshtml:71
+#: Views\Listing\ListingUpdate.cshtml:83
+#: Views\Listing\ListingUpdate.cshtml:85
+#: Views\Listing\_ListingGridList.cshtml:43
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:175
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:177
+msgid "Location"
+msgstr "Konum"
+
+#: Views\Shared\Lockout.cshtml:4
+msgid "Locked Out"
+msgstr "Kilitli"
+
+#: Views\Shared\Lockout.cshtml:8
+msgid "Locked Out."
+msgstr "Kilitli."
+
+#: Views\Shared\_LoginPartial.cshtml:86
+#: Views\Shared\_NavigationSide.cshtml:60
+msgid "Log in"
+msgstr "Oturum Aç"
+
+#: Views\Account\_ExternalLoginsListPartial.cshtml:22
+msgid "Log in using your {0} account"
+msgstr "{0} hesabını kullanarak giriş yapın"
+
+#: Views\Shared\_LoginPartial.cshtml:72
+#: Areas\Admin\Views\Shared\_NavigationTop.cshtml:30
+msgid "Log off"
+msgstr "Oturumu Kapat"
+
+#: Views\Account\Login.cshtml:5
+#: Views\Account\Register.cshtml:69
+#: Areas\Admin\Views\Install\Index.cshtml:77
+msgid "Login"
+msgstr "Giriş"
+
+#: Views\Account\ExternalLoginFailure.cshtml:2
+msgid "Login Failure"
+msgstr "Giriş Hatası"
+
+#: Views\Listing\ListingUpdate.cshtml:26
+msgid "Login here"
+msgstr "Giriş Yapın"
+
+#: Views\Account\Login.cshtml:13
+msgid "Login to your account"
+msgstr "Hesabınıza giriş yapın"
+
+#: Areas\Admin\Views\Design\Appearance.cshtml:22
+msgid "Logo"
+msgstr "Logo"
+
+#: Views\Manage\UserProfile.cshtml:66
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:47
+msgid "Male"
+msgstr "Erkek"
+
+#: Views\Manage\Index.cshtml:3
+#: Views\Manage\Index.cshtml:29
+msgid "Manage"
+msgstr "Yönet"
+
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:82
+msgid "Manage Categories"
+msgstr "Kategorileri Yönet"
+
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:83
+msgid "Manage Listing Types"
+msgstr "İlan Türlerini Yönet"
+
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:84
+msgid "Manage Listings"
+msgstr "İlanları Yönet"
+
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:142
+msgid "Manage Pages"
+msgstr "Sayfaları Yönet"
+
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:151
+msgid "Manage Plugins"
+msgstr "Eklentileri Yönet"
+
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:132
+msgid "Manage Users"
+msgstr "Kullanıcıları Yönet"
+
+#: Views\Listing\Listing.cshtml:216
+msgid "Map"
+msgstr "Harita"
+
+#: Views\Listing\Listing.cshtml:58
+msgid "Maps"
+msgstr "Haritalar"
+
+#: Views\Manage\Messages.cshtml:44
+msgid "Mark as read"
+msgstr "Okundu olarak işaretle"
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:137
+msgid "Max. Review per day"
+msgstr "Günlük maksimum inceleme"
+
+#: Views\Home\Contact.cshtml:29
+#: Views\Listing\_ListingContactModal.cshtml:26
+msgid "Message"
+msgstr "Mesaj"
+
+#: Controllers\ManageController.cs:531
+msgid "Message is sent."
+msgstr "Mesaj Gönderildi."
+
+#: Controllers\ListingController.cs:726
+msgid "Message sent succesfully!"
+msgstr "Mesaj başarıyla gönderildi!"
+
+#: Areas\Admin\Controllers\ManageController.cs:442
+msgid "Message sent to {0} succesfully!"
+msgstr "Mesaj {0} kullanıcısına başarıyla gönderildi!"
+
+#: Views\Home\Contact.cshtml:30
+msgid "Message..."
+msgstr "Mesaj..."
+
+#: Views\Manage\Message.cshtml:5
+#: Views\Manage\Message.cshtml:21
+#: Views\Manage\Messages.cshtml:7
+#: Views\Manage\Messages.cshtml:26
+#: Views\Shared\_DashBoardSide.cshtml:11
+#: Views\Shared\_LoginPartial.cshtml:23
+msgid "Messages"
+msgstr "Mesajlar"
+
+#: Areas\Admin\Views\Payment\PaymentSetting.cshtml:37
+msgid "Minimum Transaction fee"
+msgstr "Minimum İşlem ücreti"
+
+#: Areas\Admin\Views\Payment\PaymentSetting.cshtml:23
+msgid "Minimum transaction size"
+msgstr "Minimum işlem boyutu"
+
+#: Views\Manage\Dashboard.cshtml:18
+msgid "My Listings"
+msgstr "İlanlarım"
+
+#: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:19
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:62
+#: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:40
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:67
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:32
+#: Areas\Admin\Views\Manage\Settings.cshtml:21
+msgid "Name"
+msgstr "Ad"
+
+#: Areas\Admin\Views\Manage\Dashboard.cshtml:90
+msgid "New listings"
+msgstr "Yeni İlanlar"
+
+#: Models\ManageViewModels.cs:33
+#: Models\ManageViewModels.cs:52
+msgid "New password"
+msgstr "Yeni Şifre"
+
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:80
+msgid "New Password"
+msgstr "Yeni Şifre"
+
+#: Views\Listing\Listing.cshtml:110
+msgid "Next"
+msgstr "Sonraki"
+
+#: App_Code\RazorHelper.cshtml:7
+msgid "No"
+msgstr "Hayır"
+
+#: Views\Payment\Orders.cshtml:172
+#: Areas\Admin\Views\Payment\Order.cshtml:148
+msgid "No!"
+msgstr "Hayır!"
+
+#: Views\Manage\Dashboard.cshtml:73
+#: Areas\Admin\Views\Listing\Categories.cshtml:107
+#: Areas\Admin\Views\Listing\Listings.cshtml:98
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:108
+#: Areas\Admin\Views\Manage\Users.cshtml:83
+msgid "No, cancel please!"
+msgstr "Hayır, iptal lütfen!"
+
+#: Views\Listing\Listings.cshtml:88
+msgid "Only show listings with photos"
+msgstr "Yalnızca fotoğraf içeren ilanları göster"
+
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:73
+#: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:47
+msgid "Options"
+msgstr "Seçenekler"
+
+#: Controllers\PaymentController.cs:190
+msgid "Order %0 - %1 - Total Price %2 %3. <a href=\\"%4\\">See Details</a>"
+msgstr "Sipariş% 0 -% 1 - Toplam Fiyat%2 % 3. <a href=\\"%4\\"> Ayrıntılara Bakın </a>"
+
+#: Views\Payment\Orders.cshtml:130
+#: Areas\Admin\Views\Payment\Order.cshtml:110
+msgid "Order ID"
+msgstr "Sipariş ID"
+
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:144
+msgid "Order Requested - %0 - Total Price %1 %2. <a href=\\"%3\\">See Details</a>"
+msgstr "Talep Edilen Sipariş -% 0 - Toplam Fiyat%1 % 2. <a href=\\"%3\\"> Ayrıntılara Bakın </a>"
+
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:75
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:96
+msgid "Order Type"
+msgstr "Sipariş Tipi"
+
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:77
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:103
+msgid "Order Type Label"
+msgstr "Sipariş Tipi Etiketi"
+
+#: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:51
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:101
+msgid "Ordering"
+msgstr "Sipariş"
+
+#: Views\Payment\Orders.cshtml:7
+#: Views\Payment\Orders.cshtml:87
+#: Views\Payment\Orders.cshtml:95
+#: Views\Shared\_DashBoardSide.cshtml:14
+#: Areas\Admin\Views\Manage\Dashboard.cshtml:27
+#: Areas\Admin\Views\Payment\Order.cshtml:7
+#: Areas\Admin\Views\Payment\Order.cshtml:65
+#: Areas\Admin\Views\Payment\Order.cshtml:77
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:120
+msgid "Orders"
+msgstr "Siparişler"
+
+#: Views\Shared\_CategoryCustomFields.cshtml:6
+msgid "Other Info"
+msgstr "Diğer Bilgiler"
+
+#: Views\Listing\Listings.cshtml:141
+msgid "Page {0} of {1}"
+msgstr "Sayfa {0} - {1}"
+
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:136
+msgid "Pages"
+msgstr "Sayfalar"
+
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
+#: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:21
+msgid "Paid"
+msgstr "Ödenen"
+
+#: Models\AccountViewModels.cs:58
+#: Models\AccountViewModels.cs:75
+#: Models\AccountViewModels.cs:100
+#: Views\Account\Login.cshtml:28
+#: Views\Account\Register.cshtml:50
+#: Views\Account\Register.cshtml:51
+#: Views\Listing\ListingUpdate.cshtml:119
+#: Views\Listing\ListingUpdate.cshtml:120
+#: Views\Manage\Index.cshtml:13
+#: Areas\Admin\Views\Install\Index.cshtml:32
+#: Areas\Admin\Views\Install\Index.cshtml:33
+#: Areas\Admin\Views\Install\Index.cshtml:82
+msgid "Password"
+msgstr "Şifre"
+
+#: Views\Payment\Payment.cshtml:7
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:77
+msgid "Payment"
+msgstr "Ödeme"
+
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:80
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:89
+msgid "Payment Enabled"
+msgstr "Ödeme Etkin"
+
+#: Views\Payment\PaymentSetting.cshtml:2
+#: Views\Payment\PaymentSetting.cshtml:17
+#: Views\Payment\PaymentSetting.cshtml:21
+#: Areas\Admin\Views\Payment\PaymentSetting.cshtml:3
+#: Areas\Admin\Views\Payment\PaymentSetting.cshtml:13
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:126
+msgid "Payment Settings"
+msgstr "Ödeme Ayarları"
+
+#: Views\Shared\_DashBoardSide.cshtml:16
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:117
+msgid "Payments"
+msgstr "Ödemeler"
+
+#: Views\Payment\PaymentSetting.cshtml:25
+msgid "Payout information"
+msgstr "Ödeme Bİlgisi"
+
+#: Controllers\PaymentController.cs:161
+#: Views\Payment\Orders.cshtml:45
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
+#: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:25
+#: Areas\Admin\Views\Payment\Order.cshtml:40
+msgid "Pending"
+msgstr "Beklemede"
+
+#: Models\ManageViewModels.cs:65
+#: Views\Listing\ListingUpdate.cshtml:105
+#: Views\Manage\AddPhoneNumber.cshtml:3
+#: Views\Manage\UserProfile.cshtml:56
+#: Areas\Admin\Views\Manage\Users.cshtml:41
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:73
+msgid "Phone Number"
+msgstr "Telefon Numarası"
+
+#: Areas\Admin\Views\Manage\Users.cshtml:42
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:91
+msgid "Phone Number Confirmed"
+msgstr "Telefon Numarası Onayı"
+
+#: Views\Listing\_ListingGridList.cshtml:32
+msgid "Picture"
+msgstr "Resim"
+
+#: Views\Listing\Listing.cshtml:82
+msgid "Pictures"
+msgstr "Resimler"
+
+#: Views\Account\ForgotPasswordConfirmation.cshtml:16
+msgid "Please check your email to reset your password."
+msgstr "Şifrenizi sıfırlamak için lütfen e-postanızı kontrol edin."
+
+#: Views\Account\ResetPasswordConfirmation.cshtml:15
+msgid "Please click here to log in"
+msgstr "Giriş yapmak için lütfen tıklayın."
+
+#: Views\Listing\Review.cshtml:70
+#: Views\Listing\_ListingReviewModal.cshtml:25
+msgid "Please Rate"
+msgstr "Lütfen Oylayın"
+
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:383
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Widget.Disqus\Controllers\DisqusController.cs:83
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Widget.GoogleAnalytics\Controllers\GoogleAnalyticsController.cs:65
+msgid "Plugin updated!"
+msgstr "Eklenti Güncellendi!"
+
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:54
+msgid "PluginFileName"
+msgstr "EklentiDosyaAdı"
+
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:10
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:64
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:148
+msgid "Plugins"
+msgstr "Eklentiler"
+
+#: Areas\Admin\Views\Manage\SettingsEmail.cshtml:39
+msgid "Port"
+msgstr "Port"
+
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:158
+msgid "Premium"
+msgstr "Premium"
+
+#: Views\Listing\Listing.cshtml:106
+msgid "Previous"
+msgstr "Önceki"
+
+#: Views\Listing\Listing.cshtml:150
+#: Views\Listing\Listings.cshtml:75
+#: Views\Listing\ListingUpdate.cshtml:55
+#: Views\Listing\ListingUpdate.cshtml:57
+#: Views\Listing\_ListingGridList.cshtml:41
+#: Views\Payment\Orders.cshtml:125
+#: Views\Payment\Payment.cshtml:63
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:99
+#: Areas\Admin\Views\Payment\Order.cshtml:104
+msgid "Price"
+msgstr "Fiyat"
+
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:51
+msgid "Price Enabled"
+msgstr "Fiyatı Etkinleştir"
+
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:70
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:57
+msgid "Price Unit Label"
+msgstr "Birim Fiyat Etiketi"
+
+#: Views\Listing\Profile.cshtml:7
+#: Views\Manage\UserProfile.cshtml:3
+#: Views\Manage\UserProfile.cshtml:22
+#: Views\Manage\UserProfile.cshtml:29
+#: Views\Shared\_DashBoardSide.cshtml:19
+msgid "Profile"
+msgstr "Profil"
+
+#: Views\Manage\UserProfile.cshtml:74
+msgid "Profile Picture"
+msgstr "Profil Resmi"
+
+#: Areas\Admin\Views\Payment\Order.cshtml:101
+msgid "Provider"
+msgstr "Tedarikçi"
+
+#: Views\Listing\ListingUpdate.cshtml:17
+msgid "Publish a listing (it's 100% free)"
+msgstr "Bir ilan yayınlayın (% 100 ücretsizdir)"
+
+#: Views\Listing\ListingUpdate.cshtml:129
+msgid "Publish Listing"
+msgstr "İlan Yayınla"
+
+#: Views\Manage\Dashboard.cshtml:28
+#: Views\Shared\_Layout.cshtml:74
+#: Views\Shared\_LoginPartial.cshtml:64
+#: Views\Shared\_NavigationSide.cshtml:70
+#: Views\Shared\_NavigationSide.cshtml:84
+msgid "Publish new listing"
+msgstr "Yeni İlan Yayınla"
+
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:48
+#: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:62
+msgid "Published"
+msgstr "Yayınlandı"
+
+#: Views\Listing\ListingUpdate.cshtml:99
+msgid "Publisher's Info"
+msgstr "Yayımlayan Bilgisi"
+
+#: Views\Payment\Orders.cshtml:127
+#: Areas\Admin\Views\Payment\Order.cshtml:108
+msgid "Quantity"
+msgstr "Miktar"
+
+#: Areas\Admin\Views\Payment\Order.cshtml:102
+msgid "Receiver"
+msgstr "Alıcı"
+
+#: Views\Listing\Listings.cshtml:44
+msgid "Refine Search"
+msgstr "Arama Filtrele"
+
+#: Views\Account\Register.cshtml:3
+msgid "Register"
+msgstr "Kayıt"
+
+#: Views\Account\Login.cshtml:39
+msgid "Register as a new user"
+msgstr "Yeni bir kullanıcı oluştur"
+
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:117
+msgid "Register Date"
+msgstr "Kayıt Tarihi"
+
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:124
+msgid "Register IP"
+msgstr "Kayıt IP'si"
+
+#: Views\Account\Login.cshtml:32
+msgid "Remeber me?"
+msgstr "Beni Hatırla"
+
+#: Models\AccountViewModels.cs:61
+msgid "Remember me?"
+msgstr "Beni Hatırla"
+
+#: Models\AccountViewModels.cs:36
+msgid "Remember this browser?"
+msgstr "Tarayıcıyı Hatırla?"
+
+#: Views\Manage\Message.cshtml:78
+msgid "Reply here..."
+msgstr "Yanıtla..."
+
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:74
+#: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:58
+msgid "Required"
+msgstr "Zorunlu"
+
+#: Views\Account\ResetPassword.cshtml:42
+msgid "Reset"
+msgstr "Sıfırla"
+
+#: Views\Account\ResetPassword.cshtml:3
+msgid "Reset password"
+msgstr "Şifre Sıfırla"
+
+#: Views\Account\ResetPasswordConfirmation.cshtml:2
+msgid "Reset password confirmation"
+msgstr "Şifre Sıfırlama Onayı"
+
+#: Views\Listing\Review.cshtml:22
+#: Views\Listing\_ListingReviewModal.cshtml:10
+#: Views\Listing\_ListingReviewModal.cshtml:57
+#: Views\Payment\Orders.cshtml:35
+msgid "Review"
+msgstr "İnceleme"
+
+#: Views\Listing\Listing.cshtml:62
+#: Views\Listing\Review.cshtml:5
+#: Views\Listing\_ListingCard.cshtml:26
+#: Views\Listing\_ListingReview.cshtml:11
+msgid "Reviews"
+msgstr "İncelemeler"
+
+#: Views\Manage\UserProfile.cshtml:81
+#: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:76
+#: Areas\Admin\Views\Design\Appearance.cshtml:44
+#: Areas\Admin\Views\Design\CodeScript.cshtml:34
+#: Areas\Admin\Views\Design\CodeStyle.cshtml:34
+#: Areas\Admin\Views\Listing\Categories.cshtml:70
+#: Areas\Admin\Views\Listing\CategoryUpdate.cshtml:58
+#: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:90
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:112
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:200
+#: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:63
+#: Areas\Admin\Views\Manage\Settings.cshtml:166
+#: Areas\Admin\Views\Manage\SettingsEmail.cshtml:68
+#: Areas\Admin\Views\Manage\SettingsLanguage.cshtml:42
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:146
+#: Areas\Admin\Views\Payment\PaymentSetting.cshtml:45
+msgid "Save"
+msgstr "Kaydet"
+
+#: Views\Home\Index.cshtml:25
+#: Views\Manage\Dashboard.cshtml:24
+#: Views\Manage\Messages.cshtml:34
+msgid "Search"
+msgstr "Ara"
+
+#: Views\Shared\_Layout.cshtml:62
+msgid "Search for..."
+msgstr "Şunu Ara..."
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:42
+msgid "Search PlaceHolder"
+msgstr "Arama Metni"
+
+#: Views\Listing\Listings.cshtml:84
+msgid "Search text"
+msgstr "Kelime Ara"
+
+#: Views\Listing\Listings.cshtml:83
+msgid "Search Text"
+msgstr "Kelime Ara"
+
+#: Views\Manage\Dashboard.cshtml:23
+msgid "Search your listings..."
+msgstr "İlanlarınızı arayın..."
+
+#: Views\Manage\Messages.cshtml:33
+msgid "Search your mails..."
+msgstr "mesajlarınızı arayın..."
+
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:75
+#: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:70
+msgid "Searchable"
+msgstr "Aranabilir"
+
+#: Views\Home\Index.cshtml:33
+msgid "See All Listings"
+msgstr "Tüm İlanları Görüntüleyin"
+
+#: Views\Shared\_LoginPartial.cshtml:49
+msgid "See all messages"
+msgstr "Tüm mesajları görüntüleyin"
+
+#: Views\Account\SendCode.cshtml:15
+msgid "Select Two-Factor Authentication Provider:"
+msgstr "İki aşamalı kimlik doğrulamayı seçin:"
+
+#: Views\Account\SendCode.cshtml:3
+#: Views\Home\Contact.cshtml:35
+#: Views\Listing\_ListingContactModal.cshtml:28
+msgid "Send"
+msgstr "Gönder"
+
+#: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:43
+msgid "Send Copy"
+msgstr "Kopya Gönder"
+
+#: Views\Manage\Message.cshtml:79
+msgid "Send Message"
+msgstr "Mesaj Gönder"
+
+#: Views\Listing\Review.cshtml:73
+#: Views\Listing\_ListingReviewModal.cshtml:28
+msgid "Send Review"
+msgstr "İnceleme Gönder"
+
+#: Areas\Admin\Views\Install\Index.cshtml:58
+msgid "Server domain/IP"
+msgstr "Server domain/IP"
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:4
+#: Areas\Admin\Views\Manage\Settings.cshtml:12
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:99
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: Views\Listing\Listing.cshtml:276
+msgid "Share"
+msgstr "Paylaş"
+
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:81
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:69
+msgid "Shipping Enabled"
+msgstr "Kargo Etkin"
+
+#: Areas\Admin\Views\Listing\Listings.cshtml:70
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:79
+msgid "Show Email"
+msgstr "E-Posta Göster"
+
+#: Views\Listing\ListingUpdate.cshtml:109
+msgid "Show Phone"
+msgstr "Telefonu Göster"
+
+#: Views\Manage\Messages.cshtml:118
+msgid "Showing {0} - {1} of {2}"
+msgstr "Gösteriliyor {0} - {1} / {2}"
+
+#: Views\Listing\_ListingContactModal.cshtml:40
+#: Views\Listing\_ListingReviewModal.cshtml:42
+msgid "Sign in"
+msgstr "Oturum Aç"
+
+#: Views\Listing\_ListingContactModal.cshtml:37
+msgid "Sign in to contact the owner"
+msgstr "Sahibiyle iletişime geçmek için giriş yapın"
+
+#: Views\Listing\_ListingReviewModal.cshtml:39
+msgid "Sign in to review"
+msgstr "İncelemek için oturum açın"
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:116
+msgid "Signup Text"
+msgstr "Kayıt Metni"
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:35
+msgid "Slogan"
+msgstr "Slogan"
+
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:44
+#: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:44
+#: Areas\Admin\Views\Manage\EmailTemplates.cshtml:38
+#: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:29
+msgid "Slug"
+msgstr "Url"
+
+#: Areas\Admin\Controllers\ContentPageController.cs:182
+msgid "Slug {0} already exists"
+msgstr "Url {0} zaten var"
+
+#: Areas\Admin\Views\Manage\SettingsEmail.cshtml:53
+msgid "SMTP Password"
+msgstr "SMTP Şifre"
+
+#: Areas\Admin\Views\Manage\SettingsEmail.cshtml:46
+msgid "SMTP User"
+msgstr "SMTP Kullanıcı"
+
+#: Areas\Admin\Views\Manage\SettingsEmail.cshtml:60
+msgid "SSL enabled"
+msgstr "SSL Etkinleştir"
+
+#: Views\Payment\Orders.cshtml:112
+#: Areas\Admin\Views\Payment\Order.cshtml:94
+msgid "Status"
+msgstr "Durum"
+
+#: Areas\Admin\Views\Manage\EmailTemplates.cshtml:37
+#: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:36
+msgid "Subject"
+msgstr "Konu"
+
+#: Views\Manage\VerifyPhoneNumber.cshtml:24
+msgid "Submit"
+msgstr "Gönder"
+
+#: Views\Payment\Orders.cshtml:48
+#: Areas\Admin\Views\Payment\Order.cshtml:43
+msgid "Success"
+msgstr "Başarılı"
+
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:94
+msgid "SystemName"
+msgstr "SistemAdı"
+
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:55
+msgid "Tag"
+msgstr ""
+
+#: Views\Account\Register.cshtml:61
+msgid "Terms & Conditions"
+msgstr "Şartlar & Koşullar"
+
+#: Areas\Admin\Views\Manage\EmailTemplateUpdate.cshtml:74
+msgid "Test Send"
+msgstr "Test Gönder"
+
+#: Areas\Admin\Controllers\ManageController.cs:437
+msgid "Testing"
+msgstr "Deneme yapılıyor"
+
+#: Views\Account\ConfirmEmail.cshtml:15
+msgid "Thank you for confirming your email."
+msgstr "E-postanızı teyit ettiğiniz için teşekkür ederiz."
+
+#: Controllers\ListingController.cs:850
+#: Controllers\ListingController.cs:939
+msgid "Thanks for your feedback!"
+msgstr "Geri bildiriminiz için teşekkürler!"
+
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:153
+msgid "Thanks for your order! You payment will not be charged until the provider accepted your request."
+msgstr "Siparişiniz için teşekkürler! Tedarikçi isteğinizi kabul edene kadar ödeme yapılmaz."
+
+#: Models\AccountViewModels.cs:73
+#: Models\AccountViewModels.cs:98
+#: Models\ManageViewModels.cs:31
+#: Models\ManageViewModels.cs:50
+msgid "The {0} must be at least {2} characters long."
+msgstr "{0} en az {2} karakter uzunluğunda olmalıdır."
+
+#: Areas\Admin\Controllers\ListingController.cs:704
+msgid "The category has been deleted."
+msgstr "Kategori silindi."
+
+#: Areas\Admin\Controllers\ListingController.cs:666
+msgid "The listing has been deleted."
+msgstr "İlan silindi."
+
+#: Areas\Admin\Controllers\ListingController.cs:688
+msgid "The listing type has been deleted."
+msgstr "İlan türü silindi."
+
+#: Models\ManageViewModels.cs:38
+#: Models\ManageViewModels.cs:57
+msgid "The new password and confirmation password do not match."
+msgstr "Yeni şifre ve onay şifresi uyuşmuyor."
+
+#: Controllers\PaymentController.cs:201
+msgid "The order is %0."
+msgstr "Sipariş %0."
+
+#: Views\Shared\Error.cshtml:22
+msgid "The page you were looking for doesn't exist."
+msgstr "Aradığınız sayfa mevcut değil."
+
+#: Models\AccountViewModels.cs:80
+#: Models\AccountViewModels.cs:105
+msgid "The password and confirmation password do not match."
+msgstr "Şifre ve onay şifresi uyuşmuyor."
+
+#: Controllers\PaymentController.cs:294
+msgid "The provider has not setup the payment option for {0} yet, please contact the provider."
+msgstr "Tedarikçi {0} henüz ödeme seçeneği girmedi, lütfen tedarikçi ile iletişime geçiniz."
+
+#: Controllers\PaymentController.cs:281
+msgid "The provider has not setup the payment option yet, please contact the provider."
+msgstr "Tedarikçi henüz ödeme seçeneğini ayarlamadı, lütfen tedarikçi ile iletişime geçiniz."
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:81
+#: Areas\Admin\Views\Manage\Settings.cshtml:83
+msgid "Theme"
+msgstr "Tema"
+
+#: Views\Listing\_ListingGridList.cshtml:28
+#: Views\Payment\Orders.cshtml:102
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
+#: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
+#: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
+#: Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:40
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:63
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\TransactionOverview.cshtml:31
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:36
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:54
+#: Areas\Admin\Views\Listing\Listings.cshtml:52
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:54
+#: Areas\Admin\Views\Manage\EmailTemplates.cshtml:28
+#: Areas\Admin\Views\Payment\Order.cshtml:84
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:75
+msgid "There are no items to display."
+msgstr "Görüntülenecek hiçbir öğe yok."
+
+#: Views\Shared\_LoginPartial.cshtml:44
+msgid "There are no new messages"
+msgstr "Yeni mesaj yok"
+
+#: Controllers\ListingController.cs:186
+#: Controllers\ListingController.cs:377
+#: Areas\Admin\Controllers\ListingController.cs:390
+#: Areas\Admin\Controllers\ListingController.cs:490
+msgid "There are not categories available yet."
+msgstr "Henüz kategoriler mevcut değil."
+
+#: Controllers\ListingController.cs:448
+msgid "There are not listing types available yet."
+msgstr "Henüz bir ilan türü yok."
+
+#: Views\Listing\_ListingReview.cshtml:38
+msgid "There is no review yet."
+msgstr "Henüz inceleme mevcut değil."
+
+#: Views\Shared\Lockout.cshtml:9
+msgid "This account has been locked out, please try again later."
+msgstr "Bu hesap kilitlendi, lütfen daha sonra tekrar deneyin."
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:118
+msgid "This is an info text that can be shown to users in the signup page. There you can give the users instructions for signing up, information like where to get an invite, etc. By default there are no instructions."
+msgstr "Bu, kayıt sayfasındaki kullanıcılara gösterilebilecek bir bilgi metnidir. Burada, kullanıcılara kayıt talimatı, davetin nereden alınacağı gibi bilgiler verebilirsiniz. Varsayılan olarak talimat bulunmamaktadır."
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:111
+msgid "This is the content of the actual agreement that the user needs to accept."
+msgstr "Bu, kullanıcının kabul etmesi gereken anlaşmanın içeriğidir."
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:104
+msgid "This text will be shown next to a checkbox in the checkout form"
+msgstr "Bu metin, ödeme formundaki bir onay kutusunun yanında gösterilecektir."
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:154
+msgid "Time Format"
+msgstr "Tarih Formatı"
+
+#: Views\Listing\ListingUpdate.cshtml:43
+#: Views\Listing\_ListingGridList.cshtml:38
+#: Views\Payment\Orders.cshtml:123
+#: Areas\Admin\Views\ContentPage\ContentPages.cshtml:45
+#: Areas\Admin\Views\ContentPage\ContentPageUpdate.cshtml:30
+#: Areas\Admin\Views\Listing\Listings.cshtml:68
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:42
+#: Areas\Admin\Views\Payment\Order.cshtml:99
+msgid "Title"
+msgstr "Başlık"
+
+#: Controllers\PaymentController.cs:322
+#: Views\Listing\Listings.cshtml:78
+#: Views\Listing\_ListingPayment.cshtml:28
+#: Views\Payment\Payment.cshtml:51
+msgid "To"
+msgstr "Max"
+
+#: Areas\Admin\Views\Install\Index.cshtml:18
+msgid "To complete this wizard, you must know some information regarding your database server. If you're installing on a local machine or server, you might need information from your System Admin."
+msgstr "Bu sihirbazı tamamlamak için, veritabanı sunucunuzla ilgili bazı bilgileri bilmelisiniz. Yerel bir makineye ve ya sunucuya kuruyorsanız sistem Yöneticinizden edinilen bilgilere ihtiyacınız olabilir."
+
+#: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:78
+msgid "To configure payment method for payout, please configure the Payment plugin"
+msgstr "Ödeme yapabilmek için ödeme yöntemini yapıalndırın, lütfen ödeme eklentisini ayarlayın"
+
+#: Views\Payment\Payment.cshtml:49
+msgid "To Date"
+msgstr "Bugüne kadar"
+
+#: Areas\Admin\Views\Payment\PaymentSetting.cshtml:30
+msgid "Transaction fee (%)"
+msgstr "İşlem ücreti (%)"
+
+#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:263
+msgid "Transaction not found"
+msgstr "İşlem bulunamadı"
+
+#: Areas\Admin\Views\Payment\PaymentSetting.cshtml:18
+msgid "Transaction Settings"
+msgstr "İşlem Ayarları"
+
+#: Views\Payment\Transaction.cshtml:5
+#: Views\Payment\Transaction.cshtml:20
+#: Views\Shared\_DashBoardSide.cshtml:15
+#: Areas\Admin\Views\Manage\Dashboard.cshtml:37
+#: Areas\Admin\Views\Payment\Transaction.cshtml:2
+#: Areas\Admin\Views\Payment\Transaction.cshtml:14
+#: Areas\Admin\Views\Shared\_NavigationSide.cshtml:123
+msgid "Transactions"
+msgstr "İşlemler"
+
+#: Areas\Admin\Views\Listing\CustomFields.cshtml:64
+#: Areas\Admin\Views\Listing\CustomFieldUpdate.cshtml:33
+msgid "Type"
+msgstr "Tür"
+
+#: Areas\Admin\Views\Listing\Categories.cshtml:108
+#: Areas\Admin\Views\Listing\Categories.cshtml:116
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:109
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:117
+#: Areas\Admin\Views\Manage\Users.cshtml:84
+#: Areas\Admin\Views\Manage\Users.cshtml:92
+msgid "Type DELETE to confirm delete"
+msgstr "Silme işlemini onaylamak için DELETE yazın"
+
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:17
+msgid "Uninstall"
+msgstr "Kaldır"
+
+#: Views\Account\ExternalLoginFailure.cshtml:7
+msgid "Unsuccessful login with service."
+msgstr "Servisle başarısız oturum açma girişimi"
+
+#: Views\Listing\ListingUpdate.cshtml:74
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:164
+msgid "Upload Pictures"
+msgstr "Resimleri Yükle"
+
+#: Views\Account\_ExternalLoginsListPartial.cshtml:4
+msgid "Use another service to log in."
+msgstr "Giriş yapmak için başka bir servis kullanın."
+
+#: Areas\Admin\Views\Install\Index.cshtml:71
+msgid "Use integrated authentication"
+msgstr "Tümleşik kimlik doğrulamayı kullan"
+
+#: Views\Home\About.cshtml:7
+msgid "Use this area to provide additional information."
+msgstr "Ek bilgi sağlamak için bu alanı kullanın."
+
+#: Views\Payment\Orders.cshtml:117
+#: Areas\Admin\Views\Listing\ListingUpdate.cshtml:85
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:16
+msgid "User"
+msgstr "Kullanıcı"
+
+#: Areas\Admin\Controllers\ManageController.cs:211
+msgid "User {0} is deleted."
+msgstr "{0} kullanıcısı silindi."
+
+#: Areas\Admin\Views\Install\Index.cshtml:25
+msgid "User information"
+msgstr "Kullanıcı bilgileri"
+
+#: Areas\Admin\Views\Manage\Users.cshtml:99
+msgid "User is deleted."
+msgstr "Kullanıcı silindi"
+
+#: Areas\Admin\Views\Manage\UserUpdate.cshtml:4
+msgid "User update"
+msgstr "Kullanıcı güncelleme"
+
+#: Views\Manage\UserProfile.cshtml:36
+msgid "UserName"
+msgstr "KullanıcıAdı"
+
+#: Areas\Admin\Views\Manage\Dashboard.cshtml:47
+#: Areas\Admin\Views\Manage\Users.cshtml:7
+#: Areas\Admin\Views\Manage\Users.cshtml:20
+msgid "Users"
+msgstr "Kullanıcılar"
+
+#: Views\Account\VerifyCode.cshtml:3
+msgid "Verify"
+msgstr "Doğrula"
+
+#: Views\Manage\VerifyPhoneNumber.cshtml:3
+msgid "Verify Phone Number"
+msgstr "Telefon Numarasını Doğrula"
+
+#: Areas\Admin\Views\Manage\Settings.cshtml:56
+#: Areas\Admin\Views\Plugin\Plugins.cshtml:52
+msgid "Version"
+msgstr "Versiyon"
+
+#: Views\Listing\Listing.cshtml:231
+#: Views\Listing\_ListingContactModal.cshtml:18
+msgid "View User's other listings"
+msgstr "Kullanıcının diğer ilanlarını görüntüleyin"
+
+#: Views\Listing\Listing.cshtml:265
+msgid "View user's profile and other listings"
+msgstr "Kullanıcının profilini görüntüle"
+
+#: Views\Manage\UserProfile.cshtml:30
+msgid "View Your Profile"
+msgstr "Profili Görüntüle"
+
+#: Views\Listing\Listing.cshtml:191
+msgid "Views"
+msgstr "Görüntüleme"
+
+#: Areas\Admin\Views\Manage\Dashboard.cshtml:8
+msgid "Welcome to {0} Admin Panel!"
+msgstr "Yönetici Paneline Hoş Geldiniz!"
+
+#: Controllers\AccountController.cs:246
+msgid "Welcome to {0}!"
+msgstr "{0}, Hoş Geldiniz!"
+
+#: Views\Listing\Review.cshtml:72
+#: Views\Listing\_ListingReviewModal.cshtml:27
+msgid "Write your review..."
+msgstr "Yorumunuzu yazın..."
+
+#: App_Code\RazorHelper.cshtml:7
+msgid "Yes"
+msgstr "Evet"
+
+#: Views\Payment\Orders.cshtml:171
+#: Areas\Admin\Views\Payment\Order.cshtml:147
+msgid "Yes!"
+msgstr "Evet!"
+
+#: Views\Manage\Dashboard.cshtml:72
+#: Areas\Admin\Views\Listing\Categories.cshtml:106
+#: Areas\Admin\Views\Listing\Listings.cshtml:97
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:107
+#: Areas\Admin\Views\Manage\Users.cshtml:82
+msgid "Yes, delete it!"
+msgstr "Evet, Sil"
+
+#: Controllers\PaymentController.cs:314
+msgid "You cannot book the item from yourself!"
+msgstr "Öğeyi kendinize ayıramazsınız!"
+
+#: Areas\Admin\Controllers\ManageController.cs:203
+msgid "You cannot delete Administrator, change the user role first."
+msgstr "Yönetici'yi silemezsiniz, önce kullanıcı rolünü değiştirin."
+
+#: Controllers\ListingController.cs:608
+#: Areas\Admin\Controllers\ListingController.cs:657
+msgid "You cannot delete item with orders! You can deactivate it instead."
+msgstr "Siparişle birlikte ürünü silemezsiniz! Bunun yerine bunu devre dışı bırakabilirsiniz."
+
+#: Controllers\ListingController.cs:803
+msgid "You cannot review the order!"
+msgstr "Siparişi inceleyemezsiniz!"
+
+#: Controllers\ListingController.cs:795
+#: Controllers\ListingController.cs:895
+msgid "You cannot review yourself!"
+msgstr "Kendinize yorum yapamazsınız!"
+
+#: Controllers\ListingController.cs:698
+msgid "You cannot send message to yourself!"
+msgstr "Kendinize mesaj gönderemezsiniz!"
+
+#: Areas\Admin\Controllers\ListingController.cs:677
+msgid "You cannot the listing type. There should be at least one listing type."
+msgstr "Bunu yapamazsınız, En az bir ilan türü olmalıdır."
+
+#: Controllers\ListingController.cs:881
+msgid "You have reach the review limits today!"
+msgstr "Bugün inceleme yapma sınırına ulaştınız!"
+
+#: Controllers\AccountController.cs:112
+msgid "You must have a confirmed email to log on."
+msgstr "Oturum açmak için onaylanmış bir e-postanız olmalıdır."
+
+#: Views\Manage\Dashboard.cshtml:68
+#: Areas\Admin\Views\Listing\Listings.cshtml:93
+msgid "You will delete"
+msgstr "Sileceksin"
+
+#: Areas\Admin\Views\Listing\Categories.cshtml:102
+msgid "You will delete all listings with the category "
+msgstr "Kategorideki tüm ilanları silecektir"
+
+#: Areas\Admin\Views\Listing\ListingTypes.cshtml:103
+msgid "You will delete all listings with the listing type "
+msgstr "İlan türüne sahip tüm ilanları silecektir"
+
+#: Areas\Admin\Views\Manage\Users.cshtml:78
+msgid "You will delete the user and its all listings from "
+msgstr "Kullanıcıyı ve tüm ilanlarını listeden sileceksiniz"
+
+#: Views\Home\Contact.cshtml:25
+msgid "Your Email"
+msgstr "E-Posta"
+
+#: Controllers\ListingController.cs:616
+msgid "Your listing has been deleted."
+msgstr "İlanınız silindi."
+
+#: Views\Account\ResetPasswordConfirmation.cshtml:15
+msgid "Your password has been reset."
+msgstr "Şifreniz sıfırlandı."
+

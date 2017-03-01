@@ -1,1 +1,1 @@
-{"Plugins":[{"SystemName":"Plugin.Widget.GoogleAnalytics","Enabled":true},{"SystemName":"Plugin.Payment.Stripe","Enabled":true}]}
+{"Plugins":[{"SystemName":"Plugin.Widget.GoogleAnalytics","Enabled":true},{"SystemName":"Plugin.Payment.Stripe","Enabled":false},{"SystemName":"Plugin.Widget.Disqus","Enabled":false}]}
