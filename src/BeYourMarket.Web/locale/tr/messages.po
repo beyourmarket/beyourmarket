@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-03-01 23:02+03:00\n"
-"PO-Revision-Date: 2017-03-01 23:02+03:00\n"
+"POT-Creation-Date: 2017-03-02 23:54+03:00\n"
+"PO-Revision-Date: 2017-03-02 23:54+03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -267,9 +267,9 @@ msgstr "Kapat"
 msgid "Code"
 msgstr "Kod"
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Widget.Disqus\Views\Index.cshtml:6
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Widget.Disqus\Views\Index.cshtml:6
 #: Plugins\Plugin.Widget.Disqus\Views\Index.cshtml:6
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Widget.Disqus\bin\Views\Index.cshtml:6
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Widget.Disqus\bin\Views\Index.cshtml:6
 msgid "Comments"
 msgstr "Yorumlar"
 
@@ -320,7 +320,7 @@ msgstr "Şiparişi İptal Et"
 msgid "Confirmed"
 msgstr "Onaylandı"
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:228
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:228
 msgid "Connnect to stripe successfully!"
 msgstr "Stripe'a başarıyla bağlanıldı"
 
@@ -515,7 +515,7 @@ msgstr "Tasarım"
 msgid "Disable"
 msgstr "Pasif"
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:193
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:193
 msgid "Disconnnect to stripe successfully!"
 msgstr "Stripe bağlantısı başarıyla kesildi"
 
@@ -792,10 +792,6 @@ msgstr "Burada tüm eklentileri yönetebilirsiniz. Yeni bir eklenti eklemek / ge
 msgid "Here you can view all the transactions. Transactions is supported only when payment plugin is installed and payment method is configured."
 msgstr "Burada tüm işlemleri görebilirsiniz. İşlemler, yalnızca ödeme eklentisi yüklendiğinde ve ödeme yöntemi yapılandırıldığında desteklenir."
 
-#: Controllers\AccountController.cs:247
-msgid "Hi, Welcome to {0}! I am happy to assist you if you has any questions."
-msgstr "Merhaba, {0}! hoşgeldiniz. Herhangi bir sorunuz olduğunda size yardımcı olmaktan memnuniyet duyarız."
-
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:32
 msgid "Host"
 msgstr ""
@@ -1061,6 +1057,10 @@ msgstr "Okundu olarak işaretle"
 msgid "Max. Review per day"
 msgstr "Günlük maksimum inceleme"
 
+#: Controllers\AccountController.cs:247
+msgid "Merhaba, {0}! hoşgeldiniz. Herhangi bir sorunuz olduğunda size yardımcı olmaktan memnuniyet duyarız."
+msgstr ""
+
 #: Views\Home\Contact.cshtml:29
 #: Views\Listing\_ListingContactModal.cshtml:26
 msgid "Message"
@@ -1164,7 +1164,7 @@ msgstr "Sipariş% 0 -% 1 - Toplam Fiyat%2 % 3. <a href=\\"%4\\"> Ayrıntılara B
 msgid "Order ID"
 msgstr "Sipariş ID"
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:144
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:144
 msgid "Order Requested - %0 - Total Price %1 %2. <a href=\\"%3\\">See Details</a>"
 msgstr "Talep Edilen Sipariş -% 0 - Toplam Fiyat%1 % 2. <a href=\\"%3\\"> Ayrıntılara Bakın </a>"
 
@@ -1207,9 +1207,9 @@ msgstr "Sayfa {0} - {1}"
 msgid "Pages"
 msgstr "Sayfalar"
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:21
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:21
 msgid "Paid"
 msgstr "Ödenen"
 
@@ -1258,9 +1258,9 @@ msgstr "Ödeme Bİlgisi"
 
 #: Controllers\PaymentController.cs:161
 #: Views\Payment\Orders.cshtml:45
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:25
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:25
 #: Areas\Admin\Views\Payment\Order.cshtml:40
 msgid "Pending"
 msgstr "Beklemede"
@@ -1300,9 +1300,9 @@ msgstr "Giriş yapmak için lütfen tıklayın."
 msgid "Please Rate"
 msgstr "Lütfen Oylayın"
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:383
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Widget.Disqus\Controllers\DisqusController.cs:83
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Widget.GoogleAnalytics\Controllers\GoogleAnalyticsController.cs:65
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:383
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Widget.Disqus\Controllers\DisqusController.cs:83
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Widget.GoogleAnalytics\Controllers\GoogleAnalyticsController.cs:65
 msgid "Plugin updated!"
 msgstr "Eklenti Güncellendi!"
 
@@ -1675,7 +1675,7 @@ msgstr "E-postanızı teyit ettiğiniz için teşekkür ederiz."
 msgid "Thanks for your feedback!"
 msgstr "Geri bildiriminiz için teşekkürler!"
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:153
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:153
 msgid "Thanks for your order! You payment will not be charged until the provider accepted your request."
 msgstr "Siparişiniz için teşekkürler! Tedarikçi isteğinizi kabul edene kadar ödeme yapılmaz."
 
@@ -1731,15 +1731,15 @@ msgstr "Tema"
 
 #: Views\Listing\_ListingGridList.cshtml:28
 #: Views\Payment\Orders.cshtml:102
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
 #: Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:40
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:63
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\TransactionOverview.cshtml:31
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:40
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:63
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\bin\Views\TransactionOverview.cshtml:31
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:36
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:54
 #: Areas\Admin\Views\Listing\Listings.cshtml:52
@@ -1823,7 +1823,7 @@ msgstr "Bugüne kadar"
 msgid "Transaction fee (%)"
 msgstr "İşlem ücreti (%)"
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:263
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:263
 msgid "Transaction not found"
 msgstr "İşlem bulunamadı"
 
@@ -2038,4 +2038,7 @@ msgstr "İlanınız silindi."
 #: Views\Account\ResetPasswordConfirmation.cshtml:15
 msgid "Your password has been reset."
 msgstr "Şifreniz sıfırlandı."
+
+#~ msgid "Hi, Welcome to {0}! I am happy to assist you if you has any questions."
+#~ msgstr "Merhaba, {0}! hoşgeldiniz. Herhangi bir sorunuz olduğunda size yardımcı olmaktan memnuniyet duyarız."
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-03-01 22:57+03:00\n"
-"PO-Revision-Date: 2017-03-01 22:57+03:00\n"
+"POT-Creation-Date: 2017-03-02 23:51+03:00\n"
+"PO-Revision-Date: 2017-03-02 23:51+03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -267,9 +267,9 @@ msgstr "Luk"
 msgid "Code"
 msgstr "Kode"
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Widget.Disqus\Views\Index.cshtml:6
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Widget.Disqus\Views\Index.cshtml:6
 #: Plugins\Plugin.Widget.Disqus\Views\Index.cshtml:6
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Widget.Disqus\bin\Views\Index.cshtml:6
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Widget.Disqus\bin\Views\Index.cshtml:6
 msgid "Comments"
 msgstr ""
 
@@ -320,7 +320,7 @@ msgstr "Bekræft for at annullere ordren"
 msgid "Confirmed"
 msgstr ""
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:228
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:228
 msgid "Connnect to stripe successfully!"
 msgstr "Du er nu forbundet til Stripe"
 
@@ -515,7 +515,7 @@ msgstr "Design"
 msgid "Disable"
 msgstr "Deaktivér"
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:193
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:193
 msgid "Disconnnect to stripe successfully!"
 msgstr "Du er ikke længere forbundet til Stripe"
 
@@ -1164,7 +1164,7 @@ msgstr ""
 msgid "Order ID"
 msgstr "Ordre ID"
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:144
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:144
 msgid "Order Requested - %0 - Total Price %1 %2. <a href=\\"%3\\">See Details</a>"
 msgstr ""
 
@@ -1207,9 +1207,9 @@ msgstr "Side {0} af {1}"
 msgid "Pages"
 msgstr "Sider"
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:21
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:21
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:21
 msgid "Paid"
 msgstr "Betalt"
 
@@ -1258,9 +1258,9 @@ msgstr "Udbetalingsoplysninger"
 
 #: Controllers\PaymentController.cs:161
 #: Views\Payment\Orders.cshtml:45
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:25
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:25
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:25
 #: Areas\Admin\Views\Payment\Order.cshtml:40
 msgid "Pending"
 msgstr "Afventer"
@@ -1300,9 +1300,9 @@ msgstr "Klik her for at logge ind"
 msgid "Please Rate"
 msgstr ""
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:383
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Widget.Disqus\Controllers\DisqusController.cs:83
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Widget.GoogleAnalytics\Controllers\GoogleAnalyticsController.cs:65
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:383
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Widget.Disqus\Controllers\DisqusController.cs:83
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Widget.GoogleAnalytics\Controllers\GoogleAnalyticsController.cs:65
 msgid "Plugin updated!"
 msgstr "Plugin opdateret"
 
@@ -1678,7 +1678,7 @@ msgstr "Tak fordi du bekræftede din email."
 msgid "Thanks for your feedback!"
 msgstr ""
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:153
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:153
 #, fuzzy
 msgid "Thanks for your order! You payment will not be charged until the provider accepted your request."
 msgstr "Tak for din ordre. Din betaling vil ikke blive trukket, før annoncøren har accepteret ordren."
@@ -1735,15 +1735,15 @@ msgstr "Tema"
 
 #: Views\Listing\_ListingGridList.cshtml:28
 #: Views\Payment\Orders.cshtml:102
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:40
 #: Plugins\Plugin.Payment.Stripe\Views\Transaction.cshtml:63
 #: Plugins\Plugin.Payment.Stripe\Views\TransactionOverview.cshtml:31
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:40
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:63
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\bin\Views\TransactionOverview.cshtml:31
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:40
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\bin\Views\Transaction.cshtml:63
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\bin\Views\TransactionOverview.cshtml:31
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:36
 #: Areas\Admin\Views\Listing\CustomFields.cshtml:54
 #: Areas\Admin\Views\Listing\Listings.cshtml:52
@@ -1827,7 +1827,7 @@ msgstr "Til dato"
 msgid "Transaction fee (%)"
 msgstr "Transaktionsgebyr (%)"
 
-#: C:\Users\burak\Downloads\BeYourMarket-20170301T192240Z-001\BeYourMarket\beyourmarket-master\beyourmarket-master\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:263
+#: C:\Users\burak\Documents\GitHub\beyourmarket\src\Plugins\Plugin.Payment.Stripe\Controllers\PaymentStripeController.cs:263
 msgid "Transaction not found"
 msgstr ""
 
