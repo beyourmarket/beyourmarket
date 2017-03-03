@@ -1,5 +1,4 @@
-##BeYourMarket [![Try online](https://img.shields.io/badge/try-demo-green.svg)](http://demo.beyourmarket.com) [![Documentation Status](https://img.shields.io/badge/documentation-1v-blue.svg)](https://beyourmarket.atlassian.net) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/beyourmarket/beyourmarket/blob/master/LICENSE) [![Github Issues](http://issuestats.com/github/beyourmarket/beyourmarket/badge/issue)](https://github.com/beyourmarket/beyourmarket/issues)
-
+##BeYourMarket [![Try online](https://img.shields.io/badge/try-demo-green.svg)](http://demo.beyourmarket.com) [![Documentation Status](https://img.shields.io/badge/documentation-1v-blue.svg)](https://beyourmarket.atlassian.net) [![Documentation Status](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/beyourmarket/beyourmarket/blob/master/LICENSE)
 BeYourMarket is a free open source marketplace framework built on the ASP.NET platform.
 beyourmarket.com
 
