@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-03-02 23:54+03:00\n"
-"PO-Revision-Date: 2017-03-02 23:54+03:00\n"
+"POT-Creation-Date: 2017-03-04 00:49+03:00\n"
+"PO-Revision-Date: 2017-03-04 00:49+03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,6 +33,10 @@ msgstr "{0} er installeret"
 #: Areas\Admin\Controllers\PluginController.cs:115
 msgid "{0} is uninstalled"
 msgstr "{0} er afinstalleret"
+
+#: Controllers\AccountController.cs:246
+msgid "{0}'e hoşgeldiniz"
+msgstr ""
 
 #: Views\Home\About.cshtml:2
 msgid "About"
@@ -1058,7 +1062,7 @@ msgid "Max. Review per day"
 msgstr ""
 
 #: Controllers\AccountController.cs:247
-msgid "Merhaba, {0}! hoşgeldiniz. Herhangi bir sorunuz olduğunda size yardımcı olmaktan memnuniyet duyarız."
+msgid "Merhaba, {0}'e hoşgeldiniz. Herhangi bir sorunuz olduğunda size yardımcı olmaktan memnuniyet duyarız."
 msgstr ""
 
 #: Views\Home\Contact.cshtml:29
@@ -1950,10 +1954,6 @@ msgstr "Besøgende"
 msgid "Welcome to {0} Admin Panel!"
 msgstr "Velkommen til {0} Admin panel"
 
-#: Controllers\AccountController.cs:246
-msgid "Welcome to {0}!"
-msgstr ""
-
 #: Views\Listing\Review.cshtml:72
 #: Views\Listing\_ListingReviewModal.cshtml:27
 msgid "Write your review..."
@@ -2049,6 +2049,12 @@ msgstr "Din adgangskode er blevet nulstillet"
 #~ msgid "Hi, Welcome to {0}! I am happy to assist you if you has any questions."
 #~ msgstr ""
 
+#~ msgid "Merhaba, {0}! hoşgeldiniz. Herhangi bir sorunuz olduğunda size yardımcı olmaktan memnuniyet duyarız."
+#~ msgstr ""
+
 #~ msgid "Thanks, have a lovely day."
 #~ msgstr "Tak. Vi ønsker dig en fantastisk day."
+
+#~ msgid "Welcome to {0}!"
+#~ msgstr ""
 
