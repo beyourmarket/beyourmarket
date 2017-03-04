@@ -514,6 +514,7 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
 
                 listingExisting.Title = listing.Title;
                 listingExisting.Description = listing.Description;
+                listingExisting.Tags = listing.Tags;
                 listingExisting.CategoryID = listing.CategoryID;
 
                 listingExisting.Enabled = listing.Enabled;

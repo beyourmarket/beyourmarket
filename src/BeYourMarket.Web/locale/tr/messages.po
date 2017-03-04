@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-03-04 00:49+03:00\n"
-"PO-Revision-Date: 2017-03-04 00:49+03:00\n"
+"POT-Creation-Date: 2017-03-05 00:02+03:00\n"
+"PO-Revision-Date: 2017-03-05 00:02+03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -51,7 +51,7 @@ msgstr "Kabul"
 msgid "Accept Email"
 msgstr "E-Posta Onayı"
 
-#: Views\Listing\ListingUpdate.cshtml:64
+#: Views\Listing\ListingUpdate.cshtml:69
 #: Areas\Admin\Views\Listing\Listings.cshtml:67
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:138
 msgid "Active"
@@ -174,7 +174,7 @@ msgstr "Gövde"
 msgid "Button Label"
 msgstr "Buton Etiketi"
 
-#: Views\Listing\ListingUpdate.cshtml:130
+#: Views\Listing\ListingUpdate.cshtml:135
 #: Views\Listing\Review.cshtml:74
 #: Views\Payment\Orders.cshtml:26
 #: Views\Payment\Orders.cshtml:30
@@ -305,8 +305,8 @@ msgstr "Şifre Onayı"
 
 #: Views\Account\Register.cshtml:54
 #: Views\Account\Register.cshtml:55
-#: Views\Listing\ListingUpdate.cshtml:123
-#: Views\Listing\ListingUpdate.cshtml:124
+#: Views\Listing\ListingUpdate.cshtml:128
+#: Views\Listing\ListingUpdate.cshtml:129
 msgid "Confirm Password"
 msgstr "Şifre Onayı"
 
@@ -568,7 +568,7 @@ msgstr "Düzenle"
 msgid "Email"
 msgstr "E-Posta"
 
-#: Views\Listing\ListingUpdate.cshtml:113
+#: Views\Listing\ListingUpdate.cshtml:118
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:18
 msgid "Email Address"
 msgstr "E-Posta Adresi"
@@ -630,16 +630,16 @@ msgstr "E-Posta Girin"
 msgid "Enter Email"
 msgstr "E-Posta Girin"
 
-#: Views\Listing\ListingUpdate.cshtml:114
+#: Views\Listing\ListingUpdate.cshtml:119
 msgid "Enter Email Address"
 msgstr "E-Posta Adresinizi Girin"
 
-#: Views\Listing\ListingUpdate.cshtml:86
+#: Views\Listing\ListingUpdate.cshtml:91
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:179
 msgid "Enter Location"
 msgstr "Lokasyon Girin"
 
-#: Views\Listing\ListingUpdate.cshtml:106
+#: Views\Listing\ListingUpdate.cshtml:111
 msgid "Enter Phone Number"
 msgstr "Telefon Numaranızı Girin"
 
@@ -672,7 +672,7 @@ msgstr "Aşağıya özel javascript stillerinizi girin"
 msgid "Enter your email."
 msgstr "e-postanızı girin"
 
-#: Views\Listing\ListingUpdate.cshtml:102
+#: Views\Listing\ListingUpdate.cshtml:107
 msgid "Enter Your Full Name"
 msgstr "Tam Adınızı Girin"
 
@@ -683,6 +683,14 @@ msgstr "Hata"
 #: Views\Shared\Error.cshtml:29
 msgid "Error processing the page"
 msgstr "Sayfa işlenirken hata oluştu"
+
+#: Views\Listing\ListingUpdate.cshtml:53
+msgid "Etiket"
+msgstr ""
+
+#: Views\Listing\ListingUpdate.cshtml:54
+msgid "Etiketler"
+msgstr ""
 
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:106
 msgid "Expiration"
@@ -748,7 +756,7 @@ msgstr "İtibaren"
 msgid "Frontend"
 msgstr "Ön yüz"
 
-#: Views\Listing\ListingUpdate.cshtml:101
+#: Views\Listing\ListingUpdate.cshtml:106
 msgid "Full Name"
 msgstr "Tam Ad"
 
@@ -902,11 +910,11 @@ msgstr "İlan Ayrıntıları"
 msgid "Listing ID"
 msgstr "İlan ID"
 
-#: Controllers\ListingController.cs:595
+#: Controllers\ListingController.cs:596
 msgid "Listing is updated!"
 msgstr "İlan Güncellendi!"
 
-#: Controllers\ListingController.cs:868
+#: Controllers\ListingController.cs:869
 msgid "Listing review is not allowed!"
 msgstr "İlan incelemesine izin verilmedi!"
 
@@ -959,8 +967,8 @@ msgstr "Kategoriye göre İlanlar"
 #: Views\Listing\Listing.cshtml:167
 #: Views\Listing\Listings.cshtml:70
 #: Views\Listing\Listings.cshtml:71
-#: Views\Listing\ListingUpdate.cshtml:83
-#: Views\Listing\ListingUpdate.cshtml:85
+#: Views\Listing\ListingUpdate.cshtml:88
+#: Views\Listing\ListingUpdate.cshtml:90
 #: Views\Listing\_ListingGridList.cshtml:43
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:175
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:177
@@ -1074,7 +1082,7 @@ msgstr "Mesaj"
 msgid "Message is sent."
 msgstr "Mesaj Gönderildi."
 
-#: Controllers\ListingController.cs:726
+#: Controllers\ListingController.cs:727
 msgid "Message sent succesfully!"
 msgstr "Mesaj başarıyla gönderildi!"
 
@@ -1223,8 +1231,8 @@ msgstr "Ödenen"
 #: Views\Account\Login.cshtml:28
 #: Views\Account\Register.cshtml:50
 #: Views\Account\Register.cshtml:51
-#: Views\Listing\ListingUpdate.cshtml:119
-#: Views\Listing\ListingUpdate.cshtml:120
+#: Views\Listing\ListingUpdate.cshtml:124
+#: Views\Listing\ListingUpdate.cshtml:125
 #: Views\Manage\Index.cshtml:13
 #: Areas\Admin\Views\Install\Index.cshtml:32
 #: Areas\Admin\Views\Install\Index.cshtml:33
@@ -1270,7 +1278,7 @@ msgid "Pending"
 msgstr "Beklemede"
 
 #: Models\ManageViewModels.cs:65
-#: Views\Listing\ListingUpdate.cshtml:105
+#: Views\Listing\ListingUpdate.cshtml:110
 #: Views\Manage\AddPhoneNumber.cshtml:3
 #: Views\Manage\UserProfile.cshtml:56
 #: Areas\Admin\Views\Manage\Users.cshtml:41
@@ -1334,8 +1342,8 @@ msgstr "Önceki"
 
 #: Views\Listing\Listing.cshtml:150
 #: Views\Listing\Listings.cshtml:75
-#: Views\Listing\ListingUpdate.cshtml:55
-#: Views\Listing\ListingUpdate.cshtml:57
+#: Views\Listing\ListingUpdate.cshtml:60
+#: Views\Listing\ListingUpdate.cshtml:62
 #: Views\Listing\_ListingGridList.cshtml:41
 #: Views\Payment\Orders.cshtml:125
 #: Views\Payment\Payment.cshtml:63
@@ -1373,7 +1381,7 @@ msgstr "Tedarikçi"
 msgid "Publish a listing (it's 100% free)"
 msgstr "Bir ilan yayınlayın (% 100 ücretsizdir)"
 
-#: Views\Listing\ListingUpdate.cshtml:129
+#: Views\Listing\ListingUpdate.cshtml:134
 msgid "Publish Listing"
 msgstr "İlan Yayınla"
 
@@ -1390,7 +1398,7 @@ msgstr "Yeni İlan Yayınla"
 msgid "Published"
 msgstr "Yayınlandı"
 
-#: Views\Listing\ListingUpdate.cshtml:99
+#: Views\Listing\ListingUpdate.cshtml:104
 msgid "Publisher's Info"
 msgstr "Yayımlayan Bilgisi"
 
@@ -1579,7 +1587,7 @@ msgstr "Kargo Etkin"
 msgid "Show Email"
 msgstr "E-Posta Göster"
 
-#: Views\Listing\ListingUpdate.cshtml:109
+#: Views\Listing\ListingUpdate.cshtml:114
 msgid "Show Phone"
 msgstr "Telefonu Göster"
 
@@ -1655,7 +1663,7 @@ msgid "SystemName"
 msgstr "SistemAdı"
 
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:55
-msgid "Tag"
+msgid "Tags"
 msgstr ""
 
 #: Views\Account\Register.cshtml:61
@@ -1674,8 +1682,8 @@ msgstr "Deneme yapılıyor"
 msgid "Thank you for confirming your email."
 msgstr "E-postanızı teyit ettiğiniz için teşekkür ederiz."
 
-#: Controllers\ListingController.cs:850
-#: Controllers\ListingController.cs:939
+#: Controllers\ListingController.cs:851
+#: Controllers\ListingController.cs:940
 msgid "Thanks for your feedback!"
 msgstr "Geri bildiriminiz için teşekkürler!"
 
@@ -1690,15 +1698,15 @@ msgstr "Siparişiniz için teşekkürler! Tedarikçi isteğinizi kabul edene kad
 msgid "The {0} must be at least {2} characters long."
 msgstr "{0} en az {2} karakter uzunluğunda olmalıdır."
 
-#: Areas\Admin\Controllers\ListingController.cs:704
+#: Areas\Admin\Controllers\ListingController.cs:705
 msgid "The category has been deleted."
 msgstr "Kategori silindi."
 
-#: Areas\Admin\Controllers\ListingController.cs:666
+#: Areas\Admin\Controllers\ListingController.cs:667
 msgid "The listing has been deleted."
 msgstr "İlan silindi."
 
-#: Areas\Admin\Controllers\ListingController.cs:688
+#: Areas\Admin\Controllers\ListingController.cs:689
 msgid "The listing type has been deleted."
 msgstr "İlan türü silindi."
 
@@ -1867,7 +1875,7 @@ msgstr "Kaldır"
 msgid "Unsuccessful login with service."
 msgstr "Servisle başarısız oturum açma girişimi"
 
-#: Views\Listing\ListingUpdate.cshtml:74
+#: Views\Listing\ListingUpdate.cshtml:79
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:164
 msgid "Upload Pictures"
 msgstr "Resimleri Yükle"
@@ -1980,29 +1988,29 @@ msgstr "Öğeyi kendinize ayıramazsınız!"
 msgid "You cannot delete Administrator, change the user role first."
 msgstr "Yönetici'yi silemezsiniz, önce kullanıcı rolünü değiştirin."
 
-#: Controllers\ListingController.cs:608
-#: Areas\Admin\Controllers\ListingController.cs:657
+#: Controllers\ListingController.cs:609
+#: Areas\Admin\Controllers\ListingController.cs:658
 msgid "You cannot delete item with orders! You can deactivate it instead."
 msgstr "Siparişle birlikte ürünü silemezsiniz! Bunun yerine bunu devre dışı bırakabilirsiniz."
 
-#: Controllers\ListingController.cs:803
+#: Controllers\ListingController.cs:804
 msgid "You cannot review the order!"
 msgstr "Siparişi inceleyemezsiniz!"
 
-#: Controllers\ListingController.cs:795
-#: Controllers\ListingController.cs:895
+#: Controllers\ListingController.cs:796
+#: Controllers\ListingController.cs:896
 msgid "You cannot review yourself!"
 msgstr "Kendinize yorum yapamazsınız!"
 
-#: Controllers\ListingController.cs:698
+#: Controllers\ListingController.cs:699
 msgid "You cannot send message to yourself!"
 msgstr "Kendinize mesaj gönderemezsiniz!"
 
-#: Areas\Admin\Controllers\ListingController.cs:677
+#: Areas\Admin\Controllers\ListingController.cs:678
 msgid "You cannot the listing type. There should be at least one listing type."
 msgstr "Bunu yapamazsınız, En az bir ilan türü olmalıdır."
 
-#: Controllers\ListingController.cs:881
+#: Controllers\ListingController.cs:882
 msgid "You have reach the review limits today!"
 msgstr "Bugün inceleme yapma sınırına ulaştınız!"
 
@@ -2031,7 +2039,7 @@ msgstr "Kullanıcıyı ve tüm ilanlarını listeden sileceksiniz"
 msgid "Your Email"
 msgstr "E-Posta"
 
-#: Controllers\ListingController.cs:616
+#: Controllers\ListingController.cs:617
 msgid "Your listing has been deleted."
 msgstr "İlanınız silindi."
 
@@ -2043,6 +2051,9 @@ msgstr "Şifreniz sıfırlandı."
 #~ msgstr "Merhaba, {0}! hoşgeldiniz. Herhangi bir sorunuz olduğunda size yardımcı olmaktan memnuniyet duyarız."
 
 #~ msgid "Merhaba, {0}! hoşgeldiniz. Herhangi bir sorunuz olduğunda size yardımcı olmaktan memnuniyet duyarız."
+#~ msgstr ""
+
+#~ msgid "Tag"
 #~ msgstr ""
 
 #~ msgid "Welcome to {0}!"

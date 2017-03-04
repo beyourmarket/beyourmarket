@@ -474,6 +474,7 @@ namespace BeYourMarket.Web.Controllers
 
                 listingExisting.Title = listing.Title;
                 listingExisting.Description = listing.Description;
+                listingExisting.Tags = listing.Tags;
                 listingExisting.Active = listing.Active;
                 listingExisting.Price = listing.Price;
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-03-04 00:48+03:00\n"
-"PO-Revision-Date: 2017-03-04 00:48+03:00\n"
+"POT-Creation-Date: 2017-03-04 23:56+03:00\n"
+"PO-Revision-Date: 2017-03-04 23:56+03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -51,7 +51,7 @@ msgstr "Acceptér"
 msgid "Accept Email"
 msgstr "Acceptér email"
 
-#: Views\Listing\ListingUpdate.cshtml:64
+#: Views\Listing\ListingUpdate.cshtml:69
 #: Areas\Admin\Views\Listing\Listings.cshtml:67
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:138
 msgid "Active"
@@ -174,7 +174,7 @@ msgstr "Brødtekst"
 msgid "Button Label"
 msgstr "Label"
 
-#: Views\Listing\ListingUpdate.cshtml:130
+#: Views\Listing\ListingUpdate.cshtml:135
 #: Views\Listing\Review.cshtml:74
 #: Views\Payment\Orders.cshtml:26
 #: Views\Payment\Orders.cshtml:30
@@ -305,8 +305,8 @@ msgstr "Bekræft adgangskode"
 
 #: Views\Account\Register.cshtml:54
 #: Views\Account\Register.cshtml:55
-#: Views\Listing\ListingUpdate.cshtml:123
-#: Views\Listing\ListingUpdate.cshtml:124
+#: Views\Listing\ListingUpdate.cshtml:128
+#: Views\Listing\ListingUpdate.cshtml:129
 msgid "Confirm Password"
 msgstr "Bekræft adgangskode"
 
@@ -568,7 +568,7 @@ msgstr "Redigér"
 msgid "Email"
 msgstr "Email"
 
-#: Views\Listing\ListingUpdate.cshtml:113
+#: Views\Listing\ListingUpdate.cshtml:118
 #: Areas\Admin\Views\Manage\SettingsEmail.cshtml:18
 msgid "Email Address"
 msgstr "Email-adresse"
@@ -630,20 +630,21 @@ msgstr "Indtast email"
 msgid "Enter Email"
 msgstr "Indtast email"
 
-#: Views\Listing\ListingUpdate.cshtml:114
+#: Views\Listing\ListingUpdate.cshtml:119
 msgid "Enter Email Address"
 msgstr "Indtast email-adresse"
 
-#: Views\Listing\ListingUpdate.cshtml:86
+#: Views\Listing\ListingUpdate.cshtml:91
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:179
 msgid "Enter Location"
 msgstr ""
 
-#: Views\Listing\ListingUpdate.cshtml:106
+#: Views\Listing\ListingUpdate.cshtml:111
 msgid "Enter Phone Number"
 msgstr "Indtast telefonnr."
 
 #: Views\Listing\ListingUpdate.cshtml:44
+#: Views\Listing\ListingUpdate.cshtml:54
 msgid "Enter Title"
 msgstr "Indtast titel"
 
@@ -672,7 +673,7 @@ msgstr "Indtast brugerdefineret Javascript nedenfor"
 msgid "Enter your email."
 msgstr "Indtast email"
 
-#: Views\Listing\ListingUpdate.cshtml:102
+#: Views\Listing\ListingUpdate.cshtml:107
 msgid "Enter Your Full Name"
 msgstr "Fulde navn"
 
@@ -748,7 +749,7 @@ msgstr "Fra dato"
 msgid "Frontend"
 msgstr "Frontend"
 
-#: Views\Listing\ListingUpdate.cshtml:101
+#: Views\Listing\ListingUpdate.cshtml:106
 msgid "Full Name"
 msgstr "Fulde navn"
 
@@ -902,11 +903,11 @@ msgstr "Annoncedetaljer"
 msgid "Listing ID"
 msgstr "Annonce ID"
 
-#: Controllers\ListingController.cs:595
+#: Controllers\ListingController.cs:596
 msgid "Listing is updated!"
 msgstr ""
 
-#: Controllers\ListingController.cs:868
+#: Controllers\ListingController.cs:869
 msgid "Listing review is not allowed!"
 msgstr ""
 
@@ -959,8 +960,8 @@ msgstr "Annoncer efter kategori"
 #: Views\Listing\Listing.cshtml:167
 #: Views\Listing\Listings.cshtml:70
 #: Views\Listing\Listings.cshtml:71
-#: Views\Listing\ListingUpdate.cshtml:83
-#: Views\Listing\ListingUpdate.cshtml:85
+#: Views\Listing\ListingUpdate.cshtml:88
+#: Views\Listing\ListingUpdate.cshtml:90
 #: Views\Listing\_ListingGridList.cshtml:43
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:175
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:177
@@ -1074,7 +1075,7 @@ msgstr "Besked"
 msgid "Message is sent."
 msgstr ""
 
-#: Controllers\ListingController.cs:726
+#: Controllers\ListingController.cs:727
 msgid "Message sent succesfully!"
 msgstr "Beskeden er sendt"
 
@@ -1223,8 +1224,8 @@ msgstr "Betalt"
 #: Views\Account\Login.cshtml:28
 #: Views\Account\Register.cshtml:50
 #: Views\Account\Register.cshtml:51
-#: Views\Listing\ListingUpdate.cshtml:119
-#: Views\Listing\ListingUpdate.cshtml:120
+#: Views\Listing\ListingUpdate.cshtml:124
+#: Views\Listing\ListingUpdate.cshtml:125
 #: Views\Manage\Index.cshtml:13
 #: Areas\Admin\Views\Install\Index.cshtml:32
 #: Areas\Admin\Views\Install\Index.cshtml:33
@@ -1270,7 +1271,7 @@ msgid "Pending"
 msgstr "Afventer"
 
 #: Models\ManageViewModels.cs:65
-#: Views\Listing\ListingUpdate.cshtml:105
+#: Views\Listing\ListingUpdate.cshtml:110
 #: Views\Manage\AddPhoneNumber.cshtml:3
 #: Views\Manage\UserProfile.cshtml:56
 #: Areas\Admin\Views\Manage\Users.cshtml:41
@@ -1334,8 +1335,8 @@ msgstr "Tilbage"
 
 #: Views\Listing\Listing.cshtml:150
 #: Views\Listing\Listings.cshtml:75
-#: Views\Listing\ListingUpdate.cshtml:55
-#: Views\Listing\ListingUpdate.cshtml:57
+#: Views\Listing\ListingUpdate.cshtml:60
+#: Views\Listing\ListingUpdate.cshtml:62
 #: Views\Listing\_ListingGridList.cshtml:41
 #: Views\Payment\Orders.cshtml:125
 #: Views\Payment\Payment.cshtml:63
@@ -1373,7 +1374,7 @@ msgstr "Udbyder"
 msgid "Publish a listing (it's 100% free)"
 msgstr "Opret en annonce (Det er 100% gratis)"
 
-#: Views\Listing\ListingUpdate.cshtml:129
+#: Views\Listing\ListingUpdate.cshtml:134
 msgid "Publish Listing"
 msgstr "Opret annonce"
 
@@ -1390,7 +1391,7 @@ msgstr "Opret annonce"
 msgid "Published"
 msgstr "Oprettet"
 
-#: Views\Listing\ListingUpdate.cshtml:99
+#: Views\Listing\ListingUpdate.cshtml:104
 msgid "Publisher's Info"
 msgstr "Annoncørinfo"
 
@@ -1580,7 +1581,7 @@ msgstr "Forsendelse aktiveret"
 msgid "Show Email"
 msgstr "Vis email"
 
-#: Views\Listing\ListingUpdate.cshtml:109
+#: Views\Listing\ListingUpdate.cshtml:114
 msgid "Show Phone"
 msgstr "Vis telefonnr."
 
@@ -1658,7 +1659,7 @@ msgid "SystemName"
 msgstr "Systemnavn"
 
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:55
-msgid "Tag"
+msgid "Tags"
 msgstr ""
 
 #: Views\Account\Register.cshtml:61
@@ -1677,8 +1678,8 @@ msgstr "Tester"
 msgid "Thank you for confirming your email."
 msgstr "Tak fordi du bekræftede din email."
 
-#: Controllers\ListingController.cs:850
-#: Controllers\ListingController.cs:939
+#: Controllers\ListingController.cs:851
+#: Controllers\ListingController.cs:940
 msgid "Thanks for your feedback!"
 msgstr ""
 
@@ -1694,15 +1695,15 @@ msgstr "Tak for din ordre. Din betaling vil ikke blive trukket, før annoncøren
 msgid "The {0} must be at least {2} characters long."
 msgstr "{0} skal være mindst {2} tegn."
 
-#: Areas\Admin\Controllers\ListingController.cs:704
+#: Areas\Admin\Controllers\ListingController.cs:705
 msgid "The category has been deleted."
 msgstr ""
 
-#: Areas\Admin\Controllers\ListingController.cs:666
+#: Areas\Admin\Controllers\ListingController.cs:667
 msgid "The listing has been deleted."
 msgstr ""
 
-#: Areas\Admin\Controllers\ListingController.cs:688
+#: Areas\Admin\Controllers\ListingController.cs:689
 msgid "The listing type has been deleted."
 msgstr ""
 
@@ -1798,6 +1799,7 @@ msgid "Time Format"
 msgstr ""
 
 #: Views\Listing\ListingUpdate.cshtml:43
+#: Views\Listing\ListingUpdate.cshtml:53
 #: Views\Listing\_ListingGridList.cshtml:38
 #: Views\Payment\Orders.cshtml:123
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:45
@@ -1871,7 +1873,7 @@ msgstr "Afinstallér"
 msgid "Unsuccessful login with service."
 msgstr "Kunne ikke logge ind med servicen."
 
-#: Views\Listing\ListingUpdate.cshtml:74
+#: Views\Listing\ListingUpdate.cshtml:79
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:164
 msgid "Upload Pictures"
 msgstr "Upload billeder"
@@ -1984,29 +1986,29 @@ msgstr "Du kan ikke købe en vare af dig selv"
 msgid "You cannot delete Administrator, change the user role first."
 msgstr ""
 
-#: Controllers\ListingController.cs:608
-#: Areas\Admin\Controllers\ListingController.cs:657
+#: Controllers\ListingController.cs:609
+#: Areas\Admin\Controllers\ListingController.cs:658
 msgid "You cannot delete item with orders! You can deactivate it instead."
 msgstr "Du kan ikke slette varer, der har udestående ordre. Du kan deaktivere varen i stedet."
 
-#: Controllers\ListingController.cs:803
+#: Controllers\ListingController.cs:804
 msgid "You cannot review the order!"
 msgstr ""
 
-#: Controllers\ListingController.cs:795
-#: Controllers\ListingController.cs:895
+#: Controllers\ListingController.cs:796
+#: Controllers\ListingController.cs:896
 msgid "You cannot review yourself!"
 msgstr ""
 
-#: Controllers\ListingController.cs:698
+#: Controllers\ListingController.cs:699
 msgid "You cannot send message to yourself!"
 msgstr ""
 
-#: Areas\Admin\Controllers\ListingController.cs:677
+#: Areas\Admin\Controllers\ListingController.cs:678
 msgid "You cannot the listing type. There should be at least one listing type."
 msgstr ""
 
-#: Controllers\ListingController.cs:881
+#: Controllers\ListingController.cs:882
 msgid "You have reach the review limits today!"
 msgstr ""
 
@@ -2035,7 +2037,7 @@ msgstr ""
 msgid "Your Email"
 msgstr "Din email"
 
-#: Controllers\ListingController.cs:616
+#: Controllers\ListingController.cs:617
 msgid "Your listing has been deleted."
 msgstr ""
 
@@ -2046,10 +2048,16 @@ msgstr "Din adgangskode er blevet nulstillet"
 #~ msgid "Administration"
 #~ msgstr "Administration"
 
+#~ msgid "Etiketler"
+#~ msgstr ""
+
 #~ msgid "Hi, Welcome to {0}! I am happy to assist you if you has any questions."
 #~ msgstr ""
 
 #~ msgid "Merhaba, {0}! hoşgeldiniz. Herhangi bir sorunuz olduğunda size yardımcı olmaktan memnuniyet duyarız."
+#~ msgstr ""
+
+#~ msgid "Tag"
 #~ msgstr ""
 
 #~ msgid "Thanks, have a lovely day."
