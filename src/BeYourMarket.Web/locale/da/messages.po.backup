@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-03-04 23:56+03:00\n"
-"PO-Revision-Date: 2017-03-04 23:56+03:00\n"
+"POT-Creation-Date: 2017-03-05 00:02+03:00\n"
+"PO-Revision-Date: 2017-03-05 00:02+03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -644,7 +644,6 @@ msgid "Enter Phone Number"
 msgstr "Indtast telefonnr."
 
 #: Views\Listing\ListingUpdate.cshtml:44
-#: Views\Listing\ListingUpdate.cshtml:54
 msgid "Enter Title"
 msgstr "Indtast titel"
 
@@ -684,6 +683,14 @@ msgstr "Fejl"
 #: Views\Shared\Error.cshtml:29
 msgid "Error processing the page"
 msgstr "Fejl. Siden kunne ikke loades."
+
+#: Views\Listing\ListingUpdate.cshtml:53
+msgid "Etiket"
+msgstr ""
+
+#: Views\Listing\ListingUpdate.cshtml:54
+msgid "Etiketler"
+msgstr ""
 
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:106
 msgid "Expiration"
@@ -1799,7 +1806,6 @@ msgid "Time Format"
 msgstr ""
 
 #: Views\Listing\ListingUpdate.cshtml:43
-#: Views\Listing\ListingUpdate.cshtml:53
 #: Views\Listing\_ListingGridList.cshtml:38
 #: Views\Payment\Orders.cshtml:123
 #: Areas\Admin\Views\ContentPage\ContentPages.cshtml:45
@@ -2047,9 +2053,6 @@ msgstr "Din adgangskode er blevet nulstillet"
 
 #~ msgid "Administration"
 #~ msgstr "Administration"
-
-#~ msgid "Etiketler"
-#~ msgstr ""
 
 #~ msgid "Hi, Welcome to {0}! I am happy to assist you if you has any questions."
 #~ msgstr ""
