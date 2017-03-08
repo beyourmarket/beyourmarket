@@ -15,7 +15,7 @@
                     {
                     <div class="list-group">
                         <a data-text-swap="[[[Contact number (Click to show)]]]" data-text-original="@Model.ListingCurrent.ContactPhone" class="text-swap list-group-item"><i class="mdi-hardware-phone-iphone"></i> [[[Contact number (Double click to show)]]]</a>
-                        <a href="@Url.Action(" Profile", "Listing" , new { id=Model.ListingCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>[[[View User's other listings]]]</a>
+                        <a href="@Url.Action("Profile", "Listing" , new { id=Model.ListingCurrent.UserID })" class="list-group-item"><i class="mdi-action-view-module"></i>[[[View User's other listings]]]</a>
                     </div>
                     }
 
@@ -37,7 +37,7 @@
                         [[[Sign in to contact the owner]]]
                     </div>
                     <div class="col-md-12">
-                        <a class="btn btn-primary" href="@Url.Action(" Login", "Account" , new { returnUrl=ViewContext.HttpContext.Request.Url.PathAndQuery })"><i class="fa fa-sign-in"></i> [[[Sign in]]]</a>
+                        <a class="btn btn-primary" href="@Url.Action("Login", "Account" , new { returnUrl=ViewContext.HttpContext.Request.Url.PathAndQuery })"><i class="fa fa-sign-in"></i> [[[Sign in]]]</a>
                         <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i> [[[Close]]]</button>
                     </div>
                 </div>

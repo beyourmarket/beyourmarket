@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-03-06 23:33+03:00\n"
-"PO-Revision-Date: 2017-03-06 23:33+03:00\n"
+"POT-Creation-Date: 2017-03-09 01:05+03:00\n"
+"PO-Revision-Date: 2017-03-09 01:05+03:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -908,7 +908,7 @@ msgstr "İlan Ayrıntıları"
 
 #: Views\Listing\Listing.cshtml:183
 msgid "Listing ID"
-msgstr "İlan ID"
+msgstr "İlan NO"
 
 #: Controllers\ListingController.cs:596
 msgid "Listing is updated!"
@@ -926,20 +926,20 @@ msgstr "İlan incelemesine izin verilmedi!"
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:16
 #: Areas\Admin\Views\Shared\_ListingTypes.cshtml:5
 msgid "Listing Type"
-msgstr "İlan Türü"
+msgstr "Tür"
 
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:122
 msgid "Listing type is deleted."
-msgstr "İlan türü silindi."
+msgstr "Tür silindi."
 
 #: Areas\Admin\Views\Listing\ListingTypeUpdate.cshtml:4
 msgid "Listing Type Update"
-msgstr "İlan türü güncellendi"
+msgstr "Tür güncellendi"
 
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:10
 #: Areas\Admin\Views\Listing\ListingTypes.cshtml:35
 msgid "Listing Types"
-msgstr "İlan Türleri"
+msgstr "Türler"
 
 #: Views\Listing\ListingUpdate.cshtml:4
 #: Areas\Admin\Views\Listing\ListingUpdate.cshtml:4
