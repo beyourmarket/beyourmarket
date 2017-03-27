@@ -1,0 +1,191 @@
+﻿<error errorId="83a065ac-7373-4b29-b027-1a04ab58a788" host="LORENZO" type="System.Web.HttpException" message="Valore potenzialmente pericoloso Request.Path rilevato dal client (:)." source="System.Web" detail="System.Web.HttpException (0x80004005): Valore potenzialmente pericoloso Request.Path rilevato dal client (:).&#xD;&#xA;   in System.Web.HttpRequest.ValidateInputIfRequiredByConfig()&#xD;&#xA;   in System.Web.HttpApplication.PipelineStepManager.ValidateHelper(HttpContext context)" time="2017-03-27T14:50:08.8205231Z" statusCode="400">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/css,*/*;q=0.1&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, sdch, br&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:it-IT,it;q=0.8,en-US;q=0.6,en;q=0.4,nl;q=0.2&#xD;&#xA;HTTP_COOKIE:cb-enabled=enabled; __atuvc=5%7C32%2C0%7C33%2C0%7C34%2C0%7C35%2C2%7C36; i18n.langtag=it; Nop.customer=5d1f2cbd-8cc3-46b3-934c-16212675e7a3; __utma=111872281.1457692595.1459531021.1479484851.1482422226.54; __utmz=111872281.1459531021.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __RequestVerificationToken=h99BbWWDbCkVe2arX1TcWMS6b_ubwDpSmO2RULAXkBFfa7hlqDywbjDzcAgNDFHa2wT5WVLvwsL-nYd6XAXoJQ7LV3iyUncbcw-CLhePVnA1; .AspNet.ApplicationCookie=uFIMsyx6PK_3ouilm65vtidcRJvBrZMn-m0b2aKekYGlEavx1rkzhTl0h4Tcm-wS-EeYDK0KIot40DhAiwRzIFbbCRN6_eKL9ubyptzaZK_NFC2Xbsb62VGypM41Wnd5KB5-X7zWS6QWvOQlHgQrPMdmaKAKIycW6_u-iFUoPEXwzmwRHbhSm9D_zmedJGeTUjrOV0540A5IaGS5gx8WCNPV78JQGs_2lzOFdXrqf8EJASj2LR7n-1lozqpCsycsKD10FE8uqSPG1hkFGwp-7d1cdSnzA2J-mg3-yeXke3Nau_p7qGJvzp69nHaj1k9RnyiRdedkMLdKZIxAd_3zQV619Q1CbbDpN7pbNupNiCUvvu-4bVEb-WmyNsuk2xhVTxQxrQmO32W6QU6d5nyW60HYcHIpn8tFn8jSj1zaCwvbzxKurmOoSCI-W9wwGaJCuGdsAslQ9_ztm70OTPW-tyUhONFukeXoUegsuFJxsF5Ibh2RTpBrNeNtYq8C8oUAUIH9DX5WMxzXEfJYDtrFmA; ASP.NET_SessionId=ohipa4wh45t10lxr3kjirafa&#xD;&#xA;HTTP_HOST:localhost:11047&#xD;&#xA;HTTP_REFERER:http://localhost:11047/it/admin/manage/emailtemplateupdate/2&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Connection: keep-alive&#xD;&#xA;Accept: text/css,*/*;q=0.1&#xD;&#xA;Accept-Encoding: gzip, deflate, sdch, br&#xD;&#xA;Accept-Language: it-IT,it;q=0.8,en-US;q=0.6,en;q=0.4,nl;q=0.2&#xD;&#xA;Cookie: cb-enabled=enabled; __atuvc=5%7C32%2C0%7C33%2C0%7C34%2C0%7C35%2C2%7C36; i18n.langtag=it; Nop.customer=5d1f2cbd-8cc3-46b3-934c-16212675e7a3; __utma=111872281.1457692595.1459531021.1479484851.1482422226.54; __utmz=111872281.1459531021.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __RequestVerificationToken=h99BbWWDbCkVe2arX1TcWMS6b_ubwDpSmO2RULAXkBFfa7hlqDywbjDzcAgNDFHa2wT5WVLvwsL-nYd6XAXoJQ7LV3iyUncbcw-CLhePVnA1; .AspNet.ApplicationCookie=uFIMsyx6PK_3ouilm65vtidcRJvBrZMn-m0b2aKekYGlEavx1rkzhTl0h4Tcm-wS-EeYDK0KIot40DhAiwRzIFbbCRN6_eKL9ubyptzaZK_NFC2Xbsb62VGypM41Wnd5KB5-X7zWS6QWvOQlHgQrPMdmaKAKIycW6_u-iFUoPEXwzmwRHbhSm9D_zmedJGeTUjrOV0540A5IaGS5gx8WCNPV78JQGs_2lzOFdXrqf8EJASj2LR7n-1lozqpCsycsKD10FE8uqSPG1hkFGwp-7d1cdSnzA2J-mg3-yeXke3Nau_p7qGJvzp69nHaj1k9RnyiRdedkMLdKZIxAd_3zQV619Q1CbbDpN7pbNupNiCUvvu-4bVEb-WmyNsuk2xhVTxQxrQmO32W6QU6d5nyW60HYcHIpn8tFn8jSj1zaCwvbzxKurmOoSCI-W9wwGaJCuGdsAslQ9_ztm70OTPW-tyUhONFukeXoUegsuFJxsF5Ibh2RTpBrNeNtYq8C8oUAUIH9DX5WMxzXEfJYDtrFmA; ASP.NET_SessionId=ohipa4wh45t10lxr3kjirafa&#xD;&#xA;Host: localhost:11047&#xD;&#xA;Referer: http://localhost:11047/it/admin/manage/emailtemplateupdate/2&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/2/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="C:\Users\Lorenzo\Documents\GitHub\rb\beyourmarket\src\BeYourMarket.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="2" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/2" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/it/http:/localhost:11047/scripts/ckeditor/contents.css" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="C:\Users\Lorenzo\Documents\GitHub\rb\beyourmarket\src\BeYourMarket.Web\it\http:\localhost:11047\scripts\ckeditor\contents.css" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="t=F0RD" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="3457" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/it/http:/localhost:11047/scripts/ckeditor/contents.css" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="11047" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/10.0" />
+    </item>
+    <item name="URL">
+      <value string="/it/http:/localhost:11047/scripts/ckeditor/contents.css" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/css,*/*;q=0.1" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, sdch, br" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="it-IT,it;q=0.8,en-US;q=0.6,en;q=0.4,nl;q=0.2" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="cb-enabled=enabled; __atuvc=5%7C32%2C0%7C33%2C0%7C34%2C0%7C35%2C2%7C36; i18n.langtag=it; Nop.customer=5d1f2cbd-8cc3-46b3-934c-16212675e7a3; __utma=111872281.1457692595.1459531021.1479484851.1482422226.54; __utmz=111872281.1459531021.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __RequestVerificationToken=h99BbWWDbCkVe2arX1TcWMS6b_ubwDpSmO2RULAXkBFfa7hlqDywbjDzcAgNDFHa2wT5WVLvwsL-nYd6XAXoJQ7LV3iyUncbcw-CLhePVnA1; .AspNet.ApplicationCookie=uFIMsyx6PK_3ouilm65vtidcRJvBrZMn-m0b2aKekYGlEavx1rkzhTl0h4Tcm-wS-EeYDK0KIot40DhAiwRzIFbbCRN6_eKL9ubyptzaZK_NFC2Xbsb62VGypM41Wnd5KB5-X7zWS6QWvOQlHgQrPMdmaKAKIycW6_u-iFUoPEXwzmwRHbhSm9D_zmedJGeTUjrOV0540A5IaGS5gx8WCNPV78JQGs_2lzOFdXrqf8EJASj2LR7n-1lozqpCsycsKD10FE8uqSPG1hkFGwp-7d1cdSnzA2J-mg3-yeXke3Nau_p7qGJvzp69nHaj1k9RnyiRdedkMLdKZIxAd_3zQV619Q1CbbDpN7pbNupNiCUvvu-4bVEb-WmyNsuk2xhVTxQxrQmO32W6QU6d5nyW60HYcHIpn8tFn8jSj1zaCwvbzxKurmOoSCI-W9wwGaJCuGdsAslQ9_ztm70OTPW-tyUhONFukeXoUegsuFJxsF5Ibh2RTpBrNeNtYq8C8oUAUIH9DX5WMxzXEfJYDtrFmA; ASP.NET_SessionId=ohipa4wh45t10lxr3kjirafa" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:11047" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:11047/it/admin/manage/emailtemplateupdate/2" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36" />
+    </item>
+  </serverVariables>
+  <queryString>
+    <item name="t">
+      <value string="F0RD" />
+    </item>
+  </queryString>
+  <cookies>
+    <item name="cb-enabled">
+      <value string="enabled" />
+    </item>
+    <item name="__atuvc">
+      <value string="5%7C32%2C0%7C33%2C0%7C34%2C0%7C35%2C2%7C36" />
+    </item>
+    <item name="i18n.langtag">
+      <value string="it" />
+    </item>
+    <item name="Nop.customer">
+      <value string="5d1f2cbd-8cc3-46b3-934c-16212675e7a3" />
+    </item>
+    <item name="__utma">
+      <value string="111872281.1457692595.1459531021.1479484851.1482422226.54" />
+    </item>
+    <item name="__utmz">
+      <value string="111872281.1459531021.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)" />
+    </item>
+    <item name="__RequestVerificationToken">
+      <value string="h99BbWWDbCkVe2arX1TcWMS6b_ubwDpSmO2RULAXkBFfa7hlqDywbjDzcAgNDFHa2wT5WVLvwsL-nYd6XAXoJQ7LV3iyUncbcw-CLhePVnA1" />
+    </item>
+    <item name=".AspNet.ApplicationCookie">
+      <value string="uFIMsyx6PK_3ouilm65vtidcRJvBrZMn-m0b2aKekYGlEavx1rkzhTl0h4Tcm-wS-EeYDK0KIot40DhAiwRzIFbbCRN6_eKL9ubyptzaZK_NFC2Xbsb62VGypM41Wnd5KB5-X7zWS6QWvOQlHgQrPMdmaKAKIycW6_u-iFUoPEXwzmwRHbhSm9D_zmedJGeTUjrOV0540A5IaGS5gx8WCNPV78JQGs_2lzOFdXrqf8EJASj2LR7n-1lozqpCsycsKD10FE8uqSPG1hkFGwp-7d1cdSnzA2J-mg3-yeXke3Nau_p7qGJvzp69nHaj1k9RnyiRdedkMLdKZIxAd_3zQV619Q1CbbDpN7pbNupNiCUvvu-4bVEb-WmyNsuk2xhVTxQxrQmO32W6QU6d5nyW60HYcHIpn8tFn8jSj1zaCwvbzxKurmOoSCI-W9wwGaJCuGdsAslQ9_ztm70OTPW-tyUhONFukeXoUegsuFJxsF5Ibh2RTpBrNeNtYq8C8oUAUIH9DX5WMxzXEfJYDtrFmA" />
+    </item>
+    <item name="ASP.NET_SessionId">
+      <value string="ohipa4wh45t10lxr3kjirafa" />
+    </item>
+  </cookies>
+</error>
