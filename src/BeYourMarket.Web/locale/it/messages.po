@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-03-27 16.43+02:00\n"
-"PO-Revision-Date: 2017-03-27 16.43+02:00\n"
+"POT-Creation-Date: 2017-03-27 17.01+02:00\n"
+"PO-Revision-Date: 2017-03-27 17.01+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -382,7 +382,7 @@ msgstr ""
 #: Views\Shared\_LoginPartial.cshtml:82
 #: Views\Shared\_NavigationSide.cshtml:65
 msgid "Create an account"
-msgstr ""
+msgstr "Crea un account"
 
 #: Areas\Admin\Views\Install\Index.cshtml:39
 msgid "Create Sample Data"
