@@ -49,6 +49,11 @@
                                     <textarea class="form-control" rows="5" placeholder="[[[Description...]]]" id="Description" name="Description" required>@Model.ListingItem.Description</textarea>
                                 </div>
 
+                                <div class="form-group">
+                                    <label>[[[Etiket]]] <span class="text-red"></span></label>
+                                    <input type="text" class="form-control input-lg" placeholder="[[[Etiketler]]]" id="Tags" name="Tags" value="@Model.ListingItem.Tags">
+                                </div>
+
                                 @if (Model.ListingTypes.FirstOrDefault().PriceEnabled)
                                 {
                                     <div class="form-group" id="priceGroup">
@@ -139,7 +144,7 @@
 </div>
 
 @section Scripts {
-    <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnq-Rg6asroWq-Ns68022iB0omx00ESkc&signed_in=true&libraries=places&callback=initMap" async defer></script>
     @Scripts.Render("~/bundles/jqueryval")
 
     <script src="~/Scripts/fileinput.min.js"></script>

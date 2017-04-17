@@ -26,7 +26,8 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.ContactName)
                 .IsRequired()
                 .HasMaxLength(200);
-
+            this.Property(t => t.Tags)
+                .HasMaxLength(500);
             this.Property(t => t.ContactEmail)
                 .IsRequired()
                 .HasMaxLength(200);
@@ -52,6 +53,7 @@ namespace BeYourMarket.Model.Models.Mapping
             this.Property(t => t.Price).HasColumnName("Price");
             this.Property(t => t.Currency).HasColumnName("Currency");
             this.Property(t => t.ContactName).HasColumnName("ContactName");
+            this.Property(t => t.Tags).HasColumnName("Tags");
             this.Property(t => t.ContactEmail).HasColumnName("ContactEmail");
             this.Property(t => t.ContactPhone).HasColumnName("ContactPhone");
             this.Property(t => t.ShowPhone).HasColumnName("ShowPhone");

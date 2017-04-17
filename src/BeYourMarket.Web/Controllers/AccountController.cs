@@ -243,8 +243,8 @@ namespace BeYourMarket.Web.Controllers
                 {
                     UserFrom = administrator.UserId,
                     UserTo = user.Id,
-                    Subject = HttpContext.ParseAndTranslate(string.Format("[[[Welcome to {0}!]]]", CacheHelper.Settings.Name)),
-                    Body = HttpContext.ParseAndTranslate(string.Format("[[[Hi, Welcome to {0}! I am happy to assist you if you has any questions.]]]", CacheHelper.Settings.Name))
+                    Subject = HttpContext.ParseAndTranslate(string.Format("[[[{0}'e hoşgeldiniz]]]", CacheHelper.Settings.Name)),
+                    Body = HttpContext.ParseAndTranslate(string.Format("[[[Merhaba, {0}'e hoşgeldiniz. Herhangi bir sorunuz olduğunda size yardımcı olmaktan memnuniyet duyarız.]]]", CacheHelper.Settings.Name))
 
                 };
 

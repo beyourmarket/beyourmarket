@@ -4,7 +4,7 @@
     "FriendlyName": "Disqus",    
     "Version": "1.0",
     "SupportedVersions": ["1.0"],
-    "Author": "BeYourMarket",
+    "Author": "Burak RAMAZAN",
     "DisplayOrder": "1",
     "PluginFileName": "Plugin.Widget.Disqus.dll",
     "Description":  "Add Disqus with commments support in your marketplace!"

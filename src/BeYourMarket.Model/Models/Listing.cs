@@ -24,6 +24,7 @@ namespace BeYourMarket.Model.Models
         public Nullable<double> Price { get; set; }
         public string Currency { get; set; }
         public string ContactName { get; set; }
+        
         public string ContactEmail { get; set; }
         public string ContactPhone { get; set; }
         public bool ShowPhone { get; set; }
@@ -47,5 +48,6 @@ namespace BeYourMarket.Model.Models
         public virtual ICollection<ListingStat> ListingStats { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<MessageThread> MessageThreads { get; set; }
+        public string Tags { get; set; }
     }
 }

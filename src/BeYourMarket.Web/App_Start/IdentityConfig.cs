@@ -57,7 +57,7 @@ namespace BeYourMarket.Web
                 RequireNonLetterOrDigit = false,
                 RequireDigit = true,
                 RequireLowercase = true,
-                RequireUppercase = true,
+                RequireUppercase = false,
             };
 
             // Configure user lockout defaults

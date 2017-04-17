@@ -51,7 +51,12 @@
                                 <textarea class="form-control input-lg" rows="4" placeholder="Description..." id="Description" name="Description" required>@Model.ListingItem.Description</textarea>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">[[[Tags]]]</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="Title" name="Tags" value="@Model.ListingItem.Tags">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-md-2 control-label">[[[Contact Name]]]</label>
                             <div class="col-md-10">
@@ -206,7 +211,7 @@
 </div>
 
 @section Scripts {
-    <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnq-Rg6asroWq-Ns68022iB0omx00ESkc&signed_in=true&libraries=places&callback=initMap" async defer></script>
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/fileinput.min.js"></script>
     @Html.Partial("_LocalizationFileInput")
@@ -280,8 +285,8 @@
             var mapOptions = {
                 draggable: isDraggable,
                 scrollwheel: false, // Prevent users to start zooming the map when scrolling down the page
-                zoom: 14,
-                center: new google.maps.LatLng(-33.8688, 151.2195),
+                zoom: 7,
+                center: new google.maps.LatLng(39.8688, 32.2195),
             };
 
             @{ var hasLatLng = @Model.ListingItem.Latitude.HasValue && @Model.ListingItem.Longitude.HasValue; }
@@ -291,7 +296,7 @@
                 <text>
             mapOptions = {
                 center: new google.maps.LatLng(@Model.ListingItem.Latitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture), @Model.ListingItem.Longitude.Value.ToString(System.Globalization.CultureInfo.InvariantCulture)),
-                zoom: 14
+                zoom: 7
             };
             </text>
             };
