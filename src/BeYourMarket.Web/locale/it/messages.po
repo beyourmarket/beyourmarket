@@ -2,6 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2017-03-27 17.19+02:00\n"
+"PO-Revision-Date: 2017-03-27 17.19+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -381,7 +382,7 @@ msgstr ""
 #: Views\Shared\_LoginPartial.cshtml:82
 #: Views\Shared\_NavigationSide.cshtml:65
 msgid "Create an account"
-msgstr ""
+msgstr "Crea un account"
 
 #: Areas\Admin\Views\Install\Index.cshtml:39
 msgid "Create Sample Data"
@@ -977,7 +978,7 @@ msgstr ""
 #: Views\Shared\_LoginPartial.cshtml:85
 #: Views\Shared\_NavigationSide.cshtml:60
 msgid "Log in"
-msgstr ""
+msgstr "Accedi"
 
 #: Views\Account\_ExternalLoginsListPartial.cshtml:22
 msgid "Log in using your {0} account"
@@ -1492,7 +1493,7 @@ msgstr ""
 
 #: Views\Shared\_Layout.cshtml:62
 msgid "Search for..."
-msgstr ""
+msgstr "Cerca per..."
 
 #: Areas\Admin\Views\Manage\Settings.cshtml:42
 msgid "Search PlaceHolder"
@@ -2033,4 +2034,207 @@ msgstr ""
 #: Views\Account\ResetPasswordConfirmation.cshtml:15
 msgid "Your password has been reset."
 msgstr ""
+
+#~ msgid " => ((( and  "
+#~ msgstr ""
+
+#~ msgid "Administration"
+#~ msgstr ""
+
+#~ msgid "Based on {0:N0} reviews"
+#~ msgstr ""
+
+#~ msgid "Based on {1:N0} reviews"
+#~ msgstr ""
+
+#~ msgid "BeYourMarket is an opensource peer-to-peer marketplace. Bootstrap your marketplace in 5 minutes!"
+#~ msgstr ""
+
+#~ msgid "Booking"
+#~ msgstr ""
+
+#~ msgid "Booking Text"
+#~ msgstr ""
+
+#~ msgid "BookingEnabled"
+#~ msgstr ""
+
+#~ msgid "BookingText"
+#~ msgstr ""
+
+#~ msgid "BookingType"
+#~ msgstr ""
+
+#~ msgid "BookingUnit"
+#~ msgstr ""
+
+#~ msgid "ButtonLabel"
+#~ msgstr ""
+
+#~ msgid "ButtonText"
+#~ msgstr ""
+
+#~ msgid "CreatedDate"
+#~ msgstr ""
+
+#~ msgid "Has account already? Login here"
+#~ msgstr ""
+
+#~ msgid "Item Type"
+#~ msgstr ""
+
+#~ msgid "ItemType"
+#~ msgstr ""
+
+#~ msgid "ListingType"
+#~ msgstr ""
+
+#~ msgid "ListingTypes"
+#~ msgstr ""
+
+#~ msgid "Mail"
+#~ msgstr ""
+
+#~ msgid "Order"
+#~ msgstr ""
+
+#~ msgid "Order %0 - %1 - Total Price %2 %3"
+#~ msgstr ""
+
+#~ msgid "Order Requested - %0 - Total Price %1 %2"
+#~ msgstr ""
+
+#~ msgid "OrderType"
+#~ msgstr ""
+
+#~ msgid "OrderType Label"
+#~ msgstr ""
+
+#~ msgid "OrderTypeLabel"
+#~ msgstr ""
+
+#~ msgid "PaymentEnabled"
+#~ msgstr ""
+
+#~ msgid "Phone Number (Optional)"
+#~ msgstr ""
+
+#~ msgid "PriceUnit"
+#~ msgstr ""
+
+#~ msgid "PriceUnit Label"
+#~ msgstr ""
+
+#~ msgid "PriceUnitLabel"
+#~ msgstr ""
+
+#~ msgid "See all Messages"
+#~ msgstr ""
+
+#~ msgid "Service %0 on %1 - Total Price %2 %3"
+#~ msgstr ""
+
+#~ msgid "Service {0} on {1} - Total Price {2} {3}"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Service {0} on {1} - Total Price {2} {3}]]\", orderStatusText, order.Description, order.Price, order.Currency)\n"
+#~ "                };\n"
+#~ "\n"
+#~ "                await MessageHelper.SendMessage(messageSend);\n"
+#~ "            }\n"
+#~ "\n"
+#~ "            return Json(result, JsonRequestBehavior.AllowGet);\n"
+#~ "        }\n"
+#~ "\n"
+#~ "        public async Task<ActionResult> Orders()\n"
+#~ "        {\n"
+#~ "            var userId = User.Identity.GetUserId();\n"
+#~ "\n"
+#~ "            var orders = await _orderService.Query(x => x.Status != (int)Enum_OrderStatus.Created && (x.UserProvider == userId || x.UserReceiver == userId))\n"
+#~ "                .Include(x => x.Listing).SelectAsync();\n"
+#~ "\n"
+#~ "            var grid = new OrdersGrid(orders.AsQueryable().OrderByDescending(x => x.Created));\n"
+#~ "\n"
+#~ "            var model = new OrderModel()\n"
+#~ "            {\n"
+#~ "                Grid = grid\n"
+#~ "            };\n"
+#~ "\n"
+#~ "            return View(model);\n"
+#~ "        }\n"
+#~ "\n"
+#~ "        public ActionResult PaymentSetting()\n"
+#~ "        {\n"
+#~ "            return View();\n"
+#~ "        }\n"
+#~ "\n"
+#~ "        public async Task<ActionResult> Payment(int id)\n"
+#~ "        {\n"
+#~ "            var selectQuery = await _orderService.Query(x => x.ID == id)\n"
+#~ "                .Include(x => x.Listing)\n"
+#~ "                .Include(x => x.Listing.ListingType)\n"
+#~ "                .Include(x => x.Listing.ListingPictures)\n"
+#~ "                .SelectAsync();\n"
+#~ "\n"
+#~ "            var order = selectQuery.FirstOrDefault();\n"
+#~ "\n"
+#~ "            if (order == null)\n"
+#~ "                return new HttpNotFoundResult();\n"
+#~ "\n"
+#~ "            var model = new PaymentModel()\n"
+#~ "            {\n"
+#~ "                ListingOrder = order\n"
+#~ "            };\n"
+#~ "\n"
+#~ "            ClearCache();\n"
+#~ "\n"
+#~ "            return View(model);\n"
+#~ "        }\n"
+#~ "\n"
+#~ "        public async Task<ActionResult> Transaction()\n"
+#~ "        {\n"
+#~ "            return View();\n"
+#~ "        }\n"
+#~ "\n"
+#~ "        public async Task<ActionResult> Order(Order order)\n"
+#~ "        {\n"
+#~ "            var listing = await _listingService.FindAsync(order.ListingID);\n"
+#~ "\n"
+#~ "            if (listing == null)\n"
+#~ "                return new HttpNotFoundResult();\n"
+#~ "\n"
+#~ "            var userCurrent = User.Identity.User();\n"
+#~ "\n"
+#~ "            // Check if payment method is setup on user or the platform\n"
+#~ "            var descriptors = _pluginFinder.GetPluginDescriptors<IHookPlugin>(LoadPluginsMode.InstalledOnly, \"Payment\").Where(x => x.Enabled);\n"
+#~ "            if (descriptors.Count() == 0)\n"
+#~ "            {\n"
+#~ "                TempData[TempDataKeys.UserMessageAlertState] = \"bg-danger\";\n"
+#~ "                TempData[TempDataKeys.UserMessage] = \"[[[The provider has not setup the payment option yet, please contact the provider."
+#~ msgstr ""
+
+#~ msgid "Service requested on %0 - Total Price %1 %2"
+#~ msgstr ""
+
+#~ msgid "Service requested on {0} - Total Price {1} {2}"
+#~ msgstr ""
+
+#~ msgid "ShippingEnabled"
+#~ msgstr ""
+
+#~ msgid "ShowEmail"
+#~ msgstr ""
+
+#~ msgid "Thanks, have a lovely day."
+#~ msgstr ""
+
+#~ msgid "There are on items to display."
+#~ msgstr ""
+
+#~ msgid "Welcome to BeYourMarket!"
+#~ msgstr ""
+
+#~ msgid "You will delete all listings with listing type "
+#~ msgstr ""
 

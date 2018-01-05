@@ -226,7 +226,8 @@ namespace BeYourMarket.Web.Areas.Admin.Controllers
                 user.LastAccessDate = DateTime.Now;
                 user.LastAccessIP = System.Web.HttpContext.Current.Request.GetVisitorIP();
 
-                var result = await UserManager.CreateAsync(user);
+                //var result = await UserManager.CreateAsync(user);
+                var result = await UserManager.CreateAsync(user,Request.Form["Password"]);
 
                 if (!result.Succeeded)
                 {
