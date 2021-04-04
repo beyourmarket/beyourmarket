@@ -89,7 +89,7 @@ namespace Repository.Pattern.Ef6
 
         public IRepository<TEntity> Repository<TEntity>() where TEntity : class, IObjectState
         {
-            if (ServiceLocator.IsLocationProviderSet)
+            if (ServiceLocator.Current != null)
             {
                 return ServiceLocator.Current.GetInstance<IRepository<TEntity>>();
             }
@@ -109,7 +109,7 @@ namespace Repository.Pattern.Ef6
 
         public IRepositoryAsync<TEntity> RepositoryAsync<TEntity>() where TEntity : class, IObjectState
         {
-            if (ServiceLocator.IsLocationProviderSet)
+            if (ServiceLocator.Current != null)
             {
                 return ServiceLocator.Current.GetInstance<IRepositoryAsync<TEntity>>();
             }
