@@ -11,7 +11,7 @@
 (function ($) {
     "use strict";
 
-    $.fn.fileinputLocales['fr'] = {
+    $.fn.fileinput.locales.fr = {
         fileSingle: 'fichier',
         filePlural: 'fichiers',
         browseLabel: 'Parcourir&hellip;',
@@ -21,11 +21,9 @@
         cancelTitle: "Annuler l'envoi en cours",
         uploadLabel: 'Transférer',
         uploadTitle: 'Transférer les fichiers sélectionnés',
-        msgZoomTitle: 'Voir les détails',
-        msgZoomModalHeading: 'Aperçu détaillé',
-        msgSizeTooLarge: 'Le fichier "{name}" (<b>{size} KB</b>) dépasse la taille maximale autorisée qui est de <b>{maxSize} KB</b>.',
-        msgFilesTooLess: 'Vous devez sélectionner au moins <b>{n}</b> {files} à transmetter.',
-        msgFilesTooMany: 'Le nombre de fichier sélectionné <b>({n})</b> dépasse la quantité maximale autorisée qui est de <b>{m}</b>.',
+        msgSizeTooLarge: 'Le fichier "{name}" (<b>{size} KB</b>) dépasse la taille maximale autorisée qui est de <b>{maxSize} KB</b>. Merci de recommencer !',
+        msgFilesTooLess: 'Vous devez sélectionner au moins <b>{n}</b> {files} à transmetter. Merci de recommencer !',
+        msgFilesTooMany: 'Le nombre de fichier sélectionné <b>({n})</b> dépasse la quantité maximale autorisée qui est de <b>{m}</b>. Merci de recommencer !',
         msgFileNotFound: 'Le fichier "{name}" est introuvable !',
         msgFileSecured: "Des restrictions de sécurité vous empêchent d'accéder au fichier \"{name}\".",
         msgFileNotReadable: 'Le fichier "{name}" est illisble.',
@@ -36,20 +34,10 @@
         msgValidationError: 'Erreur lors de la transmission du fichier',
         msgLoading: 'Transmission du fichier {index} sur {files}&hellip;',
         msgProgress: 'Transmission du fichier {index} sur {files} - {name} - {percent}% faits.',
-        msgSelected: '{n} {files} sélectionné(s)',
+        msgSelected: '{n} fichier(s) sélectionné(s)',
         msgFoldersNotAllowed: 'Glissez et déposez uniquement des fichiers ! {n} répertoire(s) exclu(s).',
-        msgImageWidthSmall: 'Largeur de fichier image "{name}" doit être d\'au moins {size} px.',
-        msgImageHeightSmall: 'Hauteur de fichier image "{name}" doit être d\'au moins {size} px.',
-        msgImageWidthLarge: 'Largeur de fichier image "{name}" ne peut pas dépasser {size} px.',
-        msgImageHeightLarge: 'Hauteur de fichier image "{name}" ne peut pas dépasser {size} px.',
-        dropZoneTitle: 'Glissez et déposez les fichiers ici&hellip;',
-        fileActionSettings: {
-            removeTitle: 'Supprimer le fichier',
-            uploadTitle: 'Télécharger un fichier',
-            indicatorNewTitle: 'Pas encore téléchargé',
-            indicatorSuccessTitle: 'Posté',
-            indicatorErrorTitle: 'Ajouter erreur',
-            indicatorLoadingTitle: 'ajout ...'
-        }
+        dropZoneTitle: 'Glissez et déposez les fichiers ici&hellip;'
     };
+
+    $.extend($.fn.fileinput.defaults, $.fn.fileinput.locales.fr);
 })(window.jQuery);

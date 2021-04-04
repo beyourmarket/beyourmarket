@@ -11,7 +11,7 @@
 (function ($) {
     "use strict";
 
-    $.fn.fileinputLocales['_LANG_'] = {
+    $.fn.fileinput.locales._LANG_ = {
         fileSingle: 'file',
         filePlural: 'files',
         browseLabel: 'Browse &hellip;',
@@ -34,8 +34,10 @@
         msgValidationError: 'File Upload Error',
         msgLoading: 'Loading file {index} of {files} &hellip;',
         msgProgress: 'Loading file {index} of {files} - {name} - {percent}% completed.',
-        msgSelected: '{n} {files} selected',
+        msgSelected: '{n} files selected',
         msgFoldersNotAllowed: 'Drag & drop files only! Skipped {n} dropped folder(s).',
         dropZoneTitle: 'Drag & drop files here &hellip;'
     };
+
+    $.extend($.fn.fileinput.defaults, $.fn.fileinput.locales._LANG_);
 })(window.jQuery);

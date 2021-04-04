@@ -1,7 +1,7 @@
 /*!
  * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2015
  * @package bootstrap-fileinput
- * @version 4.2.6
+ * @version 4.1.9
  *
  * File input styling for Bootstrap 3.0
  * Built for Yii Framework 2.0
@@ -9,6 +9,10 @@
  * Year: 2015
  * For more Yii related demos visit http://demos.krajee.com
  */
+.file-input {
+    overflow-x: auto;
+}
+
 .file-loading {
     top: 0;
     right: 0;
@@ -19,11 +23,6 @@
     color: #fff;
     background: transparent url('../img/loading.gif') top left no-repeat;
     border: none;
-}
-
-.file-object {
-    margin: 0 0 -5px 0;
-    padding: 0;
 }
 
 .btn-file {
@@ -39,24 +38,49 @@
     min-height: 100%;
     text-align: right;
     opacity: 0;
+    filter: alpha(opacity=0);
+    opacity: 0;
     background: none repeat scroll 0 0 transparent;
     cursor: inherit;
     display: block;
 }
 
+.file-caption .glyphicon {
+    display: inline-block;
+    min-width: 18px;
+    margin-top: 2px;
+}
+
 .file-caption-name {
     display: inline-block;
     overflow: hidden;
-    height: 20px;
+    max-height: 20px;
+    padding-right: 10px;
     word-break: break-all;
 }
 
-.input-group-lg .file-caption-name {
-    height: 25px;
+.file-caption-ellipsis {
+    position: absolute;
+    right: 10px;
+    margin-top: -6px;
+    font-size: 1.2em;
+    display: none;
+    font-weight: bold;
+    cursor: default;
 }
 
-.file-preview-detail-modal {
-    text-align: left;
+.kv-has-ellipsis .file-caption-ellipsis {
+    display: inline;
+}
+
+.kv-has-ellipsis {
+    padding-right: 17px;
+}
+
+.kv-search-container .kv-search-clear {
+    position: absolute;
+    padding: 10px;
+    right: 0px;
 }
 
 .file-error-message {
@@ -78,6 +102,10 @@
     opacity: 1;
 }
 
+.file-input .btn[disabled], .file-input .btn .disabled {
+    cursor: not-allowed;
+}
+
 .file-preview {
     border-radius: 5px;
     border: 1px solid #ddd;
@@ -91,7 +119,7 @@
     margin: 8px;
     height: 160px;
     border: 1px solid #ddd;
-    box-shadow: 1px 1px 5px 0 #a2958a;
+    box-shadow: 1px 1px 5px 0px #a2958a;
     padding: 6px;
     float: left;
     text-align: center;
@@ -99,52 +127,34 @@
 }
 
 .file-preview-frame:hover {
-    box-shadow: 3px 3px 5px 0 #333;
+    box-shadow: 3px 3px 5px 0px #333;
 }
 
 .file-preview-image {
     height: 160px;
-    vertical-align: middle;
+    vertical-align: text-center;
 }
 
 .file-preview-text {
-    text-align: left;
     width: 160px;
-    margin-bottom: 2px;
     color: #428bca;
-    background: #fff;
-    overflow-x: hidden;
+    font-size: 11px;
+    text-align: center;
 }
 
 .file-preview-other {
-    display: table-cell;
+    padding-top: 48px;
     text-align: center;
-    vertical-align: middle;
-    width: 160px;
-    height: 160px;
-    border: 2px solid #999;
-    border-radius: 30px;
-    opacity: 0.8;
 }
 
-.file-preview-other:hover {
-    opacity: 1;
-}
-
-.file-other-error {
-    text-align: left;
-}
-
-.file-icon-lg {
-    font-size: 1.2em;
-}
-
-.file-icon-2x {
+.file-preview-other i {
     font-size: 2.4em;
 }
 
-.file-icon-4x {
-    font-size: 4.8em;
+.file-other-error {
+    width: 100%;
+    padding-top: 30px;
+    text-align: right
 }
 
 .file-input-new .file-preview, .file-input-new .close, .file-input-new .glyphicon-file,
@@ -157,6 +167,12 @@
     background: transparent url('../img/loading.gif') no-repeat scroll center center content-box !important;
 }
 
+.wrap-indicator {
+    font-weight: bold;
+    color: #245269;
+    cursor: pointer;
+}
+
 .file-actions {
     text-align: left;
 }
@@ -165,33 +181,21 @@
     float: right;
 }
 
-.file-upload-indicator {
-    padding-top: 2px;
-    cursor: default;
-    opacity: 0.8;
-    width: 60%;
-}
-
-.file-upload-indicator:hover {
-    font-weight: bold;
-    opacity: 1;
-}
-
-.file-footer-caption {
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 160px;
-    text-align: center;
+.file-thumbnail-footer .file-caption-name {
     padding-top: 4px;
     font-size: 11px;
     color: #777;
-    margin: 5px auto 10px auto;
 }
 
-.file-footer-caption:hover {
-    color: #000;
+.file-upload-indicator {
+    padding-top: 2px;
+    cursor: default;
+}
+
+.file-upload-indicator:hover {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-top: 0;
 }
 
 .file-drop-zone {
@@ -216,10 +220,12 @@
 }
 
 .file-uploading {
-    background: url('../img/loading-sm.gif') no-repeat center bottom 10px;
+    background-image: url('../img/loading-sm.gif');
+    background-position: center bottom 10px;
+    background-repeat: no-repeat;
     opacity: 0.6;
 }
 
-.file-input .btn[disabled], .file-input .btn.disabled, .file-input .btn[disabled] *, .file-input .btn.disabled * {
-    cursor: not-allowed;
+.file-icon-large {
+    font-size: 1.2em;
 }

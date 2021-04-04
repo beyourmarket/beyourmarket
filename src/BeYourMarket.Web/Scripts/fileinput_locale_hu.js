@@ -11,9 +11,9 @@
 (function ($) {
     "use strict";
 
-    $.fn.fileinputLocales['hu'] = {
+    $.fn.fileinput.locales.hu = {
         fileSingle: 'fájl',
-        filePlural: 'fájl',
+        filePlural: 'fájlok',
         browseLabel: 'Böngész &hellip;',
         removeLabel: 'Eltávolít',
         removeTitle: 'Kijelölt fájlok törlése',
@@ -21,11 +21,9 @@
         cancelTitle: 'Feltöltés megszakítása',
         uploadLabel: 'Feltöltés',
         uploadTitle: 'Kijelölt fájlok feltöltése',
-        msgZoomTitle: 'Részletek megtekintése',
-        msgZoomModalHeading: 'Részletes Preview',
-        msgSizeTooLarge: '"{name}" fájl (<b>{size} KB</b>) mérete nagyobb a megengedettnél <b>{maxSize} KB</b>.',
-        msgFilesTooLess: 'Legalább <b>{n}</b> {files} ki kell választania a feltöltéshez.',
-        msgFilesTooMany: 'A feltölteni kívánt fájlok száma <b>({n})</b> elérte a megengedett maximumot <b>{m}</b>.',
+        msgSizeTooLarge: '"{name}" fájl (<b>{size} KB</b>) mérete nagyobb a megengedettnél <b>{maxSize} KB</b>. Kérjük próbálja újra!',
+        msgFilesTooLess: 'Legalább <b>{n}</b> {files} ki kell választania a feltöltéshez. Kérjük próbálja újra!',
+        msgFilesTooMany: 'A feltölteni kívánt fájlok száma <b>({n})</b> elérte a megengedett maximumot <b>{m}</b>. Kérjük próbálja újra!',
         msgFileNotFound: '"{name}" fájl nem található!',
         msgFileSecured: 'Biztonsági beállítások nem engedik olvasni a fájlt "{name}".',
         msgFileNotReadable: '"{name}" fájl nem olvasható',
@@ -36,20 +34,10 @@
         msgValidationError: 'Fájl ellenörzési hiba.',
         msgLoading: '{index} / {files} töltése &hellip;',
         msgProgress: 'Feltöltés: {index} / {files} - {name} - {percent}% kész.',
-        msgSelected: '{n} {files} kiválasztva.',
+        msgSelected: '{n} fájl kiválasztva.',
         msgFoldersNotAllowed: 'Csak fájlokat húzzon ide! Kihagyva {n} könyvtár.',
-        msgImageWidthSmall: 'Szélessége image file "{name}" legalább {size} px.',
-        msgImageHeightSmall: 'Magassága image file "{name}" legalább {size} px.',
-        msgImageWidthLarge: 'Szélessége image file "{name}" nem haladhatja meg a {size} px.',
-        msgImageHeightLarge: 'Magassága image file "{name}" nem haladhatja meg a {size} px.',
-        dropZoneTitle: 'Fájlok húzása ide &hellip;',
-        fileActionSettings: {
-            removeTitle: 'A fájl eltávolítása',
-            uploadTitle: 'fájl feltöltése',
-            indicatorNewTitle: 'Nem feltöltve',
-            indicatorSuccessTitle: 'Feltöltött',
-            indicatorErrorTitle: 'Feltöltés Error',
-            indicatorLoadingTitle: 'Feltöltése ...'
-        }
+        dropZoneTitle: 'Fájlok húzása ide &hellip;'
     };
+
+    $.extend($.fn.fileinput.defaults, $.fn.fileinput.locales.hu);
 })(window.jQuery);

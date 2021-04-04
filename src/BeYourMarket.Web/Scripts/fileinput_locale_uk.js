@@ -12,7 +12,7 @@
 (function ($) {
     "use strict";
 
-    $.fn.fileinputLocales['uk'] = {
+    $.fn.fileinput.locales.uk = {
         fileSingle: 'файл',
         filePlural: 'файли',
         browseLabel: 'Вибрати &hellip;',
@@ -22,11 +22,9 @@
         cancelTitle: 'Скасувати поточну загрузку',
         uploadLabel: 'Загрузити',
         uploadTitle: 'Загрузити вибрані файли',
-        msgZoomTitle: 'Подивитися деталі',
-        msgZoomModalHeading: 'Детальний превью',
-        msgSizeTooLarge: 'Файл "{name}" (<b>{size} KB</b>) перевищує максимальний розмір <b>{maxSize} KB</b>.',
-        msgFilesTooLess: 'Ви повинні вибрати як мінімум <b>{n}</b> {files} для загрузки.',
-        msgFilesTooMany: 'Кількість вибраних файлів <b>({n})</b> перевищує максимально допустиму кількість <b>{m}</b>.',
+        msgSizeTooLarge: 'Файл "{name}" (<b>{size} KB</b>) перевищує максимальний розмыр <b>{maxSize} KB</b>',
+        msgFilesTooLess: 'Ви повинні вибрати як мінімум <b>{n}</b> {files} для загрузки',
+        msgFilesTooMany: 'Кількість вибраних файлів <b>({n})</b> перевищує максимально допустиму кількість <b>{m}</b>',
         msgFileNotFound: 'Файл "{name}" не знайдено!',
         msgFileSecured: 'Обмеження безпеки перешкоджають читанню файла "{name}".',
         msgFileNotReadable: 'Файл "{name}" неможливо прочитати.',
@@ -37,20 +35,10 @@
         msgValidationError: 'Помилка під час загрузки файла',
         msgLoading: 'Загрузка файла {index} із {files} &hellip;',
         msgProgress: 'Загрузка файла {index} із {files} - {name} - {percent}% завершено.',
-        msgSelected: '{n} {files} вибрано',
+        msgSelected: '{n} файл(ів) вибрано',
         msgFoldersNotAllowed: 'Дозволено перетягувати тільки файли! Пропущено {n} папок.',
-        msgImageWidthSmall: 'Ширина зображення "{name}" повинна бути не менше {size} px.',
-        msgImageHeightSmall: 'Висота зображення "{name}" повинна бути не менше {size} px.',
-        msgImageWidthLarge: 'Ширина зображення "{name}" не може перевищувати {size} px.',
-        msgImageHeightLarge: 'Висота зображення "{name}" не може перевищувати {size} px.',
-        dropZoneTitle: 'Перетягніть файли сюди &hellip;',
-        fileActionSettings: {
-            removeTitle: 'Видалити файл',
-            uploadTitle: 'Загрузити файл',
-            indicatorNewTitle: 'Ще не загружено',
-            indicatorSuccessTitle: 'Загружено',
-            indicatorErrorTitle: 'Помилка при загрузці',
-            indicatorLoadingTitle: 'Загрузка ...'
-        }
+        dropZoneTitle: 'Перетяніть файли сюди &hellip;'
     };
+
+    $.extend($.fn.fileinput.defaults, $.fn.fileinput.locales.uk);
 })(window.jQuery);
