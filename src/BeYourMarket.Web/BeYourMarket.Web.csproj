@@ -1434,9 +1434,9 @@
     <Content Include="Scripts\ckeditor\lang\en.js" />
     <Content Include="Scripts\ckeditor\lang\en-gb.js" />
     <Content Include="Scripts\ckeditor\lang\en-ca.js" />
-    <Content Include="Scripts\ckeditor\contents.css" />
-    <Content Include="Scripts\ckeditor\config.js" />
-    <Content Include="Scripts\ckeditor\ckeditor.js" />
+    <None Include="Scripts\ckeditor\skins\moono\readme.md" />
+    <Content Include="Scripts\ckeditor\skins\moono\images\refresh.png" />
+    <Content Include="Scripts\ckeditor\skins\moono\images\lock.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

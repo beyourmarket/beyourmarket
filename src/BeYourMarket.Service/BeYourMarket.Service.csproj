@@ -63,6 +63,14 @@
       <HintPath>..\packages\Unity.5.11.10\lib\net45\Unity.Container.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
+    <Reference Include="Unity.ServiceLocator">
+      <HintPath>..\packages\Unity.ServiceLocator.2.0.0\lib\net45\Unity.ServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\packages\Cquential.Microsoft.Practices.Unity.2.0.414\lib\net35\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AspNetRoleService.cs" />

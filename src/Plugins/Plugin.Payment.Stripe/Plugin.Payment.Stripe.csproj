@@ -136,8 +136,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\UnityConfig.cs" />
-    <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\PaymentStripeController.cs" />
     <Compile Include="Data\StripeTransactionMap.cs" />
     <Compile Include="Data\StripeTransaction.cs" />
@@ -153,6 +151,8 @@
     <Compile Include="Services\StripeConnectService.cs" />
     <Compile Include="StripePlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Gridmvc.css" />
@@ -165,7 +165,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="readme.txt" />
     <Content Include="Scripts\gridmvc.customwidgets.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.fr.js" />
@@ -193,6 +192,7 @@
     <Content Include="Views\TransactionOverview.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="readme.txt" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
